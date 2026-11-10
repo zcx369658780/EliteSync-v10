@@ -1,0 +1,6 @@
+# M5-89 Work独立LEVEL2裁决
+REJECT/CLOSED CONTRACT_NOT_DELIVERED / PREPARATION_FAILURE_REPORTED。未交付合同，不重开本task或未执行预算。
+独立Sol/high m587_review新预算仅task/native各完整Read1/NO_FINDINGS仅失败处理，补读/其它路径/外部/hash/写/运行0，不代表合同接受。原native仅入口exec-5ce7613f-9a5c-4241-b0a5-003f4cc3f736 exit0/nativefalse；无A/B/fileChange。宿主JS SyntaxError、A实际0/来源读取0/B未执行关闭仅AUTHOR_REPORTED，具体原JS错误工具回执未在取回native出现/NOT_PROVEN，不补查未提交命令或修复重试。
+现有01a0f590/local第25turn01a0f6d1-df55-7b22-b81e-45b16dfcd4f5 completed/error=null/idle；不为失败新会话。入口完整输出五authority/task/旧基线，未包含三来源。Work现场runtime-contract.md不存在独立已核，247status/247旧缺0，main/cf8bfaa4a03b8c9a682105617b185141904413be/17冻结完整普通祖先-size一致/15非binfreshhash一致/两bin只身份size沿原hash不补读。
+M5-88仍ACCEPT/CLOSED 188直属名称，M5-87仍准确三文件身份接受，失败不回滚旧接受。M5-89未交付不缩短重试、不从未取来源猜CLI/schema或提前JVM运行。下一可独立候选为准确成员身份核，但Owner此前只批准名称枚举，本轮不得把该授权扩展为188成员正文读取；如提供进一步范围，需另立单次新预算，不复用M5-89。当前不派受保护后继、不恢复自动化。
+全部外部jar正文/外部补查/JVM/候选/构建/HTTP0；dirty/untracked/17冻结/rawfixture/M5-50及全部旧拒绝闭预算保持，NOT_READY/settings拒绝/loader-runtimefalse/真实binding-ID-path-hook/四project事务/LibraryExtension时序外部门、父stderrUNKNOWN/硬截止OS隔离NOT_PROVEN/内部scope-anchor-scratch及SDK兼容NOT_CHECKED/旧失败路径NOT_EXERCISED保持。无Git写/旧仓/真实数据生产密钥/安装/UAC，自动化PAUSED。自动后继授权保留，但不绕关闭预算和外部范围。

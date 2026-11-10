@@ -1,0 +1,90 @@
+// Current-product diagnostic only. Does not modify or authorize legacy G2.
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+import java.nio.file.Files
+import java.nio.file.LinkOption
+import java.nio.file.attribute.BasicFileAttributes
+import java.security.MessageDigest
+
+def check = { boolean ok, String reason -> if (!ok) throw new GradleException('CURRENT_CONFIG_REJECTED: ' + reason) }
+def path = { Object value ->
+    check(value != null, 'missing path')
+    def p = new File(value.toString()).toPath()
+    check(p.isAbsolute() && p == p.normalize() && Files.exists(p), 'noncanonical or missing path')
+    for (def item = p; item != null; item = item.parent) {
+        def a = Files.readAttributes(item, BasicFileAttributes, LinkOption.NOFOLLOW_LINKS)
+        check(!Files.isSymbolicLink(item) && !a.isOther(), 'redirected path')
+    }
+    check(p.toRealPath() == p, 'real path mismatch')
+    p.toFile()
+}
+def sha = { File f -> MessageDigest.getInstance('SHA-256').digest(f.bytes).collect { String.format('%02x', it & 255) }.join() }
+def contract = new JsonSlurper().parse(new File('C:/Probe/guard-contract.json'))
+def root = gradle.parent == null ? gradle : gradle.parent
+check(root.parent == null, 'nested included context')
+def props = root.startParameter.projectProperties
+check(props == contract.project_properties, 'exact property vector')
+check(root.gradleVersion == '8.14' && gradle.gradleVersion == '8.14', 'Gradle version')
+check(root.startParameter.offline && gradle.startParameter.offline && root.startParameter.dryRun, 'offline dry-run required')
+check(root.startParameter.taskNames == ['assembleAarRelease'], 'unique task')
+check(path(root.startParameter.currentDir) == path('C:/BuildWork/Project/apps/flutter_elitesync_module/.android'), 'module root')
+def tooling = path('C:/BuildWork/Tooling/packages/flutter_tools/gradle')
+def sdk = path('C:/Inputs/Flutter')
+check(path(props['flutter-root']) == sdk && path(props['elitesyncDiagnosticToolingRoot']) == tooling, 'split exact tooling/SDK roots')
+def requiredInit = [path('C:/BuildWork/Adapters/current-product-config-guard.init.gradle'), path('C:/BuildWork/Adapters/aar-registration.init.gradle')]
+check(root.startParameter.initScripts.collect { path(it) } == requiredInit, 'root init order')
+check(gradle.startParameter.initScripts.collect { path(it) } == requiredInit, 'included init order')
+check(path(initscript.sourceFile) == requiredInit[0], 'executing guard identity')
+contract.source_pins.each { p, digest -> check(sha(path(p)) == digest, 'source hash: ' + p) }
+if (gradle.parent != null) {
+    check(path(gradle.startParameter.currentDir) == tooling, 'exact included context')
+    gradle.startParameter.projectProperties.each { k, v -> check(props[k] == v, 'conflicting child property') }
+}
+// Observe configuration consumption, never claim that private-directory write proves AGP use.
+def receipt = new File('C:/ProbeOutput/guard-routing.jsonl')
+receipt << JsonOutput.toJson([event:'context', root:gradle.parent == null, current:path(gradle.startParameter.currentDir).path, tooling:tooling.path, sdk:sdk.path]) + '\n'
+gradle.beforeProject { p ->
+    if (p.projectDir == tooling) {
+        check(p.findProperty('kotlin.compiler.execution.strategy') == 'in-process', 'included compiler property must be in-process')
+        receipt << JsonOutput.toJson([event:'included_compiler_property', project:p.path, requested:p.findProperty('kotlin.compiler.execution.strategy')]) + '\n'
+    }
+    def base = p.projectDir == tooling ? tooling : (contract.native_plugins.contains(p.name) ? new File('C:/BuildWork/Project/apps/flutter_elitesync_module/.android/plugins_build_output') : new File('C:/BuildWork/state/project-outputs'))
+    p.layout.buildDirectory.fileValue(new File(base, p.projectDir == tooling ? 'build' : p.name))
+    p.pluginManager.withPlugin('com.android.library') {
+        def android = p.extensions.getByName('android')
+        if (p.name == 'jni') {
+            android.externalNativeBuild.cmake.buildStagingDirectory = new File('C:/BuildWork/state/cmake/jni')
+            def androidComponents = p.extensions.getByName('androidComponents')
+            androidComponents.finalizeDsl { dsl ->
+                check(path(dsl.externalNativeBuild.cmake.buildStagingDirectory) == path('C:/BuildWork/state/cmake/jni'), 'JNI CMake staging drift')
+                receipt << JsonOutput.toJson([event:'jni_cmake_finalized', path:dsl.externalNativeBuild.cmake.buildStagingDirectory.path]) + '\n'
+            }
+        }
+    }
+}
+gradle.projectsEvaluated {
+    if (gradle.parent == null) {
+        def expected = contract.native_plugins as Set
+        def actual = rootProject.subprojects.findAll { !(it.name in ['app','flutter']) }.collect { it.name } as Set
+        check(actual == expected, 'exact native plugin set')
+        ([rootProject] + rootProject.subprojects).each { p ->
+            def actualOutput = p.layout.buildDirectory.get().asFile
+            // Existence is not required for task outputs during dry-run; compare lexical and real parent identities.
+            def target = new File(contract.output_roots[p.path])
+            check(actualOutput.isAbsolute() && actualOutput.toPath() == actualOutput.toPath().normalize() && actualOutput == target, 'final project output drift: ' + p.path)
+            receipt << JsonOutput.toJson([event:'project_output', project:p.path, path:actualOutput.path]) + '\n'
+        }
+    }
+}
+gradle.taskGraph.beforeTask { task ->
+    // Included tooling compilation may run to configure plugins; no root AAR/APK task actions.
+    check(gradle.parent != null && path(task.project.projectDir) == tooling, 'root task action prohibited')
+    if (task.name == 'compileKotlin') {
+        check(task.hasProperty('compilerExecutionStrategy'), 'compiler execution strategy API unavailable')
+        def strategyProperty = task.compilerExecutionStrategy
+        strategyProperty.finalizeValue()
+        def strategy = strategyProperty.get()
+        check(strategy instanceof Enum && strategy.name() == 'IN_PROCESS', 'included compiler task must execute in-process')
+        receipt << JsonOutput.toJson([event:'included_compiler_strategy_before_action', task:task.path, selected:strategy.name(), finalized:true]) + '\n'
+    }
+}

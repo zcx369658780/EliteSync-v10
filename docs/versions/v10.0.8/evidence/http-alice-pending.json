@@ -1,0 +1,19 @@
+{
+  "time": "2026-10-15T07:08:09.401358+00:00",
+  "user": "alice",
+  "status": 200,
+  "body": {
+    "status": "pending",
+    "reason": "V1008 pending operational review evidence",
+    "revision": 1,
+    "moderation_status": "normal",
+    "matching_eligibility": {
+      "eligible": false,
+      "reason_code": "operational_review_pending",
+      "required_answer_count": 20,
+      "answered_answer_count": 20,
+      "missing_answer_count": 0,
+      "next_action_code": "wait_for_review"
+    }
+  }
+}

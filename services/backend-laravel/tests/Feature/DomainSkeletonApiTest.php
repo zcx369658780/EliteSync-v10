@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use App\Models\DatingMatch;
+use App\Http\Middleware\DenyUnverifiedMessagingLiveAccess;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -14,6 +15,9 @@ class DomainSkeletonApiTest extends TestCase
 
     public function test_conversation_and_media_skeleton_routes_are_available(): void
     {
+        // This skeleton checks legacy internals, not v10 live messaging authority.
+        $this->withoutMiddleware(DenyUnverifiedMessagingLiveAccess::class);
+
         $user = User::create([
             'phone' => '13800000021',
             'name' => 'Skeleton',

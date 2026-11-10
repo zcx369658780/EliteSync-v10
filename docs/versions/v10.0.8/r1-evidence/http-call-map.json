@@ -1,0 +1,82 @@
+{
+  "source": "Explicit command/result map from this R1 execution; not a network packet capture",
+  "calls": [
+    {
+      "receipt": "disabled-old-token.json",
+      "user": "alice",
+      "method": "POST",
+      "path": "/api/v1/moderation/sanctions/3/appeals",
+      "status": 401
+    },
+    {
+      "receipt": "nonowner-rejected.json",
+      "user": "r1peer",
+      "method": "POST",
+      "path": "/api/v1/moderation/sanctions/4/appeals",
+      "status": 404
+    },
+    {
+      "receipt": "exact-duplicate.json",
+      "user": "r1restricted",
+      "method": "POST",
+      "path": "/api/v1/moderation/sanctions/4/appeals",
+      "status": 200
+    },
+    {
+      "receipt": "changed-duplicate.json",
+      "user": "r1restricted",
+      "method": "POST",
+      "path": "/api/v1/moderation/sanctions/4/appeals",
+      "status": 409
+    },
+    {
+      "receipt": "restored-sanction-rejected.json",
+      "user": "r1stale",
+      "method": "POST",
+      "path": "/api/v1/moderation/sanctions/5/appeals",
+      "status": 404
+    },
+    {
+      "receipt": "history-after.json",
+      "user": "r1restricted",
+      "method": "GET",
+      "path": "/api/v1/messages?peer_id=12",
+      "status": 200
+    },
+    {
+      "receipt": "send-after-denied.json",
+      "user": "r1restricted",
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 404
+    },
+    {
+      "receipt": "peer-send-after-denied.json",
+      "user": "r1peer",
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 404
+    },
+    {
+      "receipt": "restart-owner-readback.json",
+      "user": "r1restricted",
+      "method": "GET",
+      "path": "/api/v1/moderation/sanctions",
+      "status": 200
+    },
+    {
+      "receipt": "restart-history-readable.json",
+      "user": "r1restricted",
+      "method": "GET",
+      "path": "/api/v1/messages?peer_id=12",
+      "status": 200
+    },
+    {
+      "receipt": "restart-send-denied.json",
+      "user": "r1restricted",
+      "method": "POST",
+      "path": "/api/v1/messages",
+      "status": 404
+    }
+  ]
+}

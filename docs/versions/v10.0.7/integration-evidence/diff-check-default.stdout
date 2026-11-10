@@ -1,0 +1,56 @@
+apps/android/app/build.gradle.kts:53: trailing whitespace.
++    .any { it == "ELITESYNC_V1006_LOCAL_BUILD=true" || it == "ELITESYNC_V1007_LOCAL_BUILD=true" }
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:22: trailing whitespace.
++import 'package:flutter_elitesync_module/features/connection/presentation/pages/live_connection_page.dart';
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:23: trailing whitespace.
++import 'package:flutter_elitesync_module/features/chat/presentation/pages/live_chat_page.dart';
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:24: trailing whitespace.
++import 'package:flutter_elitesync_module/features/match/presentation/pages/live_match_page.dart';
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:105: trailing whitespace.
++      // Local restoration shows the real server result/readiness rejection.
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:106: trailing whitespace.
++      // The navigation projection is not an authority for backend operations.
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:107: trailing whitespace.
++      if (isMatchEntry &&
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:108: trailing whitespace.
++          !env.restorationLocalBuild &&
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:109: trailing whitespace.
++          !nav.isReadinessEstablished) {
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:116: trailing whitespace.
++      if (env.restorationLocalBuild)
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:117: trailing whitespace.
++        GoRoute(
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:118: trailing whitespace.
++          path: '/live-connection',
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:119: trailing whitespace.
++          builder: (context, state) => LiveConnectionPage(
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:120: trailing whitespace.
++            peerId: int.tryParse(state.uri.queryParameters['peerId'] ?? ''),
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:121: trailing whitespace.
++          ),
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:122: trailing whitespace.
++        ),
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:123: trailing whitespace.
++      if (env.restorationLocalBuild)
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:124: trailing whitespace.
++        GoRoute(
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:125: trailing whitespace.
++          path: '/live-chat/:peerId',
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:126: trailing whitespace.
++          builder: (context, state) =>
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:127: trailing whitespace.
++              LiveChatPage(peerId: int.parse(state.pathParameters['peerId']!)),
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:128: trailing whitespace.
++        ),
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:457: trailing whitespace.
++                    builder: (context, state) => env.restorationLocalBuild
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:458: trailing whitespace.
++                        ? const LiveMatchPage()
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:459: trailing whitespace.
++                        : const MatchShellPage(),
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:463: trailing whitespace.
++                    builder: (context, state) => env.restorationLocalBuild
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:464: trailing whitespace.
++                        ? const LiveConnectionPage()
+apps/flutter_elitesync_module/lib/app/router/app_router.dart:465: trailing whitespace.
++                        : const ConnectionPage(),

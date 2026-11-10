@@ -1,0 +1,16 @@
+{
+  "command": [
+    "php",
+    "vendor/bin/phpunit",
+    "tests/Feature/V1006AdminWebTest.php",
+    "tests/Feature/AuthPasswordApiTest.php"
+  ],
+  "cwd": ".",
+  "exit": 0,
+  "start": "2026-10-14T12:55:02.697563+00:00",
+  "end": "2026-10-14T12:55:07.235810+00:00",
+  "streams": {
+    "stdout": "05e348967c2e0c99781b7bb49ea275bf5683136365dbdc4f15f19ee7d95c2724",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -50,9 +50,20 @@ class C2LocalRuntimeIntegrationTest extends TestCase
                 $response->assertJsonPath('data.reveal_at', fn ($value) => is_string($value) && $value !== '');
             }
             if ($scenario === 'revealed') {
-                $response->assertJsonPath('data.conversation_capability.can_create', true)
+                $response->assertJsonPath('data.conversation_capability', null)
+                    ->assertJsonPath('data.user_action', 'refresh')
+                    ->assertJsonPath('data.next_action_code', null)
                     ->assertJsonPath('data.result.partner_id', fn ($value) => is_int($value) && $value > 0)
                     ->assertJsonMissingPath('data.result.score');
+                $this->assertSame('open_conversation', DatingRoundUserState::query()
+                    ->where('user_id', $user->id)->latest('id')->value('next_action_code'));
+            }
+            if ($scenario === 'closed') {
+                $response->assertJsonPath('data.conversation_capability', null)
+                    ->assertJsonPath('data.user_action', 'refresh')
+                    ->assertJsonPath('data.next_action_code', null);
+                $this->assertSame('return_home', DatingRoundUserState::query()
+                    ->where('user_id', $user->id)->latest('id')->value('next_action_code'));
             }
             if ($scenario === 'failed') {
                 $response->assertJsonPath('data.reason_code', 'temporary_failure');

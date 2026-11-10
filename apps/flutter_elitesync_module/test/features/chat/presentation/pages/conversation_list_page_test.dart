@@ -15,6 +15,9 @@ import 'package:flutter_elitesync_module/features/chat/domain/entities/conversat
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_route_state.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/conversation_list_page.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_access_state.dart';
+import 'package:flutter_elitesync_module/features/chat/domain/product_conversation_contract.dart';
+import 'package:flutter_elitesync_module/features/connection/domain/product_connection_contract.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/state/conversation_list_ui_state.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/providers/notification_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
@@ -22,15 +25,23 @@ import 'package:go_router/go_router.dart';
 
 class FakeLocalStorageService extends LocalStorageService {
   final Map<String, Object?> _values = <String, Object?>{};
+  final List<String> stringReads = [];
+  final List<String> stringWrites = [];
+  final List<String> removals = [];
+
+  void seedString(String key, String value) => _values[key] = value;
+  String? storedString(String key) => _values[key] as String?;
 
   @override
   Future<String?> getString(String key) async {
+    stringReads.add(key);
     final value = _values[key];
     return value is String ? value : null;
   }
 
   @override
   Future<bool> setString(String key, String value) async {
+    stringWrites.add(key);
     _values[key] = value;
     return true;
   }
@@ -73,6 +84,7 @@ class FakeLocalStorageService extends LocalStorageService {
 
   @override
   Future<bool> remove(String key) async {
+    removals.add(key);
     _values.remove(key);
     return true;
   }
@@ -82,12 +94,22 @@ final _conversationStateProvider = StateProvider<ConversationListUiState>(
   (ref) => const ConversationListUiState(items: []),
 );
 
+final _syntheticAuthorizedConversationAccess =
+    ProductConversationAccessAdapter.resolve(
+      connection: const ProductConnectionEvidence.authoritative(
+        ProductConnectionState.active,
+      ),
+      messagingConsent: const MessagingConsentEvidence.authoritative(
+        MessagingConsentState.mutual,
+      ),
+    );
+
 void main() {
-  testWidgets('ConversationListPage shows cached snapshot while refreshing', (
+  testWidgets('ConversationListPage hides legacy snapshot while loading', (
     tester,
   ) async {
     final localStorage = FakeLocalStorageService();
-    await localStorage.setString(
+    localStorage.seedString(
       CacheKeys.messagesConversationSnapshot,
       jsonEncode([
         {
@@ -104,6 +126,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -129,10 +154,10 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 1));
 
-    expect(find.text('缓存用户'), findsOneWidget);
-    expect(find.text('先显示缓存消息'), findsOneWidget);
-    expect(find.text('正在更新 · 以下为上次内容'), findsOneWidget);
-    expect(find.textContaining('未读状态不是当前服务器事实'), findsOneWidget);
+    expect(find.text('缓存用户'), findsNothing);
+    expect(find.text('先显示缓存消息'), findsNothing);
+    expect(find.text('正在更新 · 以下为上次内容'), findsNothing);
+    expect(localStorage.stringReads, isNot(contains(CacheKeys.messagesConversationSnapshot)));
     expect(find.text('待回复'), findsNothing);
     expect(find.text('1'), findsNothing);
 
@@ -143,17 +168,16 @@ void main() {
     expect(find.text('先显示缓存消息'), findsNothing);
     expect(find.text('正在更新 · 以下为上次内容'), findsNothing);
     expect(find.text('还没有可聊对象'), findsOneWidget);
-    expect(
-      await localStorage.getString(CacheKeys.messagesConversationSnapshot),
-      isNull,
-    );
+    expect(localStorage.storedString(CacheKeys.messagesConversationSnapshot), isNotNull);
+    expect(localStorage.stringWrites, isNot(contains(CacheKeys.messagesConversationSnapshot)));
+    expect(localStorage.removals, isNot(contains(CacheKeys.messagesConversationSnapshot)));
   });
 
   testWidgets(
-    'ConversationListPage keeps stale snapshot explicit when refresh fails',
+    'ConversationListPage hides legacy snapshot when refresh fails',
     (tester) async {
       final localStorage = FakeLocalStorageService();
-      await localStorage.setString(
+      localStorage.seedString(
         CacheKeys.messagesConversationSnapshot,
         jsonEncode([
           {
@@ -169,6 +193,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -198,19 +225,73 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.text('缓存用户'), findsOneWidget);
-      expect(find.text('上次会话内容'), findsOneWidget);
-      expect(find.text('当前无法更新 · 以下为上次内容'), findsOneWidget);
-      expect(find.textContaining('未读状态不是当前服务器事实'), findsOneWidget);
+      expect(find.text('缓存用户'), findsNothing);
+      expect(find.text('上次会话内容'), findsNothing);
+      expect(find.text('当前无法更新 · 以下为上次内容'), findsNothing);
+      expect(find.text('会话加载失败'), findsOneWidget);
       expect(find.text('待回复'), findsNothing);
       expect(find.text('3'), findsNothing);
       expect(find.text('通知 9'), findsNothing);
-      expect(find.bySemanticsLabel('缓存用户，上次会话内容，仅供参考'), findsOneWidget);
-      await tester.tap(find.text('缓存用户'), warnIfMissed: false);
-      await tester.pumpAndSettle();
+      expect(find.bySemanticsLabel('缓存用户，上次会话内容，仅供参考'), findsNothing);
+      expect(localStorage.stringReads, isNot(contains(CacheKeys.messagesConversationSnapshot)));
+      expect(localStorage.stringWrites, isNot(contains(CacheKeys.messagesConversationSnapshot)));
+      expect(localStorage.removals, isNot(contains(CacheKeys.messagesConversationSnapshot)));
+      expect(localStorage.storedString(CacheKeys.messagesConversationSnapshot), isNotNull);
       expect(tester.takeException(), isNull);
     },
   );
+
+  testWidgets('legacy search history stays unread and current search stays local', (
+    tester,
+  ) async {
+    final storage = FakeLocalStorageService();
+    const oldHistory = '["OLD SECRET SEARCH"]';
+    storage.seedString(CacheKeys.messagesSearchHistory, oldHistory);
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
+          localStorageProvider.overrideWithValue(storage),
+          conversationListProvider.overrideWith(
+            (ref) async => const ConversationListUiState(items: [
+              ConversationEntity(
+                id: '2', name: '九紫瑶瑶', lastMessage: '你好',
+                lastTime: '10:00', unread: 1,
+              ),
+              ConversationEntity(
+                id: '3', name: '另一位用户', lastMessage: '再见',
+                lastTime: '09:00', unread: 0,
+              ),
+            ]),
+          ),
+          notificationUnreadCountProvider.overrideWith((ref) async => 0),
+        ],
+        child: MaterialApp(theme: AppTheme.light, home: const ConversationListPage()),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(TextField));
+    await tester.pumpAndSettle();
+    expect(find.text('OLD SECRET SEARCH'), findsNothing);
+    expect(storage.stringReads, isNot(contains(CacheKeys.messagesSearchHistory)));
+
+    await tester.enterText(find.byType(TextField), '九紫');
+    await tester.pump(const Duration(milliseconds: 120));
+    await tester.pumpAndSettle();
+    expect(find.text('九紫瑶瑶'), findsOneWidget);
+    expect(find.text('另一位用户'), findsNothing);
+    await tester.testTextInput.receiveAction(TextInputAction.search);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), '');
+    await tester.tap(find.byType(TextField));
+    await tester.pumpAndSettle();
+    expect(find.text('九紫'), findsOneWidget);
+    expect(storage.storedString(CacheKeys.messagesSearchHistory), oldHistory);
+    expect(storage.stringWrites, isNot(contains(CacheKeys.messagesSearchHistory)));
+    expect(storage.removals, isNot(contains(CacheKeys.messagesSearchHistory)));
+  });
 
   testWidgets('ConversationListPage removes redundant status shortcuts', (
     tester,
@@ -220,6 +301,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -258,6 +342,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -300,6 +387,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -335,6 +425,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -396,6 +489,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -455,6 +551,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -507,6 +606,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -559,6 +661,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -626,6 +731,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -729,6 +837,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+              _syntheticAuthorizedConversationAccess,
+            ),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.dev,
@@ -785,6 +896,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -836,12 +950,268 @@ void main() {
     expect(routeState.peerUserId, 23);
   });
 
+  for (final (caseName, entryKind, conversationId) in <(String, String?, int?)>[
+    ('legacy kind with ID', 'legacy_peer', 41),
+    ('eligible kind with ID', 'eligible_match', 41),
+    ('unknown kind with ID', null, 41),
+    ('stored kind missing ID', 'stored_conversation', null),
+  ]) {
+    testWidgets('conversation list rejects $caseName before Chat route', (
+      tester,
+    ) async {
+      final itemName = 'Conflict $caseName';
+      var chatRouteBuilt = false;
+      Object? capturedExtra;
+      final router = GoRouter(
+        initialLocation: '/',
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) =>
+                const Scaffold(body: ConversationListPage()),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.chatRoom}/:chatIdentity',
+            builder: (context, state) {
+              chatRouteBuilt = true;
+              capturedExtra = state.extra;
+              return const Scaffold(body: Text('RAW PRIVATE CHAT TARGET'));
+            },
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            conversationAccessProvider.overrideWithBuild(
+              (ref, notifier) => _syntheticAuthorizedConversationAccess,
+            ),
+            appEnvProvider.overrideWithValue(
+              const AppEnv(
+                flavor: AppFlavor.dev,
+                appName: 'EliteSync',
+                apiBaseUrl: 'http://localhost',
+                useMockData: true,
+                useMockChat: true,
+              ),
+            ),
+            localStorageProvider.overrideWithValue(FakeLocalStorageService()),
+            conversationListProvider.overrideWith(
+              (ref) async => ConversationListUiState(
+                items: [
+                  ConversationEntity(
+                    id: 'legacy-peer-alias',
+                    name: itemName,
+                    lastMessage: 'Private preview stays on the source list',
+                    lastTime: 'now',
+                    unread: 0,
+                    entryKind: entryKind,
+                    conversationId: conversationId,
+                    peerUserId: 23,
+                    matchId: 7,
+                  ),
+                ],
+              ),
+            ),
+            notificationUnreadCountProvider.overrideWith((ref) async => 0),
+          ],
+          child: MaterialApp.router(
+            theme: AppTheme.light,
+            routerConfig: router,
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(itemName));
+      await tester.pumpAndSettle();
+
+      expect(find.text('当前会话暂时无法打开，请刷新后重试'), findsOneWidget);
+      expect(router.routeInformationProvider.value.uri.path, '/');
+      expect(chatRouteBuilt, isFalse);
+      expect(capturedExtra, isNull);
+      expect(find.text('RAW PRIVATE CHAT TARGET'), findsNothing);
+      expect(find.text(itemName), findsOneWidget);
+    });
+  }
+
+  for (final peerUserId in <int?>[null, 0, -1]) {
+    testWidgets('stored list row rejects unresolved peer $peerUserId', (
+      tester,
+    ) async {
+      const itemName = 'Stored peer requires source binding';
+      var chatRouteBuilt = false;
+      Object? capturedExtra;
+      final router = GoRouter(
+        initialLocation: '/',
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) =>
+                const Scaffold(body: ConversationListPage()),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.chatRoom}/:chatIdentity',
+            builder: (context, state) {
+              chatRouteBuilt = true;
+              capturedExtra = state.extra;
+              return const Scaffold(body: Text('RAW PRIVATE CHAT TARGET'));
+            },
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            conversationAccessProvider.overrideWithBuild(
+              (ref, notifier) => _syntheticAuthorizedConversationAccess,
+            ),
+            appEnvProvider.overrideWithValue(
+              const AppEnv(
+                flavor: AppFlavor.dev,
+                appName: 'EliteSync',
+                apiBaseUrl: 'http://localhost',
+                useMockData: true,
+                useMockChat: true,
+              ),
+            ),
+            localStorageProvider.overrideWithValue(FakeLocalStorageService()),
+            conversationListProvider.overrideWith(
+              (ref) async => ConversationListUiState(
+                items: [
+                  ConversationEntity(
+                    id: '23',
+                    name: itemName,
+                    lastMessage: 'Private preview stays on the source list',
+                    lastTime: 'now',
+                    unread: 0,
+                    entryKind: 'stored_conversation',
+                    conversationId: 41,
+                    peerUserId: peerUserId,
+                  ),
+                ],
+              ),
+            ),
+            notificationUnreadCountProvider.overrideWith((ref) async => 0),
+          ],
+          child: MaterialApp.router(
+            theme: AppTheme.light,
+            routerConfig: router,
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(itemName));
+      await tester.pumpAndSettle();
+
+      expect(find.text('当前会话暂时无法打开，请刷新后重试'), findsOneWidget);
+      expect(router.routeInformationProvider.value.uri.path, '/');
+      expect(chatRouteBuilt, isFalse);
+      expect(capturedExtra, isNull);
+      expect(find.text('RAW PRIVATE CHAT TARGET'), findsNothing);
+      expect(find.text(itemName), findsOneWidget);
+    });
+  }
+
+  for (final (matchId, peerUserId) in <(int?, int?)>[
+    (null, 23),
+    (0, null),
+    (-1, 23),
+  ]) {
+    testWidgets('eligible list row rejects invalid match ID $matchId', (
+      tester,
+    ) async {
+      final itemName = 'Eligible match needs ID $matchId';
+      var chatRouteBuilt = false;
+      Object? capturedExtra;
+      final router = GoRouter(
+        initialLocation: '/',
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) =>
+                const Scaffold(body: ConversationListPage()),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.chatRoom}/:chatIdentity',
+            builder: (context, state) {
+              chatRouteBuilt = true;
+              capturedExtra = state.extra;
+              return const Scaffold(body: Text('RAW PRIVATE CHAT TARGET'));
+            },
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            conversationAccessProvider.overrideWithBuild(
+              (ref, notifier) => _syntheticAuthorizedConversationAccess,
+            ),
+            appEnvProvider.overrideWithValue(
+              const AppEnv(
+                flavor: AppFlavor.dev,
+                appName: 'EliteSync',
+                apiBaseUrl: 'http://localhost',
+                useMockData: true,
+                useMockChat: true,
+              ),
+            ),
+            localStorageProvider.overrideWithValue(FakeLocalStorageService()),
+            conversationListProvider.overrideWith(
+              (ref) async => ConversationListUiState(
+                items: [
+                  ConversationEntity(
+                    id: '23',
+                    name: itemName,
+                    lastMessage: 'Private preview stays on the source list',
+                    lastTime: 'now',
+                    unread: 0,
+                    entryKind: 'eligible_match',
+                    peerUserId: peerUserId,
+                    matchId: matchId,
+                  ),
+                ],
+              ),
+            ),
+            notificationUnreadCountProvider.overrideWith((ref) async => 0),
+          ],
+          child: MaterialApp.router(
+            theme: AppTheme.light,
+            routerConfig: router,
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(itemName));
+      await tester.pumpAndSettle();
+
+      expect(find.text('当前会话暂时无法打开，请刷新后重试'), findsOneWidget);
+      expect(router.routeInformationProvider.value.uri.path, '/');
+      expect(chatRouteBuilt, isFalse);
+      expect(capturedExtra, isNull);
+      expect(find.text('RAW PRIVATE CHAT TARGET'), findsNothing);
+      expect(find.text(itemName), findsOneWidget);
+    });
+  }
+
   testWidgets('conversation list refuses an invalid untyped identity', (
     tester,
   ) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -908,6 +1278,9 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          conversationAccessProvider.overrideWithBuild((ref, notifier) =>
+            _syntheticAuthorizedConversationAccess,
+          ),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.dev,
@@ -990,10 +1363,11 @@ void main() {
     container.read(_conversationStateProvider.notifier).state =
         const ConversationListUiState(error: 'temporary transport loss');
     await tester.pumpAndSettle();
-    expect(find.text('当前无法更新 · 以下为上次内容'), findsOneWidget);
-    expect(find.textContaining('未读状态不是当前服务器事实'), findsOneWidget);
+    expect(find.text('会话加载失败'), findsOneWidget);
+    expect(find.text('可会话对象'), findsNothing);
+    expect(find.text('已读后的服务器事实'), findsNothing);
     capturedExtra = null;
-    await tester.tap(find.text('可会话对象'), warnIfMissed: false);
+    await tester.tap(find.text('重新加载'));
     await tester.pumpAndSettle();
     expect(router.routeInformationProvider.value.uri.path, '/messages');
     expect(capturedExtra, isNull);
@@ -1018,7 +1392,7 @@ void main() {
     );
     await tester.pumpAndSettle();
     expect(find.text('恢复后的当前事实'), findsOneWidget);
-    expect(find.text('当前无法更新 · 以下为上次内容'), findsNothing);
+    expect(find.text('会话加载失败'), findsNothing);
     expect(find.text('错误对象'), findsNothing);
   });
 }

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "php",
+    "artisan",
+    "migrate:status",
+    "--no-ansi"
+  ],
+  "cwd": ".",
+  "exit": 0,
+  "start": "2026-10-14T13:12:55.374355+00:00",
+  "end": "2026-10-14T13:13:06.949830+00:00",
+  "streams": {
+    "stdout": "cc5af29125416fb266a35d26db2aa17a5a0e72e302c5b9ea29cb79e32c069e6c",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

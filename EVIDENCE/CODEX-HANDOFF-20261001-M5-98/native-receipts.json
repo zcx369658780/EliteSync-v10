@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "thread": {
+    "id": "01a0f74b-03a7-7d41-8185-9c47d92ab428",
+    "kind": "codex",
+    "hostId": "local",
+    "title": "EliteSync-v10 M5-97后只读执行交接",
+    "preview": "",
+    "status": {
+      "type": "idle"
+    },
+    "cwd": "D:\\EliteSync-v10",
+    "createdAt": 1790855283,
+    "updatedAt": 1790855593
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 1,
+    "nextCursor": "{\"requestedThreadId\":\"01a0f74b-03a7-7d41-8185-9c47d92ab428\",\"rolloutOrdinal\":34,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "turns": [
+    {
+      "id": "01a0f74e-bad0-72c1-b9c4-e81832ee51ce",
+      "status": "completed",
+      "error": null,
+      "startedAt": 1790855527,
+      "completedAt": 1790855593,
+      "durationMs": 66056,
+      "items": [
+        {
+          "type": "functionCallOutput",
+          "id": "fco_01a0f74e-bae9-7421-bb61-fdabf0cac509",
+          "name": "send_message_to_thread",
+          "namespace": "codex_app",
+          "output": {
+            "text": "<codex_delegation>\n  <source_thread_id>01a0f66b-6c41-7020-99f3-b1c634c82ebf</source_thread_id>\n  <input>handoff97 Work REJECT/CLOSED原比较口径失败/entry默认login保留，旧预算全闭不补读修复。你自身turn1completed/errornull，继续同会话，不换新会话。现在唯一新只读预算D:\\EliteSync-v10\\EVIDENCE\\CODEX-HANDOFF-20261001-M5-98\\task.md准确全文，含entry一律loginfalse/ttyfalse、A1/status每原行Substring(3)对Paths/20冻结18body1+2binidentity0body，task来源只指定入口/两接受review/baseline。CODEX_SUBAGENTS_DISABLED_FROM_INVOCATION_START。首失败closed不补查重跑，原native不覆盖。无任何运行/写入/外部/home/skills/后继/自动化/Git。交付仅短原stdout停独立Solhigh+WorkLEVEL2，M93仍未授权。</input>\n</codex_delegation>",
+            "truncated": false
+          }
+        },
+        {
+          "type": "agentMessage",
+          "id": "msg_0318c8fd07d6b1cb016abe49758ab087d0892a357796d44a92",
+          "text": "我将按 M5-98 的新只读预算核验，保留 M5-97 的关闭回执；入口读取也使用 loginfalse/ttyfalse，首失败即停。",
+          "phase": "commentary"
+        },
+        {
+          "type": "commandExecution",
+          "id": "exec-ebc4aabf-3872-4aed-b372-2260cb7475b6",
+          "command": "\"C:\\\\Program Files\\\\PowerShell\\\\7\\\\pwsh.exe\" -NoProfile -Command \"Get-Content -LiteralPath 'D:\\\\EliteSync-v10\\\\EVIDENCE\\\\CODEX-HANDOFF-20261001-M5-98\\\\task.md' -Raw\"",
+          "cwd": "D:\\EliteSync-v10",
+          "status": "completed",
+          "exitCode": 0,
+          "durationMs": 138,
+          "output": {
+            "text": "# CODEX-HANDOFF-20261001-M5-98\nISSUED LEVEL2 NEW READONLY HANDOFF, same newexecutor01a0f74b-03a7-7d41-8185-9c47d92ab428/local. CODEX_SUBAGENTS_DISABLED_FROM_INVOCATION_START.\nHandoff97failedbudget closed/partial/native retained/no20frozenread/no actualoldlossproven. This new budget explicitly fixes comparison representation, no oldbudget reset or failedthreadreplacement. Oldexecutor01a0f590turn30 stoppednewassignments. UniqueD:\\EliteSync-v10/main/HEADcf8bfaa4a03b8c9a682105617b185141904413be. Newexecutor firstturnclosed/errornull/idle, this is secondturn only.\nEntry allowed this exacttask once(full boundedtext); all shellcalls including entry login=false/tty=false/plainpipes. A1 may read once fiveauthority firstparagraph only, this workspace-before.json full, and D:\\EliteSync-v10\\EVIDENCE\\APP-M5-96-TERMINAL-ESCAPE-SOURCE\\work-review.md plus D:\\EliteSync-v10\\EVIDENCE\\APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION\\work-review.md each1. No other source/home/memory/skill/config/failedhandoffdocs reads, no fullhistoricalbacklog/status/source output. Keep original inputs in same invocationmemory. A cmd<=4096;output<=8192UTF8bytes/chars measured before singleemit.\nErrorActionPreference=Stop. Git branch/head(defaultread)/status specifically git -c core.quotepath=false status --porcelain=v1 defaultdirectorygranularity, never --untracked-files=all. Save rawlines only in memory, derive each Path exactly rawline.Substring(3) after line.length>=3; compare baseline.Paths strings to this Patharray, not rawlines. Check git exits,branch/head,fixedGetLocation and baseline.Count/Paths.Count andFrozen20 before reads. Oldmissing must0; failure closesremaining nofix/retry/supplement. Output counts only, not allPaths/rawstatus.\nExactly20baseline.Frozen,eachGetItem1/ordinaryFileInfo-self/fullFileInfo.Directory→DirectoryInfo.Parent nonreparse to root/sizecomparewithBytes. For18non-bin eachReadAllBytes1/hashSHA256 samearraycompareHash; two .bin identity/size only andcarryoriginalHash, no body/hash. Baseline schema precisely Path(relative),Bytes,Hash, no fallback regex or discovery. No directoryenumeration/other source/parser/execution/oracle reconstruction. Small output all20ordinal matched/ordinary/bodycount+summarycounts, binbody0,actualreadcounts andoperationzeros. Hash orDispose error firststops, no more nextfile. Nofilewrites/reports except native shortstdout.\nKeep M96SOURCEONLYacceptedescapedlauncher19873/hashD1BE2EC4F621C1F4370731B4278C814CBAD13AEFA07B3DB4851F06AC799377AD frozen19 and M97originalprobeonlySOURCEONLYaccepted1343/hashF523147BE5E4E0936144D61D50EB1E3E6A9D6E22B2FA3CCB55DFB013345123D1 frozen20. M92/M94rejected,M95Workfailureclosed,M89/M90oldrejections/external188budgetclosed unchanged. No artifactrewrite/copy or sourceacceptance claimed byhandoff. M93exact190freshidentities+singleJVM still unauthorized/uncreated/unissued; Workdraft existsoutside actualroot butdoesnotGO. No newproduct/runtime task duringhandoff; noagents/successor/messages/newthread/automationresume/Gitwrite.\nAll candidate/Parser/Process/JVM/externalreadhashenumeration/HTTP/SDKbuild0. Preserve dirty20frozen/rawfixture/M5-50/NOT_READY/settingsdenial/loader-runtimefalse/realbinding-ID-path-hook/fourprojecttransactions/LibraryExtensiontiming,parentstderrUNKNOWN,OSdeadline/file-networkisolationNOT_PROVEN,SDK/internalscopeNOT_CHECKED,failurepathsNOT_EXERCISED. Ban oldD:\\EliteSync,metadata-properties/neighborindex/home-cache-config-SDK,install/download,productionDB/API/SSH,data-backup-secret/UAC/Gitwrites. AutomationPAUSED. UACneedscurrentOwner我在 plusseparateexactauthorization.\nCompleteonlynativeconcisehandoffreport, stop independentGPT-6.1Sol/high limitedreadonly plus Work originalnativeLEVEL2. No selfaccept. Firstfailure allbudgetclosed,no shorten/supplement/retry/newsession.\n\r\n",
+            "truncated": false
+          }
+        },
+        {
+          "type": "commandExecution",
+          "id": "exec-d21af11d-dc2e-4927-8b2f-c9494c9c1d1f",
+          "command": "\"C:\\\\Program Files\\\\PowerShell\\\\7\\\\pwsh.exe\" -NoProfile -Command '$ErrorActionPreference='\"'Stop'\n\"'$r='\"'D:\\\\EliteSync-v10';\"'$h=\"$r'\"\\\\EVIDENCE\\\\CODEX-HANDOFF-20261001-M5-98\\\";\"'$a=0;$w=0;$bRead=0;$items=0;$bodies=0;$bins=0;$rows=@();$phase='\"'location';\"'$ok=$false\ntry{\nif((Get-Location).Path -cne $r){throw '\"'LOCATION'}\n\"'$phase='\"'authority'\nforeach(\"'$n in @('\"'CURRENT.md','AGENTS.md','PRODUCT_DECISIONS.md','TASK_CURRENT.md','REVIEW_GATE.md')){\n\"'$s=[IO.File]::OpenText(\"$r'\"\\\\\"'$n\");try{$started=$false;while(($l=$s.ReadLine()) -ne $null){if($l.Trim().Length){$started=$true}else{if($started){break}}}}finally{$s.Dispose()};$a++\n}\n$phase='\"'reviews'\nforeach(\"'$p in @(\"$r'\"\\\\EVIDENCE\\\\APP-M5-96-TERMINAL-ESCAPE-SOURCE\\\\work-review.md\\\",\\\"\"'$r'\"\\\\EVIDENCE\\\\APP-M5-97-ORIGINAL-PROBE-SOURCE-QUALIFICATION\\\\work-review.md\\\")){\"'$v=[IO.File]::ReadAllText($p);$w++}\n$phase='\"'baseline';\"'$v=[IO.File]::ReadAllText(\"$h'\"\\\\workspace-before.json\\\");\"'$bRead++;$b=$v|ConvertFrom-Json\n$phase='\"'git';\"'$branch=git -C $r branch --show-current;if($LASTEXITCODE -ne 0){throw '\"'GIT_BRANCH'};\"'$head=git -C $r rev-parse HEAD;if($LASTEXITCODE -ne 0){throw '\"'GIT_HEAD'}\n\"'$raw=@(git -C $r -c core.quotepath=false status --porcelain=v1);if($LASTEXITCODE -ne 0){throw '\"'GIT_STATUS'}\nif(\"'$branch -cne '\"'main' -or \"'$head -cne '\"'cf8bfaa4a03b8c9a682105617b185141904413be'){throw 'REF'}\n\"'$paths=@(foreach($line in $raw){if($line.Length -lt 3){throw '\"'STATUS_LINE'};\"'$line.Substring(3)})\nif($null -eq $b.Count -or [int]$b.Count -ne @($b.Paths).Count -or @($b.Frozen).Count -ne 20){throw '\"'BASELINE_COUNTS'}\n\"'$missing=@($b.Paths|Where-Object{$_ -cnotin $paths}).Count;if($missing -ne 0){throw '\"'OLD_PATHS_MISSING'}\n\"'$phase='\"'frozen'\nforeach(\"'$f in $b.Frozen){\nif(-not $f.Path -or [IO.Path]::IsPathRooted($f.Path) -or $null -eq $f.Bytes -or -not $f.Hash){throw '\"'FROZEN_SCHEMA'}\n\"'$p=Join-Path $r $f.Path;$i=Get-Item -LiteralPath $p;$items++\nif($i -isnot [IO.FileInfo] -or ($i.Attributes -band [IO.FileAttributes]::ReparsePoint)){throw '\"'FILE_IDENTITY'}\n\"'$d=$i.Directory;while($null -ne $d){if($d -isnot [IO.DirectoryInfo] -or ($d.Attributes -band [IO.FileAttributes]::ReparsePoint)){throw '\"'ANCESTOR_IDENTITY'};\"'$d=$d.Parent}\nif($i.Length -ne [long]$f.Bytes){throw '\"'SIZE'}\n\"'$bin=$i.Extension -eq '\"'.bin'\nif(\"'$bin){$bins++;$hash='\"'PRIOR_ACCEPTED_CARRIED'}else{\n\"'$bytes=[IO.File]::ReadAllBytes($p);$bodies++;$sh=[Security.Cryptography.SHA256]::Create()\ntry{$actual=[BitConverter]::ToString($sh.ComputeHash($bytes)).Replace('\"'-','')}finally{\"'$sh.Dispose()}\nif($bytes.Length -ne [long]$f.Bytes -or $actual -cne $f.Hash){throw '\"'HASH'};\"'$hash='\"'MATCH'\n}\n\"'$rows+=@{ordinal=$rows.Count+1;ordinary='\"'MATCH';ancestors='NONREPARSE_TO_ROOT';size='MATCH';getItem=1;body=[int](-not \"'$bin);hash=$hash}\n}\nif($bodies -ne 18 -or $bins -ne 2){throw '\"'READ_COUNTS'};\"'$ok=$true\n}catch{$failure=$_.Exception.Message}\n$o=[ordered]@{result=$(if($ok){'\"'READONLY_HANDOFF_VERIFIED_REVIEW_PENDING'}else{'FIRST_FAILURE_CLOSED'});phase=\"'$phase;failure=$failure;branch=$branch;HEAD=$head;statusCount=$raw.Count;baselineCount=$b.Count;baselinePathsCount=@($b.Paths).Count;oldMissing=$missing;frozen=$rows;counts=@{getItem=$items;nonBinReadAllBytes=$bodies;binIdentity=$bins;binBody=0;taskEntry=1;authorityFirstParagraph=$a;workReview=$w;baseline=$bRead};operations=@{writes=0;candidate=0;Parser=0;Process=0;JVM=0;externalReadHashEnumeration=0;HTTP=0;SDKbuild=0;Gitwrite=0;agents=0};state='\"'M96/M97 SOURCEONLY acceptance retained; M92/M94/M89/M90 rejections and M95 failure closed; M97 handoff failed budget retained; M93 unauthorized/uncreated/unissued; NOT_READY; automation PAUSED';shell='entry and A loginfalse ttyfalse plainpipes'}\n\"'$out=$o|ConvertTo-Json -Depth 6 -Compress\nif($out.Length -gt 8192 -or [Text.Encoding]::UTF8.GetByteCount($out) -gt 8192){throw '\"'OUTPUT_LIMIT'}\n[Console]::WriteLine(\"'$out)\nif(-not $ok){exit 1}'",
+          "cwd": "D:\\EliteSync-v10",
+          "status": "completed",
+          "exitCode": 0,
+          "durationMs": 338,
+          "output": {
+            "text": "{\"result\":\"READONLY_HANDOFF_VERIFIED_REVIEW_PENDING\",\"phase\":\"frozen\",\"failure\":null,\"branch\":\"main\",\"HEAD\":\"cf8bfaa4a03b8c9a682105617b185141904413be\",\"statusCount\":257,\"baselineCount\":257,\"baselinePathsCount\":257,\"oldMissing\":0,\"frozen\":[{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":1},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":2},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":3},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":4},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":5},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":6},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"PRIOR_ACCEPTED_CARRIED\",\"size\":\"MATCH\",\"body\":0,\"ordinary\":\"MATCH\",\"ordinal\":7},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":8},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":9},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":10},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"PRIOR_ACCEPTED_CARRIED\",\"size\":\"MATCH\",\"body\":0,\"ordinary\":\"MATCH\",\"ordinal\":11},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":12},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":13},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":14},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":15},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":16},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":17},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":18},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":19},{\"getItem\":1,\"ancestors\":\"NONREPARSE_TO_ROOT\",\"hash\":\"MATCH\",\"size\":\"MATCH\",\"body\":1,\"ordinary\":\"MATCH\",\"ordinal\":20}],\"counts\":{\"workReview\":2,\"baseline\":1,\"taskEntry\":1,\"binIdentity\":2,\"authorityFirstParagraph\":5,\"binBody\":0,\"nonBinReadAllBytes\":18,\"getItem\":20},\"operations\":{\"JVM\":0,\"HTTP\":0,\"Parser\":0,\"SDKbuild\":0,\"externalReadHashEnumeration\":0,\"Gitwrite\":0,\"Process\":0,\"agents\":0,\"writes\":0,\"candidate\":0},\"state\":\"M96/M97 SOURCEONLY acceptance retained; M92/M94/M89/M90 rejections and M95 failure closed; M97 handoff failed budget retained; M93 unauthorized/uncreated/unissued; NOT_READY; automation PAUSED\",\"shell\":\"entry and A loginfalse ttyfalse plainpipes\"}\r\n",
+            "truncated": false
+          }
+        },
+        {
+          "type": "agentMessage",
+          "id": "msg_0318c8fd07d6b1cb016abe49ac1b1087d0884773753ce33e21",
+          "text": "M5-98 只读核验完成，A1 exit 0，`REVIEW_PENDING`。\n\n- `main` / HEAD `cf8bfaa4a03b8c9a682105617b185141904413be` 一致；status与基线均257项，oldMissing=0。\n- 20冻结文件身份、大小及祖先非reparse核验一致；18非bin各读1次、SHA256匹配；2bin正文/哈希调用0，沿用原接受哈希。\n- 读取：task1、authority首段5、review2、baseline1；入口及A均loginfalse/ttyfalse。\n- 写入、候选执行、JVM、外部访问、Git写入均0。\n\nM5-97失败预算保持关闭；M93仍未授权、未建、未派。现停待独立Sol/high与Work LEVEL2，不自接受；NOT_READY及自动化PAUSED保持。",
+          "phase": "final_answer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "time": "2026-10-15T07:15:43.791246+00:00",
+  "user": "bob",
+  "status": 404,
+  "body": {
+    "message": "conversation unavailable"
+  }
+}

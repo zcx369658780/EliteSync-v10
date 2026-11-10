@@ -11,7 +11,7 @@ use Illuminate\Console\Command;
 
 class ExecutePendingMatchingRunCommand extends Command
 {
-    protected $signature = 'app:matching:execute-pending {--once : Claim at most one pending run}';
+    protected $signature = 'app:matching:execute-pending {--once : Claim at most one pending run} {--run-id= : Claim only this durable run}';
     protected $description = 'Execute one durable matching run when the protected foundation consumer is enabled.';
 
     public function handle(MatchingRunService $runs, PersonalityProfileService $profiles, MatchingEngineService $engine, ProfileReadinessService $readiness): int
@@ -26,7 +26,7 @@ class ExecutePendingMatchingRunCommand extends Command
         }
 
         $owner = gethostname().':'.getmypid();
-        $run = $runs->claimNext($owner, (int) config('matching.foundation.lease_seconds', 60));
+        $run = $runs->claimNext($owner, (int) config('matching.foundation.lease_seconds', 60),$this->option('run-id')?(int)$this->option('run-id'):null);
         if (!$run) {
             $this->line('No pending matching run.');
             return self::SUCCESS;
@@ -35,8 +35,7 @@ class ExecutePendingMatchingRunCommand extends Command
 
         try {
             if (QuestionnaireQuestion::query()->where('enabled', true)->count() === 0) throw new \RuntimeException('no_enabled_questions');
-            $users = $readiness->eligibleUsersQuery()->orderBy('id')->get(['id','created_at','updated_at']);
-            $runs->freezeCandidates($run, $users, $owner, $fence);
+            $users=\Illuminate\Support\Facades\DB::transaction(function()use($readiness,$runs,$run,$owner,$fence){app(\App\Services\CurrentQuestionnaire::class)->lock();$users=$readiness->eligibleUsersQuery()->orderBy('id')->get(['id','created_at','updated_at']);$runs->freezeCandidates($run,$users,$owner,$fence);return $users;});
             $profileMap = []; $userMeta = [];
             foreach ($users as $index => $user) {
                 if ($index % 10 === 0 && !$runs->heartbeat($run, $owner, $fence, (int) config('matching.foundation.lease_seconds', 60))) throw new \RuntimeException('lease_lost');

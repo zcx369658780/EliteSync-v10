@@ -15,6 +15,11 @@ class RtcApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        config(['restoration.enabled'=>true,'rtc_guard.enabled'=>true]);
+    }
     private function weekTag(): string
     {
         return now()->utc()->format('Y-\\WW');
@@ -40,6 +45,11 @@ class RtcApiTest extends TestCase
             'drop_released' => true,
         ]);
 
+        $authority = app(\App\Services\LiveConsentService::class);
+        $authority->transition($caller->id,$callee->id,'connection','request',0);
+        $authority->transition($callee->id,$caller->id,'connection','accept',1);
+        $authority->transition($caller->id,$callee->id,'consent','request',0);
+        $authority->transition($callee->id,$caller->id,'consent','accept',1);
         return [$caller, $callee];
     }
 
@@ -137,7 +147,8 @@ class RtcApiTest extends TestCase
             ->assertJsonPath('session.status', 'ended')
             ->assertJsonPath('session.failure_code', 'peer_disconnected');
 
-        $this->assertDatabaseHas('rtc_session_events', [
+        // An expired call must not record a new heartbeat and revive its lease.
+        $this->assertDatabaseMissing('rtc_session_events', [
             'rtc_session_id' => $callId,
             'event_name' => 'heartbeat',
         ]);
@@ -164,13 +175,17 @@ class RtcApiTest extends TestCase
 
         $callId = (int) $session['id'];
 
+        $this->getJson('/api/v1/rtc/calls/' . $callId . '/livekit')->assertNotFound();
+        Sanctum::actingAs($callee);
+        $this->postJson('/api/v1/rtc/calls/' . $callId . '/accept')->assertOk();
+        Sanctum::actingAs($caller);
         $response = $this->getJson('/api/v1/rtc/calls/' . $callId . '/livekit')
             ->assertOk()
             ->json('livekit');
 
         $this->assertSame('wss://rtc.example.test', $response['url']);
         $this->assertSame('voice', $response['mode']);
-        $this->assertSame('rtc-user-' . $caller->id, $response['identity']);
+        $this->assertSame(app(\App\Services\RtcAuthorityService::class)->identity(RtcSession::findOrFail($callId), $caller->id), $response['identity']);
         $this->assertSame($session['room_key'], $response['room_name']);
         $this->assertNotEmpty($response['token']);
 
@@ -182,7 +197,7 @@ class RtcApiTest extends TestCase
 
         $payload = json_decode($this->base64UrlDecode($payloadPart), true, 512, JSON_THROW_ON_ERROR);
         $this->assertSame('test_key', $payload['iss']);
-        $this->assertSame('rtc-user-' . $caller->id, $payload['sub']);
+        $this->assertSame(app(\App\Services\RtcAuthorityService::class)->identity(RtcSession::findOrFail($callId), $caller->id), $payload['sub']);
         $this->assertTrue($payload['video']['roomJoin']);
         $this->assertSame($session['room_key'], $payload['video']['room']);
     }

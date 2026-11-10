@@ -1,0 +1,501 @@
+{
+    "database": "elitesync_v1007_dev",
+    "users": [
+        {
+            "id": 1,
+            "name": "V1007 Fictional admin",
+            "birthday": "1989-09-05",
+            "private_birth_place": "V1007 GMT longitude, converted UTC+8 civil time",
+            "private_birth_lat": "0.0000000",
+            "private_birth_lng": "0.0000000",
+            "city": "V1007 Development City",
+            "gender": "male",
+            "relationship_goal": "long_term",
+            "disabled": 0,
+            "account_type": "test",
+            "generation_version": "v10.0.7",
+            "is_synthetic": 0
+        },
+        {
+            "id": 2,
+            "name": "V1007 Fictional alice",
+            "birthday": "1994-03-18",
+            "private_birth_place": "V1007 Shanghai",
+            "private_birth_lat": "31.2304000",
+            "private_birth_lng": "121.4737000",
+            "city": "V1007 APP City",
+            "gender": "female",
+            "relationship_goal": "marriage",
+            "disabled": 0,
+            "account_type": "test",
+            "generation_version": "v10.0.7",
+            "is_synthetic": 0
+        },
+        {
+            "id": 3,
+            "name": "V1007 Fictional bob",
+            "birthday": "1989-09-05",
+            "private_birth_place": "V1007 Meridian120",
+            "private_birth_lat": "31.2304000",
+            "private_birth_lng": "120.0000000",
+            "city": "V1007 APP City",
+            "gender": "male",
+            "relationship_goal": "marriage",
+            "disabled": 1,
+            "account_type": "test",
+            "generation_version": "v10.0.7",
+            "is_synthetic": 0
+        },
+        {
+            "id": 4,
+            "name": "V1007 Fictional incomplete",
+            "birthday": "1989-09-05",
+            "private_birth_place": null,
+            "private_birth_lat": null,
+            "private_birth_lng": null,
+            "city": "V1007 Control City",
+            "gender": "male",
+            "relationship_goal": "dating",
+            "disabled": 0,
+            "account_type": "test",
+            "generation_version": "v10.0.7",
+            "is_synthetic": 0
+        },
+        {
+            "id": 5,
+            "name": "V1007 Fictional disabled",
+            "birthday": "1989-09-05",
+            "private_birth_place": null,
+            "private_birth_lat": null,
+            "private_birth_lng": null,
+            "city": "V1007 Development City",
+            "gender": "male",
+            "relationship_goal": "long_term",
+            "disabled": 1,
+            "account_type": "test",
+            "generation_version": "v10.0.7",
+            "is_synthetic": 0
+        },
+        {
+            "id": 6,
+            "name": "V1007 Fictional charlie",
+            "birthday": "1992-06-10",
+            "private_birth_place": null,
+            "private_birth_lat": null,
+            "private_birth_lng": null,
+            "city": "V1007 APP City",
+            "gender": "male",
+            "relationship_goal": "marriage",
+            "disabled": 0,
+            "account_type": "test",
+            "generation_version": "v10.0.7",
+            "is_synthetic": 0
+        },
+        {
+            "id": 7,
+            "name": "V1007 Fictional dave",
+            "birthday": "1992-06-10",
+            "private_birth_place": null,
+            "private_birth_lat": null,
+            "private_birth_lng": null,
+            "city": "V1007 APP City",
+            "gender": "male",
+            "relationship_goal": "marriage",
+            "disabled": 0,
+            "account_type": "test",
+            "generation_version": "v10.0.7",
+            "is_synthetic": 0
+        },
+        {
+            "id": 8,
+            "name": "V1007 Fictional eve",
+            "birthday": "1992-06-10",
+            "private_birth_place": null,
+            "private_birth_lat": null,
+            "private_birth_lng": null,
+            "city": "V1007 APP City",
+            "gender": "female",
+            "relationship_goal": "marriage",
+            "disabled": 0,
+            "account_type": "test",
+            "generation_version": "v10.0.7",
+            "is_synthetic": 0
+        }
+    ],
+    "answers": [
+        {
+            "user_id": 2,
+            "answer_count": 20
+        },
+        {
+            "user_id": 3,
+            "answer_count": 20
+        },
+        {
+            "user_id": 6,
+            "answer_count": 20
+        },
+        {
+            "user_id": 7,
+            "answer_count": 20
+        },
+        {
+            "user_id": 8,
+            "answer_count": 20
+        }
+    ],
+    "attempts": [
+        {
+            "id": 1,
+            "user_id": 2,
+            "questionnaire_version": "q_v2",
+            "bank_version": "qb_v1",
+            "attempt_version": "qa_v1",
+            "created_at": "2026-10-14 23:57:01"
+        },
+        {
+            "id": 2,
+            "user_id": 3,
+            "questionnaire_version": "q_v2",
+            "bank_version": "qb_v1",
+            "attempt_version": "qa_v1",
+            "created_at": "2026-10-15 00:07:00"
+        },
+        {
+            "id": 3,
+            "user_id": 6,
+            "questionnaire_version": "q_v2",
+            "bank_version": "qb_v1",
+            "attempt_version": "qa_v1",
+            "created_at": "2026-10-15 00:22:19"
+        },
+        {
+            "id": 4,
+            "user_id": 7,
+            "questionnaire_version": "q_v2",
+            "bank_version": "qb_v1",
+            "attempt_version": "qa_v1",
+            "created_at": "2026-10-15 00:24:03"
+        },
+        {
+            "id": 5,
+            "user_id": 8,
+            "questionnaire_version": "q_v2",
+            "bank_version": "qb_v1",
+            "attempt_version": "qa_v1",
+            "created_at": "2026-10-15 00:42:21"
+        }
+    ],
+    "drafts": [],
+    "astro": [
+        {
+            "id": 1,
+            "user_id": 2,
+            "birth_time": "12:00",
+            "birth_lat": "31.2304000",
+            "birth_lng": "121.4737000",
+            "bazi": "甲戌 丁卯 癸卯 戊午",
+            "notes": "[\"recomputed_from_basic_profile\",\"location_source:longitude_based\",\"location_shift_minutes:-3\",\"canonical_source:lunar_php\",\"precision:calendar_canonical\",\"time_source:true_solar_time\",\"rollout_bazi:bazi_global_enabled\",\"canonical_accuracy:canonical_server\",\"canonical_confidence:0.88\",\"western_engine:legacy_input\",\"western_precision:legacy_estimate\",\"western_confidence:0.66\",\"ziwei_engine:ziwei_seed_estimate\",\"ziwei_precision:approximate_not_validated\",\"ziwei_confidence:0.32\",\"ziwei_external_oracle_status:not_validated\",\"ziwei_display_only:1\",\"ziwei_scoring_status:excluded_from_core_matching\"]",
+            "computed_at": "2026-10-15 00:01:47"
+        },
+        {
+            "id": 2,
+            "user_id": 3,
+            "birth_time": "12:00",
+            "birth_lat": "31.2304000",
+            "birth_lng": "120.0000000",
+            "bazi": "己巳 壬申 戊辰 戊午",
+            "notes": "[\"recomputed_from_basic_profile\",\"location_source:longitude_based\",\"location_shift_minutes:2\",\"canonical_source:lunar_php\",\"precision:calendar_canonical\",\"time_source:true_solar_time\",\"rollout_bazi:bazi_global_enabled\",\"canonical_accuracy:canonical_server\",\"canonical_confidence:0.88\",\"western_engine:legacy_input\",\"western_precision:legacy_estimate\",\"western_confidence:0.66\",\"ziwei_engine:ziwei_seed_estimate\",\"ziwei_precision:approximate_not_validated\",\"ziwei_confidence:0.32\",\"ziwei_external_oracle_status:not_validated\",\"ziwei_display_only:1\",\"ziwei_scoring_status:excluded_from_core_matching\"]",
+            "computed_at": "2026-10-15 00:10:14"
+        },
+        {
+            "id": 3,
+            "user_id": 1,
+            "birth_time": "00:10",
+            "birth_lat": "0.0000000",
+            "birth_lng": "0.0000000",
+            "bazi": "己巳 壬申 丁卯 戊申",
+            "notes": "[\"location_source:longitude_based\",\"location_shift_minutes:-478\",\"civil_timezone:Asia\\\/Shanghai\",\"birth_time_input_source:user_input\",\"canonical_source:lunar_php\",\"precision:calendar_canonical\",\"time_source:true_solar_time\",\"rollout_bazi:bazi_global_enabled\",\"canonical_accuracy:canonical_server\",\"canonical_confidence:0.88\",\"western_engine:legacy_input\",\"western_precision:legacy_estimate\",\"western_confidence:0.66\",\"western_degraded:1\",\"western_degrade_reason:western_rollout_disabled\",\"western_rollout_enabled:0\",\"western_rollout_reason:western_global_disabled\",\"ziwei_engine:ziwei_seed_estimate\",\"ziwei_precision:approximate_not_validated\",\"ziwei_confidence:0.32\",\"ziwei_external_oracle_status:not_validated\",\"ziwei_display_only:1\",\"ziwei_scoring_status:excluded_from_core_matching\"]",
+            "computed_at": "2026-10-15 00:18:18"
+        },
+        {
+            "id": 4,
+            "user_id": 4,
+            "birth_time": "12:00",
+            "birth_lat": null,
+            "birth_lng": null,
+            "bazi": "己巳 壬申 戊辰 戊午",
+            "notes": "[\"recomputed_from_basic_profile\",\"location_source:no_location\",\"location_shift_minutes:2\",\"civil_timezone:Asia\\\/Shanghai\",\"birth_time_input_source:default_noon_unknown\",\"canonical_source:lunar_php\",\"precision:calendar_canonical\",\"time_source:true_solar_time\",\"confidence_policy:no_birth_location\",\"rollout_bazi:bazi_global_enabled\",\"canonical_accuracy:unknown_birth_time_default_noon\",\"canonical_confidence:0.35\",\"western_engine:legacy_input\",\"western_precision:legacy_estimate\",\"western_confidence:0.66\",\"ziwei_engine:ziwei_seed_estimate\",\"ziwei_precision:approximate_not_validated\",\"ziwei_confidence:0.22\",\"ziwei_external_oracle_status:not_validated\",\"ziwei_display_only:1\",\"ziwei_scoring_status:excluded_from_core_matching\"]",
+            "computed_at": "2026-10-15 00:18:18"
+        }
+    ],
+    "matches": [
+        {
+            "id": 1,
+            "user_a": 2,
+            "user_b": 3,
+            "round_id": 4,
+            "matching_run_id": 4,
+            "drop_released": 1
+        },
+        {
+            "id": 2,
+            "user_a": 2,
+            "user_b": 6,
+            "round_id": 6,
+            "matching_run_id": 7,
+            "drop_released": 1
+        },
+        {
+            "id": 3,
+            "user_a": 2,
+            "user_b": 7,
+            "round_id": 7,
+            "matching_run_id": 8,
+            "drop_released": 1
+        },
+        {
+            "id": 4,
+            "user_a": 3,
+            "user_b": 8,
+            "round_id": 9,
+            "matching_run_id": 11,
+            "drop_released": 1
+        }
+    ],
+    "connections": [
+        {
+            "id": 1,
+            "match_id": 1,
+            "user_a": 2,
+            "user_b": 3,
+            "requester_id": 3,
+            "state": "CN_ACTIVE",
+            "revision": 2,
+            "created_at": "2026-10-15 00:17:27",
+            "updated_at": "2026-10-15 00:18:11"
+        },
+        {
+            "id": 2,
+            "match_id": 2,
+            "user_a": 2,
+            "user_b": 6,
+            "requester_id": 6,
+            "state": "CN_DECLINED",
+            "revision": 2,
+            "created_at": "2026-10-15 00:22:21",
+            "updated_at": "2026-10-15 00:23:42"
+        },
+        {
+            "id": 3,
+            "match_id": 3,
+            "user_a": 2,
+            "user_b": 7,
+            "requester_id": 2,
+            "state": "CN_WITHDRAWN",
+            "revision": 2,
+            "created_at": "2026-10-15 00:24:33",
+            "updated_at": "2026-10-15 00:24:36"
+        }
+    ],
+    "consents": [
+        {
+            "id": 1,
+            "connection_id": 1,
+            "purpose": "CONVERSATION_LIVE_READ",
+            "state": "MC_REVOKED",
+            "requester_id": 2,
+            "revision": 3,
+            "connection_revision": 2,
+            "created_at": "2026-10-15 00:18:35",
+            "updated_at": "2026-10-15 01:06:44"
+        },
+        {
+            "id": 2,
+            "connection_id": 1,
+            "purpose": "CONVERSATION_LIVE_SEND",
+            "state": "MC_REVOKED",
+            "requester_id": 2,
+            "revision": 3,
+            "connection_revision": 2,
+            "created_at": "2026-10-15 00:18:35",
+            "updated_at": "2026-10-15 01:06:44"
+        }
+    ],
+    "messages": [
+        {
+            "id": 1,
+            "sender_id": 3,
+            "receiver_id": 2,
+            "is_read": 1,
+            "created_at": "2026-10-15 00:19:34"
+        },
+        {
+            "id": 2,
+            "sender_id": 3,
+            "receiver_id": 2,
+            "is_read": 1,
+            "created_at": "2026-10-15 00:20:13"
+        },
+        {
+            "id": 3,
+            "sender_id": 2,
+            "receiver_id": 3,
+            "is_read": 1,
+            "created_at": "2026-10-15 00:27:11"
+        },
+        {
+            "id": 4,
+            "sender_id": 2,
+            "receiver_id": 3,
+            "is_read": 1,
+            "created_at": "2026-10-15 00:59:48"
+        }
+    ],
+    "messages_decrypted": [
+        {
+            "id": 1,
+            "sender_id": 3,
+            "receiver_id": 2,
+            "content": "V1007 Bob APP message 01",
+            "is_read": true
+        },
+        {
+            "id": 2,
+            "sender_id": 3,
+            "receiver_id": 2,
+            "content": "",
+            "is_read": true
+        },
+        {
+            "id": 3,
+            "sender_id": 2,
+            "receiver_id": 3,
+            "content": "V1007 protected route probe",
+            "is_read": true
+        },
+        {
+            "id": 4,
+            "sender_id": 2,
+            "receiver_id": 3,
+            "content": "V1007 Alice APP reply final 01",
+            "is_read": true
+        }
+    ],
+    "mbti_attempts": [
+        {
+            "id": 1,
+            "user_id": 2,
+            "version_code": "lite3_v1",
+            "answers_json": "[{\"question_id\":1,\"option\":\"A\"},{\"question_id\":2,\"option\":\"A\"},{\"question_id\":3,\"option\":\"A\"}]",
+            "score_json": "{\"E\":2,\"I\":1,\"S\":0,\"N\":2,\"T\":0,\"F\":2,\"J\":0,\"P\":2}",
+            "confidence_json": "{\"EI\":0.333,\"SN\":1,\"TF\":1,\"JP\":1}",
+            "tie_break_log_json": "[]",
+            "result_letters": "ENFP",
+            "submitted_at": "2026-10-15 00:25:42",
+            "created_at": "2026-10-15 00:25:42",
+            "updated_at": "2026-10-15 00:25:42"
+        }
+    ],
+    "statuses": [
+        {
+            "id": 1,
+            "author_user_id": 2,
+            "cover_media_asset_id": null,
+            "title": "V1007 APP status 01",
+            "body": "V1007 fictional development status persisted via APP",
+            "location_name": "V1007 APP City",
+            "visibility": "public",
+            "is_deleted": 1,
+            "deleted_by_user_id": 2,
+            "deleted_at": "2026-10-15 01:04:27",
+            "created_at": "2026-10-15 00:30:03",
+            "updated_at": "2026-10-15 01:04:27"
+        }
+    ],
+    "status_likes": [
+        {
+            "id": 1,
+            "status_post_id": 1,
+            "user_id": 3,
+            "created_at": "2026-10-15 00:47:27",
+            "updated_at": "2026-10-15 00:47:27"
+        }
+    ],
+    "notifications": [
+        {
+            "id": 1,
+            "user_id": 2,
+            "kind": "message",
+            "title": "V1007 Fictional bob 发来一条消息",
+            "body": "V1007 Bob APP message 01",
+            "read_at": null
+        },
+        {
+            "id": 2,
+            "user_id": 2,
+            "kind": "message",
+            "title": "V1007 Fictional bob 发来一条消息",
+            "body": "发送了一条图片消息",
+            "read_at": null
+        },
+        {
+            "id": 3,
+            "user_id": 3,
+            "kind": "message",
+            "title": "V1007 Fictional alice 发来一条消息",
+            "body": "V1007 protected route probe",
+            "read_at": null
+        },
+        {
+            "id": 4,
+            "user_id": 3,
+            "kind": "match_like",
+            "title": "V1007 Fictional alice 喜欢了你",
+            "body": "可以查看匹配解释或继续互动",
+            "read_at": null
+        },
+        {
+            "id": 5,
+            "user_id": 2,
+            "kind": "match_like",
+            "title": "V1007 Fictional bob 喜欢了你",
+            "body": "可以查看匹配解释或继续互动",
+            "read_at": null
+        },
+        {
+            "id": 6,
+            "user_id": 3,
+            "kind": "match_success",
+            "title": "你们已经互相喜欢了",
+            "body": "请先双方建立连接，再独立完成双方消息同意。",
+            "read_at": "2026-10-15 00:48:36"
+        },
+        {
+            "id": 7,
+            "user_id": 2,
+            "kind": "match_success",
+            "title": "你们已经互相喜欢了",
+            "body": "请先双方建立连接，再独立完成双方消息同意。",
+            "read_at": null
+        },
+        {
+            "id": 8,
+            "user_id": 2,
+            "kind": "status_like",
+            "title": "V1007 Fictional bob 赞了你的动态",
+            "body": "V1007 APP status 01",
+            "read_at": null
+        },
+        {
+            "id": 9,
+            "user_id": 3,
+            "kind": "message",
+            "title": "V1007 Fictional alice 发来一条消息",
+            "body": "V1007 Alice APP reply final 01",
+            "read_at": null
+        }
+    ],
+    "denied_send_absent": true,
+    "bob_tokens": 0
+}

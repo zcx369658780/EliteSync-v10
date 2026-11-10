@@ -29,10 +29,10 @@ class LiveKitTokenServiceTest extends TestCase
 
         $this->assertSame('wss://rtc.example.test', $payload['url']);
         $this->assertSame('voice', $payload['mode']);
-        $this->assertSame('rtc-user-' . $caller->id, $payload['identity']);
+        $this->assertSame(app(\App\Services\RtcAuthorityService::class)->identity($session, $caller->id), $payload['identity']);
         $this->assertSame($session->room_key, $payload['room_name']);
         $this->assertNotEmpty($payload['token']);
-        $this->assertSame(trim((string) $caller->name), $payload['participant_name']);
+        $this->assertSame('通话参与者', $payload['participant_name']);
     }
 
     public function test_issue_join_info_rejects_when_livekit_is_disabled(): void
@@ -66,15 +66,14 @@ class LiveKitTokenServiceTest extends TestCase
             'drop_released' => true,
         ]);
 
-        $session = RtcSession::create([
-            'call_key' => 'CALL-TEST-001',
-            'room_key' => 'room-test-001',
-            'initiator_user_id' => $caller->id,
-            'peer_user_id' => $callee->id,
-            'mode' => 'voice',
-            'status' => 'calling',
-            'expires_at' => now()->addMinute(),
-        ]);
+        config(['restoration.enabled'=>true,'rtc_guard.enabled'=>true]);
+        $authority=app(\App\Services\LiveConsentService::class);
+        $authority->transition($caller->id,$callee->id,'connection','request',0);
+        $authority->transition($callee->id,$caller->id,'connection','accept',1);
+        $authority->transition($caller->id,$callee->id,'consent','request',0);
+        $authority->transition($callee->id,$caller->id,'consent','accept',1);
+        $session=app(\App\Services\RtcSessionService::class)->createCall($caller->id,$callee->id);
+        $session=app(\App\Services\RtcSessionService::class)->acceptCall($session,$callee->id);
 
         return [$caller, $callee, $session];
     }

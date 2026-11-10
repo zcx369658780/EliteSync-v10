@@ -1,0 +1,19 @@
+{
+  "time": "2026-10-15T08:18:36.779426+00:00",
+  "user": "bob",
+  "status": 200,
+  "body": {
+    "status": "approved",
+    "reason": "V1008 final normal control approved",
+    "revision": 2,
+    "moderation_status": "normal",
+    "matching_eligibility": {
+      "eligible": true,
+      "reason_code": "eligible",
+      "required_answer_count": 20,
+      "answered_answer_count": 20,
+      "missing_answer_count": 0,
+      "next_action_code": "wait_for_matching"
+    }
+  }
+}
