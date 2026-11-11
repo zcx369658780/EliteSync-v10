@@ -1,3 +1,11 @@
+# 最新节点｜2026-11-11 正常APP本人快照行运真实链
+
+后端c3950e0a、APP af74，B正常动态盘明确选本人本命revision1，事件输入虚构2026-11-11 12:00/分钟/Asia-Shanghai、坐标31.23/121.47及明确地点，默认核心十主体/回归黄道/Placidus。一次保存：动态id1，input/result revision1，COMPUTED_UNVERIFIED；两盘各十主体，页面实际版本行及双盘示意可见。正常返回/重进动态盘，从“本人持久历史”选择同id，恢复本人快照revision1。
+
+真实API/DB读回、正式users/本人Natal/其他dynamic摘要保持，A本人历史空且读id1返回404。初准备的助手阈值排除了原生页面完全可见的底部按钮（中心1220，底1256，无浮动栏遮挡）；按实际界面范围完成同一输入，没有事前保存或重算。私有dynamic-transit-runtime-private.json含前后元数据/真实页面/历史重开证据。不称独立数值精度或关系评分验收。下一步另建太阳回归盘、显式选择事件，行运盘保留。
+
+---
+
 # 最新节点｜2026-11-11 动态盘当前独立开发库配置接入
 
 现有动态盘config数据库名硬编码旧elitesync_v1011_dev，当前独立v1015库即便开启功能也不合门。仅改为env(DYNAMIC_CHARTS_DATABASE,原默认值)，middleware/service的local/loopback/明确库名保护不变，未改旧库或调用旧执行器。本机私有env显式开启DYNAMIC_CHARTS_ENABLED并指定确切elitesync_v10_1_5_dev，刷新确切自有API，Natal/DB/WS/SFU/AVD和既有数据保持。

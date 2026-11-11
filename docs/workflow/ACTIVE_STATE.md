@@ -4,9 +4,9 @@ Owner已恢复全自动持续工程，普通工程长期授权有效，直到明
 
 ## 当前代码、资源与数据
 
-- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`；代码节点 `5a7625824064c545bcaa24f126cf14534556d4d6`，后续文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index和无关 `%SystemDrive%/` 保留，不重开资产清理或复制SDK/AVD。
-- 最新APK源码为上述节点，SHA256 `af74f986365ea816aacb683d2d20379821387791fd9fe2959956632f73bf7297`，154165710字节；离线构建36.748秒/退出0，签名/包名/arm64 Debug/新增登出提示代码标记通过，5580已更新。原e921问卷切号实证按其包身份保留；旧4a645运行失败APK仅私有保留一份。固定回执在 `v1015-source-debug-workspace/state/current-functional-build.json`。
-- 私有开发根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；自有DB/API/WS/SFU四容器本节点确认运行。专用ADB5038，USB unmatched filter排除手机；不碰默认5037。5580当前新包登录虚构user2，5582暂停、AVD/ed01候选保留。相机仅生成画面；无新SDK/许可/系统网络变更。
+- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`；APP源码 `5a7625824064c545bcaa24f126cf14534556d4d6`，当前后端代码 `c3950e0ac780bdaf6e4d9baa134265c7327282c6`，后续文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index和无关 `%SystemDrive%/` 保留，不重开资产清理或复制SDK/AVD。
+- 最新APK源码为上述APP节点，SHA256 `af74f986365ea816aacb683d2d20379821387791fd9fe2959956632f73bf7297`，154165710字节；离线构建36.748秒/退出0，签名/包名/arm64 Debug/新增登出提示代码标记通过，5580已更新。原e921问卷切号实证按其包身份保留；旧4a645运行失败APK仅私有保留一份。固定回执在 `v1015-source-debug-workspace/state/current-functional-build.json`。
+- 私有开发根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；自有DB/API/WS/SFU四容器本节点确认运行，API已用专属Linux排盘派生镜像。专用ADB5038，USB unmatched filter排除手机；不碰默认5037。5580当前新包登录虚构user2，5582暂停、AVD/ed01候选保留。相机仅生成画面；新增本机Linux依赖/许可记录见下，未改手机或系统网络。
 - 开发库3个虚构用户（user1/user2正常API登记，admin3为synthetic且仅本机一项白名单）。原101消息、4媒体保留；原APP发送/ACK丢失幂等重试最后message15，16–101是API种子，不混称APP发送。157道原题，137启用、20研究题禁用；user1有20个正式答案/1次历史，user2无正式答案/提交，但有一题服务端草稿。user1运营pending/revision2，两条审核审计保留。
 - SELF动态1条软删、一级评论1条DELETED；不是物理擦除。搭子1条WITHDRAWN，双方接收false/revision2、slots0、邀请REVOKED。前次记录call1–11 ended/房间空，本节点未启动新通话；MC generation7沿用前次节点。
 
@@ -26,7 +26,9 @@ Owner已恢复全自动持续工程，普通工程长期授权有效，直到明
 
 af74包B正常APP一份虚构输入（1995-01-01 10:30 Asia/Shanghai，明确算法参数/坐标/2026目标年）一次点击保存，输入/结果revision1、四柱/十二宫/十主体持久化。正常返回重新进入恢复日期/时间/时区，并实际观察版本行及八字/紫微/西方三段；正式用户全行/其他本人镜像摘要保持，A本人无盘。状态COMPUTED_UNVERIFIED/oracle UNVERIFIED，不提升为独立科学核验或匹配用途接受。私有 `natal-app-runtime-private.json`、`natal-linux-runtime`。
 
-**动态盘已接入当前独立虚构开发库，正常行运保存待验证。** 仅config增加DYNAMIC_CHARTS_DATABASE、原v1011默认值保持；local/loopback/名称门均不改。当前私有app.env显式启用并指定elitesync_v10_1_5_dev，实际API空历史200；关闭时原403保留。13项既有PHP合同在network-none/SQLite-memory隔离容器通过，实际中间件当前开发库200、旧/错误库名/远程host/production/disabled五个负例403，无计算/DB写。私有 `dynamic-runtime-wiring-private.json`、`dynamic-admission-private.log`。下一步B正常APP明确选择自己的本命revision1，填写一份虚构行运事件，保存计算/读回；不调用旧运行或更改旧库。
+**动态盘已接入当前独立虚构开发库，正常行运真实链通过。** 仅config增加DYNAMIC_CHARTS_DATABASE、原v1011默认值保持；local/loopback/名称门不改。私有env显式指定当前独立库；13项隔离PHP合同通过，实际middleware正确local库200、旧/错库/远程host/production/disabled五个负例403。
+
+B正常APP明确选本人本命revision1，虚构2026-11-11/12:00/Asia-Shanghai及同一明确地点/坐标，一次保存行运盘id1/revision1，first/second各十主体、实际版本行与双盘示意可见，正常从本人历史重新打开通过。正式users/本人本命/其他动态盘摘要保持，A历史空、读该id404；结果仍COMPUTED_UNVERIFIED。输入准备时原助手阈值把原生页完全可见的底部按钮排除，按实际无覆盖边界修正后继续同一表单，未重复保存。私有 `dynamic-transit-runtime-private.json`、`dynamic-runtime-wiring-private.json`。下一步另建太阳回归私有盘并验证年度搜索/显式事件选择，既有行运盘保留，不扩大独立参考或匹配用途结论。
 
 ## 既过子范围与证据边界
 
