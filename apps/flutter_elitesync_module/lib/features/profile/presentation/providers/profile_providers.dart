@@ -448,6 +448,27 @@ class EditProfileNotifier extends AsyncNotifier<EditProfileUiState> {
     }
   }
 
+  Future<ProfileDetailEntity> saveNickname(String nickname) async {
+    final started = ref.read(sessionProvider).asData?.value;
+    if (started?.isLoggedIn != true) throw StateError('请登录后保存资料。');
+    final current = state.asData?.value ?? const EditProfileUiState();
+    try {
+      final confirmed = const ProfileMapper().toDetail(
+        await ref.read(profileRemoteDataSourceProvider).saveNickname(nickname),
+      );
+      _requireSameSession(ref, started);
+      state = AsyncData(EditProfileUiState(detail: confirmed));
+      ref.invalidate(profileProvider);
+      ref.invalidate(personalShowcaseProvider);
+      return confirmed;
+    } catch (e) {
+      if (_sessionUnchanged(ref, started)) {
+        state = AsyncData(current.copyWith(error: e.toString()));
+      }
+      rethrow;
+    }
+  }
+
   Future<ProfileDetailEntity> save(ProfileDetailEntity detail) async {
     final started = ref.read(sessionProvider).asData?.value;
     if (started?.isLoggedIn != true) throw StateError('请登录后保存资料。');

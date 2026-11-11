@@ -37,6 +37,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
   final _birthPlacePanelKey = GlobalKey();
   bool _initialized = false;
   bool _citySaving = false;
+  bool _nicknameSaving = false;
   String _lastSyncedSignature = '';
   String? _selectedGender;
   String? _selectedTarget;
@@ -152,8 +153,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
           AppInfoSectionCard(
             title: '保存后会发生什么',
             subtitle: localRestoration
-                ? '城市可独立保存；完整出生资料用于本地真实八字'
-                : '城市可独立保存；完整资料保存会刷新画像与星盘摘要',
+                ? '昵称与城市可独立保存；完整出生资料用于本地真实八字'
+                : '昵称与城市可独立保存；完整资料保存会刷新画像与星盘摘要',
             leadingIcon: Icons.sync_alt_rounded,
             child: Text(
               localRestoration
@@ -204,7 +205,21 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
             child: AppCard(
               child: Column(
                 children: [
-                  AppTextField(controller: _nickname, label: '昵称'),
+                  AppTextField(
+                    key: const ValueKey('profile-nickname-field'),
+                    controller: _nickname,
+                    label: '昵称',
+                  ),
+                  SizedBox(height: t.spacing.sm),
+                  AppPrimaryButton(
+                    key: const ValueKey('profile-save-nickname'),
+                    label: '保存昵称',
+                    isLoading: _nicknameSaving,
+                    onPressed:
+                        _citySaving || (async.asData?.value.saving ?? false)
+                        ? null
+                        : _saveNickname,
+                  ),
                   SizedBox(height: t.spacing.sm),
                   _SelectionField(
                     label: '性别',
@@ -334,7 +349,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                     key: const ValueKey('profile-save-city'),
                     label: '保存城市',
                     isLoading: _citySaving,
-                    onPressed: (async.asData?.value.saving ?? false)
+                    onPressed:
+                        _nicknameSaving || (async.asData?.value.saving ?? false)
                         ? null
                         : _saveCity,
                   ),
@@ -352,7 +368,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                     key: const ValueKey('profile-save-full'),
                     label: '保存并重算',
                     isLoading: async.asData?.value.saving ?? false,
-                    onPressed: _citySaving
+                    onPressed: _citySaving || _nicknameSaving
                         ? null
                         : () async {
                             final genderValue = _selectedGender ?? '';
@@ -441,6 +457,25 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
         ],
       ),
     );
+  }
+
+  Future<void> _saveNickname() async {
+    if (_nicknameSaving) return;
+    setState(() => _nicknameSaving = true);
+    try {
+      await ref.read(editProfileProvider.notifier).saveNickname(_nickname.text);
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('昵称已保存，并已从服务端读回确认')));
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('昵称保存未确认：${e.toString()}')));
+    } finally {
+      if (mounted) setState(() => _nicknameSaving = false);
+    }
   }
 
   Future<void> _saveCity() async {

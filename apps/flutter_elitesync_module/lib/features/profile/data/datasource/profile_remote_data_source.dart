@@ -66,6 +66,26 @@ class ProfileRemoteDataSource {
     return confirmed;
   }
 
+  /// Nickname changes do not submit or recompute birth/profile inputs.
+  Future<ProfileDetailDto> saveNickname(String nickname) async {
+    final normalized = nickname.trim();
+    if (normalized.isEmpty || normalized.runes.length > 255) {
+      throw ArgumentError('昵称不能为空且不能超过255个字符');
+    }
+    if (useMock) throw StateError('昵称保存需要真实服务，演示模式不可保存');
+    final result = await apiClient
+        .post('/api/v1/profile/nickname', body: {'name': normalized})
+        .timeout(_requestTimeout);
+    if (result is NetworkFailure<Map<String, dynamic>>) {
+      throw Exception(result.message);
+    }
+    final confirmed = await getDetail();
+    if (confirmed.nickname != normalized) {
+      throw StateError('服务端昵称读回不一致，请重新读取资料');
+    }
+    return confirmed;
+  }
+
   Future<Map<String, dynamic>> update(UpdateProfileRequestDto dto) async {
     if (useMock) return const {};
     final result = await apiClient

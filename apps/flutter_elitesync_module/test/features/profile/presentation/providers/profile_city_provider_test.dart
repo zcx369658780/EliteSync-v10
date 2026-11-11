@@ -21,6 +21,7 @@ import 'package:flutter_test/flutter_test.dart';
 class _Client extends ApiClient {
   _Client() : super(dio: Dio());
   String city = '旧城市';
+  String nickname = '旧昵称';
   String? failure;
   bool postFails = false;
   final calls = <String>[];
@@ -44,9 +45,10 @@ class _Client extends ApiClient {
   }) async {
     calls.add('GET $path');
     final responseCity = city;
+    final responseNickname = nickname;
     await pause('GET');
     return failure == null
-        ? NetworkSuccess({'city': responseCity})
+        ? NetworkSuccess({'city': responseCity, 'name': responseNickname})
         : NetworkFailure(message: failure!, statusCode: 401);
   }
 
@@ -62,7 +64,11 @@ class _Client extends ApiClient {
     if (postFails) {
       return const NetworkFailure(message: '拒绝保存', statusCode: 403);
     }
-    city = (body as Map)['city'] as String;
+    if (path == '/api/v1/profile/nickname') {
+      nickname = (body as Map)['name'] as String;
+    } else {
+      city = (body as Map)['city'] as String;
+    }
     final responseCity = city;
     await pause('POST');
     return NetworkSuccess({
@@ -77,7 +83,7 @@ const newUser = UserSummary(id: 1002, phone: 'fictional-new', city: '新账户�
 
 class _Session extends SessionNotifier {
   @override
-  Future<SessionState> build() async => const SessionState(
+  SessionState build() => const SessionState(
     status: AuthStatus.authenticated,
     accessToken: 'fixture-old',
     user: oldUser,
@@ -166,6 +172,30 @@ void main() {
   });
   tearDown(() => container.dispose());
   test(
+    'nickname publishes fresh server value without cache or astro actions',
+    () async {
+      final subscription = container.listen(editProfileProvider, (_, _) {});
+      addTearDown(subscription.close);
+      await container.read(sessionProvider.future);
+      await container.read(editProfileProvider.future);
+      memory.writes = 0;
+      client.calls.clear();
+      final confirmed = await container
+          .read(editProfileProvider.notifier)
+          .saveNickname('新昵称');
+      expect(confirmed.nickname, '新昵称');
+      expect(
+        container.read(editProfileProvider).value?.detail?.nickname,
+        '新昵称',
+      );
+      expect(client.calls, [
+        'POST /api/v1/profile/nickname',
+        'GET /api/v1/profile/basic',
+      ]);
+      expect(memory.writes, 0);
+    },
+  );
+  test(
     'notifier publishes server readback with no draft cache or astro action',
     () async {
       final subscription = container.listen(editProfileProvider, (_, _) {});
@@ -214,7 +244,7 @@ void main() {
     expect(memory.writes, 0);
   });
   for (final login in [false, true]) {
-    for (final operation in ['city', 'full', 'detail']) {
+    for (final operation in ['city', 'nickname', 'full', 'detail']) {
       test(
         'late $operation after ${login ? 'new login' : 'logout'} cannot publish or cache old result',
         () async {
@@ -236,6 +266,8 @@ void main() {
             final notifier = container.read(editProfileProvider.notifier);
             final pending = operation == 'city'
                 ? notifier.saveCity('旧请求城市')
+                : operation == 'nickname'
+                ? notifier.saveNickname('旧请求昵称')
                 : notifier.save(
                     const ProfileDetailEntity(
                       nickname: '旧用户',
@@ -252,6 +284,7 @@ void main() {
             const Duration(seconds: 2),
           );
           client.city = login ? '新账户城市' : '';
+          client.nickname = login ? '新账户昵称' : '';
           (container.read(sessionProvider.notifier) as _Session).switchAccount(
             login,
           );
@@ -278,6 +311,10 @@ void main() {
           expect(
             container.read(editProfileProvider).value?.detail?.city,
             isNot('旧请求城市'),
+          );
+          expect(
+            container.read(editProfileProvider).value?.detail?.nickname,
+            isNot('旧请求昵称'),
           );
         },
       );

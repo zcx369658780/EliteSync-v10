@@ -22,9 +22,18 @@ const detail = ProfileDetailEntity(
 
 class _Edit extends EditProfileNotifier {
   int citySaves = 0;
+  int nicknameSaves = 0;
   int fullSaves = 0;
   String? submitted;
   bool fail = false;
+  @override
+  Future<ProfileDetailEntity> saveNickname(String nickname) async {
+    nicknameSaves++;
+    submitted = nickname;
+    if (fail) throw Exception('拒绝保存昵称');
+    return detail;
+  }
+
   @override
   Future<EditProfileUiState> build() async =>
       const EditProfileUiState(detail: detail);
@@ -54,6 +63,54 @@ Future<void> reveal(WidgetTester tester, Finder finder) async {
 }
 
 void main() {
+  for (final fail in [false, true]) {
+    testWidgets(
+      'nickname saves independently without full birth inputs, failure=$fail',
+      (tester) async {
+        final notifier = _Edit()..fail = fail;
+        await tester.pumpWidget(
+          ProviderScope(
+            overrides: [
+              editProfileProvider.overrideWith(() => notifier),
+              appEnvProvider.overrideWithValue(
+                const AppEnv(
+                  flavor: AppFlavor.dev,
+                  appName: '测试',
+                  apiBaseUrl: 'http://localhost',
+                  useMockData: false,
+                ),
+              ),
+            ],
+            child: MaterialApp(
+              theme: AppTheme.light,
+              home: const EditProfilePage(),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        final field = find.descendant(
+          of: find.byKey(const ValueKey('profile-nickname-field')),
+          matching: find.byType(TextField),
+        );
+        await reveal(tester, field);
+        await tester.enterText(field, '新昵称');
+        final button = find.byKey(const ValueKey('profile-save-nickname'));
+        await reveal(tester, button);
+        await tester.tap(button);
+        await tester.pumpAndSettle();
+        expect(notifier.nicknameSaves, 1);
+        expect(notifier.submitted, '新昵称');
+        expect(notifier.citySaves, 0);
+        expect(notifier.fullSaves, 0);
+        expect(
+          find.text('昵称已保存，并已从服务端读回确认'),
+          fail ? findsNothing : findsOneWidget,
+        );
+        if (fail) expect(find.textContaining('拒绝保存昵称'), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
   for (final fail in [false, true]) {
     testWidgets(
       'independent city button preserves full action, failure=$fail',

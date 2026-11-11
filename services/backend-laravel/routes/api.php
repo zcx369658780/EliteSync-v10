@@ -192,6 +192,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/basic', [ProfileController::class, 'basic']);
             Route::post('/basic', [ProfileController::class, 'saveBasic']);
             Route::post('/city', [ProfileController::class, 'saveCity']);
+            Route::post('/nickname', [ProfileController::class, 'saveNickname']);
             Route::get('/showcase/draft', [ProfileShowcaseDraftController::class, 'show']);
             Route::put('/showcase/draft', [ProfileShowcaseDraftController::class, 'update']);
             Route::post('/showcase/draft/submit-review', [ProfileShowcaseDraftController::class, 'submitForReview']);

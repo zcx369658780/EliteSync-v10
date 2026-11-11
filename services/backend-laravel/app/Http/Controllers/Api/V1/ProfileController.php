@@ -617,6 +617,18 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function saveNickname(Request $request): JsonResponse
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $user = $request->user();
+        $user->name = trim($data['name']);
+        $user->save();
+
+        return response()->json(['ok' => true, 'name' => $user->name]);
+    }
+
     public function saveCity(Request $request): JsonResponse
     {
         $data = $request->validate([
