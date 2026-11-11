@@ -51,6 +51,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   bool _sessionInvalidated = false;
   bool _foreground = true;
   int _mediaEpoch = 0;
+  bool _backgroundSuspended = false;
 
   bool get _currentSession =>
       mounted &&
@@ -66,7 +67,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
         lifecycle != AppLifecycleState.paused &&
         lifecycle != AppLifecycleState.hidden &&
         lifecycle != AppLifecycleState.detached;
-    if (!_foreground) _closedMediaCallIds.add(widget.callId);
+    _backgroundSuspended = !_foreground;
     WidgetsBinding.instance.addObserver(this);
     ref
         .read(frontendTelemetryProvider)
@@ -122,16 +123,18 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
         state != AppLifecycleState.detached) {
       return;
     }
+    if (!_foreground) return;
     _foreground = false;
+    _backgroundSuspended = true;
     _mediaEpoch++;
-    // Invalidate pending permissions and connection work before native teardown.
-    // Returning to the page requires an explicit, freshly authorized reconnect.
-    unawaited(_leaveMediaOnce(widget.callId));
+    // Keep the call alive while invalidating capture work and stopping devices.
+    if (_serviceBound) unawaited(_liveKitService.suspendCapture());
   }
 
   Future<void> _mediaAction(Future<void> Function() action) async {
     if (!_currentSession || !_foreground) return;
     try {
+      _backgroundSuspended = false;
       await action();
     } catch (_) {
       if (mounted && _currentSession) {
@@ -198,6 +201,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
     }
 
     if (!_foreground ||
+        _backgroundSuspended ||
         !liveKit.isEnabled ||
         _closedMediaCallIds.contains(session.id)) {
       return;
@@ -242,8 +246,10 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
       await _leaveMediaOnce(callId);
       if (!isCurrentAttempt()) return;
       _closedMediaCallIds.remove(callId);
+      _backgroundSuspended = false;
       _liveKitAttemptedCallId = current.id;
       // ensureConnected obtains fresh join information through the server gate.
+      _liveKitService.resumeCapture();
       await _liveKitService.ensureConnected(current.id);
     } catch (_) {
       await _leaveMediaOnce(callId);
@@ -390,6 +396,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
             ['connecting', 'in_call'].contains(session.status) &&
             !session.isTerminal &&
             (_liveKitAttemptedCallId == session.id ||
+                _backgroundSuspended ||
                 _closedMediaCallIds.contains(session.id)) &&
             !_liveKitService.isConnected &&
             !_liveKitService.isConnecting)

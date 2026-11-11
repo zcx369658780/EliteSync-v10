@@ -15,6 +15,7 @@ import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_androi
 class RtcLiveKitService extends ChangeNotifier {
   RtcLiveKitService({required this.remoteDataSource, required this.appEnv})
     : _createCameraTrack = LocalVideoTrack.createCameraTrack,
+      _createAudioTrack = LocalAudioTrack.create,
       _microphonePermission = const PermissionHandlerRtcPermissionService()
           .ensureVoiceCallPermission,
       _cameraPermission =
@@ -28,9 +29,11 @@ class RtcLiveKitService extends ChangeNotifier {
     required Future<bool> Function() microphonePermission,
     required Future<bool> Function() cameraPermission,
     Future<LocalVideoTrack> Function(CameraCaptureOptions)? cameraTrackFactory,
+    Future<LocalAudioTrack> Function(AudioCaptureOptions)? audioTrackFactory,
   }) : _room = room,
        _createCameraTrack =
            cameraTrackFactory ?? LocalVideoTrack.createCameraTrack,
+       _createAudioTrack = audioTrackFactory ?? LocalAudioTrack.create,
        _microphonePermission = microphonePermission,
        _cameraPermission = cameraPermission;
 
@@ -38,9 +41,14 @@ class RtcLiveKitService extends ChangeNotifier {
   final Future<bool> Function() _cameraPermission;
   final Future<LocalVideoTrack> Function(CameraCaptureOptions)
   _createCameraTrack;
+  final Future<LocalAudioTrack> Function(AudioCaptureOptions) _createAudioTrack;
   final _pendingLocalTracks = <LocalTrack, Room>{};
   Future<void> _cameraMutation = Future.value();
+  Future<void> _microphoneMutation = Future.value();
   Future<void> _teardown = Future.value();
+  Future<void> _captureStop = Future.value();
+  int _captureGeneration = 0;
+  bool _captureSuspended = false;
 
   final RtcRemoteDataSource remoteDataSource;
   final AppEnv appEnv;
@@ -89,40 +97,71 @@ class RtcLiveKitService extends ChangeNotifier {
       generation == _connectionGeneration &&
       identical(_room, room);
 
-  Future<void> setMicrophoneEnabled(bool enabled) async {
+  Future<void> setMicrophoneEnabled(bool enabled) {
     final room = _room;
     final participant = room?.localParticipant;
     final generation = _connectionGeneration;
+    final captureGeneration = _captureGeneration;
+    if (enabled) _captureSuspended = false;
     bool current() =>
         !_disposed &&
         generation == _connectionGeneration &&
+        captureGeneration == _captureGeneration &&
         identical(_room, room);
-    if (participant == null || !current()) return;
-    if (enabled) {
-      final granted = await _microphonePermission();
+    final operation = _microphoneMutation.then((_) async {
+      await _captureStop;
+      if (participant == null || !current()) return;
+      if (enabled) {
+        final granted = await _microphonePermission();
+        if (!current()) return;
+        if (!granted) throw StateError('需要麦克风权限');
+      }
       if (!current()) return;
-      if (!granted) throw StateError('需要麦克风权限');
-    }
-    if (!current()) return;
-    final publication = await participant.setMicrophoneEnabled(enabled);
-    if (!current()) {
-      final track = publication?.track;
-      if (enabled && track != null) await _stopTrack(track);
-      return;
-    }
-    _microphoneEnabled = enabled;
-    _mediaChanged();
+      if (!enabled ||
+          participant.getTrackPublicationBySource(TrackSource.microphone) !=
+              null) {
+        final publication = await participant.setMicrophoneEnabled(enabled);
+        if (!current()) {
+          final track = publication?.track;
+          if (enabled && track != null) await _suspendTrack(track);
+          return;
+        }
+      } else {
+        final track = await _createAudioTrack(
+          room!.roomOptions.defaultAudioCaptureOptions,
+        );
+        _pendingLocalTracks[track] = room;
+        var published = false;
+        try {
+          if (!current()) return;
+          await participant.publishAudioTrack(track);
+          if (!current()) return;
+          published = true;
+        } finally {
+          if (!published) await _suspendTrack(track);
+          _pendingLocalTracks.remove(track);
+        }
+      }
+      _microphoneEnabled = enabled;
+      _mediaChanged();
+    });
+    _microphoneMutation = operation.then<void>((_) {}, onError: (Object _) {});
+    return operation;
   }
 
   Future<void> setCameraEnabled(bool enabled) {
     final room = _room;
     final participant = room?.localParticipant;
     final generation = _connectionGeneration;
+    final captureGeneration = _captureGeneration;
+    if (enabled) _captureSuspended = false;
     bool current() =>
         !_disposed &&
         generation == _connectionGeneration &&
+        captureGeneration == _captureGeneration &&
         identical(_room, room);
     final operation = _cameraMutation.then((_) async {
+      await _captureStop;
       if (participant == null || !current()) return;
       if (enabled) {
         final granted = await _cameraPermission();
@@ -135,7 +174,7 @@ class RtcLiveKitService extends ChangeNotifier {
         final publication = await participant.setCameraEnabled(enabled);
         if (!current()) {
           final track = publication?.track;
-          if (enabled && track != null) await _stopTrack(track);
+          if (enabled && track != null) await _suspendTrack(track);
           return;
         }
       } else {
@@ -150,7 +189,7 @@ class RtcLiveKitService extends ChangeNotifier {
           published = true;
           _frontCamera = captureOptions.cameraPosition == CameraPosition.front;
         } finally {
-          if (!published) await _stopTrack(track);
+          if (!published) await _suspendTrack(track);
           _pendingLocalTracks.remove(track);
         }
       }
@@ -164,8 +203,15 @@ class RtcLiveKitService extends ChangeNotifier {
   Future<void> switchCamera() {
     final room = _room;
     final generation = _connectionGeneration;
+    final captureGeneration = _captureGeneration;
+    bool current() =>
+        room != null &&
+        _ownsRoom(room, generation) &&
+        captureGeneration == _captureGeneration &&
+        !_captureSuspended;
     final operation = _cameraMutation.then((_) async {
-      if (room == null || !_ownsRoom(room, generation)) return;
+      await _captureStop;
+      if (!current()) return;
       final track = localVideoTrack;
       if (track == null) return;
       final nextFront = !_frontCamera;
@@ -174,9 +220,9 @@ class RtcLiveKitService extends ChangeNotifier {
           nextFront ? CameraPosition.front : CameraPosition.back,
         );
       } finally {
-        if (!_ownsRoom(room, generation)) await _stopTrack(track);
+        if (!current()) await _suspendTrack(track);
       }
-      if (!_ownsRoom(room, generation)) return;
+      if (!current()) return;
       _frontCamera = nextFront;
       _mediaChanged();
     });
@@ -761,29 +807,37 @@ class RtcLiveKitService extends ChangeNotifier {
     _connecting = true;
     _pendingCallId = callId;
     final requestedGeneration = _connectionGeneration;
+    final captureGeneration = _captureGeneration;
     int? generation;
     try {
       final info = await _loadJoinInfo(callId);
       if (_disposed || requestedGeneration != _connectionGeneration) return;
+      if (_captureSuspended || captureGeneration != _captureGeneration) return;
       if (!info.isReady) throw StateError('通话服务当前不可用');
       final gatewayUrl = validateRtcGatewayUrl(info.url, env: appEnv);
       if (!await _microphonePermission()) {
         throw StateError('需要麦克风权限');
       }
       if (_disposed || requestedGeneration != _connectionGeneration) return;
+      if (_captureSuspended || captureGeneration != _captureGeneration) return;
       if (info.mode == 'video' && !await _cameraPermission()) {
         throw StateError('需要摄像头权限');
       }
       if (_disposed || requestedGeneration != _connectionGeneration) return;
+      if (_captureSuspended || captureGeneration != _captureGeneration) return;
       _failureMessage = null;
       _logJoinInfo(callId: callId, info: info);
       final expectedAfterLeave = _connectionGeneration + 1;
       await leave();
       if (_disposed || _connectionGeneration != expectedAfterLeave) return;
+      if (_captureSuspended || captureGeneration != _captureGeneration) return;
       generation = _connectionGeneration;
       if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
         await initializeRtcAndroidAudioEngine();
         if (_disposed || generation != _connectionGeneration) return;
+        if (_captureSuspended || captureGeneration != _captureGeneration) {
+          return;
+        }
       }
       _connectedCallId = callId;
       debugPrint(
@@ -996,10 +1050,12 @@ class RtcLiveKitService extends ChangeNotifier {
         'canPlaybackAudio=${room.canPlaybackAudio}',
       );
       _logLocalAudioSnapshot(room, callId: callId, reason: 'after_set_speaker');
+      if (_captureSuspended || captureGeneration != _captureGeneration) return;
       await setMicrophoneEnabled(true);
       if (generation != _connectionGeneration || !identical(_room, room)) {
         return;
       }
+      if (_captureSuspended || captureGeneration != _captureGeneration) return;
       if (info.mode == 'video') {
         await setCameraEnabled(true);
       }
@@ -1058,6 +1114,40 @@ class RtcLiveKitService extends ChangeNotifier {
     }
   }
 
+  void resumeCapture() {
+    _captureSuspended = false;
+  }
+
+  Future<void> _suspendTrack(LocalTrack track) async {
+    try {
+      await track.mute(stopOnMute: true);
+    } catch (_) {
+      debugPrint('RTC_LOCAL_CAPTURE_MUTE_FAILED');
+    } finally {
+      await _stopTrack(track);
+    }
+  }
+
+  Future<void> suspendCapture() {
+    _captureGeneration++;
+    _captureSuspended = true;
+    _cameraEnabled = false;
+    _microphoneEnabled = false;
+    final room = _room;
+    final tracks = <LocalTrack>{
+      for (final entry in _pendingLocalTracks.entries)
+        if (identical(entry.value, room)) entry.key,
+      for (final publication
+          in room?.localParticipant?.trackPublications.values ??
+              <LocalTrackPublication>[])
+        ?publication.track,
+    };
+    final stopping = Future.wait(tracks.map(_suspendTrack)).then<void>((_) {});
+    _captureStop = Future.wait([_captureStop, stopping]).then<void>((_) {});
+    _mediaChanged();
+    return _captureStop;
+  }
+
   Future<void> _releaseRoom(Room room) async {
     // Track.stop releases native capture independently of signaling teardown.
     final tracks = <LocalTrack>{
@@ -1089,6 +1179,7 @@ class RtcLiveKitService extends ChangeNotifier {
     }
     final leavingCallId = callId ?? _connectedCallId ?? _pendingCallId;
     _connectionGeneration += 1;
+    _captureSuspended = false;
     final room = _room;
     room?.removeListener(_mediaChanged);
     _room = null;

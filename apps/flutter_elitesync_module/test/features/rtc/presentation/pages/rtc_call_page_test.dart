@@ -217,6 +217,12 @@ class NotifyingLeaveRtcService extends RtcLiveKitService {
 
   final List<int?> leaves = [];
   final List<int> connections = [];
+  int suspensions = 0;
+
+  @override
+  Future<void> suspendCapture() async {
+    suspensions++;
+  }
 
   @override
   Future<void> leave({int? callId}) async {
@@ -285,7 +291,7 @@ RtcSessionEntity _videoCall(int id, String peer) => RtcSessionEntity.fromJson({
 
 void main() {
   testWidgets(
-    'background closes media once and resume requires explicit reconnect',
+    'background suspends capture once and preserves the active call',
     (tester) async {
       await tester.binding.setSurfaceSize(const Size(1000, 2400));
       addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -305,7 +311,8 @@ void main() {
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
       await tester.pumpAndSettle();
-      expect(service.leaves, [103]);
+      expect(service.leaves, isEmpty);
+      expect(service.suspensions, 1);
       expect(service.connections, [103]);
       await tester.pump(const Duration(seconds: 4));
       await tester.pumpAndSettle();

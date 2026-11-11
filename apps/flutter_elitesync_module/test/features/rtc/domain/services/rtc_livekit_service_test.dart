@@ -48,6 +48,10 @@ RtcLiveKitService _service(_DeniedRtcSource source, {bool enabled = true}) =>
 
 class _MediaParticipant implements LocalParticipant {
   int microphonePublications = 0;
+  Completer<LocalTrackPublication?>? pendingMicrophoneEnable;
+  final microphoneEnableStarted = Completer<void>();
+  _CaptureTrack? microphoneTrack;
+  bool microphoneAlreadyPublished = true;
   int cameraPublications = 0;
   bool cameraAlreadyPublished = true;
   bool failVideoPublish = false;
@@ -61,10 +65,31 @@ class _MediaParticipant implements LocalParticipant {
           .whereType<LocalTrackPublication<LocalVideoTrack>>()
           .toList();
   @override
-  LocalTrackPublication? getTrackPublicationBySource(TrackSource source) =>
-      source == TrackSource.camera && cameraAlreadyPublished
-      ? _CapturePublication(_CaptureTrack())
-      : null;
+  LocalTrackPublication? getTrackPublicationBySource(TrackSource source) {
+    if ((source == TrackSource.camera && cameraAlreadyPublished) ||
+        (source == TrackSource.microphone && microphoneAlreadyPublished)) {
+      return _CapturePublication(_CaptureTrack());
+    }
+    return null;
+  }
+
+  @override
+  Future<LocalTrackPublication<LocalAudioTrack>> publishAudioTrack(
+    LocalAudioTrack track, {
+    AudioPublishOptions? publishOptions,
+  }) async {
+    microphonePublications++;
+    if (!microphoneEnableStarted.isCompleted) {
+      microphoneEnableStarted.complete();
+    }
+    final publication = pendingMicrophoneEnable == null
+        ? _CapturePublication<LocalAudioTrack>(track)
+        : await pendingMicrophoneEnable!.future
+              as LocalTrackPublication<LocalAudioTrack>;
+    microphoneAlreadyPublished = true;
+    trackPublications['microphone'] = publication;
+    return publication;
+  }
 
   @override
   Future<LocalTrackPublication<LocalVideoTrack>> publishVideoTrack(
@@ -74,8 +99,9 @@ class _MediaParticipant implements LocalParticipant {
     cameraPublications++;
     if (!videoPublishStarted.isCompleted) videoPublishStarted.complete();
     if (failVideoPublish) throw StateError('Synthetic video publish failure');
-    if (pendingVideoPublish != null) return pendingVideoPublish!.future;
-    final publication = _CapturePublication<LocalVideoTrack>(track);
+    final publication = pendingVideoPublish == null
+        ? _CapturePublication<LocalVideoTrack>(track)
+        : await pendingVideoPublish!.future;
     cameraAlreadyPublished = true;
     trackPublications['camera'] = publication;
     return publication;
@@ -86,7 +112,18 @@ class _MediaParticipant implements LocalParticipant {
     bool enabled, {
     AudioCaptureOptions? audioCaptureOptions,
   }) async {
-    if (enabled) microphonePublications++;
+    if (enabled) {
+      microphonePublications++;
+      microphoneTrack?.nativeActive = true;
+      microphoneTrack?.muted = false;
+      if (!microphoneEnableStarted.isCompleted) {
+        microphoneEnableStarted.complete();
+      }
+      if (microphonePublications == 1 && pendingMicrophoneEnable != null) {
+        return pendingMicrophoneEnable!.future;
+      }
+      if (microphoneTrack != null) return _CapturePublication(microphoneTrack!);
+    }
     return null;
   }
 
@@ -95,7 +132,16 @@ class _MediaParticipant implements LocalParticipant {
     bool enabled, {
     CameraCaptureOptions? cameraCaptureOptions,
   }) async {
-    if (enabled) cameraPublications++;
+    if (enabled) {
+      cameraPublications++;
+      final publication = trackPublications['camera'];
+      final track = publication?.track;
+      if (track is _CaptureTrack) {
+        track.nativeActive = true;
+        track.muted = false;
+      }
+      return publication;
+    }
     return null;
   }
 
@@ -106,9 +152,19 @@ class _MediaParticipant implements LocalParticipant {
 class _CaptureTrack implements LocalTrack {
   int stops = 0;
   bool failStop = false;
+  bool nativeActive = true;
+  @override
+  bool muted = false;
+  @override
+  Future<bool> mute({bool stopOnMute = true}) async {
+    muted = true;
+    return true;
+  }
+
   @override
   Future<bool> stop() async {
     stops++;
+    nativeActive = false;
     if (failStop) throw StateError('Synthetic native stop failure');
     return true;
   }
@@ -123,7 +179,7 @@ class _CapturePublication<T extends LocalTrack>
   @override
   final T track;
   @override
-  bool get muted => false;
+  bool get muted => track.muted;
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
@@ -152,6 +208,8 @@ class _NativeVideoTrack implements rtc.MediaStreamTrack {
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
+
+class _AudioCaptureTrack extends _CaptureTrack implements LocalAudioTrack {}
 
 class _MediaRoom implements Room {
   _MediaRoom(this.localParticipant, {this.roomOptions = const RoomOptions()});
@@ -183,6 +241,82 @@ class _MediaRoom implements Room {
 }
 
 void main() {
+  test(
+    'new microphone enable waits for suspended old publication cleanup',
+    () async {
+      final track = _AudioCaptureTrack();
+      final participant = _MediaParticipant()
+        ..microphoneTrack = track
+        ..microphoneAlreadyPublished = false
+        ..pendingMicrophoneEnable = Completer();
+      final service = RtcLiveKitService.mediaControlTest(
+        remoteDataSource: _DeniedRtcSource(),
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Microphone operation ownership test',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: false,
+        ),
+        room: _MediaRoom(participant),
+        microphonePermission: () async => true,
+        cameraPermission: () async => true,
+        audioTrackFactory: (_) async => track,
+      );
+      final oldEnable = service.setMicrophoneEnabled(true);
+      await participant.microphoneEnableStarted.future;
+      await service.suspendCapture();
+      expect(track.nativeActive, isFalse);
+      expect(participant.microphonePublications, 1);
+      final newEnable = service.setMicrophoneEnabled(true);
+      await Future<void>.delayed(Duration.zero);
+      participant.pendingMicrophoneEnable!.complete(
+        _CapturePublication<LocalAudioTrack>(track),
+      );
+      await oldEnable;
+      await newEnable;
+      expect(participant.microphonePublications, 2);
+      expect(track.nativeActive, isTrue);
+      expect(track.muted, isFalse);
+      expect(service.microphoneEnabled, isTrue);
+      await service.leave();
+      service.dispose();
+    },
+  );
+
+  test(
+    'background stops both capture tracks without disconnecting the call',
+    () async {
+      final microphone = _CaptureTrack()..failStop = true;
+      final camera = _CaptureTrack();
+      final participant = _MediaParticipant()
+        ..trackPublications.addAll({
+          'microphone': _CapturePublication(microphone),
+          'camera': _CapturePublication(camera),
+        });
+      final room = _MediaRoom(participant);
+      final service = RtcLiveKitService.mediaControlTest(
+        remoteDataSource: _DeniedRtcSource(),
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Background capture test',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: false,
+        ),
+        room: room,
+        microphonePermission: () async => true,
+        cameraPermission: () async => true,
+      );
+      await service.suspendCapture();
+      expect([microphone.stops, camera.stops], [1, 1]);
+      expect(room.disconnectStarted.isCompleted, isFalse);
+      expect(room.disposeCalls, 0);
+      expect(service.microphoneEnabled, isFalse);
+      expect(service.cameraEnabled, isFalse);
+      await service.leave();
+      service.dispose();
+    },
+  );
+
   test(
     'new camera uses its capture position as the next switch baseline',
     () async {
@@ -222,44 +356,66 @@ void main() {
     },
   );
 
-  test('camera switch finishing after leave stops restarted capture', () async {
-    final participant = _MediaParticipant()..cameraAlreadyPublished = false;
-    final track = _VideoCaptureTrack()..pendingPosition = Completer<void>();
-    final service = RtcLiveKitService.mediaControlTest(
-      remoteDataSource: _DeniedRtcSource(),
-      appEnv: const AppEnv(
-        flavor: AppFlavor.dev,
-        appName: 'Camera switch ownership test',
-        apiBaseUrl: 'http://127.0.0.1',
-        useMockData: false,
-      ),
-      room: _MediaRoom(participant),
-      microphonePermission: () async => true,
-      cameraPermission: () async => true,
-      cameraTrackFactory: (_) async => track,
+  for (final boundary in ['leave', 'suspend']) {
+    test(
+      'camera switch finishing after $boundary stops restarted capture',
+      () async {
+        final participant = _MediaParticipant()..cameraAlreadyPublished = false;
+        final track = _VideoCaptureTrack()..pendingPosition = Completer<void>();
+        final service = RtcLiveKitService.mediaControlTest(
+          remoteDataSource: _DeniedRtcSource(),
+          appEnv: const AppEnv(
+            flavor: AppFlavor.dev,
+            appName: 'Camera switch ownership test',
+            apiBaseUrl: 'http://127.0.0.1',
+            useMockData: false,
+          ),
+          room: _MediaRoom(participant),
+          microphonePermission: () async => true,
+          cameraPermission: () async => true,
+          cameraTrackFactory: (_) async => track,
+        );
+        await service.setCameraEnabled(true);
+        final switching = service.switchCamera();
+        await track.positionStarted.future;
+        if (boundary == 'suspend') {
+          await service.suspendCapture();
+        } else {
+          await service.leave();
+        }
+        final stopsBeforeCompletion = track.stops;
+        track.pendingPosition!.complete();
+        await switching;
+        expect(track.stops, greaterThan(stopsBeforeCompletion));
+        expect(service.cameraEnabled, isFalse);
+        if (boundary == 'suspend') {
+          expect(track.muted, isTrue);
+          await service.setCameraEnabled(true);
+          expect(service.cameraEnabled, isTrue);
+          expect(track.nativeActive, isTrue);
+          expect(track.muted, isFalse);
+        }
+        await service.leave();
+        service.dispose();
+      },
     );
-    await service.setCameraEnabled(true);
-    final switching = service.switchCamera();
-    await track.positionStarted.future;
-    await service.leave();
-    final stopsBeforeCompletion = track.stops;
-    track.pendingPosition!.complete();
-    await switching;
-    expect(track.stops, greaterThan(stopsBeforeCompletion));
-    expect(service.cameraEnabled, isFalse);
-    service.dispose();
-  });
+  }
 
   for (final boundary in [
     'creation',
     'publication',
+    'suspend creation',
+    'suspend publication',
     'publish failure',
     'current',
   ]) {
     test('camera track ownership survives $boundary boundary', () async {
+      final duringCreation = boundary.endsWith('creation');
+      final duringPublication = boundary.endsWith('publication');
+      final suspend = boundary.startsWith('suspend ');
       final participant = _MediaParticipant()..cameraAlreadyPublished = false;
       if (boundary == 'publish failure') participant.failVideoPublish = true;
-      if (boundary == 'publication') {
+      if (duringPublication) {
         participant.pendingVideoPublish = Completer();
       }
       final room = _MediaRoom(participant);
@@ -280,8 +436,12 @@ void main() {
         cameraPermission: () async => true,
         cameraTrackFactory: (_) {
           creations++;
-          creationStarted.complete();
-          return creation.future;
+          if (!creationStarted.isCompleted) creationStarted.complete();
+          return creation.future.then((track) {
+            (track as _VideoCaptureTrack).nativeActive = true;
+            track.muted = false;
+            return track;
+          });
         },
       );
       final enable = service.setCameraEnabled(true);
@@ -289,11 +449,21 @@ void main() {
           ? expectLater(enable, throwsStateError)
           : null;
       await creationStarted.future;
-      if (boundary == 'creation') await service.leave();
+      if (duringCreation) {
+        if (suspend) {
+          await service.suspendCapture();
+        } else {
+          await service.leave();
+        }
+      }
       creation.complete(track);
-      if (boundary == 'publication') {
+      if (duringPublication) {
         await participant.videoPublishStarted.future;
-        await service.leave();
+        if (suspend) {
+          await service.suspendCapture();
+        } else {
+          await service.leave();
+        }
         expect(track.stops, greaterThanOrEqualTo(1));
         participant.pendingVideoPublish!.complete(
           _CapturePublication<LocalVideoTrack>(track),
@@ -313,7 +483,15 @@ void main() {
       } else {
         expect(service.cameraEnabled, isFalse);
         expect(track.stops, greaterThanOrEqualTo(1));
-        expect(participant.cameraPublications, boundary == 'creation' ? 0 : 1);
+        expect(participant.cameraPublications, duringCreation ? 0 : 1);
+        expect(track.muted, isTrue);
+        if (suspend) expect(room.disconnectStarted.isCompleted, isFalse);
+      }
+      if (suspend) {
+        await service.setCameraEnabled(true);
+        expect(service.cameraEnabled, isTrue);
+        expect(track.nativeActive, isTrue);
+        expect(track.muted, isFalse);
       }
       await service.leave();
       service.dispose();
@@ -548,7 +726,7 @@ void main() {
   );
 
   for (final device in ['microphone', 'camera']) {
-    for (final boundary in ['leave', 'dispose', 'current']) {
+    for (final boundary in ['leave', 'dispose', 'suspend', 'current']) {
       test(
         '$device permission result cannot publish after $boundary boundary',
         () async {
@@ -572,6 +750,7 @@ void main() {
           expect(participant.microphonePublications, 0);
           expect(participant.cameraPublications, 0);
           if (boundary == 'leave') await service.leave();
+          if (boundary == 'suspend') await service.suspendCapture();
           if (boundary == 'dispose') service.dispose();
           permission.complete(true);
           await operation;
