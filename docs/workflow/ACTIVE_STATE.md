@@ -4,10 +4,10 @@ Owner已恢复全自动持续工程，普通实现、定向验证/必要构建�
 
 ## 当前身份与资源
 
-- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。当前安装APP/后端功能源码 `cabba94dd37f26e0b46596369c23590a9536772e`；聊天手动刷新头像小修待必要新包，后续HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index及无关 `%SystemDrive%/` 保留。
-- 安装APK SHA256 `4a3a4c64b4ffa7b2505d20d9786a49010db870197b7cb9cbbace72576382dd77`，154187235字节，离线60.383秒/退出0，签名/包名/arm64 Debug/头像代码标记通过。两个模拟器均更新此包；5580登录B，5582原B正常单会话退出后正常登录A。实际本人上传渲染、对端聊天显示、本人移除与旧URL404通过；A手动刷新旧图残留已修源码、待新包复验。其它既过链沿各自旧身份，问卷切号实证仍绑定前e921包，不冒充本包重测。
+- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。当前安装APP源码 `772482a50e225f9b683952cb2982b9b14cff2e8a`，后端头像功能源于 `cabba94dd37f26e0b46596369c23590a9536772e`；后续文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index及无关 `%SystemDrive%/` 保留。
+- 安装APK SHA256 `dc5d934e177fdb3c8a0f2de4661ed2c74be5ddbe0dfee8ea1ec09bd37c9bd5ea`，154181260字节，离线36.684秒/退出0，签名/包名/arm64 Debug/头像刷新代码标记通过。两个模拟器同包；5580=B/5582=A。B正常选合成图上传、本人/A聊天头像可见、正常移除及双方旧URL404、A手动刷新恢复默认/B重进确认无头像通过。前候选旧图残留原证保留。其它既过链沿各自身份，不冒充本包重测。
 - 私有根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；稳定构建根 `v1015-source-debug-workspace`。四个自有DB/API/WS/SFU运行，准确ID见runtime-private.json；API已接专属Linux排盘镜像，DB仍确切独立虚构库。专用ADB5038/USB排除手机，相机仅生成画面；未改系统网络。
-- 开发库3个虚构用户、101消息/4媒体保持。A正式问卷20/历史1，运营pending/revision2、两条审核审计；B正式答案0/历史0、服务端草稿1题/index1，昵称DevUser-B、城市DevCity-B，可选MBTI attempt1，Showcase私有草稿1。原SELF动态/一级评论软删、搭子WITHDRAWN及双方接收false/rev2保持；新FRIENDS动态已另行软删，好友请求历史ACCEPTED、friendship REMOVED/rev2、邀请已撤销、两方接收新请求均false。旧call1–11 ended/房间空、MC generation7沿用前节点，本段无新通话。
+- 开发库3个虚构用户、原101消息/4媒体保持，另有3个头像资产（当前媒体共7，B头像指针已移除/rev6）。A正式问卷20/历史1，运营pending/revision2、两条审核审计；B正式答案0/历史0、服务端草稿1题/index1，昵称DevUser-B、城市DevCity-B，可选MBTI attempt1，Showcase私有草稿1。原SELF动态/一级评论软删、搭子WITHDRAWN及双方接收false/rev2保持；新FRIENDS动态已另行软删，好友请求历史ACCEPTED、friendship REMOVED/rev2、邀请已撤销、两方接收新请求均false。旧call1–11 ended/房间空、MC generation7沿用前节点，本段无新通话。
 
 ## 最新完成与下一步
 
@@ -23,7 +23,9 @@ Owner已恢复全自动持续工程，普通实现、定向验证/必要构建�
 
 **昵称独立保存正常链完成。** 仅当前本人name更新，不要求出生地或触发完整保存/排盘；服务端读回确认，失败/切号晚回不报成功。3项隔离SQLite接口/15断言、33项Flutter及6文件analyze通过，自审无P1/P2。新包B正常一次保存DevUser-B、API/DB一致，返回兼容用途入口重进恢复；其它本人字段/其它用户及19业务表保持。私有nickname-runtime-private.json保留。
 
-**头像真实双端链已运行，正复验聊天手动刷新小修。** 仅现有获准好友/邀请/会话可见，沿用拉黑，不新增目录。B正常一次选合成图保存rev3、本人/A聊天头像可见；正常移除rev4/null，双方旧URL404、19表及原4媒体保持。A手动刷新仍旧图的运行原证保留；已增加仅手动刷新的头像刷新计数，新父页面回归RED→GREEN、头像+聊天34项/analyze通过、非作者复核无P1/P2，待新包复验受影响链。此前20后端/52相关Flutter及私有MySQL200+409并发证据保持；旧匿名媒体两401基线失败、最初存储503无突变均保留。GD/EXIF私有存储接线见PROGRESS；不重做既过通话/媒体/问卷主链。
+**头像最短双APP链及刷新修正通过。** 仅已有获准上下文可见，沿用拉黑；GD/EXIF转正去元数据、私有读取、旧revision404、内存清理与并发冲突已接线。新包B正常上传rev5/本人及A聊天显示，正常移除rev6/null后A手动刷新恢复默认，B重进仍无头像；原4媒体/19表保持。头像+聊天34项/analyze/非作者复核无剩余P1/P2；前述后端20项及MySQL200+409并发子证据保持，旧匿名媒体两401基线失败、最初存储503与前包UI残图原证保留。不是全权限/缓存/故障矩阵或Owner接受。
+
+**下一步：现有设备会话管理正常链。** 本人列表＋仅本次新建虚构会话的单独撤销；不操作退出全部设备、历史其它会话或注销。普通工程继续，不重做既过通话/媒体/问卷主链。
 
 ## 证据与保留门
 
