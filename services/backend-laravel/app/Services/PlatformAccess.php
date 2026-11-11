@@ -13,9 +13,12 @@ final class PlatformAccess
     {
         $db=DB::connection();
         $testing=app()->environment('testing') && $db->getDriverName()==='sqlite' && $db->getDatabaseName()===':memory:';
+        $target = [config('platform_events.database'), (int) config('platform_events.port')];
+        $known = in_array($target, [['elitesync_v10_1_4_dev', 43325], ['elitesync_v10_1_5_dev', 43326]], true);
         $local=app()->environment('local') && in_array($db->getDriverName(),['mysql','mariadb'],true)
-            && $db->getDatabaseName()==='elitesync_v10_1_4_dev' && $db->getConfig('host')==='127.0.0.1'
-            && (int)$db->getConfig('port')===43325 && !$db->getConfig('url') && !$db->getConfig('unix_socket');
+            && $known && [$db->getDatabaseName(), (int) $db->getConfig('port')] === $target
+            && $db->getConfig('host')==='127.0.0.1' && !$db->getConfig('url')
+            && !config('database.connections.'.$db->getName().'.url') && !$db->getConfig('unix_socket');
         abort_unless($testing || $local,404,'unavailable');
     }
 
