@@ -41,6 +41,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   bool _sessionChanged = false;
   bool _timeLocked = false;
   bool _hadTrustedCache = false;
+  bool _draftLoaded = false;
+  bool _draftBusy = false;
+  String? _draftStatus;
   bool _picking = false;
   int _peerEpoch = 0;
   ChatPickedMedia? _pendingMedia;
@@ -49,6 +52,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   String? _uploadStatus;
   StreamSubscription? _socket;
   String get _cacheKey => 'live-chat:${widget.peerId}';
+  String get _draftKey => 'live-chat-draft:${widget.peerId}';
   PrivateCacheService get _cache =>
       PrivateCacheService.forStorage(ref.read(secureStorageProvider));
   bool _transportUnavailable(NetworkFailure result) {
@@ -203,6 +207,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _pendingMediaKind = null;
       _readyMediaAsset = null;
       _uploadStatus = null;
+      _draftLoaded = false;
+      _draftStatus = null;
+      _draftBusy = false;
       if (!preserveAttempt) {
         _text.clear();
         _attempt = null;
@@ -248,6 +255,65 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     return {'messages': selected.reversed.toList(), 'images': selectedImages};
   }
 
+  bool _restoreTextDraft(Map<String, dynamic>? draft, {required bool offline}) {
+    if (!_cache.isUnlocked ||
+        (draft != null &&
+            (draft['text'] is! String ||
+                (draft['text'] as String).length > 5000))) {
+      _cache.lock();
+      _reject('草稿校验失败，私密内容已锁定，请重新在线登录。');
+      setState(() => _timeLocked = true);
+      return false;
+    }
+    if (draft?['pending_attempt'] case final Map pending) {
+      try {
+        final ids = pending['attachment_ids'];
+        if (pending['peer_user_id'] != widget.peerId ||
+            pending['content'] != (draft!['text'] as String).trim() ||
+            ids is! List ||
+            ids.length > 1 ||
+            ids.any((id) => id is! int || id <= 0)) {
+          throw const FormatException('Invalid submission binding.');
+        }
+        final attempt = ChatSendAttempt(
+          clientMessageId: pending['client_message_id'] as String,
+          peerUserId: widget.peerId,
+          content: pending['content'] as String,
+          attachmentIds: ids.cast<int>(),
+        );
+        if (_attempt != null &&
+            (_attempt!.clientMessageId != attempt.clientMessageId ||
+                !_attempt!.hasSamePayload(
+                  peerUserId: attempt.peerUserId,
+                  content: attempt.content,
+                  attachmentIds: attempt.attachmentIds,
+                ))) {
+          throw const FormatException('Submission changed.');
+        }
+        _attempt = attempt;
+        _text.text = attempt.content;
+        _retryAsset = attempt.attachmentIds.firstOrNull;
+        _sendStatus = '上次发送尚未完成，请使用原消息编号重试。';
+      } catch (_) {
+        _cache.lock();
+        _reject('草稿发送编号校验失败，私密内容已锁定，请重新在线登录。');
+        setState(() => _timeLocked = true);
+        return false;
+      }
+    } else if (draft != null && draft.containsKey('pending_attempt')) {
+      _cache.lock();
+      _reject('草稿发送编号校验失败，私密内容已锁定，请重新在线登录。');
+      setState(() => _timeLocked = true);
+      return false;
+    }
+    if (draft != null && _text.text.isEmpty) {
+      _text.text = draft['text'] as String;
+      _draftStatus = offline ? '离线草稿只读，重新联网核验后才可编辑。' : '已恢复本人草稿，发送前请确认。';
+    }
+    _draftLoaded = true;
+    return true;
+  }
+
   Future<void> _load() async {
     if (_loading ||
         _loadingOlder ||
@@ -288,6 +354,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           final saved = await _cache.readOffline(_cacheKey);
           if (!_current(session, epoch)) return;
           if (saved != null) {
+            if (!_draftLoaded) {
+              final draft = await _cache.readOffline(_draftKey);
+              if (!_current(session, epoch)) return;
+              if (!_restoreTextDraft(draft, offline: true)) return;
+            }
             setState(() {
               _messages = (saved['messages'] as List)
                   .map((e) => Map<String, dynamic>.from(e as Map))
@@ -390,6 +461,15 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _reject('可信登录或加密保存未能核验，私密内容已锁定，请重新在线登录。');
         setState(() => _timeLocked = true);
         return;
+      }
+      if (!_draftLoaded) {
+        final draft = await _cache.readAfterCurrentAuthorization(
+          _draftKey,
+          expectedAccountId: session.user!.id,
+          isCurrent: () => _current(session, epoch),
+        );
+        if (!_current(session, epoch)) return;
+        if (!_restoreTextDraft(draft, offline: false)) return;
       }
       setState(() {
         _messages = visible;
@@ -556,8 +636,74 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     }
   }
 
+  Future<void> _saveDraft({bool clear = false}) async {
+    if (_busy || _draftBusy || !_draftLoaded || _offline || _attempt != null) {
+      return;
+    }
+    final session = _session;
+    final epoch = _epoch;
+    if (session == null || !_current(session, epoch)) return;
+    final text = _text.text;
+    if (text.length > 5000) {
+      setState(() => _draftStatus = '草稿最多保存5000个字符。');
+      return;
+    }
+    setState(() => _draftBusy = true);
+    try {
+      if (clear || text.isEmpty) {
+        if (!await _cache.removeObject(_draftKey)) {
+          throw StateError('Draft clear was superseded.');
+        }
+        if (!_current(session, epoch)) return;
+        setState(() {
+          _text.clear();
+          _draftStatus = '本机草稿已清除。';
+        });
+      } else {
+        final saved = await _cache.saveAuthorized(
+          _draftKey,
+          {'text': text},
+          expectedAccountId: session.user!.id,
+          isCurrent: () => _current(session, epoch) && _text.text == text,
+        );
+        if (!_current(session, epoch)) return;
+        if (!saved && !_cache.isUnlocked) {
+          _reject('草稿保存未能核验，私密内容已锁定，请重新在线登录。');
+          setState(() => _timeLocked = true);
+          return;
+        }
+        setState(
+          () => _draftStatus = saved ? '草稿已加密保存在本机，尚未发送。' : '草稿保存未完成，请重新核验后重试。',
+        );
+      }
+    } catch (_) {
+      if (_current(session, epoch)) {
+        setState(() => _draftStatus = '草稿处理未完成，请重试。');
+      }
+    } finally {
+      if (_current(session, epoch)) setState(() => _draftBusy = false);
+    }
+  }
+
+  Future<bool> _canStartSubmission(SessionState session, int epoch) async {
+    if (_attempt != null || _draftLoaded) return true;
+    final indexed = await _cache.hasIndexedObject(
+      _draftKey,
+      expectedAccountId: session.user!.id,
+    );
+    if (!_current(session, epoch)) return false;
+    if (indexed != false) {
+      setState(() => _sendStatus = '请等待当前会话与已存草稿核验后再发送。');
+      return false;
+    }
+    return true;
+  }
+
   Future<void> _post(SessionState session, int epoch, {int? asset}) async {
     if (!_current(session, epoch) || _offline) return;
+    if (!await _canStartSubmission(session, epoch) || !_current(session, epoch)) {
+      return;
+    }
     // An unconfirmed POST owns its immutable payload and idempotency key.
     // A changed controller value must never replace that logical attempt.
     final attempt =
@@ -568,6 +714,36 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           attachmentIds: asset == null ? <int>[] : [asset],
         );
     if (attempt.content.isEmpty && attempt.attachmentIds.isEmpty) return;
+    if (attempt.content.length > 5000) {
+      setState(() => _sendStatus = '消息最多5000个字符，尚未发送。');
+      return;
+    }
+    if (_attempt == null) {
+      final saved = await _cache.saveAuthorized(
+        _draftKey,
+        {
+          'text': attempt.content,
+          'pending_attempt': {
+            'client_message_id': attempt.clientMessageId,
+            'peer_user_id': attempt.peerUserId,
+            'content': attempt.content,
+            'attachment_ids': attempt.attachmentIds.toList(),
+          },
+        },
+        expectedAccountId: session.user!.id,
+        isCurrent: () => _current(session, epoch) && !_offline,
+      );
+      if (!_current(session, epoch)) return;
+      if (!saved) {
+        if (!_cache.isUnlocked) {
+          _reject('本机发送回执保存失败，消息尚未发送；请重新登录。');
+          setState(() => _timeLocked = true);
+        } else {
+          setState(() => _sendStatus = '本机发送回执保存未完成，消息尚未发送，请重试。');
+        }
+        return;
+      }
+    }
     _attempt = attempt;
     _retryAsset = asset;
     setState(() => _sendStatus = '发送中，等待服务器确认');
@@ -612,12 +788,29 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     _retryAsset = null;
     setState(() => _sendStatus = '服务器已确认此消息');
     _text.clear();
+    try {
+      if (!await _cache.removeObject(_draftKey)) {
+        throw StateError('Confirmed draft cleanup was superseded.');
+      }
+    } catch (_) {
+      if (!_current(session, epoch)) return;
+      _cache.lock();
+      _reject('消息已确认，但本机草稿清理未完成；请重新登录后重试清理。');
+      setState(() {
+        _timeLocked = true;
+        _sendStatus = '服务器已确认此消息';
+      });
+      return;
+    }
+    if (!_current(session, epoch)) return;
+    _draftStatus = null;
     await _load();
     if (!_current(session, epoch)) return;
   }
 
   Future<void> _send({int? asset}) async {
     if (_busy ||
+        _draftBusy ||
         !mounted ||
         _offline ||
         !_foreground ||
@@ -650,6 +843,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   Future<void> _video() => _attachment(ChatAttachmentKind.video);
 
   void _removePendingMedia() {
+    if (_draftBusy) return;
     setState(() {
       _pendingMedia = null;
       _pendingMediaKind = null;
@@ -663,6 +857,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     bool retry = false,
   }) async {
     if (_busy ||
+        _draftBusy ||
         _attempt != null ||
         !mounted ||
         !_foreground ||
@@ -681,6 +876,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     final peerEpoch = _peerEpoch;
     setState(() => _busy = true);
     try {
+      if (!await _canStartSubmission(session, epoch) ||
+          !_current(session, epoch)) {
+        return;
+      }
       final gateway = ref.read(liveChatMediaGatewayProvider);
       ChatPickedMedia? picked;
       if (retry) {
@@ -783,6 +982,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     if (session == null ||
         !session.isLoggedIn ||
         _busy ||
+        _draftBusy ||
         _offline ||
         _timeLocked ||
         _sessionChanged) {
@@ -922,12 +1122,12 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             icon: const Icon(Icons.refresh),
           ),
           IconButton(
-            onPressed: _busy ? null : () => _call('voice'),
+            onPressed: _busy || _draftBusy ? null : () => _call('voice'),
             tooltip: '语音通话',
             icon: const Icon(Icons.call_outlined),
           ),
           IconButton(
-            onPressed: _busy ? null : () => _call('video'),
+            onPressed: _busy || _draftBusy ? null : () => _call('video'),
             tooltip: '视频通话',
             icon: const Icon(Icons.videocam_outlined),
           ),
@@ -944,7 +1144,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             ),
           if (_attempt != null && !_offline)
             TextButton(
-              onPressed: _busy ? null : () => _send(asset: _retryAsset),
+              onPressed: _busy || _draftBusy
+                  ? null
+                  : () => _send(asset: _retryAsset),
               child: const Text('使用原消息编号重试'),
             ),
           if (_uploadStatus != null)
@@ -955,6 +1157,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                   Text(_uploadStatus!),
                   if (_pendingMedia != null &&
                       !_busy &&
+                      !_draftBusy &&
                       !_offline &&
                       _attempt == null)
                     Row(
@@ -1047,12 +1250,46 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
               ],
             ),
           ),
+          if (_draftStatus != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Text(_draftStatus!),
+            ),
+          Row(
+            children: [
+              TextButton(
+                onPressed:
+                    !_draftLoaded ||
+                        _draftBusy ||
+                        _busy ||
+                        _attempt != null ||
+                        _offline ||
+                        _timeLocked
+                    ? null
+                    : () => _saveDraft(),
+                child: Text(_draftBusy ? '正在处理草稿…' : '保存草稿'),
+              ),
+              TextButton(
+                onPressed:
+                    !_draftLoaded ||
+                        _draftBusy ||
+                        _busy ||
+                        _attempt != null ||
+                        _offline ||
+                        _timeLocked
+                    ? null
+                    : () => _saveDraft(clear: true),
+                child: const Text('清除草稿'),
+              ),
+            ],
+          ),
           SafeArea(
             child: Row(
               children: [
                 IconButton(
                   onPressed:
                       _busy ||
+                          _draftBusy ||
                           _attempt != null ||
                           _pendingMedia != null ||
                           _offline ||
@@ -1065,6 +1302,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 IconButton(
                   onPressed:
                       _busy ||
+                          _draftBusy ||
                           _attempt != null ||
                           _pendingMedia != null ||
                           _offline ||
@@ -1077,7 +1315,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 Expanded(
                   child: TextField(
                     readOnly:
-                        _busy || _attempt != null || _offline || _timeLocked,
+                        _busy ||
+                        _draftBusy ||
+                        _attempt != null ||
+                        _offline ||
+                        _timeLocked,
                     controller: _text,
                     decoration: const InputDecoration(hintText: '输入消息'),
                   ),
@@ -1085,6 +1327,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 TextButton(
                   onPressed:
                       _busy ||
+                          _draftBusy ||
                           _attempt != null ||
                           _pendingMedia != null ||
                           _offline ||

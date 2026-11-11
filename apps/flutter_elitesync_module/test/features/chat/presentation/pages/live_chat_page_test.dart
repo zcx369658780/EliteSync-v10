@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_elitesync_module/core/network/api_client.dart';
+import 'package:flutter_elitesync_module/core/storage/private_cache_service.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
@@ -213,13 +214,76 @@ class _RetryGateway implements SessionBoundChatMediaGateway {
   }
 }
 
+class _DraftStore extends SyntheticPrivateStore {
+  bool refuseDraftDelete = false;
+  bool failDraftWrite = false;
+  bool blockDraftDelete = false;
+  Completer<void>? blockDelete;
+  Completer<void>? deleteEntered;
+  bool draftKey(String key) => key.contains(':live-chat-draft%3A');
+  @override
+  Future<void> write(String key, String value) async {
+    if (draftKey(key) && failDraftWrite) {
+      throw StateError('fictional write failure');
+    }
+    await super.write(key, value);
+  }
+
+  @override
+  Future<void> delete(String key) async {
+    if (blockDelete != null &&
+        (key.endsWith(':queue-blocker') ||
+            (blockDraftDelete && draftKey(key)))) {
+      deleteEntered!.complete();
+      await blockDelete!.future;
+    }
+    if (draftKey(key) && refuseDraftDelete) return;
+    await super.delete(key);
+  }
+}
+
+Future<_DraftStore> _draftStore() async {
+  final secure = _DraftStore();
+  final now = DateTime.now().toUtc();
+  await PrivateCacheService.forStorage(secure).establishLogin(
+    userId: 1,
+    retention: {
+      'user_id': 1,
+      'device_id': 'draft-test-device',
+      'session_id': 1,
+      'login_at': now.toIso8601String(),
+      'server_now': now.toIso8601String(),
+      'online_expires_at': now.add(const Duration(days: 15)).toIso8601String(),
+      'purge_at': now.add(const Duration(days: 30)).toIso8601String(),
+    },
+  );
+  return secure;
+}
+
+class _PendingAckApi extends _MediaApi {
+  final ack = Completer<NetworkResult<Map<String, dynamic>>>();
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> post(
+    String path, {
+    Object? body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) {
+    bodies.add(Map<String, dynamic>.from(body as Map));
+    return ack.future;
+  }
+}
+
 Future<void> _show(
   WidgetTester tester,
   ApiClient api, {
   ChatMediaGateway? gateway,
   Dio? dio,
+  SyntheticPrivateStore? secureStore,
+  int peerId = 2,
 }) async {
-  final secure = await syntheticPrivateLogin();
+  final secure = secureStore ?? await syntheticPrivateLogin();
   final container = ProviderContainer(
     overrides: [
       secureStorageProvider.overrideWithValue(secure),
@@ -235,7 +299,7 @@ Future<void> _show(
   await tester.pumpWidget(
     UncontrolledProviderScope(
       container: container,
-      child: const MaterialApp(home: LiveChatPage(peerId: 2)),
+      child: MaterialApp(home: LiveChatPage(peerId: peerId)),
     ),
   );
   await tester.pump();
@@ -243,6 +307,337 @@ Future<void> _show(
 }
 
 void main() {
+  testWidgets(
+    'slow initial read cannot overwrite an existing unknown submission',
+    (tester) async {
+      final secure = await syntheticPrivateLogin();
+      final first = _UnknownSendApi();
+      await _show(tester, first, secureStore: secure);
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), 'original pending text');
+      await tester.tap(find.text('发送'));
+      await tester.pumpAndSettle();
+      final original = first.bodies.single;
+      await tester.pumpWidget(const SizedBox());
+      PrivateCacheService.forStorage(secure).beginOnlineRevalidation();
+      final slow = _Api();
+      final gateway = _RetryGateway();
+      await _show(tester, slow, secureStore: secure, gateway: gateway);
+      await tester.enterText(
+        find.byType(TextField),
+        'must not replace pending',
+      );
+      await tester.tap(find.text('发送'));
+      await tester.pumpAndSettle();
+      expect(slow.posts, 0);
+      await tester.tap(find.byTooltip('发送图片'));
+      await tester.pumpAndSettle();
+      expect(gateway.picks, 0);
+      expect(slow.posts, 0);
+      final key = secure.values.keys.singleWhere(
+        (key) => key.endsWith(':live-chat-draft%3A2'),
+      );
+      final stored = jsonDecode(
+        secure.values[key]!,
+      )['value']['pending_attempt'];
+      expect(stored['client_message_id'], original['client_message_id']);
+      expect(stored['content'], original['content']);
+      slow.pending.complete(const NetworkSuccess({'items': <dynamic>[]}));
+      await tester.pumpAndSettle();
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        'original pending text',
+      );
+      expect(find.text('使用原消息编号重试'), findsOneWidget);
+      expect(slow.posts, 0);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets('unknown send reopens only as the same immutable manual retry', (
+    tester,
+  ) async {
+    final secure = await syntheticPrivateLogin();
+    final api = _UnknownSendApi();
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      find.byType(TextField),
+      'retain original submission',
+    );
+    await tester.tap(find.text('发送'));
+    await tester.pumpAndSettle();
+    expect(api.bodies, hasLength(1));
+    await tester.pumpWidget(const SizedBox());
+    PrivateCacheService.forStorage(secure).beginOnlineRevalidation();
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    expect(api.bodies, hasLength(1));
+    expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller!.text,
+      'retain original submission',
+    );
+    await tester.tap(find.text('使用原消息编号重试'));
+    await tester.pumpAndSettle();
+    expect(api.bodies, hasLength(2));
+    expect(api.bodies[1], api.bodies[0]);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets(
+    'clearing draft disables attachments and calls until completion',
+    (tester) async {
+      final secure = await _draftStore();
+      final api = _MediaApi();
+      final gateway = _RetryGateway();
+      await _show(tester, api, secureStore: secure, gateway: gateway);
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byType(TextField),
+        'do not send cleared text',
+      );
+      await tester.tap(find.text('保存草稿'));
+      await tester.pumpAndSettle();
+      secure.blockDraftDelete = true;
+      secure.blockDelete = Completer();
+      secure.deleteEntered = Completer();
+      await tester.tap(find.text('清除草稿'));
+      await tester.pump();
+      await secure.deleteEntered!.future;
+      for (final tip in ['发送图片', '发送短视频', '语音通话', '视频通话']) {
+        expect(
+          tester
+              .widget<IconButton>(
+                find.byWidgetPredicate(
+                  (widget) => widget is IconButton && widget.tooltip == tip,
+                ),
+              )
+              .onPressed,
+          isNull,
+        );
+      }
+      expect(gateway.picks, 0);
+      expect(api.bodies, isEmpty);
+      secure.blockDelete!.complete();
+      await tester.pumpAndSettle();
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        '',
+      );
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets('submission receipt failure means no message was dispatched', (
+    tester,
+  ) async {
+    final secure = await _draftStore();
+    final api = _MediaApi();
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'not dispatched');
+    secure.failDraftWrite = true;
+    await tester.tap(find.text('发送'));
+    await tester.pumpAndSettle();
+    expect(api.bodies, isEmpty);
+    expect(find.textContaining('消息尚未发送'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets(
+    'acknowledged send with failed draft deletion stays confirmed and locked',
+    (tester) async {
+      final secure = await _draftStore();
+      final api = _MediaApi();
+      await _show(tester, api, secureStore: secure);
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), 'server confirms once');
+      secure.refuseDraftDelete = true;
+      await tester.tap(find.text('发送'));
+      await tester.pumpAndSettle();
+      expect(api.bodies, hasLength(1));
+      expect(find.textContaining('消息已确认，但本机草稿清理未完成'), findsOneWidget);
+      expect(find.text('使用原消息编号重试'), findsNothing);
+      expect(PrivateCacheService.forStorage(secure).isUnlocked, isFalse);
+      expect(find.byType(TextField), findsNothing);
+      await tester.pumpWidget(const SizedBox());
+      await _show(tester, api, secureStore: secure);
+      await tester.pumpAndSettle();
+      expect(api.bodies, hasLength(1));
+      expect(find.byType(TextField), findsNothing);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets('superseded queued ack cleanup cannot report draft removed', (
+    tester,
+  ) async {
+    final secure = await _draftStore();
+    final api = _PendingAckApi();
+    final cache = PrivateCacheService.forStorage(secure);
+    await cache.saveAuthorized('queue-blocker', {'text': 'blocker'});
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'queue-bound submission');
+    await tester.tap(find.text('发送'));
+    await tester.pumpAndSettle();
+    expect(api.bodies, hasLength(1));
+    secure.blockDelete = Completer();
+    secure.deleteEntered = Completer();
+    final blocked = cache.removeObject('queue-blocker');
+    await secure.deleteEntered!.future;
+    api.ack.complete(
+      NetworkSuccess({
+        'id': 9,
+        'client_message_id': api.bodies.single['client_message_id'],
+      }),
+    );
+    await tester.pump();
+    cache.revokeObject('another-context');
+    secure.blockDelete!.complete();
+    await blocked;
+    await tester.pumpAndSettle();
+    expect(find.textContaining('消息已确认，但本机草稿清理未完成'), findsOneWidget);
+    expect(cache.isUnlocked, isFalse);
+    expect(api.bodies, hasLength(1));
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('saved draft is peer scoped and denied reads never reveal it', (
+    tester,
+  ) async {
+    final secure = await syntheticPrivateLogin();
+    final api = _MediaApi();
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'only peer two');
+    await tester.tap(find.text('保存草稿'));
+    await tester.pumpAndSettle();
+    await tester.pumpWidget(const SizedBox());
+    await _show(tester, api, secureStore: secure, peerId: 3);
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller!.text,
+      '',
+    );
+    await tester.pumpWidget(const SizedBox());
+    api.denied = true;
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller!.text,
+      '',
+    );
+    expect(
+      tester
+          .widget<TextButton>(find.widgetWithText(TextButton, '保存草稿'))
+          .onPressed,
+      isNull,
+    );
+    await tester.pumpWidget(const SizedBox());
+    api.denied = false;
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller!.text,
+      'only peer two',
+    );
+    expect(api.bodies, isEmpty);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('existing offline grant restores saved draft read only', (
+    tester,
+  ) async {
+    final secure = await syntheticPrivateLogin();
+    final api = _MediaApi();
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'offline saved text');
+    await tester.tap(find.text('保存草稿'));
+    await tester.pumpAndSettle();
+    await tester.pumpWidget(const SizedBox());
+    api.unavailable = true;
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    final field = tester.widget<TextField>(find.byType(TextField));
+    expect(field.controller!.text, 'offline saved text');
+    expect(field.readOnly, isTrue);
+    for (final label in ['保存草稿', '清除草稿', '发送']) {
+      expect(
+        tester
+            .widget<TextButton>(find.widgetWithText(TextButton, label))
+            .onPressed,
+        isNull,
+      );
+    }
+    expect(api.bodies, isEmpty);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets(
+    'confirmed send removes saved draft and never resends on reopen',
+    (tester) async {
+      final secure = await syntheticPrivateLogin();
+      final api = _MediaApi();
+      await _show(tester, api, secureStore: secure);
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), 'explicitly sent text');
+      await tester.tap(find.text('保存草稿'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('发送'));
+      await tester.pumpAndSettle();
+      expect(api.bodies, hasLength(1));
+      await tester.pumpWidget(const SizedBox());
+      await _show(tester, api, secureStore: secure);
+      await tester.pumpAndSettle();
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        '',
+      );
+      expect(api.bodies, hasLength(1));
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets('explicit private draft restores after current read and clears', (
+    tester,
+  ) async {
+    final secure = await syntheticPrivateLogin();
+    final api = _MediaApi();
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), '明确保存的本人草稿');
+    await tester.tap(find.text('保存草稿'));
+    await tester.pumpAndSettle();
+    expect(find.text('草稿已加密保存在本机，尚未发送。'), findsOneWidget);
+    expect(api.bodies, isEmpty);
+    await tester.pumpWidget(const SizedBox());
+    PrivateCacheService.forStorage(secure).beginOnlineRevalidation();
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller!.text,
+      '明确保存的本人草稿',
+    );
+    await tester.tap(find.text('清除草稿'));
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller!.text,
+      '',
+    );
+    await tester.pumpWidget(const SizedBox());
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller!.text,
+      '',
+    );
+    expect(api.bodies, isEmpty);
+    await tester.pumpWidget(const SizedBox());
+  });
+
   testWidgets('chat poll denial removes and evicts the peer avatar', (
     tester,
   ) async {

@@ -15,7 +15,8 @@ class PrivateCachePurgeReceipt {
 /// Account/device-scoped platform-encrypted storage. Credentials and cached
 /// records cannot unlock this service: only a fresh successful online login can
 /// establish its process-local monotonic clock. Restart deliberately locks it.
-/// Callers must save only after the corresponding current server read succeeds.
+/// Save after the corresponding current server read, or for the owner's
+/// explicit online submission receipt. Neither creates offline send authority.
 class PrivateCacheService {
   PrivateCacheService._(this._secure, this._wallNow, this._elapsed);
 
@@ -364,6 +365,64 @@ class PrivateCacheService {
   Future<Map<String, dynamic>?> readOffline(String objectKey) =>
       _read(objectKey, offline: true);
 
+  /// Index-only overwrite guard. This neither reads content nor grants access;
+  /// an entry may remain after deletion. Unknown is never proof of absence.
+  Future<bool?> hasIndexedObject(
+    String objectKey, {
+    required int expectedAccountId,
+  }) {
+    final generation = _generation;
+    return _serialize(() async {
+      try {
+        if (generation != _generation ||
+            expectedAccountId != _userId ||
+            !_validObjectKey(objectKey) ||
+            !_canUse(offline: false)) {
+          return null;
+        }
+        final objects = await _manifest();
+        if (generation != _generation) return null;
+        return objects.contains(objectKey);
+      } catch (_) {
+        if (generation == _generation) lock();
+        return null;
+      }
+    });
+  }
+
+  /// The caller must first obtain a successful current server read for this
+  /// exact context. This restores only a record of the already-open login;
+  /// it cannot bootstrap a clock, unlock a cold start or renew a deadline.
+  Future<Map<String, dynamic>?> readAfterCurrentAuthorization(
+    String objectKey, {
+    required int expectedAccountId,
+    required bool Function() isCurrent,
+  }) {
+    final generation = _generation;
+    bool current() {
+      try {
+        return generation == _generation &&
+            expectedAccountId == _userId &&
+            _validObjectKey(objectKey) &&
+            _canUse(offline: false) &&
+            isCurrent();
+      } catch (_) {
+        return false;
+      }
+    }
+
+    return _serialize(() async {
+      if (!current()) return null;
+      _readGrants.add(objectKey);
+      final value = await _read(objectKey, offline: false);
+      if (!current() || value == null) {
+        if (generation == _generation) _readGrants.remove(objectKey);
+        return null;
+      }
+      return value;
+    });
+  }
+
   Future<Map<String, dynamic>?> _read(
     String objectKey, {
     required bool offline,
@@ -423,16 +482,20 @@ class PrivateCacheService {
     }
   }
 
-  Future<void> removeObject(String objectKey) {
-    if (!_validObjectKey(objectKey)) return Future<void>.value();
+  Future<bool> removeObject(String objectKey) {
+    if (!_validObjectKey(objectKey)) return Future<bool>.value(false);
     final generation = _generation;
     final namespace = _namespace;
     final key = _key(objectKey);
     return _serialize(() async {
-      if (generation != _generation || namespace != _namespace) return;
+      if (generation != _generation || namespace != _namespace) return false;
       _readGrants.remove(objectKey);
-      if (_namespace == null) return;
+      if (_namespace == null) return false;
       await _secure.delete(key);
+      if (await _secure.read(key) != null) {
+        throw StateError('Private object removal was not confirmed.');
+      }
+      return true;
     });
   }
 

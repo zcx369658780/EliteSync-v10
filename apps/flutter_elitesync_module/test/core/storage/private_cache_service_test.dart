@@ -81,6 +81,105 @@ void main() {
   const primary = '$namespace:manifest';
   const recovery = '$namespace:manifest-recovery';
 
+  test(
+    'current context reauthorizes only an open online login record',
+    () async {
+      final secure = _MemorySecure();
+      final now = DateTime.utc(2026, 11, 11);
+      final cache = PrivateCacheService.forTesting(secure, wallNow: () => now);
+      await cache.establishLogin(userId: 1, retention: _receipt(now));
+      await cache.saveAuthorized('draft:one', {'text': 'saved private draft'});
+      cache.beginOnlineRevalidation();
+      expect(await cache.readOnlineAuthorized('draft:one'), isNull);
+      expect(
+        await cache.readAfterCurrentAuthorization(
+          'draft:one',
+          expectedAccountId: 2,
+          isCurrent: () => true,
+        ),
+        isNull,
+      );
+      expect(
+        await cache.readAfterCurrentAuthorization(
+          'draft:one',
+          expectedAccountId: 1,
+          isCurrent: () => false,
+        ),
+        isNull,
+      );
+      cache.enterOffline();
+      expect(
+        await cache.readAfterCurrentAuthorization(
+          'draft:one',
+          expectedAccountId: 1,
+          isCurrent: () => true,
+        ),
+        isNull,
+      );
+      cache.beginOnlineRevalidation();
+      expect(
+        await cache.readAfterCurrentAuthorization(
+          'draft:one',
+          expectedAccountId: 1,
+          isCurrent: () => true,
+        ),
+        {'text': 'saved private draft'},
+      );
+      final restarted = PrivateCacheService.forTesting(
+        secure,
+        wallNow: () => now,
+      );
+      expect(
+        await restarted.readAfterCurrentAuthorization(
+          'draft:one',
+          expectedAccountId: 1,
+          isCurrent: () => true,
+        ),
+        isNull,
+      );
+    },
+  );
+
+  test(
+    'queued reauthorization cannot borrow a newer login generation',
+    () async {
+      final secure = _BlockingSecure();
+      final now = DateTime.utc(2026, 11, 11);
+      final cache = PrivateCacheService.forTesting(secure, wallNow: () => now);
+      await cache.establishLogin(userId: 1, retention: _receipt(now));
+      await cache.saveAuthorized('draft:one', {'text': 'saved private draft'});
+      await cache.saveAuthorized('queue-blocker', {'text': 'blocker'});
+      secure.blockDelete = Completer();
+      secure.deleteEntered = Completer();
+      final removal = cache.removeObject('queue-blocker');
+      await secure.deleteEntered!.future;
+      final pending = cache.readAfterCurrentAuthorization(
+        'draft:one',
+        expectedAccountId: 1,
+        isCurrent: () => true,
+      );
+      cache.lock();
+      secure.blockDelete!.complete();
+      await removal;
+      expect(await pending, isNull);
+      expect(await cache.readOnlineAuthorized('draft:one'), isNull);
+    },
+  );
+
+  test(
+    'silent object deletion failure cannot acknowledge draft clearing',
+    () async {
+      final secure = _MemorySecure();
+      final now = DateTime.utc(2026, 11, 11);
+      final cache = PrivateCacheService.forTesting(secure, wallNow: () => now);
+      await cache.establishLogin(userId: 1, retention: _receipt(now));
+      await cache.saveAuthorized('draft:one', {'text': 'saved private draft'});
+      secure.refuseDelete = true;
+      await expectLater(cache.removeObject('draft:one'), throwsStateError);
+      expect(secure.values['$namespace:draft%3Aone'], isNotNull);
+    },
+  );
+
   test('restart logout clears only the persisted cleanup owner', () async {
     final secure = _MemorySecure();
     final now = DateTime.utc(2026, 11, 10);
