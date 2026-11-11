@@ -1,3 +1,15 @@
+# 最新节点｜2026-11-11 原题库接入与APP问卷真实持久链
+
+沿用服务源码 `9ff5c3ea484394a651af38df70ea7cd7d429fbfd`、5580的4a645候选。当前空题库通过项目现有QuestionnaireQuestionSeeder导入4份原JSON的157道题，137启用，20研究题仍按既定规则禁用；输入只读挂载，代码/原资产未改，不降低所需20题、不新造题库、不重启服务。一次临时seed容器在向只读/runtime写私有回执时退出1，发生于seed前；原错误/容器保留，改主机接收stdout后在另一具名临时容器成功，退出0并停止，无旧STOP/额度复用。
+
+虚构user1经正常APP“补答匹配问卷”逐题选项答20题，未使用调试填充或API代提交。第一题真实保存草稿后仅重启此APP进程，正常回入口恢复同一20题顺序、已选答案及第2/20位置；余19题正常选择，最后一次提交。实际结果页成功、历史页1条20/137记录、服务端draft清空，DB20个选项ID与源题/版本逐个对应，另一个用户历史仍空。原用户全行、101消息及4媒体/附件hash保持。
+
+首次helper在最终导航完成前抓到“提交中”树且错误预期“问卷结果”标题，原PARTIAL保留；随后的原截图已经显示“性格结果/性格提交成功”，仅补观察和DB读回，不重复答案或提交。查看匹配资格的首次观察同样尚在导航，随后仅观察确认UI当前有效答案20/20；DB missing0，但operational_review_pending/eligible=false保持，不把问卷完成当运营通过。
+
+私有 `question-bank-seed-private.json`、`questionnaire-draft-restart-private.json`、`questionnaire-normal-choices-private.json`原失败及`questionnaire-runtime-private.json`最终回执/截图仅本机；源码与APK身份分开。该节点是虚构账号普通功能链，不是心理测量/匹配质量或整版验收。下一项本机虚构账号管理审核与APP状态贯通，不执行真实身份、Safety或匹配发布。
+
+---
+
 # 最新节点｜2026-11-11 管理用户筛选条件回显修复
 
 真实浏览器RED：选择approved/normal并查询，URL与0条结果正确，但两个下拉框均恢复“全部”。只修改users Blade：按请求值设置selected，补明确label关联并保持两个筛选控件各自成组，不改查询条件、权限或用户数据。
