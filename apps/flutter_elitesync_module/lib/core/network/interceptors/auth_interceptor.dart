@@ -99,6 +99,7 @@ class AuthInterceptor extends Interceptor {
           '/api/v1/notifications',
           '/api/v1/status/',
           '/api/v1/media/',
+          '/api/v1/avatars/',
           '/api/v1/messages',
           '/api/v1/conversations',
           '/api/v1/rtc/',

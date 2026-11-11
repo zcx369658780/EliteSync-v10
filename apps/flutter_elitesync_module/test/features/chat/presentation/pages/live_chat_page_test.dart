@@ -1,3 +1,7 @@
+import 'package:flutter_elitesync_module/app/config/app_env.dart';
+import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
+import 'package:flutter_elitesync_module/features/profile/avatar/avatar_api.dart';
+import 'package:flutter_elitesync_module/features/profile/avatar/authenticated_avatar.dart';
 import '../../../../support/synthetic_private_login.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -25,6 +29,15 @@ class _Session extends SessionNotifier {
   @override
   SessionState build() => const SessionState(
     status: AuthStatus.authenticated,
+    user: UserSummary(id: 1, phone: 'fictional'),
+  );
+}
+
+class _AvatarSession extends _Session {
+  @override
+  SessionState build() => const SessionState(
+    status: AuthStatus.authenticated,
+    accessToken: 'fictional-avatar-session',
     user: UserSummary(id: 1, phone: 'fictional'),
   );
 }
@@ -230,6 +243,87 @@ Future<void> _show(
 }
 
 void main() {
+  testWidgets('chat poll denial removes and evicts the peer avatar', (
+    tester,
+  ) async {
+    final api = _MediaApi();
+    final dio = Dio()
+      ..interceptors.add(
+        InterceptorsWrapper(
+          onRequest: (options, handler) {
+            if (options.path == '/api/v1/avatars/2') {
+              handler.resolve(
+                Response<Map<String, dynamic>>(
+                  requestOptions: options,
+                  statusCode: 200,
+                  data: {
+                    'revision': 1,
+                    'avatar': {
+                      'owner_user_id': 2,
+                      'revision': 1,
+                      'content_path': '/api/v1/avatars/2/1',
+                    },
+                  },
+                ),
+              );
+            } else {
+              handler.resolve(
+                Response<List<int>>(
+                  requestOptions: options,
+                  statusCode: 200,
+                  data: base64Decode(
+                    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNgAAIAAAUAAXpeqz8AAAAASUVORK5CYII=',
+                  ),
+                ),
+              );
+            }
+          },
+        ),
+      );
+    final secure = await syntheticPrivateLogin();
+    final container = ProviderContainer(
+      overrides: [
+        secureStorageProvider.overrideWithValue(secure),
+        apiClientProvider.overrideWithValue(api),
+        sessionProvider.overrideWith(_AvatarSession.new),
+        avatarApiProvider.overrideWithValue(AvatarApi(dio)),
+        appEnvProvider.overrideWithValue(
+          const AppEnv(
+            flavor: AppFlavor.dev,
+            appName: 'fixture',
+            apiBaseUrl: 'https://fixture.invalid',
+            useMockData: false,
+            useMockChat: true,
+          ),
+        ),
+      ],
+    );
+    addTearDown(container.dispose);
+    await tester.pumpWidget(
+      UncontrolledProviderScope(
+        container: container,
+        child: const MaterialApp(home: LiveChatPage(peerId: 2)),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.byType(AuthenticatedAvatar), findsOneWidget);
+    expect(find.byType(Image), findsOneWidget);
+    final oldImage = tester.widget<Image>(find.byType(Image)).image;
+    api.denied = true;
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('当前无法读取对话'), findsOneWidget);
+    expect(find.byType(AuthenticatedAvatar), findsNothing);
+    expect(find.byType(Image), findsNothing);
+    expect(
+      (await oldImage.obtainCacheStatus(
+        configuration: ImageConfiguration.empty,
+      ))?.tracked,
+      isFalse,
+    );
+    await tester.pumpWidget(const SizedBox());
+  });
+
   testWidgets(
     'authorized image opens zoomable preview, back closes it and denial removes it',
     (tester) async {

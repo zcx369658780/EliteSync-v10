@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/profile/avatar/avatar_management_page.dart';
 import 'package:flutter_elitesync_module/features/platform_v1014/safety_cases_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -27,6 +28,7 @@ class MeLandingPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 112),
         children: [
+          const AvatarManagementEntry(),
           if (const bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD') ||
               const bool.fromEnvironment('ELITESYNC_V1015_R1_LOCAL_BUILD'))
             ListTile(

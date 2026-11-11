@@ -49,7 +49,7 @@ final class SocialPolicy
                     })->whereIn('state', ['PENDING', 'ACCEPTED'])->where('expires_at', '>', now())->lockForUpdate()->exists();
                 abort_unless($context, 404, 'unavailable');
             }
-            $result = ['public_id' => 'ES-'.$u->id, 'avatar' => null];
+            $result = ['public_id' => 'ES-'.$u->id, 'avatar' => app(ProfileAvatarService::class)->profileReferenceLocked($viewer, $owner)];
             $values = ['birthday' => optional($u->birthday)->format('Y-m-d'), 'interests' => $u->public_personality, 'resume' => $u->relationship_resume, 'zodiac' => $u->public_zodiac_sign];
             if ($viewer === $owner) { return $result + $values; }
             if ($shared) {

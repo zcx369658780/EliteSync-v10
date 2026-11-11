@@ -143,6 +143,9 @@ Route::prefix('v1')->group(function () {
         Route::post('/formal-relationships/{id}/actions', [$journey, 'relationshipAction'])->whereUuid('id');
         Route::put('/privacy/resume', [$journey, 'saveResume']);
         Route::get('/privacy/peers/{id}', [PrivacyController::class, 'peer'])->whereNumber('id');
+        $avatar = \App\Http\Controllers\Api\V1\ProfileAvatarController::class;
+        Route::get('/avatars/{owner}', [$avatar, 'show'])->whereNumber('owner');
+        Route::get('/avatars/{owner}/{revision}', [$avatar, 'content'])->whereNumber('owner')->whereNumber('revision');
         $social = SocialController::class;
         Route::get('/social', [$social, 'index']);
         Route::post('/social/preferences', [$social, 'preferences']);
@@ -193,6 +196,8 @@ Route::prefix('v1')->group(function () {
             Route::post('/basic', [ProfileController::class, 'saveBasic']);
             Route::post('/city', [ProfileController::class, 'saveCity']);
             Route::post('/nickname', [ProfileController::class, 'saveNickname']);
+            Route::post('/avatar', [\App\Http\Controllers\Api\V1\ProfileAvatarController::class, 'store'])->middleware('throttle:10,1');
+            Route::delete('/avatar', [\App\Http\Controllers\Api\V1\ProfileAvatarController::class, 'destroy']);
             Route::get('/showcase/draft', [ProfileShowcaseDraftController::class, 'show']);
             Route::put('/showcase/draft', [ProfileShowcaseDraftController::class, 'update']);
             Route::post('/showcase/draft/submit-review', [ProfileShowcaseDraftController::class, 'submitForReview']);

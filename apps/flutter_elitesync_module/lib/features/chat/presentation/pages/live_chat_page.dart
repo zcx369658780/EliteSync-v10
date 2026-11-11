@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/profile/avatar/authenticated_avatar.dart';
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:convert';
@@ -898,7 +899,18 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     }
     return Scaffold(
       appBar: AppBar(
-        title: const Text('对话'),
+        title: Row(
+          children: [
+            if (_error == null && !_offline)
+              AuthenticatedAvatar(
+                ownerId: widget.peerId,
+                refreshKey: _epoch,
+                size: 32,
+              ),
+            const SizedBox(width: 8),
+            const Text('对话'),
+          ],
+        ),
         actions: [
           IconButton(onPressed: _load, icon: const Icon(Icons.refresh)),
           IconButton(

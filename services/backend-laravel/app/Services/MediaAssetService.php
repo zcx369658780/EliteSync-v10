@@ -56,10 +56,10 @@ class MediaAssetService
         return $asset;
     }
 
-    public function registerUploaded(User $user, UploadedFile $file, array $data = []): MediaAsset
+    public function registerUploaded(User $user, UploadedFile $file, array $data = [], ?MediaStorageService $storage = null): MediaAsset
     {
         $policy = app(MediaUploadPolicy::class);
-        $storage = app(MediaStorageService::class);
+        $storage ??= app(MediaStorageService::class);
         $mimeType = strtolower(trim((string) ($data['mime_type'] ?? $file->getMimeType() ?? '')));
         $sizeBytes = (int) ($data['size_bytes'] ?? $file->getSize() ?? 0);
         $mediaType = (string) ($data['media_type'] ?? $this->mediaTypeFromMime($mimeType));

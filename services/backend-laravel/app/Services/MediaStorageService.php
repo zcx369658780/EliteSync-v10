@@ -10,12 +10,13 @@ use RuntimeException;
 class MediaStorageService
 {
     public function __construct(
-        protected MediaUploadPolicy $policy
+        protected MediaUploadPolicy $policy,
+        private ?string $storageDisk = null,
     ) {}
 
     public function disk(): string
     {
-        return $this->policy->disk();
+        return $this->storageDisk ?? $this->policy->disk();
     }
 
     public function provider(): string

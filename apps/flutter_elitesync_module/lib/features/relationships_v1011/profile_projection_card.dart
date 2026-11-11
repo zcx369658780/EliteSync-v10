@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/profile/avatar/authenticated_avatar.dart';
 import 'package:flutter/material.dart';
 
 class ProfileProjectionCard extends StatelessWidget {
@@ -11,7 +12,14 @@ class ProfileProjectionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('应用公开 ID：${projection['public_id'] ?? '暂不可见'}'),
-          Text(projection['avatar'] == null ? '头像：未提供' : '头像：已提供'),
+          if (projection['avatar'] is Map)
+            AuthenticatedAvatar(
+              ownerId:
+                  int.tryParse('${projection['avatar']['owner_user_id']}') ?? 0,
+              revision: int.tryParse('${projection['avatar']['revision']}'),
+            )
+          else
+            const Icon(Icons.person_outline),
           for (final entry in const {
             'birthday': '生日',
             'interests': '喜好',

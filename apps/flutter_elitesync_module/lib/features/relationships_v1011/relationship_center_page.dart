@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/profile/avatar/authenticated_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -143,6 +144,11 @@ class _RelationshipCenterState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if (_requestPeerId(item, actor) != null)
+                  AuthenticatedAvatar(
+                    ownerId: _requestPeerId(item, actor)!,
+                    refreshKey: data,
+                  ),
                 Text(
                   '${_peer(item, actor)} · ${item['purpose'] == 'message' ? '消息请求' : '好友申请'}',
                 ),
@@ -196,6 +202,10 @@ class _RelationshipCenterState
       const Text('双向好友'),
       for (final item in rows(data?['friends']))
         ListTile(
+          leading: AuthenticatedAvatar(
+            ownerId: int.tryParse('${item['peer_id']}') ?? 0,
+            refreshKey: data,
+          ),
           title: Text(_peer(item, actor)),
           subtitle: const Text('好友不等于连接或消息同意'),
           onTap: () => Navigator.of(context).push(

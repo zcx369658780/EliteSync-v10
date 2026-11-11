@@ -75,6 +75,8 @@ void main() {
     '/api/v1/profile-peers/2',
     '/api/v1/privacy',
     '/api/v1/media/99/content',
+    '/api/v1/avatars/2',
+    '/api/v1/avatars/2/1',
     '/api/v1/notifications',
   ]) {
     test(
