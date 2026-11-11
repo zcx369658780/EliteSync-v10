@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 未知POST跨冷启与原编号手动重试
+
+Owner新的继续指令已恢复长期普通工程。实际本地/远端起点4e7a40f09b136c54996a82413928db72097355e9，index为空。四自有服务运行、5580/B运行同3c/65db候选，5582/A暂停旧包。
+
+**未知POST/pending的Android跨冷启实际子链已补齐。** 同一3c/65db候选B正常APP发送一次TEST_ONLY文字，代理仅将服务端真实200确认替换为503。服务端已保存104，APP保留原提交编号。离线冷启隐藏内容，在线同会话核验及当前peer GET后恢复只读pending与原编号重试入口，未自动POST。随后一次手动重试真实返回同client UUID、同server ID、idempotent_replay=true，唯一加密行104。确认后再冷启，聊天仍可读且草稿为空。sessions/tokens/T0、users/media/CN/MC与原1–103不可变字段摘要保持。代理已关闭，8021/8022直连恢复，截图已查看。私有 `pending-post-cold-completion-after-observer-fix-private.json` 汇总原始失败与继续观察。验证工具先漏放会话核验、后误把pending只读控件当可编辑保存控件，原失败回执保留，实际新消息仅发送一次。
+
+本节点验证绑定既有3c/65db候选与原登录会话，补齐pending未知POST冷启这一子项，15/30天实耗、原生末步/多故障、硬件密钥库、完整权限/并发/停媒及最终同候选旅程继续开放，仍10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING。下一项定向检查通话后台停媒与迟到权限请求并发。
+
+---
+
 # 当前交接｜2026-11-11 Owner要求保存本地与GitHub
 
 Owner因长会话要求立即保存任务进度、决定与工作流并提供交接prompt。收尾前文档HEAD为ebe47d33a1be6276b6927126e825a96c1119cb57，APP源码仍3c2f5b16，后端仍25bc01f7。最新[交接](../../workflow/V1015_CONTINUOUS_ENGINEERING_HANDOFF_20261111.md)汇总本日功能、验证范围、运行资源与剩余事项，最终提交和远端一致性见私有日期化回执。本次仅做文档检查与Git保存。保存完成后等待新继续指令，长期普通工程授权保留。

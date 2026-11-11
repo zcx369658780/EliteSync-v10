@@ -1,6 +1,6 @@
-# 当前入口｜2026-11-11 Owner手动保存交接
+# 当前入口｜2026-11-11 持续工程已恢复
 
-Owner因会话过长要求立即保存本地/GitHub进度、决定和工作流并提供交接prompt。本轮保存完成后结束推进，等待新的继续指令。最新恢复入口为[11月11日交接](V1015_CONTINUOUS_ENGINEERING_HANDOFF_20261111.md)，最终本地/远端HEAD以私有 `final-local-github-receipt-20261111-private.json` 为准。长期普通工程授权持续有效。
+Owner新继续指令已恢复持续工程。产品根、remote、分支及本地/远端HEAD均核为4e7a40f09b136c54996a82413928db72097355e9，index为空，仅原有无关目录。原[11月11日交接](V1015_CONTINUOUS_ENGINEERING_HANDOFF_20261111.md)与日期化保存回执保留交接时身份，当前节点另见私有 `current-engineering-node-private.json`。长期普通工程授权持续有效。
 
 Owner全自动普通工程授权持续有效，直到明确叫停。功能优先→安全封装→集中验收；三个既定UI区域已完成首轮收尾。普通实现、定向检查、必要构建、自有服务/虚构数据、双模拟器、已有许可免费官方依赖和普通Git无需逐动作确认。手机不连接/读取/操作，不碰ADB5037，不复活旧STOP，不合main、不发布、不启动v10.1.6，不使用重置券或购买额度。
 
@@ -13,13 +13,15 @@ Owner全自动普通工程授权持续有效，直到明确叫停。功能优先
 - 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`，origin为既有zcx369658780/EliteSync-v10 SSH remote。当前B源码 `3c2f5b1686da8f7a3da13e1a681a1c7e65255a66`；文档HEAD以实际Git为准。后端目录相对25bc01f7未变，原主库dirty/index与无关 `%SystemDrive%/` 保留。
 - B APK SHA256 `65dbbb5b5b25b3b160c98428f98dac894a8634842770b14c61c4f03081ecc9a9`、154208001字节，离线40.102秒/退出0，签名/身份/arm64 Debug/新恢复标记通过。5580/B运行；5582/A为构建资源暂停，保留14944ee9/f239包、AVD和登录。不同候选证据分别记录。
 - 私有根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；稳定构建根同上级 `v1015-source-debug-workspace`，固定回执 `state/current-functional-build.json`。DB/API/WS/SFU四自有容器、独立虚构库及专用ADB5038按runtime-private.json保留；USB过滤排除手机，模拟相机不使用宿主摄像头。
-- 数据仍4个虚构用户、103消息、7媒体。原本命/6条动态盘UNVERIFIED、A问卷20/历史1、B正式答案0/草稿1题、B私有Showcase、头像null/rev6及原授权状态沿既有节点保持。原call1–11 ended/MC generation7；本节点未重跑通话。正常聊天GET会更新成员已读时间。
+- 数据为4个虚构用户、104消息、7媒体。新104为本节点B正常APP发送的一条明确TEST_ONLY消息。原本命/6条动态盘UNVERIFIED、A问卷20/历史1、B正式答案0/草稿1题、B私有Showcase、头像null/rev6及原授权状态沿既有节点保持。原call1–11 ended/MC generation7；本节点未重跑通话。正常聊天GET会更新成员已读时间。
 
 ## 最新完成
 
+**未知POST/pending的Android跨冷启实际子链已补齐。** 同一3c/65db候选B正常APP发送一次TEST_ONLY文字，代理仅将服务端真实200确认替换为503。服务端已保存104，APP保留原提交编号。离线冷启隐藏内容，在线同会话核验及当前peer GET后恢复只读pending与原编号重试入口，未自动POST。随后一次手动重试真实返回同client UUID、同server ID、idempotent_replay=true，唯一加密行104。确认后再冷启，聊天仍可读且草稿为空。sessions/tokens/T0、users/media/CN/MC与原1–103不可变字段摘要保持。代理已关闭，8021/8022直连恢复，截图已查看。私有 `pending-post-cold-completion-after-observer-fix-private.json` 汇总原始失败与继续观察。验证工具先漏放会话核验、后误把pending只读控件当可编辑保存控件，原失败回执保留，实际新消息仅发送一次。
+
 **同会话冷启动的本机加密草稿恢复已补齐。** 7dd旧包正常保存后冷启丢草稿，服务端session/token/T0未变，基线原证保留。3c2f5b16仅在服务端成功核验同user/device/session/原T0后，原位保留五字段完全绑定的live-chat-draft；旧消息/其它缓存继续清理。草稿仍无读取grant，须当前peer GET获准才能恢复；不凭locator/缓存离线冷启解锁，不续T0、不自动发送。明确登录/切号/退出清理保持。
 
-109项认证/缓存/聊天定向检查、四文件analyze及非作者Sol静态复核通过，无剩余P1/P2。覆盖错误绑定、抛错/静默索引与删除失败、失败后仍可清理、union129在破坏前拒绝、挂起IO时登出/切号、普通/原编号pending草稿保留。pending冷启只属测试夹具证据，未注入Android未知POST。
+109项认证/缓存/聊天定向检查、四文件analyze及非作者Sol静态复核通过，无剩余P1/P2。覆盖错误绑定、抛错/静默索引与删除失败、失败后仍可清理、union129在破坏前拒绝、挂起IO时登出/切号、普通/原编号pending草稿保留。pending冷启的夹具证据保持，新增实际Android子链见上。
 
 新包B正常一次保存TEST_ONLY草稿→离线冷启停登录页且不显示→恢复精确本机路由并在线冷启→原文恢复→一次主动清除→重进为空。服务端sessions/tokens/trusted_login_at及users/media/CN/MC、原消息不可变字段/总数103保持，零发送/未改时钟。私有chat-draft-cold-fixed-runtime-private.json。安装后5038连接曾短暂不可用、原因未定；已核专用USB过滤及模拟器实际安装APK SHA一致，只完成后续动作，未重装。先行验证脚本在旧回执检查处拒绝、零保存；原失败回执保留。
 
