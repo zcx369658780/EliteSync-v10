@@ -155,6 +155,13 @@ class _LocalTelemetry implements FrontendTelemetry {
   dynamic noSuchMethod(Invocation invocation) => safety.deny('telemetry');
 }
 
+// Readiness consumes the guard fixture. The unrelated avatar entry must not
+// bootstrap real authentication IO in this isolated presentation test.
+class _ReadOnlySession extends SessionNotifier {
+  @override
+  SessionState build() => SessionState.unknown;
+}
+
 class _Harness {
   _Harness(
     this.safety, {
@@ -180,6 +187,7 @@ class _Harness {
         authStatusProvider.overrideWith(
           (ref) => ref.watch(guardFixture).authStatus,
         ),
+        sessionProvider.overrideWith(_ReadOnlySession.new),
         localStorageProvider.overrideWithValue(_MemoryStorage(safety)),
         secureStorageProvider.overrideWith(
           (ref) => safety.deny('secure storage'),

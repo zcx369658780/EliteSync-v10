@@ -65,7 +65,7 @@ Widget _wrap(_OperatingApiClient client) => ProviderScope(
 );
 
 void main() {
-  testWidgets('Actual Me landing shows the server operating status', (
+  testWidgets('Actual Me status entry shows the server operating status', (
     tester,
   ) async {
     final client = _OperatingApiClient(
@@ -80,6 +80,18 @@ void main() {
         ),
       ),
     );
+    await tester.pumpAndSettle();
+    expect(client.requestedPaths, isEmpty);
+    await tester.scrollUntilVisible(
+      find.byKey(MeLandingPage.accountStatusKey),
+      250,
+    );
+    await Scrollable.ensureVisible(
+      tester.element(find.byKey(MeLandingPage.accountStatusKey)),
+      alignment: 0.2,
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(MeLandingPage.accountStatusKey));
     await tester.pumpAndSettle();
     expect(find.text('运营审核待处理'), findsOneWidget);
     expect(find.text('审核原因：Web审核原因'), findsOneWidget);

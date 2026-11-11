@@ -101,6 +101,19 @@ Future<void> _mount(
     ),
   );
   await tester.pumpAndSettle();
+  if (landing) {
+    await tester.scrollUntilVisible(
+      find.byKey(MeLandingPage.accountStatusKey),
+      250,
+    );
+    await Scrollable.ensureVisible(
+      tester.element(find.byKey(MeLandingPage.accountStatusKey)),
+      alignment: 0.2,
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(MeLandingPage.accountStatusKey));
+    await tester.pumpAndSettle();
+  }
 }
 
 Future<void> _open(WidgetTester tester) async {

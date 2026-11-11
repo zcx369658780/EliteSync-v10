@@ -13,12 +13,12 @@ import 'package:flutter_elitesync_module/design_system/components/controls/app_s
 import 'package:flutter_elitesync_module/design_system/components/feedback/app_confirm_dialog.dart';
 import 'package:flutter_elitesync_module/design_system/components/feedback/app_feedback.dart';
 import 'package:flutter_elitesync_module/design_system/components/layout/app_scaffold.dart';
-import 'package:flutter_elitesync_module/design_system/components/layout/page_title_rail.dart';
 import 'package:flutter_elitesync_module/design_system/components/layout/section_reveal.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_mode.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/dev/relationship_runtime_local_preview_harness.dart';
 import 'package:flutter_elitesync_module/features/onboarding/presentation/first_use_onboarding_page.dart';
+import 'package:flutter_elitesync_module/features/notification/presentation/pages/notification_preferences_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/settings_group.dart';
 import 'package:flutter_elitesync_module/shared/models/user_role.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
@@ -38,8 +38,7 @@ class SettingsPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsPageState extends ConsumerState<SettingsPage> {
-  bool _pushEnabled = true;
-  bool _pushLoaded = false;
+  bool _localPrefsLoaded = false;
   bool _performanceLiteMode = false;
   bool _adminAccessAllowed = false;
   String _contentRankerMode = 'auto';
@@ -47,13 +46,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   @override
   void initState() {
     super.initState();
-    _loadPushSetting();
+    _loadLocalPreferences();
     _loadAdminAccess();
   }
 
-  Future<void> _loadPushSetting() async {
+  Future<void> _loadLocalPreferences() async {
     final local = ref.read(localStorageProvider);
-    final value = await local.getBool(CacheKeys.pushNotificationEnabled);
     final perfLite = await local.getBool(CacheKeys.performanceLiteMode);
     final rankerMode =
         (await local.getString(
@@ -62,7 +60,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         'auto';
     if (!mounted) return;
     setState(() {
-      _pushEnabled = value ?? true;
       _performanceLiteMode = perfLite ?? false;
       _contentRankerMode =
           (rankerMode == 'weighted' ||
@@ -70,7 +67,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               rankerMode == 'auto')
           ? rankerMode
           : 'auto';
-      _pushLoaded = true;
+      _localPrefsLoaded = true;
     });
   }
 
@@ -85,24 +82,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final result = await ref.read(apiClientProvider).get('/api/v1/admin/users');
     if (!mounted) return;
     setState(() => _adminAccessAllowed = result is NetworkSuccess);
-  }
-
-  Future<void> _togglePush(bool value) async {
-    final local = ref.read(localStorageProvider);
-    try {
-      final saved = await local.setBool(
-        CacheKeys.pushNotificationEnabled,
-        value,
-      );
-      if (!saved) throw StateError('local write rejected');
-    } catch (_) {
-      if (mounted) {
-        AppFeedback.showError(context, '暂时无法保存站内提醒设置，请重试');
-      }
-      return;
-    }
-    if (!mounted) return;
-    setState(() => _pushEnabled = value);
   }
 
   Future<void> _togglePerformanceLiteMode(bool value) async {
@@ -380,13 +359,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       body: ListView(
         padding: EdgeInsets.fromLTRB(0, t.spacing.sm, 0, t.spacing.xl),
         children: [
-          const SectionReveal(
-            child: PageTitleRail(
-              title: '设置中心',
-              subtitle: '账号、安全、消息、反馈和版本信息都在这里',
-            ),
-          ),
-          SizedBox(height: t.spacing.sm),
           SectionReveal(
             delay: const Duration(milliseconds: 50),
             child: SettingsGroup(
@@ -412,62 +384,36 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           SizedBox(height: t.spacing.md),
           SectionReveal(
             delay: const Duration(milliseconds: 60),
-            child: _pushLoaded
-                ? SettingsGroup(
-                    title: '提醒与性能',
-                    children: [
-                      SettingsItemTile(
-                        title: '站内提醒',
-                        subtitle: '控制应用内提醒入口；系统推送以设备权限和后续支持为准',
-                        icon: Icons.notifications_outlined,
-                        trailing: AppSwitch(
-                          value: _pushEnabled,
-                          onChanged: _togglePush,
-                        ),
-                        onTap: () => _togglePush(!_pushEnabled),
-                      ),
-                      Divider(
-                        height: 1,
-                        color: t.overlay.withValues(alpha: 0.35),
-                      ),
-                      SettingsItemTile(
-                        title: '性能模式',
-                        subtitle: '降低动画与背景渲染，改善卡顿',
-                        icon: Icons.bolt_outlined,
-                        trailing: AppSwitch(
-                          value: _performanceLiteMode,
-                          onChanged: _togglePerformanceLiteMode,
-                        ),
-                        onTap: () =>
-                            _togglePerformanceLiteMode(!_performanceLiteMode),
-                      ),
-                    ],
-                  )
-                : SettingsGroup(
-                    title: '提醒与性能',
-                    children: [
-                      SettingsItemTile(
-                        title: '站内提醒',
-                        subtitle: '加载中...',
-                        icon: Icons.notifications_outlined,
-                      ),
-                      Divider(
-                        height: 1,
-                        color: t.overlay.withValues(alpha: 0.35),
-                      ),
-                      SettingsItemTile(
-                        title: '性能模式',
-                        subtitle: '降低动画与背景渲染，改善卡顿',
-                        icon: Icons.bolt_outlined,
-                        trailing: AppSwitch(
-                          value: _performanceLiteMode,
-                          onChanged: _togglePerformanceLiteMode,
-                        ),
-                        onTap: () =>
-                            _togglePerformanceLiteMode(!_performanceLiteMode),
-                      ),
-                    ],
+            child: SettingsGroup(
+              title: '提醒与性能',
+              children: [
+                SettingsItemTile(
+                  title: '通知设置',
+                  subtitle: '站内通知分类、静默提醒与系统通知权限',
+                  icon: Icons.notifications_outlined,
+                  onTap: () => Navigator.of(context, rootNavigator: true).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const NotificationPreferencesPage(),
+                    ),
                   ),
+                ),
+                Divider(height: 1, color: t.overlay.withValues(alpha: 0.35)),
+                SettingsItemTile(
+                  title: '性能模式',
+                  subtitle: _localPrefsLoaded ? '降低动画与背景渲染，改善卡顿' : '正在读取本机设置…',
+                  icon: Icons.bolt_outlined,
+                  trailing: _localPrefsLoaded
+                      ? AppSwitch(
+                          value: _performanceLiteMode,
+                          onChanged: _togglePerformanceLiteMode,
+                        )
+                      : const SizedBox.shrink(),
+                  onTap: _localPrefsLoaded
+                      ? () => _togglePerformanceLiteMode(!_performanceLiteMode)
+                      : null,
+                ),
+              ],
+            ),
           ),
           SizedBox(height: t.spacing.md),
           SectionReveal(

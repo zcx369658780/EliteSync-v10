@@ -19,6 +19,7 @@ import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/design_system/components/controls/app_switch.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/about_update_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/settings_page.dart';
+import 'package:flutter_elitesync_module/features/notification/presentation/pages/notification_preferences_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/settings_group.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
@@ -128,6 +129,12 @@ class FakeApiClient extends ApiClient {
     Map<String, dynamic>? query,
     Options? options,
   }) async {
+    if (path == '/api/v1/notification-preferences') {
+      return const NetworkSuccess({
+        'categories': {'message': true},
+        'silent': false,
+      });
+    }
     if (path == '/api/v1/app/health') {
       return NetworkSuccess({
         'status': 'ok',
@@ -271,6 +278,39 @@ String _visibleText(WidgetTester tester) {
 }
 
 void main() {
+  testWidgets(
+    'Settings opens current notification controls without requesting permission',
+    (tester) async {
+      const channel = MethodChannel('flutter.baseflow.com/permissions/methods');
+      final calls = <String>[];
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, (call) async {
+            calls.add(call.method);
+            return 0;
+          });
+      addTearDown(
+        () => TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(channel, null),
+      );
+      final storage = await _pumpSettingsPage(
+        tester,
+        flavor: AppFlavor.prod,
+        phone: '17094346566',
+      );
+      storage.throwOnWrite = true;
+      await tester.ensureVisible(find.text('通知设置'));
+      await tester.tap(find.text('通知设置'));
+      await tester.pumpAndSettle();
+      expect(find.byType(NotificationPreferencesPage), findsOneWidget);
+      expect(find.text('静默提醒'), findsOneWidget);
+      expect(calls, isNotEmpty);
+      expect(calls, everyElement('checkPermissionStatus'));
+      expect(await storage.getBool(CacheKeys.pushNotificationEnabled), isNull);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
   void expectNoForbiddenVisibleTerms(String text, List<String> forbidden) {
     for (final term in forbidden) {
       expect(text, isNot(contains(term)));
@@ -290,7 +330,7 @@ void main() {
       phone: '17094346566',
     );
 
-    expect(find.text('设置中心'), findsOneWidget);
+    expect(find.text('设置'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
@@ -350,7 +390,7 @@ void main() {
       phone: '17094346566',
     );
 
-    for (final label in ['夜间模式', '性能模式', '站内提醒']) {
+    for (final label in ['夜间模式', '性能模式']) {
       await tester.scrollUntilVisible(
         find.text(label),
         250,
@@ -377,7 +417,7 @@ void main() {
       flavor: AppFlavor.prod,
       phone: '17094346566',
     );
-    final labels = ['夜间模式', '盘面设置', '站内提醒', '性能模式', '隐私控制中心'];
+    final labels = ['夜间模式', '盘面设置', '通知设置', '性能模式', '隐私控制中心'];
     var next = 0;
     for (var press = 0; press < 30 && next < labels.length; press++) {
       await tester.sendKeyEvent(LogicalKeyboardKey.tab);
@@ -1148,16 +1188,16 @@ void main() {
     storage.returnFalseOnWrite = false;
     storage.throwOnWrite = true;
     await tester.scrollUntilVisible(
-      find.text('站内提醒'),
+      find.text('性能模式'),
       250,
       scrollable: find.byType(Scrollable).first,
     );
-    await tester.ensureVisible(find.text('站内提醒'));
+    await tester.ensureVisible(find.text('性能模式'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('站内提醒'));
+    await tester.tap(find.text('性能模式'));
     await tester.pumpAndSettle();
-    expect(await storage.getBool(CacheKeys.pushNotificationEnabled), isNull);
-    expect(find.text('暂时无法保存站内提醒设置，请重试'), findsOneWidget);
+    expect(await storage.getBool(CacheKeys.performanceLiteMode), isNull);
+    expect(find.text('暂时无法保存性能模式设置，请重试'), findsOneWidget);
     expect(find.textContaining('raw local write failure'), findsNothing);
   });
 }
