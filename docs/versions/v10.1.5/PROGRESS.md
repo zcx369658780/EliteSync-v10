@@ -1,3 +1,13 @@
+# 最新交接｜2026-11-11 Owner要求停下，明日继续
+
+最新APP源码a819e935314cef96a5930955b1f05dfbb8bbd2c8保存后台采集暂停修复。最终108项受影响RTC/权限/会话隔离/来电检查通过，四文件analyze为No issues，非作者静态复核未发现剩余确定P1/P2。测试fake泛型与SDK extension观察问题、旧fixture签名及原始RED均保留。更正候选构建、安装与双模拟器实测为NOT_RUN。详见[最新交接](../../workflow/V1015_RTC_CAPTURE_SUSPEND_HANDOFF_20261111.md)。
+
+先行744d9489/6aaa包已双端安装并完成call12视频建立，双方AppOps采集与生成画面实际观察。B Home后两项采集停止的单一主机时钟上界为8.172秒，随后网关以sfu_removed结束整场通话，返回无法重连。这是本轮先行后台leave方案的实际回归，原证保留。a819已改为保留room/heartbeat、独立失效采集代次并暂停设备。麦克风和摄像头分别串行权限/创建/发布/过期清理，显式登记pending轨道，停止时mute与stop并保留用户明确再开恢复能力。真正leave仍先停本地轨道、处理独立dispose并等待旧teardown。更正源码的原生结果待明日验证。
+
+停下时四自有容器运行，B/5580保留744d包且CAMERA/RECORD_AUDIO均未运行，A/5582为更正构建资源暂停，AVD/登录/同744d包保留。SFU房间0，call1–12 ended。开发库4虚构用户、104消息、7媒体，保护数据摘要保持。稳定构建目录与固定回执仍指向744d，明日需先增量prepare。当前PAUSED_FOR_OWNER_MANUAL_HANDOFF，长期普通工程授权保留。仍10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING。
+
+---
+
 # 最新节点｜2026-11-11 未知POST跨冷启与原编号手动重试
 
 Owner新的继续指令已恢复长期普通工程。实际本地/远端起点4e7a40f09b136c54996a82413928db72097355e9，index为空。四自有服务运行、5580/B运行同3c/65db候选，5582/A暂停旧包。
