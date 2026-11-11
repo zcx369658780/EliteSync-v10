@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 正常APP三盘本命输入与持久化读回
+
+后端8932b905、APP既有af74包，B正常“我的→三盘本命入口→排盘输入”，显式虚构1995-01-01/10:30/分钟/Asia-Shanghai、坐标31.23/121.47、算法男参数与2026目标年，默认核心十主体/回归黄道/Placidus。一次点击保存计算：DB本人镜像input/result revision均1、COMPUTED_UNVERIFIED，实际四柱4/紫微宫12/西占主体10，三模块oracle均UNVERIFIED；正式users全行及其他本人镜像摘要不变，A本人接口无盘。
+
+正常返回并重新打开APP恢复保存日期/时间/时区，随后实际观察版本行“输入版本1·结果版本1·COMPUTED_UNVERIFIED”及八字/紫微斗数/西方本命盘三段，截图私有保留。初准备时选择菜单后键盘重新出现，原滚动未到按钮；关闭键盘继续同一表单。另目标年定位由“仅一个可见输入框”收窄到已核空的年份字段；均未触发保存。保存后最初观察同样受键盘影响，重新进入后仅观察确认，不重复计算/保存。私有natal-app-runtime-private.json完整记录输入、持久回执及页面原证。
+
+本段为新的普通本机功能链，不调用旧oracle/历史STOP执行器，不声称新独立精度域、实际传统规则成立、匹配用途或整体G2接受。下一步检查既有动态盘开关与明确开发库接入，不放宽local/loopback/数据库身份边界。
+
+---
+
 # 最新节点｜2026-11-11 三盘本命Linux依赖与自有API接线
 
 现有三盘链仅有Windows wheel锁，当前Debian12自有API未配置NATAL路径且未挂tools。有限资产定位未找到可复用已安装模块/kernel；现按原6版本从官方PyPI下载Linux x86_64 wheel、逐一核官方JSON SHA256，新增独立Linux锁/manifest/必要许可原文，原Windows锁不改。Node原6个包按现有锁下载并核sha512、不运行npm脚本；DE440s固定32726016字节/hash c1c7fee…a49f2通过，不更换算法/数据。Linux NumPy新增动态libquadmath LGPL-2.1-or-later，平台差异、出处和官方全文单独登记；未开启Swiss/AGPL路径，记录非法律/发布批准。

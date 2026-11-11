@@ -22,7 +22,9 @@ Owner已恢复全自动持续工程，普通工程长期授权有效，直到明
 
 **Showcase私有草稿正常保存/重新打开通过。** B正常兼容页编辑四字段，一次保存后API/DB内容和标签一致，重新进入显示已保存私有草稿，兴趣标签规范化分隔；A读取的是自己的空草稿，用户行摘要/发布表数量保持。状态not_submitted、公开/评分资格均false；未提交Safety审核或发布。只读观察脚本一次变量遮蔽及逗号显示预期错误已保留并改为读回，不重复保存。私有 `showcase-draft-runtime-private.json`。
 
-**三盘本命Linux运行已接入，正常APP保存待验证。** 相同六包版本的Linux wheel单独官方哈希固定，Windows锁/清单保持；Node原六项锁和固定DE440s已准备，新增Linux原文许可及libquadmath LGPL差异登记。Python/Node来自官方Debian准备阶段，随后wheel安装/运行离线；不声称全镜像离线可复现。实际自有API已使用专属派生镜像/只读tools、node_modules、kernel挂载，原DB/WS/SFU不变，NATAL运行身份AVAILABLE、Python29/Node13项通过、PHP语法通过，非作者静态复核无P1/P2，非法律批准/外部验收。Swiss研究和性格排序开关仍false；B无旧盘。本次新增Linux锁/清单进入原计算签名，不重写旧参考覆盖/UNVERIFIED。私有 `natal-linux-runtime`、`natal-linux-api-readiness-private.json`。下一步仅正常APP保存一份虚构出生输入并读取三盘与持久状态，不运行旧oracle或新研究算法。
+**三盘本命Linux运行及正常APP真实链通过。** Linux接线源码8932b90587720c35c4fe5d70e6eb632c882e0f02；相同六包版本单独官方哈希固定、Windows锁不改，Node原六包锁/固定DE440s和Linux许可原文保留。Python/Node的APT准备联网，wheel安装/运行离线；不称全镜像离线可复现。自有API专属派生镜像/只读tools、node_modules、kernel挂载，NATAL身份AVAILABLE，Python29/Node13、PHP语法通过，非作者静态复核无P1/P2，非法律/外部验收；Swiss研究和性格排序仍false。
+
+af74包B正常APP一份虚构输入（1995-01-01 10:30 Asia/Shanghai，明确算法参数/坐标/2026目标年）一次点击保存，输入/结果revision1、四柱/十二宫/十主体持久化。正常返回重新进入恢复日期/时间/时区，并实际观察版本行及八字/紫微/西方三段；正式用户全行/其他本人镜像摘要保持，A本人无盘。状态COMPUTED_UNVERIFIED/oracle UNVERIFIED，不提升为独立科学核验或匹配用途接受。私有 `natal-app-runtime-private.json`、`natal-linux-runtime`。下一步恢复现有动态盘正常链：目前动态开关关闭且开发库名仍固定旧v1011，需要让明确开发库配置沿用现有local/host/名称保护；不重开旧运行或改正式库。
 
 ## 既过子范围与证据边界
 
