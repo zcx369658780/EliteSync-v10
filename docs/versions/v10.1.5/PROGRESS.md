@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 管理审核与APP资格贯通及表单回显修复
+
+仅当前开发库已知虚构user1，经正常管理浏览器把pending/revision0审核为approved/revision1；DB一条user.review审计，APP刷新读到服务器确认可参与新一轮匹配，20/20答案保持。第二张预先加载的旧页面携revision0提交pending，被真实HTTP409拒绝，DB仍approved/revision1且没有第二条审计。然后经当前页面正常审核回pending/revision2，APP恢复当前不可参与，DB与审计列表有两条正常变更；管理session已退出/active0，没有运行匹配或发布。
+
+原role、is_synthetic、realname_verified、admin_revision、disabled、moderation_status保持；其他用户全行及具名聊天/媒体/附件/问卷答案/attempt/处罚/举报表hash保持。user1审核原因、verify_revision、updated_at与两条审计为预期变化，不称数据库原字节恢复。原虚构APP账号通过正常API注册，is_synthetic字段并非true；私有helper最初误用此标记校验在写入前拒绝，保留原错误后改核现有fixture精确phone/id，未修改该标记或扩大身份。
+
+实际审核后发现状态正文approved但表单默认pending。仅user Blade按当前verify_status设置selected并增加明确label；同一真实浏览器重载显示approved，正常恢复pending后显示pending，diff/实际Blade渲染通过。无鉴权、版本锁、审核逻辑、APK变更；旧页409通用错误反馈可后置改进。私有 `admin-review-runtime-private.json`、四阶段DB快照、浏览器/APP原证只本机。此为虚构运营审核链，非真实人审核/实人认证、匹配质量或整版接受；下一项本机动态广场功能。
+
+---
+
 # 最新节点｜2026-11-11 原题库接入与APP问卷真实持久链
 
 沿用服务源码 `9ff5c3ea484394a651af38df70ea7cd7d429fbfd`、5580的4a645候选。当前空题库通过项目现有QuestionnaireQuestionSeeder导入4份原JSON的157道题，137启用，20研究题仍按既定规则禁用；输入只读挂载，代码/原资产未改，不降低所需20题、不新造题库、不重启服务。一次临时seed容器在向只读/runtime写私有回执时退出1，发生于seed前；原错误/容器保留，改主机接收stdout后在另一具名临时容器成功，退出0并停止，无旧STOP/额度复用。

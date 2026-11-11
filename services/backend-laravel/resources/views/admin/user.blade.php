@@ -13,7 +13,13 @@
 @empty<p>此账号暂无本人处罚申诉。</p>@endforelse</section>
 <section class="panel"><h2>运营参与资格</h2><p>当前原因：{{ $user->verify_reason }}</p>
 <form method="post" action="{{ route('admin.review',$user->id) }}">@csrf
-<input type="hidden" name="expected_revision" value="{{ $user->verify_revision }}"><select name="status"><option>pending</option><option>approved</option><option>rejected</option></select>
+<input type="hidden" name="expected_revision" value="{{ $user->verify_revision }}">
+<label for="review-status">审核结果</label>
+<select id="review-status" name="status">
+@foreach(['pending','approved','rejected'] as $status)
+<option value="{{ $status }}" @selected($user->verify_status === $status)>{{ $status }}</option>
+@endforeach
+</select>
 <label>原因（勿填写私密内容）<input name="reason" required maxlength="1000"></label><label><input type="checkbox" name="confirm" value="1" required>确认审核</label><button>保存审核</button></form></section>
 <section class="panel"><h2>分级处罚与受控恢复</h2><p>restrict保留登录与当前合法历史只读；恢复不会复活旧凭据/同意。</p>
 <form method="post" action="{{ route('admin.punishment',$user->id) }}">@csrf<input type="hidden" name="expected_revision" value="{{ $user->admin_revision }}">
