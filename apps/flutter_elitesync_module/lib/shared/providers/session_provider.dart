@@ -222,6 +222,10 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
             expectedEpoch: epoch,
             expectedDeviceId: candidate.deviceId,
             isCurrent: current,
+            verifiedResume: (
+              sessionId: candidate.sessionId,
+              loginAt: candidate.loginAt,
+            ),
           );
           if (!current()) return;
           state = AsyncData(

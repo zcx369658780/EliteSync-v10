@@ -63,16 +63,18 @@ class AuthLocalDataSource {
         refresh == null ||
         refresh.isEmpty ||
         device == null ||
-        device.isEmpty)
+        device.isEmpty) {
       return null;
+    }
     if (binding['access_token'] != access ||
         binding['refresh_token'] != refresh ||
         binding['device_id'] != device ||
         binding['user_id'] is! int ||
         (binding['user_id'] as int) <= 0 ||
         binding['session_id'] is! String ||
-        (binding['session_id'] as String).isEmpty)
+        (binding['session_id'] as String).isEmpty) {
       return null;
+    }
     return (
       accessToken: access,
       refreshToken: refresh,
@@ -102,6 +104,7 @@ class AuthLocalDataSource {
     int? expectedEpoch,
     String? expectedDeviceId,
     bool Function()? isCurrent,
+    ({String sessionId, DateTime loginAt})? verifiedResume,
   }) => _serialize(() async {
     void checkEpoch() {
       if ((expectedEpoch != null && !isCurrentAttempt(expectedEpoch)) ||
@@ -122,9 +125,21 @@ class AuthLocalDataSource {
       throw StateError('Login device binding did not match.');
     }
     final cache = PrivateCacheService.forStorage(_secureStorage);
-    final cleanup = await cache.clearCurrentAccount();
+    if (verifiedResume != null &&
+        (retention == null ||
+            expectedEpoch == null ||
+            expectedDeviceId == null ||
+            isCurrent == null)) {
+      cache.lock();
+      throw StateError(
+        'Verified session continuation requires a current binding.',
+      );
+    }
+    final cleanup = verifiedResume == null
+        ? await cache.clearCurrentAccount()
+        : null;
     checkEpoch();
-    if (cleanup.status == PrivateCachePurgeStatus.failed ||
+    if (cleanup?.status == PrivateCachePurgeStatus.failed ||
         !await _localStorage.purgeLegacyPrivateCache()) {
       cache.lock();
       throw StateError('Private cache cleanup failed; login remains locked.');
@@ -133,6 +148,17 @@ class AuthLocalDataSource {
     final trusted = await cache.establishLogin(
       userId: session.user.id,
       retention: retention,
+      verifiedResume: verifiedResume,
+      isCurrent: verifiedResume == null
+          ? null
+          : () {
+              try {
+                checkEpoch();
+                return true;
+              } catch (_) {
+                return false;
+              }
+            },
     );
     if (retention != null && !trusted) {
       throw StateError('Login retention receipt could not be verified.');
@@ -190,8 +216,9 @@ class AuthLocalDataSource {
     required bool Function() isCurrent,
   }) => _serialize(() async {
     void checkCurrent() {
-      if (!isCurrent() || accessToken.isEmpty)
+      if (!isCurrent() || accessToken.isEmpty) {
         throw StateError('Obsolete credentials discarded.');
+      }
     }
 
     checkCurrent();
@@ -238,8 +265,9 @@ class AuthLocalDataSource {
       ]) {
         try {
           await _secureStorage.delete(key);
-          if (await _secureStorage.read(key) != null)
+          if (await _secureStorage.read(key) != null) {
             credentialsCleaned = false;
+          }
         } catch (_) {
           credentialsCleaned = false;
         }

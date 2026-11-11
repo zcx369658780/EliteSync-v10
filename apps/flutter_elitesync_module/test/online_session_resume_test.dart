@@ -25,6 +25,21 @@ class _Secure extends SecureStorageService {
   final values = <String, String>{};
   String? failRead;
   bool failWrite = false;
+  String? writeFailureSuffix;
+  String? deleteFailureSuffix;
+  bool silentFailure = false;
+  String? holdWriteSuffix;
+  String? holdDeleteSuffix;
+  Completer<void>? ioEntered;
+  Completer<void>? ioRelease;
+  final writes = <String>[];
+  final deletes = <String>[];
+  Future<void> _hold(String key, String? suffix) async {
+    if (suffix == null || !key.endsWith(suffix)) return;
+    if (!ioEntered!.isCompleted) ioEntered!.complete();
+    await ioRelease!.future;
+  }
+
   @override
   Future<String?> read(String key) async {
     if (key == failRead) throw StateError('synthetic read failure');
@@ -33,12 +48,26 @@ class _Secure extends SecureStorageService {
 
   @override
   Future<void> write(String key, String value) async {
+    await _hold(key, holdWriteSuffix);
+    writes.add(key);
     if (failWrite) throw StateError('synthetic write failure');
+    if (writeFailureSuffix != null && key.endsWith(writeFailureSuffix!)) {
+      if (silentFailure) return;
+      throw StateError('synthetic selective write failure');
+    }
     values[key] = value;
   }
 
   @override
-  Future<void> delete(String key) async => values.remove(key);
+  Future<void> delete(String key) async {
+    await _hold(key, holdDeleteSuffix);
+    deletes.add(key);
+    if (deleteFailureSuffix != null && key.endsWith(deleteFailureSuffix!)) {
+      if (silentFailure) return;
+      throw StateError('synthetic selective delete failure');
+    }
+    values.remove(key);
+  }
 }
 
 class _Api extends ApiClient {
@@ -101,8 +130,9 @@ Future<void> _settle(ProviderContainer container) async {
   for (var i = 0; i < 100; i++) {
     await Future<void>.delayed(const Duration(milliseconds: 1));
     if (container.read(sessionProvider).asData?.value.status !=
-        AuthStatus.unknown)
+        AuthStatus.unknown) {
       return;
+    }
   }
   fail('Session did not settle');
 }
@@ -148,6 +178,248 @@ void main() {
     PrivateCacheService.forStorage(secure).lock();
   });
 
+  const draftKey = 'live-chat-draft:2';
+  const ns = 'v1015_private:a1:dold-device';
+  final storedDraftKey = '$ns:${Uri.encodeComponent(draftKey)}';
+  Future<void> seedDraft() async {
+    final cache = PrivateCacheService.forStorage(secure);
+    await cache.establishLogin(userId: 1, retention: _retention());
+    expect(
+      await cache.saveAuthorized(draftKey, {
+        'text': 'unsent text',
+        'pending_attempt': {
+          'client_message_id': 'f10a7f10-84d2-4cba-b51a-c0b3ca87b005',
+          'peer_user_id': 2,
+          'content': 'unsent text',
+          'attachment_ids': <int>[],
+        },
+      }),
+      isTrue,
+    );
+    expect(await cache.saveAuthorized('old-message', {'text': 'old'}), isTrue);
+    cache.lock();
+  }
+
+  for (final field in [
+    'account_id',
+    'session_id',
+    'device_id',
+    'login_at',
+    'object_id',
+    'malformed',
+  ]) {
+    test('verified resume does not retain a draft with wrong $field', () async {
+      await seedDraft();
+      final envelope = jsonDecode(secure.values[storedDraftKey]!) as Map;
+      envelope[field] = field == 'account_id' ? 2 : 'wrong';
+      secure.values[storedDraftKey] = field == 'malformed'
+          ? '{'
+          : jsonEncode(envelope);
+      final container = start();
+      await api.entered.future;
+      api.reply.complete(NetworkSuccess(_reply()));
+      await _settle(container);
+      expect(container.read(sessionProvider).asData?.value.isLoggedIn, isTrue);
+      expect(secure.values[storedDraftKey], isNull);
+      expect(
+        await PrivateCacheService.forStorage(
+          secure,
+        ).readAfterCurrentAuthorization(
+          draftKey,
+          expectedAccountId: 1,
+          isCurrent: () => true,
+        ),
+        isNull,
+      );
+    });
+  }
+
+  for (final silent in [false, true]) {
+    for (final target in ['recovery-index', 'primary-index', 'old-object']) {
+      test(
+        'resume $target silent=$silent fails locked with pending draft retained and cleanable',
+        () async {
+          await seedDraft();
+          final saved = secure.values[storedDraftKey];
+          secure.silentFailure = silent;
+          if (target == 'old-object') {
+            secure.deleteFailureSuffix = ':old-message';
+          } else {
+            secure.writeFailureSuffix = target == 'recovery-index'
+                ? ':manifest-recovery'
+                : ':manifest';
+          }
+          final container = start();
+          await api.entered.future;
+          api.reply.complete(NetworkSuccess(_reply()));
+          await _settle(container);
+          expect(
+            container.read(sessionProvider).asData?.value.isLoggedIn,
+            isFalse,
+          );
+          expect(PrivateCacheService.forStorage(secure).isUnlocked, isFalse);
+          expect(secure.values[CacheKeys.privateResumeAllowed], isNull);
+          expect(secure.values[storedDraftKey], saved);
+          secure.writeFailureSuffix = null;
+          secure.deleteFailureSuffix = null;
+          expect(
+            (await PrivateCacheService.forStorage(
+              secure,
+            ).clearCurrentAccount()).status,
+            PrivateCachePurgeStatus.completed,
+          );
+          expect(secure.values[storedDraftKey], isNull);
+        },
+      );
+    }
+  }
+
+  test(
+    'verified resume rejects missing dual indexes without losing the draft',
+    () async {
+      await seedDraft();
+      final saved = secure.values[storedDraftKey];
+      final owner = secure.values['v1015_private:cleanup-owner'];
+      secure.values.remove('$ns:manifest');
+      secure.values.remove('$ns:manifest-recovery');
+      final container = start();
+      await api.entered.future;
+      api.reply.complete(NetworkSuccess(_reply()));
+      await _settle(container);
+      expect(container.read(sessionProvider).asData?.value.isLoggedIn, isFalse);
+      expect(PrivateCacheService.forStorage(secure).isUnlocked, isFalse);
+      expect(secure.values[storedDraftKey], saved);
+      expect(secure.values['v1015_private:cleanup-owner'], owner);
+      expect(secure.values['$ns:manifest'], isNull);
+      expect(secure.values['$ns:manifest-recovery'], isNull);
+    },
+  );
+
+  test(
+    '129 matching drafts in the index union fail before namespace mutations',
+    () async {
+      await seedDraft();
+      final template = jsonDecode(secure.values[storedDraftKey]!) as Map;
+      final keys = [
+        for (var peer = 2; peer <= 130; peer++) 'live-chat-draft:$peer',
+      ];
+      for (final key in keys) {
+        secure.values['$ns:${Uri.encodeComponent(key)}'] = jsonEncode({
+          ...template,
+          'object_id': key,
+        });
+      }
+      secure.values['$ns:manifest'] = jsonEncode(keys.take(65).toList());
+      secure.values['$ns:manifest-recovery'] = jsonEncode(
+        keys.skip(65).toList(),
+      );
+      final before = Map<String, String>.fromEntries(
+        secure.values.entries.where((e) => e.key.startsWith('$ns:')),
+      );
+      final writes = secure.writes.where((k) => k.startsWith('$ns:')).length;
+      final deletes = secure.deletes.where((k) => k.startsWith('$ns:')).length;
+      final container = start();
+      await api.entered.future;
+      api.reply.complete(NetworkSuccess(_reply()));
+      await _settle(container);
+      expect(container.read(sessionProvider).asData?.value.isLoggedIn, isFalse);
+      expect(
+        Map<String, String>.fromEntries(
+          secure.values.entries.where((e) => e.key.startsWith('$ns:')),
+        ),
+        before,
+      );
+      expect(secure.writes.where((k) => k.startsWith('$ns:')).length, writes);
+      expect(secure.deletes.where((k) => k.startsWith('$ns:')).length, deletes);
+    },
+  );
+
+  for (final operation in ['delete', 'index-write']) {
+    for (final action in ['logout', 'switch']) {
+      test(
+        '$action while verified resume awaits $operation cannot revive the old context',
+        () async {
+          await seedDraft();
+          secure.ioEntered = Completer();
+          secure.ioRelease = Completer();
+          if (operation == 'delete') {
+            secure.holdDeleteSuffix = ':old-message';
+          } else {
+            secure.holdWriteSuffix = ':manifest-recovery';
+          }
+          final container = start();
+          await api.entered.future;
+          api.reply.complete(NetworkSuccess(_reply()));
+          await secure.ioEntered!.future;
+          final notifier = container.read(sessionProvider.notifier);
+          Future<void> next;
+          if (action == 'logout') {
+            next = notifier.setUnauthenticated();
+          } else {
+            final source = AuthLocalDataSource(
+              secureStorage: secure,
+              localStorage: LocalStorageService(secureStorage: secure),
+            );
+            next = source.persistSession(
+              const AuthSession(
+                accessToken: 'new-access',
+                refreshToken: 'new-refresh',
+                user: AuthUser(id: 2, phone: 'new-fictional', role: 'user'),
+              ),
+              retention: {
+                ..._retention(),
+                'user_id': 2,
+                'session_id': 'new-family',
+              },
+              expectedEpoch: source.beginLoginAttempt(),
+            );
+          }
+          secure.ioRelease!.complete();
+          await next;
+          if (action == 'switch') {
+            await notifier.setAuthenticated(
+              accessToken: 'new-access',
+              refreshToken: 'new-refresh',
+              user: const UserSummary(id: 2, phone: 'new-fictional'),
+            );
+            expect(container.read(sessionProvider).asData?.value.user?.id, 2);
+            expect(secure.values[CacheKeys.accessToken], 'new-access');
+            expect(PrivateCacheService.forStorage(secure).accountId, 2);
+          } else {
+            expect(
+              container.read(sessionProvider).asData?.value.isLoggedIn,
+              isFalse,
+            );
+            expect(PrivateCacheService.forStorage(secure).isUnlocked, isFalse);
+            expect(secure.values[CacheKeys.privateResumeAllowed], isNull);
+          }
+          expect(secure.values[storedDraftKey], isNull);
+        },
+      );
+    }
+  }
+
+  test(
+    'explicit login still clears live text drafts with the same binding',
+    () async {
+      await seedDraft();
+      final source = AuthLocalDataSource(
+        secureStorage: secure,
+        localStorage: LocalStorageService(secureStorage: secure),
+      );
+      await source.persistSession(
+        const AuthSession(
+          accessToken: 'old-access',
+          refreshToken: 'old-refresh',
+          user: AuthUser(id: 1, phone: 'fictional', role: 'user'),
+        ),
+        retention: _retention(),
+        expectedDeviceId: 'old-device',
+      );
+      expect(secure.values[storedDraftKey], isNull);
+    },
+  );
+
   test(
     'fresh online verification restores once and discards old private objects',
     () async {
@@ -177,6 +449,105 @@ void main() {
       expect(api.calls, 1);
     },
   );
+
+  test(
+    'a resume hint without a trusted receipt cannot publish credentials',
+    () async {
+      await seedDraft();
+      final before = secure.values[storedDraftKey];
+      final source = AuthLocalDataSource(
+        secureStorage: secure,
+        localStorage: LocalStorageService(secureStorage: secure),
+      );
+      final epoch = source.beginLoginAttempt();
+      await expectLater(
+        source.persistSession(
+          const AuthSession(
+            accessToken: 'new-access',
+            refreshToken: 'new-refresh',
+            user: AuthUser(id: 1, phone: 'fictional', role: 'user'),
+          ),
+          expectedEpoch: epoch,
+          expectedDeviceId: 'old-device',
+          isCurrent: () => true,
+          verifiedResume: (sessionId: 'old-family', loginAt: _login),
+        ),
+        throwsStateError,
+      );
+      expect(PrivateCacheService.forStorage(secure).isUnlocked, isFalse);
+      expect(secure.values[CacheKeys.accessToken], 'old-access');
+      expect(secure.values[storedDraftKey], before);
+    },
+  );
+
+  for (final pending in [false, true]) {
+    test(
+      'same verified cold session retains only text draft pending=$pending',
+      () async {
+        final cache = PrivateCacheService.forStorage(secure);
+        await cache.establishLogin(userId: 1, retention: _retention());
+        final draft = <String, dynamic>{
+          'text': 'unsent text',
+          if (pending)
+            'pending_attempt': {
+              'client_message_id': 'f10a7f10-84d2-4cba-b51a-c0b3ca87b005',
+              'peer_user_id': 2,
+              'content': 'unsent text',
+              'attachment_ids': <int>[],
+            },
+        };
+        expect(await cache.saveAuthorized('live-chat-draft:2', draft), isTrue);
+        expect(
+          await cache.saveAuthorized('old-message', {'text': 'old'}),
+          isTrue,
+        );
+        cache.lock();
+        final container = start();
+        await api.entered.future;
+        expect(await cache.readOnlineAuthorized('live-chat-draft:2'), isNull);
+        expect(await cache.readOffline('live-chat-draft:2'), isNull);
+        api.reply.complete(NetworkSuccess(_reply()));
+        await _settle(container);
+        expect(
+          container.read(sessionProvider).asData?.value.isLoggedIn,
+          isTrue,
+        );
+        expect(await cache.readOnlineAuthorized('old-message'), isNull);
+        expect(await cache.readOnlineAuthorized('live-chat-draft:2'), isNull);
+        expect(
+          await cache.readAfterCurrentAuthorization(
+            'live-chat-draft:2',
+            expectedAccountId: 2,
+            isCurrent: () => true,
+          ),
+          isNull,
+        );
+        expect(
+          await cache.readAfterCurrentAuthorization(
+            'live-chat-draft:2',
+            expectedAccountId: 1,
+            isCurrent: () => false,
+          ),
+          isNull,
+        );
+        expect(
+          await cache.readAfterCurrentAuthorization(
+            'live-chat-draft:2',
+            expectedAccountId: 1,
+            isCurrent: () => true,
+          ),
+          draft,
+        );
+        final binding =
+            jsonDecode(secure.values[CacheKeys.privateResumeAllowed]!) as Map;
+        expect(binding['access_token'], 'old-access');
+        expect(binding['refresh_token'], 'old-refresh');
+        expect(binding['session_id'], 'old-family');
+        expect(binding['login_at'], _login.toIso8601String());
+        expect(api.calls, 1);
+      },
+    );
+  }
 
   for (final field in [
     'user',

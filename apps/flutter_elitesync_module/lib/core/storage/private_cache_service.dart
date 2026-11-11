@@ -127,11 +127,21 @@ class PrivateCacheService {
   Future<bool> establishLogin({
     required int userId,
     required Map<String, dynamic>? retention,
+    ({String sessionId, DateTime loginAt})? verifiedResume,
+    bool Function()? isCurrent,
   }) {
     lock();
     final generation = _generation;
+    bool current() {
+      try {
+        return generation == _generation && (isCurrent?.call() ?? true);
+      } catch (_) {
+        return false;
+      }
+    }
+
     return _serialize(() async {
-      if (generation != _generation) return false;
+      if (!current()) return false;
       try {
         if (retention == null ||
             retention['user_id'].toString() != '$userId' ||
@@ -155,6 +165,14 @@ class PrivateCacheService {
             !server.isBefore(onlineExpiry)) {
           return false;
         }
+        // Only the caller's successful online verification of the identical
+        // session/T0 may carry explicit text drafts across a process restart.
+        if (verifiedResume != null &&
+            (isCurrent == null ||
+                verifiedResume.sessionId != session ||
+                verifiedResume.loginAt.toUtc() != login)) {
+          return false;
+        }
         final storedOwner = await _readOwnerNamespace();
         if (storedOwner != null &&
             _namespace != null &&
@@ -162,14 +180,95 @@ class PrivateCacheService {
           return false;
         }
         final oldNamespace = storedOwner ?? _namespace;
-        if (oldNamespace != null) {
+        final nextNamespace = _namespaceFor(userId, device);
+        final retainedDrafts = <String, String>{};
+        var objects = <String>{};
+        final resumeOwner = verifiedResume == null
+            ? null
+            : await _readOwnerLocator();
+        if (verifiedResume != null &&
+            oldNamespace == nextNamespace &&
+            resumeOwner?['version'] == 1) {
+          objects = await _manifest(namespace: oldNamespace);
+          if (!current()) return false;
+          for (final object in objects) {
+            if (!RegExp(r'^live-chat-draft:[1-9][0-9]*$').hasMatch(object)) {
+              continue;
+            }
+            final raw = await _secure.read(
+              '$oldNamespace:${Uri.encodeComponent(object)}',
+            );
+            if (!current()) return false;
+            if (raw == null || utf8.encode(raw).length > 512 * 1024) continue;
+            try {
+              final envelope = jsonDecode(raw);
+              if (envelope is Map &&
+                  envelope['account_id'] == userId &&
+                  envelope['session_id'] == session &&
+                  envelope['device_id'] == device &&
+                  envelope['object_id'] == object &&
+                  envelope['login_at'] == login.toIso8601String() &&
+                  envelope['value'] is Map) {
+                retainedDrafts[object] = raw;
+              }
+            } on FormatException {
+              // Malformed or differently bound drafts follow normal cleanup.
+            }
+          }
+        }
+        if (retainedDrafts.length > 128) {
+          throw const FormatException('Verified drafts exceed index capacity.');
+        }
+        if (retainedDrafts.isNotEmpty) {
+          // Keep the original envelopes in place. A failed write or cancelled
+          // verification must not destroy the only saved submission identity.
+          for (final object in objects.difference(
+            retainedDrafts.keys.toSet(),
+          )) {
+            if (!current()) return false;
+            final key = '$nextNamespace:${Uri.encodeComponent(object)}';
+            await _secure.delete(key);
+            if (!current()) return false;
+            if (await _secure.read(key) != null) {
+              throw StateError('Old private object cleanup was not confirmed.');
+            }
+            if (!current()) return false;
+          }
+          final index = jsonEncode(retainedDrafts.keys.toList());
+          for (final key in [
+            '$nextNamespace:manifest-recovery',
+            '$nextNamespace:manifest',
+          ]) {
+            if (!current()) return false;
+            await _secure.write(key, index);
+            if (!current()) return false;
+            if (await _secure.read(key) != index) {
+              throw StateError('Verified draft index was not confirmed.');
+            }
+            if (!current()) return false;
+          }
+          if (await _readOwnerNamespace() != nextNamespace ||
+              (await _readOwnerLocator())?['version'] != 1) {
+            throw StateError('Verified draft cleanup owner changed.');
+          }
+          for (final entry in retainedDrafts.entries) {
+            if (await _secure.read(
+                  '$nextNamespace:${Uri.encodeComponent(entry.key)}',
+                ) !=
+                entry.value) {
+              throw StateError('Verified draft envelope changed.');
+            }
+            if (!current()) return false;
+          }
+          // No completion marker or read grant: content remains private until
+          // its own current peer authorization succeeds after session recovery.
+        } else if (oldNamespace != null) {
           final oldCleanup = await _purgeNamespace(oldNamespace);
-          if (generation != _generation ||
+          if (!current() ||
               oldCleanup.status != PrivateCachePurgeStatus.completed) {
             return false;
           }
         }
-        final nextNamespace = _namespaceFor(userId, device);
         _userId = userId;
         _sessionId = session;
         _deviceId = device;
@@ -178,11 +277,12 @@ class PrivateCacheService {
         // the locator nor an old encrypted copy renews the login clock.
         if (nextNamespace != oldNamespace) {
           final cleanup = await _purgeOwnedNamespace(invalidate: false);
-          if (generation != _generation ||
+          if (!current() ||
               cleanup.status != PrivateCachePurgeStatus.completed) {
             return false;
           }
         }
+        if (!current()) return false;
         _loginAt = login;
         _serverAnchor = server;
         _wallAnchor = _wallNow();
