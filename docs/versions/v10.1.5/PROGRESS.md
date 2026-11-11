@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 Synastry与Comparison正常本人/虚构手填双盘
+
+同一后端c3950e0a/APP af74，B正常另建Synastry私有盘，第一盘沿用明确本人本命revision1，第二盘手填另一份明确虚构1996-02-29 03:12/分钟/Etc-UTC、坐标51/1与地点；没有读取其他账号出生资料。一次保存id5/input/result revision1、两盘各十主体、COMPUTED_UNVERIFIED、relationship_score=null；前四盘、正式users/Natal/其他动态摘要保持。
+
+再正常“另建私有盘（保留当前表单）”选择Comparison，保留同一已明确确认的本人/虚构输入，一次保存id6/revision1及两盘十主体、无关系分数，前五盘与无关状态保持。正常返回/重进本人历史选id6，六个手填字段（含规范化数值）与双盘图恢复，未再保存。私有dynamic-synastry-runtime-private.json、dynamic-comparison-runtime-private.json及截图保留，仍非独立精度、兼容性/关系事实或评分验收。本段无产品源码变化，不重复构建/既过检查。
+
+目前动态私有盘共6条（行运1、太阳2、月亮1、Synastry1、Comparison1），原2026太阳NO_EVENT保留。下一步现有独立好友/好友可见社区最短链；既过媒体正常选择/上传/原生播放见下方既有节点，不机械重测。
+
+---
+
 # 最新节点｜2026-11-11 月亮回归明确起点与事件选择恢复
 
 同一后端c3950e0a/APP af74，B保留前三条动态记录、正常另建月亮回归盘，沿用本人已明确选定本命revision1，明确虚构起点2026-11-11 12:00/分钟/Asia-Shanghai及同一地点坐标。一次计算保存id4/input/result revision1，35天半开窗口找到首个事件；正常点击当前画面事件行一次后selected_event_index0、input/result revision2。选择前后数值results保持，原三条动态盘/正式users/Natal/其他动态摘要保持。

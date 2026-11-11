@@ -15,13 +15,13 @@ Owner已恢复全自动持续工程，普通实现、定向验证/必要构建�
 - 城市、可选MBTI、Showcase私有草稿正常APP保存/重新读取贯通，分别核必要API/DB字段及无关状态保持。MBTI仅本机独立开关开启，性格排序仍false；草稿not_submitted、公开/评分资格false，未做Safety审核或发布。
 - Linux三盘：六项原版本的官方Linux wheel独立锁/许可映射，Windows锁保持；Node原六包/固定DE440s已核。NumPy附带libquadmath LGPL差异及全文保留。APT准备联网，wheel安装/运行离线，不称全镜像离线可复现。运行身份AVAILABLE、Python29/Node13、PHP语法通过，非作者静态复核无P1/P2，非法律/外部批准。Swiss研究和性格排序仍false。
 - B正常APP虚构本命一次保存，input/result revision1、四柱4/紫微宫12/西占主体10；重进恢复输入并观察三段。正式users/其他镜像保持，A本人无盘。全部维持COMPUTED_UNVERIFIED/oracle UNVERIFIED，未扩大独立参考或匹配用途。
-- 动态盘config仅增加明确开发库参数、原默认值/本地/回环/名称门保持。13项隔离PHP合同通过；正确local库200，旧/错库、远程host、production、disabled五个负例403。正常APP：id1行运/rev1；id2太阳2026/rev1返回NO_EVENT并显示无事件提示；另建id3太阳2027，计算一次、明确选择事件0后rev2，数值结果保持。正常历史重开行运及太阳已选事件/双盘图通过；月亮回归id4以明确起点计算一次、选择事件0后rev2，重新打开恢复原起点和已选双盘图。前序记录/users/Natal保持；A读id1为404。原观察助手非空根预期与合并语义定位未达均保留，不重复保存掩盖。
+- 动态盘config仅增加明确开发库参数、原默认值/本地/回环/名称门保持。13项隔离PHP合同通过；正确local库200，旧/错库、远程host、production、disabled五个负例403。正常APP：id1行运/rev1；id2太阳2026/rev1返回NO_EVENT并显示无事件提示；另建id3太阳2027，计算一次、明确选择事件0后rev2，数值结果保持。正常历史重开行运及太阳已选事件/双盘图通过；月亮回归id4以明确起点计算一次、选择事件0后rev2，重新打开恢复原起点和已选双盘图。Synastry id5与Comparison id6各正常保存一次/rev1，第一盘本人快照1、第二盘仅另一份虚构手填数据，两盘各十主体且relationship_score=null；Comparison重进恢复六字段与双盘图。前序记录/users/Natal保持；A读id1为404。原观察助手非空根预期与合并语义定位未达均保留，不重复保存掩盖。
 
-**下一步：Synastry与Comparison双盘的最短正常UI链。** 保留现有四条动态记录，另建本人私有盘；第一盘沿用明确选中的本人本命revision1，第二盘仅手填另一份虚构日期/时间/时区/地点与坐标，不读取其他账号资料。验证正常保存/读回，再另建对照盘沿用已确认表单。普通可恢复导航/观察问题就地处理，不重开旧oracle/研究执行器或既过问卷、媒体、通话链。
+**下一步：独立好友与好友可见社区的最短真实链。** 当前媒体正常选择/上传/渲染/播放此前已过，不重复。先定位现有正常UI/独立好友API与动态可见性授权；如A/B原为非好友，验证非好友拒绝→明确请求/接受→好友可见→解除后拒绝，必要正常APP操作配合另一虚构账号API，保留CN/MC/搭子等独立状态。普通可恢复导航/观察问题就地处理，不重开旧oracle/研究执行器或既过问卷、媒体、通话链。
 
 ## 证据与保留门
 
-原证仅私有：logout-confirmation-runtime-private.json、profile-city-runtime-private.json、mbti-runtime-private.json、showcase-draft-runtime-private.json、natal-app-runtime-private.json、natal-linux-runtime/、dynamic-runtime-wiring-private.json、dynamic-transit-runtime-private.json、dynamic-solar-runtime-private.json、dynamic-solar-2027-runtime-private.json、dynamic-lunar-runtime-private.json。APK固定回执在稳定根state/current-functional-build.json。凭据/JWT/APK/截图/SQL/依赖运行二进制不上GitHub。
+原证仅私有：logout-confirmation-runtime-private.json、profile-city-runtime-private.json、mbti-runtime-private.json、showcase-draft-runtime-private.json、natal-app-runtime-private.json、natal-linux-runtime/、dynamic-runtime-wiring-private.json、dynamic-transit-runtime-private.json、dynamic-solar-runtime-private.json、dynamic-solar-2027-runtime-private.json、dynamic-lunar-runtime-private.json、dynamic-synastry-runtime-private.json、dynamic-comparison-runtime-private.json。APK固定回执在稳定根state/current-functional-build.json。凭据/JWT/APK/截图/SQL/依赖运行二进制不上GitHub。
 
 仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。新功能子范围不是整版统一候选、独立精度核验、完整缓存/权限/并发/停包矩阵、15/30天边界或Owner接受。SDK/媒体/管理/问卷/通知等历史有效证据按各自身份保留，限制和原失败见PROGRESS，不机械重复验证。
 
