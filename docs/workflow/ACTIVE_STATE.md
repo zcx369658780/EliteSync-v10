@@ -18,7 +18,9 @@ Owner已恢复全自动持续工程，普通工程长期授权有效，直到明
 
 **登出成功回执提示已修复并经新包正常UI验证。** 仅规范 `ok=true/SESSION_REVOKED` 回执确认对应登出；失败/未知回执保留待办，本地清理失败警告保留。确认框及待办写入后复核原intent/token，防止迟到确认污染新账号退出。队列等待切号原码RED，最终55项定向检查（含单widget七场景）/四文件analyze通过，非作者Sol发现的P2已修，最终无新增P1/P2。新af74包5580正常B设置确认退出后，登录页显示“当前会话的服务端撤销已确认”，相同服务端会话revoked/令牌0、其他会话与其令牌数量摘要不变；随后正常登录B恢复。私有 `logout-confirmation-runtime-private.json`。网络失败/未知回执/切号/本地清理故障仍仅定向测试证据，不冒充Android矩阵。
 
-**资料城市与可选MBTI正常持久链通过。** B正常兼容资料编辑页单独保存虚构城市DevCity-B，API/DB读回一致，重新进入页面保持，除city/updated_at外用户字段摘要不变。MBTI初始HTTP410，已仅在私有本机app.env启用既有FEATURE_MBTI_ENABLED并刷新自有API，性格排序FEATURE_PERSONALITY_TEST_ENABLED仍false。B正常APP答lite3_v1三题、仅提交一次，三个题ID/选项及结果持久化，重新打开页面读回；非MBTI用户字段摘要保持，不称心理效度或匹配验证。私有 `profile-city-runtime-private.json`、`mbti-runtime-private.json`。没有新增产品源码或重编APK。下一步继续Showcase私有草稿保存/重新读取，不处理Safety审核、不公开发布或改变匹配授权。
+**资料城市与可选MBTI正常持久链通过。** B正常兼容资料编辑页单独保存虚构城市DevCity-B，API/DB读回一致，重新进入页面保持，除city/updated_at外用户字段摘要不变。MBTI初始HTTP410，已仅在私有本机app.env启用既有FEATURE_MBTI_ENABLED并刷新自有API，性格排序FEATURE_PERSONALITY_TEST_ENABLED仍false。B正常APP答lite3_v1三题、仅提交一次，三个题ID/选项及结果持久化，重新打开页面读回；非MBTI用户字段摘要保持，不称心理效度或匹配验证。私有 `profile-city-runtime-private.json`、`mbti-runtime-private.json`。没有新增产品源码或重编APK。
+
+**Showcase私有草稿正常保存/重新打开通过。** B正常兼容页编辑四字段，一次保存后API/DB内容和标签一致，重新进入显示已保存私有草稿，兴趣标签规范化分隔；A读取的是自己的空草稿，用户行摘要/发布表数量保持。状态not_submitted、公开/评分资格均false；未提交Safety审核或发布。只读观察脚本一次变量遮蔽及逗号显示预期错误已保留并改为读回，不重复保存。私有 `showcase-draft-runtime-private.json`。下一步补齐三盘本命现有本地计算链的Linux运行依赖与挂载；先核现有离线依赖、许可及配置，不启用受阻Swiss/AGPL路径，不降低独立参考核验标准。
 
 ## 既过子范围与证据边界
 

@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 Showcase私有草稿正常持久链
+
+af74候选5580虚构B正常“我的→Showcase→兼容展示页”，编辑自我介绍/兴趣标签/生活线索/开场话题，仅一次保存为私有草稿。真实API与MariaDB字段/标签一致、moderation_status=not_submitted、public_display_eligible=false、matching_scoring_eligible=false。用户全行摘要及publication表数量保持；A读取的是自己空草稿。正常返回并重新打开页，四项从持久化草稿读回，兴趣标签显示规范化顿号；没有审核/发布或匹配变动。
+
+私有showcase-draft-runtime-private.json、前后DB读回与截图保留。初观察脚本在保存后因UI边界变量遮蔽baseline抛类型错误，后续仅读现有结果证实；首次重进页用逗号字面比较失败，实际为规范化标签分隔，随后按规范化集合核对，均未重复保存。产品本段无代码修改，不构建或重跑已过链。
+
+下一步检查现有三盘本命计算链的本机Linux运行接入。当前API仅挂载app/config等，不含tools/natal，未配置NATAL_PYTHON/kernel，Windows轮锁不能冒充Linux依赖合格；先核已保存依赖/许可与实际运行环境，再补适配。Swiss/AGPL禁用与独立参考核验门保持。
+
+---
+
 # 最新节点｜2026-11-11 城市编辑与可选MBTI正常持久链
 
 af74候选5580虚构B正常“我的→Private Identity→兼容资料编辑页”，城市单独保存DevCity-B，正常API/真实MariaDB读回一致，除city/updated_at外该用户字段摘要不变；正常返回并重新打开编辑页仍显示相同城市。不提交整份出生资料或触发重算，首轮寻找旧ProfilePage入口仅导航未达，未作为功能失败或保存尝试。私有profile-city-runtime-private.json。
