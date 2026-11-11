@@ -1,44 +1,28 @@
 # 当前入口｜2026-11-11 持续工程进行中
 
-Owner已恢复全自动持续工程，普通实现、定向验证/必要构建、自有开发服务/虚构数据、双模拟器及普通Git授权持续有效，直到明确叫停。功能优先，随后安全封装/集中验收，UI最后。手机不连接/读取/操作，不碰默认ADB5037，不复活旧STOP，不合main、不发布、不启动v10.1.6；不使用重置券或购买额度。
+Owner全自动普通工程授权持续有效，直到明确叫停。功能优先，随后安全封装与集中验收，UI最后按我的/设置、消息/聊天、首页/导航处理。普通实现、定向检查、必要构建、自有服务/虚构数据及双模拟器、免费已有许可依赖和普通Git无需逐动作确认。手机不连接/读取/操作，不碰ADB5037，不复活旧STOP，不合main、不发布、不启动v10.1.6，不使用重置券或购买额度。
 
 ## 当前身份与资源
 
-- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。5580/B当前APP源码 `80c46d8e0e44aff475e0f0eccd88f425bcbcdd92`；5582/A仍 `772482a50e225f9b683952cb2982b9b14cff2e8a`。后端平台接线源于25bc01f7、头像源于cabba94d；后续文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index及无关 `%SystemDrive%/` 保留。
-- B新包SHA256 `a304fc53ca28f462e8bf82b5e5c6745747018119f355f165a9a7d48e86985778`，154182044字节，离线34.789秒/退出0、签名/身份/arm64 Debug通过；正常前台离线只读→离线后台/返回隐藏旧预览→恢复本机连接后当前读取恢复列表通过。设置隐私正常链沿d97dba81/3e6e包证据；A仍dc5d包，前述双APP头像链对应两端原772482a5/dc5d包。前候选旧图残留原证保留，不冒充新包重测。
-- 私有根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；稳定构建根 `v1015-source-debug-workspace`。四个自有DB/API/WS/SFU运行，准确ID见runtime-private.json；API已接专属Linux排盘镜像，DB仍确切独立虚构库。专用ADB5038/USB排除手机，相机仅生成画面；未改系统网络。
-- 开发库4个虚构用户（新增合成平台参与者4，原用户1–3保持）、原101消息/4媒体保持，另有3个头像资产（当前媒体共7，B头像指针已移除/rev6）。A正式问卷20/历史1，运营pending/revision2、两条审核审计；B正式答案0/历史0、服务端草稿1题/index1，昵称DevUser-B、城市DevCity-B，可选MBTI attempt1，Showcase私有草稿1。原SELF动态/一级评论软删、搭子WITHDRAWN及双方接收false/rev2保持；新FRIENDS动态已另行软删，好友请求历史ACCEPTED、friendship REMOVED/rev2、邀请已撤销、两方接收新请求均false。旧call1–11 ended/房间空、MC generation7沿用前节点，本段无新通话。
+- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。当前B APP源码 `1967b0ef2191c6be9b7a0a3f72feec79a991d174`，后端平台接线源于25bc01f7、头像源于cabba94d；文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index与无关 `%SystemDrive%/` 保留。
+- B APK SHA256 `111d1a4383a7a82bed4536c63420f69b20d07afc66eff47584c34fa3dde8633d`、154197542字节，离线35.279秒/退出0、签名/身份/arm64 Debug/草稿代码标记通过。5580/B运行；5582/A因构建内存正常暂停，AVD与A登录保留，仍772482a5/dc5d包，需双端时再恢复。未把不同候选的证据拼成整版通过。
+- 私有根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；稳定构建根同上级的 `v1015-source-debug-workspace`，固定回执 `state/current-functional-build.json`。DB/API/WS/SFU四自有容器运行，准确ID见runtime-private.json；API含专属Linux三盘运行环境，独立虚构库不变。ADB5038/USB排除手机，模拟相机只生成画面，未改系统网络。
+- 开发库4个虚构用户（原1–3及新增合成平台参与者4），101消息/7媒体，B头像null/rev6。A问卷20/历史1、运营pending/rev2；B正式答案0、服务端草稿1题、昵称DevUser-B/城市DevCity-B、可选MBTI attempt1、Showcase私有草稿1。本人本命rev1/动态盘6条均UNVERIFIED；性格排序/Swiss研究false。原动态软删、搭子撤回、friendship REMOVED/rev2、邀请撤销/接收false及旧call1–11 ended/MC generation7沿既有节点保持。本次聊天草稿已正常清除，无新消息；正常GET会刷新B会话成员已读时间。
 
 ## 最新完成与下一步
 
-- 登出提示：规范SESSION_REVOKED回执只确认对应intent；队列等待期间切号P2已修。55项定向检查/四文件analyze通过，非作者Sol复核无新增P1/P2。新包正常UI退出显示已确认，同session revoked/token0、其他会话不变，已正常登录B恢复。网络失败/晚回/清理故障仍仅定向测试边界。
-- 城市、可选MBTI、Showcase私有草稿正常APP保存/重新读取贯通，分别核必要API/DB字段及无关状态保持。MBTI仅本机独立开关开启，性格排序仍false；草稿not_submitted、公开/评分资格false，未做Safety审核或发布。
-- Linux三盘：六项原版本的官方Linux wheel独立锁/许可映射，Windows锁保持；Node原六包/固定DE440s已核。NumPy附带libquadmath LGPL差异及全文保留。APT准备联网，wheel安装/运行离线，不称全镜像离线可复现。运行身份AVAILABLE、Python29/Node13、PHP语法通过，非作者静态复核无P1/P2，非法律/外部批准。Swiss研究和性格排序仍false。
-- B正常APP虚构本命一次保存，input/result revision1、四柱4/紫微宫12/西占主体10；重进恢复输入并观察三段。正式users/其他镜像保持，A本人无盘。全部维持COMPUTED_UNVERIFIED/oracle UNVERIFIED，未扩大独立参考或匹配用途。
-- 动态盘config仅增加明确开发库参数、原默认值/本地/回环/名称门保持。13项隔离PHP合同通过；正确local库200，旧/错库、远程host、production、disabled五个负例403。正常APP：id1行运/rev1；id2太阳2026/rev1返回NO_EVENT并显示无事件提示；另建id3太阳2027，计算一次、明确选择事件0后rev2，数值结果保持。正常历史重开行运及太阳已选事件/双盘图通过；月亮回归id4以明确起点计算一次、选择事件0后rev2，重新打开恢复原起点和已选双盘图。Synastry id5与Comparison id6各正常保存一次/rev1，第一盘本人快照1、第二盘仅另一份虚构手填数据，两盘各十主体且relationship_score=null；Comparison重进恢复六字段与双盘图。前序记录/users/Natal保持；A读id1为404。原观察助手非空根预期与合并语义定位未达均保留，不重复保存掩盖。
+**本机加密文本草稿已接通。** 明确保存/清除、按账号/设备/登录/peer隔离，当前会话读取后恢复，已有有效离线上下文只读。在线手动发送先存不可变提交编号，未知结果只提供原编号手动重试；无自动发送/离线预发队列。慢GET覆盖旧pending、附件互斥、清理跳过或失败误报等P2已修。78项定向检查、四文件analyze及非作者Sol最终复核无剩余P1/P2。B新包正常保存TEST_ONLY文字、离页重进恢复、清除后再重进空，一次保存/一次清除/零发送。users/偏好/27表、conversation/link/hidden及会话/token保持；member原哈希变化原证保留，定向正常GET原始行比较仅B已读时间/updated_at变化。私有chat-text-draft-runtime-private.json。跨冷启草稿、Android故障矩阵未验，不扩大原冷启锁定/旧缓存清理语义。
 
-**独立好友/好友可见动态最短真实链通过。** B正常APP发布FRIENDS动态；A非好友时详情404/列表排除。B正常开启接收/生成friendship邀请，A正常API提交一次请求，B正常APP接受后双方好友ACTIVE、A详情/列表可读；B正常确认解除后双方好友空、A再次404/列表排除。CN/MC、已撤回搭子、users/消息/问卷/Natal/dynamic等14表摘要保持。B正常撤销邀请并恢复开关false，API仅软删本次新帖；历史和原帖保留。此为一端APP+另一虚构账号API，不是双APP缓存/并发矩阵。
+**消息列表离线回前台重验已修。** 80c46d8e/a304包实际：持续前台断开B本机8021/8022映射只读可见，Home/返回离线隐藏旧预览，恢复映射后当前读取恢复；无发送/时钟变化，会话与本段数据保持。原到期清理结果被排队检查覆盖也已修，30天成功/失败仍仅测试时钟与内存存储，不称Android实际30天清理。本人隐藏/找回会话入口正常APP一次往返通过，对方列表/原消息/联系授权保持。私有conversation-offline-resume-runtime-private.json、conversation-visibility-runtime-private.json。
 
-**修改密码正常链通过。** B正常APP改密成功且字段清空；旧密码登录422、新密码登录同一B。现有语义保留原会话，实际原会话/token身份保持，本次仅新建一个验证会话并单独退出。正常APP已恢复原测试密码，服务端原密码核对true、临时密码登录422；其它用户/B其它字段及18张独立表保持。密码hash/updated_at正常变化，不称逐字节恢复；fixture_password未改。私有password-runtime-private.json保留，不是改密撤销策略或完整安全验收。
+**平台活动合成演练完成。** 既有管理员正常表单创建TEST_ONLY零费用活动，定向邀请新增合成参与者4；正常APP报名、后台确认、APP自主取消，后台取消活动/grant并退出。最终预算0/attendance UNVERIFIED/管理员活动会话0；参与者退出token0，原A正常登录恢复，其余原会话保持。原1–3用户及23业务/Safety表保持，非合成B访问403。候补/晋升、邀请token兑换、到场、举报/处罚和真实招募/地点/预订/费用均未运行。私有platform-event-runtime-private.json及platform-app-account-transition-private.json。
 
-**昵称独立保存正常链完成。** 仅当前本人name更新，不要求出生地或触发完整保存/排盘；服务端读回确认，失败/切号晚回不报成功。3项隔离SQLite接口/15断言、33项Flutter及6文件analyze通过，自审无P1/P2。新包B正常一次保存DevUser-B、API/DB一致，返回兼容用途入口重进恢复；其它本人字段/其它用户及19业务表保持。私有nickname-runtime-private.json保留。
+**账户与资料正常链沿各自身份保留。** 昵称独立保存、城市、改密/恢复原测试密码、本人单一新增会话撤销、头像上传/移除和A聊天手动刷新、隐私履历保存/重进/清除均已运行。头像仅Owner批准的现有好友/邀请/会话上下文并沿用拉黑，不新增全局目录；前包残图、最初存储503及匿名媒体旧401基线失败均保留。d97dba81/3e6e包修复设置隐私入口重复页key红屏，四项SELF及原偏好不变。其余问卷切号/恢复、三盘/六种动态输入结果、好友/好友动态、Showcase私有草稿、通知/媒体/RTC的具体有效证据和限制见PROGRESS，不机械重测。
 
-**头像最短双APP链及刷新修正通过。** 仅已有获准上下文可见，沿用拉黑；GD/EXIF转正去元数据、私有读取、旧revision404、内存清理与并发冲突已接线。新包B正常上传rev5/本人及A聊天显示，正常移除rev6/null后A手动刷新恢复默认，B重进仍无头像；原4媒体/19表保持。头像+聊天34项/analyze/非作者复核无剩余P1/P2；前述后端20项及MySQL200+409并发子证据保持，旧匿名媒体两401基线失败、最初存储503与前包UI残图原证保留。不是全权限/缓存/故障矩阵或Owner接受。
-
-**本人设备会话正常链通过。** 新建一个B正常API登录会话，正常APP按唯一登录时间选中非当前行并确认撤销；此session revoked/token0，旧access与refresh均401，列表不再显示。当前B APP及所有其它会话/token保持，7媒体/头像指针/19业务表保持。没有退出全部设备或注销，私有device-session-runtime-private.json保留；无新源码/不重编，不是全设备/并发/密钥库验收。
-
-**平台活动最短合成演练正常链通过。** 后端25bc01f7新增明确当前开发库pair，旧默认/local/loopback/无URL/socket及合成身份限制保持；22项871断言、非作者复核通过。既有管理员正常表单创建TEST_ONLY零费用活动、记录开发模拟预算批准并定向邀请新增合成参与者4；5582正常APP报名，后台确认后APP读回、自主取消，后台再取消活动/撤销grant并退出。最终attendance UNVERIFIED/预算0、管理员活动Web会话0；参与者会话revoked/token0，原A正常登录恢复，其余原会话保持。原用户1–3及23业务/Safety表摘要保持，非合成B活动访问仍403。未运行候补/晋升、邀请token兑换、到场或举报/处罚，无真实招募、地点、预订、付款或外部核验。私有platform-event-runtime-private.json及platform-app-account-transition-private.json保留。下一步现有隐私资料字段正常保存/读回/恢复。
-
-**设置隐私入口导航故障修复，履历最短正常链通过。** 原入口从root设置页push已挂载Me分支，引发重复页key断言红屏；实际截图及路由回归RED保留，改走既有root隐私页。27项相关Flutter检查/两文件analyze通过，自审无P1/P2。B新包正常设置→隐私中心→正式关系字段分享，保存明确TEST_ONLY履历、重进恢复，再正常清除并重进空；API/DB一致，A投影不含履历。四项SELF和原偏好行完全保持，其他用户/本人其他字段及27业务表保持（updated_at正常变化）。无关系建立、核验或分享权限变更；返回设置正常。私有privacy-fields-runtime-private.json保留；不是完整受众/撤权/并发矩阵。
-
-**消息列表离线回前台重验修复及实际短链通过。** 原列表离线回前台会沿用后台前read grant重显旧预览；新增回归RED→GREEN，改为回前台先废弃旧读取资格，重复resumed仅检查保留期。并修复原轮询/到期检查竞态覆盖清理结果，完成/失败的实际回执及后台往返保留；61项相关检查及三文件analyze通过，自审无P1/P2。B新包正常前台断开仅自身8021/8022 reverse后列表只读可见；Home/返回离线时旧预览隐藏、提示无本次当前授权副本；恢复两映射后当前读取恢复，原会话/token及全部本段数据摘要不变。未发消息、未改系统时钟；30天成功/失败仅测试时钟与内存存储证据，不称Android实际30天清理。私有conversation-offline-resume-runtime-private.json保留。下一步现有隐藏/恢复会话正常链。
-
-**仅本人隐藏/恢复会话正常链通过。** 同80c46d8e/a304包，B列表菜单“仅对我隐藏”一次后普通列表排除、隐藏列表可读，只有本人hidden_through记录新增；A列表、消息/CN/MC及其它状态保持。正常切隐藏列表、菜单“找回会话入口”一次后记录移除、普通列表恢复，前后数据库摘要完全一致；没有发送消息或改变联系权限。私有conversation-visibility-runtime-private.json保留。无源码变化，不重复构建/检查；新入站消息自动恢复、撤权/并发等其它分支未扩测。
+下一项：核对必要身份资料缓存的明文持久路径，沿现有会话、冷启与账户隔离边界做最小修正。继续普通工程，不恢复旧任务链或新增外部服务。
 
 ## 证据与保留门
 
-原证仅私有：logout-confirmation-runtime-private.json、profile-city-runtime-private.json、mbti-runtime-private.json、showcase-draft-runtime-private.json、natal-app-runtime-private.json、natal-linux-runtime/、dynamic-runtime-wiring-private.json、dynamic-transit-runtime-private.json、dynamic-solar-runtime-private.json、dynamic-solar-2027-runtime-private.json、dynamic-lunar-runtime-private.json、dynamic-synastry-runtime-private.json、dynamic-comparison-runtime-private.json、social-friends-runtime-private.json。APK固定回执在稳定根state/current-functional-build.json。凭据/JWT/APK/截图/SQL/依赖运行二进制不上GitHub。
+原证、凭据/JWT/Cookie、APK/截图/素材、SQL、许可及运行二进制仅私有；普通同步当前分支，失败记PENDING_SYNC。旧2026-11-10暂停回执不改写；当前节点见current-engineering-node-private.json，不写新的暂停或STOP。
 
-仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。新功能子范围不是整版统一候选、独立精度核验、完整缓存/权限/并发/停包矩阵、15/30天边界或Owner接受。SDK/媒体/管理/问卷/通知等历史有效证据按各自身份保留，限制和原失败见PROGRESS，不机械重复验证。
-
-[Owner长期授权](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md) · [工作流](CURRENT_WORKFLOW.md) · [进度与具体证据边界](../versions/v10.1.5/PROGRESS.md)
+仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。独立精度、统一最终候选、完整权限/缓存/并发/停包、15/30天、双索引均失、硬件密钥库及Owner接受等未关闭。具体失败、身份和分层证据见[进度](../versions/v10.1.5/PROGRESS.md)。[Owner长期授权](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md) · [现行工作流](CURRENT_WORKFLOW.md)
