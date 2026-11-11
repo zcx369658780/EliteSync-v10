@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 动态广场SELF文本与作者交互真实链
+
+沿用5580的4a645候选和服务源码0df488b6。虚构user1在正常APP动态广场填写标题/正文并明确仅自己，创建一条SELF/private文本，无图片封面；DB/API与APP内容相同。作者详情200，user2详情和点赞均404，匿名401，拒绝响应不含本文标记、user2列表不含该post。作者通过正常APP喜欢后当前服务likes1/liked=true，再取消为0/false。
+
+正常一级评论创建1条，APP与接口均可读；点击删除后原helper错误地在确认弹窗前期望空列表而断言失败，原观察保留，未重提评论。随后正常确认，UI显示“已删除或不可见”，接口同ID为UNAVAILABLE/revision2、body/author_id为空；这是删除态最小投影，不宣称数据库正文物理擦除。原动态经作者正常确认软删，DB is_deleted/deleted_by=1；双方旧详情/评论URL共4次404、两feed均排除该post，原用户/101消息/4媒体/附件/问卷/审核审计等具名表hash保持。
+
+仅保留这条软删动态和删除态评论的开发记录，不操作真实数据、举报/处罚、关系或Safety。私有 `status-runtime-private.json`、原确认弹窗观察及APP/HTTP/DB原证仅本机；无产品源码/APK改动，不以本SELF子范围冒称双向好友正向、封面图、并发或整版通过。下一项独立搭子当前入口。
+
+---
+
 # 最新节点｜2026-11-11 管理审核与APP资格贯通及表单回显修复
 
 仅当前开发库已知虚构user1，经正常管理浏览器把pending/revision0审核为approved/revision1；DB一条user.review审计，APP刷新读到服务器确认可参与新一轮匹配，20/20答案保持。第二张预先加载的旧页面携revision0提交pending，被真实HTTP409拒绝，DB仍approved/revision1且没有第二条审计。然后经当前页面正常审核回pending/revision2，APP恢复当前不可参与，DB与审计列表有两条正常变更；管理session已退出/active0，没有运行匹配或发布。
