@@ -7,7 +7,7 @@ Owner已恢复全自动持续工程，普通实现、定向验证/必要构建�
 - 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。APP源码 `5a7625824064c545bcaa24f126cf14534556d4d6`；后端代码 `c3950e0ac780bdaf6e4d9baa134265c7327282c6`；后续文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index及无关 `%SystemDrive%/` 保留。
 - 安装APK SHA256 `af74f986365ea816aacb683d2d20379821387791fd9fe2959956632f73bf7297`，154165710字节，离线36.748秒/退出0，签名/包名/arm64 Debug/代码标记通过。只更新5580；5582已停止，AVD/旧候选保留。问卷切号实证仍绑定前e921包，不冒充本包重测。
 - 私有根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；稳定构建根 `v1015-source-debug-workspace`。四个自有DB/API/WS/SFU运行，准确ID见runtime-private.json；API已接专属Linux排盘镜像，DB仍确切独立虚构库。专用ADB5038/USB排除手机，相机仅生成画面；未改系统网络。
-- 开发库3个虚构用户、101消息/4媒体保持。A正式问卷20/历史1，运营pending/revision2、两条审核审计；B正式答案0/历史0、服务端草稿1题/index1，城市DevCity-B，可选MBTI attempt1，Showcase私有草稿1。SELF动态/一级评论软删、搭子WITHDRAWN及双方接收false/rev2保持。旧call1–11 ended/房间空、MC generation7沿用前节点，本段无新通话。
+- 开发库3个虚构用户、101消息/4媒体保持。A正式问卷20/历史1，运营pending/revision2、两条审核审计；B正式答案0/历史0、服务端草稿1题/index1，城市DevCity-B，可选MBTI attempt1，Showcase私有草稿1。原SELF动态/一级评论软删、搭子WITHDRAWN及双方接收false/rev2保持；新FRIENDS动态已另行软删，好友请求历史ACCEPTED、friendship REMOVED/rev2、邀请已撤销、两方接收新请求均false。旧call1–11 ended/房间空、MC generation7沿用前节点，本段无新通话。
 
 ## 最新完成与下一步
 
@@ -17,11 +17,13 @@ Owner已恢复全自动持续工程，普通实现、定向验证/必要构建�
 - B正常APP虚构本命一次保存，input/result revision1、四柱4/紫微宫12/西占主体10；重进恢复输入并观察三段。正式users/其他镜像保持，A本人无盘。全部维持COMPUTED_UNVERIFIED/oracle UNVERIFIED，未扩大独立参考或匹配用途。
 - 动态盘config仅增加明确开发库参数、原默认值/本地/回环/名称门保持。13项隔离PHP合同通过；正确local库200，旧/错库、远程host、production、disabled五个负例403。正常APP：id1行运/rev1；id2太阳2026/rev1返回NO_EVENT并显示无事件提示；另建id3太阳2027，计算一次、明确选择事件0后rev2，数值结果保持。正常历史重开行运及太阳已选事件/双盘图通过；月亮回归id4以明确起点计算一次、选择事件0后rev2，重新打开恢复原起点和已选双盘图。Synastry id5与Comparison id6各正常保存一次/rev1，第一盘本人快照1、第二盘仅另一份虚构手填数据，两盘各十主体且relationship_score=null；Comparison重进恢复六字段与双盘图。前序记录/users/Natal保持；A读id1为404。原观察助手非空根预期与合并语义定位未达均保留，不重复保存掩盖。
 
-**下一步：独立好友与好友可见社区的最短真实链。** 当前媒体正常选择/上传/渲染/播放此前已过，不重复。先定位现有正常UI/独立好友API与动态可见性授权；如A/B原为非好友，验证非好友拒绝→明确请求/接受→好友可见→解除后拒绝，必要正常APP操作配合另一虚构账号API，保留CN/MC/搭子等独立状态。普通可恢复导航/观察问题就地处理，不重开旧oracle/研究执行器或既过问卷、媒体、通话链。
+**独立好友/好友可见动态最短真实链通过。** B正常APP发布FRIENDS动态；A非好友时详情404/列表排除。B正常开启接收/生成friendship邀请，A正常API提交一次请求，B正常APP接受后双方好友ACTIVE、A详情/列表可读；B正常确认解除后双方好友空、A再次404/列表排除。CN/MC、已撤回搭子、users/消息/问卷/Natal/dynamic等14表摘要保持。B正常撤销邀请并恢复开关false，API仅软删本次新帖；历史和原帖保留。此为一端APP+另一虚构账号API，不是双APP缓存/并发矩阵。
+
+**下一步：现行账户功能的源码定向核对。** 头像更换入口/实际接口用途、修改密码入口及会话影响正在有限只读定位；据事实选择下一条普通功能链。既过媒体正常选择/上传/原生播放不重复，不操作真实用户、手机或外部供应商。普通可恢复导航/观察问题就地处理，不重开旧oracle/研究执行器或既过问卷、媒体、通话链。
 
 ## 证据与保留门
 
-原证仅私有：logout-confirmation-runtime-private.json、profile-city-runtime-private.json、mbti-runtime-private.json、showcase-draft-runtime-private.json、natal-app-runtime-private.json、natal-linux-runtime/、dynamic-runtime-wiring-private.json、dynamic-transit-runtime-private.json、dynamic-solar-runtime-private.json、dynamic-solar-2027-runtime-private.json、dynamic-lunar-runtime-private.json、dynamic-synastry-runtime-private.json、dynamic-comparison-runtime-private.json。APK固定回执在稳定根state/current-functional-build.json。凭据/JWT/APK/截图/SQL/依赖运行二进制不上GitHub。
+原证仅私有：logout-confirmation-runtime-private.json、profile-city-runtime-private.json、mbti-runtime-private.json、showcase-draft-runtime-private.json、natal-app-runtime-private.json、natal-linux-runtime/、dynamic-runtime-wiring-private.json、dynamic-transit-runtime-private.json、dynamic-solar-runtime-private.json、dynamic-solar-2027-runtime-private.json、dynamic-lunar-runtime-private.json、dynamic-synastry-runtime-private.json、dynamic-comparison-runtime-private.json、social-friends-runtime-private.json。APK固定回执在稳定根state/current-functional-build.json。凭据/JWT/APK/截图/SQL/依赖运行二进制不上GitHub。
 
 仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。新功能子范围不是整版统一候选、独立精度核验、完整缓存/权限/并发/停包矩阵、15/30天边界或Owner接受。SDK/媒体/管理/问卷/通知等历史有效证据按各自身份保留，限制和原失败见PROGRESS，不机械重复验证。
 

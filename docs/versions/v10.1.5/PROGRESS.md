@@ -1,3 +1,15 @@
+# 最新节点｜2026-11-11 独立好友与FRIENDS动态当前授权真实链
+
+同一APP af74/后端c3950e0a，A/B起初好友空、接收新请求均false。B正常APP从进展“好友可见社区”发布一条FRIENDS文本新帖；作者可读，A非好友详情404/列表排除。B正常设置“好友与请求”开启接收并生成一次friendship邀请，凭据仅私有；A正常API按该用途/同一幂等键提交一次，PENDING时仍无好友。B正常APP点击接受后friendship ACTIVE、请求ACCEPTED，A详情与列表均读到本帖。接受不修改独立CN/MC或搭子。
+
+B正常APP确认解除好友，friendship REMOVED/revision2、双方好友列表空，A同帖详情404/列表再次排除，无正文泄露；users、消息/媒体、问卷、product_connections、messaging_consents、已撤回Buddy四表、Natal/dynamic共14表摘要持续等于前基线。B正常APP撤销本次邀请、恢复接收false；A原false保持。必要清理仅B正常API软删本次新帖，作者旧详情404；原SELF软删帖不变，新帖不是物理擦除，请求ACCEPTED历史与撤销邀请保留。
+
+私有social-friends-runtime-private.json及前后元数据/界面留存，邀请token不打印/不上传。当前进展入口带副标题，初精确标签匹配未达后使用当前完整可见入口；基线观察最初假定buddy_preferences有id失败，改确定性行排序后仅读回；开关点击后的首次API观察过早，后续只读确认成功、没有重复切换。没有产品源码修改，不重复构建或已过检查。这是一端APP+另一虚构账号API的真实链，不声称双APP授权缓存/并发矩阵或系统Push通过。
+
+下一步仅定向定位现行头像/修改密码功能的入口、用途及会话后果，再选择必要普通实现/验证；手机/外部服务及历史STOP边界保持。
+
+---
+
 # 最新节点｜2026-11-11 Synastry与Comparison正常本人/虚构手填双盘
 
 同一后端c3950e0a/APP af74，B正常另建Synastry私有盘，第一盘沿用明确本人本命revision1，第二盘手填另一份明确虚构1996-02-29 03:12/分钟/Etc-UTC、坐标51/1与地点；没有读取其他账号出生资料。一次保存id5/input/result revision1、两盘各十主体、COMPUTED_UNVERIFIED、relationship_score=null；前四盘、正式users/Natal/其他动态摘要保持。
