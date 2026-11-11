@@ -116,13 +116,18 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
       ],
     ),
     body: ListView(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 112),
       children: [
         if (busy) const LinearProgressIndicator(),
         if (error != null)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
-            child: Text('未完成：$error', key: const Key('server-error')),
+            child: Text(
+              error == 'Forbidden'
+                  ? '当前账号没有此项访问权限。'
+                  : '未完成：$error',
+              key: const Key('server-error'),
+            ),
           ),
         if (_identity == null) const Text('请重新登录；旧账号资料已清除。') else ...children,
       ],
