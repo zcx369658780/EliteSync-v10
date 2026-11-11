@@ -14,7 +14,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 class _TestSession extends SessionNotifier {
   @override
-  Future<SessionState> build() async =>
+  SessionState build() =>
       const SessionState(status: AuthStatus.unauthenticated);
 
   void login() => state = const AsyncData(

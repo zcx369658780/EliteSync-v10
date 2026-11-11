@@ -10,7 +10,7 @@ class RtcTestSession extends SessionNotifier {
     user: UserSummary(id: id, phone: ''),
   );
   @override
-  Future<SessionState> build() async => member(1);
+  SessionState build() => member(1);
   void change(int id) => state = AsyncData(member(id));
   void logout() =>
       state = const AsyncData(SessionState(status: AuthStatus.unauthenticated));

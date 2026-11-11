@@ -285,6 +285,102 @@ RtcSessionEntity _videoCall(int id, String peer) => RtcSessionEntity.fromJson({
 
 void main() {
   testWidgets(
+    'background closes media once and resume requires explicit reconnect',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(1000, 2400));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final rtc = FakeRtcRemoteDataSource(_videoCall(103, 'BACKGROUND_PEER'));
+      final service = NotifyingLeaveRtcService(rtc);
+      await tester.pumpWidget(
+        _wrap(
+          const RtcCallPage(callId: 103, autoConnect: false),
+          rtc: rtc,
+          service: service,
+          liveKit: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(service.connections, [103]);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      expect(service.leaves, [103]);
+      expect(service.connections, [103]);
+      await tester.pump(const Duration(seconds: 4));
+      await tester.pumpAndSettle();
+      expect(service.connections, [103]);
+      final reconnect = find.text('重新连接');
+      await tester.ensureVisible(reconnect);
+      await tester.tap(reconnect);
+      await tester.pumpAndSettle();
+      expect(service.connections, [103, 103]);
+      expect(rtc.requestOrder, contains('session'));
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets('late reconnect read stays closed after background round trip', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final session = _videoCall(106, 'LATE_RECONNECT_PEER');
+    final rtc = FakeRtcRemoteDataSource(session);
+    final service = NotifyingLeaveRtcService(rtc);
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 106, autoConnect: false),
+        rtc: rtc,
+        service: service,
+        liveKit: true,
+      ),
+    );
+    addTearDown(() async {
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpWidget(const SizedBox());
+    });
+    await tester.pumpAndSettle();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pumpAndSettle();
+    rtc.pendingFetch = Completer();
+    await tester.tap(find.text('重新连接'));
+    await tester.pump();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    rtc.pendingFetch!.complete(session);
+    await tester.pumpAndSettle();
+    expect(service.connections, [106]);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('late call read cannot start capture while backgrounded', (
+    tester,
+  ) async {
+    final session = _videoCall(104, 'LATE_BACKGROUND_PEER');
+    final rtc = FakeRtcRemoteDataSource(session)..pendingFetch = Completer();
+    final service = NotifyingLeaveRtcService(rtc);
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 104, autoConnect: false),
+        rtc: rtc,
+        service: service,
+        liveKit: true,
+      ),
+    );
+    await tester.pump();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    rtc.pendingFetch!.complete(session);
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(service.connections, isEmpty);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pumpAndSettle();
+    expect(service.connections, isEmpty);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets(
     'same-call polling retains video surface and scroll state until success',
     (tester) async {
       final session = _videoCall(97, 'CURRENT_VIDEO_PEER');

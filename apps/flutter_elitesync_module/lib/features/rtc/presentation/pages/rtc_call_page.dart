@@ -49,6 +49,8 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   bool _serviceBound = false;
   SessionState? _ownerSession;
   bool _sessionInvalidated = false;
+  bool _foreground = true;
+  int _mediaEpoch = 0;
 
   bool get _currentSession =>
       mounted &&
@@ -59,6 +61,12 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   @override
   void initState() {
     super.initState();
+    final lifecycle = WidgetsBinding.instance.lifecycleState;
+    _foreground =
+        lifecycle != AppLifecycleState.paused &&
+        lifecycle != AppLifecycleState.hidden &&
+        lifecycle != AppLifecycleState.detached;
+    if (!_foreground) _closedMediaCallIds.add(widget.callId);
     WidgetsBinding.instance.addObserver(this);
     ref
         .read(frontendTelemetryProvider)
@@ -73,6 +81,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   void didUpdateWidget(covariant RtcCallPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.callId != widget.callId) {
+      _mediaEpoch++;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         unawaited(_leaveMediaOnce(oldWidget.callId));
       });
@@ -85,8 +94,8 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   // Set the guard before leave can notify listeners and schedule another build.
   // Explicit reconnect starts a fresh media attempt; rebuilds never do.
   Future<void> _leaveMediaOnce(int callId) async {
-    if (!_serviceBound) return;
     if (!_closedMediaCallIds.add(callId)) return;
+    if (!_serviceBound) return;
     await _liveKitService.leave(callId: callId);
   }
 
@@ -104,19 +113,24 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused) {
-      // No background capture; the user explicitly re-enables devices on return.
-      unawaited(
-        _mediaAction(() async {
-          await _liveKitService.setCameraEnabled(false);
-          await _liveKitService.setMicrophoneEnabled(false);
-        }),
-      );
+    if (state == AppLifecycleState.resumed) {
+      setState(() => _foreground = true);
+      return;
     }
+    if (state != AppLifecycleState.paused &&
+        state != AppLifecycleState.hidden &&
+        state != AppLifecycleState.detached) {
+      return;
+    }
+    _foreground = false;
+    _mediaEpoch++;
+    // Invalidate pending permissions and connection work before native teardown.
+    // Returning to the page requires an explicit, freshly authorized reconnect.
+    unawaited(_leaveMediaOnce(widget.callId));
   }
 
   Future<void> _mediaAction(Future<void> Function() action) async {
-    if (!_currentSession) return;
+    if (!_currentSession || !_foreground) return;
     try {
       await action();
     } catch (_) {
@@ -165,7 +179,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   }
 
   Future<void> _autoConnect(RtcSessionEntity session) async {
-    if (!_currentSession) return;
+    if (!_currentSession || !_foreground) return;
     if (_busy || _autoConnectedCallId == session.id) return;
     if (!session.canConnect) return;
     _autoConnectedCallId = session.id;
@@ -183,7 +197,11 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
       return;
     }
 
-    if (!liveKit.isEnabled || _closedMediaCallIds.contains(session.id)) return;
+    if (!_foreground ||
+        !liveKit.isEnabled ||
+        _closedMediaCallIds.contains(session.id)) {
+      return;
+    }
 
     if (_busy) return;
     if (!['connecting', 'in_call'].contains(session.status)) return;
@@ -198,25 +216,31 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   }
 
   Future<void> _reconnectMedia() async {
-    if (!_currentSession) return;
+    if (!_currentSession || !_foreground) return;
     if (_busy || _liveKitService.isConnecting || _liveKitService.isConnected) {
       return;
     }
     final callId = widget.callId;
+    final epoch = _mediaEpoch;
+    bool isCurrentAttempt() =>
+        _currentSession &&
+        _foreground &&
+        _mediaEpoch == epoch &&
+        widget.callId == callId;
     setState(() => _busy = true);
     try {
       // Never reuse the page's cached session or the previous room credentials.
       final current = await ref
           .read(rtcRemoteDataSourceProvider)
           .fetchCall(callId);
-      if (!mounted || !_currentSession || widget.callId != callId) return;
+      if (!isCurrentAttempt()) return;
       if (current.id != callId ||
           current.isTerminal ||
           !['connecting', 'in_call'].contains(current.status)) {
         throw StateError('通话当前不可重新连接');
       }
       await _leaveMediaOnce(callId);
-      if (!mounted || !_currentSession || widget.callId != callId) return;
+      if (!isCurrentAttempt()) return;
       _closedMediaCallIds.remove(callId);
       _liveKitAttemptedCallId = current.id;
       // ensureConnected obtains fresh join information through the server gate.
@@ -365,7 +389,8 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
         if (_liveKitService.isEnabled &&
             ['connecting', 'in_call'].contains(session.status) &&
             !session.isTerminal &&
-            _liveKitAttemptedCallId == session.id &&
+            (_liveKitAttemptedCallId == session.id ||
+                _closedMediaCallIds.contains(session.id)) &&
             !_liveKitService.isConnected &&
             !_liveKitService.isConnecting)
           AppSecondaryButton(

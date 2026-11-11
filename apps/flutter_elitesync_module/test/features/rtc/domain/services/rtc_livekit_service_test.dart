@@ -1,4 +1,5 @@
 import 'package:livekit_client/livekit_client.dart';
+import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
 import 'package:flutter/foundation.dart';
 import 'dart:async';
 
@@ -48,6 +49,38 @@ RtcLiveKitService _service(_DeniedRtcSource source, {bool enabled = true}) =>
 class _MediaParticipant implements LocalParticipant {
   int microphonePublications = 0;
   int cameraPublications = 0;
+  bool cameraAlreadyPublished = true;
+  bool failVideoPublish = false;
+  Completer<LocalTrackPublication<LocalVideoTrack>>? pendingVideoPublish;
+  final videoPublishStarted = Completer<void>();
+  @override
+  final Map<String, LocalTrackPublication> trackPublications = {};
+  @override
+  List<LocalTrackPublication<LocalVideoTrack>> get videoTrackPublications =>
+      trackPublications.values
+          .whereType<LocalTrackPublication<LocalVideoTrack>>()
+          .toList();
+  @override
+  LocalTrackPublication? getTrackPublicationBySource(TrackSource source) =>
+      source == TrackSource.camera && cameraAlreadyPublished
+      ? _CapturePublication(_CaptureTrack())
+      : null;
+
+  @override
+  Future<LocalTrackPublication<LocalVideoTrack>> publishVideoTrack(
+    LocalVideoTrack track, {
+    VideoPublishOptions? publishOptions,
+  }) async {
+    cameraPublications++;
+    if (!videoPublishStarted.isCompleted) videoPublishStarted.complete();
+    if (failVideoPublish) throw StateError('Synthetic video publish failure');
+    if (pendingVideoPublish != null) return pendingVideoPublish!.future;
+    final publication = _CapturePublication<LocalVideoTrack>(track);
+    cameraAlreadyPublished = true;
+    trackPublications['camera'] = publication;
+    return publication;
+  }
+
   @override
   Future<LocalTrackPublication?> setMicrophoneEnabled(
     bool enabled, {
@@ -70,27 +103,349 @@ class _MediaParticipant implements LocalParticipant {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
+class _CaptureTrack implements LocalTrack {
+  int stops = 0;
+  bool failStop = false;
+  @override
+  Future<bool> stop() async {
+    stops++;
+    if (failStop) throw StateError('Synthetic native stop failure');
+    return true;
+  }
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+class _CapturePublication<T extends LocalTrack>
+    implements LocalTrackPublication<T> {
+  _CapturePublication(this.track);
+  @override
+  final T track;
+  @override
+  bool get muted => false;
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+class _VideoCaptureTrack extends _CaptureTrack implements LocalVideoTrack {
+  final positionStarted = Completer<void>();
+  Completer<void>? pendingPosition;
+  VideoCaptureOptions _options = const CameraCaptureOptions();
+  @override
+  VideoCaptureOptions get currentOptions => _options;
+  @override
+  set currentOptions(VideoCaptureOptions value) => _options = value;
+  @override
+  rtc.MediaStreamTrack mediaStreamTrack = _NativeVideoTrack();
+  @override
+  Future<void> restartTrack([LocalTrackOptions? options]) async {
+    if (!positionStarted.isCompleted) positionStarted.complete();
+    await pendingPosition?.future;
+  }
+
+  @override
+  Map<String, SimulcastTrackInfo> simulcastCodecs = {};
+}
+
+class _NativeVideoTrack implements rtc.MediaStreamTrack {
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
 class _MediaRoom implements Room {
-  _MediaRoom(this.localParticipant);
+  _MediaRoom(this.localParticipant, {this.roomOptions = const RoomOptions()});
   Completer<void>? disconnectPending;
+  bool failDisconnect = false;
+  int disposeCalls = 0;
   final disconnectStarted = Completer<void>();
   @override
   final LocalParticipant localParticipant;
+  @override
+  final RoomOptions roomOptions;
   @override
   void removeListener(VoidCallback listener) {}
   @override
   Future<void> disconnect() async {
     if (!disconnectStarted.isCompleted) disconnectStarted.complete();
+    if (failDisconnect) throw StateError('Synthetic disconnect failure');
     await disconnectPending?.future;
   }
 
   @override
-  Future<bool> dispose() async => true;
+  Future<bool> dispose() async {
+    disposeCalls++;
+    return true;
+  }
+
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
 void main() {
+  test(
+    'new camera uses its capture position as the next switch baseline',
+    () async {
+      final participant = _MediaParticipant()..cameraAlreadyPublished = false;
+      final track = _VideoCaptureTrack();
+      final service = RtcLiveKitService.mediaControlTest(
+        remoteDataSource: _DeniedRtcSource(),
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Camera position baseline test',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: false,
+        ),
+        room: _MediaRoom(
+          participant,
+          roomOptions: const RoomOptions(
+            defaultCameraCaptureOptions: CameraCaptureOptions(
+              cameraPosition: CameraPosition.back,
+            ),
+          ),
+        ),
+        microphonePermission: () async => true,
+        cameraPermission: () async => true,
+        cameraTrackFactory: (options) async {
+          track.currentOptions = options;
+          return track;
+        },
+      );
+      await service.setCameraEnabled(true);
+      await service.switchCamera();
+      expect(
+        (track.currentOptions as CameraCaptureOptions).cameraPosition,
+        CameraPosition.front,
+      );
+      await service.leave();
+      service.dispose();
+    },
+  );
+
+  test('camera switch finishing after leave stops restarted capture', () async {
+    final participant = _MediaParticipant()..cameraAlreadyPublished = false;
+    final track = _VideoCaptureTrack()..pendingPosition = Completer<void>();
+    final service = RtcLiveKitService.mediaControlTest(
+      remoteDataSource: _DeniedRtcSource(),
+      appEnv: const AppEnv(
+        flavor: AppFlavor.dev,
+        appName: 'Camera switch ownership test',
+        apiBaseUrl: 'http://127.0.0.1',
+        useMockData: false,
+      ),
+      room: _MediaRoom(participant),
+      microphonePermission: () async => true,
+      cameraPermission: () async => true,
+      cameraTrackFactory: (_) async => track,
+    );
+    await service.setCameraEnabled(true);
+    final switching = service.switchCamera();
+    await track.positionStarted.future;
+    await service.leave();
+    final stopsBeforeCompletion = track.stops;
+    track.pendingPosition!.complete();
+    await switching;
+    expect(track.stops, greaterThan(stopsBeforeCompletion));
+    expect(service.cameraEnabled, isFalse);
+    service.dispose();
+  });
+
+  for (final boundary in [
+    'creation',
+    'publication',
+    'publish failure',
+    'current',
+  ]) {
+    test('camera track ownership survives $boundary boundary', () async {
+      final participant = _MediaParticipant()..cameraAlreadyPublished = false;
+      if (boundary == 'publish failure') participant.failVideoPublish = true;
+      if (boundary == 'publication') {
+        participant.pendingVideoPublish = Completer();
+      }
+      final room = _MediaRoom(participant);
+      final track = _VideoCaptureTrack();
+      final creation = Completer<LocalVideoTrack>();
+      final creationStarted = Completer<void>();
+      var creations = 0;
+      final service = RtcLiveKitService.mediaControlTest(
+        remoteDataSource: _DeniedRtcSource(),
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Pending capture test',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: false,
+        ),
+        room: room,
+        microphonePermission: () async => true,
+        cameraPermission: () async => true,
+        cameraTrackFactory: (_) {
+          creations++;
+          creationStarted.complete();
+          return creation.future;
+        },
+      );
+      final enable = service.setCameraEnabled(true);
+      final expectedFailure = boundary == 'publish failure'
+          ? expectLater(enable, throwsStateError)
+          : null;
+      await creationStarted.future;
+      if (boundary == 'creation') await service.leave();
+      creation.complete(track);
+      if (boundary == 'publication') {
+        await participant.videoPublishStarted.future;
+        await service.leave();
+        expect(track.stops, greaterThanOrEqualTo(1));
+        participant.pendingVideoPublish!.complete(
+          _CapturePublication<LocalVideoTrack>(track),
+        );
+      }
+      if (expectedFailure != null) {
+        await expectedFailure;
+      } else {
+        await enable;
+      }
+      expect(creations, 1);
+      if (boundary == 'current') {
+        expect(service.cameraEnabled, isTrue);
+        expect(track.stops, 0);
+        await service.setCameraEnabled(true);
+        expect(creations, 1);
+      } else {
+        expect(service.cameraEnabled, isFalse);
+        expect(track.stops, greaterThanOrEqualTo(1));
+        expect(participant.cameraPublications, boundary == 'creation' ? 0 : 1);
+      }
+      await service.leave();
+      service.dispose();
+    });
+  }
+
+  test('reconnect leave waits for previous native teardown', () async {
+    final room = _MediaRoom(_MediaParticipant())
+      ..disconnectPending = Completer<void>();
+    final service = RtcLiveKitService.mediaControlTest(
+      remoteDataSource: _DeniedRtcSource(),
+      appEnv: const AppEnv(
+        flavor: AppFlavor.dev,
+        appName: 'Teardown serialization test',
+        apiBaseUrl: 'http://127.0.0.1',
+        useMockData: false,
+      ),
+      room: room,
+      microphonePermission: () async => true,
+      cameraPermission: () async => true,
+    );
+    final first = service.leave();
+    await room.disconnectStarted.future;
+    var secondFinished = false;
+    final second = service.leave().then((_) => secondFinished = true);
+    await Future<void>.delayed(Duration.zero);
+    final finishedBeforeDisconnect = secondFinished;
+    room.disconnectPending!.complete();
+    await first;
+    await second;
+    expect(finishedBeforeDisconnect, isFalse);
+    expect(room.disposeCalls, 1);
+    service.dispose();
+  });
+
+  test('local capture stops before a pending signaling disconnect', () async {
+    final microphone = _CaptureTrack()..failStop = true;
+    final camera = _CaptureTrack();
+    final participant = _MediaParticipant()
+      ..trackPublications.addAll({
+        'microphone': _CapturePublication(microphone),
+        'camera': _CapturePublication(camera),
+      });
+    final room = _MediaRoom(participant)..disconnectPending = Completer<void>();
+    final service = RtcLiveKitService.mediaControlTest(
+      remoteDataSource: _DeniedRtcSource(),
+      appEnv: const AppEnv(
+        flavor: AppFlavor.dev,
+        appName: 'Capture stop test',
+        apiBaseUrl: 'http://127.0.0.1',
+        useMockData: false,
+      ),
+      room: room,
+      microphonePermission: () async => true,
+      cameraPermission: () async => true,
+    );
+    final leaving = service.leave();
+    await room.disconnectStarted.future;
+    // A failed microphone stop must still attempt the camera before signaling.
+    final stopCounts = [microphone.stops, camera.stops];
+    room.disconnectPending!.complete();
+    await leaving;
+    expect(stopCounts, [1, 1]);
+    expect(room.disposeCalls, 1);
+    service.dispose();
+  });
+
+  test('disconnect failure still disposes media resources', () async {
+    final room = _MediaRoom(_MediaParticipant())..failDisconnect = true;
+    final service = RtcLiveKitService.mediaControlTest(
+      remoteDataSource: _DeniedRtcSource(),
+      appEnv: const AppEnv(
+        flavor: AppFlavor.dev,
+        appName: 'Media cleanup test',
+        apiBaseUrl: 'http://127.0.0.1',
+        useMockData: false,
+      ),
+      room: room,
+      microphonePermission: () async => true,
+      cameraPermission: () async => true,
+    );
+    await service.leave();
+    expect(room.disposeCalls, 1);
+    expect(service.microphoneEnabled, isFalse);
+    service.dispose();
+  });
+
+  test(
+    'late microphone grant after leave cannot request camera permission',
+    () async {
+      final source = _PendingRtcSource();
+      final microphone = Completer<bool>();
+      final permissionStarted = Completer<void>();
+      var cameraRequests = 0;
+      final service = RtcLiveKitService.mediaControlTest(
+        remoteDataSource: source,
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Media permission test',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: false,
+          useLiveKitRtc: true,
+        ),
+        room: _MediaRoom(_MediaParticipant()),
+        microphonePermission: () {
+          permissionStarted.complete();
+          return microphone.future;
+        },
+        cameraPermission: () async {
+          cameraRequests++;
+          return true;
+        },
+      );
+      final connection = service.ensureConnected(105);
+      source.reply.complete(
+        RtcLiveKitJoinInfoEntity.fromJson({
+          'enabled': true,
+          'url': 'ws://127.0.0.1',
+          'token': 'unit-test-placeholder',
+          'mode': 'video',
+        }),
+      );
+      await permissionStarted.future;
+      await service.leave(callId: 105);
+      microphone.complete(true);
+      await connection;
+      expect(cameraRequests, 0);
+      expect(service.isConnected, isFalse);
+      service.dispose();
+    },
+  );
+
   for (final gateway in [
     'ws://untrusted.example.com:7880',
     'ws://localhost:7880',
