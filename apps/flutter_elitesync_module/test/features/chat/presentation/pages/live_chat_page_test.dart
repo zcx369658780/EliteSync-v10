@@ -325,6 +325,104 @@ void main() {
   });
 
   testWidgets(
+    'manual chat refresh reauthorizes a removed avatar without polling downloads',
+    (tester) async {
+      final api = _MediaApi();
+      var hasAvatar = true;
+      var metadataReads = 0;
+      var contentReads = 0;
+      final dio = Dio()
+        ..interceptors.add(
+          InterceptorsWrapper(
+            onRequest: (options, handler) {
+              if (options.path == '/api/v1/avatars/2') {
+                metadataReads++;
+                handler.resolve(
+                  Response<Map<String, dynamic>>(
+                    requestOptions: options,
+                    statusCode: 200,
+                    data: {
+                      'revision': hasAvatar ? 1 : 2,
+                      'avatar': hasAvatar
+                          ? {
+                              'owner_user_id': 2,
+                              'revision': 1,
+                              'content_path': '/api/v1/avatars/2/1',
+                            }
+                          : null,
+                    },
+                  ),
+                );
+              } else {
+                contentReads++;
+                handler.resolve(
+                  Response<List<int>>(
+                    requestOptions: options,
+                    statusCode: 200,
+                    data: base64Decode(
+                      'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNgAAIAAAUAAXpeqz8AAAAASUVORK5CYII=',
+                    ),
+                  ),
+                );
+              }
+            },
+          ),
+        );
+      final secure = await syntheticPrivateLogin();
+      final container = ProviderContainer(
+        overrides: [
+          secureStorageProvider.overrideWithValue(secure),
+          apiClientProvider.overrideWithValue(api),
+          sessionProvider.overrideWith(_AvatarSession.new),
+          avatarApiProvider.overrideWithValue(AvatarApi(dio)),
+          appEnvProvider.overrideWithValue(
+            const AppEnv(
+              flavor: AppFlavor.dev,
+              appName: 'fixture',
+              apiBaseUrl: 'https://fixture.invalid',
+              useMockData: false,
+              useMockChat: true,
+            ),
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: const MaterialApp(home: LiveChatPage(peerId: 2)),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byType(AuthenticatedAvatar), findsOneWidget);
+      expect(find.byType(Image), findsOneWidget);
+      final oldImage = tester.widget<Image>(find.byType(Image)).image;
+      expect(metadataReads, 1);
+      expect(contentReads, 1);
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(metadataReads, 1);
+      expect(contentReads, 1);
+      hasAvatar = false;
+      await tester.tap(find.byIcon(Icons.refresh));
+      await tester.pumpAndSettle();
+      expect(find.text('retained conversation'), findsOneWidget);
+      expect(find.byType(AuthenticatedAvatar), findsOneWidget);
+      expect(find.byType(Image), findsNothing);
+      expect(metadataReads, 2);
+      expect(contentReads, 1);
+      expect(find.byTooltip('刷新对话'), findsOneWidget);
+      expect(
+        (await oldImage.obtainCacheStatus(
+          configuration: ImageConfiguration.empty,
+        ))?.tracked,
+        isFalse,
+      );
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets(
     'authorized image opens zoomable preview, back closes it and denial removes it',
     (tester) async {
       final api = _MediaApi()..includeImage = true;

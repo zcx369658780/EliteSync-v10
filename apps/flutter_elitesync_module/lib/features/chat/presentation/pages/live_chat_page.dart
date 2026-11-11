@@ -167,6 +167,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
 
   SessionState? _session;
   int _epoch = 0;
+  int _avatarRefresh = 0;
   CancelToken _uploadCancellation = CancelToken();
 
   bool _current(SessionState session, int epoch) =>
@@ -904,7 +905,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             if (_error == null && !_offline)
               AuthenticatedAvatar(
                 ownerId: widget.peerId,
-                refreshKey: _epoch,
+                refreshKey: (_epoch, _avatarRefresh),
                 size: 32,
               ),
             const SizedBox(width: 8),
@@ -912,7 +913,14 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           ],
         ),
         actions: [
-          IconButton(onPressed: _load, icon: const Icon(Icons.refresh)),
+          IconButton(
+            tooltip: '刷新对话',
+            onPressed: () {
+              setState(() => _avatarRefresh++);
+              unawaited(_load());
+            },
+            icon: const Icon(Icons.refresh),
+          ),
           IconButton(
             onPressed: _busy ? null : () => _call('voice'),
             tooltip: '语音通话',
