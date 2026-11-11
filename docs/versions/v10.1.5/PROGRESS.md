@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 城市编辑与可选MBTI正常持久链
+
+af74候选5580虚构B正常“我的→Private Identity→兼容资料编辑页”，城市单独保存DevCity-B，正常API/真实MariaDB读回一致，除city/updated_at外该用户字段摘要不变；正常返回并重新打开编辑页仍显示相同城市。不提交整份出生资料或触发重算，首轮寻找旧ProfilePage入口仅导航未达，未作为功能失败或保存尝试。私有profile-city-runtime-private.json。
+
+可选MBTI页面初始410/feature_disabled，原证保留；在本机私有app.env仅启用既有FEATURE_MBTI_ENABLED，刷新确切自有API容器，DB/WS/SFU/AVD保持。FEATURE_PERSONALITY_TEST_ENABLED仍false，未运行匹配引擎。B正常UI读取lite3_v1三题、选择A/B/A、一次提交；三个规范题ID/选项、attempt一条和用户结果一致，正常重新进入页再次读取持久化结果。除public_mbti/public_personality/updated_at外用户字段摘要保持。当前组件没有服务端草稿功能，本节点不声称中断续答、心理诊断效度、正式人格评估或匹配排序验证。私有mbti-runtime-private.json和截图，不上传dotenv/答卷原证。本段无产品源码变动，不机械重复测试/构建。
+
+下一步仅Showcase私有草稿保存与重新读取，Safety审核及公开发布不在本段内。
+
+---
+
 # 最新节点｜2026-11-11 登出新包正常UI与同会话撤销读回通过
 
 源码5a7625824064c545bcaa24f126cf14534556d4d6，离线增量36.748秒/退出0，APK SHA256 af74f986365ea816aacb683d2d20379821387791fd9fe2959956632f73bf7297、154165710字节，签名/包名/arm64 Debug/新增提示标记通过。构建前两次因可用内存不足未启动编译；解除已完成的自有attach并正常关闭5580保留AVD后通过资源门。恢复仅5580，首次安装过早因启动未完成失败原证保留；等待boot完成后安装成功，不影响5582/手机。

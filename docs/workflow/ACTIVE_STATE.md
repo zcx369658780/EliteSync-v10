@@ -16,7 +16,9 @@ Owner已恢复全自动持续工程，普通工程长期授权有效，直到明
 
 新包在同一APP PID内：B新题0/20→正常选一题保存/index1→正常返回/设置退出/登录A→A新题0/20且B草稿未变→正常退出/登录B→B恢复自己的同题序和2/20。没有新提交；DB user1答案20/历史1，user2答案0/历史0，A新草稿0/B草稿1。实际只闭合此正常UI子范围；延迟回包、同账号token变化及A→B→A由定向测试覆盖，未冒充Android故障矩阵。私有 `questionnaire-account-runtime-after-fix-private.json`。
 
-**登出成功回执提示已修复并经新包正常UI验证。** 仅规范 `ok=true/SESSION_REVOKED` 回执确认对应登出；失败/未知回执保留待办，本地清理失败警告保留。确认框及待办写入后复核原intent/token，防止迟到确认污染新账号退出。队列等待切号原码RED，最终55项定向检查（含单widget七场景）/四文件analyze通过，非作者Sol发现的P2已修，最终无新增P1/P2。新af74包5580正常B设置确认退出后，登录页显示“当前会话的服务端撤销已确认”，相同服务端会话revoked/令牌0、其他会话与其令牌数量摘要不变；随后正常登录B恢复。私有 `logout-confirmation-runtime-private.json`。网络失败/未知回执/切号/本地清理故障仍仅定向测试证据，不冒充Android矩阵。下一步继续正常资料编辑与持久化链，已过问卷/通话不重跑。
+**登出成功回执提示已修复并经新包正常UI验证。** 仅规范 `ok=true/SESSION_REVOKED` 回执确认对应登出；失败/未知回执保留待办，本地清理失败警告保留。确认框及待办写入后复核原intent/token，防止迟到确认污染新账号退出。队列等待切号原码RED，最终55项定向检查（含单widget七场景）/四文件analyze通过，非作者Sol发现的P2已修，最终无新增P1/P2。新af74包5580正常B设置确认退出后，登录页显示“当前会话的服务端撤销已确认”，相同服务端会话revoked/令牌0、其他会话与其令牌数量摘要不变；随后正常登录B恢复。私有 `logout-confirmation-runtime-private.json`。网络失败/未知回执/切号/本地清理故障仍仅定向测试证据，不冒充Android矩阵。
+
+**资料城市与可选MBTI正常持久链通过。** B正常兼容资料编辑页单独保存虚构城市DevCity-B，API/DB读回一致，重新进入页面保持，除city/updated_at外用户字段摘要不变。MBTI初始HTTP410，已仅在私有本机app.env启用既有FEATURE_MBTI_ENABLED并刷新自有API，性格排序FEATURE_PERSONALITY_TEST_ENABLED仍false。B正常APP答lite3_v1三题、仅提交一次，三个题ID/选项及结果持久化，重新打开页面读回；非MBTI用户字段摘要保持，不称心理效度或匹配验证。私有 `profile-city-runtime-private.json`、`mbti-runtime-private.json`。没有新增产品源码或重编APK。下一步继续Showcase私有草稿保存/重新读取，不处理Safety审核、不公开发布或改变匹配授权。
 
 ## 既过子范围与证据边界
 
