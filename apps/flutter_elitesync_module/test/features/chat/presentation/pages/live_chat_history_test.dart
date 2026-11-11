@@ -33,6 +33,7 @@ class _Session extends SessionNotifier {
 class _Api extends ApiClient {
   _Api() : super(dio: Dio());
   int count = 7;
+  bool includeSenders = false;
   bool unavailable = false;
   final deltas = <int>[];
   int? olderFailure;
@@ -75,6 +76,9 @@ class _Api extends ApiClient {
               count,
               (i) => <String, dynamic>{
                 'id': i + 1,
+                if (includeSenders)
+                  'sender_id': i == 6 ? null : (i.isEven ? 2 : 1),
+                'is_read': true,
                 'content': 'fictional message ${i + 1}',
                 'attachments': <dynamic>[],
               },
@@ -132,11 +136,39 @@ Future<void> _older(WidgetTester tester) async {
       matching: find.byType(Scrollable),
     ),
   );
+  await Scrollable.ensureVisible(tester.element(button), alignment: 0.5);
+  await tester.pumpAndSettle();
+  expect(button.hitTestable(), findsOneWidget);
   await tester.tap(button);
   await tester.pumpAndSettle();
 }
 
 void main() {
+  testWidgets(
+    'message direction uses current sender and unknown stays neutral',
+    (tester) async {
+      tester.view.physicalSize = const Size(320, 640);
+      tester.view.devicePixelRatio = 1;
+      tester.platformDispatcher.textScaleFactorTestValue = 1.6;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+      final api = _Api()..includeSenders = true;
+      await _mount(tester, api);
+      expect(find.text('我 · 已读'), findsOneWidget);
+      expect(find.text('对方'), findsOneWidget);
+      expect(find.text('消息'), findsOneWidget);
+      final own = find.byKey(const ValueKey('live-message-6'));
+      final peer = find.byKey(const ValueKey('live-message-5'));
+      expect(
+        tester.getTopLeft(own).dx,
+        greaterThan(tester.getTopLeft(peer).dx),
+      );
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
   testWidgets('another page recovering first does not lock the retained chat', (
     tester,
   ) async {

@@ -701,7 +701,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
 
   Future<void> _post(SessionState session, int epoch, {int? asset}) async {
     if (!_current(session, epoch) || _offline) return;
-    if (!await _canStartSubmission(session, epoch) || !_current(session, epoch)) {
+    if (!await _canStartSubmission(session, epoch) ||
+        !_current(session, epoch)) {
       return;
     }
     // An unconfirmed POST owns its immutable payload and idempotency key.
@@ -1109,7 +1110,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 size: 32,
               ),
             const SizedBox(width: 8),
-            const Text('对话'),
+            const Flexible(
+              child: Text('对话', maxLines: 1, overflow: TextOverflow.ellipsis),
+            ),
           ],
         ),
         actions: [
@@ -1160,8 +1163,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                       !_draftBusy &&
                       !_offline &&
                       _attempt == null)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Wrap(
+                      alignment: WrapAlignment.center,
                       children: [
                         TextButton(
                           onPressed: () =>
@@ -1187,55 +1190,86 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           Expanded(
             child: ListView(
               reverse: true,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               children: [
-                ..._messages.reversed.map(
-                  (m) => Card(
-                    key: ValueKey('live-message-${m['id']}'),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(m['content']?.toString() ?? ''),
-                          for (final a in (m['attachments'] as List? ?? []))
-                            if (a['media_asset'] is Map)
-                              if (_images[(a['media_asset']['id'] as num)
-                                      .toInt()]
-                                  case final bytes?)
-                                InkWell(
-                                  key: ValueKey(
-                                    'live-chat-image-${a['media_asset']['id']}',
-                                  ),
-                                  onTap: () => setState(
-                                    () => _previewImageId =
-                                        (a['media_asset']['id'] as num).toInt(),
-                                  ),
-                                  child: Image.memory(
-                                    bytes,
-                                    width: 140,
-                                    height: 140,
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                          for (final a in (m['attachments'] as List? ?? []))
-                            if (a['media_asset'] is Map &&
-                                a['media_asset']['media_type'] == 'video')
-                              TextButton.icon(
-                                onPressed: () => _openVideo(
-                                  (a['media_asset']['id'] as num).toInt(),
-                                ),
-                                icon: const Icon(Icons.play_circle_outline),
-                                label: const Text('播放私有视频'),
+                ..._messages.reversed.map((m) {
+                  final senderId = (m['sender_id'] as num?)?.toInt();
+                  final sentByMe =
+                      senderId != null && senderId == _session?.user?.id;
+                  final colors = Theme.of(context).colorScheme;
+                  final textColor = sentByMe
+                      ? colors.onPrimaryContainer
+                      : colors.onSurface;
+                  return Align(
+                    alignment: sentByMe
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.sizeOf(context).width * 0.84,
+                      ),
+                      child: Card(
+                        key: ValueKey('live-message-${m['id']}'),
+                        color: sentByMe
+                            ? colors.primaryContainer
+                            : colors.surfaceContainerLow,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                m['content']?.toString() ?? '',
+                                style: TextStyle(color: textColor),
                               ),
-                          Text(
-                            m['is_read'] == true ? '已读' : '未读',
-                            style: Theme.of(context).textTheme.bodySmall,
+                              for (final a in (m['attachments'] as List? ?? []))
+                                if (a['media_asset'] is Map)
+                                  if (_images[(a['media_asset']['id'] as num)
+                                          .toInt()]
+                                      case final bytes?)
+                                    InkWell(
+                                      key: ValueKey(
+                                        'live-chat-image-${a['media_asset']['id']}',
+                                      ),
+                                      onTap: () => setState(
+                                        () => _previewImageId =
+                                            (a['media_asset']['id'] as num)
+                                                .toInt(),
+                                      ),
+                                      child: Image.memory(
+                                        bytes,
+                                        width: 140,
+                                        height: 140,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                              for (final a in (m['attachments'] as List? ?? []))
+                                if (a['media_asset'] is Map &&
+                                    a['media_asset']['media_type'] == 'video')
+                                  TextButton.icon(
+                                    onPressed: () => _openVideo(
+                                      (a['media_asset']['id'] as num).toInt(),
+                                    ),
+                                    icon: const Icon(Icons.play_circle_outline),
+                                    label: const Text('播放私有视频'),
+                                  ),
+                              Text(
+                                sentByMe
+                                    ? (m['is_read'] == true
+                                          ? '我 · 已读'
+                                          : '我 · 未读')
+                                    : (senderId == widget.peerId ? '对方' : '消息'),
+                                style: Theme.of(context).textTheme.bodySmall
+                                    ?.copyWith(color: textColor),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                }),
                 if (!_offline && _hasOlder)
                   TextButton(
                     key: const ValueKey('load-earlier-messages'),
@@ -1255,7 +1289,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(_draftStatus!),
             ),
-          Row(
+          Wrap(
             children: [
               TextButton(
                 onPressed:
@@ -1284,59 +1318,72 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             ],
           ),
           SafeArea(
-            child: Row(
-              children: [
-                IconButton(
-                  onPressed:
-                      _busy ||
-                          _draftBusy ||
-                          _attempt != null ||
-                          _pendingMedia != null ||
-                          _offline ||
-                          _timeLocked
-                      ? null
-                      : _picture,
-                  icon: const Icon(Icons.image),
-                  tooltip: '发送图片',
-                ),
-                IconButton(
-                  onPressed:
-                      _busy ||
-                          _draftBusy ||
-                          _attempt != null ||
-                          _pendingMedia != null ||
-                          _offline ||
-                          _timeLocked
-                      ? null
-                      : _video,
-                  icon: const Icon(Icons.video_library_outlined),
-                  tooltip: '发送短视频',
-                ),
-                Expanded(
-                  child: TextField(
-                    readOnly:
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(4, 4, 8, 8),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed:
                         _busy ||
-                        _draftBusy ||
-                        _attempt != null ||
-                        _offline ||
-                        _timeLocked,
-                    controller: _text,
-                    decoration: const InputDecoration(hintText: '输入消息'),
+                            _draftBusy ||
+                            _attempt != null ||
+                            _pendingMedia != null ||
+                            _offline ||
+                            _timeLocked
+                        ? null
+                        : _picture,
+                    icon: const Icon(Icons.image),
+                    tooltip: '发送图片',
                   ),
-                ),
-                TextButton(
-                  onPressed:
-                      _busy ||
+                  IconButton(
+                    onPressed:
+                        _busy ||
+                            _draftBusy ||
+                            _attempt != null ||
+                            _pendingMedia != null ||
+                            _offline ||
+                            _timeLocked
+                        ? null
+                        : _video,
+                    icon: const Icon(Icons.video_library_outlined),
+                    tooltip: '发送短视频',
+                  ),
+                  Expanded(
+                    child: TextField(
+                      readOnly:
+                          _busy ||
                           _draftBusy ||
                           _attempt != null ||
-                          _pendingMedia != null ||
                           _offline ||
-                          _timeLocked
-                      ? null
-                      : () => _send(),
-                  child: const Text('发送'),
-                ),
-              ],
+                          _timeLocked,
+                      controller: _text,
+                      minLines: 1,
+                      maxLines: 4,
+                      decoration: const InputDecoration(
+                        hintText: '输入消息',
+                        isDense: true,
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 10,
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed:
+                        _busy ||
+                            _draftBusy ||
+                            _attempt != null ||
+                            _pendingMedia != null ||
+                            _offline ||
+                            _timeLocked
+                        ? null
+                        : () => _send(),
+                    child: const Text('发送'),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
