@@ -24,7 +24,9 @@ Owner已恢复全自动持续工程，普通工程长期授权有效，直到明
 
 **三盘本命Linux运行及正常APP真实链通过。** Linux接线源码8932b90587720c35c4fe5d70e6eb632c882e0f02；相同六包版本单独官方哈希固定、Windows锁不改，Node原六包锁/固定DE440s和Linux许可原文保留。Python/Node的APT准备联网，wheel安装/运行离线；不称全镜像离线可复现。自有API专属派生镜像/只读tools、node_modules、kernel挂载，NATAL身份AVAILABLE，Python29/Node13、PHP语法通过，非作者静态复核无P1/P2，非法律/外部验收；Swiss研究和性格排序仍false。
 
-af74包B正常APP一份虚构输入（1995-01-01 10:30 Asia/Shanghai，明确算法参数/坐标/2026目标年）一次点击保存，输入/结果revision1、四柱/十二宫/十主体持久化。正常返回重新进入恢复日期/时间/时区，并实际观察版本行及八字/紫微/西方三段；正式用户全行/其他本人镜像摘要保持，A本人无盘。状态COMPUTED_UNVERIFIED/oracle UNVERIFIED，不提升为独立科学核验或匹配用途接受。私有 `natal-app-runtime-private.json`、`natal-linux-runtime`。下一步恢复现有动态盘正常链：目前动态开关关闭且开发库名仍固定旧v1011，需要让明确开发库配置沿用现有local/host/名称保护；不重开旧运行或改正式库。
+af74包B正常APP一份虚构输入（1995-01-01 10:30 Asia/Shanghai，明确算法参数/坐标/2026目标年）一次点击保存，输入/结果revision1、四柱/十二宫/十主体持久化。正常返回重新进入恢复日期/时间/时区，并实际观察版本行及八字/紫微/西方三段；正式用户全行/其他本人镜像摘要保持，A本人无盘。状态COMPUTED_UNVERIFIED/oracle UNVERIFIED，不提升为独立科学核验或匹配用途接受。私有 `natal-app-runtime-private.json`、`natal-linux-runtime`。
+
+**动态盘已接入当前独立虚构开发库，正常行运保存待验证。** 仅config增加DYNAMIC_CHARTS_DATABASE、原v1011默认值保持；local/loopback/名称门均不改。当前私有app.env显式启用并指定elitesync_v10_1_5_dev，实际API空历史200；关闭时原403保留。13项既有PHP合同在network-none/SQLite-memory隔离容器通过，实际中间件当前开发库200、旧/错误库名/远程host/production/disabled五个负例403，无计算/DB写。私有 `dynamic-runtime-wiring-private.json`、`dynamic-admission-private.log`。下一步B正常APP明确选择自己的本命revision1，填写一份虚构行运事件，保存计算/读回；不调用旧运行或更改旧库。
 
 ## 既过子范围与证据边界
 

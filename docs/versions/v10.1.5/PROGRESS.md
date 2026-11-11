@@ -1,3 +1,11 @@
+# 最新节点｜2026-11-11 动态盘当前独立开发库配置接入
+
+现有动态盘config数据库名硬编码旧elitesync_v1011_dev，当前独立v1015库即便开启功能也不合门。仅改为env(DYNAMIC_CHARTS_DATABASE,原默认值)，middleware/service的local/loopback/明确库名保护不变，未改旧库或调用旧执行器。本机私有env显式开启DYNAMIC_CHARTS_ENABLED并指定确切elitesync_v10_1_5_dev，刷新确切自有API，Natal/DB/WS/SFU/AVD和既有数据保持。
+
+13项既有PHP动态输入/接口合同在network-none/临时storage/SQLite-memory隔离容器通过（4+9），不使用真实开发DB或当前app.env。原关闭API403、当前实际历史200/空；同一实际middleware的只读进程内核对：当前local+正确库名+loopback200，旧库名/错误库名/远程host/production/disabled各403，没有引擎或数据写入。私有dynamic-config-contract-private.log、dynamic-runtime-wiring-private.json、dynamic-admission-private.log。正常APP行运输入/保存/结果尚NOT_RUN，下一步仅该最短虚构链；数值口径及UNVERIFIED不变。
+
+---
+
 # 最新节点｜2026-11-11 正常APP三盘本命输入与持久化读回
 
 后端8932b905、APP既有af74包，B正常“我的→三盘本命入口→排盘输入”，显式虚构1995-01-01/10:30/分钟/Asia-Shanghai、坐标31.23/121.47、算法男参数与2026目标年，默认核心十主体/回归黄道/Placidus。一次点击保存计算：DB本人镜像input/result revision均1、COMPUTED_UNVERIFIED，实际四柱4/紫微宫12/西占主体10，三模块oracle均UNVERIFIED；正式users全行及其他本人镜像摘要不变，A本人接口无盘。
