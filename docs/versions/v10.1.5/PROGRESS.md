@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 独立Web管理面板本机只读链贯通
+
+服务源码 `7ed081d478921b891692fa1e8ebaefc741b324a0`。仅当前回环开发库创建synthetic管理员id3，通过现有User模型保存密码哈希，私有dotenv仅增加一项ADMIN_PHONES；现有角色与白名单双门保持，无鉴权源码更改、容器重启、数据库重建或原APP用户提权。加入白名单前同角色账号真实HTTP登录拒绝，配置后正常浏览器登录成功。
+
+实际浏览器显示3用户，名称搜索Current Dev B仅1条，user2详情正常；问卷、举报、审计列表可打开但均为空，未提交审核、处罚、matching、Safety或发布操作。正常退出后访问/admin重定向登录；DB内该次管理session已revoked、active=0。普通虚构APP账号登录拒绝，缺少CSRF返回419；原两用户全行、101消息、4媒体及附件、处罚/审计/举报等具名表前后hash保持。数据库现3个虚构用户，不冒称只有2个。
+
+私有 `admin-prepare-private.json`、`admin-browser-private.json`、`admin-runtime-private.json`及截图留本机，密码/配置不上GitHub。此节点只关闭本机HTTP与空列表的只读子范围，非生产TLS、运营写入或整版验收。发现筛选结果正确而下拉框不保留当前选择，下一项修复回显；10 PARTIAL、AC05 OPEN、G2 false、真实Push PENDING保持。
+
+---
+
 # 最新节点｜2026-11-11 历史分页修复合包及实际失败恢复通过
 
 源码 `10385b0fb270936e66526138d16b2e98752be647` 增量构建38.682秒、退出0；APK SHA256 `4a645b683bde7af7309ad91c30a519d086dbaadb34db6d9b585ee2f6b3083ec9`、154152605字节，签名/身份/标记核验并更新5580。5582暂停保留ed01，不重复既过RTC/媒体主链。35项定向检查和analyze沿用该源码节点。
