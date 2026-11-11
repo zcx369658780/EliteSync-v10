@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 设置隐私导航修复与本人履历保存、清除
+
+实际正常设置打开隐私中心触发Navigator重复page key断言红屏，尚未变更隐私数据。最小真实appRouter测试同样RED：Me→root设置→push Me隐私子路由重复已挂载shell。改走现有root隐私路由，保持原Me独立入口和返回栈；回归覆盖进入隐私/字段页并逐层返回Me。27项相关设置/隐私/路由检查及两文件analyze通过，自审无P1/P2，未冒称外部独立审查。
+
+源码d97dba810563320efadfe578783982c484d8cee5离线增量42.124秒/退出0，APK SHA256 3e6e9f32fc4e972c0f523440a8080efa0f574372f0d7a0cd5c23eb644473ae2c、154181182字节，签名/身份/arm64 Debug通过，仅更新5580/B，保留登录；A仍772482a5/dc5d包。正常设置→隐私中心→正式关系字段分享已可用。B一次正常保存明确TEST_ONLY本人履历，API/DB一致；正常返回重进恢复同值，再一次正常清除、API/DB null，重进字段为空；返回隐私中心及设置正常。
+
+全程四项受众SELF、原privacy_preferences行完全保持，A获准资料投影没有resume；其他用户/本人其他字段及27张命名业务表保持。B updated_at正常变化，不称逐字节恢复。未建立正式关系、核验或改变分享权限，不声称完整受众/撤权/故障矩阵。私有privacy-fields-runtime-private.json、原红屏截图及RED日志保留；观察助手初假设Me展示昵称、语义合并标签未匹配均在突变前修正，没有重复保存。
+
+---
+
 # 最新节点｜2026-11-11 平台活动正常APP报名、确认、自主取消及恢复
 
 后端25bc01f7接通明确当前开发库，APP沿772482a5/dc5d包，无需重编。仅新增合成参与者4，排除匹配/广场/统计，原A/B非合成标记保持。既有管理员3正常localhost表单/Cookie/CSRF创建TEST_ONLY虚构活动，容量2，零费用预算DRAFT→REVIEWED→APPROVED_FOR_DEV_SIMULATION；仅开发模拟批准，不是付款或Owner财务批准。正常开放并定向邀请4；5582正常单会话退出A、登录4，APP读INVITED→报名APPLIED；后台正常确认后APP读CONFIRMED，再正常主动取消至CANCELLED_BY_USER。后台正常取消活动至CANCELLED、grant REVOKED并退出，受保护页面返回登录。
