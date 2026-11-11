@@ -239,6 +239,17 @@ void main() {
           findsOneWidget,
         );
         expect(f.secure.values.isEmpty, !failDelete);
+        tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+        tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+        await tester.pumpAndSettle();
+        expect(
+          find.text(
+            failDelete
+                ? '私有缓存清理失败，内容已锁定，请重新在线登录后重试清理。'
+                : '私有缓存已到期并完成清理，请重新在线登录。',
+          ),
+          findsOneWidget,
+        );
         await _dispose(tester, f);
       },
     );

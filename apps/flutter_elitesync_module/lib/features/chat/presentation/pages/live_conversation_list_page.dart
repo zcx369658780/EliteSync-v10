@@ -30,6 +30,7 @@ class _LiveConversationListPageState
   bool _trustedContextLocked = false;
   bool _foreground = true;
   String? _cacheStatus;
+  PrivateCachePurgeStatus? _cleanupStatus;
   Timer? _retentionTimer;
   Timer? _refreshTimer;
   PrivateCacheService get _cache =>
@@ -80,6 +81,13 @@ class _LiveConversationListPageState
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
+      if (_foreground) {
+        unawaited(_checkRetention());
+        return;
+      }
+      // A foreground return requires a current read, just like the chat page.
+      // Its failed network read must not reuse a pre-background offline grant.
+      _cache.beginOnlineRevalidation();
       setState(() => _foreground = true);
       unawaited(_refresh());
     } else {
@@ -88,11 +96,24 @@ class _LiveConversationListPageState
         _busy = false;
         _foreground = false;
         _items = [];
+        _offlineReadOnly = false;
+        if (!_trustedContextLocked) _cacheStatus = null;
+        _error = null;
       });
     }
   }
 
-  void _lockDisplay(String message) {
+  void _lockDisplay(String message, {PrivateCachePurgeStatus? purgeStatus}) {
+    // A queued poll may see only "untrusted" after another retention check
+    // completed/failed the purge. Keep that first concrete cleanup receipt.
+    if (_trustedContextLocked && _cleanupStatus != null && !_cache.isUnlocked) {
+      return;
+    }
+    _cleanupStatus = switch (purgeStatus) {
+      PrivateCachePurgeStatus.completed ||
+      PrivateCachePurgeStatus.failed => purgeStatus,
+      _ => null,
+    };
     _items = [];
     _offlineReadOnly = false;
     _trustedContextLocked = true;
@@ -110,7 +131,9 @@ class _LiveConversationListPageState
     if (!_cache.isUnlocked ||
         purge.status == PrivateCachePurgeStatus.completed ||
         purge.status == PrivateCachePurgeStatus.failed) {
-      setState(() => _lockDisplay(_purgeMessage(purge)));
+      setState(
+        () => _lockDisplay(_purgeMessage(purge), purgeStatus: purge.status),
+      );
       return;
     }
     if (_busy) return;
@@ -161,7 +184,7 @@ class _LiveConversationListPageState
     if (!_cache.isUnlocked ||
         purge.status == PrivateCachePurgeStatus.completed ||
         purge.status == PrivateCachePurgeStatus.failed) {
-      _lockDisplay(_purgeMessage(purge));
+      _lockDisplay(_purgeMessage(purge), purgeStatus: purge.status);
       return;
     }
     if (saved == null || saved['items'] is! List) {
@@ -247,7 +270,7 @@ class _LiveConversationListPageState
       if (!_current(session, epoch)) return;
       if (purge.status == PrivateCachePurgeStatus.completed ||
           purge.status == PrivateCachePurgeStatus.failed) {
-        _lockDisplay(_purgeMessage(purge));
+        _lockDisplay(_purgeMessage(purge), purgeStatus: purge.status);
         return;
       }
       final response = await ref
@@ -310,6 +333,7 @@ class _LiveConversationListPageState
         return;
       }
       _trustedContextLocked = false;
+      _cleanupStatus = null;
       _offlineReadOnly = false;
       _cacheStatus = '当前会话已按账户和设备加密保存。';
       _items = items;
@@ -341,6 +365,8 @@ class _LiveConversationListPageState
           _error = null;
           _busy = false;
           _offlineReadOnly = false;
+          _trustedContextLocked = false;
+          _cleanupStatus = null;
           _cacheStatus = null;
         });
         if (current?.isLoggedIn == true) Future.microtask(_refresh);

@@ -121,6 +121,39 @@ Future<PrivateCacheService> _show(WidgetTester tester, _Api api) async {
 }
 
 void main() {
+  testWidgets(
+    'offline resume hides the old list until a current read succeeds',
+    (tester) async {
+      final api = _Api();
+      final cache = await _show(tester, api);
+      expect(find.text('服务器消息'), findsOneWidget);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      await tester.pumpAndSettle();
+      api.offline = true;
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      expect(find.text('服务器消息'), findsNothing);
+      expect(await cache.readOffline('live-conversations:visible'), isNull);
+      expect(find.textContaining('没有本次可信登录'), findsOneWidget);
+      api.offline = false;
+      api.preview = '回前台后重新核验的消息';
+      await tester.pump(const Duration(seconds: 5));
+      await tester.pumpAndSettle();
+      expect(find.text('回前台后重新核验的消息'), findsOneWidget);
+      expect(find.textContaining('没有本次可信登录'), findsNothing);
+      // A duplicate lifecycle callback must not revoke the new read grant.
+      final reads = api.reads;
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      expect(api.reads, reads);
+      expect(
+        await cache.readOnlineAuthorized('live-conversations:visible'),
+        isNotNull,
+      );
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
   testWidgets('foreground polling updates the preview and unread count', (
     tester,
   ) async {
