@@ -56,7 +56,16 @@ class _QuestionnairePageState extends ConsumerState<QuestionnairePage> {
     }
 
     return AppScaffold(
-      appBar: const AppTopBar(title: '性格问卷', mode: AppTopBarMode.backTitle),
+      appBar: AppTopBar(
+        title: '性格问卷',
+        mode: AppTopBarMode.backTitle,
+        actions: [
+          TextButton(
+            onPressed: () => context.go(AppRouteNames.profile),
+            child: const Text('返回我的'),
+          ),
+        ],
+      ),
       floatingActionButton: kDebugMode
           ? FloatingActionButton.extended(
               onPressed: asyncState.maybeWhen(
