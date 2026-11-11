@@ -12,6 +12,8 @@ import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
+const _incompleteLogoutCleanupNotice = '已退出，私密数据仍锁定；部分本地清理未完成，请重新登录后重试。';
+
 class SessionState {
   const SessionState({
     required this.status,
@@ -61,6 +63,7 @@ final sessionRejectionNoticeProvider =
 class SessionNotifier extends AsyncNotifier<SessionState> {
   Future<void> _mutation = Future.value();
   int _authenticationIntent = 0;
+  int get currentAuthenticationIntent => _authenticationIntent;
   int beginAuthentication() {
     _authenticationIntent++;
     PrivateCacheService.forStorage(ref.read(secureStorageProvider)).lock();
@@ -69,6 +72,24 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
   }
 
   bool isCurrentAuthentication(int intent) => intent == _authenticationIntent;
+
+  // A server receipt updates only the matching signed-out feedback, never
+  // a later account, a subsequent logout, or any credential/permission state.
+  void confirmServerLogout(int intent) {
+    final current = state.asData?.value;
+    if (!isCurrentAuthentication(intent) ||
+        current?.status != AuthStatus.unauthenticated) {
+      return;
+    }
+    final notice = current!.notice == _incompleteLogoutCleanupNotice
+        ? '本机已退出；服务端撤销已确认，但部分本地清理未完成，私密数据仍锁定，请重新登录后重试。'
+        : '本机已退出；当前会话的服务端撤销已确认。';
+    state = AsyncData(
+      SessionState(status: AuthStatus.unauthenticated, notice: notice),
+    );
+    ref.read(sessionRejectionNoticeProvider.notifier).set(notice);
+  }
+
   Future<void> _serialize(Future<void> Function() action) {
     final next = _mutation.then((_) => action());
     _mutation = next.catchError((Object _) {});
@@ -153,8 +174,9 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
               ),
             );
         if (!current()) return;
-        if (result is! NetworkSuccess<Map<String, dynamic>>)
+        if (result is! NetworkSuccess<Map<String, dynamic>>) {
           throw StateError('Session not verified.');
+        }
         final data = result.data;
         final user = Map<String, dynamic>.from(data['user'] as Map);
         final retention = Map<String, dynamic>.from(
@@ -231,8 +253,9 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
     final intent = expectedIntent ?? ++_authenticationIntent;
     return _serialize(() async {
       void checkIntent() {
-        if (!isCurrentAuthentication(intent))
+        if (!isCurrentAuthentication(intent)) {
           throw StateError('Obsolete login response discarded.');
+        }
       }
 
       checkIntent();
@@ -343,8 +366,9 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
 
   Future<void> setUnauthenticated({String? notice, String? rejectedToken}) {
     final visibleToken = state.asData?.value.accessToken;
-    if (rejectedToken != null && rejectedToken != visibleToken)
+    if (rejectedToken != null && rejectedToken != visibleToken) {
       return Future.value();
+    }
     final logoutIntent = ++_authenticationIntent;
     state = AsyncData(
       SessionState(status: AuthStatus.unauthenticated, notice: notice),
@@ -363,7 +387,7 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
       if (logoutIntent != _authenticationIntent) return;
       final effectiveNotice = completed
           ? notice
-          : '已退出，私密数据仍锁定；部分本地清理未完成，请重新登录后重试。';
+          : _incompleteLogoutCleanupNotice;
       state = AsyncData(
         SessionState(
           status: AuthStatus.unauthenticated,

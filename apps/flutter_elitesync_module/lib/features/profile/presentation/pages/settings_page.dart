@@ -123,6 +123,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _handleLogout(BuildContext context, WidgetRef ref) async {
+    final notifier = ref.read(sessionProvider.notifier);
+    final originalIntent = notifier.currentAuthenticationIntent;
     final originalToken = ref.read(sessionProvider).asData?.value.accessToken;
     final confirmed = await AppConfirmDialog.show(
       context,
@@ -134,12 +136,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     );
     if (!confirmed || !context.mounted) return;
     final token = ref.read(sessionProvider).asData?.value.accessToken;
-    if (token != originalToken) return;
+    if (token != originalToken ||
+        !notifier.isCurrentAuthentication(originalIntent)) {
+      return;
+    }
     final revocationCredential =
         ref.read(sessionProvider).asData?.value.refreshToken ?? token;
     final secure = ref.read(secureStorageProvider);
     final client = ref.read(restrictedAccountClientProvider);
-    final notifier = ref.read(sessionProvider.notifier);
     final container = ProviderScope.containerOf(context, listen: false);
     try {
       if (revocationCredential != null) {
@@ -151,10 +155,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       }
       return;
     }
-    await notifier.setUnauthenticated(
+    if (!notifier.isCurrentAuthentication(originalIntent) ||
+        container.read(sessionProvider).asData?.value.accessToken != token) {
+      return;
+    }
+    final localLogout = notifier.setUnauthenticated(
       notice: '本机已退出；服务端撤销尚未确认，正在后台尝试。可在账号安全中重试未完成撤销。',
       rejectedToken: token,
     );
+    final logoutIntent = notifier.currentAuthenticationIntent;
+    await localLogout;
     // Capture all dependencies before navigation. Background work must never
     // read a disposed widget ref or inherit a later account's credentials.
     unawaited(() async {
@@ -166,8 +176,11 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             headers: {'Authorization': 'Bearer $revocationCredential'},
           ),
         );
-        if (result is NetworkSuccess<Map<String, dynamic>>) {
+        if (result is NetworkSuccess<Map<String, dynamic>> &&
+            result.data['ok'] == true &&
+            result.data['status'] == 'SESSION_REVOKED') {
           await PendingLogoutStore.remove(secure, revocationCredential);
+          notifier.confirmServerLogout(logoutIntent);
         }
       } catch (_) {
         /* The secure queue remains available for recovery. */

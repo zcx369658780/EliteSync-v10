@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 登出成功回执提示与迟到确认修复
+
+只读开发库证实此前两次退出会话revoked_at有值、令牌0，当前B会话有效；原日志/元数据私有保留，不据旧提示认定服务端失败。设置页此前成功仅清PendingLogoutStore而不更新登录页。现只在规范ok=true/SESSION_REVOKED回执后移除该旧凭据待办并确认对应登出intent；失败或未知2xx不确认，本地清理失败警告保留。确认框前捕获原intent，在确认框后及队列写入后复核intent/token，再无await建立新登出intent；旧A回执不能误确认新B退出。
+
+非作者Sol初审发现队列写入期间A→B→B退出的P2，新增阻塞场景在修前实测RED（B被误提示已确认）；修后保留双方待办、不派发旧撤销、不改B提示。最终55项设置/登出/拒绝/启动会话定向检查通过，含一个widget内七场景，四文件analyze无问题，最终非作者静态复核无新增P1/P2。初回归49过5失败为旧设置夹具仍依赖明文profile认证及版本回执缺source/channel；改为显式建立测试session、内存getKeys及规范版本回执。一次准备阶段等待因fake存储枚举落到真实插件已中止，未改生产队列。原失败日志保留，未改鉴权/传输规则或后端。私有日志logout-queue-boundary-red-private.log、logout-confirmation-final-tests-private.log、logout-confirmation-final-analyze-private.log。
+
+本节点源码检查已过；新包构建/5580正常退出确认尚NOT_RUN，旧安装e921不包含修复。下一步增量合包并核同一服务端会话撤销/令牌0，不操作退出所有设备或其他历史会话。
+
+---
+
 # 最新节点｜2026-11-11 问卷新包同进程B→A→B隔离实测通过
 
 最终源码e5396bdbd99d12943d19778de1a76ff1cdc49fc4，APK SHA256 e9210f5b4248023a57a1342ef38749c0c3342cd0d5b89ece660c2c14a56faa31、154156231字节，离线增量36.935秒/退出0，签名/身份/新增QUESTIONNAIRE_SESSION_CHANGED标记通过并仅更新5580。此前ebc26ee9包59.866秒成功但未安装，单独回执保留；旧4a645实际RED APK仅私有保留一份，无SDK/AVD复制。

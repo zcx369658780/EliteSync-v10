@@ -41,11 +41,33 @@ class _Local extends support.FakeLocalStorageService {
   Future<bool> tryPurgeLegacyPrivateChatCache() async => true;
 }
 
+class _Secure extends support.FakeSecureStorageService {
+  Completer<void>? queueWrite;
+  @override
+  Future<void> write(String key, String value) async {
+    if (key == 'pending_logout_credentials' && queueWrite != null) {
+      await queueWrite!.future;
+    }
+    await super.write(key, value);
+  }
+}
+
 void main() {
-  testWidgets(
-    'local logout and navigation complete while server request remains pending',
-    (tester) async {
-      final secure = support.FakeSecureStorageService();
+  testWidgets('immediate logout receipts remain truthful across account changes', (
+    tester,
+  ) async {
+    // The production pending queue is process-wide. Keep its futures in one
+    // widget-test clock while exercising successive account/logout lifetimes.
+    for (final scenario in [
+      'confirmed',
+      'network_failure',
+      'unrecognized_receipt',
+      'new_login',
+      'new_logout',
+      'cleanup_failure',
+      'account_changed_during_queue_write',
+    ]) {
+      final secure = _Secure();
       final local = _Local();
       await secure.write(CacheKeys.accessToken, 'old-access');
       await secure.write(CacheKeys.refreshToken, 'old-refresh');
@@ -81,6 +103,7 @@ void main() {
             accessToken: 'old-access',
             refreshToken: 'old-refresh',
           );
+      if (scenario == 'cleanup_failure') local.throwOnRemove = true;
       final router = GoRouter(
         initialLocation: AppRouteNames.settings,
         routes: [
@@ -96,37 +119,132 @@ void main() {
         ],
       );
       addTearDown(router.dispose);
-      await tester.pumpWidget(
-        UncontrolledProviderScope(
-          container: container,
-          child: MaterialApp.router(
-            theme: AppTheme.light,
-            routerConfig: router,
+      try {
+        await tester.pumpWidget(
+          UncontrolledProviderScope(
+            container: container,
+            child: MaterialApp.router(
+              theme: AppTheme.light,
+              routerConfig: router,
+            ),
           ),
-        ),
-      );
-      await tester.pumpAndSettle();
-      await tester.scrollUntilVisible(
-        find.text('退出登录'),
-        400,
-        scrollable: find.byType(Scrollable).first,
-      );
-      await tester.tap(find.text('退出登录'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('退出'));
-      await tester.pumpAndSettle();
-      expect(api.pending.isCompleted, false);
-      expect(container.read(sessionProvider).asData?.value.isLoggedIn, false);
-      expect(await secure.read(CacheKeys.accessToken), isNull);
-      expect(await secure.read(CacheKeys.refreshToken), isNull);
-      expect(find.text('LOGIN AFTER LOCAL LOGOUT'), findsOneWidget);
-      expect(await PendingLogoutStore.read(secure), ['old-refresh']);
-      expect(api.sentOptions?.headers?['Authorization'], 'Bearer old-refresh');
-      // Completion after the settings widget disposed uses captured dependencies.
-      api.pending.complete(const NetworkSuccess({'ok': true}));
-      await tester.pumpAndSettle();
-      expect(await PendingLogoutStore.read(secure), isEmpty);
-      expect(tester.takeException(), isNull);
-    },
-  );
+        );
+        await tester.pumpAndSettle();
+        await tester.scrollUntilVisible(
+          find.text('退出登录'),
+          400,
+          scrollable: find.byType(Scrollable).first,
+        );
+        await tester.tap(find.text('退出登录'));
+        await tester.pumpAndSettle();
+        if (scenario == 'account_changed_during_queue_write') {
+          secure.queueWrite = Completer<void>();
+        }
+        await tester.tap(find.text('退出'));
+        await tester.pumpAndSettle();
+        if (scenario == 'account_changed_during_queue_write') {
+          await container
+              .read(sessionProvider.notifier)
+              .setAuthenticated(
+                accessToken: 'new-access',
+                refreshToken: 'new-refresh',
+              );
+          await container
+              .read(sessionProvider.notifier)
+              .setUnauthenticated(notice: 'New account logout pending');
+          final newerPending = PendingLogoutStore.add(secure, 'new-refresh');
+          secure.queueWrite!.complete();
+          await tester.pumpAndSettle();
+          await newerPending;
+          if (api.sentOptions != null) {
+            api.pending.complete(
+              const NetworkSuccess({'ok': true, 'status': 'SESSION_REVOKED'}),
+            );
+            await tester.pumpAndSettle();
+          }
+          expect(
+            container.read(sessionProvider).requireValue.notice,
+            'New account logout pending',
+          );
+          expect(api.sentOptions, isNull);
+          expect(await PendingLogoutStore.read(secure), [
+            'old-refresh',
+            'new-refresh',
+          ]);
+          continue;
+        }
+        expect(api.pending.isCompleted, false);
+        expect(container.read(sessionProvider).asData?.value.isLoggedIn, false);
+        if (scenario != 'cleanup_failure') {
+          expect(await secure.read(CacheKeys.accessToken), isNull);
+          expect(await secure.read(CacheKeys.refreshToken), isNull);
+        }
+        expect(find.text('LOGIN AFTER LOCAL LOGOUT'), findsOneWidget);
+        expect(await PendingLogoutStore.read(secure), ['old-refresh']);
+        expect(
+          api.sentOptions?.headers?['Authorization'],
+          'Bearer old-refresh',
+        );
+        if (scenario == 'new_login' || scenario == 'new_logout') {
+          local.throwOnRemove = false;
+          await container
+              .read(sessionProvider.notifier)
+              .setAuthenticated(
+                accessToken: 'new-access',
+                refreshToken: 'new-refresh',
+              );
+          if (scenario == 'new_logout') {
+            await PendingLogoutStore.add(secure, 'new-refresh');
+            await container
+                .read(sessionProvider.notifier)
+                .setUnauthenticated(notice: 'New account logout pending');
+          }
+        }
+        // Completion after the settings widget disposed uses captured dependencies.
+        api.pending.complete(
+          scenario == 'network_failure'
+              ? const NetworkFailure(message: 'offline', statusCode: 503)
+              : NetworkSuccess({
+                  'ok': true,
+                  if (scenario != 'unrecognized_receipt')
+                    'status': 'SESSION_REVOKED',
+                }),
+        );
+        await tester.pumpAndSettle();
+        final session = container.read(sessionProvider).requireValue;
+        if (scenario == 'network_failure' ||
+            scenario == 'unrecognized_receipt') {
+          expect(await PendingLogoutStore.read(secure), ['old-refresh']);
+          expect(session.notice, contains('尚未确认'));
+        } else if (scenario == 'new_login') {
+          expect(await PendingLogoutStore.read(secure), isEmpty);
+          expect(session.isLoggedIn, isTrue);
+          expect(session.accessToken, 'new-access');
+          expect(session.notice, isNull);
+        } else if (scenario == 'new_logout') {
+          expect(await PendingLogoutStore.read(secure), ['new-refresh']);
+          expect(session.notice, 'New account logout pending');
+        } else {
+          expect(await PendingLogoutStore.read(secure), isEmpty);
+          expect(session.notice, contains('撤销已确认'));
+          if (scenario == 'cleanup_failure') {
+            expect(session.notice, contains('本地清理未完成'));
+          }
+        }
+        expect(tester.takeException(), isNull);
+      } finally {
+        if (secure.queueWrite?.isCompleted == false) {
+          secure.queueWrite!.complete();
+        }
+        if (!api.pending.isCompleted) {
+          api.pending.complete(
+            const NetworkFailure(message: 'fixture cleanup'),
+          );
+        }
+        await tester.pumpAndSettle();
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pumpAndSettle();
+      }
+    }
+  });
 }

@@ -21,9 +21,13 @@ import 'package:flutter_elitesync_module/features/profile/presentation/pages/abo
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/settings_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/settings_group.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 
 class FakeLocalStorageService extends LocalStorageService {
   final Map<String, Object?> _values = <String, Object?>{};
+  @override
+  Future<Set<String>> getKeys() async => _values.keys.toSet();
   bool returnFalseOnWrite = false;
   bool throwOnWrite = false;
   bool throwOnRemove = false;
@@ -141,6 +145,8 @@ class FakeApiClient extends ApiClient {
     }
     return NetworkSuccess({
       'latest_version_name': '0.08.03',
+      'source': 'database',
+      'channel': query?['channel'] ?? 'stable',
       'has_update': false,
       'force_update': false,
     });
@@ -213,25 +219,43 @@ Future<FakeLocalStorageService> _pumpSettingsPage(
     );
   }
 
+  final container = ProviderContainer(
+    overrides: [
+      appEnvProvider.overrideWithValue(
+        AppEnv(
+          flavor: flavor,
+          appName: 'EliteSync',
+          apiBaseUrl: 'http://localhost',
+          useMockData: true,
+        ),
+      ),
+      localStorageProvider.overrideWithValue(storage),
+      secureStorageProvider.overrideWithValue(secureStorage),
+      apiClientProvider.overrideWithValue(
+        FakeApiClient(adminProbeAllowed: adminProbeAllowed),
+      ),
+    ],
+  );
+  addTearDown(container.dispose);
+  await container.read(sessionProvider.future);
+  if (phone != null) {
+    // Plaintext cached profiles are not startup authentication. Establish the
+    // active session explicitly so these UI tests exercise their intended role.
+    await container
+        .read(sessionProvider.notifier)
+        .setAuthenticated(
+          accessToken: 'test-token',
+          user: UserSummary.fromJson({
+            'id': 8,
+            'phone': phone,
+            'nickname': 'tester',
+            ...profileOverrides,
+            'role': ?role,
+          }),
+        );
+  }
   await tester.pumpWidget(
-    ProviderScope(
-      overrides: [
-        appEnvProvider.overrideWithValue(
-          AppEnv(
-            flavor: flavor,
-            appName: 'EliteSync',
-            apiBaseUrl: 'http://localhost',
-            useMockData: true,
-          ),
-        ),
-        localStorageProvider.overrideWithValue(storage),
-        secureStorageProvider.overrideWithValue(secureStorage),
-        apiClientProvider.overrideWithValue(
-          FakeApiClient(adminProbeAllowed: adminProbeAllowed),
-        ),
-      ],
-      child: app,
-    ),
+    UncontrolledProviderScope(container: container, child: app),
   );
 
   await tester.pumpAndSettle();
