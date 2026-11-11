@@ -4,8 +4,8 @@ Owner已恢复全自动持续工程，普通实现、定向验证/必要构建�
 
 ## 当前身份与资源
 
-- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。5580/B当前APP源码 `d97dba810563320efadfe578783982c484d8cee5`；5582/A仍 `772482a50e225f9b683952cb2982b9b14cff2e8a`。后端平台接线源于25bc01f7、头像源于cabba94d；后续文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index及无关 `%SystemDrive%/` 保留。
-- B新包SHA256 `3e6e9f32fc4e972c0f523440a8080efa0f574372f0d7a0cd5c23eb644473ae2c`，154181182字节，离线42.124秒/退出0、签名/身份/arm64 Debug通过；正常设置隐私入口、本人履历保存/重进/清除及返回通过。A仍dc5d包；前述双APP头像链对应两端原772482a5/dc5d包（154181260字节），前候选旧图残留原证保留。其它既过链沿各自身份，不冒充新包重测。
+- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。5580/B当前APP源码 `80c46d8e0e44aff475e0f0eccd88f425bcbcdd92`；5582/A仍 `772482a50e225f9b683952cb2982b9b14cff2e8a`。后端平台接线源于25bc01f7、头像源于cabba94d；后续文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index及无关 `%SystemDrive%/` 保留。
+- B新包SHA256 `a304fc53ca28f462e8bf82b5e5c6745747018119f355f165a9a7d48e86985778`，154182044字节，离线34.789秒/退出0、签名/身份/arm64 Debug通过；正常前台离线只读→离线后台/返回隐藏旧预览→恢复本机连接后当前读取恢复列表通过。设置隐私正常链沿d97dba81/3e6e包证据；A仍dc5d包，前述双APP头像链对应两端原772482a5/dc5d包。前候选旧图残留原证保留，不冒充新包重测。
 - 私有根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；稳定构建根 `v1015-source-debug-workspace`。四个自有DB/API/WS/SFU运行，准确ID见runtime-private.json；API已接专属Linux排盘镜像，DB仍确切独立虚构库。专用ADB5038/USB排除手机，相机仅生成画面；未改系统网络。
 - 开发库4个虚构用户（新增合成平台参与者4，原用户1–3保持）、原101消息/4媒体保持，另有3个头像资产（当前媒体共7，B头像指针已移除/rev6）。A正式问卷20/历史1，运营pending/revision2、两条审核审计；B正式答案0/历史0、服务端草稿1题/index1，昵称DevUser-B、城市DevCity-B，可选MBTI attempt1，Showcase私有草稿1。原SELF动态/一级评论软删、搭子WITHDRAWN及双方接收false/rev2保持；新FRIENDS动态已另行软删，好友请求历史ACCEPTED、friendship REMOVED/rev2、邀请已撤销、两方接收新请求均false。旧call1–11 ended/房间空、MC generation7沿用前节点，本段无新通话。
 
@@ -30,6 +30,8 @@ Owner已恢复全自动持续工程，普通实现、定向验证/必要构建�
 **平台活动最短合成演练正常链通过。** 后端25bc01f7新增明确当前开发库pair，旧默认/local/loopback/无URL/socket及合成身份限制保持；22项871断言、非作者复核通过。既有管理员正常表单创建TEST_ONLY零费用活动、记录开发模拟预算批准并定向邀请新增合成参与者4；5582正常APP报名，后台确认后APP读回、自主取消，后台再取消活动/撤销grant并退出。最终attendance UNVERIFIED/预算0、管理员活动Web会话0；参与者会话revoked/token0，原A正常登录恢复，其余原会话保持。原用户1–3及23业务/Safety表摘要保持，非合成B活动访问仍403。未运行候补/晋升、邀请token兑换、到场或举报/处罚，无真实招募、地点、预订、付款或外部核验。私有platform-event-runtime-private.json及platform-app-account-transition-private.json保留。下一步现有隐私资料字段正常保存/读回/恢复。
 
 **设置隐私入口导航故障修复，履历最短正常链通过。** 原入口从root设置页push已挂载Me分支，引发重复页key断言红屏；实际截图及路由回归RED保留，改走既有root隐私页。27项相关Flutter检查/两文件analyze通过，自审无P1/P2。B新包正常设置→隐私中心→正式关系字段分享，保存明确TEST_ONLY履历、重进恢复，再正常清除并重进空；API/DB一致，A投影不含履历。四项SELF和原偏好行完全保持，其他用户/本人其他字段及27业务表保持（updated_at正常变化）。无关系建立、核验或分享权限变更；返回设置正常。私有privacy-fields-runtime-private.json保留；不是完整受众/撤权/并发矩阵。
+
+**消息列表离线回前台重验修复及实际短链通过。** 原列表离线回前台会沿用后台前read grant重显旧预览；新增回归RED→GREEN，改为回前台先废弃旧读取资格，重复resumed仅检查保留期。并修复原轮询/到期检查竞态覆盖清理结果，完成/失败的实际回执及后台往返保留；61项相关检查及三文件analyze通过，自审无P1/P2。B新包正常前台断开仅自身8021/8022 reverse后列表只读可见；Home/返回离线时旧预览隐藏、提示无本次当前授权副本；恢复两映射后当前读取恢复，原会话/token及全部本段数据摘要不变。未发消息、未改系统时钟；30天成功/失败仅测试时钟与内存存储证据，不称Android实际30天清理。私有conversation-offline-resume-runtime-private.json保留。下一步现有隐藏/恢复会话正常链。
 
 ## 证据与保留门
 
