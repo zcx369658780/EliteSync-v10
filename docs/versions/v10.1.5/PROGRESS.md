@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 三盘本命Linux依赖与自有API接线
+
+现有三盘链仅有Windows wheel锁，当前Debian12自有API未配置NATAL路径且未挂tools。有限资产定位未找到可复用已安装模块/kernel；现按原6版本从官方PyPI下载Linux x86_64 wheel、逐一核官方JSON SHA256，新增独立Linux锁/manifest/必要许可原文，原Windows锁不改。Node原6个包按现有锁下载并核sha512、不运行npm脚本；DE440s固定32726016字节/hash c1c7fee…a49f2通过，不更换算法/数据。Linux NumPy新增动态libquadmath LGPL-2.1-or-later，平台差异、出处和官方全文单独登记；未开启Swiss/AGPL路径，记录非法律/发布批准。
+
+从现有PHP本机镜像派生，APT官方Debian联网准备Python3.11.2/Node18.20.4；随后wheel仅no-index/require-hashes/only-binary离线安装并pip check。私有保存Dockerfile、镜像ID、OS版本、轮及数据，Git/APK不分发运行二进制，不称全镜像离线重建或可复现。首次只读父挂载下缺node_modules挂载点导致检查未启动，原失败日志保留；建立空的ignored挂载点后运行身份AVAILABLE，29项Python含实际kernel身份/时表/西占等、13项Node定向检查全部通过，无skip。不是新增独立科学核验或跨日期全域精度认可。
+
+现仅刷新确切自有API，专用派生镜像+只读tools/node_modules/kernel挂载、NATAL_*路径生效，DB/WS/SFU/AVD保留；实际API运行身份AVAILABLE，B盘行0，Swiss研究/性格排序仍false。source签名增加Linux锁与manifest两条，PHP语法通过；非作者Sol静态核对pin/平台/许可hash/签名/离线安装无P1/P2，未独立重验下载或容器。APP正常三盘输入/保存/结果持久读回尚NOT_RUN，下一步一份虚构输入的最短正常UI验证。私有natal-linux-*日志/回执与natal-linux-runtime目录保留；不复活旧oracle或研究执行器。
+
+---
+
 # 最新节点｜2026-11-11 Showcase私有草稿正常持久链
 
 af74候选5580虚构B正常“我的→Showcase→兼容展示页”，编辑自我介绍/兴趣标签/生活线索/开场话题，仅一次保存为私有草稿。真实API与MariaDB字段/标签一致、moderation_status=not_submitted、public_display_eligible=false、matching_scoring_eligible=false。用户全行摘要及publication表数量保持；A读取的是自己空草稿。正常返回并重新打开页，四项从持久化草稿读回，兴趣标签显示规范化顿号；没有审核/发布或匹配变动。

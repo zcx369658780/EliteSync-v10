@@ -1,0 +1,8 @@
+# CPython 3.11 / Linux x86_64 glibc >= 2.28. Binary wheels only.
+# This platform lock is separate from the unchanged Windows wheel lock.
+certifi==2026.7.22 --hash=sha256:62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775
+jplephem==2.24 --hash=sha256:2de15608a0f13010a71a0a8af8765646d5884402006dac0dd7639d7db13629ac
+numpy==2.4.6 --hash=sha256:89cd468399cfd2504718f0ba50e410dca55a170b61a02ad92bb18c8a65186e93
+pyerfa==2.0.1.5 --hash=sha256:0e43c7194e3242083f2350b46c09fd4bf8ba1bcc0ebd1460b98fc47fe2389906
+sgp4==2.27 --hash=sha256:4d3775313120dcb6239535fa0c94cb6d5b089fd84bbfb15220923ae38dec7296
+skyfield==1.55 --hash=sha256:9f98964855067460c94aa81a337194136f4a97a62ba8bbbfac1b8556f2b66ad4

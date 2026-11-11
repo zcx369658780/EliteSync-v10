@@ -20,7 +20,9 @@ Owner已恢复全自动持续工程，普通工程长期授权有效，直到明
 
 **资料城市与可选MBTI正常持久链通过。** B正常兼容资料编辑页单独保存虚构城市DevCity-B，API/DB读回一致，重新进入页面保持，除city/updated_at外用户字段摘要不变。MBTI初始HTTP410，已仅在私有本机app.env启用既有FEATURE_MBTI_ENABLED并刷新自有API，性格排序FEATURE_PERSONALITY_TEST_ENABLED仍false。B正常APP答lite3_v1三题、仅提交一次，三个题ID/选项及结果持久化，重新打开页面读回；非MBTI用户字段摘要保持，不称心理效度或匹配验证。私有 `profile-city-runtime-private.json`、`mbti-runtime-private.json`。没有新增产品源码或重编APK。
 
-**Showcase私有草稿正常保存/重新打开通过。** B正常兼容页编辑四字段，一次保存后API/DB内容和标签一致，重新进入显示已保存私有草稿，兴趣标签规范化分隔；A读取的是自己的空草稿，用户行摘要/发布表数量保持。状态not_submitted、公开/评分资格均false；未提交Safety审核或发布。只读观察脚本一次变量遮蔽及逗号显示预期错误已保留并改为读回，不重复保存。私有 `showcase-draft-runtime-private.json`。下一步补齐三盘本命现有本地计算链的Linux运行依赖与挂载；先核现有离线依赖、许可及配置，不启用受阻Swiss/AGPL路径，不降低独立参考核验标准。
+**Showcase私有草稿正常保存/重新打开通过。** B正常兼容页编辑四字段，一次保存后API/DB内容和标签一致，重新进入显示已保存私有草稿，兴趣标签规范化分隔；A读取的是自己的空草稿，用户行摘要/发布表数量保持。状态not_submitted、公开/评分资格均false；未提交Safety审核或发布。只读观察脚本一次变量遮蔽及逗号显示预期错误已保留并改为读回，不重复保存。私有 `showcase-draft-runtime-private.json`。
+
+**三盘本命Linux运行已接入，正常APP保存待验证。** 相同六包版本的Linux wheel单独官方哈希固定，Windows锁/清单保持；Node原六项锁和固定DE440s已准备，新增Linux原文许可及libquadmath LGPL差异登记。Python/Node来自官方Debian准备阶段，随后wheel安装/运行离线；不声称全镜像离线可复现。实际自有API已使用专属派生镜像/只读tools、node_modules、kernel挂载，原DB/WS/SFU不变，NATAL运行身份AVAILABLE、Python29/Node13项通过、PHP语法通过，非作者静态复核无P1/P2，非法律批准/外部验收。Swiss研究和性格排序开关仍false；B无旧盘。本次新增Linux锁/清单进入原计算签名，不重写旧参考覆盖/UNVERIFIED。私有 `natal-linux-runtime`、`natal-linux-api-readiness-private.json`。下一步仅正常APP保存一份虚构出生输入并读取三盘与持久状态，不运行旧oracle或新研究算法。
 
 ## 既过子范围与证据边界
 

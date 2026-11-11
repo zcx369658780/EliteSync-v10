@@ -57,6 +57,7 @@ final class NatalCalculationProfile
         // changes the signature when a manifest is subsequently installed.
         foreach (['tools/natal/requirements.lock', 'tools/natal/requirements.txt',
             'tools/natal/requirements.windows-cp311.lock', 'resources/natal/dependency-manifest.json',
+            'tools/natal/requirements.linux-cp311.lock', 'resources/natal/dependency-manifest.linux-cp311.json',
             'tools/natal/sbom.json', 'tools/natal/SBOM.json'] as $path) {
             $profile['source_hashes'][$path] = is_file(base_path($path))
                 ? hash_file('sha256', base_path($path)) : null;

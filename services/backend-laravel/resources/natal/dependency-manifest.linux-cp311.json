@@ -1,0 +1,267 @@
+{
+  "schema": "elitesync.natal.linux-dependencies.v1",
+  "platform": "CPython 3.11 Linux x86_64 glibc >=2.28",
+  "status": "PINNED_LINUX_RUNTIME_ARTIFACTS",
+  "scope": "Same admitted six Python package versions; original Windows lock and reference coverage unchanged.",
+  "python": [
+    {
+      "name": "certifi",
+      "version": "2026.7.22",
+      "wheel": "certifi-2026.7.22-py3-none-any.whl",
+      "wheel_sha256": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775",
+      "source": "https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl",
+      "metadata_source": "https://pypi.org/pypi/certifi/2026.7.22/json",
+      "license_expression": null,
+      "requires_dist": [],
+      "notices": [
+        {
+          "path": "resources/natal/notices/certifi--certifi-2026.7.22.dist-info_licenses_LICENSE",
+          "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7",
+          "source_archive_path": "certifi-2026.7.22.dist-info/licenses/LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "jplephem",
+      "version": "2.24",
+      "wheel": "jplephem-2.24-py3-none-any.whl",
+      "wheel_sha256": "2de15608a0f13010a71a0a8af8765646d5884402006dac0dd7639d7db13629ac",
+      "source": "https://files.pythonhosted.org/packages/9d/3f/b9d5739352badc11ca637c8f72525d519458622936bc3313ddefdc7dee96/jplephem-2.24-py3-none-any.whl",
+      "metadata_source": "https://pypi.org/pypi/jplephem/2.24/json",
+      "license_expression": null,
+      "requires_dist": [
+        "numpy"
+      ],
+      "notices": [
+        {
+          "path": "resources/natal/notices/jplephem--jplephem-2.24.dist-info_licenses_LICENSE.txt",
+          "sha256": "31bbf940baa5da362ef4e16ccda663cf09a096673b9eac30413f899c1055981d",
+          "source_archive_path": "jplephem-2.24.dist-info/licenses/LICENSE.txt"
+        }
+      ]
+    },
+    {
+      "name": "numpy",
+      "version": "2.4.6",
+      "wheel": "numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "wheel_sha256": "89cd468399cfd2504718f0ba50e410dca55a170b61a02ad92bb18c8a65186e93",
+      "source": "https://files.pythonhosted.org/packages/02/03/74fe2a4cb3817d94d86402f2506554130a2f01414e299b5a843e5a8a957f/numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "metadata_source": "https://pypi.org/pypi/numpy/2.4.6/json",
+      "license_expression": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+      "requires_dist": [],
+      "notices": [
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--fbc539f47d0cf83b--LICENSE.txt",
+          "sha256": "fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec",
+          "source_archive_path": "numpy/_core/include/numpy/random/LICENSE.txt"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--05f3b88351988ecf--LICENSE",
+          "sha256": "05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6",
+          "source_archive_path": "numpy/ma/LICENSE"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--103166b62b80443a--LICENSE.md",
+          "sha256": "103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f",
+          "source_archive_path": "numpy/random/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--4860083caa0de2ac--LICENSE.txt",
+          "sha256": "4860083caa0de2ac3292ca98bd074bd8f45d8b32624e37b1e70a240bff61e488",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/LICENSE.txt"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--fbc539f47d0cf83b--LICENSE.txt",
+          "sha256": "fbc539f47d0cf83bc61378080fb873d5c14630126cacbfe754035c3926daa5ec",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--3f2c1ffa76383a55--COPYING",
+          "sha256": "3f2c1ffa76383a55ae0aac01c9737cd70050dff63e1f026694fbe9d662573c98",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/_core/src/common/pythoncapi-compat/COPYING"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--e340270d4f643845--LICENSE",
+          "sha256": "e340270d4f64384569a91d546acb5b094d69ce47f0c015db77abb74dc6f815af",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/_core/src/highway/LICENSE"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--211e7d737d6179a0--LICENSE.md",
+          "sha256": "211e7d737d6179a08f791ebb0a99897ce7cd2457410c542876d125576edfe910",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--c17011467b4fe6e2--LICENSE",
+          "sha256": "c17011467b4fe6e20fbfbeda4df09e58c2bca5480a063e55735a4000a379aad9",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/_core/src/umath/svml/LICENSE"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--a85ca13fdf90160b--LICENSE.md",
+          "sha256": "a85ca13fdf90160b64a0698215868c13b74d835ad0a4e2ba44713b8c5058a056",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--a14cc25e10d40a3a--LICENSE.txt",
+          "sha256": "a14cc25e10d40a3aa705b7de2fb764a6535d8ee9b2db4e1724900585457dfd55",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/linalg/lapack_lite/LICENSE.txt"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--05f3b88351988ecf--LICENSE",
+          "sha256": "05f3b88351988ecfad10abe92c0c50e5875c6452d5009a0084cc291551ffcca6",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/ma/LICENSE"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--103166b62b80443a--LICENSE.md",
+          "sha256": "103166b62b80443afb9eb3488e052ea06be0cff566b908f199e561fde49af19f",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--469778be8f33d54e--LICENSE.md",
+          "sha256": "469778be8f33d54e1bcaab28c281cc472916d2d273f835e55bc487d30503face",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/distributions/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--0e111337b25494a7--LICENSE.md",
+          "sha256": "0e111337b25494a773106695f0e799f642b8567aaacca4f116a74a8177179156",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--e7d4f4fb20358f31--LICENSE.md",
+          "sha256": "e7d4f4fb20358f314210a892ae17351e04993813646f697ec387385ca2a36918",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--6f5828a57223d4cc--LICENSE.md",
+          "sha256": "6f5828a57223d4cc7f8ea505a2623e7b978b242752c1515e355f46ba2cec1800",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/philox/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--9d4098846018319c--LICENSE.md",
+          "sha256": "9d4098846018319cd68e228ee6220361787f73bccbf00237a85e4fc9621b998f",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md"
+        },
+        {
+          "path": "resources/natal/notices/linux-cp311/numpy--268b0ca06759d31e--LICENSE.md",
+          "sha256": "268b0ca06759d31ea3ca68dd35f20e877916e927b1c2a835e4592a3c4354b1f9",
+          "source_archive_path": "numpy-2.4.6.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md"
+        }
+      ],
+      "bundled_libraries": [
+        {
+          "name": "OpenBLAS",
+          "license": "BSD-3-Clause",
+          "dynamic": true
+        },
+        {
+          "name": "LAPACK",
+          "license": "BSD-3-Clause-Open-MPI",
+          "bundled_in": "OpenBLAS"
+        },
+        {
+          "name": "libgfortran and GCC runtime",
+          "license": "GPL-3.0-or-later WITH GCC-exception-3.1",
+          "dynamic": true
+        },
+        {
+          "name": "libquadmath",
+          "license": "LGPL-2.1-or-later",
+          "dynamic": true,
+          "source": "https://gcc.gnu.org/git/?p=gcc.git;a=tree;f=libquadmath"
+        }
+      ],
+      "additional_license_texts": [
+        {
+          "path": "resources/natal/notices/linux-cp311/LGPL-2.1.txt",
+          "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+          "source": "https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt"
+        }
+      ]
+    },
+    {
+      "name": "pyerfa",
+      "version": "2.0.1.5",
+      "wheel": "pyerfa-2.0.1.5-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "wheel_sha256": "0e43c7194e3242083f2350b46c09fd4bf8ba1bcc0ebd1460b98fc47fe2389906",
+      "source": "https://files.pythonhosted.org/packages/e5/e0/050018d855d26d3c0b4a7d1b2ed692be758ce276d8289e2a2b44ba1014a5/pyerfa-2.0.1.5-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "metadata_source": "https://pypi.org/pypi/pyerfa/2.0.1.5/json",
+      "license_expression": null,
+      "requires_dist": [
+        "numpy>=1.19.3",
+        "sphinx-astropy>=1.3; extra == \"docs\"",
+        "pytest; extra == \"test\"",
+        "pytest-doctestplus>=0.7; extra == \"test\""
+      ],
+      "notices": [
+        {
+          "path": "resources/natal/notices/linux-cp311/pyerfa--0d404371a5d7d147--LICENSE.rst",
+          "sha256": "0d404371a5d7d1478307ab142962091ec258b92a71f8cab3736fdb46b03cc716",
+          "source_archive_path": "pyerfa-2.0.1.5.dist-info/LICENSE.rst"
+        }
+      ]
+    },
+    {
+      "name": "sgp4",
+      "version": "2.27",
+      "wheel": "sgp4-2.27-cp311-abi3-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "wheel_sha256": "4d3775313120dcb6239535fa0c94cb6d5b089fd84bbfb15220923ae38dec7296",
+      "source": "https://files.pythonhosted.org/packages/d6/75/633ad7874db149df164168090951e676cdc3541a12d43b2cbb9d20ecb721/sgp4-2.27-cp311-abi3-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "metadata_source": "https://pypi.org/pypi/sgp4/2.27/json",
+      "license_expression": "MIT",
+      "requires_dist": [],
+      "notices": [
+        {
+          "path": "resources/natal/notices/linux-cp311/sgp4--4474ea9eccbb829c--LICENSE",
+          "sha256": "4474ea9eccbb829c6bc3652381bfe78b1c815de021d4a284a2a5b383a374d030",
+          "source_archive_path": "sgp4-2.27.dist-info/licenses/LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "skyfield",
+      "version": "1.55",
+      "wheel": "skyfield-1.55-py3-none-any.whl",
+      "wheel_sha256": "9f98964855067460c94aa81a337194136f4a97a62ba8bbbfac1b8556f2b66ad4",
+      "source": "https://files.pythonhosted.org/packages/8d/5a/c4cc09d4421de255ca0504485efceb3646a4e5381bfb665647e39bea5cb1/skyfield-1.55-py3-none-any.whl",
+      "metadata_source": "https://pypi.org/pypi/skyfield/1.55/json",
+      "license_expression": null,
+      "requires_dist": [
+        "certifi >=2017.4.17",
+        "jplephem >=2.13",
+        "numpy",
+        "sgp4 >=2.13"
+      ],
+      "notices": [
+        {
+          "path": "resources/natal/notices/skyfield--skyfield-1.55.dist-info_LICENSE",
+          "sha256": "4b3cad9301fc389f9545079b43384659b908e94d6ab271474b3f6da2bd20d65a",
+          "source_archive_path": "skyfield-1.55.dist-info/LICENSE"
+        }
+      ]
+    }
+  ],
+  "new_license_files": [
+    "resources/natal/notices/linux-cp311/numpy--fbc539f47d0cf83b--LICENSE.txt",
+    "resources/natal/notices/linux-cp311/numpy--05f3b88351988ecf--LICENSE",
+    "resources/natal/notices/linux-cp311/numpy--103166b62b80443a--LICENSE.md",
+    "resources/natal/notices/linux-cp311/numpy--4860083caa0de2ac--LICENSE.txt",
+    "resources/natal/notices/linux-cp311/numpy--3f2c1ffa76383a55--COPYING",
+    "resources/natal/notices/linux-cp311/numpy--e340270d4f643845--LICENSE",
+    "resources/natal/notices/linux-cp311/numpy--211e7d737d6179a0--LICENSE.md",
+    "resources/natal/notices/linux-cp311/numpy--c17011467b4fe6e2--LICENSE",
+    "resources/natal/notices/linux-cp311/numpy--a85ca13fdf90160b--LICENSE.md",
+    "resources/natal/notices/linux-cp311/numpy--a14cc25e10d40a3a--LICENSE.txt",
+    "resources/natal/notices/linux-cp311/numpy--469778be8f33d54e--LICENSE.md",
+    "resources/natal/notices/linux-cp311/numpy--0e111337b25494a7--LICENSE.md",
+    "resources/natal/notices/linux-cp311/numpy--e7d4f4fb20358f31--LICENSE.md",
+    "resources/natal/notices/linux-cp311/numpy--6f5828a57223d4cc--LICENSE.md",
+    "resources/natal/notices/linux-cp311/numpy--9d4098846018319c--LICENSE.md",
+    "resources/natal/notices/linux-cp311/numpy--268b0ca06759d31e--LICENSE.md",
+    "resources/natal/notices/linux-cp311/pyerfa--0d404371a5d7d147--LICENSE.rst",
+    "resources/natal/notices/linux-cp311/sgp4--4474ea9eccbb829c--LICENSE"
+  ],
+  "node_lock": "tools/ziwei/iztro-runner/package-lock.json",
+  "runtime_not_distributed_in_git_or_apk": true,
+  "swiss_or_agpl_fallback": false,
+  "validation_scope": "Artifact and ABI metadata only. Actual runtime and independent-reference coverage are recorded separately in PROGRESS; no universal Linux or accuracy acceptance.",
+  "redistribution_note": "Linux NumPy has additional dynamically linked LGPL-2.1-or-later libquadmath; Windows wheel license coverage cannot be reused as a complete Linux audit. Local runtime binaries are not distributed in Git/APK."
+}

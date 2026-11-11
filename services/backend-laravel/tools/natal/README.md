@@ -8,6 +8,14 @@ PHP 使用现有 `composer.lock` 中 `6tail/lunar-php 1.4.0`；Node 使用 `tool
 
 Python 已实测环境为 CPython 3.11、Windows x86_64。六项 wheel 的固定 hash 在 `requirements.windows-cp311.lock`，安装到独立 venv，使用 `pip install --require-hashes --only-binary=:all: -r requirements.windows-cp311.lock`。其它平台的二进制身份和运行验证 **NOT_RUN**，不能把此锁误称跨平台已验证。运行时会核实际版本、包元数据、关键实现、ERFA 闰秒及 Skyfield 时间表、解释器和 kernel 身份；改变身份后旧持久结果失效。身份探测会额外启动一次本地进程，实测约 0.43～0.62 秒，不访问网络。
 
+2026-11-11 补充 Linux 开发运行接入：六项既有版本的 CPython 3.11 / Linux x86_64 wheel 单独固定在 `requirements.linux-cp311.lock`，实际制品与官方 PyPI 元数据 SHA256 逐项一致；完整文件名、来源、平台及许可原文映射见 `resources/natal/dependency-manifest.linux-cp311.json`。该锁描述 glibc wheel 兼容标签，不等于所有 Linux 环境均已验证。原 Windows 锁及清单保持；上段“其它平台 NOT_RUN”是原 Windows 节点的范围，本次目标环境为 Debian 12 x86_64 / CPython 3.11.2 / Node 18.20.4。实际离线身份、定向检查及 API/APP 证据仅在当前 PROGRESS 分别记录，独立参考覆盖和 `UNVERIFIED` 不变。
+
+Linux 安装同样使用独立环境与 `--require-hashes --only-binary=:all:`；已保存 wheel 可用 `--no-index --find-links <wheel目录>` 安装，再执行 `pip check`。额外 Linux wheel 许可原文保存在 `resources/natal/notices/linux-cp311/`，与已有原文相同者复用原文件，由清单给出精确映射。NumPy 的 Linux wheel 含 OpenBLAS/LAPACK、GCC runtime exception，并比原 Windows wheel 多动态链接的 libquadmath（LGPL-2.1-or-later）；相同包版本不代表完整许可相同。附带声明、源码获得地址及 GNU 官方 LGPL2.1 全文均保留，不能只按顶层 BSD 标注。开发镜像中的 CPython、Node、系统库及完整运行环境仅本机保存，不随 Git/APK 分发；后续若分发须连同各自条款与通知一并处理。本记录是工程资产/条款登记，不替代法律或正式发布批准。
+
+本机开发镜像的 APT 准备阶段从官方 Debian 源联网安装 Python/Node；只有随后 wheel 安装与运行检查离线。私有回执保留实际 image ID 与 OS 包版本；不声称未锁定全部 OS 制品的镜像可以离线重建或逐字节复现。
+
+本地 PHP 运行容器须同时只读挂载 `tools/`、锁定的 `tools/ziwei/iztro-runner/node_modules` 与固定 kernel 数据目录，并配置三个现有 `NATAL_*` 路径；不得改为 HTTP 算法或研究许可 fallback。若在只读父目录下挂载 `node_modules`，先建立空挂载点；不在产品 Git 中保存已安装模块或解释器。Linux 锁和依赖清单也参与 calculation profile 的源码签名，变化后原结果按既有规则失效。
+
 完整依赖/数据清单在 `resources/natal/dependency-manifest.json`，包内许可证原文在同目录 `notices/`。NumPy Windows wheel 包含 OpenBLAS、LAPACK 和附有 GCC Runtime Library Exception 的运行库，不能只标 MIT；Certifi 未修改，保留 MPL-2.0 通知、全文及源码获得说明。当前 Git/APK 不分发 CPython 或整个运行环境，未来若打包这些二进制须一并保留其条款。
 
 从 NAIF 官方地址获取**未修改**的 `de440s.bsp`：
