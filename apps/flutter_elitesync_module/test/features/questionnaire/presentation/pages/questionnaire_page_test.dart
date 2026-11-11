@@ -117,7 +117,7 @@ Widget _wrap(Widget child, {List<dynamic> overrides = const []}) {
         const AppEnv(
           flavor: AppFlavor.dev,
           appName: 'EliteSync Dev',
-          apiBaseUrl: 'http://101.133.161.203',
+          apiBaseUrl: 'http://127.0.0.1',
           useMockData: true,
           useMockHome: true,
           useMockMatch: true,
@@ -125,6 +125,7 @@ Widget _wrap(Widget child, {List<dynamic> overrides = const []}) {
         ),
       ),
       localStorageProvider.overrideWithValue(FakeLocalStorageService()),
+      appTelemetryProvider.overrideWithValue(FakeAppTelemetryService()),
       ...overrides.cast(),
     ],
     child: MaterialApp(

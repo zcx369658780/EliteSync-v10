@@ -9,6 +9,16 @@ import 'package:flutter_elitesync_module/core/telemetry/frontend_telemetry.dart'
 import 'package:flutter_elitesync_module/features/questionnaire/data/datasource/questionnaire_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/questionnaire/presentation/providers/questionnaire_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
+
+class _Session extends SessionNotifier {
+  @override
+  SessionState build() => const SessionState(
+    status: AuthStatus.authenticated,
+    accessToken: 'fictional-questionnaire-session',
+  );
+}
 
 const _notice = '题目集合已变更，旧草稿已失效，请使用当前题目补答。';
 
@@ -105,6 +115,7 @@ void main() {
     api = _Api();
     container = ProviderContainer(
       overrides: [
+        sessionProvider.overrideWith(_Session.new),
         questionnaireRemoteDataSourceProvider.overrideWithValue(
           QuestionnaireRemoteDataSource(
             apiClient: api,

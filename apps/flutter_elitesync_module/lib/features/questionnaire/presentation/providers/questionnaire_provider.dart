@@ -5,6 +5,7 @@ import 'package:flutter_elitesync_module/core/error/app_exception.dart';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/core/telemetry/frontend_telemetry.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/features/questionnaire/data/datasource/questionnaire_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/questionnaire/data/repository/questionnaire_repository_impl.dart';
 import 'package:flutter_elitesync_module/features/questionnaire/domain/entities/questionnaire_attempt.dart';
@@ -16,13 +17,22 @@ import 'package:flutter_elitesync_module/features/questionnaire/domain/usecases/
 import 'package:flutter_elitesync_module/features/questionnaire/domain/usecases/submit_questionnaire_usecase.dart';
 import 'package:flutter_elitesync_module/features/questionnaire/presentation/state/questionnaire_state.dart';
 
+bool _sameSession(SessionState? expected, SessionState? current) =>
+    expected?.isLoggedIn == true && identical(expected, current);
+
 final questionnaireRemoteDataSourceProvider =
     Provider<QuestionnaireRemoteDataSource>((ref) {
       final env = ref.watch(appEnvProvider);
       final apiClient = ref.watch(apiClientProvider);
+      final session = ref.watch(sessionProvider).asData?.value;
+      var active = true;
+      ref.onDispose(() => active = false);
       return QuestionnaireRemoteDataSource(
         apiClient: apiClient,
         useMockQuestionnaire: env.useMockQuestionnaire,
+        isCurrent: () =>
+            active &&
+            _sameSession(session, ref.read(sessionProvider).asData?.value),
       );
     });
 
@@ -64,16 +74,34 @@ final getQuestionnaireHistoryUseCaseProvider =
 
 final questionnaireHistoryProvider = FutureProvider<List<QuestionnaireAttempt>>(
   (ref) async {
-    return ref.read(getQuestionnaireHistoryUseCaseProvider).call();
+    var active = true;
+    ref.onDispose(() => active = false);
+    final session = await ref.watch(sessionProvider.future);
+    if (!active || !session.isLoggedIn) return [];
+    final history = await ref
+        .watch(getQuestionnaireHistoryUseCaseProvider)
+        .call();
+    return active &&
+            _sameSession(session, ref.read(sessionProvider).asData?.value)
+        ? history
+        : [];
   },
 );
 
 final questionnaireProfileSnapshotProvider =
     FutureProvider<QuestionnaireProfileSnapshot?>((ref) async {
+      var active = true;
+      ref.onDispose(() => active = false);
+      final session = await ref.watch(sessionProvider.future);
+      if (!active || !session.isLoggedIn) return null;
       final local = ref.read(localStorageProvider);
       final dynamic raw = await local.getJson(
         CacheKeys.questionnaireProfileSnapshot,
       );
+      if (!active ||
+          !_sameSession(session, ref.read(sessionProvider).asData?.value)) {
+        return null;
+      }
       if (raw is! Map) return null;
       if (raw.isEmpty) return null;
       return QuestionnaireProfileSnapshot.fromJson(
@@ -103,6 +131,8 @@ final questionnaireBankNoticeProvider = Provider<QuestionnaireBankNotice>((
 });
 
 class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
+  int _generation = 0;
+  bool Function() _requestIsCurrent = () => true;
   QuestionnaireBankNotice _bankNotice = const QuestionnaireBankNotice();
   QuestionnaireBankNotice get bankNotice => _bankNotice;
   QuestionnaireState? get _current => state.asData?.value;
@@ -133,7 +163,11 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
     return mapped;
   }
 
-  Future<void> _persistLocalDraft(QuestionnaireState state) async {
+  Future<void> _persistLocalDraft(
+    QuestionnaireState state, {
+    bool Function()? isCurrent,
+  }) async {
+    if (!(isCurrent ?? _requestIsCurrent)()) return;
     await ref.read(localStorageProvider).setJson(CacheKeys.questionnaireDraft, {
       'version': state.version,
       'bank_version': state.bankVersion,
@@ -144,13 +178,28 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
     });
   }
 
-  Future<void> _clearLocalDraft() async {
+  Future<void> _clearLocalDraft({bool Function()? isCurrent}) async {
+    if (!(isCurrent ?? _requestIsCurrent)()) return;
     await ref.read(localStorageProvider).remove(CacheKeys.questionnaireDraft);
   }
 
   @override
   Future<QuestionnaireState> build() async {
+    final generation = ++_generation;
+    _requestIsCurrent = () => false;
+    _bankNotice = const QuestionnaireBankNotice();
+    var active = true;
+    ref.onDispose(() => active = false);
+    final session = await ref.watch(sessionProvider.future);
+    bool current() =>
+        active &&
+        generation == _generation &&
+        _sameSession(session, ref.read(sessionProvider).asData?.value);
+    if (!active || generation != _generation) return const QuestionnaireState();
+    _requestIsCurrent = current;
+    if (!current()) return const QuestionnaireState();
     final bundle = await ref.read(getQuestionnaireUseCaseProvider).call();
+    if (!current()) return const QuestionnaireState();
     final remote = ref.read(questionnaireRemoteDataSourceProvider);
     _bankNotice = QuestionnaireBankNotice(
       draftNotice: remote.draftNotice,
@@ -171,6 +220,7 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
     final draft = await ref
         .read(questionnaireRemoteDataSourceProvider)
         .fetchDraft();
+    if (!current()) return const QuestionnaireState();
     if (draft.isNotEmpty) {
       final answers = _parseAnswers(draft['answers']);
       final rawIndex =
@@ -189,6 +239,7 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
   }
 
   void selectOption(int optionIndex) {
+    if (!_requestIsCurrent()) return;
     if (_bankNotice.needsReload) return;
     final current = _current;
     if (current == null) return;
@@ -212,6 +263,8 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
   }
 
   Future<bool> selectOptionAndProceed(int optionIndex) async {
+    final isCurrent = _requestIsCurrent;
+    if (!isCurrent()) return false;
     final before = _current;
     if (before == null ||
         before.isSavingDraft ||
@@ -235,14 +288,16 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
       await ref
           .read(saveQuestionnaireDraftUseCaseProvider)
           .call(currentIndex: after.currentIndex + 1, answers: after.answers);
+      if (!isCurrent()) return false;
       final saved = after.copyWith(
         currentIndex: after.currentIndex + 1,
         isSavingDraft: false,
         clearError: true,
       );
       state = AsyncData(saved);
-      await _persistLocalDraft(saved);
+      await _persistLocalDraft(saved, isCurrent: isCurrent);
     } catch (e) {
+      if (!isCurrent()) return false;
       state = AsyncData(
         after.copyWith(isSavingDraft: false, errorMessage: _draftSaveError(e)),
       );
@@ -251,6 +306,7 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
   }
 
   void next() {
+    if (!_requestIsCurrent()) return;
     final current = _current;
     if (current == null || current.questions.isEmpty) return;
     if (!current.isLast) {
@@ -269,6 +325,7 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
   }
 
   void previous() {
+    if (!_requestIsCurrent()) return;
     final current = _current;
     if (current == null || current.questions.isEmpty) return;
     if (!current.isFirst) {
@@ -287,6 +344,8 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
   }
 
   Future<void> saveDraft() async {
+    final isCurrent = _requestIsCurrent;
+    if (!isCurrent()) return;
     if (_bankNotice.needsReload) return;
     final current = _current;
     if (current == null) return;
@@ -301,12 +360,15 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
       await ref
           .read(saveQuestionnaireDraftUseCaseProvider)
           .call(currentIndex: current.currentIndex, answers: current.answers);
+      if (!isCurrent()) return;
       final fresh = _current ?? current;
-      await _persistLocalDraft(fresh);
+      await _persistLocalDraft(fresh, isCurrent: isCurrent);
+      if (!isCurrent()) return;
       state = AsyncData(
         fresh.copyWith(isSavingDraft: false, feedbackMessage: '草稿已保存'),
       );
     } catch (e) {
+      if (!isCurrent()) return;
       final fresh = _current ?? current;
       state = AsyncData(
         fresh.copyWith(isSavingDraft: false, errorMessage: _draftSaveError(e)),
@@ -315,6 +377,8 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
   }
 
   Future<bool> submit() async {
+    final isCurrent = _requestIsCurrent;
+    if (!isCurrent()) return false;
     if (_bankNotice.needsReload) return false;
     final current = _current;
     if (current == null) return false;
@@ -336,8 +400,10 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
       final submission = await ref
           .read(submitQuestionnaireUseCaseProvider)
           .call(current.answers);
+      if (!isCurrent()) return false;
       final fresh = _current ?? current;
-      await _clearLocalDraft();
+      await _clearLocalDraft(isCurrent: isCurrent);
+      if (!isCurrent()) return false;
       await ref
           .read(localStorageProvider)
           .setJson(
@@ -352,6 +418,7 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
               updatedAt: DateTime.now(),
             ).toJson(),
           );
+      if (!isCurrent()) return false;
       ref
           .read(frontendTelemetryProvider)
           .questionnaireSubmitted(
@@ -372,6 +439,7 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
       );
       return true;
     } catch (e) {
+      if (!isCurrent()) return false;
       final fresh = _current ?? current;
       final stale =
           e is ValidationException && e.code == 'QUESTIONNAIRE_SUBMIT_STALE';
@@ -385,9 +453,7 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
       state = AsyncData(
         fresh.copyWith(
           isSubmitting: false,
-          errorMessage: stale
-              ? e.message
-              : e.toString(),
+          errorMessage: stale ? e.message : e.toString(),
         ),
       );
       return false;
@@ -395,6 +461,8 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
   }
 
   Future<void> debugAutofillAndSubmit({int optionIndex = 0}) async {
+    final isCurrent = _requestIsCurrent;
+    if (!isCurrent()) return;
     final current = _current;
     if (current == null) return;
     if (current.questions.isEmpty) return;
@@ -413,14 +481,18 @@ class QuestionnaireNotifier extends AsyncNotifier<QuestionnaireState> {
       clearFeedback: true,
     );
     state = AsyncData(filled);
-    await _persistLocalDraft(filled);
+    await _persistLocalDraft(filled, isCurrent: isCurrent);
+    if (!isCurrent()) return;
     await submit();
   }
 
   Future<void> restart() async {
+    final isCurrent = _requestIsCurrent;
+    if (!isCurrent()) return;
     final current = _current;
     if (current == null) return;
-    await _clearLocalDraft();
+    await _clearLocalDraft(isCurrent: isCurrent);
+    if (!isCurrent()) return;
     state = AsyncData(
       current.copyWith(
         currentIndex: 0,

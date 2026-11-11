@@ -1,6 +1,8 @@
 import 'package:flutter_elitesync_module/core/error/app_exception.dart';
 import 'package:flutter_elitesync_module/core/network/api_client.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 import 'package:flutter_elitesync_module/features/questionnaire/data/dto/questionnaire_attempt_dto.dart';
 import 'package:flutter_elitesync_module/features/questionnaire/data/dto/questionnaire_bundle_dto.dart';
 import 'package:flutter_elitesync_module/features/questionnaire/data/dto/questionnaire_submission_result_dto.dart';
@@ -10,17 +12,36 @@ class QuestionnaireRemoteDataSource {
   QuestionnaireRemoteDataSource({
     required ApiClient apiClient,
     required bool useMockQuestionnaire,
+    bool Function()? isCurrent,
   }) : _apiClient = apiClient,
-       _useMockQuestionnaire = useMockQuestionnaire;
+       _useMockQuestionnaire = useMockQuestionnaire,
+       _isCurrent = isCurrent;
 
   final ApiClient _apiClient;
   final bool _useMockQuestionnaire;
+  final bool Function()? _isCurrent;
   QuestionnaireBundleDto? _lastBundle;
   String _draftNotice = '';
   int? _bankRevision;
 
   String get draftNotice => _draftNotice;
   int? get bankRevision => _bankRevision;
+
+  void _requireCurrent() {
+    if (_isCurrent?.call() == false) {
+      throw const ValidationException(
+        '登录身份已变化，请重新读取问卷。',
+        code: 'QUESTIONNAIRE_SESSION_CHANGED',
+      );
+    }
+  }
+
+  Options _options() {
+    _requireCurrent();
+    return Options(
+      extra: {if (_isCurrent != null) requestSessionGuardKey: _isCurrent},
+    );
+  }
 
   QuestionnaireBundleDto _readBundle(Map<String, dynamic> data) {
     final meta = data['meta'];
@@ -32,6 +53,7 @@ class QuestionnaireRemoteDataSource {
   }
 
   Future<QuestionnaireBundleDto> fetchQuestionnaire() async {
+    _requireCurrent();
     if (_useMockQuestionnaire) {
       return _readBundle({
         'meta': QuestionnaireMock.meta,
@@ -39,7 +61,11 @@ class QuestionnaireRemoteDataSource {
       });
     }
 
-    final result = await _apiClient.get('/api/v1/questionnaire/questions');
+    final result = await _apiClient.get(
+      '/api/v1/questionnaire/questions',
+      options: _options(),
+    );
+    _requireCurrent();
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       return _readBundle(result.data);
     }
@@ -55,6 +81,7 @@ class QuestionnaireRemoteDataSource {
     required int currentIndex,
     required Map<int, int> answers,
   }) async {
+    _requireCurrent();
     if (_useMockQuestionnaire) {
       return;
     }
@@ -62,6 +89,7 @@ class QuestionnaireRemoteDataSource {
     _canonicalAnswers(answers, bundle);
     final result = await _apiClient.post(
       '/api/v1/questionnaire/draft',
+      options: _options(),
       body: {
         'answers': answers.map((key, value) => MapEntry(key.toString(), value)),
         'current_index': currentIndex,
@@ -69,6 +97,7 @@ class QuestionnaireRemoteDataSource {
         'bank_version': bundle.bankVersion,
       },
     );
+    _requireCurrent();
     if (result is NetworkSuccess<Map<String, dynamic>>) return;
     final failure = result as NetworkFailure<Map<String, dynamic>>;
     if (failure.statusCode == 422 || failure.statusCode == 409) {
@@ -84,8 +113,13 @@ class QuestionnaireRemoteDataSource {
   }
 
   Future<Map<String, dynamic>> fetchDraft() async {
+    _requireCurrent();
     if (_useMockQuestionnaire) return {};
-    final result = await _apiClient.get('/api/v1/questionnaire/draft');
+    final result = await _apiClient.get(
+      '/api/v1/questionnaire/draft',
+      options: _options(),
+    );
+    _requireCurrent();
     if (result is NetworkSuccess<Map<String, dynamic>>) return result.data;
     final failure = result as NetworkFailure<Map<String, dynamic>>;
     throw ValidationException(
@@ -125,6 +159,7 @@ class QuestionnaireRemoteDataSource {
   Future<QuestionnaireSubmissionResultDto> submitAnswers(
     Map<int, int> answers,
   ) async {
+    _requireCurrent();
     if (_useMockQuestionnaire) {
       return QuestionnaireSubmissionResultDto.fromJson(
         QuestionnaireMock.submitHappy,
@@ -136,8 +171,10 @@ class QuestionnaireRemoteDataSource {
 
     final result = await _apiClient.post(
       '/api/v1/questionnaire/answers',
+      options: _options(),
       body: {'answers': normalizedAnswers},
     );
+    _requireCurrent();
 
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       return QuestionnaireSubmissionResultDto.fromJson(result.data);
@@ -157,6 +194,7 @@ class QuestionnaireRemoteDataSource {
   }
 
   Future<List<QuestionnaireAttemptDto>> fetchHistory() async {
+    _requireCurrent();
     if (_useMockQuestionnaire) {
       return QuestionnaireMock.history
           .whereType<Map<String, dynamic>>()
@@ -164,7 +202,11 @@ class QuestionnaireRemoteDataSource {
           .toList();
     }
 
-    final result = await _apiClient.get('/api/v1/questionnaire/history');
+    final result = await _apiClient.get(
+      '/api/v1/questionnaire/history',
+      options: _options(),
+    );
+    _requireCurrent();
     if (result is NetworkSuccess<Map<String, dynamic>>) {
       final items = (result.data['items'] as List?) ?? const [];
       return items

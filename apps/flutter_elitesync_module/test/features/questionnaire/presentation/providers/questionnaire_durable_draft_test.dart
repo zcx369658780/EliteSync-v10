@@ -9,6 +9,16 @@ import 'package:flutter_elitesync_module/features/questionnaire/data/dto/questio
 import 'package:flutter_elitesync_module/features/questionnaire/data/dto/questionnaire_submission_result_dto.dart';
 import 'package:flutter_elitesync_module/features/questionnaire/presentation/providers/questionnaire_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
+
+class _Session extends SessionNotifier {
+  @override
+  SessionState build() => const SessionState(
+    status: AuthStatus.authenticated,
+    accessToken: 'fictional-questionnaire-session',
+  );
+}
 
 class _Local extends LocalStorageService {
   @override
@@ -69,6 +79,7 @@ void main() {
   Future<ProviderContainer> create(_Remote remote) async {
     final container = ProviderContainer(
       overrides: [
+        sessionProvider.overrideWith(_Session.new),
         questionnaireRemoteDataSourceProvider.overrideWithValue(remote),
         localStorageProvider.overrideWithValue(_Local()),
       ],
