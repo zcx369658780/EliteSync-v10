@@ -126,6 +126,7 @@ class _MediaApi extends ApiClient {
   _MediaApi() : super(dio: Dio());
   bool unavailable = false;
   bool includeImage = false;
+  int messageCount = 1;
   bool denied = false;
   final bodies = <Map<String, dynamic>>[];
   @override
@@ -143,16 +144,19 @@ class _MediaApi extends ApiClient {
         )
       : NetworkSuccess({
           'items': [
-            {
-              'id': 1,
-              'content': 'retained conversation',
-              'attachments': [
-                if (includeImage)
-                  {
-                    'media_asset': {'id': 42, 'media_type': 'image'},
-                  },
-              ],
-            },
+            for (var i = 0; i < messageCount; i++)
+              {
+                'id': i + 1,
+                'content': i == 0
+                    ? 'retained conversation'
+                    : 'later message $i',
+                'attachments': [
+                  if (includeImage && i == 0)
+                    {
+                      'media_asset': {'id': 42, 'media_type': 'image'},
+                    },
+                ],
+              },
           ],
         });
   @override
@@ -820,7 +824,9 @@ void main() {
   testWidgets(
     'authorized image opens zoomable preview, back closes it and denial removes it',
     (tester) async {
-      final api = _MediaApi()..includeImage = true;
+      final api = _MediaApi()
+        ..includeImage = true
+        ..messageCount = 20;
       final dio = Dio()
         ..interceptors.add(
           InterceptorsWrapper(
@@ -840,14 +846,25 @@ void main() {
       await _show(tester, api, dio: dio);
       await tester.pumpAndSettle();
       final image = find.byKey(const ValueKey('live-chat-image-42'));
+      await tester.scrollUntilVisible(
+        image,
+        250,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await Scrollable.ensureVisible(tester.element(image), alignment: 0.4);
+      await tester.pumpAndSettle();
+      final positionBeforePreview = tester.getTopLeft(image).dy;
       await tester.tap(image);
       await tester.pumpAndSettle();
       expect(find.text('图片预览'), findsOneWidget);
       expect(find.byType(InteractiveViewer), findsOneWidget);
+      final previewSize = tester.getSize(find.byType(Image));
       await tester.binding.handlePopRoute();
       await tester.pumpAndSettle();
       expect(find.text('图片预览'), findsNothing);
       expect(find.text('retained conversation'), findsOneWidget);
+      expect(tester.getTopLeft(image).dy, closeTo(positionBeforePreview, 1));
+      expect(previewSize.width, greaterThan(300));
       await tester.tap(image);
       await tester.pumpAndSettle();
       api.denied = true;

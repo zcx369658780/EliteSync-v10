@@ -1090,10 +1090,14 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
               onPressed: () => setState(() => _previewImageId = null),
             ),
           ),
-          body: Center(
-            child: InteractiveViewer(
+          body: LayoutBuilder(
+            builder: (context, constraints) => InteractiveViewer(
               maxScale: 5,
-              child: Image.memory(preview, fit: BoxFit.contain),
+              child: SizedBox(
+                width: constraints.maxWidth,
+                height: constraints.maxHeight,
+                child: Image.memory(preview, fit: BoxFit.contain),
+              ),
             ),
           ),
         ),
@@ -1189,6 +1193,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             ),
           Expanded(
             child: ListView(
+              key: PageStorageKey<String>(
+                'live-chat-history-${_session?.user?.id}-${widget.peerId}',
+              ),
               reverse: true,
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               children: [
