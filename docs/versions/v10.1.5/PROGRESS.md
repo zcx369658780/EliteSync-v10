@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 Android原生双索引丢失拒绝与正常恢复
+
+本节点无产品源码变化，当前14944ee9/f239候选补此前仅隔离测试的具体缺口。官方Flutter调试观察仅连接5580/B，先只读确认两索引完整、owner v1/虚构account2、唯一活动缓存与三个已知对象；原索引/定位元数据预存私有。一次有界观察在实际SecureStorage插件路径移除两索引，调用当前PrivateCacheService.clearCurrentAccount；没有调用账号退出、撤销服务端会话、改时钟或写读授权。实际返回failed、deletedObjects=0，三个原对象与定位记录保持，两索引仍缺失，缓存锁定。finally恢复两索引/定位元数据并逐字读回相同，没有手动调试解锁。
+
+随后仅一次正常force-stop/启动、不清数据，经APP当前流程重新恢复加密列表保存及消息102/103读取；users/media/CN/MC、原消息不可变字段与总数103保持，零新发送。截图已实际查看；本次官方观察工具已随旧进程退出，精确移除自己创建的调试转发。原生预检、一次观察与正常恢复分别保留cache-index-native-baseline-private.json、cache-index-native-one-attempt-private.json及cache-index-native-recovery-private.json，敏感元数据仅私有。
+
+该证据为模拟器内真实原生存储插件与公开缓存清理方法，通过调试器触发，不冒充正常账号退出UI、不等同物理磁盘/硬件密钥库故障。未做完成阶段locator删除失败、静默写失败及完整多故障矩阵；恢复索引使用观察方预存元数据，不说明APP能够自动重建未知索引。84项隔离检查与旧节点未运行事实均保留，本次只关闭“原生双missing拒绝误清理”这一子项；AC07及整版结论继续PARTIAL。
+
+---
+
 # 最新节点｜2026-11-11 同候选双端文字与冷启动重读
 
 为处理A旧包/B新包的具体缺口，恢复已有5582/A AVD并安装已核验14944ee94de52a9d8a7114e6b7becd5e90ee117b/f239候选；两端同包，原登录/AVD保留，专用ADB5038和USB排除不变。正常APP明确各一条TEST_ONLY文字，双方均显示两条与正确本人/对方方向；数据库只新增102（sender2→receiver1）与103（sender1→receiver2），各有原提交编号，总数101→103。users全行、media全行、CN/MC与原消息id/sender/receiver/room/content/client编号/created_at哈希保持。未把正常已读时间变化当不可变字段。

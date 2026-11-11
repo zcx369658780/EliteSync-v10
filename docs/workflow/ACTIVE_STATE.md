@@ -11,13 +11,15 @@ Owner全自动普通工程授权持续有效，直到明确叫停。功能优先
 
 ## 最新完成与下一步
 
+**Android双索引丢失的一次原生拒绝检查通过。** 当前14944ee9/f239包，官方Flutter观察连接仅定位B唯一活动缓存；预存两索引/定位元数据后，一次移除实际SecureStorage两索引并调用clearCurrentAccount。返回failed/删除0，三个已知原对象及定位记录保持，两索引/定位元数据逐字恢复；进程仍锁定，未调试解锁、未退出账号/撤服务端会话/改时钟。随后正常启动重新核验，APP加密列表保存及102/103重读正常，users/media/CN/MC、原消息不可变字段与总数103保持。仅原生插件路径，非物理损坏/硬件密钥库或完整故障矩阵，不提供APP自动重建元数据能力。私有cache-index-native-one-attempt-private.json、cache-index-native-recovery-private.json；观察工具已退出、精确转发已移除。
+
 **同候选双端文字与B冷启重读通过。** 恢复5582原AVD后仅更新A，两端同14944ee9/f239；正常APP各发一条TEST_ONLY文字，双方显示本人/对方方向，数据库仅新增102（2→1）、103（1→2），总数101→103。原消息不可变字段、users/media/CN/MC哈希保持。首次对账助手用明文查询密文列而失败，原失败回执保留；仅用既有Eloquent解密读取补证，零重复发送，两新内容实际密文保存。随后B一次force-stop/启动、不清数据，列表及聊天重读两条成功，总数仍103；本次未另核token/T0相同，也未重跑媒体/RTC。截图已查看，私有candidate-text-reconciliation-private.json及candidate-text-cold-readback-private.json。仅补齐当前候选文字子链，不关闭完整AC10。
 
 **消息/聊天与首页首轮布局收尾。** f4d083c2会话卡片/长预览、底部留白、中文菜单；消息按当前发送者左右分组，缺失字段用中性标签，本人消息才显示已读状态；输入栏支持四行与键盘，原发送/重试/缓存/权限逻辑保持。12项列表、65项聊天/历史/可靠性检查及三文件analyze通过，含320宽/1.6倍文字。B实际列表、本人气泡、空输入键盘、私密资料/展示目的页文案正常；无新发送或草稿写入。ed1662d3首页分组并保留合成活动边界，三个原入口/返回通过，活动拒绝非合成B。14944ee9将共享页Forbidden显示为中文，补底部留白；15项平台检查及两文件analyze通过，新包拒绝提示/返回实际通过。原测试分页点击遮挡和旧会话fixture签名失败已定向修复，原断言保留。私有messages-ui-runtime-private.json、home-ui-runtime-private.json及home-event-denied-copy-runtime-private.json；各自绑定候选，不等于统一最终验收。
 
 **“我的/设置”首轮界面收尾通过。** “我的”按个人资料、账户与隐私、兴趣与记录分组，设置移至右上角；资格/申诉/Safety入口移入独立页，原构建开关及权限保持。设置移除无消费方的本机提醒开关，打开现有通知设置，只读权限与偏好，不自动申请权限或注册Push。33项Me/资格/路由检查、35项设置/通知/路由检查及七文件analyze通过，两组含重复路由测试、不相加报唯一数量。B新包首屏、滚动到底避开底栏、资格页返回、设置及通知读取正常；本轮无偏好修改或申诉提交。私有me-settings-ui-runtime-private.json。随后2700947f统一目的页中文标题/按钮及底部留白，保留未确认资格与私有草稿说明；12项相关路由/准备状态检查和两文件analyze通过，f4d083c2包实际抽查私密资料/展示目的页正常，匹配/准备目的页文案未逐页运行。
 
-**缓存双索引丢失拒绝误报，正常清理末步可重试。** 普通owner仍在而两索引均失时保留失败/原目标，不再误报清空或覆盖旧索引；逐个删除并验证后才写严格清理完成阶段，再删索引/最后定位记录。完成阶段不授予内容或时间，保存新内容须完整确认恢复v1，静默写失败拒绝。84项相关检查/两文件analyze/非作者最终复核通过。B新包正常冷启动经当前服务端核验恢复原会话/token/T0、当前加密列表保存/显示通过，users/偏好/27表保持。Android双索引故障注入未运行；无元数据的实际自动恢复未建立。私有cache-index-runtime-private.json。
+**缓存双索引丢失拒绝误报，正常清理末步可重试。** 普通owner仍在而两索引均失时保留失败/原目标，不再误报清空或覆盖旧索引；逐个删除并验证后才写严格清理完成阶段，再删索引/最后定位记录。完成阶段不授予内容或时间，保存新内容须完整确认恢复v1，静默写失败拒绝。84项相关检查/两文件analyze/非作者最终复核通过。670ed43d节点B正常冷启动经当前服务端核验恢复原会话/token/T0、当前加密列表保存/显示通过，users/偏好/27表保持。该节点尚未做Android双索引故障注入，后续原生拒绝检查见上；无元数据的APP自动恢复未建立。私有cache-index-runtime-private.json。
 
 **本机加密文本草稿已接通。** 明确保存/清除、按账号/设备/登录/peer隔离，当前会话读取后恢复，已有有效离线上下文只读。在线手动发送先存不可变提交编号，未知结果只提供原编号手动重试；无自动发送/离线预发队列。慢GET覆盖旧pending、附件互斥、清理跳过或失败误报等P2已修。78项定向检查、四文件analyze及非作者Sol最终复核无剩余P1/P2。B新包正常保存TEST_ONLY文字、离页重进恢复、清除后再重进空，一次保存/一次清除/零发送。users/偏好/27表、conversation/link/hidden及会话/token保持；member原哈希变化原证保留，定向正常GET原始行比较仅B已读时间/updated_at变化。私有chat-text-draft-runtime-private.json。跨冷启草稿、Android故障矩阵未验，不扩大原冷启锁定/旧缓存清理语义。
 
@@ -33,4 +35,4 @@ Owner全自动普通工程授权持续有效，直到明确叫停。功能优先
 
 原证、凭据/JWT/Cookie、APK/截图/素材、SQL、许可及运行二进制仅私有；普通同步当前分支，失败记PENDING_SYNC。旧2026-11-10暂停回执不改写；当前节点见current-engineering-node-private.json，不写新的暂停或STOP。
 
-仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。独立精度、统一最终候选、完整权限/缓存/并发/停包、15/30天、双索引均失、硬件密钥库及Owner接受等未关闭。具体失败、身份和分层证据见[进度](../versions/v10.1.5/PROGRESS.md)。[Owner长期授权](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md) · [现行工作流](CURRENT_WORKFLOW.md)
+仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。独立精度、统一最终候选完整旅程、完整权限/缓存/并发/停包、15/30天、双索引均失后的完整恢复及末步故障、硬件密钥库与Owner接受等未关闭。具体失败、身份和分层证据见[进度](../versions/v10.1.5/PROGRESS.md)。[Owner长期授权](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md) · [现行工作流](CURRENT_WORKFLOW.md)
