@@ -2,7 +2,7 @@
 
 Owner已明确恢复全自动持续工程；普通工程长期授权保留，功能优先，随后安全封装和集中验收，直到Owner明确叫停。手机不连接、读取或操作；不复活旧STOP，不合main、不发布、不启动v10.1.6。
 
-**当前节点：动态广场仅自己文本发布/读回/点赞取消/一级评论及作者确认删除链通过。** 管理审核与旧页面409、APP问卷/草稿重启/历史、SDK通话及分页等既过节点保留。虚构user1有效答案20/20，运营pending/revision2，两条审核审计保留。下一项核对独立搭子在本机开发服务的现有入口。
+**当前节点：独立搭子DRAFT→OPEN→REQUESTED→CONFIRMED→WITHDRAWN真实链通过。** 一端正常APP＋另一虚构账号正常API，双方接收已关闭/revision2、slots0、邀请撤销。动态、管理审核、问卷及SDK等既过节点保留；user1问卷20/20、运营pending/revision2。下一项定向检查问卷账户切换时内存状态与异步晚回隔离，不重复已有功能主链。
 
 - 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`；原主库dirty/index与无关 `%SystemDrive%/` 保留。资产清理已结束，不重新盘点或复制SDK/AVD。
 - 管理面板：当前服务源码节点 `7ed081d478921b891692fa1e8ebaefc741b324a0`；仅开发库新增synthetic管理员id3，私有dotenv增加一项白名单，无鉴权源码变更或容器重启。真实浏览器登录→用户3条→名称搜索1条→user2详情→问卷/举报/审计空列表→退出→受保护页回登录通过；登录产生的管理会话已撤销。角色无白名单与普通账号均拒绝，缺CSRF返回419。原两用户、101消息、4媒体、附件及具名治理表hash保持；虚构库现3用户。空列表不代表有数据的运营链通过，未执行处罚、Safety、匹配或发布。私有 `admin-runtime-private.json`；凭据、配置和截图只本机。
@@ -10,6 +10,7 @@ Owner已明确恢复全自动持续工程；普通工程长期授权保留，功
 - 问卷：服务源码 `9ff5c3ea484394a651af38df70ea7cd7d429fbfd`，APP沿用4a645候选；原4份题库JSON只读挂载，经现有Seeder导入157题，137启用/20研究题禁用，无重启现有服务。首次helper因向只读/runtime写回执，在seed前退出1，原证保留；修正主机接收stdout后成功。5580虚构user1从我的补答入口正常逐项选择20题，第一题后进程重启保持答案/同20题顺序和2/20位置，最后仅提交一次；结果页、历史1条、DB20规范选项/版本、草稿清空、user2历史空通过。结果页最初读到提交中画面且helper预期标题错误，保留原失败后仅观察确认，无重答。资格UI与DB均20/20、missing0、operational_review_pending/不可新匹配。原用户/聊天/媒体保持；私有 `question-bank-seed-private.json`、`questionnaire-runtime-private.json`。
 - 管理审核：仅正常登记的虚构user1，Web将pending/revision0审核approved/revision1，APP刷新显示服务器确认可参与；另一旧页面携revision0提交被409拒绝，仍revision1/一条审计。再正常审核回pending/revision2，APP刷新恢复不可参与，审计两条；管理session已退出/active0。未改角色、实人标记、同意、处罚或运行匹配，其他用户和具名聊天/媒体/问卷等表hash不变；该user1的审核原因/版本/updated_at及审计属于本次预期变动，不称全库恢复原字节。审核select原先approved仍默认pending，现仅Blade保留当前值并加label，真实重载approved和恢复pending均通过。私有 `admin-review-runtime-private.json`；旧页面409仍是通用错误页，友好反馈可后置。
 - 动态：沿用4a645候选/服务源码0df488b6，只在5580虚构user1正常APP创建1条SELF文本，无封面。作者200、user2详情与点赞404、匿名401、user2 feed不含；作者正常喜欢1→取消0。正常一级评论创建后经确认删除，UI不可见、接口UNAVAILABLE/revision2且body/author_id为空；原helper在确认弹窗前误期望列表空，观察原证保留。原动态再经确认软删，双方旧详情和评论地址4个404、feed排除。仅新增这条软删动态和删除态评论，原用户/101消息/4媒体/答案/审计等具名表hash保持；不称物理擦除、好友正向、封面或整版通过。私有 `status-runtime-private.json`。
+- 搭子：沿用4a645候选/服务源码76e41604，5580正常保存线上学习草稿、开启接收、开放并生成一次邀请；user2自己的正常API开启接收/兑换，APP刷新REQUESTED后创建人明确确认，双方CONFIRMED；再由创建人正常确认撤回。确认时与收尾既有用户、好友/CN/MC/正式关系、聊天/媒体/问卷/治理审计等具名表hash保持。双方接收false/revision2、WITHDRAWN/allowed_actions空、slots0、邀请REVOKED、旧凭据在此终态重兑404。只读helper首次错误排序id在变更前失败，原证保留。私有 `buddy-runtime-private.json`；未操作真实活动/预订/费用，不称双APP或其他搭子矩阵通过。
 - 当前APK源码 `10385b0fb270936e66526138d16b2e98752be647`，SHA256 `4a645b683bde7af7309ad91c30a519d086dbaadb34db6d9b585ee2f6b3083ec9`，154152605字节；38.682秒构建、退出0，签名/身份/标记通过，5580已更新。5582为单端历史验证暂停，保留ed01候选。各旧候选RTC/日志/缓存/权限证据分开，不冒充新包重测。
 - 6343候选已在两个自有模拟器完成call8语音双方双向RTP及原生聚合波形活动已证，UI挂断到房间不存在上界0.907秒。call9双方音频RTP、视频编码/解码和本地/远端生成画面已证；发起端一次自动重连后恢复，UI挂断上界1.422秒。自身进程快照未见Concurrent modification、Unhandled Exception或Visualizer失败。call1–9均ended，房间为空；不称连续无中断质量、AEC/听感或完整≤5秒停媒已通过。
 - 自有SFU/WS/API/DB四容器与专用ADB5038运行；5580运行最新4a645候选；5582为节约内存暂停，AVD/ed01安装保留，必要时再恢复。沿用原数据卷/AVD，不重迁移或复制。Docker引擎恢复后，首次冷启动鉴权超时令网关按设计fail-closed；API就绪后只重启原SFU即恢复，私有恢复工具补充真实鉴权就绪检查，未放宽watchdog。默认ADB5037及手机未触碰，相机为生成画面。
