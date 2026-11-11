@@ -4,12 +4,14 @@ Owner全自动普通工程授权持续有效，直到明确叫停。功能优先
 
 ## 当前身份与资源
 
-- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。当前B APP源码 `14944ee94de52a9d8a7114e6b7becd5e90ee117b`，后端平台接线源于25bc01f7、头像源于cabba94d；本段后端源码未变，文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index与无关 `%SystemDrive%/` 保留。
-- 双端APK SHA256 `f239df9e7a14d8215177515fc7e0d4459ff5d7694d6c76ee86a75f7ca46e68b5`、154197831字节，离线32.959秒/退出0、签名/身份/arm64 Debug/既有功能标记通过。5580/B与恢复后的5582/A均安装14944ee9/f239并运行，原AVD/登录保留。未把不同候选的历史媒体/通话证据拼成整版通过。
+- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。当前B APP源码 `7dd866de723ece3297a4a728919835a364ddac3f`，后端平台接线源于25bc01f7、头像源于cabba94d；本段后端源码未变，文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index与无关 `%SystemDrive%/` 保留。
+- B APK SHA256 `afa61eb00ebd5747c8aa4e6000dc062ace3632d9e567c47f0c50f80cc0ec0ca0`、154196866字节，离线36.882秒/退出0、签名/身份/arm64 Debug/既有功能标记通过。5580/B运行；5582/A为构建资源正常暂停，保留14944ee9/f239包、AVD与登录。此前同14944候选的双端文字/冷启证据独立保留，不拼成新候选整版通过。
 - 私有根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；稳定构建根同上级的 `v1015-source-debug-workspace`，固定回执 `state/current-functional-build.json`。DB/API/WS/SFU四自有容器运行，准确ID见runtime-private.json；API含专属Linux三盘运行环境，独立虚构库不变。ADB5038/USB排除手机，模拟相机只生成画面，未改系统网络。
 - 开发库4个虚构用户（原1–3及新增合成平台参与者4），103消息/7媒体，最新两条为同候选文字检查102/103，B头像null/rev6。A问卷20/历史1、运营pending/rev2；B正式答案0、服务端草稿1题、昵称DevUser-B/城市DevCity-B、可选MBTI attempt1、Showcase私有草稿1。本人本命rev1/动态盘6条均UNVERIFIED；性格排序/Swiss研究false。原动态软删、搭子撤回、friendship REMOVED/rev2、邀请撤销/接收false及旧call1–11 ended/MC generation7沿既有节点保持。聊天草稿原正常清除；正常GET会刷新会话成员已读时间。
 
 ## 最新完成与下一步
+
+**实际图片预览体验缺陷已修。** 14944候选一次正常较早页读取到首条/全部消息提示，原图片显示正常；打开小图过小，返回跳到最新消息。7dd866de让预览在可用视窗内等比显示并保留账号/peer对应的历史滚动位置，原撤权隐藏不变。扩展既有测试先复现返回丢位置，44项聊天/历史检查及两文件analyze通过。首次资源门在编译前拒绝，正常暂停A后沿原门限构建成功。B新包实际小图适配视窗、返回相同坐标、原视频首帧/2秒元数据/关闭通过，未播放或重发媒体；总数103及users/media/CN/MC、原消息不可变字段保持。私有image-preview-fit-runtime-private.json；前包分页证据chat-current-pagination-readback-private.json。
 
 **Android双索引丢失的一次原生拒绝检查通过。** 当前14944ee9/f239包，官方Flutter观察连接仅定位B唯一活动缓存；预存两索引/定位元数据后，一次移除实际SecureStorage两索引并调用clearCurrentAccount。返回failed/删除0，三个已知原对象及定位记录保持，两索引/定位元数据逐字恢复；进程仍锁定，未调试解锁、未退出账号/撤服务端会话/改时钟。随后正常启动重新核验，APP加密列表保存及102/103重读正常，users/media/CN/MC、原消息不可变字段与总数103保持。仅原生插件路径，非物理损坏/硬件密钥库或完整故障矩阵，不提供APP自动重建元数据能力。私有cache-index-native-one-attempt-private.json、cache-index-native-recovery-private.json；观察工具已退出、精确转发已移除。
 
