@@ -1,4 +1,14 @@
-# 最新节点｜2026-11-11 平台活动当前开发库接线，正常链待运行
+# 最新节点｜2026-11-11 平台活动正常APP报名、确认、自主取消及恢复
+
+后端25bc01f7接通明确当前开发库，APP沿772482a5/dc5d包，无需重编。仅新增合成参与者4，排除匹配/广场/统计，原A/B非合成标记保持。既有管理员3正常localhost表单/Cookie/CSRF创建TEST_ONLY虚构活动，容量2，零费用预算DRAFT→REVIEWED→APPROVED_FOR_DEV_SIMULATION；仅开发模拟批准，不是付款或Owner财务批准。正常开放并定向邀请4；5582正常单会话退出A、登录4，APP读INVITED→报名APPLIED；后台正常确认后APP读CONFIRMED，再正常主动取消至CANCELLED_BY_USER。后台正常取消活动至CANCELLED、grant REVOKED并退出，受保护页面返回登录。
+
+最终只读核验：apply/cancel各一次，attendance仍UNVERIFIED，费用始终0；管理员活动Web session为0。参与者4正常退出且token0，原A正常登录恢复/新session active；仅原A先前当前会话撤销，其它原会话不变。原用户1–3完整摘要及23张命名业务/Safety表保持，原非合成B访问平台活动403。活动/预算/邀请/报名/通知/审计历史保留，没有直接SQL改变活动状态或物理删除。私有platform-event-runtime-private.json、platform-app-account-transition-private.json保存最终核验；原准备阶段读错allowlist键和导航未就绪原证保留。
+
+这只是最短合成演练链；候补/晋升、邀请token兑换、到场、举报/处罚及真实运营未运行，不扩大为全模块PASS或Owner接受。未作真实招募/地点/预订/付款/外部服务。下一步现有隐私字段保存/读回/恢复。
+
+---
+
+# 前置节点｜2026-11-11 平台活动当前开发库接线，正常链待运行
 
 既有平台活动APP消费页/后台创建管理链存在，但PlatformAccess固定v1014库/43325，当前v1015库/43326不能使用。增加仅服务器配置的PLATFORM_EVENTS_DATABASE/PLATFORM_EVENTS_DB_PORT，原默认不变，允许的精确组合仅原pair与当前pair；local、MySQL/MariaDB、127.0.0.1、无URL/socket要求保留。Laravel会在解析后从连接配置移除url，因此额外检查原始database.connections配置，防止URL被解析后误放行。
 
