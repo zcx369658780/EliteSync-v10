@@ -1,3 +1,11 @@
+# 最新节点｜2026-11-11 月亮回归明确起点与事件选择恢复
+
+同一后端c3950e0a/APP af74，B保留前三条动态记录、正常另建月亮回归盘，沿用本人已明确选定本命revision1，明确虚构起点2026-11-11 12:00/分钟/Asia-Shanghai及同一地点坐标。一次计算保存id4/input/result revision1，35天半开窗口找到首个事件；正常点击当前画面事件行一次后selected_event_index0、input/result revision2。选择前后数值results保持，原三条动态盘/正式users/Natal/其他动态摘要保持。
+
+正常返回/重进本人历史选id4，原起点日期和时间恢复为2026-11-11/12:00，已选事件/双盘图仍可见，没有再次保存。私有dynamic-lunar-runtime-private.json与准备/事件行/选中/历史重开截图保留。新平台及功能状态仍CALCULATED_UNVERIFIED，不把微秒数值bracket或残差当物理精度/独立核验；不参与关系事实或匹配分数。下一步另一份明确虚构手填输入的Synastry与Comparison最短链；现有四盘保留，本段无产品源码变化。
+
+---
+
 # 最新节点｜2026-11-11 太阳回归无事件与显式事件选择/历史恢复
 
 同一后端c3950e0a/APP af74，B正常“另建私有盘”沿用明确选定本人本命revision1及显式地点/坐标。2026年度计算一次，id2/input/result revision1，服务器返回NO_EVENT，APP实际显示本窗口无可用事件；窗口为所选时区年度半开区间，不把空事件集合当作引擎失败或精度证明。初观察助手要求非空根抛断言，原计算与说明完整保留在dynamic-solar-runtime-private.json，未在该id重算或改写年度。
