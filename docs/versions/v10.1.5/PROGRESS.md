@@ -1,3 +1,13 @@
+# 最新节点｜2026-11-11 同候选双端文字与冷启动重读
+
+为处理A旧包/B新包的具体缺口，恢复已有5582/A AVD并安装已核验14944ee94de52a9d8a7114e6b7becd5e90ee117b/f239候选；两端同包，原登录/AVD保留，专用ADB5038和USB排除不变。正常APP明确各一条TEST_ONLY文字，双方均显示两条与正确本人/对方方向；数据库只新增102（sender2→receiver1）与103（sender1→receiver2），各有原提交编号，总数101→103。users全行、media全行、CN/MC与原消息id/sender/receiver/room/content/client编号/created_at哈希保持。未把正常已读时间变化当不可变字段。
+
+首次私有对账助手使用SQL whereIn明文匹配已加密content列，虽然两端已显示、总数已正确增加，marker查询为空导致观察失败。原candidate-text-smoke-private.json及初版脚本保留，未重复发送。新的只读补证使用现有ChatMessage内容解密accessor，仅核baseline之后两行，确认正确内容/方向/提交编号及数据库原值为密文；补证引用原失败回执SHA，不能据此宣称端到端加密。私有candidate-text-reconciliation-private.json。
+
+随后B一次force-stop与正常启动，不清数据、不新增发送；当前列表预览与聊天均重读102/103，users/media/CN/MC、原消息不可变字段及总数103保持。截图实际查看；没有在本节点另核token/T0身份、离线/30天、媒体或RTC。私有candidate-text-cold-readback-private.json。当前两模拟器保留运行，四自有服务保持；同候选文字子链通过不等于完整集中验收，仍10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING。
+
+---
+
 # 最新节点｜2026-11-11 消息气泡、首页入口与拒绝提示
 
 f4d083c2297b97917ee90903dce6965df555031f改善会话卡片层次、长预览截行、中文会话菜单与底栏留白。聊天按当前发送者区分左右/颜色，只有本人消息显示读状态，sender_id缺失保持中性；不从视觉位置推断身份。输入栏一至四行，草稿/附件重试按钮可换行，原发送、权限、缓存、重试及附件逻辑保持。

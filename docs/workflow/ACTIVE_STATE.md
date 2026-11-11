@@ -5,11 +5,13 @@ Owner全自动普通工程授权持续有效，直到明确叫停。功能优先
 ## 当前身份与资源
 
 - 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。当前B APP源码 `14944ee94de52a9d8a7114e6b7becd5e90ee117b`，后端平台接线源于25bc01f7、头像源于cabba94d；本段后端源码未变，文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index与无关 `%SystemDrive%/` 保留。
-- B APK SHA256 `f239df9e7a14d8215177515fc7e0d4459ff5d7694d6c76ee86a75f7ca46e68b5`、154197831字节，离线32.959秒/退出0、签名/身份/arm64 Debug/既有功能标记通过。5580/B运行；5582/A因构建内存正常暂停，AVD与A登录保留，仍772482a5/dc5d包，需双端时再恢复。未把不同候选的证据拼成整版通过。
+- 双端APK SHA256 `f239df9e7a14d8215177515fc7e0d4459ff5d7694d6c76ee86a75f7ca46e68b5`、154197831字节，离线32.959秒/退出0、签名/身份/arm64 Debug/既有功能标记通过。5580/B与恢复后的5582/A均安装14944ee9/f239并运行，原AVD/登录保留。未把不同候选的历史媒体/通话证据拼成整版通过。
 - 私有根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；稳定构建根同上级的 `v1015-source-debug-workspace`，固定回执 `state/current-functional-build.json`。DB/API/WS/SFU四自有容器运行，准确ID见runtime-private.json；API含专属Linux三盘运行环境，独立虚构库不变。ADB5038/USB排除手机，模拟相机只生成画面，未改系统网络。
-- 开发库4个虚构用户（原1–3及新增合成平台参与者4），101消息/7媒体，B头像null/rev6。A问卷20/历史1、运营pending/rev2；B正式答案0、服务端草稿1题、昵称DevUser-B/城市DevCity-B、可选MBTI attempt1、Showcase私有草稿1。本人本命rev1/动态盘6条均UNVERIFIED；性格排序/Swiss研究false。原动态软删、搭子撤回、friendship REMOVED/rev2、邀请撤销/接收false及旧call1–11 ended/MC generation7沿既有节点保持。本次聊天草稿已正常清除，无新消息；正常GET会刷新B会话成员已读时间。
+- 开发库4个虚构用户（原1–3及新增合成平台参与者4），103消息/7媒体，最新两条为同候选文字检查102/103，B头像null/rev6。A问卷20/历史1、运营pending/rev2；B正式答案0、服务端草稿1题、昵称DevUser-B/城市DevCity-B、可选MBTI attempt1、Showcase私有草稿1。本人本命rev1/动态盘6条均UNVERIFIED；性格排序/Swiss研究false。原动态软删、搭子撤回、friendship REMOVED/rev2、邀请撤销/接收false及旧call1–11 ended/MC generation7沿既有节点保持。聊天草稿原正常清除；正常GET会刷新会话成员已读时间。
 
 ## 最新完成与下一步
+
+**同候选双端文字与B冷启重读通过。** 恢复5582原AVD后仅更新A，两端同14944ee9/f239；正常APP各发一条TEST_ONLY文字，双方显示本人/对方方向，数据库仅新增102（2→1）、103（1→2），总数101→103。原消息不可变字段、users/media/CN/MC哈希保持。首次对账助手用明文查询密文列而失败，原失败回执保留；仅用既有Eloquent解密读取补证，零重复发送，两新内容实际密文保存。随后B一次force-stop/启动、不清数据，列表及聊天重读两条成功，总数仍103；本次未另核token/T0相同，也未重跑媒体/RTC。截图已查看，私有candidate-text-reconciliation-private.json及candidate-text-cold-readback-private.json。仅补齐当前候选文字子链，不关闭完整AC10。
 
 **消息/聊天与首页首轮布局收尾。** f4d083c2会话卡片/长预览、底部留白、中文菜单；消息按当前发送者左右分组，缺失字段用中性标签，本人消息才显示已读状态；输入栏支持四行与键盘，原发送/重试/缓存/权限逻辑保持。12项列表、65项聊天/历史/可靠性检查及三文件analyze通过，含320宽/1.6倍文字。B实际列表、本人气泡、空输入键盘、私密资料/展示目的页文案正常；无新发送或草稿写入。ed1662d3首页分组并保留合成活动边界，三个原入口/返回通过，活动拒绝非合成B。14944ee9将共享页Forbidden显示为中文，补底部留白；15项平台检查及两文件analyze通过，新包拒绝提示/返回实际通过。原测试分页点击遮挡和旧会话fixture签名失败已定向修复，原断言保留。私有messages-ui-runtime-private.json、home-ui-runtime-private.json及home-event-denied-copy-runtime-private.json；各自绑定候选，不等于统一最终验收。
 
