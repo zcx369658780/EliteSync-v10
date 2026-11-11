@@ -4,10 +4,10 @@ Owner已恢复全自动持续工程，普通实现、定向验证/必要构建�
 
 ## 当前身份与资源
 
-- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。APP源码 `5a7625824064c545bcaa24f126cf14534556d4d6`；后端代码 `c3950e0ac780bdaf6e4d9baa134265c7327282c6`；后续文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index及无关 `%SystemDrive%/` 保留。
-- 安装APK SHA256 `af74f986365ea816aacb683d2d20379821387791fd9fe2959956632f73bf7297`，154165710字节，离线36.748秒/退出0，签名/包名/arm64 Debug/代码标记通过。只更新5580；5582已停止，AVD/旧候选保留。问卷切号实证仍绑定前e921包，不冒充本包重测。
+- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。当前APP/后端功能源码 `3fbe9c57ab9ca289a49e556a9778fa7bfa998ba0`；后续文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index及无关 `%SystemDrive%/` 保留。
+- 安装APK SHA256 `7f522a49818e10db7948badcf084992fd535fa498a28697c057025f1f43209d7`，154161505字节，离线38.266秒/退出0，签名/包名/arm64 Debug/昵称代码标记通过。只更新5580；5582已停止，AVD/旧候选保留。此包实际完成昵称保存/重进读回；其它既过链沿各自旧身份，问卷切号实证仍绑定前e921包，不冒充本包重测。
 - 私有根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；稳定构建根 `v1015-source-debug-workspace`。四个自有DB/API/WS/SFU运行，准确ID见runtime-private.json；API已接专属Linux排盘镜像，DB仍确切独立虚构库。专用ADB5038/USB排除手机，相机仅生成画面；未改系统网络。
-- 开发库3个虚构用户、101消息/4媒体保持。A正式问卷20/历史1，运营pending/revision2、两条审核审计；B正式答案0/历史0、服务端草稿1题/index1，城市DevCity-B，可选MBTI attempt1，Showcase私有草稿1。原SELF动态/一级评论软删、搭子WITHDRAWN及双方接收false/rev2保持；新FRIENDS动态已另行软删，好友请求历史ACCEPTED、friendship REMOVED/rev2、邀请已撤销、两方接收新请求均false。旧call1–11 ended/房间空、MC generation7沿用前节点，本段无新通话。
+- 开发库3个虚构用户、101消息/4媒体保持。A正式问卷20/历史1，运营pending/revision2、两条审核审计；B正式答案0/历史0、服务端草稿1题/index1，昵称DevUser-B、城市DevCity-B，可选MBTI attempt1，Showcase私有草稿1。原SELF动态/一级评论软删、搭子WITHDRAWN及双方接收false/rev2保持；新FRIENDS动态已另行软删，好友请求历史ACCEPTED、friendship REMOVED/rev2、邀请已撤销、两方接收新请求均false。旧call1–11 ended/房间空、MC generation7沿用前节点，本段无新通话。
 
 ## 最新完成与下一步
 
@@ -21,7 +21,9 @@ Owner已恢复全自动持续工程，普通实现、定向验证/必要构建�
 
 **修改密码正常链通过。** B正常APP改密成功且字段清空；旧密码登录422、新密码登录同一B。现有语义保留原会话，实际原会话/token身份保持，本次仅新建一个验证会话并单独退出。正常APP已恢复原测试密码，服务端原密码核对true、临时密码登录422；其它用户/B其它字段及18张独立表保持。密码hash/updated_at正常变化，不称逐字节恢复；fixture_password未改。私有password-runtime-private.json保留，不是改密撤销策略或完整安全验收。
 
-**昵称独立保存已实现，正在必要合包与正常页面验证。** 仅当前本人name更新，不要求出生地或触发完整保存/排盘；服务端读回确认，失败/切号晚回不报成功。3项隔离SQLite接口/15断言、33项Flutter及6文件analyze通过，自审无P1/P2。新功能运行尚待完成，不能用定向检查代替。头像尚无上传/实际展示链，默认可见范围已向Owner提出具体问题，其它已授权工程继续。既过媒体/问卷/通话主链不重复，不操作手机、外部供应商或旧执行器。
+**昵称独立保存正常链完成。** 仅当前本人name更新，不要求出生地或触发完整保存/排盘；服务端读回确认，失败/切号晚回不报成功。3项隔离SQLite接口/15断言、33项Flutter及6文件analyze通过，自审无P1/P2。新包B正常一次保存DevUser-B、API/DB一致，返回兼容用途入口重进恢复；其它本人字段/其它用户及19业务表保持。私有nickname-runtime-private.json保留。
+
+**下一步Owner决定：头像默认可见范围。** 头像尚无上传/实际展示链；已提出“仅现有获准的好友/邀请/会话等上下文并沿用拉黑限制”或“先仅本人”两项。此分项等待明确选择，普通长期工程授权保持，不新增全局用户目录。既过媒体/问卷/通话主链不重复，不操作手机、外部供应商或旧执行器。
 
 ## 证据与保留门
 
