@@ -33,6 +33,8 @@ Owner已恢复全自动持续工程，普通实现、定向验证/必要构建�
 
 **消息列表离线回前台重验修复及实际短链通过。** 原列表离线回前台会沿用后台前read grant重显旧预览；新增回归RED→GREEN，改为回前台先废弃旧读取资格，重复resumed仅检查保留期。并修复原轮询/到期检查竞态覆盖清理结果，完成/失败的实际回执及后台往返保留；61项相关检查及三文件analyze通过，自审无P1/P2。B新包正常前台断开仅自身8021/8022 reverse后列表只读可见；Home/返回离线时旧预览隐藏、提示无本次当前授权副本；恢复两映射后当前读取恢复，原会话/token及全部本段数据摘要不变。未发消息、未改系统时钟；30天成功/失败仅测试时钟与内存存储证据，不称Android实际30天清理。私有conversation-offline-resume-runtime-private.json保留。下一步现有隐藏/恢复会话正常链。
 
+**仅本人隐藏/恢复会话正常链通过。** 同80c46d8e/a304包，B列表菜单“仅对我隐藏”一次后普通列表排除、隐藏列表可读，只有本人hidden_through记录新增；A列表、消息/CN/MC及其它状态保持。正常切隐藏列表、菜单“找回会话入口”一次后记录移除、普通列表恢复，前后数据库摘要完全一致；没有发送消息或改变联系权限。私有conversation-visibility-runtime-private.json保留。无源码变化，不重复构建/检查；新入站消息自动恢复、撤权/并发等其它分支未扩测。
+
 ## 证据与保留门
 
 原证仅私有：logout-confirmation-runtime-private.json、profile-city-runtime-private.json、mbti-runtime-private.json、showcase-draft-runtime-private.json、natal-app-runtime-private.json、natal-linux-runtime/、dynamic-runtime-wiring-private.json、dynamic-transit-runtime-private.json、dynamic-solar-runtime-private.json、dynamic-solar-2027-runtime-private.json、dynamic-lunar-runtime-private.json、dynamic-synastry-runtime-private.json、dynamic-comparison-runtime-private.json、social-friends-runtime-private.json。APK固定回执在稳定根state/current-functional-build.json。凭据/JWT/APK/截图/SQL/依赖运行二进制不上GitHub。
