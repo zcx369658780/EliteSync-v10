@@ -97,20 +97,27 @@ class PrivateCacheService {
 
   // This locator is only a deletion target. It never restores a session,
   // a server clock, read grants, or offline access after process restart.
-  Future<String?> _readOwnerNamespace() async {
+  Future<Map<String, dynamic>?> _readOwnerLocator() async {
     final raw = await _secure.read(_ownerLocatorKey);
     if (raw == null) return null;
     final value = jsonDecode(raw);
     if (value is! Map ||
-        value.length != 3 ||
         value['version'] is! int ||
-        value['version'] != 1 ||
+        (value['version'] != 1 && value['version'] != 2) ||
+        value.length != (value['version'] == 1 ? 3 : 4) ||
+        (value['version'] == 2 && value['objects_cleared'] != true) ||
         value['account_id'] is! int ||
         (value['account_id'] as int) <= 0 ||
         value['device_id'] is! String ||
         (value['device_id'] as String).isEmpty) {
       throw const FormatException('Invalid private cache cleanup owner.');
     }
+    return Map<String, dynamic>.from(value);
+  }
+
+  Future<String?> _readOwnerNamespace() async {
+    final value = await _readOwnerLocator();
+    if (value == null) return null;
     return _namespaceFor(
       value['account_id'] as int,
       value['device_id'] as String,
@@ -249,8 +256,20 @@ class PrivateCacheService {
         // other accounts, credentials or unindexed storage entries.
       }
     }
-    if (found && !parsed) {
-      throw const FormatException('No valid private cache index remains.');
+    if (!parsed) {
+      final owner = await _readOwnerLocator();
+      final owned =
+          owner != null &&
+          _namespaceFor(
+                owner['account_id'] as int,
+                owner['device_id'] as String,
+              ) ==
+              target;
+      // Only a verified post-deletion phase can distinguish a retry after
+      // index removal from unexplained loss of both indexes.
+      if (found || (owned && owner['objects_cleared'] != true)) {
+        throw const FormatException('No valid private cache index remains.');
+      }
     }
     return objects;
   }
@@ -331,16 +350,14 @@ class PrivateCacheService {
         if (!current()) return false;
         // Establish cleanup reachability before writing any private content.
         // Empty logins and failures before the indexes do not create a locator.
-        await _secure.write(
-          _ownerLocatorKey,
-          jsonEncode({
-            'version': 1,
-            'account_id': account,
-            'device_id': device,
-          }),
-        );
+        final ownerRecord = jsonEncode({
+          'version': 1,
+          'account_id': account,
+          'device_id': device,
+        });
+        await _secure.write(_ownerLocatorKey, ownerRecord);
         if (!current()) return false;
-        if (await _readOwnerNamespace() != namespace) {
+        if (await _secure.read(_ownerLocatorKey) != ownerRecord) {
           throw const FormatException(
             'Private cache cleanup owner was not persisted.',
           );
@@ -566,6 +583,29 @@ class PrivateCacheService {
           );
         }
         deleted++;
+      }
+      if (storedOwner != null) {
+        final owner = await _readOwnerLocator();
+        if (owner == null || await _readOwnerNamespace() != namespace) {
+          return PrivateCachePurgeReceipt(
+            PrivateCachePurgeStatus.failed,
+            deletedObjects: deleted,
+          );
+        }
+        // Persist completion only after every indexed object was deleted and
+        // read back absent. It is a cleanup receipt, never read/login authority.
+        final completed = jsonEncode({
+          ...owner,
+          'version': 2,
+          'objects_cleared': true,
+        });
+        await _secure.write(_ownerLocatorKey, completed);
+        if (await _secure.read(_ownerLocatorKey) != completed) {
+          return PrivateCachePurgeReceipt(
+            PrivateCachePurgeStatus.failed,
+            deletedObjects: deleted,
+          );
+        }
       }
       for (final index in [
         '$namespace:manifest',

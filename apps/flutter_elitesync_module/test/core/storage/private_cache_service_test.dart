@@ -53,9 +53,18 @@ const _ownerLocatorKey = 'v1015_private:cleanup-owner';
 class _LocatorFailureSecure extends _MemorySecure {
   bool refuseLocatorDelete = false;
   bool refuseLocatorWrite = false;
+  bool refuseCompletionWrite = false;
+  bool refuseActiveOwnerWrite = false;
   @override
   Future<void> write(String key, String value) async {
-    if (refuseLocatorWrite && key == _ownerLocatorKey) return;
+    if (key == _ownerLocatorKey) {
+      final version = (jsonDecode(value) as Map)['version'];
+      if (refuseLocatorWrite ||
+          (refuseCompletionWrite && version == 2) ||
+          (refuseActiveOwnerWrite && version == 1)) {
+        return;
+      }
+    }
     await super.write(key, value);
   }
 
@@ -80,6 +89,167 @@ void main() {
   const namespace = 'v1015_private:a1:dsynthetic-device';
   const primary = '$namespace:manifest';
   const recovery = '$namespace:manifest-recovery';
+
+  test(
+    'unconfirmed cleanup phase preserves indexes and retries after restart',
+    () async {
+      final secure = _LocatorFailureSecure();
+      final now = DateTime.utc(2026, 11, 11);
+      final cache = PrivateCacheService.forTesting(secure, wallNow: () => now);
+      await cache.establishLogin(userId: 1, retention: _receipt(now));
+      await cache.saveAuthorized('draft:one', {'text': 'private'});
+      final owner = secure.values[_ownerLocatorKey];
+      final first = secure.values[primary];
+      final second = secure.values[recovery];
+      secure.values['credential'] = 'retain';
+      secure.refuseCompletionWrite = true;
+      expect(
+        (await cache.clearCurrentAccount()).status,
+        PrivateCachePurgeStatus.failed,
+      );
+      expect(secure.values['$namespace:draft%3Aone'], isNull);
+      expect(secure.values[primary], first);
+      expect(secure.values[recovery], second);
+      expect(secure.values[_ownerLocatorKey], owner);
+      final restarted = PrivateCacheService.forTesting(
+        secure,
+        wallNow: () => now,
+      );
+      expect(
+        (await restarted.clearCurrentAccount()).status,
+        PrivateCachePurgeStatus.failed,
+      );
+      secure.refuseCompletionWrite = false;
+      expect(
+        (await restarted.clearCurrentAccount()).status,
+        PrivateCachePurgeStatus.completed,
+      );
+      expect(secure.values, {'credential': 'retain'});
+    },
+  );
+
+  test(
+    'silent active-owner rewrite failure cannot write new private content',
+    () async {
+      final secure = _LocatorFailureSecure();
+      final now = DateTime.utc(2026, 11, 11);
+      final cache = PrivateCacheService.forTesting(secure, wallNow: () => now);
+      await cache.establishLogin(userId: 1, retention: _receipt(now));
+      await cache.saveAuthorized('draft:one', {'text': 'old'});
+      expect(await cache.removeObject('draft:one'), isTrue);
+      secure.values.remove(primary);
+      secure.values.remove(recovery);
+      final completed = jsonEncode({
+        'version': 2,
+        'account_id': 1,
+        'device_id': 'synthetic-device',
+        'objects_cleared': true,
+      });
+      secure.values[_ownerLocatorKey] = completed;
+      secure.refuseActiveOwnerWrite = true;
+      expect(
+        await cache.saveAuthorized('draft:two', {
+          'text': 'must not be written',
+        }),
+        isFalse,
+      );
+      expect(cache.isUnlocked, isFalse);
+      expect(secure.values['$namespace:draft%3Atwo'], isNull);
+      expect(secure.values[_ownerLocatorKey], completed);
+      expect(secure.values[primary], jsonEncode(['draft:two']));
+      expect(secure.values[recovery], jsonEncode(['draft:two']));
+      final restarted = PrivateCacheService.forTesting(
+        secure,
+        wallNow: () => now,
+      );
+      expect(
+        await restarted.readAfterCurrentAuthorization(
+          'draft:two',
+          expectedAccountId: 1,
+          isCurrent: () => true,
+        ),
+        isNull,
+      );
+      secure.refuseActiveOwnerWrite = false;
+      expect(
+        (await restarted.clearCurrentAccount()).status,
+        PrivateCachePurgeStatus.completed,
+      );
+      expect(secure.values, isEmpty);
+    },
+  );
+
+  for (final action in ['logout', 'expiry', 'save', 'presence']) {
+    test(
+      'both missing indexes with a retained owner fail closed during $action',
+      () async {
+        final secure = _MemorySecure();
+        final now = DateTime.utc(2026, 11, 11);
+        var elapsed = Duration.zero;
+        final cache = PrivateCacheService.forTesting(
+          secure,
+          wallNow: () => now.add(elapsed),
+          elapsed: () => elapsed,
+        );
+        await cache.establishLogin(userId: 1, retention: _receipt(now));
+        await cache.saveAuthorized('draft:one', {
+          'text': 'must remain reachable for recovery',
+        });
+        secure.values['credential'] = 'keep';
+        secure.values['v1015_private:a2:dother:retained'] = 'other account';
+        secure.values.remove(primary);
+        secure.values.remove(recovery);
+        final before = Map<String, String>.from(secure.values);
+        switch (action) {
+          case 'logout':
+            expect(
+              (await cache.clearCurrentAccount()).status,
+              PrivateCachePurgeStatus.failed,
+            );
+          case 'expiry':
+            elapsed = const Duration(days: 30);
+            expect(
+              (await cache.purgeExpired()).status,
+              PrivateCachePurgeStatus.failed,
+            );
+          case 'save':
+            expect(
+              await cache.saveAuthorized('draft:two', {
+                'text': 'must not replace the index',
+              }),
+              isFalse,
+            );
+          case 'presence':
+            expect(
+              await cache.hasIndexedObject('draft:one', expectedAccountId: 1),
+              isNull,
+            );
+        }
+        expect(cache.isUnlocked, isFalse);
+        expect(secure.values, before);
+        expect(await cache.readOffline('draft:one'), isNull);
+        expect(
+          await cache.establishLogin(
+            userId: 2,
+            retention: _receipt(now.add(elapsed), account: 2),
+          ),
+          isFalse,
+        );
+        expect(secure.values, before);
+        // Restore only fixture-known metadata to prove the retained target can
+        // be retried; this is not an in-app recovery or enumeration mechanism.
+        secure.values[recovery] = jsonEncode(['draft:one']);
+        expect(
+          (await cache.clearCurrentAccount()).status,
+          PrivateCachePurgeStatus.completed,
+        );
+        expect(secure.values, {
+          'credential': 'keep',
+          'v1015_private:a2:dother:retained': 'other account',
+        });
+      },
+    );
+  }
 
   test(
     'current context reauthorizes only an open online login record',
@@ -262,7 +432,7 @@ void main() {
   }
 
   test(
-    'failed owner deletion remains retryable after restart without replacing it',
+    'failed owner deletion remains retryable after restart without replacing owner identity',
     () async {
       final secure = _LocatorFailureSecure();
       final now = DateTime.utc(2026, 11, 10);
@@ -284,7 +454,12 @@ void main() {
         isFalse,
       );
       expect(restarted.isUnlocked, isFalse);
-      expect(secure.values, {_ownerLocatorKey: owner, 'credential': 'retain'});
+      expect(secure.values.keys.toSet(), {_ownerLocatorKey, 'credential'});
+      expect(jsonDecode(secure.values[_ownerLocatorKey]!), {
+        ...jsonDecode(owner!) as Map,
+        'version': 2,
+        'objects_cleared': true,
+      });
       expect(
         (await restarted.clearCurrentAccount()).status,
         PrivateCachePurgeStatus.failed,
@@ -520,9 +695,10 @@ void main() {
       expect(secure.values.keys.toSet(), {recovery, _ownerLocatorKey});
       expect(secure.values[recovery], jsonEncode(['draft:one']));
       expect(jsonDecode(secure.values[_ownerLocatorKey]!), {
-        'version': 1,
+        'version': 2,
         'account_id': 1,
         'device_id': 'synthetic-device',
+        'objects_cleared': true,
       });
       secure.refuseRecoveryDelete = false;
       expect(
