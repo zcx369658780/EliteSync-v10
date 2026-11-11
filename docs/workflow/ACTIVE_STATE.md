@@ -4,8 +4,8 @@ Owner已恢复全自动持续工程，普通工程长期授权有效，直到明
 
 ## 当前代码、资源与数据
 
-- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`；代码节点 `e5396bdbd99d12943d19778de1a76ff1cdc49fc4`，后续文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index和无关 `%SystemDrive%/` 保留，不重开资产清理或复制SDK/AVD。
-- 最新APK源码为上述节点，SHA256 `e9210f5b4248023a57a1342ef38749c0c3342cd0d5b89ece660c2c14a56faa31`，154156231字节；离线构建36.935秒/退出0，签名/包名/arm64 Debug/代码标记通过，5580已更新。前一个仅会话守卫包59.866秒成功但未安装；旧4a645运行失败APK仅私有保留一份。固定回执在 `v1015-source-debug-workspace/state/current-functional-build.json`。
+- 产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`；代码节点 `5a7625824064c545bcaa24f126cf14534556d4d6`，后续文档HEAD以实际Git为准。原 `D:\EliteSync-v10` dirty/index和无关 `%SystemDrive%/` 保留，不重开资产清理或复制SDK/AVD。
+- 最新APK源码为上述节点，SHA256 `af74f986365ea816aacb683d2d20379821387791fd9fe2959956632f73bf7297`，154165710字节；离线构建36.748秒/退出0，签名/包名/arm64 Debug/新增登出提示代码标记通过，5580已更新。原e921问卷切号实证按其包身份保留；旧4a645运行失败APK仅私有保留一份。固定回执在 `v1015-source-debug-workspace/state/current-functional-build.json`。
 - 私有开发根 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev`；自有DB/API/WS/SFU四容器本节点确认运行。专用ADB5038，USB unmatched filter排除手机；不碰默认5037。5580当前新包登录虚构user2，5582暂停、AVD/ed01候选保留。相机仅生成画面；无新SDK/许可/系统网络变更。
 - 开发库3个虚构用户（user1/user2正常API登记，admin3为synthetic且仅本机一项白名单）。原101消息、4媒体保留；原APP发送/ACK丢失幂等重试最后message15，16–101是API种子，不混称APP发送。157道原题，137启用、20研究题禁用；user1有20个正式答案/1次历史，user2无正式答案/提交，但有一题服务端草稿。user1运营pending/revision2，两条审核审计保留。
 - SELF动态1条软删、一级评论1条DELETED；不是物理擦除。搭子1条WITHDRAWN，双方接收false/revision2、slots0、邀请REVOKED。前次记录call1–11 ended/房间空，本节点未启动新通话；MC generation7沿用前次节点。
@@ -16,7 +16,7 @@ Owner已恢复全自动持续工程，普通工程长期授权有效，直到明
 
 新包在同一APP PID内：B新题0/20→正常选一题保存/index1→正常返回/设置退出/登录A→A新题0/20且B草稿未变→正常退出/登录B→B恢复自己的同题序和2/20。没有新提交；DB user1答案20/历史1，user2答案0/历史0，A新草稿0/B草稿1。实际只闭合此正常UI子范围；延迟回包、同账号token变化及A→B→A由定向测试覆盖，未冒充Android故障矩阵。私有 `questionnaire-account-runtime-after-fix-private.json`。
 
-**登出成功回执提示已修复，等待新包最短验证。** 只读DB确认此前两次退出对应会话已撤销/令牌0，提示未更新是APP成功分支仅移除待办所致。现仅规范 `ok=true/SESSION_REVOKED` 回执确认本次退出；失败/未知回执保留待办，本地清理失败仍明确提示。确认框及待办写入后复核原会话intent/token，防止旧回执误确认随后账号退出。新增队列等待切号原码RED，最终55项定向检查（含单widget七场景）及四文件analyze通过；非作者Sol复核发现的P2已修、最终无新增P1/P2，非外部验收。旧设置测试改为显式建立测试会话、内存存储枚举和规范版本回执，未放宽产品鉴权。当前安装包仍e921，不含本次修复；下一步必要增量构建、仅5580正常退出与同一服务端会话读回，再正常登录恢复。
+**登出成功回执提示已修复并经新包正常UI验证。** 仅规范 `ok=true/SESSION_REVOKED` 回执确认对应登出；失败/未知回执保留待办，本地清理失败警告保留。确认框及待办写入后复核原intent/token，防止迟到确认污染新账号退出。队列等待切号原码RED，最终55项定向检查（含单widget七场景）/四文件analyze通过，非作者Sol发现的P2已修，最终无新增P1/P2。新af74包5580正常B设置确认退出后，登录页显示“当前会话的服务端撤销已确认”，相同服务端会话revoked/令牌0、其他会话与其令牌数量摘要不变；随后正常登录B恢复。私有 `logout-confirmation-runtime-private.json`。网络失败/未知回执/切号/本地清理故障仍仅定向测试证据，不冒充Android矩阵。下一步继续正常资料编辑与持久化链，已过问卷/通话不重跑。
 
 ## 既过子范围与证据边界
 
