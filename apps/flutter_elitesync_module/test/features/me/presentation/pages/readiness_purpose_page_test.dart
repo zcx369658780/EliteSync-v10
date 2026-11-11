@@ -439,8 +439,8 @@ void main() {
       await h.mount(tester);
       final before = h.container.read(navigationGuardProvider);
       for (final entry in [
-        ('查看兼容验证状态页', AppRouteNames.verificationStatus, VerificationStatusPage),
-        ('继续兼容问卷页', AppRouteNames.questionnaire, QuestionnairePage),
+        ('查看验证状态', AppRouteNames.verificationStatus, VerificationStatusPage),
+        ('打开问卷', AppRouteNames.questionnaire, QuestionnairePage),
       ]) {
         final button = find.widgetWithText(
           entry.$2 == AppRouteNames.verificationStatus
@@ -476,7 +476,7 @@ void main() {
       addTearDown(tester.view.resetDevicePixelRatio);
       final h = _Harness(safety);
       await h.mount(tester, scale: 2);
-      for (final text in ['正式准备条件尚未确定', '兼容验证状态查看', '兼容问卷继续设置']) {
+      for (final text in ['正式准备条件尚未确定', '验证状态', '继续填写问卷']) {
         final target = find.text(text);
         await reveal(tester, target, find.byType(ReadinessPurposePage));
         await settle(tester);
@@ -484,8 +484,8 @@ void main() {
         expect(tester.takeException(), isNull);
       }
       for (final action in [
-        find.widgetWithText(FilledButton, '查看兼容验证状态页'),
-        find.widgetWithText(OutlinedButton, '继续兼容问卷页'),
+        find.widgetWithText(FilledButton, '查看验证状态'),
+        find.widgetWithText(OutlinedButton, '打开问卷'),
       ]) {
         await reveal(tester, action, find.byType(ReadinessPurposePage));
         expect(action.hitTestable(), findsOneWidget);

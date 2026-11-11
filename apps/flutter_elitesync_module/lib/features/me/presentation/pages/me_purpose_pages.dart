@@ -12,10 +12,10 @@ class PrivateIdentityPurposePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const _CompatibilityPurposePage(
-    title: 'Private Identity · 私密身份',
+    title: '私密资料',
     description: '这里用于账户私密身份资料，不代表公开个人主页，也不自动授权匹配使用。',
-    compatibilityNote: '现阶段暂时使用原有资料编辑页；其字段尚未迁移到新的用途数据契约。',
-    actionLabel: '打开兼容资料编辑页',
+    compatibilityNote: '在资料编辑页管理个人信息。编辑资料不会自动改变受众，也不代表已满足匹配参与条件。',
+    actionLabel: '编辑私密资料',
     actionRoute: AppRouteNames.editProfile,
   );
 }
@@ -25,10 +25,10 @@ class MatchingInputsPurposePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const _CompatibilityPurposePage(
-    title: 'Matching Inputs · 匹配输入',
+    title: '匹配问卷',
     description: '这里用于查看或编辑匹配准备输入。填写、修改或完成问卷都不会自动加入匹配。',
     compatibilityNote: '使用既有问卷页保存答案；当前必要项与报名资格请在进展中的慢约旅程查看。',
-    actionLabel: '打开兼容问卷页',
+    actionLabel: '继续填写问卷',
     actionRoute: AppRouteNames.questionnaire,
   );
 }
@@ -51,7 +51,7 @@ class ReadinessPurposePage extends ConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Readiness · 准备状态')),
+      appBar: AppBar(title: const Text('准备状态')),
       body: ListView(
         // AppShell's floating dock overlays the body; keep recovery actions
         // scrollable above it, including with enlarged text.
@@ -92,26 +92,26 @@ class ReadinessPurposePage extends ConsumerWidget {
             '准备状态只用于判断能否继续进入匹配准备，不是兼容性、安全、可信度或个人价值判断。即使准备完成，也仍需另行选择是否加入匹配。',
           ),
           const SizedBox(height: 20),
-          const Text('兼容验证状态查看'),
+          const Text('验证状态'),
           const SizedBox(height: 8),
-          const Text('查看既有验证流程的状态。该兼容页面的旧要求不代表正式准备条件，也不确定最低身份保证或准入政策。'),
+          const Text('查看现有验证流程的状态。页面中的要求不代表正式准备条件，也不决定身份保证等级或匹配准入政策。'),
           const SizedBox(height: 8),
           FilledButton.tonal(
             onPressed: () => context.push(AppRouteNames.verificationStatus),
-            child: const Text('查看兼容验证状态页'),
+            child: const Text('查看验证状态'),
           ),
           const SizedBox(height: 12),
-          const Text('兼容问卷继续设置'),
+          const Text('继续填写问卷'),
           const SizedBox(height: 8),
           const Text('前往既有问卷继续设置；已有草稿能否恢复由原问卷流程判断。填写或完成问卷不会自动加入匹配，也不授予消息许可。'),
           const SizedBox(height: 8),
           OutlinedButton(
             onPressed: () => context.push(AppRouteNames.questionnaire),
-            child: const Text('继续兼容问卷页'),
+            child: const Text('打开问卷'),
           ),
           const SizedBox(height: 12),
           Text(
-            '上述页面仅用于恢复或继续现有设置流程；它们不会在本任务中生成新的资格结论。',
+            '上述页面用于恢复或继续现有设置；查看页面不会自动改变参与资格。',
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
@@ -125,10 +125,10 @@ class ShowcasePurposePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const _CompatibilityPurposePage(
-    title: 'Showcase · 展示内容',
+    title: '展示资料',
     description: '这里面向候选人范围内的展示准备；没有全局公开个人主页授权。',
-    compatibilityNote: '现阶段暂时使用原有 Personal Showcase 页面；其发布模型不代表新的候选人范围契约已经完成。',
-    actionLabel: '打开兼容 Showcase 页面',
+    compatibilityNote: '当前可编辑本人私有草稿。候选人范围的发布功能尚未完成，保存草稿不会公开内容或改变匹配资格。',
+    actionLabel: '编辑展示资料',
     actionRoute: AppRouteNames.personalShowcase,
   );
 }
@@ -160,7 +160,7 @@ class _CompatibilityPurposePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
       body: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 112),
         children: [
           Text(description, style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(height: 16),
