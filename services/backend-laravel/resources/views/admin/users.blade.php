@@ -11,7 +11,25 @@
             <label for="q">查询用户（ID、姓名或手机号）</label>
             <input id="q" name="q" type="search" value="{{ request('q') }}">
         </div>
-        <label>运营审核<select name="verify_status"><option value="">全部</option><option>pending</option><option>approved</option><option>rejected</option></select></label><label>处罚<select name="moderation_status"><option value="">全部</option><option>normal</option><option>restricted</option><option>banned</option></select></label><button type="submit">查询</button>
+        <div>
+            <label for="verify-status">运营审核</label>
+            <select id="verify-status" name="verify_status">
+                <option value="">全部</option>
+                @foreach (['pending', 'approved', 'rejected'] as $status)
+                    <option value="{{ $status }}" @selected(request('verify_status') === $status)>{{ $status }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div>
+            <label for="moderation-status">处罚</label>
+            <select id="moderation-status" name="moderation_status">
+                <option value="">全部</option>
+                @foreach (['normal', 'restricted', 'banned'] as $status)
+                    <option value="{{ $status }}" @selected(request('moderation_status') === $status)>{{ $status }}</option>
+                @endforeach
+            </select>
+        </div>
+        <button type="submit">查询</button>
         <a href="{{ route('admin.users') }}">清除查询</a>
     </form>
     <div class="table-scroll" tabindex="0" role="region" aria-label="用户查询结果">
