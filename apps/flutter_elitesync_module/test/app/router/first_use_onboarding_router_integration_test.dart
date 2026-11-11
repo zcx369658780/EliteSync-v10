@@ -11,6 +11,9 @@ import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/providers/home_provider.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/state/home_ui_state.dart';
 import 'package:flutter_elitesync_module/features/progress/presentation/pages/progress_page.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/pages/settings_page.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/pages/privacy_settings_page.dart';
+import 'package:flutter_elitesync_module/features/slow_dating_v1012/relationship_privacy_page.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:flutter_elitesync_module/shared/enums/match_status.dart';
 import 'package:flutter_elitesync_module/shared/enums/questionnaire_status.dart';
@@ -109,6 +112,50 @@ Future<void> _pumpRouter(WidgetTester tester, Widget app) async {
 }
 
 void main() {
+  testWidgets('Me settings opens privacy and returns through the same stack', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(800, 1600);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    await _pumpRouter(
+      tester,
+      _routerApp(
+        authStatus: AuthStatus.authenticated,
+        storage: _RouterFakeLocalStorage()..onboardingStatus = 'completed',
+        readinessEstablished: true,
+      ),
+    );
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(AppShell)),
+    );
+    final router = container.read(appRouterProvider);
+    router.go(AppRouteNames.me);
+    await tester.pumpAndSettle();
+    router.push<void>(AppRouteNames.settings);
+    await tester.pumpAndSettle();
+    expect(find.byType(SettingsPage), findsOneWidget);
+    await tester.ensureVisible(find.text('隐私控制中心'));
+    await tester.tap(find.text('隐私控制中心'));
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(find.byType(PrivacySettingsPage), findsOneWidget);
+    await tester.tap(find.text('管理资料受众与本人预览'));
+    await tester.pumpAndSettle();
+    expect(find.byType(RelationshipPrivacyPage), findsOneWidget);
+    router.pop();
+    await tester.pumpAndSettle();
+    expect(find.byType(PrivacySettingsPage), findsOneWidget);
+    router.pop();
+    await tester.pumpAndSettle();
+    expect(find.byType(SettingsPage), findsOneWidget);
+    router.pop();
+    await tester.pumpAndSettle();
+    expect(find.byType(MeShellPage), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets(
     'authenticated shell reaches four target destinations and Match child',
     (tester) async {
