@@ -1,3 +1,9 @@
+# 最新节点｜2026-11-12 ba实机听筒/扬声器与后台恢复
+
+ba5a5c26新增当前通话归属与代次保护的扬声器切换，134项检查、4文件analyze和非作者变更复核通过。手机A与B模拟器同包实际安装。call41听筒及Owner人声清晰、暂停时切输出不启动采集通过，自动重订阅实际观察UNKNOWN。call42完整测得Home暂停、返回关闭、明确UI开麦原生active及Owner双向清晰，正常挂断清房/停采集。B调4GiB、A AVD暂停，媒体容器配置最多3次故障自动恢复并以一次空房间进程退出验证；监控超时底层原因仍UNKNOWN。原失败和候选身份见[实施报告](IMPLEMENTATION_REPORT.md)。冻结10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING。
+
+---
+
 # 最新节点｜2026-11-12 Owner确认call36双向人声清晰
 
 同cdb手机与模拟器call36双端媒体和四方向音频计数有效。Owner明确反馈“双向人声清晰”，约20秒后反馈“没有明显回声或杂音”。正常APP挂断，call36 ended/Room0，手机及模拟器原生采集均inactive。无声相关源码修复与AVD录音/播放配置更正的当前短语音子项通过。完整音频路由/后台/中断/长通话与复杂AEC条件继续待覆盖，AC05 OPEN及其余冻结判定保留。私有回执与当前源码/包身份见[实施报告](IMPLEMENTATION_REPORT.md)及manifest。

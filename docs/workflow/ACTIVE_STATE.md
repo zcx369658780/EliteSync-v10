@@ -1,16 +1,17 @@
-# 当前入口｜2026-11-12 无声修复通过Owner实机短通话
+# 当前入口｜2026-11-12 实机音频路由与前后台恢复
 
-当前 **NO_AUDIO_FIX_OWNER_SHORT_VOICE_RETEST_PASSED**。Owner已确认连接，手机保留数据更新同cdb并核base.apk SHA，A登录与B历史对话保留。call35双端媒体和四方向RTP有效，但Owner只在手机听到沙沙声，电脑无声、无法辨识电脑说话，双向人声验证失败。
+当前 **OWNER_PHYSICAL_SPEAKER_AND_BACKGROUND_SLICE_PASSED**。Owner继续实机验收后，已补通话页扬声器/系统听筒或耳机切换。APP源码 `ba5a5c26c6036086639f156573e826af2b872b34`，后端25bc01f7。134项定向检查、4文件analyze及非作者变更复核完成，发现的页面/共享旧Room归属P2已修。完整播放/自动路由重放/订阅异常可见恢复P2保留。
 
-两个保留AVD硬件录音/播放实际均关闭。此前仅凭未带no-audio启动参数标音频开启的元数据已更正。正常挂断并停止自有AVD后，已启用config两项、重启核generated hardware均true，并开启B宿主麦克风、调整语音音量8/15。两个账号/APP数据保留，A模拟器APP暂停，B与手机聊天页就绪。Owner重拨call36后明确确认双向人声清晰，约20秒观察无明显回声/杂音。正常挂断call36 ended、Room0，手机/模拟器双端原生采集inactive已核。通过范围为当前设备/音频路由短语音，完整路由、后台/中断、长通话和复杂AEC矩阵继续待验证。5038继续USB排除，手机使用精确5039，5037沿原状态。
+离线47.496801秒/退出0，APK 154560362字节，SHA256 `cc1be2f69ecf96486628fb31584c7fc3e89b4ea26e843998ac277f1e2017fa14`。手机A与5580/B已保留数据安装同包并核base.apk，5582/A AVD暂停保留cdb。唯一[实施报告](../versions/v10.1.5/IMPLEMENTATION_REPORT.md)与[manifest](../versions/v10.1.5/artifact_manifest.json)记录代码树和各候选实际范围。
 
-APP源码 `cdb0b46dc4613b35eba7adb0c50415a455f3063c`，后端25bc01f7。首次麦克风/相机授权前置及代次保护已完成，补修旧终态页暂停残留影响下一通入房。83项定向检查、两文件analyze及非作者变更复核通过。离线37.5032738秒/退出0，APK 154557386字节、SHA256 `85c6deddd3463d06188137aa9658879fbc054e04867178c04e710bbb27c25fc8`，双模拟器实际安装hash一致。唯一[实施报告](../versions/v10.1.5/IMPLEMENTATION_REPORT.md)和[manifest](../versions/v10.1.5/artifact_manifest.json)记录当前身份及历史候选范围。
+ba call41听筒原生选择及Owner人声清晰通过，暂停采集时输出偏好往返切换未启用mic/camera。自动重订阅的不同SID观察未取得，后置mic查询时该call已ended，原界限保留。ba call42新call默认扬声器、手机Home停止观察上界0.453秒、返回保持关、明确正常UI开麦后立即观测原生mic active，Owner再次确认两边清晰。正常挂断42 ended/Room0、双端采集关闭。cdb call40相应实机恢复通过原身份保留。
 
-c1 call28/29首次mic、call30首次camera与真实Home通过。最终cdb call34保留终态页后新通话双端入房、双方原生mic active，四方向RTP持续增长。Home停媒观察上界6.047秒，返回保持关闭、明确开麦恢复，正常挂断Room0/采集停。合成音诊断默认RPC期间源模拟器退出，客户端报SocketException，退出根因未定，已恢复并结束该诊断，客观输出UNKNOWN。实机声音/AEC按顶部最新复测保留待定。完整可见播放/路由/订阅故障恢复P2保留。
+本轮两次媒体authority monitor超时均fail-closed，根因/阶段UNKNOWN。当前自有SFU已设 `on-failure:3`，一次空房间进程退出的自动恢复、同网关SHA及无效token403已验证，真实超时注入与负载恢复矩阵未运行。B曾在2GiB guest被LMKD结束，现4GiB，A AVD暂停。B自动息屏原证保留，工具采用30分钟唤醒时间并核后置UI。手机设置沿Owner当前状态。
 
-5580实际B、5582实际A，四自有服务沿用，精确本机映射恢复。历史609同包消息/附件/通知/MC撤权/持久重启证据及c1原生证据保留各自源码身份，cdb未重新进行全部联合旅程。仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。原主库dirty/index、无关目录及旧STOP/已耗记录保护。私有原证、凭据、SQL、APK、截图及许可证本机保留。
+四服务运行，手机/B已正常结束通话，专用5038继续USB排除，手机5039与精确四端口反向映射保留，5037沿原边界。仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。蓝牙/插拔、长时及复杂中断/AEC、完整权限并发、自然期限及硬件存储等范围见报告。原主库dirty/index、无关目录及旧STOP/已耗记录保护，私有原证/凭据/SQL/APK/截图/许可证仅本地。
 
 以下为历史交付快照。
+
 
 
 ---

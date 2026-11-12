@@ -1,4 +1,45 @@
-# v10.1.5 无声修复候选
+# v10.1.5 实机扬声器与前后台恢复候选
+
+2026-11-12。当前 **OWNER_PHYSICAL_SPEAKER_AND_BACKGROUND_SLICE_PASSED**。冻结判定 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**，Owner总体产品接受待定。
+
+## 当前代码与包
+
+- APP源码 `ba5a5c26c6036086639f156573e826af2b872b34`，Root Tree `5e3d73f5d78273453ef767c0c3cd39175afc7740`，apps Tree `cc2a4d1a54adff243b034960487973cea383ddfd`，services Tree `d5ce843aacffb34fe8727c59aa6434d5f955ba14`，后端源码 `25bc01f7d6ce848f5fe964bbc544e9be87325a0e`。
+- `com.elitesync.v1015dev / 10.1.5-dev / 1010501 / arm64-v8a Debug`，离线47.496801秒、退出0、v2签名已核。APK 154560362字节，SHA256 `cc1be2f69ecf96486628fb31584c7fc3e89b4ea26e843998ac277f1e2017fa14`，本机固定交付文件 `delivery/EliteSync-v10.1.5-dev-ba5a5c26-arm64-debug.apk`。
+- 手机实际A与5580实际B保留数据更新同包，安装base.apk SHA均核一致。5582的A AVD已暂停，数据与cdb包保留。机器清单见[artifact_manifest.json](artifact_manifest.json)。
+
+## 扬声器切换实现
+
+通话页增加扬声器与系统听筒/耳机偏好切换，Android/iOS支持入口显示。明确切换成功后才提交偏好，失败显示中文重试反馈。切换与播放路由重放串行，绑定Room/连接/采集代次，迟到结果不写入后来的通话。新call默认扬声器，同call重连保留偏好。切输出不会清除前台返回后的采集暂停。
+
+134项RTC服务/页面/权限/来电/聊天定向检查通过，最终4文件analyze clean。非作者Sol/high发现共享旧Room可能被新页面扬声器入口操控的P2，按钮显示、handler及迟到反馈已补connectedCallId匹配。两个明确RED回归后全组134通过，复核确认该P2关闭。本结论仅覆盖本轮变化，既有播放启动、自动路由重放及订阅异常的完整可见恢复反馈P2保留。
+
+## 本轮实机结果
+
+| 候选/通话 | 实际观察 |
+|---|---|
+| cdb call37 | Owner接听时媒体容器authority monitor TimeoutError后fail-closed退出1，另观察到2GiB guest将前台APP以LMKD结束。两者关系UNKNOWN，原日志保留。恢复自有SFU一次，B guest改4GiB，A AVD暂停 |
+| cdb call38 | 手机接听、双端入房，Home后采集停止观察上界0.375秒，返回保持关闭。Owner拔下PC AR眼镜并要求重启模拟器，明确开麦后的声音恢复在此call未完成，正常挂断 |
+| cdb call39/40 | 39邀请超时missed。40当前PC扬声器下Owner确认双向清晰，手机Home停止观察上界0.406秒、返回保持关、Owner明确开麦后双向恢复且原生mic active，正常挂断清房 |
+| ba call41 | Owner确认双向清晰，初始原生speaker切至earpiece，Owner确认听筒人声清晰。Home后停止观察上界0.406秒，返回保持关；输出偏好往返切换时，每次UI后置状态、暂停提示及原生采集关闭均核实 |
+| ba call41边界 | 首次要求不同远端SID的观察窗口超时，实际SID沿用，新的自动订阅事件未确认。后续computed preferred device为null，路由重订阅保留实际结果UNKNOWN。Owner报告扬声器及最终双向清晰，但后置原生查询时call已ended，未据此声称捕获到该次mic恢复。B自动息屏及采集暂停有日志，之后peer_disconnected/sfu_removed，完整断开归因未定 |
+| ba call42 | 主代理正常UI从手机创建、B接听。新call默认扬声器UI已核。手机Home后采集停止观察上界0.453秒，返回保持关，主代理明确点击开麦后立即捕获原生mic active，Room双参与者保持。Owner随后明确确认两边人声清晰。正常挂断后42 ended、Room0，手机及B采集均inactive |
+
+上述Home时长使用同一主机monotonic，从Home请求开始到停止采样的观察上界。609 MC commit后4.874250秒结论保留原候选身份，ba本轮未重测撤权5秒资格。当前实测支持本机两设备、已有权限及当前音频输出条件下的语音/听筒与扬声器选择、暂停时切输出、前后台和明确开麦恢复。蓝牙/有线插拔、同call重连、复杂AEC、完整弱网/长时中断矩阵继续待验证。
+
+## 本机服务与测试工具恢复
+
+媒体服务另一次authority monitor TimeoutError发生在最后call预检前，尚未发起新通话。已为当前自有开发SFU配置Docker `on-failure:3`。一次空房间内网关进程受控退出后，Docker restart count增加且恢复运行，ListRooms为0、无效token请求403。网关文件SHA前后相同，保护阈值保留。实际监控超时在该策略下的受控复现未运行，超时发生于哪一步及其底层原因UNKNOWN。首次可选HTTP检查过早出现RemoteDisconnected，随后只补只读检查，没有重复故障注入；精确恢复耗时UNKNOWN。
+
+B guest内存由2GiB调至4GiB以容纳arm64 Debug在x86模拟器的运行，实际guest MemTotal约4GiB。自动息屏后UI观察失败原证保留，当前工具已唤醒并使用既定30分钟测试超时。手机仍沿Owner设置，账号/聊天保留。部分模拟触屏点击未产生预期页面变化，当前手机助手改为150ms正常触屏按压并验证后置UI，原因未唯一确定。
+
+四个自有开发服务继续运行，B为当前ba，A AVD暂停。手机连接及精确本机USB反向映射保留，专用5038 USB排除，手机使用5039。原始日志、截图、SQL、APK与配置回执仅本机。先前合成音RPC期间源模拟器退出仍为UNKNOWN根因，此后未重复该RPC。历史STOP及已耗记录保留。
+
+前序消息/媒体/通知/存储/期限/权限并发及服务重启结果继续沿下方cdb/609原候选身份，当前ba没有重复全部联合旅程。
+
+---
+
+# cdb候选无声修复历史
 
 2026-11-12。当前 **NO_AUDIO_FIX_OWNER_SHORT_VOICE_RETEST_PASSED**。同cdb手机与模拟器call36已确认双向清晰人声，短通话无明显回声/杂音，正常挂断后双端采集释放。冻结仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。
 
