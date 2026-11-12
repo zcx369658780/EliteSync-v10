@@ -224,6 +224,31 @@ class NotifyingLeaveRtcService extends RtcLiveKitService {
   bool captureSuspended = false;
   final List<bool> captureStatesAtConnect = [];
   bool connected = false;
+  int? outputCallId;
+  @override
+  int? get connectedCallId => outputCallId;
+
+  bool supportsOutput = true;
+  bool speakerPreferred = true;
+  bool failSpeakerOutput = false;
+  Completer<void>? pendingSpeakerOutput;
+  final List<bool> speakerRequests = [];
+
+  @override
+  bool get supportsSpeakerOutput => supportsOutput;
+
+  @override
+  bool get speakerOutputPreferred => speakerPreferred;
+
+  @override
+  Future<void> setSpeakerOutputPreferred(bool preferred) async {
+    speakerRequests.add(preferred);
+    await pendingSpeakerOutput?.future;
+    if (failSpeakerOutput) throw StateError('test route unavailable');
+    speakerPreferred = preferred;
+    notifyListeners();
+  }
+
 
   @override
   bool get isConnected => connected;
@@ -324,6 +349,157 @@ RtcSessionEntity _videoCall(int id, String peer) => RtcSessionEntity.fromJson({
 });
 
 void main() {
+  testWidgets('speaker control hides a room owned by another call', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rtc = FakeRtcRemoteDataSource(_videoCall(144, 'NEW_CALL_OUTPUT'));
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 999;
+    final permissions = _CallPagePermissions()..pendingCheck = Completer<bool>();
+    await tester.pumpWidget(_wrap(
+      const RtcCallPage(callId: 144, autoConnect: false),
+      rtc: rtc,
+      service: service,
+      permissions: permissions,
+      liveKit: true,
+    ));
+    await tester.pumpAndSettle();
+    expect(find.byTooltip('使用听筒或耳机'), findsNothing);
+    expect(find.byTooltip('使用扬声器'), findsNothing);
+    expect(service.speakerRequests, isEmpty);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('stale speaker button cannot change a different current room', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rtc = FakeRtcRemoteDataSource(_videoCall(145, 'STALE_OUTPUT_ACTION'));
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 145;
+    await tester.pumpWidget(_wrap(
+      const RtcCallPage(callId: 145, autoConnect: false),
+      rtc: rtc,
+      service: service,
+      liveKit: true,
+    ));
+    await tester.pumpAndSettle();
+    service.outputCallId = 999;
+    await tester.tap(find.byTooltip('使用听筒或耳机'));
+    await tester.pumpAndSettle();
+    expect(service.speakerRequests, isEmpty);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('speaker control switches preferences and reports failure', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rtc = FakeRtcRemoteDataSource(_videoCall(140, 'OUTPUT_PEER'));
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 140;
+    await tester.pumpWidget(_wrap(
+      const RtcCallPage(callId: 140, autoConnect: false),
+      rtc: rtc,
+      service: service,
+      liveKit: true,
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('使用听筒或耳机'));
+    await tester.pumpAndSettle();
+    expect(service.speakerRequests, [false]);
+    expect(find.byTooltip('使用扬声器'), findsOneWidget);
+    service.failSpeakerOutput = true;
+    await tester.tap(find.byTooltip('使用扬声器'));
+    await tester.pumpAndSettle();
+    expect(service.speakerPreferred, isFalse);
+    expect(find.text('切换音频输出失败，请重试'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('output switch after Home keeps capture paused', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rtc = FakeRtcRemoteDataSource(_videoCall(141, 'PAUSED_OUTPUT_PEER'));
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 141;
+    await tester.pumpWidget(_wrap(
+      const RtcCallPage(callId: 141, autoConnect: false),
+      rtc: rtc,
+      service: service,
+      liveKit: true,
+    ));
+    await tester.pumpAndSettle();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pumpAndSettle();
+    expect(service.captureSuspended, isTrue);
+    await tester.tap(find.byTooltip('使用听筒或耳机'));
+    await tester.pumpAndSettle();
+    expect(service.speakerPreferred, isFalse);
+    expect(service.captureSuspended, isTrue);
+    expect(find.text('采集已暂停，请点击麦克风或摄像头重新开启。'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('late output failure after focus loss has no stale feedback', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rtc = FakeRtcRemoteDataSource(_videoCall(142, 'LATE_OUTPUT_PEER'));
+    final pending = Completer<void>();
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 142
+      ..pendingSpeakerOutput = pending
+      ..failSpeakerOutput = true;
+    await tester.pumpWidget(_wrap(
+      const RtcCallPage(callId: 142, autoConnect: false),
+      rtc: rtc,
+      service: service,
+      liveKit: true,
+    ));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('使用听筒或耳机'));
+    await tester.pump();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    pending.complete();
+    await tester.pumpAndSettle();
+    expect(find.text('切换音频输出失败，请重试'), findsNothing);
+    expect(service.captureSuspended, isTrue);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('unsupported audio output selection is hidden', (tester) async {
+    final rtc = FakeRtcRemoteDataSource(_videoCall(143, 'UNSUPPORTED_OUTPUT'));
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 143
+      ..supportsOutput = false;
+    await tester.pumpWidget(_wrap(
+      const RtcCallPage(callId: 143, autoConnect: false),
+      rtc: rtc,
+      service: service,
+      liveKit: true,
+    ));
+    await tester.pumpAndSettle();
+    expect(find.byTooltip('使用听筒或耳机'), findsNothing);
+    expect(find.byTooltip('使用扬声器'), findsNothing);
+    await tester.pumpWidget(const SizedBox());
+  });
+
   testWidgets(
     'focus loss after permission approval cancels its pending fresh call read',
     (tester) async {

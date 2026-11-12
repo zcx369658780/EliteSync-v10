@@ -234,6 +234,8 @@ class _MediaRoom implements Room {
   @override
   final RoomOptions roomOptions;
   @override
+  ConnectionState get connectionState => ConnectionState.connected;
+  @override
   void removeListener(VoidCallback listener) {}
   @override
   Future<void> disconnect() async {
@@ -253,7 +255,237 @@ class _MediaRoom implements Room {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
+RtcLiveKitService _speakerService(
+  _MediaRoom room,
+  Future<void> Function(bool preferred, {bool force}) route, {
+  bool enabled = true,
+}) => RtcLiveKitService.mediaControlTest(
+  remoteDataSource: _DeniedRtcSource(),
+  appEnv: AppEnv(
+    flavor: AppFlavor.dev,
+    appName: 'Speaker route test',
+    apiBaseUrl: 'http://127.0.0.1',
+    useMockData: false,
+    useLiveKitRtc: enabled,
+  ),
+  room: room,
+  callId: 17,
+  microphonePermission: () async => true,
+  cameraPermission: () async => true,
+  speakerRouteSetter: route,
+);
+
 void main() {
+  group('speaker output preference', () {
+    setUp(() => debugDefaultTargetPlatformOverride = TargetPlatform.android);
+    tearDown(() => debugDefaultTargetPlatformOverride = null);
+
+    test('mobile RTC exposes the default speaker preference', () async {
+      final service = _speakerService(
+        _MediaRoom(_MediaParticipant()),
+        (preferred, {force = false}) async {},
+      );
+      expect(service.supportsSpeakerOutput, isTrue);
+      expect(service.speakerOutputPreferred, isTrue);
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+      expect(service.supportsSpeakerOutput, isTrue);
+      debugDefaultTargetPlatformOverride = TargetPlatform.linux;
+      expect(service.supportsSpeakerOutput, isFalse);
+      await expectLater(
+        service.setSpeakerOutputPreferred(false),
+        throwsUnsupportedError,
+      );
+      expect(service.speakerOutputPreferred, isTrue);
+      await service.leave();
+      service.dispose();
+    });
+
+    test('disabled RTC does not offer or apply a speaker route', () async {
+      var routes = 0;
+      final service = _speakerService(_MediaRoom(_MediaParticipant()), (
+        preferred, {
+        force = false,
+      }) async {
+        routes++;
+      }, enabled: false);
+      expect(service.supportsSpeakerOutput, isFalse);
+      await expectLater(
+        service.setSpeakerOutputPreferred(false),
+        throwsUnsupportedError,
+      );
+      expect(routes, 0);
+      await service.leave();
+      service.dispose();
+    });
+
+    test('successful choices commit only after routing and notify', () async {
+      final pending = Completer<void>();
+      final routes = <({bool preferred, bool force})>[];
+      final service = _speakerService(_MediaRoom(_MediaParticipant()), (
+        preferred, {
+        force = false,
+      }) async {
+        routes.add((preferred: preferred, force: force));
+        await pending.future;
+      });
+      var notifications = 0;
+      service.addListener(() => notifications++);
+      final change = service.setSpeakerOutputPreferred(false);
+      await Future<void>.delayed(Duration.zero);
+      expect(routes, [(preferred: false, force: false)]);
+      expect(service.speakerOutputPreferred, isTrue);
+      expect(notifications, 0);
+      pending.complete();
+      await change;
+      expect(service.speakerOutputPreferred, isFalse);
+      expect(notifications, 1);
+      await service.leave();
+      expect(service.speakerOutputPreferred, isFalse);
+      service.dispose();
+    });
+
+    test(
+      'route failure preserves preference and later changes still work',
+      () async {
+        final routes = <({bool preferred, bool force})>[];
+        final service = _speakerService(_MediaRoom(_MediaParticipant()), (
+          preferred, {
+          force = false,
+        }) async {
+          routes.add((preferred: preferred, force: force));
+          if (routes.length == 1) throw StateError('synthetic route failure');
+        });
+        var notifications = 0;
+        service.addListener(() => notifications++);
+        await expectLater(
+          service.setSpeakerOutputPreferred(false),
+          throwsStateError,
+        );
+        expect(service.speakerOutputPreferred, isTrue);
+        expect(notifications, 0);
+        await service.setSpeakerOutputPreferred(false);
+        expect(service.speakerOutputPreferred, isFalse);
+        expect(notifications, 1);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
+    test('concurrent choices are applied serially in request order', () async {
+      final first = Completer<void>();
+      final second = Completer<void>();
+      final routes = <({bool preferred, bool force})>[];
+      final service = _speakerService(_MediaRoom(_MediaParticipant()), (
+        preferred, {
+        force = false,
+      }) async {
+        routes.add((preferred: preferred, force: force));
+        await (routes.length == 1 ? first.future : second.future);
+      });
+      final receiver = service.setSpeakerOutputPreferred(false);
+      final speaker = service.setSpeakerOutputPreferred(true);
+      await Future<void>.delayed(Duration.zero);
+      expect(routes, [(preferred: false, force: false)]);
+      first.complete();
+      await receiver;
+      await Future<void>.delayed(Duration.zero);
+      expect(service.speakerOutputPreferred, isFalse);
+      expect(routes, [
+        (preferred: false, force: false),
+        (preferred: true, force: true),
+      ]);
+      second.complete();
+      await speaker;
+      expect(service.speakerOutputPreferred, isTrue);
+      await service.leave();
+      service.dispose();
+    });
+
+    for (final boundary in ['leave', 'capture-suspend']) {
+      test('a late route result after $boundary cannot commit', () async {
+        final pending = Completer<void>();
+        final service = _speakerService(
+          _MediaRoom(_MediaParticipant()),
+          (preferred, {force = false}) => pending.future,
+        );
+        final change = service.setSpeakerOutputPreferred(false);
+        await Future<void>.delayed(Duration.zero);
+        if (boundary == 'leave') {
+          await service.leave();
+        } else {
+          await service.suspendCapture();
+        }
+        pending.complete();
+        await change;
+        expect(service.speakerOutputPreferred, isTrue);
+        await service.leave();
+        service.dispose();
+      });
+    }
+
+    test(
+      'output can change after Home without resuming local capture',
+      () async {
+        final microphone = _AudioCaptureTrack();
+        final camera = _VideoCaptureTrack();
+        final participant = _MediaParticipant()
+          ..trackPublications['microphone'] = _CapturePublication(microphone)
+          ..trackPublications['camera'] = _CapturePublication(camera);
+        final routes = <({bool preferred, bool force})>[];
+        final room = _MediaRoom(participant);
+        final service = _speakerService(room, (
+          preferred, {
+          force = false,
+        }) async {
+          routes.add((preferred: preferred, force: force));
+        });
+        await service.suspendCapture();
+        await service.setSpeakerOutputPreferred(false);
+        await service.reapplySpeakerOutput(room);
+        expect(routes, [
+          (preferred: false, force: false),
+          (preferred: false, force: false),
+        ]);
+        expect(service.speakerOutputPreferred, isFalse);
+        expect(microphone.nativeActive, isFalse);
+        expect(camera.nativeActive, isFalse);
+        expect(service.microphoneEnabled, isFalse);
+        expect(service.cameraEnabled, isFalse);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
+    test(
+      'playback restart uses the last completed choice after queued change',
+      () async {
+        final pending = Completer<void>();
+        final routes = <({bool preferred, bool force})>[];
+        final room = _MediaRoom(_MediaParticipant());
+        final service = _speakerService(room, (
+          preferred, {
+          force = false,
+        }) async {
+          routes.add((preferred: preferred, force: force));
+          if (routes.length == 1) await pending.future;
+        });
+        final change = service.setSpeakerOutputPreferred(false);
+        final playback = service.reapplySpeakerOutput(room);
+        await Future<void>.delayed(Duration.zero);
+        expect(routes.length, 1);
+        pending.complete();
+        await Future.wait([change, playback]);
+        expect(routes, [
+          (preferred: false, force: false),
+          (preferred: false, force: false),
+        ]);
+        expect(service.speakerOutputPreferred, isFalse);
+        await service.leave();
+        service.dispose();
+      },
+    );
+  });
+
   test(
     'suspension owns tracks while SDK reconnect clears publications',
     () async {
@@ -282,7 +514,7 @@ void main() {
       expect(camera.nativeActive, isFalse);
       await service.setMicrophoneEnabled(true);
       participant.trackPublications['camera'] = oldPublication;
-    room.events.streamCtrl.add(
+      room.events.streamCtrl.add(
         LocalTrackPublishedEvent(
           participant: participant,
           publication: oldPublication,

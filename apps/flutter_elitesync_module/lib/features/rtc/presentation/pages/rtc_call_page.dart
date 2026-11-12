@@ -158,6 +158,28 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
     }
   }
 
+  Future<void> _setSpeakerOutputPreferred(bool preferred) async {
+    if (!_currentSession ||
+        !_foreground ||
+        _liveKitService.connectedCallId != widget.callId) {
+      return;
+    }
+    final callId = widget.callId;
+    final epoch = _mediaEpoch;
+    try {
+      await _liveKitService.setSpeakerOutputPreferred(preferred);
+    } catch (_) {
+      if (mounted &&
+          _currentSession &&
+          _foreground &&
+          widget.callId == callId &&
+          _liveKitService.connectedCallId == callId &&
+          epoch == _mediaEpoch) {
+        AppFeedback.showError(context, '切换音频输出失败，请重试');
+      }
+    }
+  }
+
   Future<void> _refresh() async {
     if (!_currentSession) return;
     ref.invalidate(rtcCallProvider(widget.callId));
@@ -527,6 +549,20 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
                   _liveKitService.microphoneEnabled ? Icons.mic : Icons.mic_off,
                 ),
               ),
+              if (_liveKitService.supportsSpeakerOutput &&
+                  _liveKitService.connectedCallId == session.id &&
+                  !session.isTerminal)
+                IconButton.filledTonal(
+                  tooltip: _liveKitService.speakerOutputPreferred
+                      ? '使用听筒或耳机'
+                      : '使用扬声器',
+                  isSelected: _liveKitService.speakerOutputPreferred,
+                  onPressed: () => _setSpeakerOutputPreferred(
+                    !_liveKitService.speakerOutputPreferred,
+                  ),
+                  icon: const Icon(Icons.volume_down_outlined),
+                  selectedIcon: const Icon(Icons.volume_up),
+                ),
               if (session.mode == 'video') ...[
                 IconButton.filledTonal(
                   tooltip: _liveKitService.cameraEnabled ? '关闭摄像头' : '开启摄像头',

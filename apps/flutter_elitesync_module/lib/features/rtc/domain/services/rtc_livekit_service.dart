@@ -14,7 +14,8 @@ import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_androi
 
 class RtcLiveKitService extends ChangeNotifier {
   RtcLiveKitService({required this.remoteDataSource, required this.appEnv})
-    : _createCameraTrack = LocalVideoTrack.createCameraTrack,
+    : _setSpeakerRoute = AudioManager.instance.setSpeakerOutputPreferred,
+      _createCameraTrack = LocalVideoTrack.createCameraTrack,
       _createAudioTrack = LocalAudioTrack.create,
       _microphonePermission = const PermissionHandlerRtcPermissionService()
           .ensureVoiceCallPermission,
@@ -30,7 +31,14 @@ class RtcLiveKitService extends ChangeNotifier {
     required Future<bool> Function() cameraPermission,
     Future<LocalVideoTrack> Function(CameraCaptureOptions)? cameraTrackFactory,
     Future<LocalAudioTrack> Function(AudioCaptureOptions)? audioTrackFactory,
+    Future<void> Function(bool preferred, {bool force})? speakerRouteSetter,
+    int? callId,
   }) : _room = room,
+       _connectedCallId = callId,
+       _speakerPreferenceCallId = callId,
+       _setSpeakerRoute =
+           speakerRouteSetter ??
+           AudioManager.instance.setSpeakerOutputPreferred,
        _createCameraTrack =
            cameraTrackFactory ?? LocalVideoTrack.createCameraTrack,
        _createAudioTrack = audioTrackFactory ?? LocalAudioTrack.create,
@@ -41,6 +49,7 @@ class RtcLiveKitService extends ChangeNotifier {
 
   final Future<bool> Function() _microphonePermission;
   final Future<bool> Function() _cameraPermission;
+  final Future<void> Function(bool preferred, {bool force}) _setSpeakerRoute;
   final Future<LocalVideoTrack> Function(CameraCaptureOptions)
   _createCameraTrack;
   final Future<LocalAudioTrack> Function(AudioCaptureOptions) _createAudioTrack;
@@ -48,6 +57,7 @@ class RtcLiveKitService extends ChangeNotifier {
   final _localTracks = <LocalTrack, ({Room room, int captureGeneration})>{};
   Future<void> _cameraMutation = Future.value();
   Future<void> _microphoneMutation = Future.value();
+  Future<void> _speakerMutation = Future.value();
   Future<void> _teardown = Future.value();
   Future<void> _captureStop = Future.value();
   int _captureGeneration = 0;
@@ -64,11 +74,19 @@ class RtcLiveKitService extends ChangeNotifier {
   bool _microphoneEnabled = true;
   bool _cameraEnabled = false;
   bool _frontCamera = true;
+  bool _speakerOutputPreferred = true;
+  int? _speakerPreferenceCallId;
   bool _disposed = false;
   String? _failureMessage;
 
   bool get microphoneEnabled => _microphoneEnabled;
   bool get cameraEnabled => _cameraEnabled;
+  bool get speakerOutputPreferred => _speakerOutputPreferred;
+  bool get supportsSpeakerOutput =>
+      isEnabled &&
+      !kIsWeb &&
+      (defaultTargetPlatform == TargetPlatform.android ||
+          defaultTargetPlatform == TargetPlatform.iOS);
   String? get failureMessage => _failureMessage;
   LocalVideoTrack? get localVideoTrack {
     for (final publication
@@ -99,6 +117,50 @@ class RtcLiveKitService extends ChangeNotifier {
       !_disposed &&
       generation == _connectionGeneration &&
       identical(_room, room);
+
+  Future<void> setSpeakerOutputPreferred(bool preferred) async {
+    if (!supportsSpeakerOutput) {
+      throw UnsupportedError('当前设备不支持切换通话扬声器');
+    }
+    final room = _room;
+    if (room == null || room.connectionState != ConnectionState.connected) {
+      throw StateError('当前通话尚未连接');
+    }
+    await _applySpeakerOutput(
+      room,
+      generation: _connectionGeneration,
+      captureGeneration: _captureGeneration,
+      preferred: preferred,
+    );
+  }
+
+  Future<void> _applySpeakerOutput(
+    Room room, {
+    required int generation,
+    required int captureGeneration,
+    bool? preferred,
+  }) {
+    bool current() =>
+        _ownsRoom(room, generation) && captureGeneration == _captureGeneration;
+    final operation = _speakerMutation.then((_) async {
+      if (!current()) return;
+      // Playback retries resolve the last successful choice when they run.
+      final selected = preferred ?? _speakerOutputPreferred;
+      await _setSpeakerRoute(selected, force: selected);
+      if (!current() || preferred == null) return;
+      _speakerOutputPreferred = selected;
+      _mediaChanged();
+    });
+    _speakerMutation = operation.then<void>((_) {}, onError: (Object _) {});
+    return operation;
+  }
+
+  @visibleForTesting
+  Future<void> reapplySpeakerOutput(Room room) => _applySpeakerOutput(
+    room,
+    generation: _connectionGeneration,
+    captureGeneration: _captureGeneration,
+  );
 
   Future<void> setMicrophoneEnabled(bool enabled) {
     final room = _room;
@@ -731,13 +793,13 @@ class RtcLiveKitService extends ChangeNotifier {
     required String reason,
   }) async {
     final generation = _connectionGeneration;
-    if (!_ownsRoom(room, generation)) return;
+    final captureGeneration = _captureGeneration;
+    bool current() =>
+        _ownsRoom(room, generation) && captureGeneration == _captureGeneration;
+    if (!current()) return;
     try {
       try {
-        await AudioManager.instance.setSpeakerOutputPreferred(
-          true,
-          force: true,
-        );
+        await reapplySpeakerOutput(room);
       } catch (error) {
         debugPrint(
           'RTC_LIVEKIT_AUDIO_ROUTE_FORCE_FAIL '
@@ -747,7 +809,7 @@ class RtcLiveKitService extends ChangeNotifier {
           'errorType=${error.runtimeType}',
         );
       }
-      if (!_ownsRoom(room, generation)) return;
+      if (!current()) return;
       debugPrint(
         'RTC_LIVEKIT_AUDIO_PLAYBACK_START '
         'device=${_platformLabel()} '
@@ -756,7 +818,7 @@ class RtcLiveKitService extends ChangeNotifier {
         'canPlaybackBefore=${room.canPlaybackAudio}',
       );
       await room.startAudio();
-      if (!_ownsRoom(room, generation)) return;
+      if (!current()) return;
       debugPrint(
         'RTC_LIVEKIT_AUDIO_PLAYBACK_READY '
         'device=${_platformLabel()} '
@@ -892,6 +954,14 @@ class RtcLiveKitService extends ChangeNotifier {
       await leave();
       if (_disposed || _connectionGeneration != expectedAfterLeave) return;
       if (_captureSuspended || captureGeneration != _captureGeneration) return;
+      await _speakerMutation;
+      if (_disposed || _connectionGeneration != expectedAfterLeave) return;
+      if (_captureSuspended || captureGeneration != _captureGeneration) return;
+      // A reconnect keeps this call's choice; a different call starts on speaker.
+      if (_speakerPreferenceCallId != callId) {
+        _speakerPreferenceCallId = callId;
+        _speakerOutputPreferred = true;
+      }
       generation = _connectionGeneration;
       if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
         await initializeRtcAndroidAudioEngine();
@@ -910,19 +980,21 @@ class RtcLiveKitService extends ChangeNotifier {
       );
 
       final room = Room(
-        roomOptions: const RoomOptions(
+        roomOptions: RoomOptions(
           adaptiveStream: true,
           dynacast: true,
           // Keep AEC/NS enabled; AGC is enabled to support quiet speech. Android
           // engine policy is requested before the first Room is created.
           // https://docs.livekit.io/reference/client-sdk-flutter/livekit_client/AudioCaptureOptions-class.html
-          defaultAudioCaptureOptions: AudioCaptureOptions(
+          defaultAudioCaptureOptions: const AudioCaptureOptions(
             echoCancellation: true,
             noiseSuppression: true,
             autoGainControl: true,
             highPassFilter: true,
           ),
-          defaultAudioOutputOptions: AudioOutputOptions(speakerOn: true),
+          defaultAudioOutputOptions: AudioOutputOptions(
+            speakerOn: _speakerOutputPreferred,
+          ),
         ),
       );
       _room = room;
