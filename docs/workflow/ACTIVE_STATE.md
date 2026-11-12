@@ -1,8 +1,8 @@
-# 当前入口｜2026-11-12 手机复测与模拟器宿主音频配置修正
+# 当前入口｜2026-11-12 无声修复通过Owner实机短通话
 
-当前 **HOST_AUDIO_CONFIG_REPAIRED_AWAITING_OWNER_RECALL**。Owner已确认连接，手机保留数据更新同cdb并核base.apk SHA，A登录与B历史对话保留。call35双端媒体和四方向RTP有效，但Owner只在手机听到沙沙声，电脑无声、无法辨识电脑说话，双向人声验证失败。
+当前 **NO_AUDIO_FIX_OWNER_SHORT_VOICE_RETEST_PASSED**。Owner已确认连接，手机保留数据更新同cdb并核base.apk SHA，A登录与B历史对话保留。call35双端媒体和四方向RTP有效，但Owner只在手机听到沙沙声，电脑无声、无法辨识电脑说话，双向人声验证失败。
 
-两个保留AVD硬件录音/播放实际均关闭。此前仅凭未带no-audio启动参数标音频开启的元数据已更正。正常挂断并停止自有AVD后，已启用config两项、重启核generated hardware均true，并开启B宿主麦克风、调整语音音量8/15。两个账号/APP数据保留，A模拟器APP暂停，B与手机聊天页就绪。已请求Owner重拨，修正配置后人声/AEC仍待验证。5038继续USB排除，手机使用精确5039，5037沿原状态。
+两个保留AVD硬件录音/播放实际均关闭。此前仅凭未带no-audio启动参数标音频开启的元数据已更正。正常挂断并停止自有AVD后，已启用config两项、重启核generated hardware均true，并开启B宿主麦克风、调整语音音量8/15。两个账号/APP数据保留，A模拟器APP暂停，B与手机聊天页就绪。Owner重拨call36后明确确认双向人声清晰，约20秒观察无明显回声/杂音。正常挂断call36 ended、Room0，手机/模拟器双端原生采集inactive已核。通过范围为当前设备/音频路由短语音，完整路由、后台/中断、长通话和复杂AEC矩阵继续待验证。5038继续USB排除，手机使用精确5039，5037沿原状态。
 
 APP源码 `cdb0b46dc4613b35eba7adb0c50415a455f3063c`，后端25bc01f7。首次麦克风/相机授权前置及代次保护已完成，补修旧终态页暂停残留影响下一通入房。83项定向检查、两文件analyze及非作者变更复核通过。离线37.5032738秒/退出0，APK 154557386字节、SHA256 `85c6deddd3463d06188137aa9658879fbc054e04867178c04e710bbb27c25fc8`，双模拟器实际安装hash一致。唯一[实施报告](../versions/v10.1.5/IMPLEMENTATION_REPORT.md)和[manifest](../versions/v10.1.5/artifact_manifest.json)记录当前身份及历史候选范围。
 

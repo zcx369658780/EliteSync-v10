@@ -1,3 +1,9 @@
+# 最新节点｜2026-11-12 Owner确认call36双向人声清晰
+
+同cdb手机与模拟器call36双端媒体和四方向音频计数有效。Owner明确反馈“双向人声清晰”，约20秒后反馈“没有明显回声或杂音”。正常APP挂断，call36 ended/Room0，手机及模拟器原生采集均inactive。无声相关源码修复与AVD录音/播放配置更正的当前短语音子项通过。完整音频路由/后台/中断/长通话与复杂AEC条件继续待覆盖，AC05 OPEN及其余冻结判定保留。私有回执与当前源码/包身份见[实施报告](IMPLEMENTATION_REPORT.md)及manifest。
+
+---
+
 # 最新节点｜2026-11-12 Owner实机call35与宿主音频配置
 
 手机已保留数据更新同cdb并核实际包SHA。call35双端媒体/四方向RTP有效，Owner只在手机听到沙沙声，电脑无声，双向人声失败。两个保留AVD录音/播放硬件配置实际no，已正常挂断、停止后改yes，重启核generated true并启用B hostmicon。先前仅凭启动参数的“音频开启”表述已更正。已请求Owner重拨，修正宿主配置后声音/AEC仍待确认。APK/源码不变，冻结状态保留，详见[实施报告](IMPLEMENTATION_REPORT.md)。

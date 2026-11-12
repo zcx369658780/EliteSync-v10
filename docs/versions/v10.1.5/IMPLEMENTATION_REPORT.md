@@ -1,6 +1,12 @@
 # v10.1.5 无声修复候选
 
-2026-11-12。当前 **HOST_AUDIO_CONFIG_REPAIRED_AWAITING_OWNER_RECALL**。手机已更新同cdb，实际双向人声继续待Owner复测。冻结仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。
+2026-11-12。当前 **NO_AUDIO_FIX_OWNER_SHORT_VOICE_RETEST_PASSED**。同cdb手机与模拟器call36已确认双向清晰人声，短通话无明显回声/杂音，正常挂断后双端采集释放。冻结仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。
+
+## 当前实机短通话结果
+
+Owner再次从手机A发起call36，模拟器B正常接听，双端入房及四方向音频bytes/packets持续增长。Owner明确反馈“双向人声清晰”，继续交谈约20秒后明确反馈“没有明显回声或杂音”。正常APP挂断后call36 ended、Room0，手机及模拟器的原生CAMERA/RECORD_AUDIO均inactive已核。
+
+本子项通过范围为同cdb候选、当前手机/模拟器及当前电脑音频设备的短语音通话。完整音频路由切换、长通话、复杂回声条件、实机后台/中断矩阵仍待覆盖，AC05继续OPEN。call35沙沙声原失败及配置更正保留。私有回执 `phone-noaudio-host-audio-recall-result-20261112-private.json`，原始日志和截图仅本地。
 
 ## Owner实机复测与模拟器宿主音频更正
 
@@ -8,7 +14,7 @@
 
 进一步实读两个保留AVD的config.ini发现`hw.audioInput=no`及`hw.audioOutput=no`，generated hardware也为false。此前“音频开启”的运行元数据仅凭启动参数未带no-audio，遗漏硬件配置核验，该表述在当前节点更正。正常挂断call35、Room0后顺序停止自有AVD，将两项改为yes并重启，generated hardware两项true已核。B另用SDK console支持的`avd hostmicon`启用宿主麦克风，结果OK，测试语音音量调至8/15。保持已安装APK与账号数据，A模拟器APP暂停避免重复接听。默认Windows输出会随AR眼镜连接切换，未改系统默认设备。
 
-已请求Owner再次呼叫。首个240秒UI观察窗未出现新call，最后仍call35 ended，仅记录等待到期，未产生新通话失败。修正宿主配置后的实际人声和AEC仍PENDING。先前合成音RPC期间退出的根因继续UNKNOWN。
+首个240秒UI观察窗未出现新call，最后仍call35 ended，仅记录等待到期。Owner随后重拨call36，结果见顶部。先前合成音RPC期间退出的根因继续UNKNOWN。
 
 ## 当前固定身份
 
@@ -36,7 +42,7 @@ c1连续call32又暴露旧终态页inactive后的共享service暂停残留。cdb
 
 Home观察时长保留实际数值。609 call22的commit后4.874250秒停媒证据属于原候选，cdb本轮未重测MC撤权时限。c1首次授权原生结果及609消息、附件、通知、期限、存储和服务重启结果均沿原候选身份保留。
 
-默认blocking合成音诊断期间源模拟器退出，客户端报SocketException，退出根因未定，已恢复自有AVD及精确映射。此前实验模式失败和本次失败均保留，后续RPC重复0，客观扬声器声源结果UNKNOWN。双向RTP与原生mic状态按各自观察记录，实机听感、AEC和路由体验待Owner复测。
+默认blocking合成音诊断期间源模拟器退出，客户端报SocketException，退出根因未定，已恢复自有AVD及精确映射。此前实验模式失败和本次失败均保留，后续RPC重复0，客观扬声器声源结果UNKNOWN。双向RTP与原生mic状态按各自观察记录，当前实机短通话听感已补充在顶部，完整AEC和路由覆盖继续待验证。
 
 早期UI未idle/安装后未绘制窗口、过早读取RTP尾日志及挂断后过早采样均保留。普通APP重启恢复画面，同call34补读完整日志、等待原生teardown后收尾成功，未重复发送消息。
 

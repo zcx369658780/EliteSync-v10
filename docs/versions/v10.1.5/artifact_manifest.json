@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "version": "10.1.5",
-  "status": "HOST_AUDIO_CONFIG_REPAIRED_AWAITING_OWNER_RECALL",
+  "status": "NO_AUDIO_FIX_OWNER_SHORT_VOICE_RETEST_PASSED",
   "date": "2026-11-12",
   "branch": "codex/v10.1.5-software-continuation-20261101",
   "source": {
@@ -35,9 +35,11 @@
     "final_normal_call": "two participants, both native microphones active, four RTP byte and packet directions growing",
     "background": "call34 voice Home stop observation upper 6.047s, return remained off, explicit mic enabled, normal hangup room0 and capture inactive",
     "objective_synthetic_output": "UNKNOWN; default RPC SocketException and source emulator exit; restored; no repeat",
-    "human_hearing": "call35 phone heard static only, no intelligible computer speech; AVD audioInput/audioOutput were disabled; enabled both and B hostmicon, physical speech retest pending",
+    "human_hearing": "call36 Owner explicitly confirms clear bidirectional speech and no obvious echo or noise after ~20s qualitative observation; same cdb phone and B emulator, current host audio route",
     "inherited_candidate609_runtime": "retained under prior_candidate609 with original source identity",
-    "host_audio_configuration": "both retained config.ini yes and generated hardware true; B hostmicon OK, voice volume8; duplicate A emulator APP paused"
+    "host_audio_configuration": "both retained config.ini yes and generated hardware true; B hostmicon OK, voice volume8; duplicate A emulator APP paused",
+    "physical_hangup": "call36 normal APP hangup, ended/room0, both phone and emulator CAMERA/RECORD_AUDIO inactive",
+    "physical_voice_scope": "current route short call only; complete route/background/interruption/long-call and complex AEC matrix pending"
   },
   "acceptance": {
     "partial_ac": [
@@ -60,15 +62,14 @@
     "owner_product_acceptance": "PENDING"
   },
   "unverified": [
-    "physical-device audio/AEC and audio routing",
     "hardware Keystore and physical storage faults",
     "natural 30-day elapsed observation",
     "complete actor/peer and in-flight permission/concurrency matrix",
     "full leaf-page/accessibility device matrix",
     "real Push delivery",
     "independent astrology precision",
-    "final cdb physical first-permission audio/AEC retest",
-    "complete playback/route/subscription error recovery feedback"
+    "complete playback/route/subscription error recovery feedback",
+    "complete physical audio routing/background/interruption/long-duration and complex AEC matrix; physical first-permission revocation/regrant retest"
   ],
   "evidence": [
     {
@@ -144,6 +145,11 @@
     {
       "file": "emulator-host-audio-config-repair-20261112-private.json",
       "sha256": "f300f1094331626852f53ce07ac1c76c067a0a10e4dbbc588e0b1c5f04ef7eae",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "phone-noaudio-host-audio-recall-result-20261112-private.json",
+      "sha256": "206506d083725b009a2ee9fae9d61c7dfabd40176326fae83d187e28db44e062",
       "location": "LOCAL_ONLY"
     }
   ],
