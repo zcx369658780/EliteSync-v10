@@ -1,6 +1,14 @@
 # v10.1.5 无声修复候选
 
-2026-11-12。当前 **AUDIO_FIX_READY_AWAITING_OWNER_PHYSICAL_RETEST**。Owner返回后准备实机复测。冻结仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。
+2026-11-12。当前 **HOST_AUDIO_CONFIG_REPAIRED_AWAITING_OWNER_RECALL**。手机已更新同cdb，实际双向人声继续待Owner复测。冻结仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。
+
+## Owner实机复测与模拟器宿主音频更正
+
+手机保留数据更新cdb，实际base.apk SHA匹配，A账号和已有B对话保留。call35正常接听后SFU为2参与者，手机与模拟器的四方向RTP增长、接收音频能量有变化。Owner报告只有手机听到沙沙声，电脑端无声，无法听清电脑说话。本次双向人声验证失败，声音/AEC接受继续待定。
+
+进一步实读两个保留AVD的config.ini发现`hw.audioInput=no`及`hw.audioOutput=no`，generated hardware也为false。此前“音频开启”的运行元数据仅凭启动参数未带no-audio，遗漏硬件配置核验，该表述在当前节点更正。正常挂断call35、Room0后顺序停止自有AVD，将两项改为yes并重启，generated hardware两项true已核。B另用SDK console支持的`avd hostmicon`启用宿主麦克风，结果OK，测试语音音量调至8/15。保持已安装APK与账号数据，A模拟器APP暂停避免重复接听。默认Windows输出会随AR眼镜连接切换，未改系统默认设备。
+
+已请求Owner再次呼叫。首个240秒UI观察窗未出现新call，最后仍call35 ended，仅记录等待到期，未产生新通话失败。修正宿主配置后的实际人声和AEC仍PENDING。先前合成音RPC期间退出的根因继续UNKNOWN。
 
 ## 当前固定身份
 
@@ -32,7 +40,7 @@ Home观察时长保留实际数值。609 call22的commit后4.874250秒停媒证�
 
 早期UI未idle/安装后未绘制窗口、过早读取RTP尾日志及挂断后过早采样均保留。普通APP重启恢复画面，同call34补读完整日志、等待原生teardown后收尾成功，未重复发送消息。
 
-私有原证、APK和诊断工具均在本机。Owner出门后手机操作0，手机仍保留609及登录/聊天数据。Owner现已返回，待连接后保留数据更新cdb并核实实际声音。其余冻结未完成项沿下方609报告原范围保留。
+私有原证、APK和诊断工具均在本机。Owner出门期间手机操作0。Owner返回并确认连接后，已保留数据更新cdb，后续结果见本报告顶部。其余冻结未完成项沿下方609报告原范围保留。
 
 ---
 

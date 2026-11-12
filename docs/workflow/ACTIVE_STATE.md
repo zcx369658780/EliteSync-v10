@@ -1,10 +1,12 @@
-# 当前入口｜2026-11-12 无声修复包准备实机复测
+# 当前入口｜2026-11-12 手机复测与模拟器宿主音频配置修正
 
-当前 **AUDIO_FIX_READY_AWAITING_OWNER_PHYSICAL_RETEST**。Owner出门期间按新指令使用双模拟器继续修复，现Owner已返回，待USB连接后保留手机数据更新修复包。手机当前仍保留609和虚构A登录，手机连接及专用5039当前状态待本轮核验，5038继续USB排除，5037沿原状态。
+当前 **HOST_AUDIO_CONFIG_REPAIRED_AWAITING_OWNER_RECALL**。Owner已确认连接，手机保留数据更新同cdb并核base.apk SHA，A登录与B历史对话保留。call35双端媒体和四方向RTP有效，但Owner只在手机听到沙沙声，电脑无声、无法辨识电脑说话，双向人声验证失败。
+
+两个保留AVD硬件录音/播放实际均关闭。此前仅凭未带no-audio启动参数标音频开启的元数据已更正。正常挂断并停止自有AVD后，已启用config两项、重启核generated hardware均true，并开启B宿主麦克风、调整语音音量8/15。两个账号/APP数据保留，A模拟器APP暂停，B与手机聊天页就绪。已请求Owner重拨，修正配置后人声/AEC仍待验证。5038继续USB排除，手机使用精确5039，5037沿原状态。
 
 APP源码 `cdb0b46dc4613b35eba7adb0c50415a455f3063c`，后端25bc01f7。首次麦克风/相机授权前置及代次保护已完成，补修旧终态页暂停残留影响下一通入房。83项定向检查、两文件analyze及非作者变更复核通过。离线37.5032738秒/退出0，APK 154557386字节、SHA256 `85c6deddd3463d06188137aa9658879fbc054e04867178c04e710bbb27c25fc8`，双模拟器实际安装hash一致。唯一[实施报告](../versions/v10.1.5/IMPLEMENTATION_REPORT.md)和[manifest](../versions/v10.1.5/artifact_manifest.json)记录当前身份及历史候选范围。
 
-c1 call28/29首次mic、call30首次camera与真实Home通过。最终cdb call34保留终态页后新通话双端入房、双方原生mic active，四方向RTP持续增长。Home停媒观察上界6.047秒，返回保持关闭、明确开麦恢复，正常挂断Room0/采集停。合成音诊断默认RPC期间源模拟器退出，客户端报SocketException，退出根因未定，已恢复并结束该诊断，客观输出UNKNOWN。实机声音/AEC继续待Owner。完整可见播放/路由/订阅故障恢复P2保留。
+c1 call28/29首次mic、call30首次camera与真实Home通过。最终cdb call34保留终态页后新通话双端入房、双方原生mic active，四方向RTP持续增长。Home停媒观察上界6.047秒，返回保持关闭、明确开麦恢复，正常挂断Room0/采集停。合成音诊断默认RPC期间源模拟器退出，客户端报SocketException，退出根因未定，已恢复并结束该诊断，客观输出UNKNOWN。实机声音/AEC按顶部最新复测保留待定。完整可见播放/路由/订阅故障恢复P2保留。
 
 5580实际B、5582实际A，四自有服务沿用，精确本机映射恢复。历史609同包消息/附件/通知/MC撤权/持久重启证据及c1原生证据保留各自源码身份，cdb未重新进行全部联合旅程。仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。原主库dirty/index、无关目录及旧STOP/已耗记录保护。私有原证、凭据、SQL、APK、截图及许可证本机保留。
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "version": "10.1.5",
-  "status": "AUDIO_FIX_READY_AWAITING_OWNER_PHYSICAL_RETEST",
+  "status": "HOST_AUDIO_CONFIG_REPAIRED_AWAITING_OWNER_RECALL",
   "date": "2026-11-12",
   "branch": "codex/v10.1.5-software-continuation-20261101",
   "source": {
@@ -35,8 +35,9 @@
     "final_normal_call": "two participants, both native microphones active, four RTP byte and packet directions growing",
     "background": "call34 voice Home stop observation upper 6.047s, return remained off, explicit mic enabled, normal hangup room0 and capture inactive",
     "objective_synthetic_output": "UNKNOWN; default RPC SocketException and source emulator exit; restored; no repeat",
-    "human_hearing": "PENDING_OWNER_PHYSICAL_RETEST",
-    "inherited_candidate609_runtime": "retained under prior_candidate609 with original source identity"
+    "human_hearing": "call35 phone heard static only, no intelligible computer speech; AVD audioInput/audioOutput were disabled; enabled both and B hostmicon, physical speech retest pending",
+    "inherited_candidate609_runtime": "retained under prior_candidate609 with original source identity",
+    "host_audio_configuration": "both retained config.ini yes and generated hardware true; B hostmicon OK, voice volume8; duplicate A emulator APP paused"
   },
   "acceptance": {
     "partial_ac": [
@@ -128,6 +129,21 @@
     {
       "file": "noaudio-incoming-first-mic-permission-20261112-private.json",
       "sha256": "1581cd001d8e2cb004eb794731b6c3634f66723d363819eabb0f9fdd1687b33d",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "phone-noaudio-cdb-retest-20261112-private.json",
+      "sha256": "81da3de3fa48f96678ef946796a7a1d10572bd41743e85051d812c1cab5f35e8",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "phone-noaudio-cdb-live-call-20261112-private.json",
+      "sha256": "fb6ca65ced17215f836308c05a5a48125e4e7d7eab20c81afe2498232dd84d9d",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "emulator-host-audio-config-repair-20261112-private.json",
+      "sha256": "f300f1094331626852f53ce07ac1c76c067a0a10e4dbbc588e0b1c5f04ef7eae",
       "location": "LOCAL_ONLY"
     }
   ],

@@ -1,3 +1,9 @@
+# 最新节点｜2026-11-12 Owner实机call35与宿主音频配置
+
+手机已保留数据更新同cdb并核实际包SHA。call35双端媒体/四方向RTP有效，Owner只在手机听到沙沙声，电脑无声，双向人声失败。两个保留AVD录音/播放硬件配置实际no，已正常挂断、停止后改yes，重启核generated true并启用B hostmicon。先前仅凭启动参数的“音频开启”表述已更正。已请求Owner重拨，修正宿主配置后声音/AEC仍待确认。APK/源码不变，冻结状态保留，详见[实施报告](IMPLEMENTATION_REPORT.md)。
+
+---
+
 # 最新节点｜2026-11-12 修复连通后无声音，准备Owner实机复测
 
 当前APP源码cdb0b46d，首次授权前置与新通话暂停残留修复完成。83项定向检查、analyze和非作者变更复核通过，双模拟器同修复APK已核。c1首次mic/camera授权实际通过，cdb call34新通话双端媒体/原生mic及四方向RTP增长，Home返回保持采集关闭、明确开麦恢复、正常挂断清房。Home停止观察上界6.047秒按实际保留。默认合成音诊断RPC期间源AVD退出，客户端报SocketException，退出根因未定，已恢复，扬声器输出UNKNOWN。原失败和既有可见音频恢复反馈P2保留。详见[当前实施报告](IMPLEMENTATION_REPORT.md)。
