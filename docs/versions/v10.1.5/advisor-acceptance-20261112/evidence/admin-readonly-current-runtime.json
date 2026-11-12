@@ -1,0 +1,13 @@
+{
+  "source_receipt_name": "admin-readonly-current-runtime-private.json",
+  "source_receipt_sha256": "8f073465a57e5a3657ce3617768dd802b95c781b98f5b29a64abf01bde1df62b",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "LOCAL_WEB_ADMIN_READONLY_PAGES_SCREENSHOT_PASSED",
+  "api_source_commit": "6549f028",
+  "read_only_modules": true,
+  "login": true,
+  "logout": true,
+  "mutation_scope": "login/logout only",
+  "protected_page_after_logout": "/admin/login",
+  "owned_browser_stopped": true
+}

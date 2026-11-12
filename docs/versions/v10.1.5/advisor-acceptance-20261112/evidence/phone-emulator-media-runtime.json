@@ -1,0 +1,14 @@
+{
+  "source_receipt_name": "phone-emulator-media-runtime-private.json",
+  "source_receipt_sha256": "8c5924d31cbd474b9a1b51823dab943904b75485b44bf6f96a23484abdef22e2",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "E5_NATIVE_PICKER_AUTOMATIC_SEND_BLOCKED_EXPLICIT_RETRY_RECOVERED",
+  "source_commit": "e5aa6a29a76711b0e4bdb01613e269759d1ffe8e",
+  "apk_sha256": "398d9e1a30a92b39e6a8f95c8218a3ea1a528e7baedb924636f5f8705f6a7608",
+  "baseline_counts": {
+    "users_count": 4,
+    "message_count": 116,
+    "media_count": 13
+  },
+  "steps": []
+}

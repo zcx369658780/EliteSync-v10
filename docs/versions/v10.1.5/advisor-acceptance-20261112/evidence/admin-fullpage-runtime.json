@@ -1,0 +1,13 @@
+{
+  "source_receipt_name": "admin-fullpage-runtime-private.json",
+  "source_receipt_sha256": "45ce75bf84b43f54c4091e3d3b3dde2f439d39cc230c2ecc2a319f3a3dc02fb9",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "LOCAL_WEB_ADMIN_READONLY_PAGES_SCREENSHOT_PASSED",
+  "api_source_commit": "6549f028",
+  "read_only_modules": true,
+  "login": true,
+  "logout": true,
+  "mutation_scope": "login/logout only",
+  "protected_page_after_logout": "/admin/login",
+  "owned_browser_stopped": true
+}

@@ -1,0 +1,25 @@
+{
+  "source_receipt_name": "notification-fixed-runtime-private.json",
+  "source_receipt_sha256": "c5835c81e5edaae4c1136986f3ec52f0780e6b7eba30c8352c6fa083454a76d7",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "PHONE_NOTIFICATION_STABLE_SCROLL_AND_SINGLE_READ_PASSED",
+  "source_commit": "8216b56cfeafa633169fd5639c9cb55ec1866e84",
+  "utc": "2026-11-12T11:31:58.302916+00:00",
+  "samples": [
+    {
+      "utc": "2026-11-12T11:32:32.250457+00:00",
+      "loading_visible": false,
+      "scroll_anchor": "[694,552][1091,708]"
+    },
+    {
+      "utc": "2026-11-12T11:32:38.902924+00:00",
+      "loading_visible": false,
+      "scroll_anchor": "[694,552][1091,708]"
+    },
+    {
+      "utc": "2026-11-12T11:32:45.575720+00:00",
+      "loading_visible": false,
+      "scroll_anchor": "[694,552][1091,708]"
+    }
+  ]
+}

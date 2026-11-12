@@ -1,0 +1,122 @@
+{
+  "source_receipt_name": "rtc-memory-fixed-observation-private.json",
+  "source_receipt_sha256": "c0efbff5e8c6c2601995faaac537622e56f4b9c314dee32a1ec1dead78314c30",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "SAME_CANDIDATE_MEMORY_OBSERVATION_COMPLETED",
+  "source_commit": "26c88ddbd9d46bb38d43765336564c8ead93e4be",
+  "duration_planned_seconds": 240,
+  "actual_seconds": 240.906,
+  "gc_policy": "Explicit GC only at first/final retained-object samples, middle samples read memory only.",
+  "samples": [
+    {
+      "elapsed_seconds": 0.0,
+      "utc": "2026-11-12T13:49:26.074284+00:00",
+      "retained_classes": {
+        "RtcSessionEntity": {
+          "instances": 0,
+          "bytes": 0
+        },
+        "RtcSessionEventEntity": {
+          "instances": 0,
+          "bytes": 0
+        }
+      },
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 120714128,
+        "heapCapacity": 136151040,
+        "externalUsage": 5696
+      }
+    },
+    {
+      "elapsed_seconds": 30.0,
+      "utc": "2026-11-12T13:49:56.064389+00:00",
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 125878816,
+        "heapCapacity": 141393920,
+        "externalUsage": 120656
+      }
+    },
+    {
+      "elapsed_seconds": 60.0,
+      "utc": "2026-11-12T13:50:26.064013+00:00",
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 143680512,
+        "heapCapacity": 151355392,
+        "externalUsage": 55888
+      }
+    },
+    {
+      "elapsed_seconds": 90.0,
+      "utc": "2026-11-12T13:50:56.061139+00:00",
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 151496032,
+        "heapCapacity": 155619328,
+        "externalUsage": 116192
+      }
+    },
+    {
+      "elapsed_seconds": 120.0,
+      "utc": "2026-11-12T13:51:26.061242+00:00",
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 140397920,
+        "heapCapacity": 149327872,
+        "externalUsage": 119744
+      }
+    },
+    {
+      "elapsed_seconds": 150.0,
+      "utc": "2026-11-12T13:51:56.065228+00:00",
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 148266096,
+        "heapCapacity": 154046464,
+        "externalUsage": 85056
+      }
+    },
+    {
+      "elapsed_seconds": 180.0,
+      "utc": "2026-11-12T13:52:26.073372+00:00",
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 146685680,
+        "heapCapacity": 152473600,
+        "externalUsage": 24848
+      }
+    },
+    {
+      "elapsed_seconds": 210.0,
+      "utc": "2026-11-12T13:52:56.070027+00:00",
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 152595552,
+        "heapCapacity": 161386496,
+        "externalUsage": 131072
+      }
+    },
+    {
+      "elapsed_seconds": 240.0,
+      "utc": "2026-11-12T13:53:26.073432+00:00",
+      "retained_classes": {
+        "RtcSessionEntity": {
+          "instances": 4,
+          "bytes": 448
+        },
+        "RtcSessionEventEntity": {
+          "instances": 4,
+          "bytes": 128
+        }
+      },
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 151116896,
+        "heapCapacity": 162959360,
+        "externalUsage": 24912
+      }
+    }
+  ]
+}

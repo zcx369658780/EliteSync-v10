@@ -1,0 +1,9 @@
+{
+  "source_receipt_name": "sfu-memory-candidate-recovery-private.json",
+  "source_receipt_sha256": "6496ebd39009f791f2e2ffb10122f168c7f0b0ca7428ed982f1fba27a54a1667",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "OWNED_SFU_RESTARTED_ROOM0",
+  "root_cause": "UNKNOWN, monitor timeout in prior diagnosis retained",
+  "prior_restart_count": 3,
+  "prior_exit": 1
+}

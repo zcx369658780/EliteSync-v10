@@ -1,0 +1,82 @@
+{
+  "source_receipt_name": "rtc-memory-final-0badb31c-observation-private.json",
+  "source_receipt_sha256": "026afd29ad31fbbfb4c1980be24f04201a61c0b30294d87dde7b9ed36df15ace",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "SAME_CANDIDATE_MEMORY_OBSERVATION_COMPLETED",
+  "source_commit": "0badb31c38db63fe0fb1b5fcbfb43e5cb4e68d3f",
+  "duration_planned_seconds": 120,
+  "actual_seconds": 120.843,
+  "gc_policy": "Explicit GC only at first/final retained-object samples, middle samples read memory only.",
+  "samples": [
+    {
+      "elapsed_seconds": 0.0,
+      "utc": "2026-11-12T14:27:11.175661+00:00",
+      "retained_classes": {
+        "RtcSessionEntity": {
+          "instances": 65,
+          "bytes": 7280
+        },
+        "RtcSessionEventEntity": {
+          "instances": 120,
+          "bytes": 3840
+        }
+      },
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 140628224,
+        "heapCapacity": 145657856,
+        "externalUsage": 21552
+      }
+    },
+    {
+      "elapsed_seconds": 30.0,
+      "utc": "2026-11-12T14:27:41.180512+00:00",
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 141234048,
+        "heapCapacity": 145133568,
+        "externalUsage": 6368
+      }
+    },
+    {
+      "elapsed_seconds": 60.0,
+      "utc": "2026-11-12T14:28:11.179737+00:00",
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 141740176,
+        "heapCapacity": 146706432,
+        "externalUsage": 24496
+      }
+    },
+    {
+      "elapsed_seconds": 90.0,
+      "utc": "2026-11-12T14:28:41.175681+00:00",
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 152343920,
+        "heapCapacity": 157192192,
+        "externalUsage": 85232
+      }
+    },
+    {
+      "elapsed_seconds": 120.0,
+      "utc": "2026-11-12T14:29:11.183948+00:00",
+      "retained_classes": {
+        "RtcSessionEntity": {
+          "instances": 65,
+          "bytes": 7280
+        },
+        "RtcSessionEventEntity": {
+          "instances": 120,
+          "bytes": 3840
+        }
+      },
+      "memory": {
+        "type": "MemoryUsage",
+        "heapUsage": 140298784,
+        "heapCapacity": 145657856,
+        "externalUsage": 13472
+      }
+    }
+  ]
+}

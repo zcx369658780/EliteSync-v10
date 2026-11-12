@@ -10,6 +10,8 @@
 
 仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。自然期限、硬件、蓝牙、完整权限并发/停媒/长时及部分条件叶页未完整验收。SFU多次monitor TimeoutError再次普通恢复，原因UNKNOWN，保留原证与恢复记录。原主库dirty/index、无关%SystemDrive%/、旧STOP受保护。私有原证仅本地。
 
+Owner于2026-11-12要求上传GitHub新分支。验收入口现见[codex/v10.1.5-advisor-acceptance-20261112资料目录](../versions/v10.1.5/advisor-acceptance-20261112/README.md)，包含120张测试截图与去敏证据摘要。代码与冻结验收判定见上文。
+
 以下为历史交付快照。
 
 

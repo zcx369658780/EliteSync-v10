@@ -1,0 +1,29 @@
+{
+  "source_receipt_name": "notification-failure-runtime-private.json",
+  "source_receipt_sha256": "949fd46ee6b2dace99fb58074ded5c69becceb91f7949af1cbc5da40f0d6360a",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "PHONE_FAILURE_STOPS_AND_EXPLICIT_RETRY_RECOVERS_PASSED",
+  "source_commit": "e5aa6a29a76711b0e4bdb01613e269759d1ffe8e",
+  "completed_utc": "2026-11-12T11:46:45.455174+00:00",
+  "utc": "2026-11-12T11:42:52.285249+00:00",
+  "samples": [
+    {
+      "utc": "2026-11-12T11:43:23.680222+00:00",
+      "phase": "forced_failure",
+      "error_still_visible": true,
+      "loading_visible": false
+    },
+    {
+      "utc": "2026-11-12T11:43:31.806034+00:00",
+      "phase": "forced_failure",
+      "error_still_visible": true,
+      "loading_visible": false
+    },
+    {
+      "utc": "2026-11-12T11:43:38.571718+00:00",
+      "phase": "backend_healthy_without_ui_retry",
+      "error_still_visible": true,
+      "loading_visible": false
+    }
+  ]
+}

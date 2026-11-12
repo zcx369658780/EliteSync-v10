@@ -1,0 +1,9 @@
+{
+  "source_receipt_name": "final-emulator-sleep-resume-private.json",
+  "source_receipt_sha256": "e9c9579d1fa590780528e57b9681c8e43c0a3e68f22e88493d54fb7fa904ccee",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "SAME_FINAL_APK_SLEEP_RESUME_CHAT_RECOVERY_AND_LIST_INPUT_PASSED",
+  "source_commit": "0badb31c38db63fe0fb1b5fcbfb43e5cb4e68d3f",
+  "dart_oom_in_current_process_log": 0,
+  "sleep_seconds": 20
+}

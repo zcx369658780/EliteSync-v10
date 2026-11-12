@@ -1,0 +1,9 @@
+{
+  "source_receipt_name": "phone-dynamic-chart-runtime-private.json",
+  "source_receipt_sha256": "0c758f5dd01c7ecdb84e91c38cbf6f7114f3fc439b03eac6d2f760325314b402",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "PHONE_PRIVATE_SELF_SNAPSHOT_SYNASTRY_SAVED_AND_READ_BACK",
+  "source_commit": "bd4c07e74327c75296745adcc63f2619bcb8a835",
+  "saves": 1,
+  "peer_unchanged": true
+}

@@ -1,0 +1,17 @@
+{
+  "source_receipt_name": "text-smoke-26c88ddb-private.json",
+  "source_receipt_sha256": "ba938bac395ad21389b5ae41637d74d9d1ab568b1673f0dfc513328d1e1ea85c",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "SAME_FINAL_APK_BIDIRECTIONAL_NORMAL_UI_TEXT_PASSED",
+  "source_commit": "26c88ddbd9d46bb38d43765336564c8ead93e4be",
+  "baseline_counts": {
+    "users_count": 4,
+    "message_count": 119,
+    "media_count": 16
+  },
+  "final_counts": {
+    "users_count": 4,
+    "message_count": 121,
+    "media_count": 16
+  }
+}

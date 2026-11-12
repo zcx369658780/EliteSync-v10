@@ -1,0 +1,17 @@
+{
+  "source_receipt_name": "emulator-idle-focus-anr-private.json",
+  "source_receipt_sha256": "c189971a9e2c057cd30d4be9bd1087ba96aa02fa11601ee27727322cb38b1d75",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "DART_HEAP_EXHAUSTION_WITH_RETAINED_RTC_POLL_GENERATIONS_FIX_PENDING",
+  "source_commit": "bd4c07e74327c75296745adcc63f2619bcb8a835",
+  "dart_oom_messages": 32,
+  "cause": "UNKNOWN",
+  "utc": "2026-11-12T13:10:38.314013+00:00",
+  "retained_history_diagnosis": {
+    "session_entities": 1880,
+    "event_entities": 479118,
+    "latest20_database_event_count": 5097,
+    "matching_generation_copies": 94,
+    "retention": "sessionProvider dependents -> old FutureProviderElement -> AsyncData -> RTC list"
+  }
+}

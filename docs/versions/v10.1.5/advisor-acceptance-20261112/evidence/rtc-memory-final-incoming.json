@@ -1,0 +1,9 @@
+{
+  "source_receipt_name": "rtc-memory-final-incoming-private.json",
+  "source_receipt_sha256": "db56bc63fcba35a47d98211fe0fe0c88b01f1465a7fe8742425f4d924c15f484",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "INCOMING_DETECTED_EXPIRED_UI_REQUIRED_MANUAL_REFRESH_DEFECT_OPEN",
+  "source_commit": "26c88ddbd9d46bb38d43765336564c8ead93e4be",
+  "normal_ui_decline_pass": false,
+  "terminal_status": "missed"
+}

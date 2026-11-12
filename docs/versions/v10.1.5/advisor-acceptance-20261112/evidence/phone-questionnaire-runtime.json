@@ -1,0 +1,8 @@
+{
+  "source_receipt_name": "phone-questionnaire-runtime-private.json",
+  "source_receipt_sha256": "d1a6065695f7f73ba73d1e346afdebc986175c3ffe3cb0cb56682d94b3798cdd",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "PHONE_NORMAL_UI_20_ANSWERS_SUBMITTED_RESULT_AND_HISTORY_READ_BACK",
+  "source_commit": "bd4c07e74327c75296745adcc63f2619bcb8a835",
+  "debug_actions": 0
+}

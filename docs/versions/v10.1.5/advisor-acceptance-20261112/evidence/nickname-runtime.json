@@ -1,0 +1,8 @@
+{
+  "source_receipt_name": "nickname-runtime-private.json",
+  "source_receipt_sha256": "889807280f277dda2ca50d276cc870366bd18301e9fb371a7bc10aff0b43e8fe",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "PHONE_NICKNAME_SAVE_REENTRY_AND_RESTORE_PASSED",
+  "source_commit": "5e023b0632bc32ed4811818963b023b841e13dba",
+  "utc": "2026-11-12T10:31:18.725401+00:00"
+}

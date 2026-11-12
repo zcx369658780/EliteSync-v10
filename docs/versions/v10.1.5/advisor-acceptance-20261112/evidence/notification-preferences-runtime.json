@@ -1,0 +1,8 @@
+{
+  "source_receipt_name": "notification-preferences-runtime-private.json",
+  "source_receipt_sha256": "c0ae17ccb635e6a1cd0c347587d3d9ef035adb2347162045955c053e8c7df896",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "PHONE_UI_NOTIFICATION_PREFS_PERSIST_AND_RESTORE_PASSED",
+  "source_commit": "5e023b0632bc32ed4811818963b023b841e13dba",
+  "utc": "2026-11-12T10:10:29.615687+00:00"
+}

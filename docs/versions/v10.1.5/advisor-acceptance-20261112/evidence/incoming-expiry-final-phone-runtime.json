@@ -1,0 +1,38 @@
+{
+  "source_receipt_name": "incoming-expiry-final-phone-runtime-private.json",
+  "source_receipt_sha256": "ee514eb3fd008184dde4cb6d985897dd4348fac146c66861501990bba09fe770",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "SAME_FINAL_APK_PASSIVE_EXPIRY_AND_NORMAL_DECLINE_PASSED",
+  "source_commit": "0badb31c38db63fe0fb1b5fcbfb43e5cb4e68d3f",
+  "natural_ringing_expiry_seconds": 30,
+  "microphone_accept_actions": 0,
+  "phases": [
+    {
+      "action": "actual incoming displayed",
+      "call_id": 46,
+      "utc": "2026-11-12T14:21:01.871754+00:00"
+    },
+    {
+      "action": "natural expiry reflected without manual refresh",
+      "call_id": 46,
+      "observed_wait_seconds": 27.813,
+      "terminal": {
+        "id": 46,
+        "status": "missed",
+        "is_terminal": true
+      }
+    },
+    {
+      "action": "second actual incoming displayed",
+      "call_id": 47
+    },
+    {
+      "action": "normal decline and terminal result",
+      "terminal": {
+        "id": 47,
+        "status": "rejected",
+        "is_terminal": true
+      }
+    }
+  ]
+}

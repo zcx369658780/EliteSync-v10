@@ -1,0 +1,8 @@
+{
+  "source_receipt_name": "runtime-fix-0badb31c-installed-private.json",
+  "source_receipt_sha256": "ffaf0020b60793733d880b94737005db480e33d450748ef29541c3c3535d8bee",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "PHONE_AND_B_SAME_RUNTIME_FIX_APK_VERIFIED",
+  "source_commit": "0badb31c38db63fe0fb1b5fcbfb43e5cb4e68d3f",
+  "apk_sha256": "1e9adad71b962c8adfcfd280450ed9ae9e5b1f7127988d225a036e3c3826dfea"
+}

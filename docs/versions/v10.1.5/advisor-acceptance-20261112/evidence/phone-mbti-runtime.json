@@ -1,0 +1,7 @@
+{
+  "source_receipt_name": "phone-mbti-runtime-private.json",
+  "source_receipt_sha256": "1e5b62958178cc6f0cf44ebed57b85e0f2fb7e9409933fab0542f31774821028",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "PHONE_THREE_NORMAL_ANSWERS_SUBMITTED_AND_SERVER_RESULT_READ_BACK",
+  "source_commit": "bd4c07e74327c75296745adcc63f2619bcb8a835"
+}

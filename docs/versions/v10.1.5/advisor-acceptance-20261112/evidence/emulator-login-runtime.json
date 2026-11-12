@@ -1,0 +1,17 @@
+{
+  "source_receipt_name": "emulator-login-runtime-private.json",
+  "source_receipt_sha256": "6f7aa90fe841d9e93f68d14de26359f6b5943291d94fde12408a74a308df95a7",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "CURRENT_B_NORMAL_LOGIN_REOPENED_EXISTING_CHAT_DATA_RETAINED",
+  "source_commit": "bd4c07e74327c75296745adcc63f2619bcb8a835",
+  "before_counts": {
+    "users_count": 4,
+    "message_count": 119,
+    "media_count": 16
+  },
+  "after_counts": {
+    "users_count": 4,
+    "message_count": 119,
+    "media_count": 16
+  }
+}

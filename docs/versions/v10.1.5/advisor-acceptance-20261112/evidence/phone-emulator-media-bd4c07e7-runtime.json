@@ -1,0 +1,37 @@
+{
+  "source_receipt_name": "phone-emulator-media-bd4c07e7-runtime-private.json",
+  "source_receipt_sha256": "afeb67c3e2d2322cb65a8be39cbbc2b08c034ac1bcde1b513b67378d239b7e7d",
+  "publication_kind": "scoped summary of local original receipt",
+  "status": "REAL_UI_IMAGE_VIDEO_PHONE_RECEIVE_PREVIEW_PLAY_PASSED",
+  "source_commit": "bd4c07e74327c75296745adcc63f2619bcb8a835",
+  "apk_sha256": "f5f6d80e8d124f96a0c772722d1f726b59879e6a8e9588863cfc6deec7c27277",
+  "completed_utc": "2026-11-12T12:29:40.931427+00:00",
+  "baseline_counts": {
+    "users_count": 4,
+    "message_count": 117,
+    "media_count": 14
+  },
+  "final_counts": {
+    "users_count": 4,
+    "message_count": 119,
+    "media_count": 16
+  },
+  "steps": [
+    {
+      "action": "B image sent",
+      "message_id": 118,
+      "asset_id": 15
+    },
+    {
+      "action": "Phone image preview displayed"
+    },
+    {
+      "action": "B video sent",
+      "message_id": 119,
+      "asset_id": 16
+    },
+    {
+      "action": "Phone video played to 0:02 / 0:02"
+    }
+  ]
+}
