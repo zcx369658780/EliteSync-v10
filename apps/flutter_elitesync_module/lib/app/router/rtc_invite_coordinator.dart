@@ -8,8 +8,8 @@ import 'package:flutter_elitesync_module/app/router/app_shell.dart';
 import 'package:flutter_elitesync_module/features/notification/data/datasource/notification_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/notification/domain/entities/notification_item_entity.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/providers/notification_provider.dart';
+import 'package:flutter_elitesync_module/features/rtc/data/datasource/rtc_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
-import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/app/router/app_shell.dart' as shell;
 
@@ -64,11 +64,10 @@ Future<bool> _scanIncomingCalls(
   final currentUserId = _currentUserId(ref);
   if (currentUserId <= 0) return false;
 
-  ref.invalidate(rtcCallsProvider);
-  final calls =
-      await (ref.read(rtcCallsProvider.future)
-              as Future<List<RtcSessionEntity>>)
-          .timeout(const Duration(seconds: 8));
+  final RtcRemoteDataSource callsSource = ref.read(rtcRemoteDataSourceProvider);
+  final calls = await callsSource.fetchCalls().timeout(
+    const Duration(seconds: 8),
+  );
   if ((isCurrent != null && !isCurrent()) ||
       _currentUserId(ref) != currentUserId) {
     return false;
@@ -332,8 +331,7 @@ class _RtcInviteCoordinatorState extends ConsumerState<RtcInviteCoordinator> {
     final currentUserId = _currentUserId(ref);
     if (currentUserId <= 0) return false;
 
-    ref.invalidate(rtcCallsProvider);
-    final calls = await ref.read(rtcCallsProvider.future);
+    final calls = await ref.read(rtcRemoteDataSourceProvider).fetchCalls();
     if (!mounted || (isCurrent != null && !isCurrent())) return false;
     final incoming = shell.selectLatestIncomingRtcCall(calls, currentUserId);
     // ignore: avoid_print

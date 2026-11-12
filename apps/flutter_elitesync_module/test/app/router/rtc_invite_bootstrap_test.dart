@@ -10,6 +10,7 @@ import 'package:flutter_elitesync_module/core/network/api_client.dart';
 import 'package:flutter_elitesync_module/features/notification/data/datasource/notification_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/notification/domain/entities/notification_item_entity.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/providers/notification_provider.dart';
+import 'package:flutter_elitesync_module/features/rtc/data/datasource/rtc_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
@@ -50,6 +51,32 @@ class _Notifications extends NotificationRemoteDataSource {
   @override
   Future<void> markRead(int notificationId) async {}
 }
+
+class _Calls extends RtcRemoteDataSource {
+  _Calls({this.pending, this.items = const []})
+    : super(apiClient: ApiClient(dio: Dio()));
+
+  final Future<List<RtcSessionEntity>>? pending;
+  final List<RtcSessionEntity> items;
+  int requests = 0;
+
+  @override
+  Future<List<RtcSessionEntity>> fetchCalls() {
+    requests++;
+    return pending ?? Future.value(items);
+  }
+}
+
+RtcSessionEntity _call(int id, {int peerUserId = 3, bool incoming = true}) =>
+    RtcSessionEntity.fromJson({
+      'id': id,
+      'status': 'ringing',
+      'title': 'Fictional incoming call',
+      'initiator_user_id': incoming ? 7 : 3,
+      'peer_user_id': peerUserId,
+      'is_initiator': !incoming,
+      'is_terminal': false,
+    });
 
 Future<void> _mount(
   WidgetTester tester,
@@ -101,7 +128,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           sessionProvider.overrideWith(_TestSession.new),
-          rtcCallsProvider.overrideWith((ref) async => <RtcSessionEntity>[]),
+          rtcRemoteDataSourceProvider.overrideWithValue(_Calls()),
           appRouterProvider.overrideWithValue(router),
           notificationRemoteDataSourceProvider.overrideWithValue(
             _Notifications(pending: pending.future),
@@ -145,7 +172,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           sessionProvider.overrideWith(_TestSession.new),
-          rtcCallsProvider.overrideWith((ref) async => <RtcSessionEntity>[]),
+          rtcRemoteDataSourceProvider.overrideWithValue(_Calls()),
           notificationRemoteDataSourceProvider.overrideWithValue(notifications),
         ],
       );
@@ -167,7 +194,9 @@ void main() {
         final container = ProviderContainer(
           overrides: [
             sessionProvider.overrideWith(_TestSession.new),
-            rtcCallsProvider.overrideWith((ref) => pending.future),
+            rtcRemoteDataSourceProvider.overrideWithValue(
+              _Calls(pending: pending.future),
+            ),
             notificationRemoteDataSourceProvider.overrideWithValue(
               notifications,
             ),
@@ -199,7 +228,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [
           sessionProvider.overrideWith(_TestSession.new),
-          rtcCallsProvider.overrideWith((ref) async => <RtcSessionEntity>[]),
+          rtcRemoteDataSourceProvider.overrideWithValue(_Calls()),
           notificationRemoteDataSourceProvider.overrideWithValue(notifications),
           notificationListProvider.overrideWith((ref) async {
             pageReads++;
@@ -232,29 +261,134 @@ void main() {
     });
   }
 
+  for (final watcher in ['bootstrap', 'provider', 'widget']) {
+    testWidgets(
+      '$watcher polling reads calls without refreshing the shared list',
+      (tester) async {
+        var pageReads = 0;
+        var pageLoadingStates = 0;
+        final calls = _Calls();
+        final notifications = _Notifications();
+        final container = ProviderContainer(
+          overrides: [
+            sessionProvider.overrideWith(_TestSession.new),
+            rtcRemoteDataSourceProvider.overrideWithValue(calls),
+            rtcCallsProvider.overrideWith((ref) async {
+              pageReads++;
+              return <RtcSessionEntity>[];
+            }),
+            notificationRemoteDataSourceProvider.overrideWithValue(
+              notifications,
+            ),
+          ],
+        );
+        final subscription = container.listen(rtcCallsProvider, (_, next) {
+          if (next.isLoading) pageLoadingStates++;
+        });
+        try {
+          (container.read(sessionProvider.notifier) as _TestSession).login();
+          await container.read(rtcCallsProvider.future);
+          final initialLoadingStates = pageLoadingStates;
+          await _mount(tester, container, watcher: watcher);
+          for (var tick = 0; tick < 3; tick++) {
+            await tester.pump(const Duration(seconds: 2));
+            await tester.pump();
+          }
+          expect(pageReads, 1);
+          expect(pageLoadingStates, initialLoadingStates);
+          expect(calls.requests, greaterThan(1));
+          expect(notifications.requests, calls.requests);
+        } finally {
+          subscription.close();
+          await _close(tester, container);
+        }
+      },
+    );
+
+    testWidgets(
+      '$watcher direct scan still selects the current incoming call',
+      (tester) async {
+        final incomingId =
+            200 + ['bootstrap', 'provider', 'widget'].indexOf(watcher);
+        final calls = _Calls(
+          items: [
+            _call(100, peerUserId: 4),
+            _call(101, incoming: false),
+            _call(incomingId),
+            _call(incomingId + 10),
+          ],
+        );
+        final notifications = _Notifications();
+        final router = GoRouter(
+          initialLocation: '/idle',
+          routes: [
+            GoRoute(path: '/idle', builder: (_, _) => const SizedBox.shrink()),
+            GoRoute(
+              path: '${AppRouteNames.rtcIncomingCall}/:callId',
+              builder: (_, _) => const SizedBox.shrink(),
+            ),
+          ],
+        );
+        final container = ProviderContainer(
+          overrides: [
+            sessionProvider.overrideWith(_TestSession.new),
+            rtcRemoteDataSourceProvider.overrideWithValue(calls),
+            // Background scans must not consume this page's cached snapshot.
+            rtcCallsProvider.overrideWith((ref) async => <RtcSessionEntity>[]),
+            notificationRemoteDataSourceProvider.overrideWithValue(
+              notifications,
+            ),
+            appRouterProvider.overrideWithValue(router),
+          ],
+        );
+        try {
+          (container.read(sessionProvider.notifier) as _TestSession).login();
+          await _mount(tester, container, watcher: watcher);
+          await tester.pump();
+          // The widget coordinator queues navigation for the following frame.
+          tester.binding.scheduleFrame();
+          await tester.pump();
+          await tester.idle();
+          expect(
+            router.routeInformationProvider.value.uri.path,
+            '${AppRouteNames.rtcIncomingCall}/$incomingId',
+          );
+          await tester.pump(const Duration(seconds: 2));
+          await tester.pump();
+          expect(calls.requests, greaterThan(1));
+          expect(notifications.requests, 0);
+          expect(
+            router.routeInformationProvider.value.uri.path,
+            '${AppRouteNames.rtcIncomingCall}/$incomingId',
+          );
+        } finally {
+          await _close(tester, container);
+          router.dispose();
+        }
+      },
+    );
+  }
+
   testWidgets('cold login starts polling without a process restart', (
     tester,
   ) async {
-    var calls = 0;
+    final calls = _Calls();
     final notifications = _Notifications();
     final container = ProviderContainer(
       overrides: [
         sessionProvider.overrideWith(_TestSession.new),
-        rtcCallsProvider.overrideWith((ref) async {
-          calls++;
-          return <RtcSessionEntity>[];
-        }),
+        rtcRemoteDataSourceProvider.overrideWithValue(calls),
         notificationRemoteDataSourceProvider.overrideWithValue(notifications),
       ],
     );
     await _mount(tester, container);
     await tester.pump(const Duration(seconds: 4));
-    expect(calls, 0);
+    expect(calls.requests, 0);
     expect(notifications.requests, 0);
     (container.read(sessionProvider.notifier) as _TestSession).login();
     await tester.pump(const Duration(seconds: 2));
     await tester.pump();
-    expect(calls, 1);
+    expect(calls.requests, 1);
     expect(notifications.requests, 1);
     await _close(tester, container);
   });
@@ -262,15 +396,12 @@ void main() {
   testWidgets('a stuck notification future releases the next call scan', (
     tester,
   ) async {
-    var calls = 0;
+    final calls = _Calls();
     final pending = Completer<List<NotificationItemEntity>>();
     final container = ProviderContainer(
       overrides: [
         sessionProvider.overrideWith(_TestSession.new),
-        rtcCallsProvider.overrideWith((ref) async {
-          calls++;
-          return <RtcSessionEntity>[];
-        }),
+        rtcRemoteDataSourceProvider.overrideWithValue(calls),
         notificationRemoteDataSourceProvider.overrideWithValue(
           _Notifications(pending: pending.future),
         ),
@@ -280,11 +411,11 @@ void main() {
     (container.read(sessionProvider.notifier) as _TestSession).login();
     await tester.pump(const Duration(seconds: 2));
     await tester.pump();
-    expect(calls, 1);
+    expect(calls.requests, 1);
     await tester.pump(const Duration(seconds: 8));
     await tester.pump(const Duration(seconds: 2));
     await tester.pump();
-    expect(calls, greaterThan(1));
+    expect(calls.requests, greaterThan(1));
     await _close(tester, container);
   });
 
@@ -296,7 +427,9 @@ void main() {
     final container = ProviderContainer(
       overrides: [
         sessionProvider.overrideWith(_TestSession.new),
-        rtcCallsProvider.overrideWith((ref) => pending.future),
+        rtcRemoteDataSourceProvider.overrideWithValue(
+          _Calls(pending: pending.future),
+        ),
         notificationRemoteDataSourceProvider.overrideWithValue(notifications),
       ],
     );
