@@ -701,6 +701,12 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
 
   Future<void> _post(SessionState session, int epoch, {int? asset}) async {
     if (!_current(session, epoch) || _offline) return;
+    if (asset != null &&
+        _attempt != null &&
+        !_attempt!.attachmentIds.contains(asset)) {
+      setState(() => _sendStatus = '已有未确认消息，请先使用原消息编号重试。');
+      return;
+    }
     if (!await _canStartSubmission(session, epoch) ||
         !_current(session, epoch)) {
       return;
@@ -746,7 +752,13 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       }
     }
     _attempt = attempt;
-    _retryAsset = asset;
+    _retryAsset = attempt.attachmentIds.firstOrNull;
+    // Keep a ready upload retryable until its immutable message attempt owns it.
+    if (asset != null &&
+        _readyMediaAsset == asset &&
+        attempt.attachmentIds.contains(asset)) {
+      _removePendingMedia();
+    }
     setState(() => _sendStatus = '发送中，等待服务器确认');
     final result = await ref
         .read(apiClientProvider)
@@ -953,9 +965,6 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         setState(() => _uploadStatus = '附件已上传，联网后请重试发送。');
         return;
       }
-      // Once POST owns the asset, retries belong to its immutable message
-      // attempt, not to the upload. Never upload it twice for a lost POST reply.
-      _removePendingMedia();
       await _post(session, epoch, asset: assetId);
     } catch (error) {
       if (!_current(session, epoch)) return;

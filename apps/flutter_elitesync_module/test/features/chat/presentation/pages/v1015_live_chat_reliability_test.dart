@@ -153,6 +153,7 @@ class _Gateway implements SessionBoundChatMediaGateway {
   _Gateway(this.events);
   final List<String> events;
   final picked = Completer<ChatPickedMedia?>();
+  Completer<ChatMediaUploadResponse>? uploadReply;
   int uploads = 0;
   @override
   Future<ChatPickedMedia?> pick(ChatAttachmentKind kind) {
@@ -174,6 +175,7 @@ class _Gateway implements SessionBoundChatMediaGateway {
   }) async {
     uploads++;
     events.add('upload-dispatched');
+    if (uploadReply != null) return uploadReply!.future;
     return const ChatMediaUploadResponse(
       assetId: 31,
       publicUrl: null,
@@ -526,6 +528,81 @@ void main() {
       await _dispose(tester, f);
     },
   );
+
+  testWidgets('uploaded video remains retryable while resumed draft read is pending', (
+    tester,
+  ) async {
+    final f = await _mount(tester);
+    expect(await f.cache.saveAuthorized('live-chat-draft:2', {'text': ''},
+        expectedAccountId: 1), isTrue);
+    await tester.tap(find.byTooltip('发送短视频'));
+    await tester.pump();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    await tester.pump();
+    f.api.pendingRead = Completer();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pumpAndSettle();
+    f.gateway.picked.complete(const ChatPickedMedia(path: 'synthetic.mp4', name: 'synthetic.mp4'));
+    await tester.pumpAndSettle();
+    expect(f.gateway.uploads, 1);
+    expect(f.api.posts, isEmpty);
+    expect(find.text('重试发送附件'), findsOneWidget);
+    f.api.pendingRead!.complete(const NetworkSuccess({'items': <dynamic>[]}));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('重试发送附件'));
+    await tester.pumpAndSettle();
+    expect(f.gateway.uploads, 1);
+    expect(f.api.posts, hasLength(1));
+    expect(f.api.posts.single['attachment_ids'], [31]);
+    expect(find.text('重试发送附件'), findsNothing);
+    await _dispose(tester, f);
+  });
+
+  testWidgets('new upload cannot implicitly replay a restored different attachment', (
+    tester,
+  ) async {
+    final f = await _mount(tester);
+    await tester.tap(find.byTooltip('发送短视频'));
+    await tester.pump();
+    const oldKey = '00000000-0000-4000-8000-000000000002';
+    expect(await f.cache.saveAuthorized('live-chat-draft:2', {
+      'text': '',
+      'pending_attempt': {
+        'client_message_id': oldKey,
+        'peer_user_id': 2,
+        'content': '',
+        'attachment_ids': [12],
+      },
+    }, expectedAccountId: 1), isTrue);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    await tester.pump();
+    f.api.pendingRead = Completer();
+    f.gateway.uploadReply = Completer();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pumpAndSettle();
+    f.gateway.picked.complete(const ChatPickedMedia(path: 'new.mp4', name: 'new.mp4'));
+    await tester.pumpAndSettle();
+    expect(f.gateway.uploads, 1);
+    f.api.pendingRead!.complete(const NetworkSuccess({'items': <dynamic>[]}));
+    await tester.pumpAndSettle();
+    f.gateway.uploadReply!.complete(const ChatMediaUploadResponse(
+      assetId: 31, publicUrl: null, status: 'ready',
+    ));
+    await tester.pumpAndSettle();
+    expect(f.api.posts, isEmpty);
+    await tester.tap(find.text('使用原消息编号重试'));
+    await tester.pumpAndSettle();
+    expect(f.api.posts.single['client_message_id'], oldKey);
+    expect(f.api.posts.single['attachment_ids'], [12]);
+    expect(find.text('重试发送附件'), findsOneWidget);
+    await tester.tap(find.text('重试发送附件'));
+    await tester.pumpAndSettle();
+    expect(f.gateway.uploads, 1);
+    expect(f.api.posts, hasLength(2));
+    expect(f.api.posts.last['attachment_ids'], [31]);
+    expect(f.api.posts.last['client_message_id'], isNot(oldKey));
+    await _dispose(tester, f);
+  });
 
 
   testWidgets(
