@@ -15,6 +15,7 @@ import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_androi
 class RtcLiveKitService extends ChangeNotifier {
   RtcLiveKitService({required this.remoteDataSource, required this.appEnv})
     : _setSpeakerRoute = AudioManager.instance.setSpeakerOutputPreferred,
+      _startPlayback = _startRoomPlayback,
       _createCameraTrack = LocalVideoTrack.createCameraTrack,
       _createAudioTrack = LocalAudioTrack.create,
       _microphonePermission = const PermissionHandlerRtcPermissionService()
@@ -32,6 +33,7 @@ class RtcLiveKitService extends ChangeNotifier {
     Future<LocalVideoTrack> Function(CameraCaptureOptions)? cameraTrackFactory,
     Future<LocalAudioTrack> Function(AudioCaptureOptions)? audioTrackFactory,
     Future<void> Function(bool preferred, {bool force})? speakerRouteSetter,
+    Future<bool> Function(Room room)? playbackStarter,
     int? callId,
   }) : _room = room,
        _connectedCallId = callId,
@@ -39,6 +41,7 @@ class RtcLiveKitService extends ChangeNotifier {
        _setSpeakerRoute =
            speakerRouteSetter ??
            AudioManager.instance.setSpeakerOutputPreferred,
+       _startPlayback = playbackStarter ?? _startRoomPlayback,
        _createCameraTrack =
            cameraTrackFactory ?? LocalVideoTrack.createCameraTrack,
        _createAudioTrack = audioTrackFactory ?? LocalAudioTrack.create,
@@ -50,6 +53,7 @@ class RtcLiveKitService extends ChangeNotifier {
   final Future<bool> Function() _microphonePermission;
   final Future<bool> Function() _cameraPermission;
   final Future<void> Function(bool preferred, {bool force}) _setSpeakerRoute;
+  final Future<bool> Function(Room room) _startPlayback;
   final Future<LocalVideoTrack> Function(CameraCaptureOptions)
   _createCameraTrack;
   final Future<LocalAudioTrack> Function(AudioCaptureOptions) _createAudioTrack;
@@ -58,6 +62,8 @@ class RtcLiveKitService extends ChangeNotifier {
   Future<void> _cameraMutation = Future.value();
   Future<void> _microphoneMutation = Future.value();
   Future<void> _speakerMutation = Future.value();
+  Future<void> _mediaOutputMutation = Future.value();
+  Future<void>? _mediaOutputRetry;
   Future<void> _teardown = Future.value();
   Future<void> _captureStop = Future.value();
   int _captureGeneration = 0;
@@ -78,6 +84,10 @@ class RtcLiveKitService extends ChangeNotifier {
   int? _speakerPreferenceCallId;
   bool _disposed = false;
   String? _failureMessage;
+  bool _speakerRouteFailed = false;
+  bool _audioPlaybackFailed = false;
+  static const _unknownMediaSubscription = '__unknown__';
+  final _failedMediaSubscriptions = <String>{};
 
   bool get microphoneEnabled => _microphoneEnabled;
   bool get cameraEnabled => _cameraEnabled;
@@ -88,6 +98,16 @@ class RtcLiveKitService extends ChangeNotifier {
       (defaultTargetPlatform == TargetPlatform.android ||
           defaultTargetPlatform == TargetPlatform.iOS);
   String? get failureMessage => _failureMessage;
+  String? get mediaOutputFailureMessage {
+    if (_speakerRouteFailed) return '声音输出切换失败，请重试。';
+    if (_audioPlaybackFailed) return '声音播放暂不可用，请重试。';
+    if (_failedMediaSubscriptions.isNotEmpty) {
+      return '远端音视频接收暂不可用，请等待对方或重试。';
+    }
+    return null;
+  }
+
+  bool get isRetryingMediaOutput => _mediaOutputRetry != null;
   LocalVideoTrack? get localVideoTrack {
     for (final publication
         in _room?.localParticipant?.videoTrackPublications ??
@@ -118,6 +138,137 @@ class RtcLiveKitService extends ChangeNotifier {
       generation == _connectionGeneration &&
       identical(_room, room);
 
+  static Future<bool> _startRoomPlayback(Room room) async {
+    await room.startAudio();
+    return room.canPlaybackAudio;
+  }
+
+  @visibleForTesting
+  void recordMediaPlaybackStatus(Room room, bool isPlaying) {
+    if (!_ownsRoom(room, _connectionGeneration)) return;
+    if (_audioPlaybackFailed == !isPlaying) return;
+    _audioPlaybackFailed = !isPlaying;
+    _mediaChanged();
+  }
+
+  @visibleForTesting
+  void recordMediaSubscriptionFailure(Room room, String? sid) {
+    if (!_ownsRoom(room, _connectionGeneration)) return;
+    final key = sid == null || sid.isEmpty ? _unknownMediaSubscription : sid;
+    if (_failedMediaSubscriptions.add(key)) _mediaChanged();
+  }
+
+  @visibleForTesting
+  void recordMediaSubscriptionSuccess(Room room, String sid) {
+    if (!_ownsRoom(room, _connectionGeneration) || sid.isEmpty) return;
+    final removed = _failedMediaSubscriptions.remove(sid);
+    final removedUnknown = _failedMediaSubscriptions.remove(
+      _unknownMediaSubscription,
+    );
+    if (removed || removedUnknown) _mediaChanged();
+  }
+
+  @visibleForTesting
+  void recordMediaSubscriptionUnpublished(Room room, String sid) {
+    if (!_ownsRoom(room, _connectionGeneration)) return;
+    if (_failedMediaSubscriptions.remove(sid)) _mediaChanged();
+  }
+
+  Future<void> retryMediaOutput(int callId) {
+    final room = _room;
+    if (_disposed ||
+        !isEnabled ||
+        room == null ||
+        callId != _connectedCallId ||
+        room.connectionState != ConnectionState.connected) {
+      return Future.error(StateError('当前通话暂不可恢复声音'));
+    }
+    if (_mediaOutputRetry case final pending?) return pending;
+    final retryAudioSubscription = _audioPlaybackFailed;
+    final failedSubscriptions = Set<String>.of(_failedMediaSubscriptions);
+    final retryUnknownSubscription = failedSubscriptions.contains(
+      _unknownMediaSubscription,
+    );
+    final generation = _connectionGeneration;
+    final captureGeneration = _captureGeneration;
+    bool current() =>
+        _ownsRoom(room, generation) &&
+        captureGeneration == _captureGeneration &&
+        callId == _connectedCallId &&
+        room.connectionState == ConnectionState.connected;
+    bool publicationIsCurrent(RemoteTrackPublication publication) =>
+        room.remoteParticipants.values.any(
+          (participant) => identical(
+            participant.trackPublications[publication.sid],
+            publication,
+          ),
+        );
+    final operation = _mediaOutputMutation.then((_) async {
+      if (!current()) return;
+      await _restoreAudioOutput(
+        room,
+        callId: callId,
+        reason: 'user_retry',
+        generation: generation,
+        captureGeneration: captureGeneration,
+      );
+      if (!current()) return;
+      final publications = [
+        for (final participant in room.remoteParticipants.values)
+          for (final publication in participant.trackPublications.values)
+            if ((publication.kind == TrackType.AUDIO ||
+                    publication.kind == TrackType.VIDEO) &&
+                (failedSubscriptions.contains(publication.sid) ||
+                    (!publication.muted &&
+                        (retryUnknownSubscription ||
+                            (retryAudioSubscription &&
+                                publication.kind == TrackType.AUDIO)))))
+              publication,
+      ];
+      for (final publication in publications) {
+        if (!current()) return;
+        if (!publicationIsCurrent(publication)) continue;
+        if (!publication.subscriptionAllowed) {
+          recordMediaSubscriptionFailure(room, publication.sid);
+          continue;
+        }
+        try {
+          await publication.unsubscribe();
+          if (!current()) return;
+          if (!publicationIsCurrent(publication)) continue;
+          if (!publication.subscriptionAllowed) {
+            recordMediaSubscriptionFailure(room, publication.sid);
+            continue;
+          }
+          // Sending a subscription request is not a received-track receipt.
+          await publication.subscribe();
+          if (!current()) return;
+        } catch (error) {
+          if (!current()) return;
+          if (!publicationIsCurrent(publication)) continue;
+          recordMediaSubscriptionFailure(room, publication.sid);
+          debugPrint(
+            'RTC_MEDIA_OUTPUT_SUBSCRIPTION_RETRY_FAIL '
+            'callId=$callId errorType=${error.runtimeType}',
+          );
+        }
+      }
+    });
+    _mediaOutputRetry = operation;
+    void complete() {
+      if (!identical(_mediaOutputRetry, operation)) return;
+      _mediaOutputRetry = null;
+      _mediaChanged();
+    }
+
+    _mediaOutputMutation = operation.then<void>(
+      (_) => complete(),
+      onError: (Object _, StackTrace _) => complete(),
+    );
+    _mediaChanged();
+    return operation;
+  }
+
   Future<void> setSpeakerOutputPreferred(bool preferred) async {
     if (!supportsSpeakerOutput) {
       throw UnsupportedError('当前设备不支持切换通话扬声器');
@@ -141,15 +292,27 @@ class RtcLiveKitService extends ChangeNotifier {
     bool? preferred,
   }) {
     bool current() =>
-        _ownsRoom(room, generation) && captureGeneration == _captureGeneration;
+        _ownsRoom(room, generation) &&
+        captureGeneration == _captureGeneration &&
+        room.connectionState == ConnectionState.connected;
     final operation = _speakerMutation.then((_) async {
       if (!current()) return;
       // Playback retries resolve the last successful choice when they run.
       final selected = preferred ?? _speakerOutputPreferred;
-      await _setSpeakerRoute(selected, force: selected);
-      if (!current() || preferred == null) return;
-      _speakerOutputPreferred = selected;
-      _mediaChanged();
+      try {
+        await _setSpeakerRoute(selected, force: selected);
+      } catch (_) {
+        if (current() && !_speakerRouteFailed) {
+          _speakerRouteFailed = true;
+          _mediaChanged();
+        }
+        rethrow;
+      }
+      if (!current()) return;
+      final changed = _speakerRouteFailed || preferred != null;
+      _speakerRouteFailed = false;
+      if (preferred != null) _speakerOutputPreferred = selected;
+      if (changed) _mediaChanged();
     });
     _speakerMutation = operation.then<void>((_) {}, onError: (Object _) {});
     return operation;
@@ -791,11 +954,34 @@ class RtcLiveKitService extends ChangeNotifier {
     Room room, {
     required int callId,
     required String reason,
-  }) async {
+  }) {
     final generation = _connectionGeneration;
     final captureGeneration = _captureGeneration;
+    final operation = _mediaOutputMutation.then(
+      (_) => _restoreAudioOutput(
+        room,
+        callId: callId,
+        reason: reason,
+        generation: generation,
+        captureGeneration: captureGeneration,
+      ),
+    );
+    _mediaOutputMutation = operation.then<void>((_) {}, onError: (Object _) {});
+    return operation;
+  }
+
+  Future<void> _restoreAudioOutput(
+    Room room, {
+    required int callId,
+    required String reason,
+    required int generation,
+    required int captureGeneration,
+  }) async {
     bool current() =>
-        _ownsRoom(room, generation) && captureGeneration == _captureGeneration;
+        _ownsRoom(room, generation) &&
+        captureGeneration == _captureGeneration &&
+        callId == _connectedCallId &&
+        room.connectionState == ConnectionState.connected;
     if (!current()) return;
     try {
       try {
@@ -815,19 +1001,22 @@ class RtcLiveKitService extends ChangeNotifier {
         'device=${_platformLabel()} '
         'callId=$callId '
         'reason=$reason '
-        'canPlaybackBefore=${room.canPlaybackAudio}',
+        'lastPlaybackFailed=$_audioPlaybackFailed',
       );
-      await room.startAudio();
+      final playing = await _startPlayback(room);
       if (!current()) return;
+      recordMediaPlaybackStatus(room, playing);
       debugPrint(
         'RTC_LIVEKIT_AUDIO_PLAYBACK_READY '
         'device=${_platformLabel()} '
         'callId=$callId '
         'reason=$reason '
-        'canPlaybackAfter=${room.canPlaybackAudio}',
+        'canPlaybackAfter=$playing',
       );
-      _startAudioStatsTimer(callId);
+      if (playing) _startAudioStatsTimer(callId);
     } catch (error) {
+      if (!current()) return;
+      recordMediaPlaybackStatus(room, false);
       debugPrint(
         'RTC_LIVEKIT_AUDIO_PLAYBACK_START_FAIL '
         'device=${_platformLabel()} '
@@ -1042,6 +1231,7 @@ class RtcLiveKitService extends ChangeNotifier {
         })
         ..on<TrackSubscribedEvent>((event) {
           if (!_ownsRoom(room, generation!)) return;
+          recordMediaSubscriptionSuccess(room, event.publication.sid);
           if (event.track is AudioTrack) {
             _remoteAudioTrack = event.track as AudioTrack;
             _remoteAudioTrackFromEvent = true;
@@ -1090,6 +1280,7 @@ class RtcLiveKitService extends ChangeNotifier {
           );
         })
         ..on<TrackUnpublishedEvent>((event) {
+          recordMediaSubscriptionUnpublished(room, event.publication.sid);
           _refreshRemoteAudioTrack(room, reason: 'track_unpublished');
         })
         ..on<TrackMutedEvent>((event) {
@@ -1102,6 +1293,8 @@ class RtcLiveKitService extends ChangeNotifier {
           _refreshRemoteAudioTrack(room, reason: 'participant_state_updated');
         })
         ..on<AudioPlaybackStatusChanged>((event) {
+          if (!_ownsRoom(room, generation!)) return;
+          recordMediaPlaybackStatus(room, event.isPlaying);
           debugPrint(
             'RTC_LIVEKIT_AUDIO_PLAYBACK callId=$callId '
             'device=${_platformLabel()} '
@@ -1119,13 +1312,17 @@ class RtcLiveKitService extends ChangeNotifier {
                     reason: 'playback_status_retry',
                   );
                 } finally {
-                  _audioPlaybackRetryRequested = false;
+                  if (_ownsRoom(room, generation!)) {
+                    _audioPlaybackRetryRequested = false;
+                  }
                 }
               }),
             );
           }
         })
         ..on<TrackSubscriptionExceptionEvent>((event) {
+          if (!_ownsRoom(room, generation!)) return;
+          recordMediaSubscriptionFailure(room, event.sid);
           debugPrint(
             'RTC_LIVEKIT_TRACK_SUBSCRIBE_FAILED callId=$callId '
             'device=${_platformLabel()} '
@@ -1372,6 +1569,12 @@ class RtcLiveKitService extends ChangeNotifier {
     _connectedCallId = null;
     _remoteAudioTrack = null;
     _remoteAudioTrackFromEvent = false;
+    _speakerRouteFailed = false;
+    _audioPlaybackFailed = false;
+    _failedMediaSubscriptions.clear();
+    _mediaOutputRetry = null;
+    _mediaOutputMutation = Future.value();
+    _audioPlaybackRetryRequested = false;
     _stopHeartbeat();
     _stopAudioStatsTimer();
     unawaited(_unbindLocalAudioTrackDiagnostics());

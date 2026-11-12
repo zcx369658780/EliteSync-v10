@@ -4,6 +4,7 @@ import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_incoming_call_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_result_page.dart';
 import 'package:flutter_elitesync_module/design_system/components/buttons/app_primary_button.dart';
+import 'package:flutter_elitesync_module/design_system/components/buttons/app_secondary_button.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
@@ -228,6 +229,33 @@ class NotifyingLeaveRtcService extends RtcLiveKitService {
   @override
   int? get connectedCallId => outputCallId;
 
+  String? outputFailure;
+  bool outputRetrying = false;
+  bool failOutputRetry = false;
+  Completer<void>? pendingOutputRetry;
+  final List<int> outputRetries = [];
+
+  @override
+  String? get mediaOutputFailureMessage => outputFailure;
+
+  @override
+  bool get isRetryingMediaOutput => outputRetrying;
+
+  @override
+  Future<void> retryMediaOutput(int callId) async {
+    outputRetries.add(callId);
+    outputRetrying = true;
+    notifyListeners();
+    try {
+      await pendingOutputRetry?.future;
+      if (failOutputRetry) throw StateError('test retry failed');
+      outputFailure = null;
+    } finally {
+      outputRetrying = false;
+      notifyListeners();
+    }
+  }
+
   bool supportsOutput = true;
   bool speakerPreferred = true;
   bool failSpeakerOutput = false;
@@ -248,7 +276,6 @@ class NotifyingLeaveRtcService extends RtcLiveKitService {
     speakerPreferred = preferred;
     notifyListeners();
   }
-
 
   @override
   bool get isConnected => connected;
@@ -349,6 +376,222 @@ RtcSessionEntity _videoCall(int id, String peer) => RtcSessionEntity.fromJson({
 });
 
 void main() {
+  testWidgets('media output retry is visible and keeps Home capture paused', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rtc = FakeRtcRemoteDataSource(_videoCall(150, 'OUTPUT_RETRY_PEER'));
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 150
+      ..outputFailure = '媒体接收失败，请重试';
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 150, autoConnect: false),
+        rtc: rtc,
+        service: service,
+        liveKit: true,
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('媒体接收失败，请重试'), findsOneWidget);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('重试媒体'));
+    await tester.tap(find.text('重试媒体'));
+    await tester.pumpAndSettle();
+    expect(service.outputRetries, [150]);
+    expect(service.captureSuspended, isTrue);
+    expect(find.text('采集已暂停，请点击麦克风或摄像头重新开启。'), findsOneWidget);
+    expect(find.text('媒体接收失败，请重试'), findsNothing);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('pending output retry shows disabled loading action', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rtc = FakeRtcRemoteDataSource(
+      _videoCall(151, 'PENDING_OUTPUT_RETRY'),
+    );
+    final pending = Completer<void>();
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 151
+      ..outputFailure = '媒体接收失败，请重试'
+      ..pendingOutputRetry = pending;
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 151, autoConnect: false),
+        rtc: rtc,
+        service: service,
+        liveKit: true,
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('重试媒体'));
+    await tester.tap(find.text('重试媒体'));
+    await tester.pump();
+    final button = tester.widget<AppSecondaryButton>(
+      find.byWidgetPredicate(
+        (widget) => widget is AppSecondaryButton && widget.label == '重试媒体',
+      ),
+    );
+    expect(button.isLoading, isTrue);
+    expect(button.onPressed, isNull);
+    expect(service.outputRetries, [151]);
+    pending.complete();
+    await tester.pumpAndSettle();
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('media output errors from another call stay hidden', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rtc = FakeRtcRemoteDataSource(_videoCall(152, 'NEXT_OUTPUT_RETRY'));
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 999
+      ..outputFailure = '旧通话的接收错误';
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 152, autoConnect: false),
+        rtc: rtc,
+        service: service,
+        liveKit: true,
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('旧通话的接收错误'), findsNothing);
+    expect(find.text('重试媒体'), findsNothing);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('stale media retry button cannot target a different room', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rtc = FakeRtcRemoteDataSource(_videoCall(153, 'STALE_OUTPUT_RETRY'));
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 153
+      ..outputFailure = '媒体接收失败，请重试';
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 153, autoConnect: false),
+        rtc: rtc,
+        service: service,
+        liveKit: true,
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('重试媒体'));
+    service.outputCallId = 999;
+    await tester.tap(find.text('重试媒体'));
+    await tester.pumpAndSettle();
+    expect(service.outputRetries, isEmpty);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets(
+    'media retry is disabled while the current room is disconnected',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(1000, 2800));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final rtc = FakeRtcRemoteDataSource(
+        _videoCall(156, 'DISCONNECTED_RETRY'),
+      );
+      final service = NotifyingLeaveRtcService(rtc)
+        ..connected = false
+        ..outputCallId = 156
+        ..outputFailure = '媒体接收失败，请重试';
+      await tester.pumpWidget(
+        _wrap(
+          const RtcCallPage(callId: 156, autoConnect: false),
+          rtc: rtc,
+          service: service,
+          liveKit: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      final button = tester.widget<AppSecondaryButton>(
+        find.byWidgetPredicate(
+          (widget) => widget is AppSecondaryButton && widget.label == '重试媒体',
+        ),
+      );
+      expect(button.onPressed, isNull);
+      expect(service.outputRetries, isEmpty);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets('failed media retry gives current-call feedback', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rtc = FakeRtcRemoteDataSource(_videoCall(154, 'FAILED_OUTPUT_RETRY'));
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 154
+      ..outputFailure = '媒体接收失败，请重试'
+      ..failOutputRetry = true;
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 154, autoConnect: false),
+        rtc: rtc,
+        service: service,
+        liveKit: true,
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('重试媒体'));
+    await tester.tap(find.text('重试媒体'));
+    await tester.pumpAndSettle();
+    expect(find.text('接收重试失败，请检查网络后重试'), findsOneWidget);
+    expect(service.outputFailure, isNotNull);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('late media retry failure after focus loss has no stale toast', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 2800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final rtc = FakeRtcRemoteDataSource(_videoCall(155, 'LATE_MEDIA_RETRY'));
+    final pending = Completer<void>();
+    final service = NotifyingLeaveRtcService(rtc)
+      ..connected = true
+      ..outputCallId = 155
+      ..outputFailure = '媒体接收失败，请重试'
+      ..pendingOutputRetry = pending
+      ..failOutputRetry = true;
+    await tester.pumpWidget(
+      _wrap(
+        const RtcCallPage(callId: 155, autoConnect: false),
+        rtc: rtc,
+        service: service,
+        liveKit: true,
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('重试媒体'));
+    await tester.tap(find.text('重试媒体'));
+    await tester.pump();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    pending.complete();
+    await tester.pumpAndSettle();
+    expect(find.text('接收重试失败，请检查网络后重试'), findsNothing);
+    expect(service.captureSuspended, isTrue);
+    await tester.pumpWidget(const SizedBox());
+  });
+
   testWidgets('speaker control hides a room owned by another call', (
     tester,
   ) async {

@@ -180,6 +180,30 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
     }
   }
 
+  Future<void> _retryMediaOutput() async {
+    if (!_currentSession ||
+        !_foreground ||
+        !_liveKitService.isConnected ||
+        _liveKitService.isConnecting ||
+        _liveKitService.connectedCallId != widget.callId) {
+      return;
+    }
+    final callId = widget.callId;
+    final epoch = _mediaEpoch;
+    try {
+      await _liveKitService.retryMediaOutput(callId);
+    } catch (_) {
+      if (mounted &&
+          _currentSession &&
+          _foreground &&
+          widget.callId == callId &&
+          _liveKitService.connectedCallId == callId &&
+          epoch == _mediaEpoch) {
+        AppFeedback.showError(context, '接收重试失败，请检查网络后重试');
+      }
+    }
+  }
+
   Future<void> _refresh() async {
     if (!_currentSession) return;
     ref.invalidate(rtcCallProvider(widget.callId));
@@ -481,10 +505,26 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
                   'calling' => '等待对方接听',
                   'ringing' => isIncoming ? '有来电进入' : '正在呼叫对方',
                   'connecting' => '正在建立通话',
-                  'in_call' when _liveKitService.isEnabled && _backgroundSuspended => '通话采集已暂停',
-                  'in_call' when _liveKitService.isEnabled && _liveKitService.failureMessage != null => '音频连接异常',
-                  'in_call' when _liveKitService.isEnabled && !_liveKitService.isConnected => '正在连接音频',
-                  'in_call' when _liveKitService.isEnabled && remoteAudioTrack == null => '等待对方音频',
+                  'in_call'
+                      when _liveKitService.isEnabled && _backgroundSuspended =>
+                    '通话采集已暂停',
+                  'in_call'
+                      when _liveKitService.isEnabled &&
+                          _liveKitService.failureMessage != null =>
+                    '音频连接异常',
+                  'in_call'
+                      when _liveKitService.isEnabled &&
+                          _liveKitService.connectedCallId == session.id &&
+                          _liveKitService.mediaOutputFailureMessage != null =>
+                    '媒体接收异常',
+                  'in_call'
+                      when _liveKitService.isEnabled &&
+                          !_liveKitService.isConnected =>
+                    '正在连接音频',
+                  'in_call'
+                      when _liveKitService.isEnabled &&
+                          remoteAudioTrack == null =>
+                    '等待对方音频',
                   'in_call' => '通话进行中',
                   'rejected' => '对方已拒绝',
                   'missed' => '未接通',
@@ -514,6 +554,30 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
         SizedBox(height: t.spacing.md),
         if (session.mode == 'video' && !session.isTerminal) ...[
           _videoPanel(),
+          SizedBox(height: t.spacing.md),
+        ],
+        if (_liveKitService.connectedCallId == session.id &&
+            _liveKitService.mediaOutputFailureMessage != null &&
+            !session.isTerminal) ...[
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: t.spacing.sm),
+            child: Text(
+              _liveKitService.mediaOutputFailureMessage!,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: t.error),
+            ),
+          ),
+          AppSecondaryButton(
+            label: session.mode == 'video' ? '重试媒体' : '重试声音',
+            isLoading: _liveKitService.isRetryingMediaOutput,
+            onPressed:
+                _liveKitService.isRetryingMediaOutput ||
+                    !_liveKitService.isConnected ||
+                    _liveKitService.isConnecting
+                ? null
+                : _retryMediaOutput,
+          ),
           SizedBox(height: t.spacing.md),
         ],
         if (_liveKitService.failureMessage != null && !session.isTerminal)

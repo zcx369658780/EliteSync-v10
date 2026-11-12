@@ -1,6 +1,7 @@
 import 'package:livekit_client/livekit_client.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:async';
+import 'dart:collection';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
@@ -233,8 +234,13 @@ class _MediaRoom implements Room {
   final LocalParticipant localParticipant;
   @override
   final RoomOptions roomOptions;
+  ConnectionState state = ConnectionState.connected;
   @override
-  ConnectionState get connectionState => ConnectionState.connected;
+  ConnectionState get connectionState => state;
+  final peers = <String, RemoteParticipant>{};
+  @override
+  UnmodifiableMapView<String, RemoteParticipant> get remoteParticipants =>
+      UnmodifiableMapView(peers);
   @override
   void removeListener(VoidCallback listener) {}
   @override
@@ -255,10 +261,61 @@ class _MediaRoom implements Room {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
+class _RemoteMediaParticipant implements RemoteParticipant {
+  @override
+  final Map<String, RemoteTrackPublication> trackPublications = {};
+  @override
+  List<RemoteTrackPublication<RemoteAudioTrack>> get audioTrackPublications =>
+      [];
+  @override
+  List<RemoteTrackPublication<RemoteVideoTrack>> get videoTrackPublications =>
+      [];
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+class _RemotePublication implements RemoteTrackPublication<RemoteTrack> {
+  _RemotePublication(this.sid, {this.kind = TrackType.AUDIO});
+  @override
+  final String sid;
+  @override
+  final TrackType kind;
+  @override
+  bool subscriptionAllowed = true;
+  @override
+  bool subscribed = true;
+  @override
+  bool muted = false;
+  @override
+  RemoteTrack? get track => null;
+  final requests = <String>[];
+  Completer<void>? pendingUnsubscribe;
+  Completer<void>? pendingSubscribe;
+  bool failSubscribe = false;
+
+  @override
+  Future<void> unsubscribe() async {
+    requests.add('unsubscribe');
+    await pendingUnsubscribe?.future;
+    subscribed = false;
+  }
+
+  @override
+  Future<void> subscribe() async {
+    requests.add('subscribe');
+    await pendingSubscribe?.future;
+    if (failSubscribe) throw StateError('synthetic subscription failure');
+  }
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
 RtcLiveKitService _speakerService(
   _MediaRoom room,
   Future<void> Function(bool preferred, {bool force}) route, {
   bool enabled = true,
+  Future<bool> Function(Room room)? playbackStarter,
 }) => RtcLiveKitService.mediaControlTest(
   remoteDataSource: _DeniedRtcSource(),
   appEnv: AppEnv(
@@ -273,9 +330,470 @@ RtcLiveKitService _speakerService(
   microphonePermission: () async => true,
   cameraPermission: () async => true,
   speakerRouteSetter: route,
+  playbackStarter: playbackStarter,
 );
 
 void main() {
+  group('visible media output recovery', () {
+    setUp(() => debugDefaultTargetPlatformOverride = TargetPlatform.android);
+    tearDown(() => debugDefaultTargetPlatformOverride = null);
+
+    test(
+      'route recovery without remote publications creates no subscription error',
+      () async {
+        var failRoute = true;
+        final room = _MediaRoom(_MediaParticipant());
+        final service = _speakerService(room, (
+          preferred, {
+          force = false,
+        }) async {
+          if (failRoute) throw StateError('synthetic route failure');
+        }, playbackStarter: (_) async => true);
+        await expectLater(service.reapplySpeakerOutput(room), throwsStateError);
+        failRoute = false;
+        await service.retryMediaOutput(17);
+        expect(service.mediaOutputFailureMessage, isNull);
+        expect(service.isRetryingMediaOutput, isFalse);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
+    test(
+      'route recovery leaves healthy remote subscriptions untouched',
+      () async {
+        var failRoute = true;
+        final audio = _RemotePublication('healthy-audio');
+        final video = _RemotePublication(
+          'healthy-video',
+          kind: TrackType.VIDEO,
+        );
+        final remote = _RemoteMediaParticipant()
+          ..trackPublications[audio.sid] = audio
+          ..trackPublications[video.sid] = video;
+        final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+        final service = _speakerService(room, (
+          preferred, {
+          force = false,
+        }) async {
+          if (failRoute) throw StateError('synthetic route failure');
+        }, playbackStarter: (_) async => true);
+        await expectLater(service.reapplySpeakerOutput(room), throwsStateError);
+        failRoute = false;
+        await service.retryMediaOutput(17);
+        expect(audio.requests, isEmpty);
+        expect(video.requests, isEmpty);
+        expect(service.mediaOutputFailureMessage, isNull);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
+    test('a muted peer is not turned into a subscription failure', () async {
+      final publication = _RemotePublication('muted-peer')..muted = true;
+      final remote = _RemoteMediaParticipant()
+        ..trackPublications[publication.sid] = publication;
+      final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+      final service = _speakerService(
+        room,
+        (preferred, {force = false}) async {},
+        playbackStarter: (_) async => true,
+      );
+      await service.retryMediaOutput(17);
+      service.recordMediaPlaybackStatus(room, false);
+      await service.retryMediaOutput(17);
+      expect(publication.requests, isEmpty);
+      expect(service.mediaOutputFailureMessage, isNull);
+      await service.leave();
+      service.dispose();
+    });
+
+    test('playback repair requests only unmuted remote audio', () async {
+      final audio = _RemotePublication('audio-to-repair');
+      final video = _RemotePublication('healthy-video', kind: TrackType.VIDEO);
+      final remote = _RemoteMediaParticipant()
+        ..trackPublications[audio.sid] = audio
+        ..trackPublications[video.sid] = video;
+      final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+      final service = _speakerService(
+        room,
+        (preferred, {force = false}) async {},
+        playbackStarter: (_) async => true,
+      );
+      service.recordMediaPlaybackStatus(room, false);
+      await service.retryMediaOutput(17);
+      expect(audio.requests, ['unsubscribe', 'subscribe']);
+      expect(video.requests, isEmpty);
+      await service.leave();
+      service.dispose();
+    });
+
+    test(
+      'a specific subscription failure only retries its own publication',
+      () async {
+        final audio = _RemotePublication('failed-audio');
+        final video = _RemotePublication(
+          'healthy-video',
+          kind: TrackType.VIDEO,
+        );
+        final remote = _RemoteMediaParticipant()
+          ..trackPublications[audio.sid] = audio
+          ..trackPublications[video.sid] = video;
+        final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+        final service = _speakerService(
+          room,
+          (preferred, {force = false}) async {},
+          playbackStarter: (_) async => true,
+        );
+        service.recordMediaSubscriptionFailure(room, audio.sid);
+        await service.retryMediaOutput(17);
+        expect(audio.requests, ['unsubscribe', 'subscribe']);
+        expect(video.requests, isEmpty);
+        expect(service.mediaOutputFailureMessage, isNotNull);
+        service.recordMediaSubscriptionSuccess(room, audio.sid);
+        expect(service.mediaOutputFailureMessage, isNull);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
+    test(
+      'unpublished drops only the matching failure and preserves unknown',
+      () async {
+        final room = _MediaRoom(_MediaParticipant());
+        final otherRoom = _MediaRoom(_MediaParticipant());
+        final service = _speakerService(
+          room,
+          (preferred, {force = false}) async {},
+          playbackStarter: (_) async => true,
+        );
+        service.recordMediaSubscriptionFailure(room, 'removed-track');
+        service.recordMediaSubscriptionUnpublished(otherRoom, 'removed-track');
+        expect(service.mediaOutputFailureMessage, isNotNull);
+        service.recordMediaSubscriptionFailure(room, null);
+        service.recordMediaSubscriptionUnpublished(room, 'removed-track');
+        expect(service.mediaOutputFailureMessage, isNotNull);
+        service.recordMediaSubscriptionSuccess(room, 'replacement-track');
+        expect(service.mediaOutputFailureMessage, isNull);
+        await service.leave();
+        await otherRoom.dispose();
+        service.dispose();
+      },
+    );
+
+    test(
+      'route playback and subscription failures clear independently',
+      () async {
+        var failRoute = true;
+        final room = _MediaRoom(_MediaParticipant());
+        final service = _speakerService(room, (
+          preferred, {
+          force = false,
+        }) async {
+          if (failRoute) throw StateError('synthetic route failure');
+        }, playbackStarter: (_) async => true);
+        service.recordMediaSubscriptionFailure(room, 'audio-one');
+        service.recordMediaPlaybackStatus(room, false);
+        await expectLater(service.reapplySpeakerOutput(room), throwsStateError);
+        expect(service.mediaOutputFailureMessage, '声音输出切换失败，请重试。');
+        failRoute = false;
+        await service.reapplySpeakerOutput(room);
+        expect(service.mediaOutputFailureMessage, '声音播放暂不可用，请重试。');
+        service.recordMediaPlaybackStatus(room, true);
+        expect(service.mediaOutputFailureMessage, contains('远端音视频接收'));
+        service.recordMediaSubscriptionSuccess(room, 'another-track');
+        expect(service.mediaOutputFailureMessage, isNotNull);
+        service.recordMediaSubscriptionSuccess(room, 'audio-one');
+        expect(service.mediaOutputFailureMessage, isNull);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
+    for (final failure in ['false', 'throw']) {
+      test(
+        'playback $failure is visible and keeps subscription failures',
+        () async {
+          var failPlayback = true;
+          final room = _MediaRoom(_MediaParticipant());
+          final service = _speakerService(
+            room,
+            (preferred, {force = false}) async {},
+            playbackStarter: (_) async {
+              if (failPlayback && failure == 'throw') {
+                throw StateError('synthetic playback failure');
+              }
+              return !failPlayback;
+            },
+          );
+          service.recordMediaSubscriptionFailure(room, null);
+          await service.retryMediaOutput(17);
+          expect(service.mediaOutputFailureMessage, '声音播放暂不可用，请重试。');
+          failPlayback = false;
+          await service.retryMediaOutput(17);
+          expect(service.mediaOutputFailureMessage, contains('远端音视频接收'));
+          service.recordMediaSubscriptionSuccess(room, 'actual-received-track');
+          expect(service.mediaOutputFailureMessage, isNull);
+          await service.leave();
+          service.dispose();
+        },
+      );
+    }
+
+    test('retry coalesces and waits for actual subscribed events', () async {
+      final start = Completer<bool>();
+      var starts = 0;
+      final audio = _RemotePublication('audio-one');
+      final video = _RemotePublication('video-one', kind: TrackType.VIDEO);
+      final remote = _RemoteMediaParticipant()
+        ..trackPublications[audio.sid] = audio
+        ..trackPublications[video.sid] = video;
+      final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+      final service = _speakerService(
+        room,
+        (preferred, {force = false}) async {},
+        playbackStarter: (_) {
+          starts++;
+          return start.future;
+        },
+      );
+      service.recordMediaSubscriptionFailure(room, null);
+      service.recordMediaSubscriptionFailure(room, audio.sid);
+      service.recordMediaSubscriptionFailure(room, video.sid);
+      final first = service.retryMediaOutput(17);
+      final second = service.retryMediaOutput(17);
+      expect(identical(first, second), isTrue);
+      await expectLater(service.retryMediaOutput(18), throwsStateError);
+      expect(service.isRetryingMediaOutput, isTrue);
+      await Future<void>.delayed(Duration.zero);
+      expect(starts, 1);
+      start.complete(true);
+      await first;
+      expect(service.isRetryingMediaOutput, isFalse);
+      expect(audio.requests, ['unsubscribe', 'subscribe']);
+      expect(video.requests, ['unsubscribe', 'subscribe']);
+      expect(service.mediaOutputFailureMessage, isNotNull);
+      service.recordMediaSubscriptionSuccess(room, audio.sid);
+      expect(service.mediaOutputFailureMessage, isNotNull);
+      service.recordMediaSubscriptionSuccess(room, video.sid);
+      expect(service.mediaOutputFailureMessage, isNull);
+      await service.leave();
+      service.dispose();
+    });
+
+    test('subscription not allowed never unsubscribes or subscribes', () async {
+      final publication = _RemotePublication('not-allowed')
+        ..subscriptionAllowed = false;
+      final remote = _RemoteMediaParticipant()
+        ..trackPublications[publication.sid] = publication;
+      final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+      final service = _speakerService(
+        room,
+        (preferred, {force = false}) async {},
+        playbackStarter: (_) async => true,
+      );
+      service.recordMediaSubscriptionFailure(room, publication.sid);
+      await service.retryMediaOutput(17);
+      expect(publication.requests, isEmpty);
+      expect(service.mediaOutputFailureMessage, contains('远端音视频接收'));
+      await service.leave();
+      service.dispose();
+    });
+
+    test(
+      'lost subscription permission after unsubscribe is respected',
+      () async {
+        final pending = Completer<void>();
+        final publication = _RemotePublication('permission-changed')
+          ..pendingUnsubscribe = pending;
+        final remote = _RemoteMediaParticipant()
+          ..trackPublications[publication.sid] = publication;
+        final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+        final service = _speakerService(
+          room,
+          (preferred, {force = false}) async {},
+          playbackStarter: (_) async => true,
+        );
+        service.recordMediaSubscriptionFailure(room, publication.sid);
+        final retry = service.retryMediaOutput(17);
+        await Future<void>.delayed(Duration.zero);
+        expect(publication.requests, ['unsubscribe']);
+        publication.subscriptionAllowed = false;
+        pending.complete();
+        await retry;
+        expect(publication.requests, ['unsubscribe']);
+        expect(service.mediaOutputFailureMessage, isNotNull);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
+    test('a subscription request exception retains visible failure', () async {
+      final publication = _RemotePublication('subscribe-failure')
+        ..failSubscribe = true;
+      final remote = _RemoteMediaParticipant()
+        ..trackPublications[publication.sid] = publication;
+      final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+      final service = _speakerService(
+        room,
+        (preferred, {force = false}) async {},
+        playbackStarter: (_) async => true,
+      );
+      service.recordMediaSubscriptionFailure(room, null);
+      await service.retryMediaOutput(17);
+      expect(service.mediaOutputFailureMessage, contains('远端音视频接收'));
+      expect(service.isRetryingMediaOutput, isFalse);
+      await service.leave();
+      service.dispose();
+    });
+
+    for (final boundary in ['leave', 'suspend', 'disconnect']) {
+      test('retry stops after a playback await crosses $boundary', () async {
+        final pending = Completer<bool>();
+        final publication = _RemotePublication('not-yet-retried');
+        final remote = _RemoteMediaParticipant()
+          ..trackPublications[publication.sid] = publication;
+        final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+        final service = _speakerService(
+          room,
+          (preferred, {force = false}) async {},
+          playbackStarter: (_) => pending.future,
+        );
+        final retry = service.retryMediaOutput(17);
+        await Future<void>.delayed(Duration.zero);
+        if (boundary == 'leave') {
+          await service.leave();
+          expect(service.isRetryingMediaOutput, isFalse);
+        } else if (boundary == 'suspend') {
+          await service.suspendCapture();
+        } else {
+          room.state = ConnectionState.disconnected;
+        }
+        pending.complete(false);
+        await retry;
+        expect(publication.requests, isEmpty);
+        expect(service.mediaOutputFailureMessage, isNull);
+        expect(service.isRetryingMediaOutput, isFalse);
+        await service.leave();
+        service.dispose();
+      });
+    }
+
+    test(
+      'leaving after unsubscribe prevents subscribe and late event writes',
+      () async {
+        final pending = Completer<void>();
+        final publication = _RemotePublication('pending-unsubscribe')
+          ..pendingUnsubscribe = pending;
+        final remote = _RemoteMediaParticipant()
+          ..trackPublications[publication.sid] = publication;
+        final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+        final service = _speakerService(
+          room,
+          (preferred, {force = false}) async {},
+          playbackStarter: (_) async => true,
+        );
+        service.recordMediaSubscriptionFailure(room, publication.sid);
+        final retry = service.retryMediaOutput(17);
+        await Future<void>.delayed(Duration.zero);
+        expect(publication.requests, ['unsubscribe']);
+        await service.leave();
+        pending.complete();
+        await retry;
+        service.recordMediaPlaybackStatus(room, false);
+        service.recordMediaSubscriptionFailure(room, publication.sid);
+        expect(publication.requests, ['unsubscribe']);
+        expect(service.mediaOutputFailureMessage, isNull);
+        expect(service.isRetryingMediaOutput, isFalse);
+        service.dispose();
+      },
+    );
+
+    test(
+      'retry while capture is paused only repairs output and remote media',
+      () async {
+        final microphone = _AudioCaptureTrack();
+        final camera = _VideoCaptureTrack();
+        final participant = _MediaParticipant()
+          ..trackPublications['microphone'] = _CapturePublication(microphone)
+          ..trackPublications['camera'] = _CapturePublication(camera);
+        final publication = _RemotePublication('remote-audio');
+        final remote = _RemoteMediaParticipant()
+          ..trackPublications[publication.sid] = publication;
+        final room = _MediaRoom(participant)..peers['peer'] = remote;
+        final service = _speakerService(
+          room,
+          (preferred, {force = false}) async {},
+          playbackStarter: (_) async => true,
+        );
+        service.recordMediaSubscriptionFailure(room, publication.sid);
+        await service.suspendCapture();
+        final stops = (microphone.stops, camera.stops);
+        await service.retryMediaOutput(17);
+        expect(publication.requests, ['unsubscribe', 'subscribe']);
+        expect((microphone.stops, camera.stops), stops);
+        expect(microphone.nativeActive, isFalse);
+        expect(camera.nativeActive, isFalse);
+        expect(service.microphoneEnabled, isFalse);
+        expect(service.cameraEnabled, isFalse);
+        expect(participant.microphonePublications, 0);
+        expect(participant.cameraPublications, 0);
+        expect(room.disposeCalls, 0);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
+    test(
+      'unpublished during unsubscribe cannot resubscribe the old publication',
+      () async {
+        final pending = Completer<void>();
+        final publication = _RemotePublication('removed-during-retry')
+          ..pendingUnsubscribe = pending;
+        final remote = _RemoteMediaParticipant()
+          ..trackPublications[publication.sid] = publication;
+        final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+        final service = _speakerService(
+          room,
+          (preferred, {force = false}) async {},
+          playbackStarter: (_) async => true,
+        );
+        service.recordMediaSubscriptionFailure(room, publication.sid);
+        final retry = service.retryMediaOutput(17);
+        await Future<void>.delayed(Duration.zero);
+        expect(publication.requests, ['unsubscribe']);
+        remote.trackPublications.remove(publication.sid);
+        service.recordMediaSubscriptionUnpublished(room, publication.sid);
+        pending.complete();
+        await retry;
+        expect(publication.requests, ['unsubscribe']);
+        expect(service.mediaOutputFailureMessage, isNull);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
+    test('mismatched call or disconnected room refuses recovery', () async {
+      var starts = 0;
+      final room = _MediaRoom(_MediaParticipant());
+      final service = _speakerService(
+        room,
+        (preferred, {force = false}) async {},
+        playbackStarter: (_) async {
+          starts++;
+          return true;
+        },
+      );
+      await expectLater(service.retryMediaOutput(18), throwsStateError);
+      room.state = ConnectionState.disconnected;
+      await expectLater(service.retryMediaOutput(17), throwsStateError);
+      expect(starts, 0);
+      expect(service.isRetryingMediaOutput, isFalse);
+      await service.leave();
+      service.dispose();
+    });
+  });
+
   group('speaker output preference', () {
     setUp(() => debugDefaultTargetPlatformOverride = TargetPlatform.android);
     tearDown(() => debugDefaultTargetPlatformOverride = null);
@@ -362,10 +880,12 @@ void main() {
           throwsStateError,
         );
         expect(service.speakerOutputPreferred, isTrue);
-        expect(notifications, 0);
+        expect(service.mediaOutputFailureMessage, '声音输出切换失败，请重试。');
+        expect(notifications, 1);
         await service.setSpeakerOutputPreferred(false);
         expect(service.speakerOutputPreferred, isFalse);
-        expect(notifications, 1);
+        expect(service.mediaOutputFailureMessage, isNull);
+        expect(notifications, 2);
         await service.leave();
         service.dispose();
       },
