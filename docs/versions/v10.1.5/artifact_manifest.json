@@ -1,20 +1,20 @@
 {
   "schema_version": 2,
   "version": "10.1.5",
-  "status": "EXISTING_FEATURE_DEVICE_ACCEPTANCE_IN_PROGRESS",
+  "status": "EXISTING_FEATURE_ADVISOR_PACKAGE_WITH_OPEN_ACCEPTANCE_ITEMS",
   "date": "2026-11-12",
   "branch": "codex/v10.1.5-software-continuation-20261101",
   "source": {
-    "commit": "e5aa6a29a76711b0e4bdb01613e269759d1ffe8e",
-    "root_tree": "3a756162be77871e465f1d0a71919637a13160b9",
-    "apps_tree": "9d34988f33b30759744da5bf00ee427320f3c338",
+    "commit": "0badb31c38db63fe0fb1b5fcbfb43e5cb4e68d3f",
+    "root_tree": "cab9e7f5700eb8f7402401ee56cdc6e4e92d795f",
+    "apps_tree": "a4e4b62f58a1c6de353d2f69bace6c9d51eb6bd9",
     "services_tree": "8bc64ce9d43e84897eac0c56782c8f17870ae05f",
     "api_source_commit": "6549f02880968f99ae3f45439d15a37c1b3d5251"
   },
   "apk": {
-    "filename": "EliteSync-v10.1.5-dev-e5aa6a29-arm64-debug.apk",
-    "sha256": "398d9e1a30a92b39e6a8f95c8218a3ea1a528e7baedb924636f5f8705f6a7608",
-    "bytes": 154568851,
+    "filename": "EliteSync-v10.1.5-dev-0badb31c-arm64-debug.apk",
+    "sha256": "1e9adad71b962c8adfcfd280450ed9ae9e5b1f7127988d225a036e3c3826dfea",
+    "bytes": 154570461,
     "package": "com.elitesync.v1015dev",
     "version_name": "10.1.5-dev",
     "version_code": 1010501,
@@ -23,13 +23,13 @@
     "signature": "v2_verified",
     "offline": true,
     "build_exit_code": 0,
-    "build_elapsed_seconds": 32.4737954,
+    "build_elapsed_seconds": 46.0227167,
     "distribution": "LOCAL_ONLY"
   },
   "validation": {
-    "targeted_tests": 45,
-    "analyze": "affected source/test files clean",
-    "non_author_review": "notification scan/provider isolation, signed-out and post-frame guards, autoDispose reviewed. Page error catch exact RED/GREEN and main review.",
+    "targeted_tests": 15,
+    "analyze": "incoming page/test clean, prior coordinator/test and chat page/test clean",
+    "non_author_review": "media-picker handoff, RTC independent polling and incoming lifecycle changes each received scoped non-author static review. Advisor final acceptance pending.",
     "version_controller_tests": {
       "tests": 9,
       "assertions": 54,
@@ -40,11 +40,24 @@
       "emulator5580 fictional B"
     ],
     "notification_stable_scroll_and_mark_read": "8216 same-candidate phone, no periodic loading, scroll anchor retained, unread50 to49",
-    "notification_failure_and_manual_retry": "final e5 phone scoped503, error remains after real service restoration, explicit UI retry recovers",
     "owner_notification_feedback": "正常，不再闪烁，按钮可用",
     "paused_emulator5582_installed_source": "cdb0b46dc4613b35eba7adb0c50415a455f3063c",
     "prior_audio_5e": "call44 Owner very clear speech; original source and evidence boundaries retained",
-    "scope": "existing-feature device acceptance and advisor package in progress"
+    "scope": "existing-feature device acceptance and advisor package in progress",
+    "notification_targeted_tests_prior": 45,
+    "previous_notification_review": "coordinator/provider scan isolation, session ownership, autoDispose and manual error handling retain their original review boundaries",
+    "phone_bidirectional_text": "26c same APK normal UI120/121 persisted, original e5 115/116 retained",
+    "media_picker_original_failure": "e5aa image uploaded as14 but blocked before POST. One explicit retry reused asset14 as message117.",
+    "phone_image_video_current": "26c same APK image122/asset17 and video123/asset18, phone preview and0:02/0:02.0bad changes incoming page only.",
+    "prior_notification_failure_and_manual_retry": "final e5 phone scoped503, error remains after real service restoration, explicit UI retry recovers",
+    "rtc_poll_tests": 17,
+    "rtc_incoming_selector_tests": 4,
+    "prior_chat_tests": 33,
+    "prior_notification_tests": 45,
+    "actual_incoming_final": "same0bad phone A/B,46 natural30s missed reflected automatically without manual refresh,47 normal UI rejected",
+    "final_memory": "0bad120.843s, explicit GC only endpoints,65 sessions/120events retained both endpoints, heap140628224 to140298784 bytes.26c prior240.906s0 to4 entities during new call. Long-duration coverage pending.",
+    "final_sleep_resume": "0bad emulator20s screen sleep, wake, existing chat read and settings input passed, current-PID OOM0",
+    "source_scope": "Current installed dev restoration build. Formal-build conditional pages retain SRC_ONLY where untested."
   },
   "acceptance": {
     "partial_ac": [
@@ -609,5 +622,20 @@
         "location": "LOCAL_ONLY"
       }
     ]
+  },
+  "review_package": {
+    "distribution": "LOCAL_ONLY",
+    "screenshots": 120,
+    "contents": [
+      "APP_FUNCTIONS",
+      "UI_NAVIGATION_AND_CONTROLS",
+      "SCREENSHOTS",
+      "TEST_RESULTS",
+      "source and APK manifest",
+      "PNG gallery",
+      "scoped evidence receipts"
+    ],
+    "advisor_final_acceptance": "PENDING",
+    "owner_final_acceptance": "PENDING"
   }
 }
