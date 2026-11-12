@@ -179,6 +179,27 @@ class _MediaApi extends ApiClient {
   }
 }
 
+class _PickerResumeApi extends _MediaApi {
+  bool holdHistory = false;
+  final history = Completer<NetworkResult<Map<String, dynamic>>>();
+
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> get(
+    String path, {
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) {
+    if (holdHistory && query?['limit'] != 1) return history.future;
+    return super.get(
+      path,
+      cancelToken: cancelToken,
+      query: query,
+      options: options,
+    );
+  }
+}
+
 class _RetryGateway implements SessionBoundChatMediaGateway {
   int picks = 0;
   int uploads = 0;
@@ -311,6 +332,53 @@ Future<void> _show(
 }
 
 void main() {
+  for (final kind in ChatAttachmentKind.values) {
+    testWidgets(
+      'native ${kind.name} picker resumes with a saved draft before history finishes',
+      (tester) async {
+        final api = _PickerResumeApi();
+        final gateway = _RetryGateway()
+          ..picking = Completer()
+          ..failureStatus = null;
+        await _show(tester, api, gateway: gateway);
+        await tester.pumpAndSettle();
+        await tester.enterText(find.byType(TextField), 'saved media caption');
+        await tester.tap(find.text('保存草稿'));
+        await tester.pumpAndSettle();
+        await tester.tap(
+          find.byTooltip(kind == ChatAttachmentKind.image ? '发送图片' : '发送短视频'),
+        );
+        await tester.pumpAndSettle();
+        tester.binding.handleAppLifecycleStateChanged(
+          AppLifecycleState.inactive,
+        );
+        tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+        tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+        api.holdHistory = true;
+        tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+        tester.binding.handleAppLifecycleStateChanged(
+          AppLifecycleState.inactive,
+        );
+        tester.binding.handleAppLifecycleStateChanged(
+          AppLifecycleState.resumed,
+        );
+        await tester.pumpAndSettle();
+        gateway.picking!.complete(
+          ChatPickedMedia(path: 'fictional', name: 'fixture.${kind.name}'),
+        );
+        await tester.pumpAndSettle();
+        expect(gateway.uploads, 1);
+        expect(api.bodies, hasLength(1));
+        expect(api.bodies.single['content'], 'saved media caption');
+        expect(api.bodies.single['attachment_ids'], [42]);
+        api.history.complete(const NetworkSuccess({'items': <dynamic>[]}));
+        await tester.pumpAndSettle();
+        expect(api.bodies, hasLength(1));
+        await tester.pumpWidget(const SizedBox());
+      },
+    );
+  }
+
   testWidgets(
     'slow initial read cannot overwrite an existing unknown submission',
     (tester) async {

@@ -941,6 +941,20 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         }
         return;
       }
+      // The picker invalidates the draft grant on pause. Its current peer
+      // read also authorizes restoring that draft, even while full history
+      // and image loading are still in flight.
+      if (!_draftLoaded) {
+        final draft = await _cache.readAfterCurrentAuthorization(
+          _draftKey,
+          expectedAccountId: session.user!.id,
+          isCurrent: () => _current(session, epoch),
+        );
+        if (!_current(session, epoch)) return;
+        if (!_restoreTextDraft(draft, offline: false)) return;
+        // An older unconfirmed submission must keep its original payload.
+        if (_attempt != null) return;
+      }
       setState(() => _busy = true);
       var assetId = _readyMediaAsset;
       if (assetId == null) {
