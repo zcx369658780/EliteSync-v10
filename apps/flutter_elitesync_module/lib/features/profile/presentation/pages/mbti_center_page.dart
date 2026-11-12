@@ -198,6 +198,9 @@ class _MbtiCenterPageState extends ConsumerState<MbtiCenterPage> {
                         ),
                   style: _answers[item['question_id']] == option
                       ? OutlinedButton.styleFrom(
+                          foregroundColor: Theme.of(
+                            context,
+                          ).colorScheme.onPrimaryContainer,
                           backgroundColor: Theme.of(
                             context,
                           ).colorScheme.primaryContainer,

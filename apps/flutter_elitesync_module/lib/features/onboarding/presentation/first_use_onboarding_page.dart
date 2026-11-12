@@ -24,7 +24,7 @@ class FirstUseOnboardingStep {
 const firstUseOnboardingSteps = <FirstUseOnboardingStep>[
   FirstUseOnboardingStep(
     title: '先从慢约进展开始',
-    body: '首页用于查看慢约进展和下一步。',
+    body: '在“进展”入口查看慢约进展和下一步。',
     icon: Icons.auto_awesome_rounded,
   ),
   FirstUseOnboardingStep(

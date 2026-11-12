@@ -21,6 +21,7 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
   int? _peer;
   Map<String, dynamic>? _server;
   String? _error;
+  bool _noMatch = false;
   bool _busy = false;
   int _epoch = 0;
   CancelToken _requestCancellation = CancelToken();
@@ -43,7 +44,12 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
   Map<String, dynamic> _data(NetworkResult<Map<String, dynamic>> result) {
     if (result is NetworkSuccess<Map<String, dynamic>>) return result.data;
     final failure = result as NetworkFailure<Map<String, dynamic>>;
-    throw StateError('${failure.message}（HTTP ${failure.statusCode ?? "未知"}）');
+    throw StateError(switch (failure.statusCode) {
+      401 => '登录已失效，请重新登录后重试。',
+      403 => '当前无权操作此连接，请刷新确认权限。',
+      409 => '连接状态已变化，请刷新后重试。',
+      _ => '暂时无法读取或更新连接，请稍后刷新重试。',
+    });
   }
 
   bool _current(SessionState session, int epoch) =>
@@ -65,7 +71,12 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
       if (!_current(session, epoch)) return;
       peer = (match['partner_id'] as num?)?.toInt();
     }
-    if (peer == null || peer <= 0) throw StateError('暂无已发布匹配对象。');
+    if (peer == null || peer <= 0) {
+      _noMatch = true;
+      _peer = null;
+      _server = null;
+      return;
+    }
     final data = _data(
       await client.get(
         '/api/v1/connections/$peer',
@@ -121,6 +132,7 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
     setState(() {
       _busy = true;
       _error = null;
+      _noMatch = false;
     });
     SessionState? session;
     try {
@@ -139,7 +151,9 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
           epoch == _epoch &&
           (session == null || _current(session, epoch))) {
         _server = null;
-        _error = error.toString();
+        _error = error is StateError
+            ? error.message.toString()
+            : '操作未完成，请稍后刷新重试。';
         _requestCancellation.cancel('Request not confirmed');
       }
     } finally {
@@ -210,6 +224,7 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
           _peer = null;
           _server = null;
           _error = null;
+          _noMatch = false;
           _busy = false;
         });
       }
@@ -229,6 +244,8 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
         children: [
           const Text('匹配 ≠ 连接 ≠ 消息同意。双方须独立决定，消息读取和发送均由服务端当前权限验证。'),
           if (_busy) const LinearProgressIndicator(),
+          if (confirmed && _noMatch)
+            const Text('暂无已发布的匹配对象。请到“进展”查看慢约安排，稍后可刷新。'),
           if (_error != null)
             Text(
               '操作未确认：$_error',

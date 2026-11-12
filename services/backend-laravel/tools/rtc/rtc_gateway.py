@@ -59,15 +59,20 @@ def stop_sfu():
 async def reconcile():
     global last_sweep,ready
     while True:
+        phase='watchdog'
+        started=time.monotonic()
         try:
             if watchdog is None or watchdog.returncode is not None: raise RuntimeError('watchdog unavailable')
+            phase='authority_sweep'
             result=await backend('sweep',{})
             allowed=set(result['allowed_rooms'])
+            phase='sfu_list_rooms'
             rooms=(await control('ListRooms',{})).get('rooms',[])
             for room in rooms:
                 name=room['name']
                 if name not in allowed:
                     try:
+                        phase='sfu_delete_room'
                         await asyncio.wait_for(control('DeleteRoom',{'room':name}),.75)
                     except Exception:
                         # Stop media first; never spend the 5s budget on retry/audit.
@@ -76,12 +81,13 @@ async def reconcile():
                         except Exception: pass
                         return
                     print(json.dumps({'event':'room_removed','room':name,'time':time.time(),'attempt':1}),flush=True)
+                    phase='authority_audit'
                     await backend('audit',{'room':name,'event':'sfu_removed','attempt':1})
             last_sweep=time.monotonic()
             os.write(watchdog_pipe,b'.')
             ready=True
         except Exception as error:
-            print(json.dumps({'event':'authority_monitor_failed','error_type':type(error).__name__,'time':time.time()}),flush=True)
+            print(json.dumps({'event':'authority_monitor_failed','phase':phase,'error_type':type(error).__name__,'elapsed_ms':round((time.monotonic()-started)*1000),'time':time.time()}),flush=True)
             stop_sfu()
             return
         await asyncio.sleep(.25)

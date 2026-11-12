@@ -21,7 +21,7 @@ class _Session extends SessionNotifier {
     ),
   );
   @override
-  Future<SessionState> build() async => const SessionState(
+  SessionState build() => const SessionState(
     status: AuthStatus.authenticated,
     user: UserSummary(id: 1, phone: 'fictional-one'),
   );
@@ -34,6 +34,8 @@ class _Api extends ApiClient {
   int revision = 0;
   int requester = 1;
   bool reject = false;
+  bool noMatch = false;
+  bool failMatch = false;
   int reads = 0;
   Object? body;
   @override
@@ -44,6 +46,13 @@ class _Api extends ApiClient {
     Options? options,
   }) async {
     if (path.endsWith('/matches/current')) {
+      if (failMatch) {
+        return const NetworkFailure(
+          message: 'upstream_unavailable',
+          statusCode: 503,
+        );
+      }
+      if (noMatch) return const NetworkSuccess({});
       return const NetworkSuccess({'partner_id': 2});
     }
     reads++;
@@ -98,6 +107,38 @@ Future<void> _show(WidgetTester tester, ApiClient api) async {
 }
 
 void main() {
+  testWidgets('successful empty match shows neutral guidance and can refresh', (
+    tester,
+  ) async {
+    final api = _Api()..noMatch = true;
+    await _show(tester, api);
+    expect(find.textContaining('暂无已发布的匹配对象'), findsOneWidget);
+    expect(find.textContaining('Bad state'), findsNothing);
+    expect(find.textContaining('操作未确认'), findsNothing);
+    expect(api.reads, 0);
+    api.noMatch = false;
+    await tester.tap(find.text('刷新当前状态'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('CN_NONE'), findsOneWidget);
+    expect(find.textContaining('暂无已发布的匹配对象'), findsNothing);
+  });
+
+  testWidgets(
+    'match failure remains a retryable error instead of empty success',
+    (tester) async {
+      final api = _Api()..failMatch = true;
+      await _show(tester, api);
+      expect(find.textContaining('暂时无法读取或更新连接，请稍后刷新重试'), findsOneWidget);
+      expect(find.textContaining('暂无已发布的匹配对象'), findsNothing);
+      expect(find.textContaining('Bad state'), findsNothing);
+      api.failMatch = false;
+      api.noMatch = true;
+      await tester.tap(find.text('刷新当前状态'));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('操作未确认'), findsNothing);
+      expect(find.textContaining('暂无已发布的匹配对象'), findsOneWidget);
+    },
+  );
   testWidgets('switch during token await dispatches no consent choice', (
     tester,
   ) async {
@@ -194,7 +235,7 @@ void main() {
     await _show(tester, api);
     await tester.tap(find.text('请求连接'));
     await tester.pumpAndSettle();
-    expect(find.textContaining('stale revision'), findsOneWidget);
+    expect(find.textContaining('连接状态已变化，请刷新后重试'), findsOneWidget);
     expect(find.textContaining('CN_PENDING'), findsNothing);
   });
   testWidgets('terminal state never offers new requests', (tester) async {

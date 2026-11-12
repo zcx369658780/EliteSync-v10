@@ -30,3 +30,16 @@ authority with the monitor.
 Focused protocol checks: `python -m unittest discover -s . -p test_rtc_gateway.py`.
 These checks do not establish actual media-stop latency, AEC quality, or complete
 RTC acceptance; those require the real APP/API/SFU chain.
+
+## Development authority worker pool
+
+`serve_development_api.py` runs the ordinary PHP server on 8080 with four
+workers and reserves a separate PHP server on 8082 with two workers. Point
+`RTC_AUTHORITY_PORT` at 8082 for this configuration. Keep 8082 private to the
+owned development network. The authority router serves only POST requests to
+the three existing guard routes, through the same Laravel kernel and guard.
+
+The pool prevents ordinary API accept-queue contention from blocking authority
+checks. CPU, database and lock contention remain shared dependencies. Monitor
+failures report the phase and elapsed time without private request data. The
+one-second response deadline and independent 3.5-second watchdog are retained.

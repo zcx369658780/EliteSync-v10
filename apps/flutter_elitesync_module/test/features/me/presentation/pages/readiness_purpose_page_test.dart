@@ -127,7 +127,7 @@ class _Verification extends VerificationNotifier {
   }
 
   @override
-  Future<void> submit({
+  Future<VerificationSubmissionResult> submit({
     required String realName,
     required String idNumber,
   }) async => harness.safety.write();

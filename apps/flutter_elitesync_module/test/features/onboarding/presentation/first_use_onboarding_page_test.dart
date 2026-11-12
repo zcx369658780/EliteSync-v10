@@ -94,7 +94,7 @@ void main() {
     expect(
       firstUseOnboardingSteps.map((step) => (step.title, step.body)).toList(),
       [
-        ('先从慢约进展开始', '首页用于查看慢约进展和下一步。'),
+        ('先从慢约进展开始', '在“进展”入口查看慢约进展和下一步。'),
         ('按需要完善资料', '资料由你填写；是否还需补充，以页面之后显示的可靠提示为准。'),
         ('等待可靠的进展通知', '有可确认的安排或结果时，页面会显示相应说明；也可能暂时没有结果。'),
         ('符合条件后再使用消息', '只有服务确认可以继续交流后，消息入口才会开放。'),
@@ -105,7 +105,7 @@ void main() {
     final copy = firstUseOnboardingSteps
         .expand((step) => [step.title, step.body])
         .join('\n');
-    expect(copy, contains('首页'));
+    expect(copy, contains('“进展”入口'));
     expect(copy, contains('慢约进展'));
     expect(copy, contains('消息'));
     expect(copy, isNot(contains('Profile')));

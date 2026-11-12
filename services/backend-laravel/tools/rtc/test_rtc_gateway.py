@@ -141,6 +141,21 @@ class GatewayTest(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(gateway.child.killed)
         self.assertFalse(gateway.ready)
 
+    async def test_timeout_diagnostic_identifies_phase_without_private_request_data(self):
+        cases = [('authority_sweep', True), ('sfu_list_rooms', False)]
+        for phase, fail_authority in cases:
+            with self.subTest(phase=phase):
+                authority = AsyncMock(side_effect=TimeoutError()) if fail_authority else AsyncMock(return_value={'allowed_rooms': []})
+                with patch.object(gateway, 'backend', authority), patch.object(gateway, 'control', AsyncMock(side_effect=TimeoutError())), patch('builtins.print') as output:
+                    await gateway.reconcile()
+                event = json.loads(output.call_args_list[0].args[0])
+                self.assertEqual(event['phase'], phase)
+                self.assertEqual(event['error_type'], 'TimeoutError')
+                self.assertGreaterEqual(event['elapsed_ms'], 0)
+                self.assertNotIn(gateway.GATE, json.dumps(event))
+                self.assertNotIn('http', json.dumps(event))
+                self.assertTrue(gateway.child.killed)
+
     async def test_room_delete_failure_stops_media_before_optional_audit(self):
         order = []
 

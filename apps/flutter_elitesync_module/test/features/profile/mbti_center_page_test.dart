@@ -14,8 +14,7 @@ class _Session extends SessionNotifier {
   void changeAccount() =>
       state = AsyncData(SessionState(status: AuthStatus.authenticated));
   @override
-  Future<SessionState> build() async =>
-      const SessionState(status: AuthStatus.authenticated);
+  SessionState build() => const SessionState(status: AuthStatus.authenticated);
 }
 
 class _Api extends ApiClient {
@@ -75,20 +74,52 @@ class _Api extends ApiClient {
   }
 }
 
-Future<void> _show(WidgetTester tester, _Api api) async {
+Future<void> _show(WidgetTester tester, _Api api, {ThemeData? theme}) async {
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
         apiClientProvider.overrideWithValue(api),
         sessionProvider.overrideWith(_Session.new),
       ],
-      child: MaterialApp(theme: AppTheme.light, home: const MbtiCenterPage()),
+      child: MaterialApp(
+        theme: theme ?? AppTheme.light,
+        home: const MbtiCenterPage(),
+      ),
     ),
   );
   await tester.pumpAndSettle();
 }
 
 void main() {
+  for (final theme in [AppTheme.light, AppTheme.dark]) {
+    testWidgets('selected options use paired colors in ${theme.brightness}', (
+      tester,
+    ) async {
+      await _show(tester, _Api(), theme: theme);
+      await tester.tap(find.text('开始测评'));
+      await tester.pumpAndSettle();
+      for (final option in ['A', 'B', 'A']) {
+        final finder = find.byKey(ValueKey('mbti-1-$option'));
+        await tester.ensureVisible(finder);
+        await tester.tap(finder);
+        await tester.pumpAndSettle();
+        final button = tester.widget<OutlinedButton>(finder);
+        expect(
+          button.style?.foregroundColor?.resolve({}),
+          theme.colorScheme.onPrimaryContainer,
+        );
+        expect(
+          button.style?.backgroundColor?.resolve({}),
+          theme.colorScheme.primaryContainer,
+        );
+        expect(find.text('题库版本：lite3_v1；已答 1/1'), findsOneWidget);
+        final other = tester.widget<OutlinedButton>(
+          find.byKey(ValueKey('mbti-1-${option == 'A' ? 'B' : 'A'}')),
+        );
+        expect(other.style, isNull);
+      }
+    });
+  }
   testWidgets(
     'optional quiz submits answers and confirms persisted result by GET',
     (tester) async {
