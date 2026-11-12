@@ -23,13 +23,13 @@ final notificationListProvider = FutureProvider<List<NotificationItemEntity>>((
   ref.watch(relationshipAuthorityEpochProvider);
   if (ref.watch(sessionProvider).asData?.value.isLoggedIn != true) return [];
   return ref.read(notificationRemoteDataSourceProvider).fetchNotifications();
-});
+}, retry: (_, _) => null);
 
 final notificationUnreadCountProvider = FutureProvider<int>((ref) async {
   ref.watch(relationshipAuthorityEpochProvider);
   if (ref.watch(sessionProvider).asData?.value.isLoggedIn != true) return 0;
   return ref.read(notificationRemoteDataSourceProvider).fetchUnreadCount();
-});
+}, retry: (_, _) => null);
 
 final notificationPreferencesProvider = FutureProvider<bool>((ref) async {
   final local = ref.read(localStorageProvider);

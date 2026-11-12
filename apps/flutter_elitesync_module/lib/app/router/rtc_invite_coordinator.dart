@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/app/router/app_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_shell.dart';
+import 'package:flutter_elitesync_module/features/notification/data/datasource/notification_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/notification/domain/entities/notification_item_entity.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/providers/notification_provider.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
@@ -96,8 +97,7 @@ void startRtcInviteWatcher(dynamic ref) {
   Future<void> pollOnce() async {
     if (disposed || _rtcInviteScanning) return;
     final userId = _currentUserId(ref);
-    // A signed-out notification provider can retry indefinitely. Do not let
-    // that request hold the scan lock across a later successful login.
+    // Polling starts only after the current account has authenticated.
     if (userId <= 0) return;
     bool isCurrent() => !disposed && _currentUserId(ref) == userId;
     _rtcInviteScanning = true;
@@ -105,11 +105,13 @@ void startRtcInviteWatcher(dynamic ref) {
       if (await _scanIncomingCalls(ref, isCurrent: isCurrent)) return;
       if (!isCurrent()) return;
 
-      ref.invalidate(notificationListProvider);
-      final notifications =
-          await (ref.read(notificationListProvider.future)
-                  as Future<List<NotificationItemEntity>>)
-              .timeout(const Duration(seconds: 8));
+      // Incoming scans read independently of the notification page's load state.
+      final NotificationRemoteDataSource notificationsSource = ref.read(
+        notificationRemoteDataSourceProvider,
+      );
+      final notifications = await notificationsSource
+          .fetchNotifications()
+          .timeout(const Duration(seconds: 8));
       if (!isCurrent()) return;
       final invite = shell.selectLatestRtcInvite(notifications);
       // ignore: avoid_print
@@ -179,17 +181,30 @@ void startRtcInviteWatcher(dynamic ref) {
 final rtcInviteWatcherProvider = Provider<void>((ref) {
   Timer? timer;
   bool scanning = false;
+  bool disposed = false;
   int? handledCallId;
   int? handledNotificationId;
 
   Future<void> pollOnce() async {
-    if (scanning) return;
+    if (disposed || scanning) return;
+    final userId = _currentUserId(ref);
+    if (userId <= 0) return;
+    bool isCurrent() => !disposed && _currentUserId(ref) == userId;
     scanning = true;
     try {
-      if (await _scanIncomingCalls(ref, handledCallId: handledCallId)) return;
+      if (await _scanIncomingCalls(
+        ref,
+        handledCallId: handledCallId,
+        isCurrent: isCurrent,
+      )) {
+        return;
+      }
+      if (!isCurrent()) return;
 
-      ref.invalidate(notificationListProvider);
-      final notifications = await ref.read(notificationListProvider.future);
+      final notifications = await ref
+          .read(notificationRemoteDataSourceProvider)
+          .fetchNotifications();
+      if (!isCurrent()) return;
       final invite = shell.selectLatestRtcInvite(notifications);
       // ignore: avoid_print
       print(
@@ -234,6 +249,7 @@ final rtcInviteWatcherProvider = Provider<void>((ref) {
   }
 
   WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (disposed) return;
     // ignore: avoid_print
     print('RTC_INVITE_PROVIDER_START');
     pollOnce();
@@ -243,6 +259,7 @@ final rtcInviteWatcherProvider = Provider<void>((ref) {
   });
 
   ref.onDispose(() {
+    disposed = true;
     timer?.cancel();
   });
 });
@@ -290,13 +307,19 @@ class _RtcInviteCoordinatorState extends ConsumerState<RtcInviteCoordinator> {
   Future<void> _pollOnce() async {
     if (!mounted) return;
     if (_scanning) return;
+    final userId = _currentUserId(ref);
+    if (userId <= 0) return;
+    bool isCurrent() => mounted && _currentUserId(ref) == userId;
     _scanning = true;
     try {
-      if (await _handleIncomingCalls()) return;
+      if (await _handleIncomingCalls(isCurrent: isCurrent)) return;
+      if (!isCurrent()) return;
 
-      ref.invalidate(notificationListProvider);
-      final notifications = await ref.read(notificationListProvider.future);
-      await _handleNotifications(notifications);
+      final notifications = await ref
+          .read(notificationRemoteDataSourceProvider)
+          .fetchNotifications();
+      if (!isCurrent()) return;
+      await _handleNotifications(notifications, isCurrent: isCurrent);
     } catch (error) {
       // ignore: avoid_print
       print('RTC_INVITE_COORDINATOR_ERROR $error');
@@ -305,12 +328,13 @@ class _RtcInviteCoordinatorState extends ConsumerState<RtcInviteCoordinator> {
     }
   }
 
-  Future<bool> _handleIncomingCalls() async {
+  Future<bool> _handleIncomingCalls({bool Function()? isCurrent}) async {
     final currentUserId = _currentUserId(ref);
     if (currentUserId <= 0) return false;
 
     ref.invalidate(rtcCallsProvider);
     final calls = await ref.read(rtcCallsProvider.future);
+    if (!mounted || (isCurrent != null && !isCurrent())) return false;
     final incoming = shell.selectLatestIncomingRtcCall(calls, currentUserId);
     // ignore: avoid_print
     print(
@@ -325,7 +349,7 @@ class _RtcInviteCoordinatorState extends ConsumerState<RtcInviteCoordinator> {
     print('RTC_INVITE_COORDINATOR_OPEN callId=${incoming.id} notificationId=0');
     final router = ref.read(appRouterProvider);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
+      if (!mounted || (isCurrent != null && !isCurrent())) return;
       router.go(
         '${AppRouteNames.rtcIncomingCall}/${incoming.id}',
         extra: incoming.title.isNotEmpty ? incoming.title : '来电',
@@ -335,9 +359,10 @@ class _RtcInviteCoordinatorState extends ConsumerState<RtcInviteCoordinator> {
   }
 
   Future<void> _handleNotifications(
-    List<NotificationItemEntity> notifications,
-  ) async {
-    if (!mounted) return;
+    List<NotificationItemEntity> notifications, {
+    required bool Function() isCurrent,
+  }) async {
+    if (!isCurrent()) return;
     try {
       // ignore: avoid_print
       print(
@@ -370,7 +395,7 @@ class _RtcInviteCoordinatorState extends ConsumerState<RtcInviteCoordinator> {
           ref.invalidate(notificationListProvider);
           final router = ref.read(appRouterProvider);
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (!mounted) return;
+            if (!isCurrent()) return;
             router.go(
               '${AppRouteNames.rtcIncomingCall}/$callId',
               extra: invite.title.isNotEmpty ? invite.title : '来电',
