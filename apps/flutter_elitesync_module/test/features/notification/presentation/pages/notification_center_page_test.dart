@@ -122,6 +122,8 @@ class _PagingApi extends ApiClient {
   bool firstHasMore = true;
   int? firstCursor = 29;
   bool emptyCurrentAccount = false;
+  bool failCurrentRead = false;
+  int currentReads = 0;
   bool failOlderOnce = false;
   final cursors = <int>[];
   final pages = <int, Map<String, dynamic>>{};
@@ -138,6 +140,10 @@ class _PagingApi extends ApiClient {
     expect(query?['limit'], 50);
     final before = query?['before_id'] as int?;
     if (before == null) {
+      currentReads++;
+      if (failCurrentRead) {
+        return const NetworkFailure(message: 'fictional unavailable', statusCode: 503);
+      }
       return NetworkSuccess({
         'items': emptyCurrentAccount ? <dynamic>[] : firstItems,
         'has_more': !emptyCurrentAccount && firstHasMore,
@@ -219,6 +225,27 @@ void _expectNoD7CForbiddenVisibleCopy() {
 }
 
 void main() {
+  testWidgets('manual notification refresh fails once and waits for explicit retry', (tester) async {
+    final api = _PagingApi();
+    await tester.pumpWidget(_pagingApp(api));
+    await tester.pumpAndSettle();
+    expect(api.currentReads, 1);
+    api.failCurrentRead = true;
+    await tester.tap(find.widgetWithIcon(IconButton, Icons.refresh_rounded));
+    await tester.pumpAndSettle();
+    expect(find.text('通知加载失败'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.pump(const Duration(seconds: 5));
+    expect(api.currentReads, 2);
+    expect(find.text('通知加载失败'), findsOneWidget);
+    api.failCurrentRead = false;
+    await tester.tap(find.text('重新加载'));
+    await tester.pumpAndSettle();
+    expect(api.currentReads, 3);
+    expect(find.text('通知加载失败'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('older notifications merge by id and a first-page refresh clears history', (tester) async {
     final api = _PagingApi();
     api.pages[29] = {

@@ -167,7 +167,11 @@ class _NotificationCenterPageState
     setState(_resetHistory);
     ref.invalidate(notificationListProvider);
     ref.invalidate(notificationUnreadCountProvider);
-    await ref.read(notificationListProvider.future);
+    try {
+      await ref.read(notificationListProvider.future);
+    } catch (_) {
+      // The provider keeps the failed read visible until the user retries.
+    }
   }
 
   Future<void> _markAllRead() async {
