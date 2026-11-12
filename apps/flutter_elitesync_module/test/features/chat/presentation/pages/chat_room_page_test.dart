@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -80,6 +81,7 @@ class FakeLocalStorageService extends LocalStorageService {
 }
 
 class FakeChatRepository implements ChatRepository {
+  Completer<List<MessageEntity>>? pendingMessages;
   int sendMessageCount = 0;
   String? lastSentText;
   List<int>? lastAttachmentIds;
@@ -107,6 +109,7 @@ class FakeChatRepository implements ChatRepository {
 
   @override
   Future<List<MessageEntity>> getMessages(String conversationId) async {
+    if (pendingMessages != null) return pendingMessages!.future;
     if (failMessages) throw Exception('network unavailable');
     return messages;
   }
@@ -249,16 +252,21 @@ class _CallSession extends SessionNotifier {
 }
 
 class _CallPermissions implements RtcPermissionService {
-  _CallPermissions({this.failCheck = false});
+  _CallPermissions({this.failCheck = false, this.granted = true});
   bool failCheck;
+  bool granted;
   @override
   Future<bool> hasVoiceCallPermission() async {
     if (failCheck) {
       failCheck = false;
       throw StateError('fictional permission check unavailable');
     }
-    return true;
+    return granted;
   }
+  @override
+  Future<bool> hasCameraPermission() async => true;
+  @override
+  Future<bool> ensureCameraPermission() async => true;
   @override
   Future<bool> ensureVoiceCallPermission() async => true;
   @override
@@ -266,9 +274,10 @@ class _CallPermissions implements RtcPermissionService {
 }
 
 class _CallSource extends RtcRemoteDataSource {
-  _CallSource({this.alwaysDenied = false})
+  _CallSource({this.alwaysDenied = false, this.failFirst = true})
       : super(apiClient: ApiClient(dio: Dio()));
   final bool alwaysDenied;
+  final bool failFirst;
   final modes = <String>[];
   @override
   Future<RtcSessionEntity> createCall({
@@ -276,7 +285,7 @@ class _CallSource extends RtcRemoteDataSource {
     String mode = 'voice',
   }) async {
     modes.add(mode);
-    if (alwaysDenied || modes.length == 1) {
+    if (alwaysDenied || (failFirst && modes.length == 1)) {
       throw StateError('fictional permission error');
     }
     return RtcSessionEntity.fromJson({
@@ -304,6 +313,7 @@ Widget _callChatApp(
   _CallSource source,
   List<String> permissionVisits, {
   RtcPermissionService? permissions,
+  FakeChatRepository? repository,
 }) {
   final router = GoRouter(routes: [
     GoRoute(
@@ -335,7 +345,7 @@ Widget _callChatApp(
       ),
       sessionProvider.overrideWith(_CallSession.new),
       localStorageProvider.overrideWithValue(FakeLocalStorageService()),
-      chatRepositoryProvider.overrideWithValue(FakeChatRepository()),
+      chatRepositoryProvider.overrideWithValue(repository ?? FakeChatRepository()),
       rtcRemoteDataSourceProvider.overrideWithValue(source),
       rtcPermissionServiceProvider.overrideWithValue(permissions ?? _CallPermissions()),
       frontendTelemetryProvider.overrideWithValue(FrontendTelemetry(telemetry: _CallTelemetry())),
@@ -398,6 +408,79 @@ Future<void> _confirmManualSend(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets(
+    'permission return waits for the same foreground authorization read',
+    (tester) async {
+      final source = _CallSource(failFirst: false);
+      final permissions = _CallPermissions(granted: false);
+      final repository = FakeChatRepository();
+      await tester.pumpWidget(
+        _callChatApp(
+          source,
+          [],
+          permissions: permissions,
+          repository: repository,
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byTooltip('视频通话'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('现在视频'));
+      await tester.pumpAndSettle();
+      expect(source.modes, isEmpty);
+      repository.pendingMessages = Completer<List<MessageEntity>>();
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pump();
+      permissions.granted = true;
+      await tester.tap(find.text('测试确认权限'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 350));
+      expect(source.modes, isEmpty);
+      repository.pendingMessages!.complete(const []);
+      await tester.pumpAndSettle();
+      expect(source.modes, ['video']);
+      expect(find.text('fake-call-room'), findsOneWidget);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets('Home during permission return cancels the pending call intent', (
+    tester,
+  ) async {
+    final source = _CallSource(failFirst: false);
+    final permissions = _CallPermissions(granted: false);
+    final repository = FakeChatRepository();
+    await tester.pumpWidget(
+      _callChatApp(
+        source,
+        [],
+        permissions: permissions,
+        repository: repository,
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('视频通话'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('现在视频'));
+    await tester.pumpAndSettle();
+    repository.pendingMessages = Completer<List<MessageEntity>>();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pump();
+    permissions.granted = true;
+    await tester.tap(find.text('测试确认权限'));
+    await tester.pump();
+    repository.pendingMessages!.complete(const []);
+    await tester.pumpAndSettle();
+    expect(source.modes, isEmpty);
+    expect(find.text('fake-call-room'), findsNothing);
+    await tester.pumpWidget(const SizedBox());
+  });
   testWidgets('video permission retry preserves video without a second invitation confirmation', (tester) async {
     final source = _CallSource();
     final permissionVisits = <String>[];

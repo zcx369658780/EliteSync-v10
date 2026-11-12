@@ -12,27 +12,51 @@ import 'package:flutter_elitesync_module/design_system/components/states/app_loa
 import 'package:flutter_elitesync_module/design_system/components/tags/app_choice_chip.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 
 class RtcPermissionPage extends ConsumerStatefulWidget {
   const RtcPermissionPage({
     super.key,
     this.title = '通话权限',
     this.sourcePage = 'rtc_permission',
+    this.requireCamera = false,
   });
 
   final String title;
   final String sourcePage;
+  final bool requireCamera;
 
   @override
   ConsumerState<RtcPermissionPage> createState() => _RtcPermissionPageState();
 }
 
-class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
+class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage>
+    with WidgetsBindingObserver {
   bool _busy = false;
+  bool _foreground = true;
+  bool _canceled = false;
+  bool _finished = false;
+  bool? _pendingResult;
+  SessionState? _ownerSession;
+
+  bool get _currentSession =>
+      mounted &&
+      !_canceled &&
+      _ownerSession?.isLoggedIn == true &&
+      identical(ref.read(sessionProvider).asData?.value, _ownerSession);
+
+  String get _permissionName => widget.requireCamera ? '麦克风和摄像头权限' : '麦克风权限';
 
   @override
   void initState() {
     super.initState();
+    final lifecycle = WidgetsBinding.instance.lifecycleState;
+    _foreground =
+        lifecycle != AppLifecycleState.inactive &&
+        lifecycle != AppLifecycleState.hidden &&
+        lifecycle != AppLifecycleState.paused &&
+        lifecycle != AppLifecycleState.detached;
+    WidgetsBinding.instance.addObserver(this);
     ref
         .read(frontendTelemetryProvider)
         .rtcCallEntryOpened(sourcePage: widget.sourcePage);
@@ -42,41 +66,103 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
     });
   }
 
-  Future<void> _refreshPermissionState({required bool showFeedback}) async {
-    if (_busy) return;
-    final granted = await ref
-        .read(rtcPermissionServiceProvider)
-        .hasVoiceCallPermission();
-    if (!mounted) return;
-    if (granted) {
-      if (showFeedback) {
-        AppFeedback.showSuccess(context, '麦克风权限已开启，可以返回继续通话');
-      }
-      Navigator.of(context).maybePop(true);
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      setState(() => _foreground = true);
+      if (_pendingResult != null) _finishWhenForeground(_pendingResult!);
       return;
     }
-    if (showFeedback) {
-      AppFeedback.showInfo(context, '麦克风权限尚未开启，请先完成授权');
+    _foreground = false;
+    if (state == AppLifecycleState.hidden ||
+        state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached) {
+      _cancel();
+    }
+  }
+
+  void _cancel() {
+    _canceled = true;
+    _finishWhenForeground(false);
+  }
+
+  void _finishWhenForeground(bool result) {
+    if (!mounted || _finished) return;
+    _pendingResult = result && !_canceled;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted ||
+          _finished ||
+          !_foreground ||
+          ModalRoute.of(context)?.isCurrent != true) {
+        return;
+      }
+      final result = _pendingResult;
+      if (result == null) return;
+      _finished = true;
+      _pendingResult = null;
+      Navigator.of(context).maybePop(result && _currentSession);
+    });
+  }
+
+  Future<bool> _hasPermissions() async {
+    final service = ref.read(rtcPermissionServiceProvider);
+    if (!await service.hasVoiceCallPermission()) return false;
+    if (!_currentSession) return false;
+    return !widget.requireCamera || await service.hasCameraPermission();
+  }
+
+  Future<void> _refreshPermissionState({required bool showFeedback}) async {
+    if (_busy || !_currentSession) return;
+    try {
+      final granted = await _hasPermissions();
+      if (!mounted || !_currentSession) return;
+      if (granted) {
+        if (showFeedback) {
+          AppFeedback.showSuccess(context, '$_permissionName已开启，可以返回继续通话');
+        }
+        _finishWhenForeground(true);
+        return;
+      }
+      if (showFeedback) {
+        AppFeedback.showInfo(context, '$_permissionName尚未开启，请先完成授权');
+      }
+    } catch (_) {
+      if (showFeedback && mounted && _currentSession) {
+        AppFeedback.showError(context, '权限状态读取失败，请重试');
+      }
     }
   }
 
   Future<void> _requestPermission() async {
-    if (_busy) return;
+    if (_busy || !_currentSession || !_foreground) return;
     setState(() => _busy = true);
     try {
-      final granted = await ref
-          .read(rtcPermissionServiceProvider)
-          .ensureVoiceCallPermission();
-      if (!mounted) return;
-      if (granted) {
-        AppFeedback.showSuccess(context, '麦克风权限已开启，可以返回继续通话');
-        Navigator.of(context).maybePop(true);
-      } else {
-        AppFeedback.showError(context, '麦克风权限未开启，请在系统设置中授权后重试');
+      final service = ref.read(rtcPermissionServiceProvider);
+      var granted = await service.ensureVoiceCallPermission();
+      if (!mounted || !_currentSession) return;
+      if (granted && widget.requireCamera) {
+        granted = await service.ensureCameraPermission();
+        if (!mounted || !_currentSession) return;
       }
-    } catch (e) {
-      if (!mounted) return;
-      AppFeedback.showError(context, e.toString());
+      if (granted) {
+        _finishWhenForeground(true);
+      } else {
+        AppFeedback.showError(
+          context,
+          widget.requireCamera
+              ? '通话权限尚未完整开启，请在系统设置中授权后重试'
+              : '麦克风权限未开启，请在系统设置中授权后重试',
+        );
+      }
+    } catch (_) {
+      if (!mounted || !_currentSession) return;
+      AppFeedback.showError(context, '权限申请失败，请重试或前往系统设置');
     } finally {
       if (mounted) {
         setState(() => _busy = false);
@@ -85,13 +171,13 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
   }
 
   Future<void> _openSettings() async {
-    if (_busy) return;
+    if (_busy || !_currentSession || !_foreground) return;
     setState(() => _busy = true);
     try {
       await ref.read(rtcPermissionServiceProvider).openSettings();
-    } catch (e) {
-      if (!mounted) return;
-      AppFeedback.showError(context, e.toString());
+    } catch (_) {
+      if (!mounted || !_currentSession) return;
+      AppFeedback.showError(context, '系统设置暂不可用，请重试');
     } finally {
       if (mounted) {
         setState(() => _busy = false);
@@ -128,7 +214,7 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '麦克风权限',
+                          _permissionName,
                           style: Theme.of(context).textTheme.titleMedium
                               ?.copyWith(
                                 color: t.textPrimary,
@@ -137,7 +223,9 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
                         ),
                         SizedBox(height: t.spacing.xxs),
                         Text(
-                          '语音和视频通话需要麦克风权限，视频连接时另行请求摄像头权限。',
+                          widget.requireCamera
+                              ? '视频通话需要麦克风和摄像头权限。'
+                              : '语音通话需要麦克风权限。',
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: t.textSecondary),
                         ),
@@ -166,7 +254,7 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
           child: Column(
             children: [
               AppPrimaryButton(
-                label: '申请麦克风权限',
+                label: widget.requireCamera ? '申请通话权限' : '申请麦克风权限',
                 isLoading: _busy,
                 prefixIcon: const Icon(Icons.mic_rounded, color: Colors.white),
                 onPressed: _requestPermission,
@@ -206,6 +294,13 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
 
   @override
   Widget build(BuildContext context) {
+    final session = ref.watch(sessionProvider).asData?.value;
+    if (_ownerSession == null && session?.isLoggedIn == true) {
+      _ownerSession = session;
+    }
+    if (_ownerSession == null || !identical(session, _ownerSession)) {
+      _cancel();
+    }
     final t = context.appTokens;
     return BrowseScaffold(
       header: AppTopBar(
@@ -220,7 +315,7 @@ class _RtcPermissionPageState extends ConsumerState<RtcPermissionPage> {
         ],
       ),
       body: FutureBuilder<bool>(
-        future: ref.read(rtcPermissionServiceProvider).hasVoiceCallPermission(),
+        future: _hasPermissions(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const AppLoadingSkeleton(lines: 5);

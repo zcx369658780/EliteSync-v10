@@ -1,4 +1,6 @@
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'dart:async';
+import 'package:flutter_elitesync_module/design_system/components/buttons/app_primary_button.dart';
 import '../../rtc_test_session.dart';
 import 'package:dio/dio.dart';
 import 'package:go_router/go_router.dart';
@@ -17,6 +19,7 @@ import 'package:flutter_elitesync_module/features/rtc/data/datasource/rtc_remote
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_incoming_call_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
 class FakeAppTelemetryService extends AppTelemetryService {
@@ -52,13 +55,17 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
   RtcSessionEntity _session;
   int acceptRequests = 0;
   int rejectRequests = 0;
+  Completer<RtcSessionEntity>? pendingAccept;
 
   @override
-  Future<RtcSessionEntity> fetchCall(int callId) async => _session;
+  Future<RtcSessionEntity> fetchCall(int callId) async => callId == _session.id
+      ? _session
+      : RtcSessionEntity.fromJson({..._sessionToJson(), 'id': callId});
 
   @override
   Future<RtcSessionEntity> acceptCall(int callId) async {
     acceptRequests++;
+    if (pendingAccept != null) return pendingAccept!.future;
     _session = RtcSessionEntity.fromJson({
       ..._sessionToJson(),
       'status': 'connecting',
@@ -165,27 +172,44 @@ class FakeRtcRemoteDataSource extends RtcRemoteDataSource {
   }
 }
 
+class _IncomingPermissions implements RtcPermissionService {
+  bool granted = false;
+  @override
+  Future<bool> hasVoiceCallPermission() async => granted;
+  @override
+  Future<bool> hasCameraPermission() async => granted;
+  @override
+  Future<bool> ensureVoiceCallPermission() async => granted;
+  @override
+  Future<bool> ensureCameraPermission() async => granted;
+  @override
+  Future<bool> openSettings() async => false;
+}
+
 Widget _wrap(
   Widget child, {
   required RtcRemoteDataSource rtc,
   GoRouter? router,
+  RtcPermissionService? permissions,
 }) {
   final telemetry = FakeAppTelemetryService();
   return ProviderScope(
     overrides: [
       sessionProvider.overrideWith(RtcTestSession.new),
       appEnvProvider.overrideWithValue(
-        const AppEnv(
+        AppEnv(
           flavor: AppFlavor.dev,
           appName: 'EliteSync',
           apiBaseUrl: 'http://127.0.0.1',
           useMockData: true,
+          useLiveKitRtc: permissions != null,
         ),
       ),
       frontendTelemetryProvider.overrideWithValue(
         FrontendTelemetry(telemetry: telemetry),
       ),
       rtcRemoteDataSourceProvider.overrideWithValue(rtc),
+      if (permissions != null) rtcPermissionServiceProvider.overrideWithValue(permissions),
     ],
     child: router != null
         ? MaterialApp.router(theme: AppTheme.light, routerConfig: router)
@@ -199,6 +223,217 @@ Widget _wrap(
 }
 
 void main() {
+  testWidgets(
+    'late permission from call A cannot accept A after A B A navigation',
+    (tester) async {
+      final session = RtcSessionEntity.fromJson({
+        'id': 140,
+        'mode': 'voice',
+        'status': 'ringing',
+        'initiator_user_id': 1,
+        'peer_user_id': 2,
+        'is_initiator': false,
+        'is_active': true,
+      });
+      final rtc = FakeRtcRemoteDataSource(session);
+      final permissions = _IncomingPermissions();
+      final call = ValueNotifier<int>(140);
+      addTearDown(call.dispose);
+      final router = GoRouter(
+        initialLocation: '/incoming',
+        routes: [
+          GoRoute(
+            path: '/incoming',
+            builder: (_, _) => ValueListenableBuilder<int>(
+              valueListenable: call,
+              builder: (_, id, _) => RtcIncomingCallPage(callId: id),
+            ),
+          ),
+          GoRoute(
+            path: AppRouteNames.rtcPermission,
+            builder: (context, _) => Scaffold(
+              body: TextButton(
+                onPressed: () {
+                  permissions.granted = true;
+                  context.pop(true);
+                },
+                child: const Text('late-grant'),
+              ),
+            ),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.rtcCall}/:callId',
+            builder: (_, _) => const Scaffold(body: Text('accepted-route')),
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+      await tester.pumpWidget(
+        _wrap(
+          const SizedBox(),
+          rtc: rtc,
+          router: router,
+          permissions: permissions,
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('接听'));
+      await tester.tap(find.text('接听'));
+      await tester.pumpAndSettle();
+      call.value = 141;
+      await tester.pumpAndSettle();
+      call.value = 140;
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('late-grant'));
+      await tester.pumpAndSettle();
+      expect(rtc.acceptRequests, 0);
+      expect(find.text('accepted-route'), findsNothing);
+      final accept = tester.widget<AppPrimaryButton>(
+        find.widgetWithText(AppPrimaryButton, '接听'),
+      );
+      expect(accept.isLoading, isFalse);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets(
+    'Home after accept POST cancels the late navigation and releases busy',
+    (tester) async {
+      final session = RtcSessionEntity.fromJson({
+        'id': 142,
+        'mode': 'voice',
+        'status': 'ringing',
+        'initiator_user_id': 1,
+        'peer_user_id': 2,
+        'is_initiator': false,
+        'is_active': true,
+      });
+      final rtc = FakeRtcRemoteDataSource(session)
+        ..pendingAccept = Completer<RtcSessionEntity>();
+      final permissions = _IncomingPermissions()..granted = true;
+      final router = GoRouter(
+        initialLocation: '/incoming',
+        routes: [
+          GoRoute(
+            path: '/incoming',
+            builder: (_, _) => const RtcIncomingCallPage(callId: 142),
+          ),
+          GoRoute(
+            path: '${AppRouteNames.rtcCall}/:callId',
+            builder: (_, _) => const Scaffold(body: Text('accepted-route')),
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+      await tester.pumpWidget(
+        _wrap(
+          const SizedBox(),
+          rtc: rtc,
+          router: router,
+          permissions: permissions,
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('接听'));
+      await tester.tap(find.text('接听'));
+      await tester.pump();
+      expect(rtc.acceptRequests, 1);
+      for (final state in [
+        AppLifecycleState.inactive,
+        AppLifecycleState.hidden,
+        AppLifecycleState.paused,
+        AppLifecycleState.hidden,
+        AppLifecycleState.inactive,
+        AppLifecycleState.resumed,
+      ]) {
+        tester.binding.handleAppLifecycleStateChanged(state);
+      }
+      rtc.pendingAccept!.complete(
+        RtcSessionEntity.fromJson({
+          ...rtc._sessionToJson(),
+          'status': 'connecting',
+        }),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('accepted-route'), findsNothing);
+      final accept = tester.widget<AppPrimaryButton>(
+        find.widgetWithText(AppPrimaryButton, '接听'),
+      );
+      expect(accept.isLoading, isFalse);
+      expect(rtc.acceptRequests, 1);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  for (final mode in ['voice', 'video']) {
+    testWidgets('incoming $mode obtains permissions before acceptance', (
+      tester,
+    ) async {
+      final rtc = FakeRtcRemoteDataSource(
+        RtcSessionEntity.fromJson({
+          'id': 131,
+          'mode': mode,
+          'status': 'ringing',
+          'initiator_user_id': 1,
+          'peer_user_id': 2,
+          'is_initiator': false,
+          'is_active': true,
+        }),
+      );
+      final permissions = _IncomingPermissions();
+      final modes = <String?>[];
+      final router = GoRouter(
+        initialLocation: '/incoming',
+        routes: [
+          GoRoute(
+            path: '/incoming',
+            builder: (_, _) => const RtcIncomingCallPage(callId: 131),
+          ),
+          GoRoute(
+            path: AppRouteNames.rtcPermission,
+            builder: (context, state) {
+              modes.add(state.uri.queryParameters['mode']);
+              return Scaffold(
+                body: TextButton(
+                  onPressed: () {
+                    permissions.granted = true;
+                    context.pop(true);
+                  },
+                  child: const Text('grant-test-call-permissions'),
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: '${AppRouteNames.rtcCall}/:callId',
+            builder: (_, _) =>
+                const Scaffold(body: Text('accepted-after-permission')),
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+      await tester.pumpWidget(
+        _wrap(
+          const SizedBox(),
+          rtc: rtc,
+          router: router,
+          permissions: permissions,
+        ),
+      );
+      await tester.pumpAndSettle();
+      final accept = find.text('接听');
+      await tester.ensureVisible(accept);
+      await tester.tap(accept);
+      await tester.pumpAndSettle();
+      expect(rtc.acceptRequests, 0);
+      expect(modes, [mode]);
+      await tester.tap(find.text('grant-test-call-permissions'));
+      await tester.pumpAndSettle();
+      expect(rtc.acceptRequests, 1);
+      expect(find.text('accepted-after-permission'), findsOneWidget);
+      await tester.pumpWidget(const SizedBox());
+    });
+  }
   testWidgets('RtcIncomingCallPage renders incoming call actions', (
     tester,
   ) async {

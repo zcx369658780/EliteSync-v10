@@ -106,6 +106,8 @@ class _AuthorizedChatRoomPageState
   StreamSubscription<MessageEntity>? _realtimeSubscription;
   bool _sending = false;
   bool _startingCall = false;
+  int _callIntentEpoch = 0;
+  Future<void>? _foregroundRevalidation;
   ChatSendAttempt? _failedAttempt;
   String? _sendFailureMessage;
   bool _sameKeyRetryBlocked = false;
@@ -155,6 +157,8 @@ class _AuthorizedChatRoomPageState
   void didUpdateWidget(covariant _AuthorizedChatRoomPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.routeState != widget.routeState) {
+      _callIntentEpoch++;
+      _startingCall = false;
       _stopRealtimeSync();
       _routeState = widget.routeState;
       _sendFailureMessage = null;
@@ -173,8 +177,14 @@ class _AuthorizedChatRoomPageState
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.hidden ||
+        state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached) {
+      _callIntentEpoch++;
+      _startingCall = false;
+    }
     if (state == AppLifecycleState.resumed) {
-      _revalidateForeground();
+      _foregroundRevalidation = _revalidateForeground();
     } else {
       _stopRealtimeSync();
       setState(() {
@@ -541,10 +551,12 @@ class _AuthorizedChatRoomPageState
     }
     final token = _sessionToken;
     final epoch = _authorityEpoch;
+    final callIntent = _callIntentEpoch;
     bool current() =>
         mounted &&
         token == _sessionToken &&
         epoch == _authorityEpoch &&
+        callIntent == _callIntentEpoch &&
         _peerId == peerId &&
         _foreground &&
         !_revalidating;
@@ -555,16 +567,22 @@ class _AuthorizedChatRoomPageState
       if (!current() || !confirmed) return;
       final permissionService = ref.read(rtcPermissionServiceProvider);
       var permissionHandled = false;
-      if (!await permissionService.hasVoiceCallPermission()) {
+      final hasMicrophone = await permissionService.hasVoiceCallPermission();
+      final hasCamera =
+          mode != 'video' || await permissionService.hasCameraPermission();
+      if (!current()) return;
+      if (!hasMicrophone || !hasCamera) {
         if (!current()) return;
         permissionHandled = true;
         final granted =
             await router.push<bool>(
-              '${AppRouteNames.rtcPermission}?title=${Uri.encodeComponent('通话权限')}',
+              '${AppRouteNames.rtcPermission}?mode=$mode&title=${Uri.encodeComponent('通话权限')}',
             ) ??
             false;
+        final revalidation = _foregroundRevalidation;
+        if (revalidation != null) await revalidation;
         if (!current()) return;
-        if (!granted && !await permissionService.hasVoiceCallPermission()) {
+        if (!granted) {
           return;
         }
       }
@@ -605,9 +623,11 @@ class _AuthorizedChatRoomPageState
               permissionHandled = true;
               granted =
                   await router.push<bool>(
-                    '${AppRouteNames.rtcPermission}?title=${Uri.encodeComponent('通话权限')}',
+                    '${AppRouteNames.rtcPermission}?mode=$mode&title=${Uri.encodeComponent('通话权限')}',
                   ) ??
                   false;
+              final revalidation = _foregroundRevalidation;
+              if (revalidation != null) await revalidation;
             }
             if (!current()) return;
             final canRetry =
@@ -630,7 +650,9 @@ class _AuthorizedChatRoomPageState
         mode == 'video' ? '暂时无法开始视频通话，请稍后重试' : '暂时无法开始语音通话，请稍后重试',
       );
     } finally {
-      if (mounted) setState(() => _startingCall = false);
+      if (mounted && callIntent == _callIntentEpoch) {
+        setState(() => _startingCall = false);
+      }
     }
   }
 

@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_incoming_call_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_result_page.dart';
 import 'package:flutter_elitesync_module/design_system/components/buttons/app_primary_button.dart';
@@ -20,6 +22,7 @@ import 'package:flutter_elitesync_module/features/rtc/data/datasource/rtc_remote
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_livekit_join_info_entity.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_livekit_service.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
@@ -218,6 +221,10 @@ class NotifyingLeaveRtcService extends RtcLiveKitService {
   final List<int?> leaves = [];
   final List<int> connections = [];
   int suspensions = 0;
+  bool connected = false;
+
+  @override
+  bool get isConnected => connected;
 
   @override
   Future<void> suspendCapture() async {
@@ -238,11 +245,28 @@ class NotifyingLeaveRtcService extends RtcLiveKitService {
   }
 }
 
+class _CallPagePermissions implements RtcPermissionService {
+  bool granted = true;
+  Completer<bool>? pendingCheck;
+  @override
+  Future<bool> hasVoiceCallPermission() async => pendingCheck == null ? granted : await pendingCheck!.future;
+  @override
+  Future<bool> hasCameraPermission() async => granted;
+  @override
+  Future<bool> ensureVoiceCallPermission() async => granted;
+  @override
+  Future<bool> ensureCameraPermission() async => granted;
+  @override
+  Future<bool> openSettings() async => false;
+}
+
 Widget _wrap(
   Widget child, {
   required RtcRemoteDataSource rtc,
   bool liveKit = false,
   RtcLiveKitService? service,
+  RtcPermissionService? permissions,
+  GoRouter? router,
 }) {
   final telemetry = FakeAppTelemetryService();
   final container = ProviderContainer(
@@ -261,6 +285,7 @@ Widget _wrap(
         FrontendTelemetry(telemetry: telemetry),
       ),
       rtcRemoteDataSourceProvider.overrideWithValue(rtc),
+      rtcPermissionServiceProvider.overrideWithValue(permissions ?? _CallPagePermissions()),
       if (service != null)
         rtcLiveKitServiceProvider.overrideWith((ref) => service),
     ],
@@ -268,7 +293,7 @@ Widget _wrap(
   addTearDown(container.dispose);
   return UncontrolledProviderScope(
     container: container,
-    child: MaterialApp(
+    child: router != null ? MaterialApp.router(theme: AppTheme.light, routerConfig: router) : MaterialApp(
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.light,
@@ -290,6 +315,268 @@ RtcSessionEntity _videoCall(int id, String peer) => RtcSessionEntity.fromJson({
 });
 
 void main() {
+  testWidgets(
+    'focus loss after permission approval cancels its pending fresh call read',
+    (tester) async {
+      final rtc = FakeRtcRemoteDataSource(
+        _videoCall(123, 'PERMISSION_READ_PEER'),
+      );
+      final service = NotifyingLeaveRtcService(rtc);
+      final permissions = _CallPagePermissions()..granted = false;
+      final router = GoRouter(
+        initialLocation: '/call',
+        routes: [
+          GoRoute(
+            path: '/call',
+            builder: (_, _) =>
+                const RtcCallPage(callId: 123, autoConnect: false),
+          ),
+          GoRoute(
+            path: AppRouteNames.rtcPermission,
+            builder: (context, _) => Scaffold(
+              body: TextButton(
+                onPressed: () {
+                  permissions.granted = true;
+                  rtc.pendingFetch = Completer<RtcSessionEntity>();
+                  context.pop(true);
+                },
+                child: const Text('approve-before-read'),
+              ),
+            ),
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+      await tester.pumpWidget(
+        _wrap(
+          const SizedBox(),
+          rtc: rtc,
+          service: service,
+          liveKit: true,
+          permissions: permissions,
+          router: router,
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('approve-before-read'));
+      await tester.pumpAndSettle();
+      expect(service.connections, isEmpty);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      rtc.pendingFetch!.complete(rtc._session);
+      await tester.pumpAndSettle();
+      expect(service.connections, isEmpty);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets(
+    'focus loss while an existing permission is checked cancels explicit reconnect',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(1000, 2400));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final rtc = FakeRtcRemoteDataSource(
+        _videoCall(124, 'PERMISSION_CHECK_PEER'),
+      );
+      final service = NotifyingLeaveRtcService(rtc);
+      final permissions = _CallPagePermissions();
+      await tester.pumpWidget(
+        _wrap(
+          const RtcCallPage(callId: 124, autoConnect: false),
+          rtc: rtc,
+          service: service,
+          liveKit: true,
+          permissions: permissions,
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(service.connections, [124]);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      permissions.pendingCheck = Completer<bool>();
+      await tester.ensureVisible(find.text('重新连接'));
+      await tester.tap(find.text('重新连接'));
+      await tester.pump();
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      permissions.pendingCheck!.complete(true);
+      await tester.pumpAndSettle();
+      expect(service.connections, [124]);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets(
+    'a stale reconnect failure cannot close a newer reconnected room',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(1000, 2400));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final rtc = FakeRtcRemoteDataSource(
+        _videoCall(125, 'STALE_RECONNECT_PEER'),
+      );
+      final service = NotifyingLeaveRtcService(rtc);
+      await tester.pumpWidget(
+        _wrap(
+          const RtcCallPage(callId: 125, autoConnect: false),
+          rtc: rtc,
+          service: service,
+          liveKit: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      final oldRead = Completer<RtcSessionEntity>();
+      rtc.pendingFetch = oldRead;
+      await tester.ensureVisible(find.text('重新连接'));
+      await tester.tap(find.text('重新连接'));
+      await tester.pump();
+      for (final state in [
+        AppLifecycleState.inactive,
+        AppLifecycleState.hidden,
+        AppLifecycleState.paused,
+        AppLifecycleState.hidden,
+        AppLifecycleState.inactive,
+        AppLifecycleState.resumed,
+      ]) {
+        tester.binding.handleAppLifecycleStateChanged(state);
+      }
+      rtc.pendingFetch = null;
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('重新连接'));
+      await tester.tap(find.text('重新连接'));
+      await tester.pumpAndSettle();
+      expect(service.connections, [125, 125]);
+      final leavesBeforeOldFailure = service.leaves.length;
+      oldRead.completeError(StateError('old read failed'));
+      await tester.pumpAndSettle();
+      expect(service.leaves.length, leavesBeforeOldFailure);
+      expect(service.connections, [125, 125]);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  for (final mode in ['voice', 'video']) {
+    for (final home in [false, true]) {
+      testWidgets('direct $mode route permission with Home=$home', (
+        tester,
+      ) async {
+        final rtc = FakeRtcRemoteDataSource(
+          RtcSessionEntity.fromJson({
+            'id': 122,
+            'mode': mode,
+            'status': 'in_call',
+            'initiator_user_id': 1,
+            'peer_user_id': 2,
+            'is_initiator': true,
+            'is_active': true,
+          }),
+        );
+        final service = NotifyingLeaveRtcService(rtc);
+        final permissions = _CallPagePermissions()..granted = false;
+        final modes = <String?>[];
+        final router = GoRouter(
+          initialLocation: '/call',
+          routes: [
+            GoRoute(
+              path: '/call',
+              builder: (_, _) =>
+                  const RtcCallPage(callId: 122, autoConnect: false),
+            ),
+            GoRoute(
+              path: AppRouteNames.rtcPermission,
+              builder: (context, state) {
+                modes.add(state.uri.queryParameters['mode']);
+                return Scaffold(
+                  body: TextButton(
+                    onPressed: () {
+                      permissions.granted = true;
+                      context.pop(true);
+                    },
+                    child: const Text('allow-direct-call-permissions'),
+                  ),
+                );
+              },
+            ),
+          ],
+        );
+        addTearDown(router.dispose);
+        await tester.pumpWidget(
+          _wrap(
+            const SizedBox(),
+            rtc: rtc,
+            service: service,
+            liveKit: true,
+            permissions: permissions,
+            router: router,
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(service.connections, isEmpty);
+        expect(modes, [mode]);
+        tester.binding.handleAppLifecycleStateChanged(
+          AppLifecycleState.inactive,
+        );
+        if (home) {
+          tester.binding.handleAppLifecycleStateChanged(
+            AppLifecycleState.hidden,
+          );
+          tester.binding.handleAppLifecycleStateChanged(
+            AppLifecycleState.paused,
+          );
+          tester.binding.handleAppLifecycleStateChanged(
+            AppLifecycleState.hidden,
+          );
+          tester.binding.handleAppLifecycleStateChanged(
+            AppLifecycleState.inactive,
+          );
+        }
+        tester.binding.handleAppLifecycleStateChanged(
+          AppLifecycleState.resumed,
+        );
+        await tester.pump();
+        await tester.tap(find.text('allow-direct-call-permissions'));
+        await tester.pumpAndSettle();
+        expect(service.connections, home ? isEmpty : [122]);
+        if (!home) {
+          expect(
+            rtc.requestOrder.where((s) => s == 'session').length,
+            greaterThanOrEqualTo(2),
+          );
+        }
+        await tester.pumpWidget(const SizedBox());
+      });
+    }
+  }
+
+  testWidgets(
+    'server in_call does not report media ready before audio connects',
+    (tester) async {
+      final rtc = FakeRtcRemoteDataSource(
+        _videoCall(121, 'AUDIO_CONNECTING_PEER'),
+      );
+      final service = NotifyingLeaveRtcService(rtc);
+      await tester.pumpWidget(
+        _wrap(
+          const RtcCallPage(callId: 121, autoConnect: false),
+          rtc: rtc,
+          service: service,
+          liveKit: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('正在连接音频'), findsOneWidget);
+      expect(find.text('通话进行中'), findsNothing);
+      service.connected = true;
+      service.notifyListeners();
+      await tester.pumpAndSettle();
+      expect(find.text('等待对方音频'), findsOneWidget);
+      expect(find.text('通话进行中'), findsNothing);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
   testWidgets(
     'inactive round trip keeps capture closed until explicit reconnect',
     (tester) async {
@@ -882,19 +1169,19 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    expect(find.text('通话进行中'), findsOneWidget);
+    expect(find.text('音频连接异常'), findsOneWidget);
     expect(rtc.joinRequests, 1);
     rtc.denySession = true;
     await tester.pump(const Duration(seconds: 4));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 100));
     expect(find.text('通话加载失败'), findsOneWidget);
-    expect(find.text('通话进行中'), findsNothing);
+    expect(find.text('音频连接异常'), findsNothing);
     expect(rtc.joinRequests, 1);
     rtc.denySession = false;
     await tester.pump(const Duration(seconds: 4));
     await tester.pumpAndSettle();
-    expect(find.text('通话进行中'), findsOneWidget);
+    expect(find.text('音频连接异常'), findsOneWidget);
     // Fetch recovery must not silently republish media. Explicit reconnect remains required.
     expect(rtc.joinRequests, 1);
     await tester.pumpWidget(const SizedBox());

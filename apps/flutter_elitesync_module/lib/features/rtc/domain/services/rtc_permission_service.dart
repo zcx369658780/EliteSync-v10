@@ -3,8 +3,10 @@ import 'package:permission_handler/permission_handler.dart';
 
 abstract class RtcPermissionService {
   Future<bool> ensureVoiceCallPermission();
+  Future<bool> ensureCameraPermission();
   Future<bool> openSettings();
   Future<bool> hasVoiceCallPermission();
+  Future<bool> hasCameraPermission();
 }
 
 class PermissionHandlerRtcPermissionService implements RtcPermissionService {
@@ -24,6 +26,7 @@ class PermissionHandlerRtcPermissionService implements RtcPermissionService {
     return refreshedStatus.isGranted;
   }
 
+  @override
   Future<bool> ensureCameraPermission() async {
     final currentStatus = await Permission.camera.status;
     if (currentStatus.isGranted) return true;
@@ -37,6 +40,12 @@ class PermissionHandlerRtcPermissionService implements RtcPermissionService {
   @override
   Future<bool> hasVoiceCallPermission() async {
     final status = await Permission.microphone.status;
+    return status.isGranted;
+  }
+
+  @override
+  Future<bool> hasCameraPermission() async {
+    final status = await Permission.camera.status;
     return status.isGranted;
   }
 }

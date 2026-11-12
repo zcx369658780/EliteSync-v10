@@ -17,6 +17,7 @@ import 'package:flutter_elitesync_module/design_system/components/tags/app_choic
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_livekit_service.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/widgets/rtc_audio_spectrum_bar.dart';
@@ -52,6 +53,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   bool _foreground = true;
   int _mediaEpoch = 0;
   bool _backgroundSuspended = false;
+  int _actionEpoch = 0;
 
   bool get _currentSession =>
       mounted &&
@@ -83,6 +85,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   void didUpdateWidget(covariant RtcCallPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.callId != widget.callId) {
+      _actionEpoch++;
       _mediaEpoch++;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         unawaited(_leaveMediaOnce(oldWidget.callId));
@@ -118,6 +121,12 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
     debugPrint(
       'RTC_PAGE_LIFECYCLE callId=${widget.callId} state=${state.name}',
     );
+    if (state == AppLifecycleState.hidden ||
+        state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached) {
+      _actionEpoch++;
+      _busy = false;
+    }
     if (state == AppLifecycleState.resumed) {
       setState(() => _foreground = true);
       return;
@@ -155,15 +164,22 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
   }
 
   Future<void> _withAction(
-    Future<RtcSessionEntity> Function() action,
+    Future<RtcSessionEntity?> Function() action,
     String okMessage,
   ) async {
     if (_busy || !_currentSession) return;
     final callId = widget.callId;
+    final actionEpoch = _actionEpoch;
     setState(() => _busy = true);
     try {
       final session = await action();
-      if (!mounted || !_currentSession || widget.callId != callId) return;
+      if (session == null ||
+          !mounted ||
+          !_currentSession ||
+          widget.callId != callId ||
+          actionEpoch != _actionEpoch) {
+        return;
+      }
       ref
           .read(frontendTelemetryProvider)
           .rtcCallStatusChanged(
@@ -177,10 +193,18 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
       }
       AppFeedback.showInfo(context, okMessage);
     } catch (e) {
-      if (!mounted || !_currentSession || widget.callId != callId) return;
+      if (!mounted ||
+          !_currentSession ||
+          widget.callId != callId ||
+          actionEpoch != _actionEpoch) {
+        return;
+      }
       AppFeedback.showError(context, e.toString());
     } finally {
-      if (mounted && _currentSession && widget.callId == callId) {
+      if (mounted &&
+          _currentSession &&
+          widget.callId == callId &&
+          actionEpoch == _actionEpoch) {
         setState(() => _busy = false);
       }
     }
@@ -195,6 +219,59 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
       () => ref.read(rtcRemoteDataSourceProvider).connectCall(session.id),
       '已自动进入通话',
     );
+  }
+
+  Future<RtcSessionEntity?> _acceptCall(RtcSessionEntity session) async {
+    final mediaEpoch = await _permissionsBeforeMedia(session);
+    if (mediaEpoch == null || mediaEpoch != _mediaEpoch) return null;
+    final epoch = _actionEpoch;
+    final accepted = await ref
+        .read(rtcRemoteDataSourceProvider)
+        .acceptCall(session.id);
+    if (!_currentSession ||
+        !_foreground ||
+        widget.callId != session.id ||
+        epoch != _actionEpoch ||
+        mediaEpoch != _mediaEpoch) {
+      return null;
+    }
+    return accepted;
+  }
+
+  Future<int?> _permissionsBeforeMedia(RtcSessionEntity session) async {
+    final epoch = _actionEpoch;
+    var mediaEpoch = _mediaEpoch;
+    bool ownsIntent() =>
+        _currentSession &&
+        _foreground &&
+        widget.callId == session.id &&
+        epoch == _actionEpoch;
+    bool current() => ownsIntent() && mediaEpoch == _mediaEpoch;
+    if (_liveKitService.isEnabled) {
+      final permissions = ref.read(rtcPermissionServiceProvider);
+      final microphone = await permissions.hasVoiceCallPermission();
+      final camera =
+          session.mode != 'video' || await permissions.hasCameraPermission();
+      if (!mounted || !current()) return null;
+      if (!microphone || !camera) {
+        final granted = await context.push<bool>(
+          '${AppRouteNames.rtcPermission}?mode=${session.mode}',
+        );
+        if (!ownsIntent() || granted != true) return null;
+        // Only the permission route's own focus round trip is consumed here.
+        // A later loss of focus cancels its fresh server read and media join.
+        mediaEpoch = _mediaEpoch;
+        final fresh = await ref
+            .read(rtcRemoteDataSourceProvider)
+            .fetchCall(session.id);
+        if (!current() || fresh.id != session.id || fresh.isTerminal) {
+          return null;
+        }
+        _backgroundSuspended = false;
+        _liveKitService.resumeCapture();
+      }
+    }
+    return current() ? mediaEpoch : null;
   }
 
   Future<void> _syncLiveKit(RtcSessionEntity session) async {
@@ -217,6 +294,12 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
     if (_liveKitAttemptedCallId == session.id) return;
     _liveKitAttemptedCallId = session.id;
     try {
+      final mediaEpoch = await _permissionsBeforeMedia(session);
+      if (mediaEpoch == null || mediaEpoch != _mediaEpoch) return;
+      if (!_currentSession || !_foreground || _backgroundSuspended ||
+          _closedMediaCallIds.contains(session.id)) {
+        return;
+      }
       await liveKit.ensureConnected(session.id);
     } catch (_) {
       if (_currentSession && widget.callId == session.id) setState(() {});
@@ -230,9 +313,14 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
       return;
     }
     final callId = widget.callId;
-    final epoch = _mediaEpoch;
-    bool isCurrentAttempt() =>
+    final actionEpoch = _actionEpoch;
+    var epoch = _mediaEpoch;
+    bool ownsRequest() =>
         _currentSession &&
+        widget.callId == callId &&
+        actionEpoch == _actionEpoch;
+    bool isCurrentAttempt() =>
+        ownsRequest() &&
         _foreground &&
         _mediaEpoch == epoch &&
         widget.callId == callId;
@@ -248,6 +336,10 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
           !['connecting', 'in_call'].contains(current.status)) {
         throw StateError('通话当前不可重新连接');
       }
+      final permittedEpoch = await _permissionsBeforeMedia(current);
+      if (permittedEpoch == null) return;
+      epoch = permittedEpoch;
+      if (!isCurrentAttempt()) return;
       await _leaveMediaOnce(callId);
       if (!isCurrentAttempt()) return;
       _closedMediaCallIds.remove(callId);
@@ -257,12 +349,12 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
       _liveKitService.resumeCapture();
       await _liveKitService.ensureConnected(current.id);
     } catch (_) {
-      await _leaveMediaOnce(callId);
-      if (mounted && _currentSession && widget.callId == callId) {
+      if (isCurrentAttempt()) await _leaveMediaOnce(callId);
+      if (mounted && ownsRequest() && _foreground) {
         AppFeedback.showError(context, '当前通话授权或网络不可验证，媒体保持关闭');
       }
     } finally {
-      if (mounted && _currentSession && widget.callId == callId) {
+      if (ownsRequest()) {
         ref.invalidate(rtcCallProvider(callId));
         setState(() => _busy = false);
       }
@@ -363,6 +455,10 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
                   'calling' => '等待对方接听',
                   'ringing' => isIncoming ? '有来电进入' : '正在呼叫对方',
                   'connecting' => '正在建立通话',
+                  'in_call' when _liveKitService.isEnabled && _backgroundSuspended => '通话采集已暂停',
+                  'in_call' when _liveKitService.isEnabled && _liveKitService.failureMessage != null => '音频连接异常',
+                  'in_call' when _liveKitService.isEnabled && !_liveKitService.isConnected => '正在连接音频',
+                  'in_call' when _liveKitService.isEnabled && remoteAudioTrack == null => '等待对方音频',
                   'in_call' => '通话进行中',
                   'rejected' => '对方已拒绝',
                   'missed' => '未接通',
@@ -465,9 +561,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
                   isLoading: _busy,
                   prefixIcon: const Icon(Icons.call, color: Colors.white),
                   onPressed: () => _withAction(
-                    () => ref
-                        .read(rtcRemoteDataSourceProvider)
-                        .acceptCall(session.id),
+                    () => _acceptCall(session),
                     '已接听通话',
                   ),
                 ),

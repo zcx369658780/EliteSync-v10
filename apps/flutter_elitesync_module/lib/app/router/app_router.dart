@@ -311,7 +311,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: AppRouteNames.rtcPermission,
         pageBuilder: (context, state) {
           final title = state.uri.queryParameters['title'] ?? '通话权限';
-          return _fadeSlidePage(state, RtcPermissionPage(title: title));
+          return _fadeSlidePage(
+            state,
+            RtcPermissionPage(
+              title: title,
+              requireCamera: state.uri.queryParameters['mode'] == 'video',
+            ),
+          );
         },
       ),
       GoRoute(

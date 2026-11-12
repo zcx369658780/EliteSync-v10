@@ -16,6 +16,8 @@ import 'package:flutter_elitesync_module/design_system/components/tags/app_choic
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/features/rtc/domain/entities/rtc_session_entity.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
+import 'package:flutter_elitesync_module/features/rtc/domain/services/rtc_permission_service.dart';
+import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
 class RtcIncomingCallPage extends ConsumerStatefulWidget {
   const RtcIncomingCallPage({
@@ -32,7 +34,9 @@ class RtcIncomingCallPage extends ConsumerStatefulWidget {
       _RtcIncomingCallPageState();
 }
 
-class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
+class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage>
+    with WidgetsBindingObserver {
+  int _actionEpoch = 0;
   SessionState? _ownerSession;
   bool _sessionInvalidated = false;
   bool get _currentSession =>
@@ -50,21 +54,78 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     ref
         .read(frontendTelemetryProvider)
         .rtcCallEntryOpened(sourcePage: 'rtc_incoming_call');
   }
 
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant RtcIncomingCallPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.callId != widget.callId) {
+      _actionEpoch++;
+      _busy = false;
+    }
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.hidden ||
+        state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached) {
+      _actionEpoch++;
+      setState(() => _busy = false);
+    }
+  }
+
+  Future<RtcSessionEntity?> _acceptCall(RtcSessionEntity session) async {
+    final epoch = _actionEpoch;
+    bool current() =>
+        _currentSession && widget.callId == session.id && epoch == _actionEpoch;
+    if (ref.read(appEnvProvider).useLiveKitRtc) {
+      final permissions = ref.read(rtcPermissionServiceProvider);
+      final microphone = await permissions.hasVoiceCallPermission();
+      final camera =
+          session.mode != 'video' || await permissions.hasCameraPermission();
+      if (!mounted || !current()) return null;
+      if (!microphone || !camera) {
+        final granted = await context.push<bool>(
+          '${AppRouteNames.rtcPermission}?mode=${session.mode}',
+        );
+        if (!current() || granted != true) return null;
+      }
+    }
+    if (!current()) return null;
+    final accepted = await ref
+        .read(rtcRemoteDataSourceProvider)
+        .acceptCall(session.id);
+    return current() ? accepted : null;
+  }
+
   Future<RtcSessionEntity?> _withAction(
-    Future<RtcSessionEntity> Function() action,
+    Future<RtcSessionEntity?> Function() action,
     String okMessage,
   ) async {
     if (_busy || !_currentSession) return null;
     final callId = widget.callId;
+    final actionEpoch = _actionEpoch;
     setState(() => _busy = true);
     try {
       final session = await action();
-      if (!mounted || !_currentSession || widget.callId != callId) return null;
+      if (session == null ||
+          !mounted ||
+          !_currentSession ||
+          widget.callId != callId ||
+          actionEpoch != _actionEpoch) {
+        return null;
+      }
       ref
           .read(frontendTelemetryProvider)
           .rtcCallStatusChanged(
@@ -73,15 +134,27 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
             status: session.status,
           );
       ref.invalidate(rtcCallProvider(widget.callId));
-      if (!mounted || !_currentSession || widget.callId != callId) return null;
+      if (!mounted ||
+          !_currentSession ||
+          widget.callId != callId ||
+          actionEpoch != _actionEpoch) {
+        return null;
+      }
       AppFeedback.showInfo(context, okMessage);
       return session;
     } catch (e) {
-      if (!mounted || !_currentSession || widget.callId != callId) return null;
+      if (!mounted ||
+          !_currentSession ||
+          widget.callId != callId ||
+          actionEpoch != _actionEpoch) {
+        return null;
+      }
       AppFeedback.showError(context, e.toString());
       return null;
     } finally {
-      if (_currentSession && widget.callId == callId) {
+      if (_currentSession &&
+          widget.callId == callId &&
+          actionEpoch == _actionEpoch) {
         setState(() => _busy = false);
       }
     }
@@ -213,9 +286,7 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage> {
                   prefixIcon: const Icon(Icons.call, color: Colors.white),
                   onPressed: () async {
                     final updated = await _withAction(
-                      () => ref
-                          .read(rtcRemoteDataSourceProvider)
-                          .acceptCall(session.id),
+                      () => _acceptCall(session),
                       '已接听来电',
                     );
                     if (!mounted ||
