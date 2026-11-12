@@ -322,6 +322,15 @@ void main() {
       await tester.pumpAndSettle();
       expect(service.suspensions, 1);
       expect(service.connections, [107]);
+    rtc._session = RtcSessionEntity.fromJson({
+      ...rtc._sessionToJson(),
+      'status': 'ended',
+      'is_terminal': true,
+      'is_active': false,
+    });
+    await tester.pump(const Duration(seconds: 4));
+    await tester.pumpAndSettle();
+    expect(find.text('采集已暂停，请点击麦克风或摄像头重新开启。'), findsNothing);
       await tester.pumpWidget(const SizedBox());
     },
   );
@@ -525,6 +534,9 @@ void main() {
     await tester.pump(const Duration(seconds: 4));
     await tester.pumpAndSettle();
     expect(find.text('通话加载失败'), findsOneWidget);
+    expect(find.text('当前通话暂不可用，请重试或返回会话。'), findsOneWidget);
+    expect(find.textContaining('session denied'), findsNothing);
+    expect(find.text('返回会话'), findsOneWidget);
     expect(find.byKey(const ValueKey('rtc-local-video-preview')), findsNothing);
     expect(find.text('REMOVED_VIDEO_PEER'), findsNothing);
     expect(service.leaves, [98]);

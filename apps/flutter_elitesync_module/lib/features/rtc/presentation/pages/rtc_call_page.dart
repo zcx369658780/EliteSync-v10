@@ -378,7 +378,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
               ),
               SizedBox(height: t.spacing.xxs),
               Text(
-                _backgroundSuspended
+                _backgroundSuspended && !session.isTerminal
                     ? '采集已暂停，请点击麦克风或摄像头重新开启。'
                     : '麦克风和摄像头仅在当前通话中使用，挂断后关闭。',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -742,8 +742,12 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
               children: [
                 AppErrorState(
                   title: '通话加载失败',
-                  description: e.toString(),
+                  description: '当前通话暂不可用，请重试或返回会话。',
                   onRetry: _refresh,
+                ),
+                AppSecondaryButton(
+                  label: '返回会话',
+                  onPressed: () => context.go(AppRouteNames.messages),
                 ),
               ],
             );
