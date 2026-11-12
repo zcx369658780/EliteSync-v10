@@ -161,11 +161,7 @@ class RtcLiveKitService extends ChangeNotifier {
   @visibleForTesting
   void recordMediaSubscriptionSuccess(Room room, String sid) {
     if (!_ownsRoom(room, _connectionGeneration) || sid.isEmpty) return;
-    final removed = _failedMediaSubscriptions.remove(sid);
-    final removedUnknown = _failedMediaSubscriptions.remove(
-      _unknownMediaSubscription,
-    );
-    if (removed || removedUnknown) _mediaChanged();
+    if (_failedMediaSubscriptions.remove(sid)) _mediaChanged();
   }
 
   @visibleForTesting
@@ -205,18 +201,11 @@ class RtcLiveKitService extends ChangeNotifier {
         );
     final operation = _mediaOutputMutation.then((_) async {
       if (!current()) return;
-      await _restoreAudioOutput(
-        room,
-        callId: callId,
-        reason: 'user_retry',
-        generation: generation,
-        captureGeneration: captureGeneration,
-      );
-      if (!current()) return;
       final publications = [
         for (final participant in room.remoteParticipants.values)
           for (final publication in participant.trackPublications.values)
-            if ((publication.kind == TrackType.AUDIO ||
+            if (publication.sid.isNotEmpty &&
+                (publication.kind == TrackType.AUDIO ||
                     publication.kind == TrackType.VIDEO) &&
                 (failedSubscriptions.contains(publication.sid) ||
                     (!publication.muted &&
@@ -225,9 +214,31 @@ class RtcLiveKitService extends ChangeNotifier {
                                 publication.kind == TrackType.AUDIO)))))
               publication,
       ];
+      var pendingChanged = false;
+      for (final publication in publications) {
+        if (_failedMediaSubscriptions.add(publication.sid)) {
+          pendingChanged = true;
+        }
+      }
+      if (retryUnknownSubscription && publications.isNotEmpty) {
+        pendingChanged =
+            _failedMediaSubscriptions.remove(_unknownMediaSubscription) ||
+            pendingChanged;
+      }
+      if (pendingChanged) _mediaChanged();
+      await _restoreAudioOutput(
+        room,
+        callId: callId,
+        reason: 'user_retry',
+        generation: generation,
+        captureGeneration: captureGeneration,
+      );
+      if (!current()) return;
       for (final publication in publications) {
         if (!current()) return;
         if (!publicationIsCurrent(publication)) continue;
+        // A real receipt may already have recovered this track during playback.
+        if (!_failedMediaSubscriptions.contains(publication.sid)) continue;
         if (!publication.subscriptionAllowed) {
           recordMediaSubscriptionFailure(room, publication.sid);
           continue;

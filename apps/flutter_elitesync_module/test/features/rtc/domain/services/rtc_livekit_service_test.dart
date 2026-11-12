@@ -408,9 +408,38 @@ void main() {
       service.dispose();
     });
 
-    test('playback repair requests only unmuted remote audio', () async {
-      final audio = _RemotePublication('audio-to-repair');
-      final video = _RemotePublication('healthy-video', kind: TrackType.VIDEO);
+    test(
+      'playback-only repair retains error until actual audio subscription',
+      () async {
+        final audio = _RemotePublication('audio-to-repair');
+        final video = _RemotePublication(
+          'healthy-video',
+          kind: TrackType.VIDEO,
+        );
+        final remote = _RemoteMediaParticipant()
+          ..trackPublications[audio.sid] = audio
+          ..trackPublications[video.sid] = video;
+        final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+        final service = _speakerService(
+          room,
+          (preferred, {force = false}) async {},
+          playbackStarter: (_) async => true,
+        );
+        service.recordMediaPlaybackStatus(room, false);
+        await service.retryMediaOutput(17);
+        expect(audio.requests, ['unsubscribe', 'subscribe']);
+        expect(video.requests, isEmpty);
+        expect(service.mediaOutputFailureMessage, contains('远端音视频接收'));
+        service.recordMediaSubscriptionSuccess(room, audio.sid);
+        expect(service.mediaOutputFailureMessage, isNull);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
+    test('unknown-only retry waits for every selected AV track', () async {
+      final audio = _RemotePublication('unknown-audio');
+      final video = _RemotePublication('unknown-video', kind: TrackType.VIDEO);
       final remote = _RemoteMediaParticipant()
         ..trackPublications[audio.sid] = audio
         ..trackPublications[video.sid] = video;
@@ -420,13 +449,66 @@ void main() {
         (preferred, {force = false}) async {},
         playbackStarter: (_) async => true,
       );
-      service.recordMediaPlaybackStatus(room, false);
+      service.recordMediaSubscriptionFailure(room, null);
       await service.retryMediaOutput(17);
       expect(audio.requests, ['unsubscribe', 'subscribe']);
-      expect(video.requests, isEmpty);
+      expect(video.requests, ['unsubscribe', 'subscribe']);
+      service.recordMediaSubscriptionSuccess(room, video.sid);
+      expect(service.mediaOutputFailureMessage, isNotNull);
+      service.recordMediaSubscriptionSuccess(room, audio.sid);
+      expect(service.mediaOutputFailureMessage, isNull);
       await service.leave();
       service.dispose();
     });
+
+    test(
+      'unknown with no publications survives unrelated track success',
+      () async {
+        final room = _MediaRoom(_MediaParticipant());
+        final service = _speakerService(
+          room,
+          (preferred, {force = false}) async {},
+          playbackStarter: (_) async => true,
+        );
+        service.recordMediaSubscriptionFailure(room, null);
+        await service.retryMediaOutput(17);
+        expect(service.mediaOutputFailureMessage, isNotNull);
+        service.recordMediaSubscriptionSuccess(room, 'unrelated-success');
+        expect(service.mediaOutputFailureMessage, isNotNull);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
+    test(
+      'unpublished selected tracks clear only their pending receipts',
+      () async {
+        final audio = _RemotePublication('removed-audio');
+        final video = _RemotePublication(
+          'removed-video',
+          kind: TrackType.VIDEO,
+        );
+        final remote = _RemoteMediaParticipant()
+          ..trackPublications[audio.sid] = audio
+          ..trackPublications[video.sid] = video;
+        final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+        final service = _speakerService(
+          room,
+          (preferred, {force = false}) async {},
+          playbackStarter: (_) async => true,
+        );
+        service.recordMediaSubscriptionFailure(room, null);
+        await service.retryMediaOutput(17);
+        remote.trackPublications.remove(video.sid);
+        service.recordMediaSubscriptionUnpublished(room, video.sid);
+        expect(service.mediaOutputFailureMessage, isNotNull);
+        remote.trackPublications.remove(audio.sid);
+        service.recordMediaSubscriptionUnpublished(room, audio.sid);
+        expect(service.mediaOutputFailureMessage, isNull);
+        await service.leave();
+        service.dispose();
+      },
+    );
 
     test(
       'a specific subscription failure only retries its own publication',
@@ -474,7 +556,7 @@ void main() {
         service.recordMediaSubscriptionUnpublished(room, 'removed-track');
         expect(service.mediaOutputFailureMessage, isNotNull);
         service.recordMediaSubscriptionSuccess(room, 'replacement-track');
-        expect(service.mediaOutputFailureMessage, isNull);
+        expect(service.mediaOutputFailureMessage, isNotNull);
         await service.leave();
         await otherRoom.dispose();
         service.dispose();
@@ -533,7 +615,7 @@ void main() {
           await service.retryMediaOutput(17);
           expect(service.mediaOutputFailureMessage, contains('远端音视频接收'));
           service.recordMediaSubscriptionSuccess(room, 'actual-received-track');
-          expect(service.mediaOutputFailureMessage, isNull);
+          expect(service.mediaOutputFailureMessage, isNotNull);
           await service.leave();
           service.dispose();
         },
