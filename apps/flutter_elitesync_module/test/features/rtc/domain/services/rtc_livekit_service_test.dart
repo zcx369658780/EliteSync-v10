@@ -855,6 +855,39 @@ void main() {
       },
     );
 
+    test(
+      'an old success during unsubscribe cannot clear the new request receipt',
+      () async {
+        final pending = Completer<void>();
+        final publication = _RemotePublication('same-sid-retry')
+          ..pendingUnsubscribe = pending;
+        final remote = _RemoteMediaParticipant()
+          ..trackPublications[publication.sid] = publication;
+        final room = _MediaRoom(_MediaParticipant())..peers['peer'] = remote;
+        final service = _speakerService(
+          room,
+          (preferred, {force = false}) async {},
+          playbackStarter: (_) async => true,
+        );
+        service.recordMediaSubscriptionFailure(room, publication.sid);
+        final retry = service.retryMediaOutput(17);
+        await Future<void>.delayed(Duration.zero);
+        expect(publication.requests, ['unsubscribe']);
+        service.recordMediaSubscriptionSuccess(room, publication.sid);
+        expect(service.mediaOutputFailureMessage, isNull);
+        pending.complete();
+        await retry;
+        expect(publication.requests, ['unsubscribe', 'subscribe']);
+        expect(publication.subscribed, isFalse);
+        expect(service.mediaOutputFailureMessage, contains('远端音视频接收'));
+        publication.subscribed = true;
+        service.recordMediaSubscriptionSuccess(room, publication.sid);
+        expect(service.mediaOutputFailureMessage, isNull);
+        await service.leave();
+        service.dispose();
+      },
+    );
+
     test('mismatched call or disconnected room refuses recovery', () async {
       var starts = 0;
       final room = _MediaRoom(_MediaParticipant());

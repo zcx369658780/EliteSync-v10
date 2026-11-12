@@ -251,6 +251,8 @@ class RtcLiveKitService extends ChangeNotifier {
             recordMediaSubscriptionFailure(room, publication.sid);
             continue;
           }
+          // An old receipt may arrive while unsubscribe disposes its track.
+          recordMediaSubscriptionFailure(room, publication.sid);
           // Sending a subscription request is not a received-track receipt.
           await publication.subscribe();
           if (!current()) return;
