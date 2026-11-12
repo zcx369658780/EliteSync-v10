@@ -1,14 +1,14 @@
-# 当前入口｜2026-11-12 已有功能实机与顾问资料
+# 当前入口｜2026-11-12 Owner长会话保存与手动交接
 
-当前 **EXISTING_FEATURE_ADVISOR_PACKAGE_WITH_OPEN_ACCEPTANCE_ITEMS**。Owner范围为已有功能实机测试、修复与顾问资料收口。[验收目录](../versions/v10.1.5/acceptance/README.md)含功能、控件与导航、120张实际截图索引和逐项结果。
+当前 **OWNER_REQUESTED_HANDOFF_AWAITING_CONTINUE**。Owner要求立即保存本地/GitHub的任务进度、决定与工作流并提供交接prompt，完成后结束本轮推进。长期普通工程授权继续有效，后续收到新的继续指令恢复既有范围。
 
-当前APP `0badb31c38db63fe0fb1b5fcbfb43e5cb4e68d3f`，后端 `6549f02880968f99ae3f45439d15a37c1b3d5251`。APK 154570461字节，SHA256 `1e9adad71b962c8adfcfd280450ed9ae9e5b1f7127988d225a036e3c3826dfea`，离线46.0227167秒/退出0/v2。手机A与5580/B同包，账号聊天保留，5582/A暂停保留旧cdb。
+最小入口为AGENTS、本段、CURRENT_WORKFLOW及[最新验收资料交接](V1015_ADVISOR_ACCEPTANCE_HANDOFF_20261112.md)。当前APP源码 `0badb31c38db63fe0fb1b5fcbfb43e5cb4e68d3f`，后端 `6549f02880968f99ae3f45439d15a37c1b3d5251`，APK 154570461字节，SHA256 `1e9adad71b962c8adfcfd280450ed9ae9e5b1f7127988d225a036e3c3826dfea`。本次保存前开发HEAD790d6841，最终双分支保存SHA见本机最新收据。
 
-本轮通知闪烁获Owner确认，版本误降级、原生选图衔接、后台RTC历史快照累积及过期来电页停留均已按具名范围修复。当前来电46自然30秒过期自动终态、47正常拒绝通过。26c文字120/121和图片122/视频123通过，0bad仅改变来电页。17+4后台定向、15来电定向及各自analyze通过，聊天33项沿bd原证，非作者静态复核范围见报告。4分钟26c和2分钟最终0bad内存观察、20秒熄屏恢复通过，长时仍待。
+Owner范围为已有功能实机测试、问题修复和顾问材料收口。资料已在独立分支 `codex/v10.1.5-advisor-acceptance-20261112`，材料快照 `85197adec124ef94bbef2994c0668dc990f9bed4`，[顾问入口](https://github.com/zcx369658780/EliteSync-v10/blob/85197adec124ef94bbef2994c0668dc990f9bed4/docs/versions/v10.1.5/advisor-acceptance-20261112/README.md)含功能说明、120图、控件导航、结果与29份去敏摘要。Owner已明确授权本次材料上传，发布清单和原图哈希核对保留。
 
-手机MBTI、20题人格问卷、三盘与本人快照Synastry持久读回，以及引导/主题恢复/密码空输入校验已记录。Web读取10页与登出、完整长页截图完成。顾问总验收与Owner最终接受待进行。
+通知闪烁获Owner确认，版本/选图/后台快照累积/来电过期等修复及限定定向检查已记录。最终同包46自然过期自动终态、47正常拒绝与模拟器20秒熄屏恢复通过。短时内存观察、消息媒体、问卷、本人私有盘、Web等分别保留具名候选与实际范围。
 
-仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。自然期限、硬件、蓝牙、完整权限并发/停媒/长时及部分条件叶页未完整验收。SFU多次monitor TimeoutError再次普通恢复，原因UNKNOWN，保留原证与恢复记录。原主库dirty/index、无关%SystemDrive%/、旧STOP受保护。私有原证仅本地。
+冻结结论 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**，顾问与Owner最终接受待定。自然期限、硬件、完整权限并发/停媒/长时、蓝牙、条件页和SFU monitor超时原因等待验。最近资源快照为22:44:43中国时间的四服务运行/Room0/无采集，当前资源待恢复前实查。原主库dirty/index、无关%SystemDrive%/、旧STOP及已耗记录受保护。
 
 以下为历史交付快照。
 
