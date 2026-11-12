@@ -116,26 +116,72 @@ class AppVersionController extends Controller
                 return -1;
             }
         }
-        return 0;
+
+        return $this->comparePrerelease($l[4], $r[4]);
     }
 
     /**
-     * Version format: major.minor.patch or major.minor.patch[suffix], e.g. 0.03.02a
+     * Preserve legacy patch letters, with optional prerelease and build metadata.
      *
-     * @return array{0:int,1:int,2:int,3:int}
+     * @return array{0:int,1:int,2:int,3:int,4:list<string>}
      */
     private function parseVersion(string $value): array
     {
-        if (preg_match('/^\s*(\d+)\.(\d+)\.(\d+)([a-z]*)\s*$/i', $value, $m) === 1) {
+        if (preg_match('/^\s*(\d+)\.(\d+)\.(\d+)([a-z]*)(?:-([0-9a-z-]+(?:\.[0-9a-z-]+)*))?(?:\+[0-9a-z-]+(?:\.[0-9a-z-]+)*)?\s*$/i', $value, $m) === 1) {
+            $prerelease = (string) ($m[5] ?? '');
+
             return [
                 (int) $m[1],
                 (int) $m[2],
                 (int) $m[3],
                 $this->parseVersionSuffixRank(strtolower((string) $m[4])),
+                $prerelease === '' ? [] : explode('.', $prerelease),
             ];
         }
 
-        return [0, 0, 0, 0];
+        return [0, 0, 0, 0, []];
+    }
+
+    /**
+     * @param list<string> $left
+     * @param list<string> $right
+     */
+    private function comparePrerelease(array $left, array $right): int
+    {
+        if ($left === $right) {
+            return 0;
+        }
+        if ($left === []) {
+            return 1;
+        }
+        if ($right === []) {
+            return -1;
+        }
+
+        $sharedLength = min(count($left), count($right));
+        for ($i = 0; $i < $sharedLength; $i++) {
+            $leftNumeric = ctype_digit($left[$i]);
+            $rightNumeric = ctype_digit($right[$i]);
+            if ($leftNumeric && $rightNumeric) {
+                // Compare digit strings without integer overflow.
+                $leftDigits = ltrim($left[$i], '0');
+                $rightDigits = ltrim($right[$i], '0');
+                $comparison = strlen($leftDigits) <=> strlen($rightDigits);
+                if ($comparison === 0) {
+                    $comparison = strcmp($leftDigits, $rightDigits);
+                }
+            } elseif ($leftNumeric !== $rightNumeric) {
+                $comparison = $leftNumeric ? -1 : 1;
+            } else {
+                $comparison = strcmp($left[$i], $right[$i]);
+            }
+
+            if ($comparison !== 0) {
+                return $comparison <=> 0;
+            }
+        }
+
+        return count($left) <=> count($right);
     }
 
     private function parseVersionSuffixRank(string $suffix): int
