@@ -960,6 +960,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         }
         assetId = uploaded.assetId!;
         _readyMediaAsset = assetId;
+        _uploadStatus = '附件已上传，等待发送确认。';
       }
       if (_offline) {
         setState(() => _uploadStatus = '附件已上传，联网后请重试发送。');

@@ -547,6 +547,7 @@ void main() {
     expect(f.gateway.uploads, 1);
     expect(f.api.posts, isEmpty);
     expect(find.text('重试发送附件'), findsOneWidget);
+    expect(find.text('附件已上传，等待发送确认。'), findsOneWidget);
     f.api.pendingRead!.complete(const NetworkSuccess({'items': <dynamic>[]}));
     await tester.pumpAndSettle();
     await tester.tap(find.text('重试发送附件'));
