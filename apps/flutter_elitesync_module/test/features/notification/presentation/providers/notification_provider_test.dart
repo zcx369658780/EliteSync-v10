@@ -125,6 +125,29 @@ void main() {
     expect(source.unreadReads, 2);
   });
 
+  test('reopening the list reads current notifications once', () async {
+    final source = _Notifications()..items = [_item(1)];
+    final container = _container(source);
+    await container.read(sessionProvider.future);
+    final firstPage = container.listen(notificationListProvider, (_, _) {});
+    expect(
+      (await container.read(notificationListProvider.future)).single.id,
+      1,
+    );
+    expect(source.listReads, 1);
+
+    firstPage.close();
+    await container.pump();
+    source.items = [_item(2)];
+    container.listen(notificationListProvider, (_, _) {});
+
+    expect(
+      (await container.read(notificationListProvider.future)).single.id,
+      2,
+    );
+    expect(source.listReads, 2);
+  });
+
   for (final changeAccount in [true, false]) {
     test('late list/count results cannot replace changed '
         '${changeAccount ? 'session' : 'authority epoch'}', () async {

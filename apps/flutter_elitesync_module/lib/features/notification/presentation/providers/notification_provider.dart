@@ -17,13 +17,16 @@ final notificationRemoteDataSourceProvider =
       );
     });
 
-final notificationListProvider = FutureProvider<List<NotificationItemEntity>>((
-  ref,
-) async {
-  ref.watch(relationshipAuthorityEpochProvider);
-  if (ref.watch(sessionProvider).asData?.value.isLoggedIn != true) return [];
-  return ref.read(notificationRemoteDataSourceProvider).fetchNotifications();
-}, retry: (_, _) => null);
+final notificationListProvider =
+    FutureProvider.autoDispose<List<NotificationItemEntity>>((ref) async {
+      ref.watch(relationshipAuthorityEpochProvider);
+      if (ref.watch(sessionProvider).asData?.value.isLoggedIn != true) {
+        return [];
+      }
+      return ref
+          .read(notificationRemoteDataSourceProvider)
+          .fetchNotifications();
+    }, retry: (_, _) => null);
 
 final notificationUnreadCountProvider = FutureProvider<int>((ref) async {
   ref.watch(relationshipAuthorityEpochProvider);
