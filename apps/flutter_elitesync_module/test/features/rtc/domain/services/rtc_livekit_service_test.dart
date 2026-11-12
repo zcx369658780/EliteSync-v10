@@ -282,7 +282,7 @@ void main() {
       expect(camera.nativeActive, isFalse);
       await service.setMicrophoneEnabled(true);
       participant.trackPublications['camera'] = oldPublication;
-      room.events.emit(
+    room.events.streamCtrl.add(
         LocalTrackPublishedEvent(
           participant: participant,
           publication: oldPublication,
