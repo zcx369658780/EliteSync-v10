@@ -64,6 +64,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
     super.initState();
     final lifecycle = WidgetsBinding.instance.lifecycleState;
     _foreground =
+        lifecycle != AppLifecycleState.inactive &&
         lifecycle != AppLifecycleState.paused &&
         lifecycle != AppLifecycleState.hidden &&
         lifecycle != AppLifecycleState.detached;
@@ -114,11 +115,15 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    debugPrint(
+      'RTC_PAGE_LIFECYCLE callId=${widget.callId} state=${state.name}',
+    );
     if (state == AppLifecycleState.resumed) {
       setState(() => _foreground = true);
       return;
     }
-    if (state != AppLifecycleState.paused &&
+    if (state != AppLifecycleState.inactive &&
+        state != AppLifecycleState.paused &&
         state != AppLifecycleState.hidden &&
         state != AppLifecycleState.detached) {
       return;
@@ -373,7 +378,9 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
               ),
               SizedBox(height: t.spacing.xxs),
               Text(
-                '麦克风和摄像头仅在当前通话中使用，挂断后关闭。',
+                _backgroundSuspended
+                    ? '采集已暂停，请点击麦克风或摄像头重新开启。'
+                    : '麦克风和摄像头仅在当前通话中使用，挂断后关闭。',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: t.textSecondary,
                   height: 1.35,

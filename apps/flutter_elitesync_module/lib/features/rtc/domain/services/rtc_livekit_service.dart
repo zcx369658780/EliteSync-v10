@@ -35,14 +35,17 @@ class RtcLiveKitService extends ChangeNotifier {
            cameraTrackFactory ?? LocalVideoTrack.createCameraTrack,
        _createAudioTrack = audioTrackFactory ?? LocalAudioTrack.create,
        _microphonePermission = microphonePermission,
-       _cameraPermission = cameraPermission;
+       _cameraPermission = cameraPermission {
+    _observeLocalPublications(room);
+  }
 
   final Future<bool> Function() _microphonePermission;
   final Future<bool> Function() _cameraPermission;
   final Future<LocalVideoTrack> Function(CameraCaptureOptions)
   _createCameraTrack;
   final Future<LocalAudioTrack> Function(AudioCaptureOptions) _createAudioTrack;
-  final _pendingLocalTracks = <LocalTrack, Room>{};
+  // SDK reconnect temporarily clears publications before republishing tracks.
+  final _localTracks = <LocalTrack, ({Room room, int captureGeneration})>{};
   Future<void> _cameraMutation = Future.value();
   Future<void> _microphoneMutation = Future.value();
   Future<void> _teardown = Future.value();
@@ -138,7 +141,10 @@ class RtcLiveKitService extends ChangeNotifier {
         final track = await _createAudioTrack(
           room!.roomOptions.defaultAudioCaptureOptions,
         );
-        _pendingLocalTracks[track] = room;
+        _localTracks[track] = (
+          room: room,
+          captureGeneration: captureGeneration,
+        );
         var published = false;
         try {
           if (!current()) return;
@@ -146,8 +152,7 @@ class RtcLiveKitService extends ChangeNotifier {
           if (!current()) return;
           published = true;
         } finally {
-          if (!published) await _suspendTrack(track);
-          _pendingLocalTracks.remove(track);
+          if (!published) await _discardLocalTrack(room, track);
         }
       }
       _microphoneEnabled = enabled;
@@ -260,6 +265,7 @@ class RtcLiveKitService extends ChangeNotifier {
     if (track != null) await _suspendTrack(track);
     if (!current()) return false;
     await participant.removePublishedTrack(publication.sid);
+    _localTracks.remove(track);
     return current();
   }
 
@@ -271,7 +277,7 @@ class RtcLiveKitService extends ChangeNotifier {
   ) async {
     if (!current()) return false;
     final track = await _createCameraTrack(options);
-    _pendingLocalTracks[track] = room;
+    _localTracks[track] = (room: room, captureGeneration: _captureGeneration);
     var published = false;
     try {
       if (!current()) return false;
@@ -281,8 +287,7 @@ class RtcLiveKitService extends ChangeNotifier {
       _frontCamera = options.cameraPosition == CameraPosition.front;
       return true;
     } finally {
-      if (!published) await _suspendTrack(track);
-      _pendingLocalTracks.remove(track);
+      if (!published) await _discardLocalTrack(room, track);
     }
   }
 
@@ -921,6 +926,7 @@ class RtcLiveKitService extends ChangeNotifier {
         ),
       );
       _room = room;
+      _observeLocalPublications(room);
       room.addListener(_mediaChanged);
       _startHeartbeat(callId);
       final connectOptions = ConnectOptions(
@@ -1184,21 +1190,70 @@ class RtcLiveKitService extends ChangeNotifier {
     }
   }
 
+  Future<void> _discardLocalTrack(Room? room, LocalTrack track) async {
+    await _suspendTrack(track);
+    final participant = room?.localParticipant;
+    final publications =
+        participant?.trackPublications.values.toList() ??
+        <LocalTrackPublication>[];
+    for (final publication in publications) {
+      if (!identical(publication.track, track)) continue;
+      try {
+        await participant!.removePublishedTrack(publication.sid);
+      } catch (_) {
+        debugPrint('RTC_LOCAL_UNPUBLISH_FAILED');
+      }
+    }
+    _localTracks.remove(track);
+  }
+
+  void _observeLocalPublications(Room room) {
+    for (final publication
+        in room.localParticipant?.trackPublications.values ??
+            <LocalTrackPublication>[]) {
+      final track = publication.track;
+      if (track != null) {
+        _localTracks[track] = (
+          room: room,
+          captureGeneration: _captureGeneration,
+        );
+      }
+    }
+    room.events.on<LocalTrackPublishedEvent>((event) {
+      final track = event.publication.track;
+      if (track == null) return;
+      final owner = _localTracks[track];
+      if (!identical(_room, room) ||
+          _captureSuspended ||
+          owner == null ||
+          !identical(owner.room, room) ||
+          owner.captureGeneration != _captureGeneration) {
+        unawaited(_discardLocalTrack(room, track));
+      }
+    });
+  }
+
   Future<void> suspendCapture() {
+    _logLifecycle(_connectedCallId, 'capture_suspend_start');
     _captureGeneration++;
     _captureSuspended = true;
     _cameraEnabled = false;
     _microphoneEnabled = false;
     final room = _room;
     final tracks = <LocalTrack>{
-      for (final entry in _pendingLocalTracks.entries)
-        if (identical(entry.value, room)) entry.key,
+      for (final entry in _localTracks.entries)
+        if (identical(entry.value.room, room)) entry.key,
       for (final publication
           in room?.localParticipant?.trackPublications.values ??
               <LocalTrackPublication>[])
         ?publication.track,
     };
-    final stopping = Future.wait(tracks.map(_suspendTrack)).then<void>((_) {});
+    final stopping =
+        Future.wait(
+          tracks.map((track) => _discardLocalTrack(room, track)),
+        ).then<void>((_) {
+          _logLifecycle(_connectedCallId, 'capture_suspend_complete');
+        });
     _captureStop = Future.wait([_captureStop, stopping]).then<void>((_) {});
     _mediaChanged();
     return _captureStop;
@@ -1207,14 +1262,15 @@ class RtcLiveKitService extends ChangeNotifier {
   Future<void> _releaseRoom(Room room) async {
     // Track.stop releases native capture independently of signaling teardown.
     final tracks = <LocalTrack>{
-      for (final entry in _pendingLocalTracks.entries)
-        if (identical(entry.value, room)) entry.key,
+      for (final entry in _localTracks.entries)
+        if (identical(entry.value.room, room)) entry.key,
       for (final publication
           in room.localParticipant?.trackPublications.values ??
               <LocalTrackPublication>[])
         ?publication.track,
     };
     await Future.wait(tracks.map(_stopTrack));
+    _localTracks.removeWhere((track, owner) => identical(owner.room, room));
     try {
       await room.disconnect();
     } catch (_) {

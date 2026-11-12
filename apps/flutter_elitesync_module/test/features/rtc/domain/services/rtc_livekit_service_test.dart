@@ -228,6 +228,8 @@ class _MediaRoom implements Room {
   int disposeCalls = 0;
   final disconnectStarted = Completer<void>();
   @override
+  final events = EventsEmitter<RoomEvent>();
+  @override
   final LocalParticipant localParticipant;
   @override
   final RoomOptions roomOptions;
@@ -243,6 +245,7 @@ class _MediaRoom implements Room {
   @override
   Future<bool> dispose() async {
     disposeCalls++;
+    await events.dispose();
     return true;
   }
 
@@ -251,6 +254,49 @@ class _MediaRoom implements Room {
 }
 
 void main() {
+  test(
+    'suspension owns tracks while SDK reconnect clears publications',
+    () async {
+      final camera = _VideoCaptureTrack();
+      final microphone = _AudioCaptureTrack();
+      final participant = _MediaParticipant()..cameraAlreadyPublished = false;
+      final room = _MediaRoom(participant);
+      final service = RtcLiveKitService.mediaControlTest(
+        remoteDataSource: _DeniedRtcSource(),
+        appEnv: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Reconnect capture ownership test',
+          apiBaseUrl: 'http://127.0.0.1',
+          useMockData: false,
+        ),
+        room: room,
+        microphonePermission: () async => true,
+        cameraPermission: () async => true,
+        cameraTrackFactory: (_) async => camera,
+        audioTrackFactory: (_) async => microphone,
+      );
+      await service.setCameraEnabled(true);
+      final oldPublication = participant.trackPublications['camera']!;
+      participant.trackPublications.clear(); // SDK full-reconnect snapshot.
+      await service.suspendCapture();
+      expect(camera.nativeActive, isFalse);
+      await service.setMicrophoneEnabled(true);
+      participant.trackPublications['camera'] = oldPublication;
+      room.events.emit(
+        LocalTrackPublishedEvent(
+          participant: participant,
+          publication: oldPublication,
+        ),
+      );
+      await Future<void>.delayed(Duration.zero);
+      expect(participant.trackPublications.containsKey('camera'), isFalse);
+      expect(camera.nativeActive, isFalse);
+      expect(microphone.nativeActive, isTrue);
+      await service.leave();
+      service.dispose();
+    },
+  );
+
   for (final device in ['microphone', 'camera']) {
     test(
       'restoring muted $device replaces the track without implicit restart',
@@ -370,6 +416,8 @@ void main() {
       );
       await service.suspendCapture();
       expect([microphone.stops, camera.stops], [1, 1]);
+      // Full SDK reconnect republishes every retained local publication.
+      expect(participant.trackPublications, isEmpty);
       expect(room.disconnectStarted.isCompleted, isFalse);
       expect(room.disposeCalls, 0);
       expect(service.microphoneEnabled, isFalse);

@@ -291,6 +291,42 @@ RtcSessionEntity _videoCall(int id, String peer) => RtcSessionEntity.fromJson({
 
 void main() {
   testWidgets(
+    'inactive round trip keeps capture closed until explicit reconnect',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(1000, 2400));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      final rtc = FakeRtcRemoteDataSource(_videoCall(107, 'INACTIVE_PEER'));
+      final service = NotifyingLeaveRtcService(rtc);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      await tester.pumpWidget(
+        _wrap(
+          const RtcCallPage(callId: 107, autoConnect: false),
+          rtc: rtc,
+          service: service,
+          liveKit: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(service.connections, isEmpty);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      expect(service.connections, isEmpty);
+      expect(find.text('采集已暂停，请点击麦克风或摄像头重新开启。'), findsOneWidget);
+      final reconnect = find.text('重新连接');
+      await tester.ensureVisible(reconnect);
+      await tester.tap(reconnect);
+      await tester.pumpAndSettle();
+      expect(service.connections, [107]);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      expect(service.suspensions, 1);
+      expect(service.connections, [107]);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets(
     'background suspends capture once and preserves the active call',
     (tester) async {
       await tester.binding.setSurfaceSize(const Size(1000, 2400));
@@ -307,6 +343,9 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(service.connections, [103]);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      await tester.pumpAndSettle();
+      expect(service.suspensions, 1);
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
