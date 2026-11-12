@@ -92,6 +92,7 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
       });
       _autoConnectedCallId = null;
       _liveKitAttemptedCallId = null;
+      _backgroundSuspended = !_foreground;
       _busy = false;
     }
   }
@@ -300,6 +301,9 @@ class _RtcCallPageState extends ConsumerState<RtcCallPage>
           _closedMediaCallIds.contains(session.id)) {
         return;
       }
+      // A previous terminal page may have suspended the shared media service.
+      // This page's foreground and permission guards own the new call intent.
+      liveKit.resumeCapture();
       await liveKit.ensureConnected(session.id);
     } catch (_) {
       if (_currentSession && widget.callId == session.id) setState(() {});

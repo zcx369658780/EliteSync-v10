@@ -221,6 +221,8 @@ class NotifyingLeaveRtcService extends RtcLiveKitService {
   final List<int?> leaves = [];
   final List<int> connections = [];
   int suspensions = 0;
+  bool captureSuspended = false;
+  final List<bool> captureStatesAtConnect = [];
   bool connected = false;
 
   @override
@@ -229,6 +231,12 @@ class NotifyingLeaveRtcService extends RtcLiveKitService {
   @override
   Future<void> suspendCapture() async {
     suspensions++;
+    captureSuspended = true;
+  }
+
+  @override
+  void resumeCapture() {
+    captureSuspended = false;
   }
 
   @override
@@ -242,6 +250,7 @@ class NotifyingLeaveRtcService extends RtcLiveKitService {
   @override
   Future<void> ensureConnected(int callId) async {
     connections.add(callId);
+    captureStatesAtConnect.add(captureSuspended);
   }
 }
 
@@ -549,6 +558,80 @@ void main() {
         await tester.pumpWidget(const SizedBox());
       });
     }
+  }
+
+  testWidgets(
+    'a new foreground call clears capture suspension left by a previous call',
+    (tester) async {
+      final rtc = FakeRtcRemoteDataSource(_videoCall(132, 'NEXT_CALL_PEER'));
+      final service = NotifyingLeaveRtcService(rtc);
+      await service.suspendCapture();
+      expect(service.captureSuspended, isTrue);
+      await tester.pumpWidget(
+        _wrap(
+          const RtcCallPage(callId: 132, autoConnect: false),
+          rtc: rtc,
+          service: service,
+          liveKit: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(service.connections, [132]);
+      expect(service.captureStatesAtConnect, [false]);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  for (final foreground in [true, false]) {
+    testWidgets(
+      'reused call page resets old suspension only in foreground: $foreground',
+      (tester) async {
+        final rtc = FakeRtcRemoteDataSource(RtcSessionEntity.fromJson({
+          'id': 133,
+          'mode': 'voice',
+          'status': 'ended',
+          'initiator_user_id': 1,
+          'peer_user_id': 2,
+          'is_terminal': true,
+        }));
+        final service = NotifyingLeaveRtcService(rtc);
+        final callId = ValueNotifier(133);
+        addTearDown(callId.dispose);
+        await tester.pumpWidget(
+          _wrap(
+            ValueListenableBuilder<int>(
+              valueListenable: callId,
+              builder: (_, id, _) => RtcCallPage(callId: id, autoConnect: false),
+            ),
+            rtc: rtc,
+            service: service,
+            liveKit: true,
+          ),
+        );
+        await tester.pumpAndSettle();
+        tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+        if (foreground) {
+          tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+        } else {
+          tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+        }
+        await tester.pumpAndSettle();
+        rtc._session = _videoCall(134, 'NEW_FOREGROUND_CALL');
+        callId.value = 134;
+        // Render the replacement even when the test lifecycle disables frames.
+        tester.binding.scheduleForcedFrame();
+        await tester.pumpAndSettle();
+        expect(service.connections, foreground ? [134] : isEmpty);
+        expect(service.captureStatesAtConnect, foreground ? [false] : isEmpty);
+        if (!foreground) {
+          tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+          await tester.pumpAndSettle();
+          expect(service.connections, isEmpty);
+          expect(service.captureSuspended, isTrue);
+        }
+        await tester.pumpWidget(const SizedBox());
+      },
+    );
   }
 
   testWidgets(
