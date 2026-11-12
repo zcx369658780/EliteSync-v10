@@ -5,16 +5,16 @@
   "date": "2026-11-12",
   "branch": "codex/v10.1.5-software-continuation-20261101",
   "source": {
-    "commit": "5e023b0632bc32ed4811818963b023b841e13dba",
-    "root_tree": "57ece13c6a220e843da2a9bd1d79f3f33d043e16",
-    "apps_tree": "4e5ddc78846754e3d2a653b2f495e44c0e1e097c",
-    "services_tree": "d5ce843aacffb34fe8727c59aa6434d5f955ba14",
-    "api_source_commit": "25bc01f7d6ce848f5fe964bbc544e9be87325a0e"
+    "commit": "e5aa6a29a76711b0e4bdb01613e269759d1ffe8e",
+    "root_tree": "3a756162be77871e465f1d0a71919637a13160b9",
+    "apps_tree": "9d34988f33b30759744da5bf00ee427320f3c338",
+    "services_tree": "8bc64ce9d43e84897eac0c56782c8f17870ae05f",
+    "api_source_commit": "6549f02880968f99ae3f45439d15a37c1b3d5251"
   },
   "apk": {
-    "filename": "EliteSync-v10.1.5-dev-5e023b06-arm64-debug.apk",
-    "sha256": "d60d8bc7c1aba006c5ed8d6a2a2344cfec6941c580ac06a3eaedbc7bf75761a1",
-    "bytes": 154567981,
+    "filename": "EliteSync-v10.1.5-dev-e5aa6a29-arm64-debug.apk",
+    "sha256": "398d9e1a30a92b39e6a8f95c8218a3ea1a528e7baedb924636f5f8705f6a7608",
+    "bytes": 154568851,
     "package": "com.elitesync.v1015dev",
     "version_name": "10.1.5-dev",
     "version_code": 1010501,
@@ -23,21 +23,28 @@
     "signature": "v2_verified",
     "offline": true,
     "build_exit_code": 0,
-    "build_elapsed_seconds": 32.8432527,
+    "build_elapsed_seconds": 32.4737954,
     "distribution": "LOCAL_ONLY"
   },
   "validation": {
-    "targeted_tests": 120,
-    "analyze": "final service/test and unchanged page/test clean",
-    "non_author_review": "three early-clear paths fixed with behavior RED/GREEN, final non-author review found no remaining definite P1/P2 in change",
+    "targeted_tests": 45,
+    "analyze": "affected source/test files clean",
+    "non_author_review": "notification scan/provider isolation, signed-out and post-frame guards, autoDispose reviewed. Page error catch exact RED/GREEN and main review.",
+    "version_controller_tests": {
+      "tests": 9,
+      "assertions": 54,
+      "database": "isolated sqlite :memory:"
+    },
     "same_apk_installed_targets": [
       "Owner fictional A phone",
       "emulator5580 fictional B"
     ],
+    "notification_stable_scroll_and_mark_read": "8216 same-candidate phone, no periodic loading, scroll anchor retained, unread50 to49",
+    "notification_failure_and_manual_retry": "final e5 phone scoped503, error remains after real service restoration, explicit UI retry recovers",
+    "owner_notification_feedback": "正常，不再闪烁，按钮可用",
     "paused_emulator5582_installed_source": "cdb0b46dc4613b35eba7adb0c50415a455f3063c",
-    "call44": "software playback and unknown subscription error states, normal UI retry, native capture stays off, normal output preference round trip, explicit mic active, Owner clear speech, ended",
-    "new_remote_track_event_receipt": "UNKNOWN; VM object handles alone do not establish object identity",
-    "scope": "remaining existing-feature device acceptance in progress; prior candidate evidence retains original source identity"
+    "prior_audio_5e": "call44 Owner very clear speech; original source and evidence boundaries retained",
+    "scope": "existing-feature device acceptance and advisor package in progress"
   },
   "acceptance": {
     "partial_ac": [
@@ -74,23 +81,38 @@
   ],
   "evidence": [
     {
-      "file": "media-output-source-checks-20261112-private.json",
-      "sha256": "1fd40cf9c7678eeab8cc5e813e4c0fed7d3958cb162d2f3b9ee62f8b7e9131a2",
+      "file": "review-package-20261112/version-check-fix-private.json",
+      "sha256": "69f0f5d2220839cae32eff848b8dbe0d4796b69904cd42abbf105f04c7e9c263",
       "location": "LOCAL_ONLY"
     },
     {
-      "file": "media-output-installed-20261112-private.json",
-      "sha256": "46a310b19352440ea0d66e440df5110d19c0e61141890f9386329f8f71136071",
+      "file": "review-package-20261112/notification-preferences-runtime-private.json",
+      "sha256": "c0ae17ccb635e6a1cd0c347587d3d9ef035adb2347162045955c053e8c7df896",
       "location": "LOCAL_ONLY"
     },
     {
-      "file": "media-output-runtime-20261112-private.json",
-      "sha256": "f2f1c683a009e621d8972bc65bf8dd73905d9d249b72fdcdaffc4165a107303b",
+      "file": "review-package-20261112/nickname-runtime-private.json",
+      "sha256": "889807280f277dda2ca50d276cc870366bd18301e9fb371a7bc10aff0b43e8fe",
       "location": "LOCAL_ONLY"
     },
     {
-      "file": "media-output-evidence-qualification-20261112-private.json",
-      "sha256": "968bd10c5b346f94c74fae03db0175061987ef4da3d229b53699a314ea0c7102",
+      "file": "review-package-20261112/notification-installed-private.json",
+      "sha256": "e4bf422f3061db9330341c03c79b28458830b8eeda442c7c81668d8829b7ef06",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "review-package-20261112/notification-source-checks-private.json",
+      "sha256": "0b70315610221b7d04a0e8739fe05fbb07236d1d8aa9aee81673be79e33d09b2",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "review-package-20261112/notification-fixed-runtime-private.json",
+      "sha256": "c5835c81e5edaae4c1136986f3ec52f0780e6b7eba30c8352c6fa083454a76d7",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "review-package-20261112/notification-failure-runtime-private.json",
+      "sha256": "949fd46ee6b2dace99fb58074ded5c69becceb91f7949af1cbc5da40f0d6360a",
       "location": "LOCAL_ONLY"
     }
   ],
@@ -525,6 +547,65 @@
       {
         "file": "sfu-local-bounded-recovery-policy-20261112-private.json",
         "sha256": "17eba5b6e0960d8043b702d2824b4214b05014ccfd357fbb9284cc053a9d8c9f",
+        "location": "LOCAL_ONLY"
+      }
+    ]
+  },
+  "prior_candidate_5e": {
+    "source": {
+      "commit": "5e023b0632bc32ed4811818963b023b841e13dba",
+      "root_tree": "57ece13c6a220e843da2a9bd1d79f3f33d043e16",
+      "apps_tree": "4e5ddc78846754e3d2a653b2f495e44c0e1e097c",
+      "services_tree": "d5ce843aacffb34fe8727c59aa6434d5f955ba14",
+      "api_source_commit": "25bc01f7d6ce848f5fe964bbc544e9be87325a0e"
+    },
+    "apk": {
+      "filename": "EliteSync-v10.1.5-dev-e5aa6a29-arm64-debug.apk",
+      "sha256": "398d9e1a30a92b39e6a8f95c8218a3ea1a528e7baedb924636f5f8705f6a7608",
+      "bytes": 154568851,
+      "package": "com.elitesync.v1015dev",
+      "version_name": "10.1.5-dev",
+      "version_code": 1010501,
+      "abi": "arm64-v8a",
+      "build_type": "debug",
+      "signature": "v2_verified",
+      "offline": true,
+      "build_exit_code": 0,
+      "build_elapsed_seconds": 32.4737954,
+      "distribution": "LOCAL_ONLY"
+    },
+    "validation": {
+      "targeted_tests": 120,
+      "analyze": "final service/test and unchanged page/test clean",
+      "non_author_review": "three early-clear paths fixed with behavior RED/GREEN, final non-author review found no remaining definite P1/P2 in change",
+      "same_apk_installed_targets": [
+        "Owner fictional A phone",
+        "emulator5580 fictional B"
+      ],
+      "paused_emulator5582_installed_source": "cdb0b46dc4613b35eba7adb0c50415a455f3063c",
+      "call44": "software playback and unknown subscription error states, normal UI retry, native capture stays off, normal output preference round trip, explicit mic active, Owner clear speech, ended",
+      "new_remote_track_event_receipt": "UNKNOWN; VM object handles alone do not establish object identity",
+      "scope": "remaining existing-feature device acceptance in progress; prior candidate evidence retains original source identity"
+    },
+    "evidence": [
+      {
+        "file": "media-output-source-checks-20261112-private.json",
+        "sha256": "1fd40cf9c7678eeab8cc5e813e4c0fed7d3958cb162d2f3b9ee62f8b7e9131a2",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "media-output-installed-20261112-private.json",
+        "sha256": "46a310b19352440ea0d66e440df5110d19c0e61141890f9386329f8f71136071",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "media-output-runtime-20261112-private.json",
+        "sha256": "f2f1c683a009e621d8972bc65bf8dd73905d9d249b72fdcdaffc4165a107303b",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "media-output-evidence-qualification-20261112-private.json",
+        "sha256": "968bd10c5b346f94c74fae03db0175061987ef4da3d229b53699a314ea0c7102",
         "location": "LOCAL_ONLY"
       }
     ]

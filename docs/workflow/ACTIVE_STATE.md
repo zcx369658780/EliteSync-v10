@@ -1,12 +1,12 @@
 # 当前入口｜2026-11-12 已有功能实机验收与顾问资料收口
 
-Owner已明确继续，当前 **EXISTING_FEATURE_DEVICE_ACCEPTANCE_IN_PROGRESS**。工作限于已有功能实机测试、实际问题修复与顾问验收资料整理，具体见[Owner决定](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。整APP功能说明、各UI截图、所有现有按钮逻辑与UI切换层级纳入[验收目录](../versions/v10.1.5/acceptance/README.md)。
+当前 **EXISTING_FEATURE_DEVICE_ACCEPTANCE_IN_PROGRESS**。Owner决定限于已有功能实机测试、实际缺陷修复及顾问资料整理，范围见[决定](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。当前转向消息媒体及其余现有页面，[验收目录](../versions/v10.1.5/acceptance/README.md)维护功能、UI截图、全部现有控件与导航、实际结果。
 
-当前APP源码 `5e023b0632bc32ed4811818963b023b841e13dba`，后端25bc01f7，APK SHA256 `d60d8bc7c1aba006c5ed8d6a2a2344cfec6941c580ac06a3eaedbc7bf75761a1`，154567981字节。手机A和5580/B实读安装同包，5582/A暂停保留cdb。120项定向检查、受影响analyze及非作者审查通过。唯一[实施报告](../versions/v10.1.5/IMPLEMENTATION_REPORT.md)和[manifest](../versions/v10.1.5/artifact_manifest.json)已更新。
+当前APP源码 `e5aa6a29a76711b0e4bdb01613e269759d1ffe8e`，后端 `6549f02880968f99ae3f45439d15a37c1b3d5251`。APK 154568851字节，SHA256 `398d9e1a30a92b39e6a8f95c8218a3ea1a528e7baedb924636f5f8705f6a7608`，离线32.4737954秒/退出0/v2签名。手机A和5580/B实际同包、登录聊天保留，5582/A暂停保留cdb。唯一实施报告和manifest已更新。
 
-call44错误状态注入后的正常UI恢复、暂停保持及明确开麦后Owner“很清晰”反馈已记录，通话已ended。VM对象句柄变化不能单独证明新音轨，新TrackSubscribed实际事件证据UNKNOWN，原推论已限定。路由故障注入与蓝牙NOT_RUN。通话已有通过场景沿原候选证据收口，当前转向账号/资料、消息媒体、通知离线与现有页面流程及截图采集。
+本轮版本中心dev误解析为0导致强制旧版下载已修，9项54断言及手机同包通过。昵称独立保存/重入/恢复及通知偏好持久化/恢复通过。通知中心2秒闪烁根因共享provider被后台来电扫描周期刷新，已分离读取、禁用UI失败自动retry，页面退出释放后重进单次读取。45项定向及受影响analyze通过，识别的生命周期P2已修并复核。8216手机正常滚动/未读50→49，e5最终手机受控失败停住/服务恢复后等待/明确重试恢复通过，Owner确认“正常，不再闪烁，按钮可用”。临时代理已停，手机API直连已恢复。
 
-2026-11-12恢复实读手机和B连接、同包、无活动call、Room0，四自有服务运行。专用5038保持USB排除、手机5039、5037沿原边界。仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**，未验范围逐项记录。原主库dirty/index、无关目录、旧STOP和已耗记录继续保护，私有截图/APK/日志/SQL/凭据/许可证仅本地。
+旧5e call44清晰反馈等沿原候选保留，VM对象句柄不足以证明新音轨，限定说明保留。仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。自然时间/硬件故障/蓝牙等按实际条件列明。原主库dirty/index、无关目录、旧STOP及已耗记录受保护，截图/APK/日志/SQL/凭据/许可证仅本地。
 
 以下为历史交付快照。
 
