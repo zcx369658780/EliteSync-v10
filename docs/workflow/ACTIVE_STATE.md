@@ -1,4 +1,14 @@
-# 当前入口｜2026-11-12 Owner长会话保存与手动交接
+# 当前入口｜2026-11-12 已继续并完成工作流规则迁移
+
+Owner已发出新的继续指令。本轮按授权完成三份旧规则的一致性收尾，[任务发布协议](TASK_DISPATCH_CLOSURE_PROTOCOL.md)标为历史，[交接模板](SESSION_HANDOFF_TEMPLATE.md)改用实际本地工程身份启动，[项目源规则](PROJECT_SOURCE_COMPACTION_POLICY.md)统一本地进度、按需读取与当前授权分支同步方式。文档检查覆盖内容、链接、差异及Git范围，产品测试为NOT_RUN。
+
+实际产品根为 `D:\EliteSync-v10-product-v1015-20261101`，开发分支为 `codex/v10.1.5-software-continuation-20261101`，本次恢复基线为 `5212dee5562e96b6a956b627e90a54ce62afdb1a`。验收分支交接HEAD为 `3c0bb382b0d0d58eaaf18a7d154eea06818928e0`，材料固定快照为 `85197adec124ef94bbef2994c0668dc990f9bed4`。本节点提交由该开发分支Git历史定位，远端同步结果在本次交付中报告。
+
+当前范围继续为已有功能实机测试、实际问题修复和顾问复核，下一步依据Owner安排处理顾问意见与未验事项。APP源码、后端和APK身份及具名证据沿用[11月12日最新交接](V1015_ADVISOR_ACCEPTANCE_HANDOFF_20261112.md)。维持 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**，顾问总验收和Owner最终接受PENDING。自然期限、硬件、完整权限/并发/停媒/长时、条件页等未验范围、盘面准确性UNVERIFIED和SFU超时原因UNKNOWN按原交接保留，蓝牙因Owner没有耳机为NOT_RUN。
+
+本轮仅整理文档，资源当前态UNKNOWN，最近具名快照仍为2026-11-12 22:44:43中国时间，运行或设备动作前实查。旧交接、停止回执及已耗记录保留历史身份。
+
+## 历史交接快照｜2026-11-12 Owner长会话保存与手动交接
 
 当前 **OWNER_REQUESTED_HANDOFF_AWAITING_CONTINUE**。Owner要求立即保存本地/GitHub的任务进度、决定与工作流并提供交接prompt，完成后结束本轮推进。长期普通工程授权继续有效，后续收到新的继续指令恢复既有范围。
 

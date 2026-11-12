@@ -1,4 +1,14 @@
-# Task Dispatch Closure Protocol｜精简任务发布闭环
+# Task Dispatch Closure Protocol｜历史任务发布闭环
+
+## 历史状态｜2026-11-12 一致性收尾
+
+本协议已归档为历史协议。下方保留2026-11-01原文，供追溯当时的任务发布、手动派发、A–D闭环和验收后停止要求。
+
+现行工程按 [AGENTS](../../AGENTS.md)、[CURRENT_WORKFLOW](CURRENT_WORKFLOW.md)、[ACTIVE_STATE](ACTIVE_STATE.md)顶部有效入口及Owner最新决定执行。从实际本地根、remote、分支、HEAD和工作区/index恢复，在已有授权范围内连续完成工程与必要验证，常规提交同步当前授权分支。顾问提供计划与路线，Codex负责工程执行和验收，Owner保留方向、受保护操作、最终产品接受与发布决定。
+
+下方涉及live main首读、main任务发布、Owner手动派发、候选交付后永久STOP、等待Astra工程验收及整套规则/附件重复同步的条款，仅适用于历史阶段。当前交接使用 [SESSION_HANDOFF_TEMPLATE](SESSION_HANDOFF_TEMPLATE.md)，项目源维护使用 [PROJECT_SOURCE_COMPACTION_POLICY](PROJECT_SOURCE_COMPACTION_POLICY.md)。明确的一次性预算、已耗记录、旧STOP、冻结标准及原始验收结论按各自历史身份保留。
+
+## 2026-11-01 原协议记录
 
 生效：2026-11-01。适用于Astra向Owner交付Codex正式任务的场景。
 
