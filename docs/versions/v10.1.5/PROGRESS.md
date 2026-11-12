@@ -1,3 +1,11 @@
+# 最新节点｜2026-11-12 修复连通后无声音，准备Owner实机复测
+
+当前APP源码cdb0b46d，首次授权前置与新通话暂停残留修复完成。83项定向检查、analyze和非作者变更复核通过，双模拟器同修复APK已核。c1首次mic/camera授权实际通过，cdb call34新通话双端媒体/原生mic及四方向RTP增长，Home返回保持采集关闭、明确开麦恢复、正常挂断清房。Home停止观察上界6.047秒按实际保留。默认合成音诊断RPC期间源AVD退出，客户端报SocketException，退出根因未定，已恢复，扬声器输出UNKNOWN。原失败和既有可见音频恢复反馈P2保留。详见[当前实施报告](IMPLEMENTATION_REPORT.md)。
+
+Owner已返回，下一步连接手机、保留数据更新cdb及实机声音/AEC复测。手机出门期间未操作，609历史验证范围原样保留。冻结10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING。
+
+---
+
 # 最终候选｜2026-11-12 软件收口并停下等待Owner实机协助
 
 APP源码60930170、后端25bc01f7固定。RTC轨道代次/inactive暂停、失权返回、ready附件接管与等待确认文案已完成，定向检查/analyze及非作者代码复核通过。离线30.3414811秒/退出0，最终APK154546416字节/SHA256 d8af0c896ceeb43d2251c89d1080eced593392d5127b0276c95db7ba88b89b67，两端安装hash相同。

@@ -1,4 +1,42 @@
-# v10.1.5 软件候选实施报告
+# v10.1.5 无声修复候选
+
+2026-11-12。当前 **AUDIO_FIX_READY_AWAITING_OWNER_PHYSICAL_RETEST**。Owner返回后准备实机复测。冻结仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。
+
+## 当前固定身份
+
+- APP源码 `cdb0b46dc4613b35eba7adb0c50415a455f3063c`，Root Tree `9d6ffa2683be0c3df8748f55893d64c331cd9adc`，apps Tree `8d29c5136ae6279938fc55252822e0d2d7d81679`，services Tree `d5ce843aacffb34fe8727c59aa6434d5f955ba14`，后端源码 `25bc01f7d6ce848f5fe964bbc544e9be87325a0e`。
+- arm64 Debug，`com.elitesync.v1015dev / 10.1.5-dev / 1010501`，离线37.5032738秒、退出0、v2签名已核。APK 154557386字节，SHA256 `85c6deddd3463d06188137aa9658879fbc054e04867178c04e710bbb27c25fc8`，两模拟器实际base.apk匹配。
+- 本机私有delivery文件 `EliteSync-v10.1.5-dev-cdb0b46d-arm64-debug.apk`。机器清单见[artifact_manifest.json](artifact_manifest.json)。
+
+## 缺陷与修复
+
+旧609在接听端首次Android麦克风授权时实际复现call26只有单方入媒体房间，接听端mic关闭。权限窗口导致inactive，初连被暂停后未继续。手机call24同样未形成双端媒体，窗口来源仍UNKNOWN。c1将voice麦克风及video麦克风/相机权限前置，覆盖来电、普通聊天、LiveChat直接创建、深链与重连。权限页只承接自己的授权窗口往返，真实后台、换账号/通话及迟到结果继续失效。媒体未就绪时显示实际连接状态。
+
+c1连续call32又暴露旧终态页inactive后的共享service暂停残留。cdb在已通过前台、权限、通话身份和代次检查的新连接前恢复采集意图，换callId时按当前前台状态重置页面暂停标记。同一通话后台返回继续要求明确恢复。三项新增回归覆盖共享残留、同State前台换call及后台实际换call。
+
+83项RTC/权限/来电/聊天定向检查通过，受影响两文件analyze无问题。c1原80项及10文件检查按原身份保留。非作者Sol/high分别复核权限/取消和cdb新通话恢复改动，未发现这些改动的剩余确定P1/P2。既有播放、强制路由和订阅失败的可见恢复反馈P2继续保留。
+
+## 双模拟器实际结果
+
+| 候选 | 实际范围 |
+|---|---|
+| c1 call28/29 | 接听端与发起端首次麦克风授权后双端入房、mic active，call29四方向音频计数增长，正常挂断清房 |
+| c1 call30 | 接听端首次相机授权后双端mic/camera active，Home后停采集观察上界5.016秒，返回保持关闭，明确开麦与开相机分别恢复 |
+| cdb call33 | 双端入房及发布/订阅音轨，随后诊断RPC期间源模拟器退出，客户端报SocketException，退出根因未定，服务端按sfu_removed结束，原失败保留 |
+| cdb call34 | 保留终态页经历inactive/resumed后正常创建/接听新call，双端媒体及mic active，四方向音频bytes/packets持续增长 |
+| cdb call34 Home | 语音Home后停止观察上界6.047秒，返回保持关闭，明确开麦恢复。正常APP挂断后Room0且双方采集停止 |
+
+Home观察时长保留实际数值。609 call22的commit后4.874250秒停媒证据属于原候选，cdb本轮未重测MC撤权时限。c1首次授权原生结果及609消息、附件、通知、期限、存储和服务重启结果均沿原候选身份保留。
+
+默认blocking合成音诊断期间源模拟器退出，客户端报SocketException，退出根因未定，已恢复自有AVD及精确映射。此前实验模式失败和本次失败均保留，后续RPC重复0，客观扬声器声源结果UNKNOWN。双向RTP与原生mic状态按各自观察记录，实机听感、AEC和路由体验待Owner复测。
+
+早期UI未idle/安装后未绘制窗口、过早读取RTP尾日志及挂断后过早采样均保留。普通APP重启恢复画面，同call34补读完整日志、等待原生teardown后收尾成功，未重复发送消息。
+
+私有原证、APK和诊断工具均在本机。Owner出门后手机操作0，手机仍保留609及登录/聊天数据。Owner现已返回，待连接后保留数据更新cdb并核实实际声音。其余冻结未完成项沿下方609报告原范围保留。
+
+---
+
+# 历史609候选固定报告
 
 2026-11-12。状态 **V10.1.5_CANDIDATE_DELIVERED / AWAITING_OWNER_DEVICE_ACCEPTANCE**。按Owner要求完成本轮软件收口并停下，实机协助后继续相应验收。冻结判定保留 **10 PARTIAL / AC05 OPEN / G2 false / REAL_PUSH_PENDING**。产品接受由Owner决定。
 
