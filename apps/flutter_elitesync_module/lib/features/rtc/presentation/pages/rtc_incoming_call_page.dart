@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,6 +38,8 @@ class RtcIncomingCallPage extends ConsumerStatefulWidget {
 
 class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage>
     with WidgetsBindingObserver {
+  Timer? _pollTimer;
+  bool _foreground = true;
   int _actionEpoch = 0;
   SessionState? _ownerSession;
   bool _sessionInvalidated = false;
@@ -54,14 +58,32 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage>
   @override
   void initState() {
     super.initState();
+    final lifecycle = WidgetsBinding.instance.lifecycleState;
+    _foreground =
+        lifecycle != AppLifecycleState.inactive &&
+        lifecycle != AppLifecycleState.paused &&
+        lifecycle != AppLifecycleState.hidden &&
+        lifecycle != AppLifecycleState.detached;
     WidgetsBinding.instance.addObserver(this);
     ref
         .read(frontendTelemetryProvider)
         .rtcCallEntryOpened(sourcePage: 'rtc_incoming_call');
+    _pollTimer = Timer.periodic(const Duration(seconds: 4), (_) {
+      if (!_currentSession || !_foreground || _busy) return;
+      final provider = rtcCallProvider(widget.callId);
+      final session = ref.read(provider);
+      if (session.isLoading ||
+          session.hasError ||
+          session.asData?.value.isTerminal != false) {
+        return;
+      }
+      ref.invalidate(provider);
+    });
   }
 
   @override
   void dispose() {
+    _pollTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -77,6 +99,7 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    _foreground = state == AppLifecycleState.resumed;
     if (state == AppLifecycleState.hidden ||
         state == AppLifecycleState.paused ||
         state == AppLifecycleState.detached) {
@@ -150,6 +173,7 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage>
         return null;
       }
       AppFeedback.showError(context, e.toString());
+      ref.invalidate(rtcCallProvider(callId));
       return null;
     } finally {
       if (_currentSession &&
@@ -447,7 +471,7 @@ class _RtcIncomingCallPageState extends ConsumerState<RtcIncomingCallPage>
         ),
         body: sessionAsync.when(
           skipLoadingOnReload: false,
-          skipLoadingOnRefresh: false,
+          skipLoadingOnRefresh: true,
           loading: () => const AppLoadingSkeleton(lines: 6),
           error: (e, _) => ListView(
             padding: EdgeInsets.only(bottom: t.spacing.huge),
