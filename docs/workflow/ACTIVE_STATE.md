@@ -1,14 +1,12 @@
-# 当前入口｜2026-11-12 实机音频路由与前后台恢复
+# 当前入口｜2026-11-12 已有功能实机验收与顾问资料收口
 
-当前 **OWNER_PHYSICAL_SPEAKER_AND_BACKGROUND_SLICE_PASSED**。Owner继续实机验收后，已补通话页扬声器/系统听筒或耳机切换。APP源码 `ba5a5c26c6036086639f156573e826af2b872b34`，后端25bc01f7。134项定向检查、4文件analyze及非作者变更复核完成，发现的页面/共享旧Room归属P2已修。完整播放/自动路由重放/订阅异常可见恢复P2保留。
+Owner已明确继续，当前 **EXISTING_FEATURE_DEVICE_ACCEPTANCE_IN_PROGRESS**。工作限于已有功能实机测试、实际问题修复与顾问验收资料整理，具体见[Owner决定](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。整APP功能说明、各UI截图、所有现有按钮逻辑与UI切换层级纳入[验收目录](../versions/v10.1.5/acceptance/README.md)。
 
-离线47.496801秒/退出0，APK 154560362字节，SHA256 `cc1be2f69ecf96486628fb31584c7fc3e89b4ea26e843998ac277f1e2017fa14`。手机A与5580/B已保留数据安装同包并核base.apk，5582/A AVD暂停保留cdb。唯一[实施报告](../versions/v10.1.5/IMPLEMENTATION_REPORT.md)与[manifest](../versions/v10.1.5/artifact_manifest.json)记录代码树和各候选实际范围。
+当前APP源码 `5e023b0632bc32ed4811818963b023b841e13dba`，后端25bc01f7，APK SHA256 `d60d8bc7c1aba006c5ed8d6a2a2344cfec6941c580ac06a3eaedbc7bf75761a1`，154567981字节。手机A和5580/B实读安装同包，5582/A暂停保留cdb。120项定向检查、受影响analyze及非作者审查通过。唯一[实施报告](../versions/v10.1.5/IMPLEMENTATION_REPORT.md)和[manifest](../versions/v10.1.5/artifact_manifest.json)已更新。
 
-ba call41听筒原生选择及Owner人声清晰通过，暂停采集时输出偏好往返切换未启用mic/camera。自动重订阅的不同SID观察未取得，后置mic查询时该call已ended，原界限保留。ba call42新call默认扬声器、手机Home停止观察上界0.453秒、返回保持关、明确正常UI开麦后立即观测原生mic active，Owner再次确认两边清晰。正常挂断42 ended/Room0、双端采集关闭。cdb call40相应实机恢复通过原身份保留。
+call44错误状态注入后的正常UI恢复、暂停保持及明确开麦后Owner“很清晰”反馈已记录，通话已ended。VM对象句柄变化不能单独证明新音轨，新TrackSubscribed实际事件证据UNKNOWN，原推论已限定。路由故障注入与蓝牙NOT_RUN。通话已有通过场景沿原候选证据收口，当前转向账号/资料、消息媒体、通知离线与现有页面流程及截图采集。
 
-本轮两次媒体authority monitor超时均fail-closed，根因/阶段UNKNOWN。当前自有SFU已设 `on-failure:3`，一次空房间进程退出的自动恢复、同网关SHA及无效token403已验证，真实超时注入与负载恢复矩阵未运行。B曾在2GiB guest被LMKD结束，现4GiB，A AVD暂停。B自动息屏原证保留，工具采用30分钟唤醒时间并核后置UI。手机设置沿Owner当前状态。
-
-四服务运行，手机/B已正常结束通话，专用5038继续USB排除，手机5039与精确四端口反向映射保留，5037沿原边界。仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。蓝牙/插拔、长时及复杂中断/AEC、完整权限并发、自然期限及硬件存储等范围见报告。原主库dirty/index、无关目录及旧STOP/已耗记录保护，私有原证/凭据/SQL/APK/截图/许可证仅本地。
+2026-11-12恢复实读手机和B连接、同包、无活动call、Room0，四自有服务运行。专用5038保持USB排除、手机5039、5037沿原边界。仍 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**，未验范围逐项记录。原主库dirty/index、无关目录、旧STOP和已耗记录继续保护，私有截图/APK/日志/SQL/凭据/许可证仅本地。
 
 以下为历史交付快照。
 

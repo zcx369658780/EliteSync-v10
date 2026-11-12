@@ -1,3 +1,28 @@
+# v10.1.5 已有功能实机验收进行中
+
+2026-11-12。Owner决定集中进行已有功能实机测试、缺陷修复及顾问验收资料收口。当前 **EXISTING_FEATURE_DEVICE_ACCEPTANCE_IN_PROGRESS**，冻结判定继续 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。
+
+## 当前候选与通话修复
+
+- APP源码 `5e023b0632bc32ed4811818963b023b841e13dba`，Root Tree `57ece13c6a220e843da2a9bd1d79f3f33d043e16`，apps Tree `4e5ddc78846754e3d2a653b2f495e44c0e1e097c`，services Tree `d5ce843aacffb34fe8727c59aa6434d5f955ba14`，后端源码25bc01f7。
+- 离线构建32.8432527秒、退出0，arm64 Debug、v2签名。APK 154567981字节，SHA256 `d60d8bc7c1aba006c5ed8d6a2a2344cfec6941c580ac06a3eaedbc7bf75761a1`。手机A和模拟器5580/B实际base.apk一致，5582/A暂停并保留旧cdb包。
+- 已补播放、输出路由和订阅错误提示及明确重试，按当前call/Room/连接与采集代次保护。重试保留本地采集暂停，仅恢复输出和选中的远端接收。未知订阅与播放失败登记各待收SID，实际成功或取消发布按SID清理，退订期间迟到旧成功不会清掉新请求状态。
+- 最终服务及页面120项定向检查、受影响analyze通过。非作者审查发现的三条提前清理路径已各经行为RED/GREEN修正，最终变更未发现剩余确定P1/P2。
+
+## 当前候选实际证据
+
+call44完成软件播放/未知订阅错误状态注入后的正常UI重试，错误提示恢复、采集暂停保持及原生mic/camera关闭已观察。正常听筒/扬声器偏好往返后明确开麦，原生mic active，Owner反馈“很清晰”，后续call44实读ended。此处注入属于软件状态。VM调试对象句柄变化可在相同对象重复读取时发生，单凭句柄变化无法确认新远端音轨或新TrackSubscribed事件，相关实际事件证据UNKNOWN。原始remote_track_replaced字段保留，其推论由本说明限定。
+
+路由失败设备注入NOT_RUN，蓝牙因无耳机NOT_RUN。原导航观察超时、Debug表达式编译服务不可用、日志轮转及HTTP调用参数错误均按本地原证保留，后续直接VM调用与正常UI验证分别记录。此前cdb/ba/609的通过与失败继续绑定原身份。媒体服务偶发超时根因UNKNOWN，一次空房间自动重启证据沿原范围保留。
+
+## 顾问验收材料
+
+按Owner要求收集整APP功能说明、各UI截图、所有现有按钮/菜单/图标的条件与行为，以及导航层级和返回路径。逐项测试状态、候选、截图索引和已知限制汇总在[验收目录](acceptance/README.md)。截图、APK、SQL、凭据与原始设备日志均仅本地。
+
+以下为具名历史候选报告。
+
+---
+
 # v10.1.5 实机扬声器与前后台恢复候选
 
 2026-11-12。当前 **OWNER_PHYSICAL_SPEAKER_AND_BACKGROUND_SLICE_PASSED**。冻结判定 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**，Owner总体产品接受待定。

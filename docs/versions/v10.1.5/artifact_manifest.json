@@ -1,20 +1,20 @@
 {
   "schema_version": 2,
   "version": "10.1.5",
-  "status": "OWNER_PHYSICAL_SPEAKER_AND_BACKGROUND_SLICE_PASSED",
+  "status": "EXISTING_FEATURE_DEVICE_ACCEPTANCE_IN_PROGRESS",
   "date": "2026-11-12",
   "branch": "codex/v10.1.5-software-continuation-20261101",
   "source": {
-    "commit": "ba5a5c26c6036086639f156573e826af2b872b34",
-    "root_tree": "5e3d73f5d78273453ef767c0c3cd39175afc7740",
-    "apps_tree": "cc2a4d1a54adff243b034960487973cea383ddfd",
+    "commit": "5e023b0632bc32ed4811818963b023b841e13dba",
+    "root_tree": "57ece13c6a220e843da2a9bd1d79f3f33d043e16",
+    "apps_tree": "4e5ddc78846754e3d2a653b2f495e44c0e1e097c",
     "services_tree": "d5ce843aacffb34fe8727c59aa6434d5f955ba14",
     "api_source_commit": "25bc01f7d6ce848f5fe964bbc544e9be87325a0e"
   },
   "apk": {
-    "filename": "EliteSync-v10.1.5-dev-ba5a5c26-arm64-debug.apk",
-    "sha256": "cc1be2f69ecf96486628fb31584c7fc3e89b4ea26e843998ac277f1e2017fa14",
-    "bytes": 154560362,
+    "filename": "EliteSync-v10.1.5-dev-5e023b06-arm64-debug.apk",
+    "sha256": "d60d8bc7c1aba006c5ed8d6a2a2344cfec6941c580ac06a3eaedbc7bf75761a1",
+    "bytes": 154567981,
     "package": "com.elitesync.v1015dev",
     "version_name": "10.1.5-dev",
     "version_code": 1010501,
@@ -23,24 +23,21 @@
     "signature": "v2_verified",
     "offline": true,
     "build_exit_code": 0,
-    "build_elapsed_seconds": 47.496801,
+    "build_elapsed_seconds": 32.8432527,
     "distribution": "LOCAL_ONLY"
   },
   "validation": {
-    "targeted_tests": 134,
-    "analyze": "final four source/test files clean",
-    "non_author_review": "new speaker queue and page reviewed; page/current connected-call ownership P2 fixed with exact RED regressions; follow-up review closed it",
+    "targeted_tests": 120,
+    "analyze": "final service/test and unchanged page/test clean",
+    "non_author_review": "three early-clear paths fixed with behavior RED/GREEN, final non-author review found no remaining definite P1/P2 in change",
     "same_apk_installed_targets": [
       "Owner fictional A phone",
       "emulator5580 fictional B"
     ],
     "paused_emulator5582_installed_source": "cdb0b46dc4613b35eba7adb0c50415a455f3063c",
-    "call41": "Owner clear two-way voice; initial speaker native route then earpiece native route and Owner clear earpiece; paused UI route switching in both directions did not start mic/camera; call later ended peer_disconnected/sfu_removed after B sleep observed",
-    "call42": "phone->B normal UI call, new-call default speaker UI, Home mic-stop observation upper0.453s, return off, explicit operator UI mic active measured before Owner clear voice report, normal hangup ended/room0/both captures off",
-    "operator": "call42 initiation/acceptance/Home/explicit mic UI by Codex; final speech clarity by Owner",
-    "automatic_resubscription_native_observation": "UNKNOWN; same publication SID retained, different-SID observer timed out; later computed preferred device null. Unit replay checks passed.",
-    "local_sfu_recovery": "on-failure max3; one empty-room controlled gateway exit followed auto-restart and invalid-token403, unchanged gateway SHA; actual future monitor-timeout recovery not deliberately induced",
-    "full_candidate_journey": "prior cdb/609 scopes inherited under original identities; no full new-ba joint journey"
+    "call44": "software playback and unknown subscription error states, normal UI retry, native capture stays off, normal output preference round trip, explicit mic active, Owner clear speech, ended",
+    "new_remote_track_event_receipt": "UNKNOWN; VM object handles alone do not establish object identity",
+    "scope": "remaining existing-feature device acceptance in progress; prior candidate evidence retains original source identity"
   },
   "acceptance": {
     "partial_ac": [
@@ -69,55 +66,31 @@
     "full leaf-page/accessibility device matrix",
     "real Push delivery",
     "independent astrology precision",
-    "complete playback/route/subscription error recovery feedback",
     "complete physical audio routing/background/interruption/long-duration and complex AEC matrix; physical first-permission revocation/regrant retest",
     "actual automatic re-subscription route retention and same-call media reconnect on final ba",
-    "root cause/stage of rare authority monitor timeout; full under-load recovery/media revocation matrix"
+    "root cause/stage of rare authority monitor timeout; full under-load recovery/media revocation matrix",
+    "route failure device injection NOT_RUN, Bluetooth headset unavailable",
+    "actual TrackSubscribed receipt on final call44 UNKNOWN; UI recovery and native capture observed"
   ],
   "evidence": [
     {
-      "file": "speaker-output-source-checks-20261112-private.json",
-      "sha256": "b8d564449920e804734299cb51426468e35e4c9c4b4eb7688aafb6cdfeb6c2c1",
+      "file": "media-output-source-checks-20261112-private.json",
+      "sha256": "1fd40cf9c7678eeab8cc5e813e4c0fed7d3958cb162d2f3b9ee62f8b7e9131a2",
       "location": "LOCAL_ONLY"
     },
     {
-      "file": "speaker-output-installed-20261112-private.json",
-      "sha256": "1ac6804d21844d1368416bd4a9266a439dc9ccb72701eab5239753d183f46b6c",
+      "file": "media-output-installed-20261112-private.json",
+      "sha256": "46a310b19352440ea0d66e440df5110d19c0e61141890f9386329f8f71136071",
       "location": "LOCAL_ONLY"
     },
     {
-      "file": "phone-rtc-incoming-background-20261112-private.json",
-      "sha256": "d1d6ed87f42258917e1fca7fff226bbe683d9ac850c6863b4b2c3dedfc6ed3c4",
+      "file": "media-output-runtime-20261112-private.json",
+      "sha256": "f2f1c683a009e621d8972bc65bf8dd73905d9d249b72fdcdaffc4165a107303b",
       "location": "LOCAL_ONLY"
     },
     {
-      "file": "phone-call37-recovery-and-guest-memory-private.json",
-      "sha256": "de7664de061793f52ffd3a8c357c296644a4b3861fda75213c323262b04f40cc",
-      "location": "LOCAL_ONLY"
-    },
-    {
-      "file": "phone-rtc-incoming-background-recovered-20261112-private.json",
-      "sha256": "ac7a7c7409df664bdca61eb03a2cd162dbe4a0af980e56b78d38ea207d1f4ed2",
-      "location": "LOCAL_ONLY"
-    },
-    {
-      "file": "phone-rtc-current-pc-speaker-call-20261112-private.json",
-      "sha256": "abd1259f27ae99af24fad6d5c2f3994ac46d327c08c54008fa57532f936b237d",
-      "location": "LOCAL_ONLY"
-    },
-    {
-      "file": "phone-speaker-output-runtime-20261112-private.json",
-      "sha256": "539431e752e2e5de4f0c1e79a571b10705d021eafd2cda9117f2695d1b14b47c",
-      "location": "LOCAL_ONLY"
-    },
-    {
-      "file": "speaker-ba-final-home-recovery-20261112-private.json",
-      "sha256": "01d9d274fa358d7f40d75b0e778aff6ee1d7b93c38d97230e23f47cfbda5b4a9",
-      "location": "LOCAL_ONLY"
-    },
-    {
-      "file": "sfu-local-bounded-recovery-policy-20261112-private.json",
-      "sha256": "17eba5b6e0960d8043b702d2824b4214b05014ccfd357fbb9284cc053a9d8c9f",
+      "file": "media-output-evidence-qualification-20261112-private.json",
+      "sha256": "968bd10c5b346f94c74fae03db0175061987ef4da3d229b53699a314ea0c7102",
       "location": "LOCAL_ONLY"
     }
   ],
@@ -468,5 +441,92 @@
         "owned_services": "DB/API/WS/SFU running"
       }
     }
+  },
+  "prior_candidate_ba": {
+    "source": {
+      "commit": "ba5a5c26c6036086639f156573e826af2b872b34",
+      "root_tree": "5e3d73f5d78273453ef767c0c3cd39175afc7740",
+      "apps_tree": "cc2a4d1a54adff243b034960487973cea383ddfd",
+      "services_tree": "d5ce843aacffb34fe8727c59aa6434d5f955ba14",
+      "api_source_commit": "25bc01f7d6ce848f5fe964bbc544e9be87325a0e"
+    },
+    "apk": {
+      "filename": "EliteSync-v10.1.5-dev-5e023b06-arm64-debug.apk",
+      "sha256": "d60d8bc7c1aba006c5ed8d6a2a2344cfec6941c580ac06a3eaedbc7bf75761a1",
+      "bytes": 154567981,
+      "package": "com.elitesync.v1015dev",
+      "version_name": "10.1.5-dev",
+      "version_code": 1010501,
+      "abi": "arm64-v8a",
+      "build_type": "debug",
+      "signature": "v2_verified",
+      "offline": true,
+      "build_exit_code": 0,
+      "build_elapsed_seconds": 32.8432527,
+      "distribution": "LOCAL_ONLY"
+    },
+    "validation": {
+      "targeted_tests": 134,
+      "analyze": "final four source/test files clean",
+      "non_author_review": "new speaker queue and page reviewed; page/current connected-call ownership P2 fixed with exact RED regressions; follow-up review closed it",
+      "same_apk_installed_targets": [
+        "Owner fictional A phone",
+        "emulator5580 fictional B"
+      ],
+      "paused_emulator5582_installed_source": "cdb0b46dc4613b35eba7adb0c50415a455f3063c",
+      "call41": "Owner clear two-way voice; initial speaker native route then earpiece native route and Owner clear earpiece; paused UI route switching in both directions did not start mic/camera; call later ended peer_disconnected/sfu_removed after B sleep observed",
+      "call42": "phone->B normal UI call, new-call default speaker UI, Home mic-stop observation upper0.453s, return off, explicit operator UI mic active measured before Owner clear voice report, normal hangup ended/room0/both captures off",
+      "operator": "call42 initiation/acceptance/Home/explicit mic UI by Codex; final speech clarity by Owner",
+      "automatic_resubscription_native_observation": "UNKNOWN; same publication SID retained, different-SID observer timed out; later computed preferred device null. Unit replay checks passed.",
+      "local_sfu_recovery": "on-failure max3; one empty-room controlled gateway exit followed auto-restart and invalid-token403, unchanged gateway SHA; actual future monitor-timeout recovery not deliberately induced",
+      "full_candidate_journey": "prior cdb/609 scopes inherited under original identities; no full new-ba joint journey"
+    },
+    "evidence": [
+      {
+        "file": "speaker-output-source-checks-20261112-private.json",
+        "sha256": "b8d564449920e804734299cb51426468e35e4c9c4b4eb7688aafb6cdfeb6c2c1",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "speaker-output-installed-20261112-private.json",
+        "sha256": "1ac6804d21844d1368416bd4a9266a439dc9ccb72701eab5239753d183f46b6c",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "phone-rtc-incoming-background-20261112-private.json",
+        "sha256": "d1d6ed87f42258917e1fca7fff226bbe683d9ac850c6863b4b2c3dedfc6ed3c4",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "phone-call37-recovery-and-guest-memory-private.json",
+        "sha256": "de7664de061793f52ffd3a8c357c296644a4b3861fda75213c323262b04f40cc",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "phone-rtc-incoming-background-recovered-20261112-private.json",
+        "sha256": "ac7a7c7409df664bdca61eb03a2cd162dbe4a0af980e56b78d38ea207d1f4ed2",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "phone-rtc-current-pc-speaker-call-20261112-private.json",
+        "sha256": "abd1259f27ae99af24fad6d5c2f3994ac46d327c08c54008fa57532f936b237d",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "phone-speaker-output-runtime-20261112-private.json",
+        "sha256": "539431e752e2e5de4f0c1e79a571b10705d021eafd2cda9117f2695d1b14b47c",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "speaker-ba-final-home-recovery-20261112-private.json",
+        "sha256": "01d9d274fa358d7f40d75b0e778aff6ee1d7b93c38d97230e23f47cfbda5b4a9",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "sfu-local-bounded-recovery-policy-20261112-private.json",
+        "sha256": "17eba5b6e0960d8043b702d2824b4214b05014ccfd357fbb9284cc053a9d8c9f",
+        "location": "LOCAL_ONLY"
+      }
+    ]
   }
 }

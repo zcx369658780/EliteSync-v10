@@ -8,6 +8,10 @@
 
 功能优先；UI 最后按“我的/设置 → 消息列表/聊天 → 首页/主要导航”处理。当前仍是 v10.1.5，不自动启动 v10.1.6、合 main 或发布。
 
+## 2026-11-12 当前验收范围
+
+Owner已决定集中完成已有功能实机测试、问题修复与验收资料整理，尽快提交项目源GPT顾问总验收。当前工作范围按这项最新决定执行。功能说明、各UI截图、全部现有按钮逻辑与导航层级列入交付，已有功能以外的新增取舍交由后续路线图调整。具体决定见[Owner验收收口决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。
+
 ## 入口与自主执行
 
 先核实际仓库根、remote、分支、HEAD 和工作区/index；只读 [ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md) 短入口及当前目标必要源码，规则见 [CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)。不再递归阅读旧交接、全部 Sources、SDK 清单或测试档案。
