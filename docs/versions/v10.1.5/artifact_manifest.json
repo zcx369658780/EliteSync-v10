@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "version": "10.1.5",
+  "status": "V10.1.5_CANDIDATE_DELIVERED_AWAITING_OWNER_DEVICE_ACCEPTANCE",
+  "date": "2026-11-12",
+  "branch": "codex/v10.1.5-software-continuation-20261101",
+  "source": {
+    "commit": "60930170e3a437da0b77e877c55ed4dd1a92f9ca",
+    "root_tree": "41c8653140c77089e58e8f7822ce2ce988e0f438",
+    "apps_tree": "f586b9eb5bb2f1c970cee0ec93602b407f996c1e",
+    "services_tree": "d5ce843aacffb34fe8727c59aa6434d5f955ba14",
+    "api_source_commit": "25bc01f7d6ce848f5fe964bbc544e9be87325a0e"
+  },
+  "apk": {
+    "filename": "EliteSync-v10.1.5-dev-60930170-arm64-debug.apk",
+    "sha256": "d8af0c896ceeb43d2251c89d1080eced593392d5127b0276c95db7ba88b89b67",
+    "bytes": 154546416,
+    "package": "com.elitesync.v1015dev",
+    "version_name": "10.1.5-dev",
+    "version_code": 1010501,
+    "abi": "arm64-v8a",
+    "build_type": "debug",
+    "signature": "v2_verified",
+    "offline": true,
+    "build_exit_code": 0,
+    "build_elapsed_seconds": 30.3414811,
+    "distribution": "LOCAL_ONLY"
+  },
+  "validation": {
+    "emulator_accounts": {
+      "emulator-5580": "fictional B/user2",
+      "emulator-5582": "fictional A/user1"
+    },
+    "same_apk_installed": true,
+    "core_runtime": "targeted final-candidate message, media, notification, RTC and persistent restart chain",
+    "controlled_server_boundary_requests": 16,
+    "native_wrapper_injected_faults": 7,
+    "rtc_commit_to_capture_stop_conservative_upper_seconds": 4.87425,
+    "rtc_tail": "15 dual samples over about 2.016 seconds past commit-upper plus 5 seconds, no rebound observed",
+    "web": "9 actual HTTP form checks before and 9 after restart",
+    "current_candidate_explicit_media_retry_observation": "UNKNOWN; actual explicit retry verified on preceding 5af candidate with same attachment logic"
+  },
+  "acceptance": {
+    "partial_ac": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11"
+    ],
+    "open_ac": [
+      "05"
+    ],
+    "g2": false,
+    "real_push": "PENDING",
+    "owner_product_acceptance": "PENDING"
+  },
+  "unverified": [
+    "physical-device audio/AEC and audio routing",
+    "hardware Keystore and physical storage faults",
+    "natural 30-day elapsed observation",
+    "complete actor/peer and in-flight permission/concurrency matrix",
+    "full leaf-page/accessibility device matrix",
+    "real Push delivery",
+    "independent astrology precision"
+  ],
+  "evidence": [
+    {
+      "file": "candidate609-installed-20261112-private.json",
+      "scope": "candidate609-installed",
+      "sha256": "b84296fb98a1d102ce43f17538d2ccc154e2bf855ffe857a8353be5328656326",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate609-pending-completed-20261112-private.json",
+      "scope": "candidate609-pending-cold-retry",
+      "sha256": "3c564823b8103990cd19141fc5e22e7fd626ed4b625d044c84817de9f6e7d473",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate609-image-video-runtime-20261112-private.json",
+      "scope": "candidate609-media-send-play",
+      "sha256": "da9172bac28a0cfe3eec005afeb127a20dd9c547da156ae10f136d6766a53cbb",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate609-notification-denied-message-20261112-private.json",
+      "scope": "candidate609-os-permission-denied",
+      "sha256": "8bd7fbbfcd114fb2042576fd535132f353aa4baed3cddcc639db3eea421e5e11",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate609-stale-notification-click-20261112-private.json",
+      "scope": "candidate609-old-notification-click",
+      "sha256": "361e071a71b60c4fecf0f2e6915d394f2068e96fe30e5a8897d0c19ac1c64275",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate609-rtc-authorization-tail-verified-20261112-private.json",
+      "scope": "candidate609-rtc-revoke-tail",
+      "sha256": "8030cc03c56e2cfb9e3c39fc2bebe759bac2d4a7dd3e9512276f30f5d90eed8d",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate609-controlled-services-restart-20261112-private.json",
+      "scope": "candidate609-persistent-restart",
+      "sha256": "4499a081925204dbaae20b48ff88a9f812942618907c5f5a56896401a269ab90",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate609-post-restart-app-readback-20261112-private.json",
+      "scope": "candidate609-post-restart-app",
+      "sha256": "f67b4cf298602fb7a554a77913c7c54717a39b8d9de61bd17858c41ce068b2ac",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "final-web-before-restart-20261112-private.json",
+      "scope": "api25bc-web-before-restart",
+      "sha256": "1cf63f6c6e8ec53683f2cc79b84379780d8c9f383fd20e67de95ccb79f6c1c77",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "final-web-after-restart-20261112-private.json",
+      "scope": "api25bc-web-after-restart",
+      "sha256": "b025955c81824930ed3d966929ffd1aa9836df1fda01a539f99059b6014fcecf",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "retention-route-boundary-20261112-private.json",
+      "scope": "api25bc-controlled-server-boundaries",
+      "sha256": "0a12310018362ad9634eacf30060ed4ab508c0ff17a318fa924f63480ee0285d",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "cache-native-probe-runtime-20261112-private.json",
+      "scope": "isolated-native-probe-controlled-faults",
+      "sha256": "7ffe71ebd9f289e7b87096943ac3a678790640a1a40dba1a1db03b598698fa15",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "final-message-replay-conflict-20261112-private.json",
+      "scope": "api25bc-replay-conflict-message105",
+      "sha256": "3c52b78fdf8d27af82b726cdb9f983170cdf31a8a650a3d4875e31b38de2230a",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "final-media-handoff-runtime-20261112-private.json",
+      "scope": "candidate5af-explicit-ready-media-retry",
+      "sha256": "845bd3bc80f8f84cba2d8061139c8979a75b7eff68a8dcfe334c0326d7faa2eb",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate609-media-handoff-runtime-20261112-private.json",
+      "scope": "candidate609-observer-window-failure",
+      "sha256": "a8bdf30074e5994719114eb5586cd5674d09dc5236a8456fc2c6970c97b5d265",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "original-root-final-readonly-snapshot-20261112-private.json",
+      "scope": "original-dirty-root-readonly-snapshot",
+      "sha256": "3caa334916971e7d4141602a85d8dbc36bbee4a5f6bc936e49eb6a2a8f485d09",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "candidate609-stop-resource-observation-20261112-private.json",
+      "scope": "final-owned-resources-and-protected-root",
+      "sha256": "f171ad71b8d46e485276369c6d0041b14c28c8adc959110e5840f04f043b1fa2",
+      "location": "LOCAL_ONLY"
+    }
+  ],
+  "review": {
+    "code": "non-author Sol/high bounded review, no remaining definite P1/P2 reported",
+    "rtc_timing": "non-author independent calculation and integrity review passed",
+    "delivery_materials": "non-author Sol/high bounded review passed, no definite P1/P2; source/trees/APK and 16 referenced receipts independently checked"
+  },
+  "workflow": {
+    "state": "STOPPED_FOR_OWNER_DEVICE_ACCEPTANCE",
+    "apps": "force-stopped, data retained",
+    "emulators": "running",
+    "owned_services": "DB/API/WS/SFU running"
+  }
+}
