@@ -117,16 +117,24 @@ class RtcLiveKitService extends ChangeNotifier {
         if (!granted) throw StateError('需要麦克风权限');
       }
       if (!current()) return;
-      if (!enabled ||
-          participant.getTrackPublicationBySource(TrackSource.microphone) !=
-              null) {
-        final publication = await participant.setMicrophoneEnabled(enabled);
-        if (!current()) {
-          final track = publication?.track;
-          if (enabled && track != null) await _suspendTrack(track);
+      final existing = participant.getTrackPublicationBySource(
+        TrackSource.microphone,
+      );
+      if (enabled &&
+          existing != null &&
+          !existing.muted &&
+          existing.track?.isActive == true) {
+        _microphoneEnabled = true;
+        _mediaChanged();
+        return;
+      }
+      if (!enabled) {
+        await participant.setMicrophoneEnabled(false);
+        if (!current()) return;
+      } else {
+        if (!await _removeLocalPublication(participant, existing, current)) {
           return;
         }
-      } else {
         final track = await _createAudioTrack(
           room!.roomOptions.defaultAudioCaptureOptions,
         );
@@ -169,28 +177,27 @@ class RtcLiveKitService extends ChangeNotifier {
         if (!granted) throw StateError('需要摄像头权限');
       }
       if (!current()) return;
-      if (!enabled ||
-          participant.getTrackPublicationBySource(TrackSource.camera) != null) {
-        final publication = await participant.setCameraEnabled(enabled);
-        if (!current()) {
-          final track = publication?.track;
-          if (enabled && track != null) await _suspendTrack(track);
+      final existing = participant.getTrackPublicationBySource(
+        TrackSource.camera,
+      );
+      if (enabled &&
+          existing != null &&
+          !existing.muted &&
+          existing.track?.isActive == true) {
+        _cameraEnabled = true;
+        _mediaChanged();
+        return;
+      }
+      if (!enabled) {
+        await participant.setCameraEnabled(false);
+        if (!current()) return;
+      } else {
+        if (!await _removeLocalPublication(participant, existing, current)) {
           return;
         }
-      } else {
         final captureOptions = room!.roomOptions.defaultCameraCaptureOptions;
-        final track = await _createCameraTrack(captureOptions);
-        _pendingLocalTracks[track] = room;
-        var published = false;
-        try {
-          if (!current()) return;
-          await participant.publishVideoTrack(track);
-          if (!current()) return;
-          published = true;
-          _frontCamera = captureOptions.cameraPosition == CameraPosition.front;
-        } finally {
-          if (!published) await _suspendTrack(track);
-          _pendingLocalTracks.remove(track);
+        if (!await _publishCamera(room, participant, captureOptions, current)) {
+          return;
         }
       }
       _cameraEnabled = enabled;
@@ -213,21 +220,70 @@ class RtcLiveKitService extends ChangeNotifier {
       await _captureStop;
       if (!current()) return;
       final track = localVideoTrack;
-      if (track == null) return;
+      final participant = room!.localParticipant;
+      if (track == null || participant == null) return;
+      final options = track.currentOptions;
+      if (options is! CameraCaptureOptions) return;
       final nextFront = !_frontCamera;
-      try {
-        await track.setCameraPosition(
-          nextFront ? CameraPosition.front : CameraPosition.back,
-        );
-      } finally {
-        if (!current()) await _suspendTrack(track);
+      _cameraEnabled = false;
+      _mediaChanged();
+      final existing = participant.getTrackPublicationBySource(
+        TrackSource.camera,
+      );
+      if (!await _removeLocalPublication(participant, existing, current)) {
+        return;
       }
-      if (!current()) return;
-      _frontCamera = nextFront;
+      final nextOptions = CameraCaptureOptions(
+        cameraPosition: nextFront ? CameraPosition.front : CameraPosition.back,
+        deviceId: null,
+        maxFrameRate: options.maxFrameRate,
+        params: options.params,
+      );
+      if (!await _publishCamera(room, participant, nextOptions, current)) {
+        return;
+      }
+      _cameraEnabled = true;
       _mediaChanged();
     });
     _cameraMutation = operation.then<void>((_) {}, onError: (Object _) {});
     return operation;
+  }
+
+  Future<bool> _removeLocalPublication(
+    LocalParticipant participant,
+    LocalTrackPublication? publication,
+    bool Function() current,
+  ) async {
+    if (!current()) return false;
+    if (publication == null) return true;
+    final track = publication.track;
+    if (track != null) await _suspendTrack(track);
+    if (!current()) return false;
+    await participant.removePublishedTrack(publication.sid);
+    return current();
+  }
+
+  Future<bool> _publishCamera(
+    Room room,
+    LocalParticipant participant,
+    CameraCaptureOptions options,
+    bool Function() current,
+  ) async {
+    if (!current()) return false;
+    final track = await _createCameraTrack(options);
+    _pendingLocalTracks[track] = room;
+    var published = false;
+    try {
+      if (!current()) return false;
+      await participant.publishVideoTrack(track);
+      if (!current()) return false;
+      published = true;
+      _frontCamera = options.cameraPosition == CameraPosition.front;
+      return true;
+    } finally {
+      if (!published) await _suspendTrack(track);
+      _pendingLocalTracks.remove(track);
+    }
   }
 
   Timer? _heartbeatTimer;
