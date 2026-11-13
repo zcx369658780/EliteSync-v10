@@ -21,7 +21,7 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
   int? _peer;
   Map<String, dynamic>? _server;
   String? _error;
-  bool _noMatch = false;
+  String? _connectionUnavailableMessage;
   bool _busy = false;
   int _epoch = 0;
   CancelToken _requestCancellation = CancelToken();
@@ -69,10 +69,21 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
         ),
       );
       if (!_current(session, epoch)) return;
-      peer = (match['partner_id'] as num?)?.toInt();
+      if (match.containsKey('proposal')) {
+        final proposal = match['proposal'];
+        if (proposal is Map &&
+            proposal['connection_eligible'] == true &&
+            proposal['state'] == 'MUTUALLY_ACCEPTED') {
+          peer = (proposal['peer_id'] as num?)?.toInt();
+        } else if (proposal != null) {
+          _connectionUnavailableMessage = '当前提案尚未具备连接资格。请到“进展”查看双方回应，符合条件后可刷新。';
+        }
+      } else {
+        peer = (match['partner_id'] as num?)?.toInt();
+      }
     }
     if (peer == null || peer <= 0) {
-      _noMatch = true;
+      _connectionUnavailableMessage ??= '暂无已发布的匹配对象。请到“进展”查看慢约安排，稍后可刷新。';
       _peer = null;
       _server = null;
       return;
@@ -139,7 +150,7 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
     setState(() {
       _busy = true;
       _error = null;
-      _noMatch = false;
+      _connectionUnavailableMessage = null;
     });
     SessionState? session;
     try {
@@ -247,7 +258,7 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
           _peer = null;
           _server = null;
           _error = null;
-          _noMatch = false;
+          _connectionUnavailableMessage = null;
           _busy = false;
         });
       }
@@ -267,8 +278,8 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
         children: [
           const Text('匹配 ≠ 连接 ≠ 消息同意。双方须独立决定，消息读取和发送均由服务端当前权限验证。'),
           if (_busy) const LinearProgressIndicator(),
-          if (confirmed && _noMatch)
-            const Text('暂无已发布的匹配对象。请到“进展”查看慢约安排，稍后可刷新。'),
+          if (confirmed && _connectionUnavailableMessage != null)
+            Text(_connectionUnavailableMessage!),
           if (_error != null)
             Text(
               '操作未确认：$_error',

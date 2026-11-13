@@ -27,6 +27,42 @@ class _Session extends SessionNotifier {
   );
 }
 
+Map<String, dynamic> _proposalEnvelope({
+  String state = 'MUTUALLY_ACCEPTED',
+  bool eligible = true,
+}) => {
+  'proposal': {
+    'id': 'fictional-proposal-1',
+    'match_id': 101,
+    'round_id': 201,
+    'run_id': 301,
+    'revision': 2,
+    'state': state,
+    'decision_me': state == 'PENDING' ? 'PENDING' : 'ACCEPTED',
+    'decision_peer': state == 'MUTUALLY_ACCEPTED' ? 'ACCEPTED' : 'PENDING',
+    'peer_id': 2,
+    'revealed_at': '2026-11-13T00:00:00Z',
+    'expires_at': '2026-11-20T00:00:00Z',
+    'showcase': {
+      'public_id': 'ES-2',
+      'summary': 'fictional profile',
+      'interest_tags': <String>[],
+      'lifestyle_tags': <String>[],
+    },
+    'explanation': {
+      'categories': ['questionnaire_preferences'],
+      'source': 'existing_matching_run',
+      'uncertainty': '候选来自有限自填输入，不保证相处效果',
+      'non_goals': ['不构成实人认证或恋爱事实', '不授予连接、消息或通话同意'],
+    },
+    'connection_eligible': eligible,
+    'decision_available': state == 'PENDING' || state == 'ACCEPTED_BY_ONE',
+    'withdraw_available': state == 'PENDING' || state == 'ACCEPTED_BY_ONE',
+    'availability_reason': null,
+  },
+  'message': 'Use /journey for the authoritative journey',
+};
+
 class _Api extends ApiClient {
   _Api() : super(dio: Dio());
   String connection = 'CN_NONE';
@@ -38,6 +74,9 @@ class _Api extends ApiClient {
   bool reject = false;
   bool noMatch = false;
   bool failMatch = false;
+  Map<String, dynamic> currentMatch = _proposalEnvelope();
+  int matchReads = 0;
+  final List<String> connectionPaths = [];
   int reads = 0;
   int posts = 0;
   Object? body;
@@ -49,16 +88,23 @@ class _Api extends ApiClient {
     Options? options,
   }) async {
     if (path.endsWith('/matches/current')) {
+      matchReads++;
       if (failMatch) {
         return const NetworkFailure(
           message: 'upstream_unavailable',
           statusCode: 503,
         );
       }
-      if (noMatch) return const NetworkSuccess({});
-      return const NetworkSuccess({'partner_id': 2});
+      if (noMatch) {
+        return const NetworkSuccess({
+          'proposal': null,
+          'message': 'Use /journey for the authoritative journey',
+        });
+      }
+      return NetworkSuccess(currentMatch);
     }
     reads++;
+    connectionPaths.add(path);
     return NetworkSuccess({
       'peer_id': 2,
       'connection': {
@@ -100,7 +146,7 @@ class _Api extends ApiClient {
   }
 }
 
-Future<void> _show(WidgetTester tester, ApiClient api) async {
+Future<void> _show(WidgetTester tester, ApiClient api, {int? peerId}) async {
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
@@ -109,7 +155,7 @@ Future<void> _show(WidgetTester tester, ApiClient api) async {
       ],
       child: MaterialApp(
         theme: AppTheme.light,
-        home: const LiveConnectionPage(),
+        home: LiveConnectionPage(peerId: peerId),
       ),
     ),
   );
@@ -117,6 +163,77 @@ Future<void> _show(WidgetTester tester, ApiClient api) async {
 }
 
 void main() {
+  testWidgets(
+    'current proposal envelope reaches connection request and readback',
+    (tester) async {
+      final api = _Api();
+      await _show(tester, api);
+      expect(api.connectionPaths, ['/api/v1/connections/2']);
+      expect(find.text('请求连接'), findsOneWidget);
+      await tester.tap(find.text('请求连接'));
+      await tester.pumpAndSettle();
+      expect(api.posts, 1);
+      expect(find.textContaining('CN_PENDING'), findsOneWidget);
+      expect(api.reads, 2);
+    },
+  );
+
+  for (final condition in [
+    ('PENDING', false),
+    ('ACCEPTED_BY_ONE', false),
+    ('MUTUALLY_ACCEPTED', false),
+    ('PENDING', true),
+  ]) {
+    testWidgets(
+      'proposal ${condition.$1}/${condition.$2} cannot dispatch connection read',
+      (tester) async {
+        final api = _Api()
+          ..currentMatch = {
+            ..._proposalEnvelope(state: condition.$1, eligible: condition.$2),
+            'partner_id': 99,
+          };
+        await _show(tester, api);
+        expect(api.reads, 0);
+        expect(find.text('请求连接'), findsNothing);
+        expect(find.textContaining('尚未具备连接资格'), findsOneWidget);
+        expect(find.textContaining('操作未确认'), findsNothing);
+      },
+    );
+  }
+
+  testWidgets('null proposal cannot fall back to a flat legacy partner', (
+    tester,
+  ) async {
+    final api = _Api()
+      ..currentMatch = {
+        'proposal': null,
+        'message': 'Use /journey for the authoritative journey',
+        'partner_id': 99,
+      };
+    await _show(tester, api);
+    expect(api.reads, 0);
+    expect(find.textContaining('暂无已发布的匹配对象'), findsOneWidget);
+    expect(find.text('请求连接'), findsNothing);
+  });
+
+  testWidgets('legacy partner remains compatible only without proposal key', (
+    tester,
+  ) async {
+    final api = _Api()..currentMatch = {'partner_id': 2};
+    await _show(tester, api);
+    expect(api.connectionPaths, ['/api/v1/connections/2']);
+    expect(find.text('请求连接'), findsOneWidget);
+  });
+
+  testWidgets('explicit friend peer bypasses current proposal discovery', (
+    tester,
+  ) async {
+    final api = _Api()..noMatch = true;
+    await _show(tester, api, peerId: 2);
+    expect(api.matchReads, 0);
+    expect(api.connectionPaths, ['/api/v1/connections/2']);
+    expect(find.text('请求连接'), findsOneWidget);
+  });
   for (final terminal in [
     'CN_CLOSED',
     'CN_DECLINED',
@@ -249,7 +366,7 @@ void main() {
         onRequest: (request, handler) {
           if (request.method == 'POST') postDispatches++;
           final data = request.path.endsWith('/matches/current')
-              ? <String, dynamic>{'partner_id': 2}
+              ? _proposalEnvelope()
               : <String, dynamic>{
                   'connection': {
                     'state': 'CN_ACTIVE',
