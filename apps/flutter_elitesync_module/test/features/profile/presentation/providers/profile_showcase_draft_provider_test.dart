@@ -241,6 +241,35 @@ Future<ProviderContainer> _workflowContainer(
 }
 
 void main() {
+  test(
+    'oversized photo is rejected before upload and asks for another choice',
+    () async {
+      final repository = _FakeDraftRepository();
+      final container = ProviderContainer(
+        overrides: [
+          sessionProvider.overrideWith(_TestSession.new),
+          profileShowcaseDraftRepositoryProvider.overrideWithValue(repository),
+          showcasePhotoPickerProvider.overrideWithValue(
+            () async => XFile.fromData(
+              Uint8List(5 * 1024 * 1024 + 1),
+              name: 'oversized.png',
+            ),
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
+      await container.read(profileShowcaseDraftControllerProvider.future);
+      final controller = container.read(
+        profileShowcaseDraftControllerProvider.notifier,
+      );
+      await controller.uploadPhoto();
+      expect(controller.hasPendingUpload, isFalse);
+      expect(
+        container.read(profileShowcaseDraftControllerProvider).value!.saveError,
+        contains('重新选择'),
+      );
+    },
+  );
   for (final result in ['needs_revision', 'rejected']) {
     test(
       'reviewed $result content requires a new saved revision before resubmit',

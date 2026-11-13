@@ -386,7 +386,9 @@ class ProfileShowcaseDraftController
       state = AsyncData(
         current.copyWith(
           saving: false,
-          saveError: '照片上传结果未确认，选择已保留。请重试添加照片或刷新核对。',
+          saveError: _pendingPhoto == null
+              ? '照片未上传，请重新选择不超过 5 MiB 的 JPEG 或 PNG 照片。'
+              : '照片上传结果未确认，选择已保留。请重试添加照片或刷新核对。',
         ),
       );
     }
