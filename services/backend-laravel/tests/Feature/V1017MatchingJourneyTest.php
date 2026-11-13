@@ -92,7 +92,7 @@ class V1017MatchingJourneyTest extends TestCase
     public function test_input_save_clear_read_and_revision_are_private_and_do_not_enroll(): void
     {
         $user = User::factory()->state(['phone' => '17'.random_int(100000000,999999999)])->create();
-        $this->actingAs($user, 'sanctum')->getJson('/api/v1/matching-inputs')->assertOk()->assertJsonPath('confirmed', false);
+        $this->actingAs($user, 'sanctum')->getJson('/api/v1/matching-inputs')->assertOk()->assertHeader('Cache-Control', 'no-store, private')->assertJsonPath('confirmed', false);
         $this->putJson('/api/v1/matching-inputs', $this->input(['occupation' => 'Fixture profession', 'height_cm' => 172]))
             ->assertOk()->assertJsonPath('revision', 1)->assertJsonPath('confirmed', true)->assertJsonPath('age_min', 18);
         $this->putJson('/api/v1/matching-inputs', $this->input(['revision' => 1]))
