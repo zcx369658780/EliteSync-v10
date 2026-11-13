@@ -96,6 +96,8 @@ class NotificationApiTest extends TestCase
         \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a'=>min($user->id,$other->id),'user_b'=>max($user->id,$other->id),'state'=>'ACTIVE','revision'=>1,'created_at'=>now(),'updated_at'=>now()]);
         $consent=app(\App\Services\LiveConsentService::class);
         foreach ([[$other,$user,'connection','request',0],[$user,$other,'connection','accept',1],[$other,$user,'consent','request',0],[$user,$other,'consent','accept',1]] as [$a,$b,$kind,$action,$revision]) $consent->transition($a->id,$b->id,$kind,$action,$revision);
+        // This test isolates message/notification read state. Consent-event coverage is separate.
+        AppNotificationItem::query()->delete();
         Sanctum::actingAs($other);
         $this->postJson('/api/v1/messages',['receiver_id'=>$user->id,'content'=>'synthetic notification flow','client_message_id'=>(string)\Illuminate\Support\Str::uuid()])->assertOk();
         $post=\App\Models\StatusPost::create(['author_user_id'=>$user->id,'title'=>'synthetic','body'=>'synthetic','visibility'=>'public','audience'=>'FRIENDS','is_deleted'=>false]);

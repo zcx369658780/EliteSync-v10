@@ -1,3 +1,6 @@
+import 'package:flutter_elitesync_module/features/chat/presentation/widgets/voice_memo_panel.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/widgets/private_audio_player.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/pages/conversation_search_page.dart';
 import 'package:flutter_elitesync_module/features/profile/avatar/authenticated_avatar.dart';
 import 'dart:async';
 import 'dart:typed_data';
@@ -34,6 +37,10 @@ class LiveChatPage extends ConsumerStatefulWidget {
 class _LiveChatPageState extends ConsumerState<LiveChatPage>
     with WidgetsBindingObserver {
   ChatSendAttempt? _attempt;
+  int? _replyId;
+  String? _replyLabel;
+  final _acknowledged = <int>{};
+  final _ackPending = <int>{};
   int? _retryAsset;
   String? _sendStatus;
   bool _foreground = true;
@@ -196,6 +203,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _uploadCancellation.cancel('Request session invalidated');
       _uploadCancellation = CancelToken();
       _messages = [];
+      _replyId = null;
+      _replyLabel = null;
+      _acknowledged.clear();
+      _ackPending.clear();
       _images = {};
       _previewImageId = null;
       _loadingOlder = false;
@@ -280,6 +291,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           peerUserId: widget.peerId,
           content: pending['content'] as String,
           attachmentIds: ids.cast<int>(),
+          replyToMessageId: pending['reply_to_message_id'] as int?,
         );
         if (_attempt != null &&
             (_attempt!.clientMessageId != attempt.clientMessageId ||
@@ -287,12 +299,15 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                   peerUserId: attempt.peerUserId,
                   content: attempt.content,
                   attachmentIds: attempt.attachmentIds,
+                  replyToMessageId: attempt.replyToMessageId,
                 ))) {
           throw const FormatException('Submission changed.');
         }
         _attempt = attempt;
         _text.text = attempt.content;
         _retryAsset = attempt.attachmentIds.firstOrNull;
+        _replyId = attempt.replyToMessageId;
+        _replyLabel = _replyId == null ? null : '引用消息 #$_replyId';
         _sendStatus = '上次发送尚未完成，请使用原消息编号重试。';
       } catch (_) {
         _cache.lock();
@@ -312,6 +327,66 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     }
     _draftLoaded = true;
     return true;
+  }
+
+  void _ackPresented() {
+    final session = _session;
+    final epoch = _epoch;
+    if (session == null || _offline || _error != null) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!_current(session, epoch) ||
+          ModalRoute.of(context)?.isCurrent != true ||
+          _offline) {
+        return;
+      }
+      final ids = _messages
+          .where(
+            (m) =>
+                m['receiver_id'] == session.user?.id &&
+                m['sender_id'] == widget.peerId &&
+                m['is_read'] != true,
+          )
+          .map((m) => (m['id'] as num).toInt())
+          .where(
+            (id) => !_acknowledged.contains(id) && !_ackPending.contains(id),
+          )
+          .take(100)
+          .toList();
+      if (ids.isEmpty) return;
+      _ackPending.addAll(ids);
+      final response = await ref
+          .read(apiClientProvider)
+          .post(
+            '/api/v1/messages/ack',
+            body: {'peer_id': widget.peerId, 'message_ids': ids},
+            options: Options(
+              extra: {requestSessionGuardKey: () => _current(session, epoch)},
+            ),
+          );
+      if (!_current(session, epoch)) return;
+      _ackPending.removeAll(ids);
+      if (response is NetworkSuccess<Map<String, dynamic>>) {
+        _acknowledged.addAll(ids);
+        ref.invalidate(conversationListProvider);
+      }
+    });
+  }
+
+  Future<void> _voiceMemo() async {
+    if (_busy || _draftBusy || _offline || _error != null || _attempt != null) {
+      return;
+    }
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => VoiceMemoPanel(
+        peerId: widget.peerId,
+        onSend: (asset) async {
+          return _send(asset: asset);
+        },
+      ),
+    );
+    if (mounted) await _load();
   }
 
   Future<void> _load() async {
@@ -488,6 +563,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         // retry) acknowledges it; a later timeout must not create a new key
         // for the unchanged draft.
       });
+      _ackPresented();
       if (_current(session, epoch) &&
           _socket == null &&
           session.accessToken?.isNotEmpty == true) {
@@ -622,6 +698,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             items.isNotEmpty &&
             (response.data['has_more'] as bool? ?? items.length == 100);
       });
+      _ackPresented();
     } catch (error) {
       if (!_current(session, epoch)) return;
       if (error is DioException &&
@@ -699,17 +776,17 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     return true;
   }
 
-  Future<void> _post(SessionState session, int epoch, {int? asset}) async {
-    if (!_current(session, epoch) || _offline) return;
+  Future<bool> _post(SessionState session, int epoch, {int? asset}) async {
+    if (!_current(session, epoch) || _offline) return false;
     if (asset != null &&
         _attempt != null &&
         !_attempt!.attachmentIds.contains(asset)) {
       setState(() => _sendStatus = '已有未确认消息，请先使用原消息编号重试。');
-      return;
+      return false;
     }
     if (!await _canStartSubmission(session, epoch) ||
         !_current(session, epoch)) {
-      return;
+      return false;
     }
     // An unconfirmed POST owns its immutable payload and idempotency key.
     // A changed controller value must never replace that logical attempt.
@@ -719,11 +796,12 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           peerUserId: widget.peerId,
           content: _text.text.trim(),
           attachmentIds: asset == null ? <int>[] : [asset],
+          replyToMessageId: _replyId,
         );
-    if (attempt.content.isEmpty && attempt.attachmentIds.isEmpty) return;
+    if (attempt.content.isEmpty && attempt.attachmentIds.isEmpty) return false;
     if (attempt.content.length > 5000) {
       setState(() => _sendStatus = '消息最多5000个字符，尚未发送。');
-      return;
+      return false;
     }
     if (_attempt == null) {
       final saved = await _cache.saveAuthorized(
@@ -735,12 +813,14 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             'peer_user_id': attempt.peerUserId,
             'content': attempt.content,
             'attachment_ids': attempt.attachmentIds.toList(),
+            if (attempt.replyToMessageId != null)
+              'reply_to_message_id': attempt.replyToMessageId,
           },
         },
         expectedAccountId: session.user!.id,
         isCurrent: () => _current(session, epoch) && !_offline,
       );
-      if (!_current(session, epoch)) return;
+      if (!_current(session, epoch)) return false;
       if (!saved) {
         if (!_cache.isUnlocked) {
           _reject('本机发送回执保存失败，消息尚未发送；请重新登录。');
@@ -748,7 +828,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         } else {
           setState(() => _sendStatus = '本机发送回执保存未完成，消息尚未发送，请重试。');
         }
-        return;
+        return false;
       }
     }
     _attempt = attempt;
@@ -772,11 +852,13 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             'receiver_id': attempt.peerUserId,
             'content': attempt.content,
             'client_message_id': attempt.clientMessageId,
+            if (attempt.replyToMessageId != null)
+              'reply_to_message_id': attempt.replyToMessageId,
             if (attempt.attachmentIds.isNotEmpty)
               'attachment_ids': attempt.attachmentIds,
           },
         );
-    if (!_current(session, epoch)) return;
+    if (!_current(session, epoch)) return false;
     if (result is! NetworkSuccess<Map<String, dynamic>>) {
       final unknown =
           result is NetworkFailure<Map<String, dynamic>> &&
@@ -790,38 +872,42 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             ? '发送结果尚未确认，请按重试；将使用同一个消息编号。'
             : '服务器拒绝了此消息，请重新验证当前权限。',
       );
-      return;
+      return false;
     }
     if (result.data['client_message_id'] != attempt.clientMessageId ||
         result.data['id'] is! num) {
       _reject('服务器确认身份不符，不能标记已发送；请按原编号重试。', preserveAttempt: true);
-      return;
+      return false;
     }
     _attempt = null;
     _retryAsset = null;
-    setState(() => _sendStatus = '服务器已确认此消息');
+    setState(() {
+      _sendStatus = '服务器已持久化此消息';
+      _replyId = null;
+      _replyLabel = null;
+    });
     _text.clear();
     try {
       if (!await _cache.removeObject(_draftKey)) {
         throw StateError('Confirmed draft cleanup was superseded.');
       }
     } catch (_) {
-      if (!_current(session, epoch)) return;
+      if (!_current(session, epoch)) return false;
       _cache.lock();
       _reject('消息已确认，但本机草稿清理未完成；请重新登录后重试清理。');
       setState(() {
         _timeLocked = true;
         _sendStatus = '服务器已确认此消息';
       });
-      return;
+      return false;
     }
-    if (!_current(session, epoch)) return;
+    if (!_current(session, epoch)) return false;
     _draftStatus = null;
     await _load();
-    if (!_current(session, epoch)) return;
+    return _current(session, epoch);
   }
 
-  Future<void> _send({int? asset}) async {
+  Future<bool> _send({int? asset}) async {
     if (_busy ||
         _draftBusy ||
         !mounted ||
@@ -829,18 +915,18 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         !_foreground ||
         _sessionChanged ||
         _timeLocked) {
-      return;
+      return false;
     }
     final session = ref.read(sessionProvider).asData?.value;
     if (session == null || !session.isLoggedIn) {
       _reject('发送未完成，服务器未授权或当前会话已失效。');
-      return;
+      return false;
     }
     _session = session;
     final epoch = _epoch;
     setState(() => _busy = true);
     try {
-      await _post(session, epoch, asset: asset);
+      return await _post(session, epoch, asset: asset);
     } catch (_) {
       if (_current(session, epoch)) {
         setState(() {
@@ -850,6 +936,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     } finally {
       if (_current(session, epoch)) setState(() => _busy = false);
     }
+    return false;
   }
 
   Future<void> _picture() => _attachment(ChatAttachmentKind.image);
@@ -1145,6 +1232,34 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         ),
         actions: [
           IconButton(
+            tooltip: '搜索当前会话',
+            icon: const Icon(Icons.search),
+            onPressed: _offline || _error != null
+                ? null
+                : () async {
+                    await Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) =>
+                            ConversationSearchPage(peerId: widget.peerId),
+                      ),
+                    );
+                    if (mounted) await _load();
+                  },
+          ),
+          IconButton(
+            tooltip: '语音留言',
+            icon: const Icon(Icons.mic_none),
+            onPressed:
+                _busy ||
+                    _draftBusy ||
+                    _offline ||
+                    _error != null ||
+                    _attempt != null
+                ? null
+                : _voiceMemo,
+          ),
+
+          IconButton(
             tooltip: '刷新对话',
             onPressed: () {
               setState(() => _avatarRefresh++);
@@ -1250,6 +1365,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              if (m['reply'] is Map)
+                                Text(
+                                  '引用 · ${m['reply']['summary']}',
+                                  style: TextStyle(color: textColor),
+                                ),
                               Text(
                                 m['content']?.toString() ?? '',
                                 style: TextStyle(color: textColor),
@@ -1285,11 +1405,53 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                                     icon: const Icon(Icons.play_circle_outline),
                                     label: const Text('播放私有视频'),
                                   ),
+                              for (final a in (m['attachments'] as List? ?? []))
+                                if (a['media_asset'] is Map &&
+                                    a['media_asset']['media_type'] == 'audio')
+                                  TextButton.icon(
+                                    onPressed: _offline
+                                        ? null
+                                        : () => showDialog<void>(
+                                            context: context,
+                                            builder: (_) => AlertDialog(
+                                              title: const Text('语音留言'),
+                                              content: PrivateAudioPlayer(
+                                                assetId:
+                                                    (a['media_asset']['id']
+                                                            as num)
+                                                        .toInt(),
+                                              ),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(context),
+                                                  child: const Text('关闭'),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                    icon: const Icon(Icons.play_arrow),
+                                    label: Text(
+                                      '播放语音 ${((a['media_asset']['duration_ms'] as num? ?? 0) / 1000).toStringAsFixed(1)}秒',
+                                    ),
+                                  ),
+                              if (!_offline && _attempt == null && !_busy)
+                                TextButton(
+                                  onPressed: () => setState(() {
+                                    _replyId = (m['id'] as num).toInt();
+                                    _replyLabel =
+                                        m['content']?.toString().isNotEmpty ==
+                                            true
+                                        ? m['content'].toString()
+                                        : '[${m['message_type'] ?? '附件'}]';
+                                  }),
+                                  child: const Text('引用回复'),
+                                ),
                               Text(
                                 sentByMe
                                     ? (m['is_read'] == true
-                                          ? '我 · 已读'
-                                          : '我 · 未读')
+                                          ? '我 · 对方已读'
+                                          : '我 · 服务器已保存，未读')
                                     : (senderId == widget.peerId ? '对方' : '消息'),
                                 style: Theme.of(context).textTheme.bodySmall
                                     ?.copyWith(color: textColor),
@@ -1315,6 +1477,25 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
               ],
             ),
           ),
+          if (_replyId != null)
+            ListTile(
+              dense: true,
+              title: Text(
+                '引用 · ${_replyLabel ?? '原消息'}',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              trailing: _attempt == null
+                  ? IconButton(
+                      tooltip: '取消引用',
+                      icon: const Icon(Icons.close),
+                      onPressed: () => setState(() {
+                        _replyId = null;
+                        _replyLabel = null;
+                      }),
+                    )
+                  : null,
+            ),
           if (_draftStatus != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),

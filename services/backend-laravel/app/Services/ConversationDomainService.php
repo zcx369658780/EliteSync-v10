@@ -66,14 +66,6 @@ class ConversationDomainService
         ])->save();
 
         ConversationMember::query()->firstOrCreate(
-            ['conversation_id' => $conversation->id, 'user_id' => $senderId],
-            ['role' => 'member', 'joined_at' => now()]
-        )->forceFill([
-            'last_read_message_id' => (int) $message->id,
-            'last_read_at' => $message->created_at ?? now(),
-        ])->save();
-
-        ConversationMember::query()->firstOrCreate(
             ['conversation_id' => $conversation->id, 'user_id' => $receiverId],
             ['role' => 'member', 'joined_at' => now()]
         );
@@ -152,15 +144,13 @@ class ConversationDomainService
             ->where('room_id', $conversation->room_key)
             ->latest('id')
             ->first();
-        $viewerMember = $conversation->members->firstWhere('user_id', $viewerId);
-        $lastReadMessageId = (int) ($viewerMember?->last_read_message_id ?? 0);
         $matchId = $conversation->relationLoaded('matchLinks')
             ? $conversation->matchLinks->sortByDesc('id')->first()?->dating_match_id
             : $conversation->matchLinks()->latest('id')->value('dating_match_id');
         $unread = ChatMessage::query()
             ->where('room_id', $conversation->room_key)
             ->where('receiver_id', $viewerId)
-            ->where('id', '>', $lastReadMessageId)
+            ->where('is_read', false)
             ->count();
 
         return [
@@ -258,6 +248,7 @@ class ConversationDomainService
             return null;
         }
 
+        if ($message->attachments->contains(fn ($a) => $a->mediaAsset?->media_type === 'audio')) return '语音消息';
         if ($message->attachments->isNotEmpty() || in_array((string) $message->message_type, ['image', 'video'], true)) {
             $messageType = (string) $message->message_type;
             if (str_starts_with($messageType, 'video') || $messageType === 'video') {

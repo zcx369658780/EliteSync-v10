@@ -15,6 +15,7 @@ class AppNotificationItem extends Model
     protected $fillable = [
         'user_id',
         'kind',
+        'source_event_key',
         'title',
         'body',
         'payload',

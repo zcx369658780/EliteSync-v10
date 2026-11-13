@@ -297,7 +297,13 @@ final class LiveConsentService
                     DB::table('messaging_consents')->where('id', $mc->id)->update(['state' => $next, 'revision' => $expected + 1, 'updated_at' => now()]);
                 }
             }
-            DB::table('live_consent_events')->insert(['connection_id' => $cn->id, 'kind' => $kind, 'actor_id' => $actor, 'from_state' => $from, 'to_state' => $next, 'revision' => $expected + 1, 'created_at' => now()]);
+            $eventId = DB::table('live_consent_events')->insertGetId(['connection_id' => $cn->id, 'kind' => $kind, 'actor_id' => $actor, 'from_state' => $from, 'to_state' => $next, 'revision' => $expected + 1, 'created_at' => now()]);
+
+            app(NotificationService::class)->createForUser($peer,
+                $kind === 'connection' ? 'consent_connection' : 'consent_message',
+                '连接或消息同意有更新', '请在应用中查看当前状态',
+                ['connection_id' => (int) $cn->id],
+                sourceEventKey: 'consent-event:'.$eventId);
 
             return $this->current($actor, $peer);
         });

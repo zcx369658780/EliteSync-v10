@@ -5,13 +5,15 @@ namespace App\Domain;
 /** Pure protocol rules. Current authorization must be supplied by server-owned services. */
 final class MessagingReplayContract
 {
-    public static function fingerprint(int $receiverId, string $content, array $attachmentIds): string
+    public static function fingerprint(int $receiverId, string $content, array $attachmentIds, ?int $replyToMessageId = null): string
     {
         if ($receiverId <= 0 || array_filter($attachmentIds, fn ($id) => !is_int($id) || $id <= 0)) {
             throw new \InvalidArgumentException('Invalid message identity');
         }
-        return hash('sha256', json_encode(['receiver_id'=>$receiverId,'content'=>$content,
-            'attachment_ids'=>array_values($attachmentIds)],
+        $payload = ['receiver_id' => $receiverId, 'content' => $content, 'attachment_ids' => array_values($attachmentIds)];
+        // Preserve fingerprints of messages created before replies were introduced.
+        if ($replyToMessageId !== null) $payload['reply_to_message_id'] = $replyToMessageId;
+        return hash('sha256', json_encode($payload,
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
     }
 

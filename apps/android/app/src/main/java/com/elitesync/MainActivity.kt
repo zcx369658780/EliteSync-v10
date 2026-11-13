@@ -8,6 +8,8 @@ import org.json.JSONObject
 import java.io.File
 
 class MainActivity : FlutterActivity() {
+    private var voiceMemo: NativeVoiceMemo? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setIntent(intent)
         ensureBootstrapDefaults()
@@ -22,6 +24,10 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        voiceMemo?.discard()
+        voiceMemo = NativeVoiceMemo(this)
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "elitesync/voice_memo")
+            .setMethodCallHandler(voiceMemo)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "elitesync/bootstrap")
             .setMethodCallHandler { call, result ->
                 when (call.method) {
@@ -71,6 +77,17 @@ class MainActivity : FlutterActivity() {
                     else -> result.notImplemented()
                 }
             }
+    }
+
+    override fun onPause() {
+        voiceMemo?.onPause()
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        voiceMemo?.discard()
+        voiceMemo = null
+        super.onDestroy()
     }
 
     private fun ensureBootstrapDefaults() {

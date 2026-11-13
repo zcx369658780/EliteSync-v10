@@ -312,6 +312,8 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::prefix('messages')->group(function () {
+            Route::get('/search', [MessageController::class, 'search'])->middleware(DenyUnverifiedMessagingLiveAccess::class)->middleware('throttle:messages');
+            Route::post('/ack', [MessageController::class, 'acknowledge'])->middleware(DenyUnverifiedMessagingLiveAccess::class);
             Route::post('', [MessageController::class, 'send'])->middleware(DenyUnverifiedMessagingLiveAccess::class)->middleware('throttle:messages');
             Route::get('', [MessageController::class, 'list'])->middleware(DenyUnverifiedMessagingLiveAccess::class)->middleware('throttle:messages');
             Route::post('/read/{messageId}', [MessageController::class, 'markRead'])->middleware(DenyUnverifiedMessagingLiveAccess::class);

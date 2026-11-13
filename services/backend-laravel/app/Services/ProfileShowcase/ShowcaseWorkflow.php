@@ -157,6 +157,10 @@ final class ShowcaseWorkflow
                 ['reason_code' => 'web_review', 'note' => mb_substr($reason, 0, 240), 'expected_revision' => $expected]);
             DB::table('profile_showcase_submissions')->where('id', $submission->id)->update([
                 'state' => $result, 'reviewer_id' => $actor->id, 'reason' => $reason, 'reviewed_at' => now(), 'updated_at' => now()]);
+            app(\App\Services\NotificationService::class)->createForUser((int) $hint->user_id,
+                'showcase_review', '本人资料审核有更新', '请查看本人当前审核状态',
+                ['submission_id' => (int) $submission->id], sourceEventKey: 'showcase-review:'.$submission->id);
+
         });
     }
 

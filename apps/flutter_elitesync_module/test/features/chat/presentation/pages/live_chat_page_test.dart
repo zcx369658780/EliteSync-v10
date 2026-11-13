@@ -179,6 +179,60 @@ class _MediaApi extends ApiClient {
   }
 }
 
+class _PresentedApi extends _MediaApi {
+  final acknowledgements = <List<int>>[];
+  int newest = 1;
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> get(
+    String path, {
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
+    if (path.startsWith('/api/v1/connections/'))
+      return const NetworkSuccess({
+        'gates': {'live_read_allowed': true},
+      });
+    return NetworkSuccess({
+      'items': [
+        for (var id = 1; id <= newest; id++)
+          {
+            'id': id,
+            'sender_id': 2,
+            'receiver_id': 1,
+            'content': 'visible $id',
+            'is_read': false,
+            'attachments': <dynamic>[],
+          },
+      ],
+      'has_more': false,
+    });
+  }
+
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> post(
+    String path, {
+    Object? body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
+    if (path == '/api/v1/messages/ack') {
+      acknowledgements.add(
+        List<int>.from((body as Map)['message_ids'] as List),
+      );
+      return const NetworkSuccess({'ok': true});
+    }
+    return super.post(
+      path,
+      body: body,
+      cancelToken: cancelToken,
+      query: query,
+      options: options,
+    );
+  }
+}
+
 class _PickerResumeApi extends _MediaApi {
   bool holdHistory = false;
   final history = Completer<NetworkResult<Map<String, dynamic>>>();
@@ -332,6 +386,36 @@ Future<void> _show(
 }
 
 void main() {
+  testWidgets('only the presented foreground conversation ACKs inbound IDs', (
+    tester,
+  ) async {
+    final api = _PresentedApi();
+    await _show(tester, api);
+    await tester.pumpAndSettle();
+    expect(api.acknowledgements, [
+      [1],
+    ]);
+    await tester.tap(find.byTooltip('搜索当前会话'));
+    await tester.pumpAndSettle();
+    api.newest = 2;
+    await tester.enterText(find.byType(TextField), 'visible');
+    await tester.tap(find.byTooltip('搜索'));
+    await tester.pumpAndSettle();
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pumpAndSettle();
+    expect(api.acknowledgements, [
+      [1],
+    ]);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(api.acknowledgements, [
+      [1],
+      [2],
+    ]);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+  });
+
   for (final kind in ChatAttachmentKind.values) {
     testWidgets(
       'native ${kind.name} picker resumes with a saved draft before history finishes',

@@ -7,10 +7,14 @@ class ChatSendAttempt {
     required String clientMessageId,
     required this.peerUserId,
     required String content,
+    this.replyToMessageId,
     List<int> attachmentIds = const [],
   }) : clientMessageId = _validatedClientMessageId(clientMessageId),
        content = _validatedContent(content),
        attachmentIds = UnmodifiableListView<int>(List<int>.of(attachmentIds)) {
+    if (replyToMessageId != null && replyToMessageId! <= 0) {
+      throw ArgumentError('Invalid reply identity');
+    }
     if (peerUserId <= 0) {
       throw ArgumentError.value(peerUserId, 'peerUserId', 'must be positive');
     }
@@ -19,17 +23,20 @@ class ChatSendAttempt {
   factory ChatSendAttempt.create({
     required int peerUserId,
     required String content,
+    int? replyToMessageId,
     List<int> attachmentIds = const [],
   }) => ChatSendAttempt(
     clientMessageId: const Uuid().v4().toLowerCase(),
     peerUserId: peerUserId,
     content: content,
     attachmentIds: attachmentIds,
+    replyToMessageId: replyToMessageId,
   );
 
   final String clientMessageId;
   final int peerUserId;
   final String content;
+  final int? replyToMessageId;
   final List<int> attachmentIds;
 
   String get localMessageId => 'local-$clientMessageId';
@@ -38,7 +45,9 @@ class ChatSendAttempt {
     required int peerUserId,
     required String content,
     required List<int> attachmentIds,
+    int? replyToMessageId,
   }) {
+    if (this.replyToMessageId != replyToMessageId) return false;
     if (this.peerUserId != peerUserId || this.content != content.trim()) {
       return false;
     }

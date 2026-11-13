@@ -44,11 +44,13 @@ class MediaController extends Controller
         }
         if (app(LiveConsentService::class)->enabled()) {
             abort_unless(in_array(config('media.disk'), ['v1007', 'v1009', 'v1011_relationship'], true), 422, 'private media configuration required');
-            $request->validate(['media_type' => 'required|in:image,video', 'file' => 'required|file', 'storage_key' => 'prohibited', 'public_url' => 'prohibited']);
+            $request->validate(['media_type' => 'required|in:image,video,audio', 'file' => 'required|file', 'storage_key' => 'prohibited', 'public_url' => 'prohibited']);
             if ($request->input('media_type') === 'video') {
                 abort_unless(in_array(config('media.disk'), ['v1009', 'v1011_relationship'], true), 422, 'private video configuration required');
-            } else {
+            } elseif ($request->input('media_type') === 'image') {
                 $request->validate(['file' => 'required|image|max:5120']);
+            } else {
+                $request->validate(['file' => 'required|file|max:5120']);
             }
         }
         $data = $request->validate([
@@ -70,11 +72,17 @@ class MediaController extends Controller
             $data = array_merge($data, app(PrivateVideoValidator::class)->validate($request->file('file')));
         }
 
+        if ($request->input('media_type') === 'audio') {
+            abort_unless(app(LiveConsentService::class)->enabled(), 404);
+            $data = array_merge($data, app(\App\Services\PrivateAudioValidator::class)->validate($request->file('file')));
+        }
+
         try {
             if ($request->hasFile('file')) {
                 $file = $request->file('file');
                 $private = app(LiveConsentService::class)->enabled();
-                $data['mime_type'] = (string) ($private ? $file?->getMimeType() : ($data['mime_type'] ?? $file?->getMimeType() ?? ''));
+                $data['mime_type'] = $request->input('media_type') === 'audio' ? 'audio/mp4'
+                    : (string) ($private ? $file?->getMimeType() : ($data['mime_type'] ?? $file?->getMimeType() ?? ''));
                 $data['size_bytes'] = (int) ($private ? $file?->getSize() : ($data['size_bytes'] ?? $file?->getSize() ?? 0));
 
                 $asset = $service->registerUploaded($request->user(), $file, $data);

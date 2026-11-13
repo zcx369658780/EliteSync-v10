@@ -422,6 +422,13 @@ class RtcSessionService
             'event_name' => $eventName,
             'payload' => $payload,
         ]);
+        if (in_array((string) $session->status, self::TERMINAL_STATUSES, true)) {
+            foreach ([(int) $session->initiator_user_id, (int) $session->peer_user_id] as $participant) {
+                $this->notifyPeer($participant, 'rtc_call_result', '通话状态已更新',
+                    '请在应用中查看当前通话结果', $session);
+            }
+        }
+
     }
 
     private function notifyPeer(int $peerId, string $kind, string $title, string $body, RtcSession $session, array $payload = []): void
@@ -442,12 +449,14 @@ class RtcSessionService
                     'mode' => $session->mode,
                     ...$payload,
                 ],
-            ], static fn ($value) => $value !== null)
+            ], static fn ($value) => $value !== null),
+            sourceEventKey: 'rtc:'.$session->id.':'.$kind,
         );
     }
 
     private function notifyCounterpart(RtcSession $session, int $actorUserId, string $kind, string $title, string $body): void
     {
+        if (in_array((string) $session->status, self::TERMINAL_STATUSES, true)) return;
         $targetUserId = (int) $session->initiator_user_id === $actorUserId
             ? (int) $session->peer_user_id
             : (int) $session->initiator_user_id;

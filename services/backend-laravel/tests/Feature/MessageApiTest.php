@@ -408,7 +408,7 @@ class MessageApiTest extends TestCase
             ->assertJsonPath('items.0.last_message', '视频消息');
     }
 
-    public function test_list_auto_marks_incoming_messages_as_read(): void
+    public function test_history_leaves_incoming_messages_unread_until_explicit_ack(): void
     {
         $userA = User::create([
             'phone' => '13800000013',
@@ -440,7 +440,9 @@ class MessageApiTest extends TestCase
         $this->getJson('/api/v1/messages?peer_id='.$userA->id)
             ->assertOk()
             ->assertJsonPath('items.0.id', $messageId)
-            ->assertJsonPath('items.0.is_read', true);
+            ->assertJsonPath('items.0.is_read', false);
+        $this->postJson('/api/v1/messages/read/'.$messageId)->assertOk();
+        $this->assertTrue(ChatMessage::findOrFail($messageId)->is_read);
     }
 
     public function test_atomic_keyed_send_replay_mismatch_and_newest_match_truth(): void
@@ -543,7 +545,7 @@ class MessageApiTest extends TestCase
         DatingMatch::query()->create(['week_tag' => 'rollback', 'user_a' => $sender->id, 'user_b' => $other->id, 'drop_released' => true]);
         $before = [Conversation::count(), ConversationMember::count(), ConversationMatchLink::count(), ChatMessage::count(), AppEvent::count(), AppNotificationItem::count()];
         $this->app->instance(NotificationService::class, new class extends NotificationService {
-            public function createForUser(int $userId, string $kind, string $title, ?string $body = null, array $payload = [], ?string $expiresAt = null): AppNotificationItem
+            public function createForUser(int $userId, string $kind, string $title, ?string $body = null, array $payload = [], ?string $expiresAt = null, ?string $sourceEventKey = null): AppNotificationItem
             {
                 throw new \RuntimeException('injected notification failure');
             }

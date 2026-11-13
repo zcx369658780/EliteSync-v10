@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 import 'dart:async';
+import 'package:flutter_elitesync_module/core/audio/communication_audio_focus.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
@@ -72,6 +73,7 @@ class RtcLiveKitService extends ChangeNotifier {
   final RtcRemoteDataSource remoteDataSource;
   final AppEnv appEnv;
 
+  Object? _voiceAudioOwner;
   Room? _room;
   int? _connectedCallId;
   bool _connecting = false;
@@ -1134,6 +1136,7 @@ class RtcLiveKitService extends ChangeNotifier {
     final requestedGeneration = _connectionGeneration;
     final captureGeneration = _captureGeneration;
     int? generation;
+    Object? acquiredAudioOwner;
     try {
       final info = await _loadJoinInfo(callId);
       if (_disposed || requestedGeneration != _connectionGeneration) return;
@@ -1163,6 +1166,18 @@ class RtcLiveKitService extends ChangeNotifier {
       if (_speakerPreferenceCallId != callId) {
         _speakerPreferenceCallId = callId;
         _speakerOutputPreferred = true;
+      }
+      final audioOwner = Object();
+      acquiredAudioOwner = audioOwner;
+      _voiceAudioOwner = audioOwner;
+      await CommunicationAudioFocus.acquireRtc(audioOwner);
+      if (_disposed ||
+          _connectionGeneration != expectedAfterLeave ||
+          _captureSuspended ||
+          captureGeneration != _captureGeneration) {
+        CommunicationAudioFocus.releaseRtc(audioOwner);
+        if (identical(_voiceAudioOwner, audioOwner)) _voiceAudioOwner = null;
+        return;
       }
       generation = _connectionGeneration;
       if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
@@ -1445,6 +1460,13 @@ class RtcLiveKitService extends ChangeNotifier {
       );
       rethrow;
     } finally {
+      if (acquiredAudioOwner != null &&
+          (_room == null || _connectedCallId != callId)) {
+        CommunicationAudioFocus.releaseRtc(acquiredAudioOwner);
+        if (identical(_voiceAudioOwner, acquiredAudioOwner)) {
+          _voiceAudioOwner = null;
+        }
+      }
       _connecting = false;
       _pendingCallId = null;
     }
@@ -1571,6 +1593,8 @@ class RtcLiveKitService extends ChangeNotifier {
         _pendingCallId != callId) {
       return;
     }
+    final audioOwner = _voiceAudioOwner;
+    _voiceAudioOwner = null;
     final leavingCallId = callId ?? _connectedCallId ?? _pendingCallId;
     _connectionGeneration += 1;
     _captureSuspended = false;
@@ -1594,11 +1618,13 @@ class RtcLiveKitService extends ChangeNotifier {
     _mediaChanged();
     if (room == null) {
       await _teardown;
+      if (audioOwner != null) CommunicationAudioFocus.releaseRtc(audioOwner);
       _logLifecycle(leavingCallId, 'leave_complete');
       return;
     }
     _teardown = Future.wait([_teardown, _releaseRoom(room)]).then<void>((_) {});
     await _teardown;
+    if (audioOwner != null) CommunicationAudioFocus.releaseRtc(audioOwner);
     _logLifecycle(leavingCallId, 'leave_complete');
   }
 

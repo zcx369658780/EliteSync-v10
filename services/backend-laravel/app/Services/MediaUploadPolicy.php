@@ -31,6 +31,7 @@ class MediaUploadPolicy
             return false;
         }
 
+        if ($mime === 'audio/mp4' && app(LiveConsentService::class)->enabled()) return true;
         foreach ($this->allowedMimePrefixes() as $prefix) {
             $prefix = strtolower(trim((string) $prefix));
             if ($prefix !== '' && str_starts_with($mime, $prefix)) {

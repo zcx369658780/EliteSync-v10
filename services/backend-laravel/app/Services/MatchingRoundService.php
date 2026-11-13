@@ -115,7 +115,8 @@ class MatchingRoundService
                     app(NotificationService::class)->createForUser((int) $userId, 'matching_round',
                         '匹配轮次结果已发布', '请在应用内查看本轮结果。匹配不授予连接或消息同意。',
                         ['source' => 'matching_round', 'round_key' => $locked->round_key, 'run_key' => $runKey,
-                            'route_name' => 'match_result', 'route_args' => []]);
+                            'route_name' => 'match_result', 'route_args' => []],
+                        sourceEventKey: 'round:'.$locked->id.':run:'.$locked->active_run_id.':revealed');
                 }
                 $values['revealed_at'] = now()->utc();
             }

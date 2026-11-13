@@ -118,7 +118,9 @@ final class V1009PrivateVideoTest extends TestCase
         $a = User::factory()->create(['phone' => '19900000921', 'disabled' => false, 'is_synthetic' => false]);
         $b = User::factory()->create(['phone' => '19900000922', 'disabled' => false, 'is_synthetic' => false]);
         $outsider = User::factory()->create(['phone' => '19900000923', 'disabled' => false, 'is_synthetic' => false]);
-        $this->createAcceptedMatchContext($a, $b);
+        // Current eligible context for this media-authorization regression.
+        \Illuminate\Support\Facades\DB::table('friendships')->insert(['user_a' => $a->id, 'user_b' => $b->id,
+            'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
         foreach ([[$a, $b, 'connection', 'request', 0], [$b, $a, 'connection', 'accept', 1],
             [$a, $b, 'consent', 'request', 0], [$b, $a, 'consent', 'accept', 1]] as [$actor, $peer, $kind, $action, $revision]) {
             Sanctum::actingAs($actor);

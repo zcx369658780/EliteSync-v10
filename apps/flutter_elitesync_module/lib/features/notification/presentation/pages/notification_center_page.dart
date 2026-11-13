@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/features/notification/data/datasource/notification_remote_data_source.dart';
 import 'notification_preferences_page.dart';
@@ -394,6 +395,10 @@ class _NotificationCenterPageState
           }
           return false;
         }
+        if (ref.read(appEnvProvider).restorationLocalBuild) {
+          context.push('/live-chat/$peerUserId');
+          return true;
+        }
         final routeState = ChatRouteState.stored(
           conversationId: resolvedConversationId,
           peerUserId: peerUserId,
@@ -434,6 +439,22 @@ class _NotificationCenterPageState
       }
       AppFeedback.showInfo(context, '内容目标缺失，暂无法打开');
       return false;
+    }
+    if (routeName == 'connection_current') {
+      final peer = _intRouteArg('peer_id', item);
+      if (peer <= 0) return false;
+      context.push('/live-connection?peerId=$peer');
+      return true;
+    }
+    if (routeName == 'showcase_current') {
+      context.push(AppRouteNames.personalShowcase);
+      return true;
+    }
+    if (routeName == 'rtc_call_result') {
+      final callId = _intRouteArg('call_id', item);
+      if (callId <= 0) return false;
+      context.push('${AppRouteNames.rtcCallResult}/$callId');
+      return true;
     }
     if (routeName == 'rtc_call') {
       final callId = _intRouteArg('call_id', item);

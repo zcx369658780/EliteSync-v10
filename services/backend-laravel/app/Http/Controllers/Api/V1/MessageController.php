@@ -88,12 +88,14 @@ class MessageController extends Controller
             'receiver_id' => (int) $message->receiver_id,
             'content' => (string) $message->content,
             'client_message_id' => $message->client_message_id,
+            'reply_to_message_id' => $message->reply_to_message_id,
+            'reply' => $this->replySummary($message),
             'is_read' => (bool) $message->is_read,
             'read_at' => optional($message->read_at)?->toISOString(),
             'created_at' => optional($message->created_at)?->toISOString(),
-            'message_type' => $hasVideoAttachments
+            'message_type' => collect($attachments)->contains(fn ($a) => ($a['media_asset']['media_type'] ?? '') === 'audio') ? 'audio' : ($hasVideoAttachments
                 ? 'video'
-                : ($hasImageAttachments ? 'image' : (!empty($attachments) ? 'media' : 'text')),
+                : ($hasImageAttachments ? 'image' : (!empty($attachments) ? 'media' : 'text'))),
             'has_attachments' => !empty($attachments),
             'attachments' => $attachments,
         ];
@@ -104,6 +106,7 @@ class MessageController extends Controller
         $data = $request->validate([
             'receiver_id' => ['required', 'integer', 'min:1'],
             'content' => ['nullable', 'string', 'max:5000'],
+            'reply_to_message_id' => ['nullable', 'integer', 'min:1'],
             'attachment_ids' => ['nullable', 'array'],
             'attachment_ids.*' => ['integer', 'min:1', 'distinct'],
             'client_message_id' => ['nullable', 'string', 'size:36', 'regex:/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/'],
@@ -114,8 +117,9 @@ class MessageController extends Controller
         $content = trim((string) ($data['content'] ?? ''));
         $attachmentIds = array_values(array_unique(array_map('intval', $data['attachment_ids'] ?? [])));
         $clientMessageId = isset($data['client_message_id']) ? (string) $data['client_message_id'] : null;
+        $replyId = isset($data['reply_to_message_id']) ? (int) $data['reply_to_message_id'] : null;
         $fingerprint = $clientMessageId !== null
-            ? $service->fingerprint($receiverId, $content, $attachmentIds)
+            ? $service->fingerprint($receiverId, $content, $attachmentIds, $replyId)
             : null;
 
         if ($receiverId === (int) $user->id) {
@@ -138,6 +142,7 @@ class MessageController extends Controller
             fingerprint: $fingerprint,
             appVersion: (string) $request->header('X-App-Version', 'unknown'),
             sourcePage: (string) $request->header('X-Source-Page', 'unknown'),
+            replyToMessageId: $replyId,
         ));
     }
 
@@ -200,25 +205,6 @@ class MessageController extends Controller
         $descending = $latest || $beforeId !== null;
         $roomId = $this->roomId((int) $user->id, $peerId);
 
-        // Pulling conversation acts as read receipt for incoming unread messages.
-        ChatMessage::query()
-            ->where('room_id', $roomId)
-            ->where('sender_id', $peerId)
-            ->where('receiver_id', (int) $user->id)
-            ->where('is_read', false)
-            ->update([
-                'is_read' => true,
-                'read_at' => now(),
-            ]);
-
-        $lastMessage = ChatMessage::query()
-            ->where('room_id', $roomId)
-            ->orderByDesc('id')
-            ->first();
-        if ($lastMessage) {
-            $conversationService->markReadForPair((int) $user->id, $peerId, (int) $lastMessage->id);
-        }
-
         $items = ChatMessage::query()
             ->with(['attachments.mediaAsset'])
             ->where('room_id', $roomId)
@@ -228,7 +214,7 @@ class MessageController extends Controller
             // consumers keep their ascending delta contract.
             ->orderBy('id', $descending ? 'desc' : 'asc')
             ->limit($limit + 1)
-            ->get(['id', 'room_id', 'sender_id', 'receiver_id', 'content', 'client_message_id', 'is_read', 'read_at', 'created_at']);
+            ->get(['id', 'room_id', 'sender_id', 'receiver_id', 'content', 'client_message_id', 'is_read', 'read_at', 'created_at', 'reply_to_message_id']);
         $hasMore = $items->count() > $limit;
         $items = $items->take($limit);
         if ($descending) {
@@ -242,26 +228,88 @@ class MessageController extends Controller
         ]);
     }
 
+    private function replySummary(ChatMessage $message): ?array
+    {
+        if (! $message->reply_to_message_id) return null;
+        $original = ChatMessage::whereKey($message->reply_to_message_id)->where('room_id', $message->room_id)->first();
+        if (! $original) return ['id' => (int) $message->reply_to_message_id, 'available' => false, 'summary' => '引用消息已不可用'];
+        // Outer history/search/send transaction has already authorized this pair.
+        $original->loadMissing('attachments.mediaAsset');
+        $type = $original->attachments->first()?->mediaAsset?->media_type;
+        $summary = $type ? match ($type) {
+            'image' => '[图片]', 'video' => '[视频]', 'audio' => '[语音]', default => '[附件]',
+        } : mb_substr($original->content, 0, 120);
+        return ['id' => (int) $original->id, 'available' => true, 'summary' => $summary];
+    }
+
+    public function search(Request $request, ConversationCapabilityService $capabilities): JsonResponse
+    {
+        $data = $request->validate([
+            'peer_id' => ['required', 'integer', 'min:1'],
+            'query' => ['required', 'string', 'min:1', 'max:100'],
+            'before_id' => ['nullable', 'integer', 'min:1'],
+        ]);
+        return DB::transaction(function () use ($request, $data, $capabilities) {
+            $actor = (int) $request->user()->id;
+            $peer = (int) $data['peer_id'];
+            User::whereIn('id', [$actor, $peer])->orderBy('id')->lockForUpdate()->get();
+            $this->assertCurrentToken($request);
+            abort_unless($capabilities->canRead($actor, $peer), 404, 'chat unavailable');
+            $rows = ChatMessage::where('room_id', $this->roomId($actor, $peer))
+                ->when(isset($data['before_id']), fn ($q) => $q->where('id', '<', $data['before_id']))
+                ->orderByDesc('id')->limit(201)->get();
+            $hits = []; $scanned = 0; $cursor = null;
+            $needle = mb_strtolower($data['query'], 'UTF-8');
+            foreach ($rows->take(200) as $row) {
+                $scanned++; $cursor = (int) $row->id;
+                // Decrypt only this authorized bounded page, with no plaintext index or log.
+                if ($row->content !== '' && mb_strpos(mb_strtolower($row->content, 'UTF-8'), $needle) !== false) {
+                    $hits[] = $this->shapeMessage($row);
+                    if (count($hits) === 20) break;
+                }
+            }
+            return response()->json(['items' => $hits, 'scanned' => $scanned,
+                'has_more' => $rows->count() > $scanned, 'next_before_id' => $cursor]);
+        });
+    }
+
+    private function assertCurrentToken(Request $request): void
+    {
+        $token = $request->user()->currentAccessToken();
+        if ($token instanceof \Laravel\Sanctum\PersonalAccessToken && $token->getKey()) {
+            $fresh = \Laravel\Sanctum\PersonalAccessToken::whereKey($token->getKey())->lockForUpdate()->first();
+            abort_unless($fresh && (int) $fresh->tokenable_id === (int) $request->user()->id, 401, 'SESSION_REVOKED');
+            abort_if($fresh->expires_at && $fresh->expires_at->lte(now('UTC')), 401, 'ONLINE_LOGIN_EXPIRED');
+        }
+    }
+
+    public function acknowledge(Request $request, ConversationCapabilityService $capabilities): JsonResponse
+    {
+        $data = $request->validate([
+            'peer_id' => ['required', 'integer', 'min:1'],
+            'message_ids' => ['required', 'array', 'min:1', 'max:100'],
+            'message_ids.*' => ['required', 'integer', 'min:1', 'distinct'],
+        ]);
+        return DB::transaction(function () use ($request, $data, $capabilities) {
+            $actor = (int) $request->user()->id; $peer = (int) $data['peer_id'];
+            User::whereIn('id', [$actor, $peer])->orderBy('id')->lockForUpdate()->get();
+            $this->assertCurrentToken($request);
+            abort_unless($capabilities->canRead($actor, $peer), 404, 'chat unavailable');
+            $rows = ChatMessage::whereIn('id', $data['message_ids'])->where('room_id', $this->roomId($actor, $peer))
+                ->where('receiver_id', $actor)->where('sender_id', $peer)->lockForUpdate()->get();
+            abort_unless($rows->count() === count($data['message_ids']), 404, 'message not found');
+            $updated = ChatMessage::whereIn('id', $rows->modelKeys())->where('is_read', false)
+                ->update(['is_read' => true, 'read_at' => now()]);
+            return response()->json(['ok' => true, 'acknowledged' => $rows->modelKeys(), 'updated' => $updated]);
+        });
+    }
+
     public function markRead(Request $request, int $messageId, ConversationCapabilityService $capabilities): JsonResponse
     {
-        /** @var User $user */
-        $user = $request->user();
-        $message = ChatMessage::find($messageId);
-
-        if (!$message || (int) $message->receiver_id !== (int) $user->id) {
-            return response()->json(['message' => 'message not found'], 404);
-        }
-        if (!$capabilities->canRead((int) $user->id, (int) $message->sender_id)) {
-            return response()->json(['message' => 'message not found'], 404);
-        }
-
-        if (!$message->is_read) {
-            $message->is_read = true;
-            $message->read_at = now();
-            $message->save();
-        }
-
-        return response()->json(['ok' => true]);
+        $message = ChatMessage::whereKey($messageId)->where('receiver_id', $request->user()->id)->first();
+        abort_unless($message, 404, 'message not found');
+        $request->merge(['peer_id' => (int) $message->sender_id, 'message_ids' => [$messageId]]);
+        return $this->acknowledge($request, $capabilities);
     }
 
     public function websocketStub(Request $request, int $userId): JsonResponse

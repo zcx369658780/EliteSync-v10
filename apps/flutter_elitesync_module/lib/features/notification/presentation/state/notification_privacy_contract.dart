@@ -74,6 +74,23 @@ abstract final class NotificationPrivacyContract {
   ) => externalDefault;
 
   static NotificationPrivacyPresentation inAppPreviewFor(
-    NotificationItemEntity _,
-  ) => inAppFailClosed;
+    NotificationItemEntity item,
+  ) {
+    final category = switch (item.kind) {
+      'message' => '消息',
+      'consent_connection' || 'consent_message' || 'showcase_review' => '系统',
+      _ when item.kind.startsWith('rtc_') => '通话',
+      _ when item.kind.startsWith('match') => '匹配',
+      _ => null,
+    };
+    if (category == null) return inAppFailClosed;
+    return NotificationPrivacyPresentation(
+      audience: NotificationPresentationAudience.inApp,
+      title: '$category有新提醒',
+      body: '请查看当前有权状态。',
+      categoryLabel: category,
+      actionLabel: '查看当前状态',
+      routeHint: '打开后重新核验当前权限与状态。',
+    );
+  }
 }

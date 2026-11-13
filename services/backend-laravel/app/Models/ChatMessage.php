@@ -20,6 +20,7 @@ class ChatMessage extends Model
         'content',
         'client_message_id',
         'request_fingerprint',
+        'reply_to_message_id',
         'is_read',
         'read_at',
     ];

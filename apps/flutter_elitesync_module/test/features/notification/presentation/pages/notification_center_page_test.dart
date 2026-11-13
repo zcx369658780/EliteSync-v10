@@ -11,7 +11,9 @@ import 'package:flutter_elitesync_module/core/network/network_result.dart';
 import 'package:flutter_elitesync_module/core/telemetry/app_telemetry_service.dart';
 import 'package:flutter_elitesync_module/core/telemetry/frontend_telemetry.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
-import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_route_state.dart';
+import 'package:flutter_elitesync_module/app/config/app_env.dart';
+import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
+import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/conversation_entity.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
 import 'package:flutter_elitesync_module/features/notification/data/datasource/notification_remote_data_source.dart';
@@ -334,6 +336,7 @@ void main() {
     addTearDown(tester.view.resetDevicePixelRatio);
     final notifications = FakeNotificationRemoteDataSource();
     Object? capturedExtra;
+    int? requestedConversationId;
     String? capturedSegment;
     final router = GoRouter(
       initialLocation: '/',
@@ -343,10 +346,10 @@ void main() {
           builder: (context, state) => const NotificationCenterPage(),
         ),
         GoRoute(
-          path: '${AppRouteNames.chatRoom}/:chatIdentity',
+          path: '/live-chat/:peerId',
           builder: (context, state) {
             capturedExtra = state.extra;
-            capturedSegment = state.pathParameters['chatIdentity'];
+            capturedSegment = state.pathParameters['peerId'];
             return const Scaffold(body: Text('RESOLVED CHAT'));
           },
         ),
@@ -356,6 +359,13 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          appEnvProvider.overrideWithValue(const AppEnv(
+            flavor: AppFlavor.dev,
+            appName: 'EliteSync fixture',
+            apiBaseUrl: 'http://127.0.0.1',
+            useMockData: false,
+            restorationLocalBuild: true,
+          )),
           sessionProvider.overrideWith(_CurrentSession.new),
           frontendTelemetryProvider.overrideWithValue(
             FrontendTelemetry(telemetry: FakeAppTelemetryService()),
@@ -383,16 +393,19 @@ void main() {
           ),
           notificationUnreadCountProvider.overrideWith((ref) async => 1),
           conversationDetailProvider.overrideWith(
-            (ref, conversationId) async => const ConversationEntity(
-              id: 'legacy-peer-alias',
-              name: 'Resolved Peer',
-              lastMessage: '',
-              lastTime: '',
-              unread: 0,
-              entryKind: 'stored_conversation',
-              conversationId: 41,
-              peerUserId: 23,
-            ),
+            (ref, conversationId) async {
+              requestedConversationId = conversationId;
+              return const ConversationEntity(
+                id: 'legacy-peer-alias',
+                name: 'Resolved Peer',
+                lastMessage: '',
+                lastTime: '',
+                unread: 0,
+                entryKind: 'stored_conversation',
+                conversationId: 41,
+                peerUserId: 23,
+              );
+            },
           ),
         ],
         child: _SessionHarness(
@@ -405,7 +418,7 @@ void main() {
     );
 
     await tester.pumpAndSettle();
-    final action = find.widgetWithText(OutlinedButton, '打开所属页面');
+    final action = find.widgetWithText(OutlinedButton, '查看当前状态');
     await tester.scrollUntilVisible(
       action,
       220,
@@ -416,11 +429,9 @@ void main() {
     await tester.pump(const Duration(milliseconds: 100));
 
     expect(find.text('RESOLVED CHAT'), findsOneWidget);
-    expect(capturedSegment, 'conversation-41');
-    final routeState = capturedExtra! as ChatRouteState;
-    expect(routeState.entryKind, ChatEntryKind.storedConversation);
-    expect(routeState.conversationId, 41);
-    expect(routeState.peerUserId, 23);
+    expect(requestedConversationId, 41);
+    expect(capturedSegment, '23');
+    expect(capturedExtra, isNull);
     expect(notifications.markedReadIds, [81]);
   });
 
@@ -472,7 +483,7 @@ void main() {
     );
 
     await tester.pumpAndSettle();
-    final action = find.widgetWithText(OutlinedButton, '打开所属页面');
+    final action = find.widgetWithText(OutlinedButton, '查看当前状态');
     await tester.scrollUntilVisible(
       action,
       220,
@@ -511,7 +522,7 @@ void main() {
             builder: (context, state) => const NotificationCenterPage(),
           ),
           GoRoute(
-            path: '${AppRouteNames.chatRoom}/:chatIdentity',
+            path: '/live-chat/:peerId',
             builder: (context, state) {
               chatRouteBuilt = true;
               return const Scaffold(body: Text('CHAT ROUTE'));
@@ -577,7 +588,7 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-      final action = find.widgetWithText(OutlinedButton, '打开所属页面');
+      final action = find.widgetWithText(OutlinedButton, '查看当前状态');
       await tester.scrollUntilVisible(
         action,
         220,
@@ -753,13 +764,13 @@ void main() {
     expect(find.textContaining('未读 1 条'), findsOneWidget);
     expect(find.text('对方发来一条消息'), findsNothing);
     expect(find.text('可以继续手动编辑草稿'), findsNothing);
-    expect(find.text('有一条新提醒'), findsOneWidget);
-    expect(find.textContaining('重新检查访问权限'), findsWidgets);
-    expect(find.text('隐私保护提醒'), findsOneWidget);
-    expect(find.text('打开所属页面'), findsOneWidget);
+    expect(find.text('消息有新提醒'), findsOneWidget);
+    expect(find.textContaining('重新核验当前权限与状态'), findsWidgets);
+    expect(find.text('消息'), findsOneWidget);
+    expect(find.text('查看当前状态'), findsOneWidget);
     expect(find.text('稍后处理'), findsOneWidget);
     expect(find.text('标记已读'), findsOneWidget);
-    expect(find.text('所属页面会重新检查当前访问权限。'), findsOneWidget);
+    expect(find.text('打开后重新核验当前权限与状态。'), findsOneWidget);
     expect(find.text('提醒内容示例'), findsOneWidget);
     expect(find.textContaining('不代表当前通知'), findsOneWidget);
     expect(find.text('本轮慢约会即将揭晓'), findsOneWidget);
@@ -820,10 +831,10 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('本轮慢约会有新进度'), findsNothing);
-    expect(find.text('有一条新提醒'), findsOneWidget);
-    expect(find.text('隐私保护提醒'), findsOneWidget);
-    expect(find.text('打开所属页面'), findsOneWidget);
-    expect(find.text('所属页面会重新检查当前访问权限。'), findsOneWidget);
+    expect(find.text('匹配有新提醒'), findsOneWidget);
+    expect(find.text('匹配'), findsOneWidget);
+    expect(find.text('查看当前状态'), findsOneWidget);
+    expect(find.text('打开后重新核验当前权限与状态。'), findsOneWidget);
     _expectNoD7CForbiddenVisibleCopy();
   });
 
@@ -1121,7 +1132,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('有一条新提醒'), findsOneWidget);
+    expect(find.text('消息有新提醒'), findsOneWidget);
     expect(find.text('仅标记已读'), findsOneWidget);
     expect(find.text('回到聊天'), findsNothing);
 
@@ -1235,12 +1246,12 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('可操作提醒'), findsNothing);
-    expect(find.text('有一条新提醒'), findsOneWidget);
+    expect(find.text('消息有新提醒'), findsOneWidget);
     expect(
-      find.ancestor(of: find.text('可操作提醒'), matching: find.byType(InkWell)),
+      find.ancestor(of: find.text('消息有新提醒'), matching: find.byType(InkWell)),
       findsNothing,
     );
-    expect(find.widgetWithText(OutlinedButton, '打开所属页面'), findsOneWidget);
+    expect(find.widgetWithText(OutlinedButton, '查看当前状态'), findsOneWidget);
     expect(find.widgetWithText(OutlinedButton, '稍后处理'), findsOneWidget);
     expect(find.widgetWithText(OutlinedButton, '标记已读'), findsOneWidget);
   });

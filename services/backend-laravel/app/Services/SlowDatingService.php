@@ -47,6 +47,11 @@ final class SlowDatingService
             if ($action === 'exit') {
                 foreach ($this->pendingFor($id) as $old) {
                     $this->finish($old, 'WITHDRAWN');
+                    $peer = (int) ($old->user_a == $id ? $old->user_b : $old->user_a);
+                    app(NotificationService::class)->createForUser($peer, 'match_decision',
+                        '匹配进程有更新', '请查看本人当前进程', ['proposal_id' => $old->id],
+                        sourceEventKey: 'proposal:'.$old->id.':'.$old->revision);
+
                     app(JourneyStore::class)->audit($id, $old->id, 'PARTICIPATION_EXIT_WITHDRAWAL', ['state' => 'WITHDRAWN', 'revision' => $old->revision]);
                 }
             }
@@ -207,6 +212,11 @@ final class SlowDatingService
                     $next = $action === 'decline' ? 'DECLINED' : 'WITHDRAWN';
                 } else { abort(422, 'unknown proposal action'); }
                 $this->finish($p, $next);
+                $peer = (int) ($isA ? $p->user_b : $p->user_a);
+                app(NotificationService::class)->createForUser($peer, 'match_decision',
+                    '匹配进程有更新', '请查看本人当前进程', ['proposal_id' => $p->id],
+                    sourceEventKey: 'proposal:'.$p->id.':'.$p->revision);
+
                 app(JourneyStore::class)->audit($actor, $p->id, strtoupper($action), ['state' => $next, 'revision' => $p->revision]);
                 return $this->projectLocked($p, $actor);
             });

@@ -155,7 +155,7 @@ void main() {
       addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
       final api = _Api()..includeSenders = true;
       await _mount(tester, api);
-      expect(find.text('我 · 已读'), findsOneWidget);
+      expect(find.text('我 · 对方已读'), findsOneWidget);
       expect(find.text('对方'), findsOneWidget);
       expect(find.text('消息'), findsOneWidget);
       final own = find.byKey(const ValueKey('live-message-6'));

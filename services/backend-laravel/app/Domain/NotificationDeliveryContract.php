@@ -8,6 +8,7 @@ final class NotificationDeliveryContract
     public static function category(string $kind): string
     {
         return match(true) {
+            in_array($kind, ['consent_connection', 'consent_message', 'showcase_review'], true) => 'system',
             $kind==='message'=>'message',str_starts_with($kind,'rtc_')=>'rtc',
             str_starts_with($kind,'match')=>'match',$kind==='buddy'=>'buddy',
             str_starts_with($kind,'status')=>'status',$kind==='platform_event'=>'platform_event',

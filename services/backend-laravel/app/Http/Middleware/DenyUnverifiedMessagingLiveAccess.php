@@ -24,6 +24,7 @@ final class DenyUnverifiedMessagingLiveAccess
         $domain = app(ConversationDomainService::class);
         $inventory = $request->isMethod('get') && $request->is('api/v1/conversations');
         if ($request->is('api/v1/messages')) $peer = (int) $request->input($request->isMethod('post') ? 'receiver_id' : 'peer_id', 0);
+        if ($request->is('api/v1/messages/search', 'api/v1/messages/ack')) $peer = (int) $request->input('peer_id', 0);
         if ($request->is('api/v1/conversations') && $request->isMethod('post')) $peer = (int) $request->input('peer_user_id', 0);
         if ($request->route('conversationId')) {
             $c = $domain->findConversationForParticipant((int) $request->route('conversationId'), $actor);
@@ -50,7 +51,7 @@ final class DenyUnverifiedMessagingLiveAccess
                 }
                 if (! $service->connection($actor, $peer, true)) return $deny();
                 $gates = $service->gates($actor, $peer);
-                $purpose = $request->isMethod('get') || $request->route('messageId') ? 'live_read_allowed' : 'live_send_allowed';
+                $purpose = $request->isMethod('get') || $request->route('messageId') || $request->is('api/v1/messages/ack') ? 'live_read_allowed' : 'live_send_allowed';
                 return ($gates[$purpose] ?? false) ? $next($request) : $deny();
             });
         });

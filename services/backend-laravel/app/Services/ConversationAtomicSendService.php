@@ -21,9 +21,9 @@ class ConversationAtomicSendService
         private readonly NotificationService $notifications,
     ) {}
 
-    public function fingerprint(int $receiverId, string $content, array $attachmentIds): string
+    public function fingerprint(int $receiverId, string $content, array $attachmentIds, ?int $replyToMessageId = null): string
     {
-        return \App\Domain\MessagingReplayContract::fingerprint($receiverId, $content, $attachmentIds);
+        return \App\Domain\MessagingReplayContract::fingerprint($receiverId, $content, $attachmentIds, $replyToMessageId);
     }
 
     /** @return array<string, mixed>|null */
@@ -73,8 +73,9 @@ class ConversationAtomicSendService
         ?string $fingerprint,
         string $appVersion,
         string $sourcePage,
+        ?int $replyToMessageId = null,
     ): array {
-        return DB::transaction(function () use ($sender, $receiverId, $content, $attachmentIds, $clientMessageId, $fingerprint, $appVersion, $sourcePage) {
+        return DB::transaction(function () use ($sender, $receiverId, $content, $attachmentIds, $clientMessageId, $fingerprint, $appVersion, $sourcePage, $replyToMessageId) {
             // No consistent read may precede the pair lock under MariaDB RR.
             $pair = User::whereIn('id', [(int) $sender->id, $receiverId])->orderBy('id')->lockForUpdate()->get()->keyBy('id');
             foreach ([(int) $sender->id, $receiverId] as $id) {
@@ -108,6 +109,12 @@ class ConversationAtomicSendService
             }
 
             $roomKey = $this->domain->roomKey((int) $sender->id, $receiverId);
+            if ($replyToMessageId !== null) {
+                $original = ChatMessage::whereKey($replyToMessageId)->where('room_id', $roomKey)->lockForUpdate()->first();
+                if (! $original || ! $this->capabilities->canRead((int) $sender->id, $receiverId)) {
+                    return ['ok' => false, 'status' => 422, 'code' => 'reply_unavailable'];
+                }
+            }
             Conversation::query()->firstOrCreate(
                 ['room_key' => $roomKey],
                 [
@@ -160,6 +167,7 @@ class ConversationAtomicSendService
                     'content' => $content,
                     'client_message_id' => $clientMessageId,
                     'request_fingerprint' => $fingerprint,
+                    'reply_to_message_id' => $replyToMessageId,
                 ]);
             } else {
                 $message = ChatMessage::query()->firstOrCreate(
@@ -169,6 +177,7 @@ class ConversationAtomicSendService
                         'receiver_id' => $receiverId,
                         'content' => $content,
                         'request_fingerprint' => $fingerprint,
+                    'reply_to_message_id' => $replyToMessageId,
                     ],
                 );
                 if (! $message->wasRecentlyCreated) {
@@ -192,10 +201,6 @@ class ConversationAtomicSendService
                 'last_sender_id' => (int) $sender->id,
                 'last_message_at' => $message->created_at ?? now(),
             ])->save();
-            ConversationMember::query()
-                ->where('conversation_id', $conversation->id)
-                ->where('user_id', $sender->id)
-                ->update(['last_read_message_id' => $message->id, 'last_read_at' => $message->created_at ?? now()]);
 
             $this->events->log(
                 eventName: 'message_sent',
@@ -222,6 +227,7 @@ class ConversationAtomicSendService
                     'message_id' => (int) $message->id,
                     'source' => 'message',
                 ],
+                sourceEventKey: 'message:'.$message->id,
             );
 
             return [
@@ -294,6 +300,7 @@ class ConversationAtomicSendService
 
     private function attachmentType(string $mediaType): string
     {
+        if ($mediaType === 'audio') return 'audio';
         return str_starts_with($mediaType, 'video') || $mediaType === 'video'
             ? 'video'
             : (str_starts_with($mediaType, 'image') || $mediaType === 'image' ? 'image' : 'media');

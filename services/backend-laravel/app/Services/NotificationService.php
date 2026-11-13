@@ -59,18 +59,43 @@ class NotificationService
 
             return ['title' => '有一条新的联系请求', 'body' => '请在关系请求中心查看', 'payload' => ['social_request_id' => $row->id]];
         }
-        if (str_starts_with((string) $notification->kind, 'rtc_call_')) {
-            $safe = ['title' => '通话通知', 'body' => '请打开APP查看当前有权通话', 'payload' => [], 'available' => false];
+        if ($notification->kind === 'consent_connection' || $notification->kind === 'consent_message') {
             try {
-                $id = (int) ($payload['route_args']['call_id'] ?? 0);
-                $call = RtcSession::find($id);
-                if ($call && app(RtcAuthorityService::class)->authorized($call, $viewerId) && in_array($call->status, ['calling', 'ringing', 'connecting', 'in_call'], true)) {
-                    $safe['available'] = true;
-                    $safe['payload'] = ['route_name' => 'rtc_call', 'route_args' => ['call_id' => $call->id, 'mode' => $call->mode]];
-                }
-            } catch (Throwable) {
+                $cn = DB::table('product_connections')->where('id', $payload['connection_id'] ?? 0)->first();
+                if (! $cn || ! in_array($viewerId, [(int) $cn->user_a, (int) $cn->user_b], true)) throw new \RuntimeException;
+                $peer = (int) ($cn->user_a == $viewerId ? $cn->user_b : $cn->user_a);
+                app(LiveConsentService::class)->current($viewerId, $peer);
+                if (! app(SocialPolicy::class)->pairAllowed($viewerId, $peer)) throw new \RuntimeException;
+                return ['title' => '连接或消息同意有更新', 'body' => '请查看当前状态',
+                    'payload' => ['route_name' => 'connection_current', 'route_args' => ['peer_id' => $peer]]];
+            } catch (Throwable) { return ['title' => '通知已不可用', 'body' => '', 'payload' => [], 'available' => false]; }
+        }
+        if ($notification->kind === 'showcase_review') {
+            $row = DB::table('profile_showcase_submissions')->where('id', $payload['submission_id'] ?? 0)->where('user_id', $viewerId)->first();
+            return $row ? ['title' => '本人资料审核有更新', 'body' => '请查看当前审核状态',
+                'payload' => ['route_name' => 'showcase_current', 'route_args' => []]]
+                : ['title' => '通知已不可用', 'body' => '', 'payload' => [], 'available' => false];
+        }
+        if ($notification->kind === 'match_decision') {
+            $row = DB::table('match_proposals')->where('id', $payload['proposal_id'] ?? '')->first();
+            if (! $row || ! in_array($viewerId, [(int) $row->user_a, (int) $row->user_b], true)) {
+                return ['title' => '通知已不可用', 'body' => '', 'payload' => [], 'available' => false];
             }
-
+            return ['title' => '匹配进程有更新', 'body' => '请查看本人当前进程',
+                'payload' => ['route_name' => 'match_result', 'route_args' => []]];
+        }
+        if (str_starts_with((string) $notification->kind, 'rtc_call_')) {
+            $safe = ['title' => '通话通知', 'body' => '请打开应用查看当前通话状态', 'payload' => [], 'available' => false];
+            try {
+                $call = RtcSession::find((int) ($payload['route_args']['call_id'] ?? 0));
+                if ($call && app(RtcAuthorityService::class)->authorized($call, $viewerId)) {
+                    $active = in_array($call->status, ['calling', 'ringing', 'connecting', 'in_call'], true);
+                    // Old invite locators resolve to a read-only terminal result, never Accept.
+                    $safe['available'] = true;
+                    $safe['payload'] = ['route_name' => $active ? 'rtc_call' : 'rtc_call_result',
+                        'route_args' => ['call_id' => $call->id, 'mode' => $call->mode]];
+                }
+            } catch (Throwable) { }
             return $safe;
         }
 
@@ -137,6 +162,7 @@ class NotificationService
         ?string $body = null,
         array $payload = [],
         ?string $expiresAt = null,
+        ?string $sourceEventKey = null,
     ): AppNotificationItem {
         $normalizedKind = mb_substr(trim($kind), 0, 32);
         $normalizedTitle = mb_substr(trim($title), 0, 120);
@@ -147,37 +173,23 @@ class NotificationService
             $messageId = filter_var($payload['message_id'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
             $payload = ['source' => 'message'] + ($messageId ? ['message_id' => $messageId] : []);
         }
-        $payloadSignature = $this->payloadSignature($payload);
-
-        $existing = AppNotificationItem::query()
-            ->where('user_id', $userId)
-            ->where('kind', $normalizedKind)
-            ->where('title', $normalizedTitle)
-            ->where(function ($query) use ($normalizedBody) {
-                if ($normalizedBody === null) {
-                    $query->whereNull('body');
-
-                    return;
-                }
-                $query->where('body', $normalizedBody);
-            })
-            ->whereRaw('payload = ?', [$payloadSignature])
-            ->where('created_at', '>=', now()->subMinutes(5))
-            ->first();
-
-        if ($existing) {
-            return $existing;
+        // Current communication events use the explicit durable lifecycle key.
+        // Older unrelated producers keep their existing compatibility semantics.
+        if ($sourceEventKey === null) {
+            $existing = AppNotificationItem::where('user_id', $userId)->where('kind', $normalizedKind)
+                ->where('title', $normalizedTitle)->where('body', $normalizedBody)
+                ->whereRaw('payload = ?', [$this->payloadSignature($payload)])
+                ->where('created_at', '>=', now()->subMinutes(5))->first();
+            if ($existing) return $existing;
+            return AppNotificationItem::create(['user_id' => $userId, 'kind' => $normalizedKind,
+                'title' => $normalizedTitle, 'body' => $normalizedBody, 'payload' => $payload,
+                'read_at' => null, 'expires_at' => $expiresAt]);
         }
-
-        return AppNotificationItem::query()->create([
-            'user_id' => $userId,
-            'kind' => $normalizedKind,
-            'title' => $normalizedTitle,
-            'body' => $normalizedBody,
-            'payload' => $payload,
-            'read_at' => null,
-            'expires_at' => $expiresAt,
-        ]);
+        return AppNotificationItem::query()->firstOrCreate(
+            ['user_id' => $userId, 'source_event_key' => $sourceEventKey],
+            ['kind' => $normalizedKind, 'title' => $normalizedTitle, 'body' => $normalizedBody,
+                'payload' => $payload, 'read_at' => null, 'expires_at' => $expiresAt],
+        );
     }
 
     /**

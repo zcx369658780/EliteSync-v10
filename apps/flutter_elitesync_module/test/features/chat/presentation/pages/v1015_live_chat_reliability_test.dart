@@ -21,7 +21,7 @@ import 'package:flutter_elitesync_module/shared/providers/session_provider.dart'
 class _Secure extends SecureStorageService {
   final values = <String, String>{};
   int writes = 0;
-  bool failWrites=false;
+  bool failWrites = false;
   Completer<void>? nextWrite;
   bool writeBlocked = false;
   @override
@@ -38,6 +38,7 @@ class _Secure extends SecureStorageService {
     writes++;
     values[key] = value;
   }
+
   @override
   Future<void> delete(String key) async => values.remove(key);
 }
@@ -60,7 +61,7 @@ class _Api extends ApiClient {
   _Api(this.events) : super(dio: Dio());
   final List<String> events;
   String readMode = 'success';
-  Completer<NetworkResult<Map<String,dynamic>>>? pendingRead;
+  Completer<NetworkResult<Map<String, dynamic>>>? pendingRead;
   bool timeoutFirstSend = false;
   bool currentReadEchoesPendingSend = false;
   Completer<NetworkResult<Map<String, dynamic>>>? pendingFirstPost;
@@ -82,14 +83,21 @@ class _Api extends ApiClient {
     }
     events.add('message-read');
     if (longHistoryCount != null) {
-      final history = List.generate(longHistoryCount!, (index) => {
-        'id': index + 1,
-        'content': 'fictional history ${index + 1}',
-        'attachments': <dynamic>[],
-      });
+      final history = List.generate(
+        longHistoryCount!,
+        (index) => {
+          'id': index + 1,
+          'content': 'fictional history ${index + 1}',
+          'attachments': <dynamic>[],
+        },
+      );
       final latest = query?['latest'] == 1;
       return NetworkSuccess({
-        'items': latest ? history.skip(history.length > 100 ? history.length - 100 : 0).toList() : history.take(100).toList(),
+        'items': latest
+            ? history
+                  .skip(history.length > 100 ? history.length - 100 : 0)
+                  .toList()
+            : history.take(100).toList(),
       });
     }
     if (pendingRead != null) return pendingRead!.future;
@@ -250,110 +258,161 @@ Future<void> _dispose(WidgetTester tester, _Fixture f) async {
 // Flutter 3.41's tooltip finder may select RawTooltip. Inspect the actual
 // IconButton so disabled-media assertions keep checking its callback.
 Finder _mediaButton(String tooltip) => find.byWidgetPredicate(
-      (widget) => widget is IconButton && widget.tooltip == tooltip,
-    );
+  (widget) => widget is IconButton && widget.tooltip == tooltip,
+);
 
 void main() {
-  testWidgets('old GET completed after account switch cannot render or write private cache', (tester) async {
-    final f = await _mount(tester);
-    final readsBefore = f.api.events.where((event) => event == 'message-read').length;
-    f.api.pendingRead = Completer();
-    await tester.tap(find.byIcon(Icons.refresh));
-    await tester.pumpAndSettle();
-    expect(f.api.events.where((event) => event == 'message-read').length, readsBefore + 1);
-    expect(f.api.pendingRead!.isCompleted, isFalse);
-    (f.container.read(sessionProvider.notifier) as _Session).switchAccount();
-    await tester.pumpAndSettle();
-    final writesAfterSwitch = f.secure.writes;
-    final cacheAfterSwitch = Map<String, String>.from(f.secure.values);
+  testWidgets(
+    'old GET completed after account switch cannot render or write private cache',
+    (tester) async {
+      final f = await _mount(tester);
+      final readsBefore = f.api.events
+          .where((event) => event == 'message-read')
+          .length;
+      f.api.pendingRead = Completer();
+      await tester.tap(find.byIcon(Icons.refresh));
+      await tester.pumpAndSettle();
+      expect(
+        f.api.events.where((event) => event == 'message-read').length,
+        readsBefore + 1,
+      );
+      expect(f.api.pendingRead!.isCompleted, isFalse);
+      (f.container.read(sessionProvider.notifier) as _Session).switchAccount();
+      await tester.pumpAndSettle();
+      final writesAfterSwitch = f.secure.writes;
+      final cacheAfterSwitch = Map<String, String>.from(f.secure.values);
 
-    // The fake transport deliberately completes despite cancellation.
-    f.api.pendingRead!.complete(const NetworkSuccess({
-      'items': [{'id': 999, 'content': 'OLD_ACCOUNT_DELAYED_PRIVATE_GET', 'attachments': <dynamic>[]}],
-    }));
-    await tester.pumpAndSettle();
-    expect(find.text('OLD_ACCOUNT_DELAYED_PRIVATE_GET'), findsNothing);
-    expect(find.text('此前合法保存的合成私密消息'), findsNothing);
-    expect(find.text('会话已锁定'), findsOneWidget);
-    expect(find.byType(TextField), findsNothing);
-    expect(f.secure.writes, writesAfterSwitch);
-    expect(f.secure.values, cacheAfterSwitch);
-    expect(f.api.events.where((event) => event == 'message-read').length, readsBefore + 1);
-    expect(f.api.posts, isEmpty);
-    expect(tester.takeException(), isNull);
-    await _dispose(tester, f);
-  });
+      // The fake transport deliberately completes despite cancellation.
+      f.api.pendingRead!.complete(
+        const NetworkSuccess({
+          'items': [
+            {
+              'id': 999,
+              'content': 'OLD_ACCOUNT_DELAYED_PRIVATE_GET',
+              'attachments': <dynamic>[],
+            },
+          ],
+        }),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('OLD_ACCOUNT_DELAYED_PRIVATE_GET'), findsNothing);
+      expect(find.text('此前合法保存的合成私密消息'), findsNothing);
+      expect(find.text('会话已锁定'), findsOneWidget);
+      expect(find.byType(TextField), findsNothing);
+      expect(f.secure.writes, writesAfterSwitch);
+      expect(f.secure.values, cacheAfterSwitch);
+      expect(
+        f.api.events.where((event) => event == 'message-read').length,
+        readsBefore + 1,
+      );
+      expect(f.api.posts, isEmpty);
+      expect(tester.takeException(), isNull);
+      await _dispose(tester, f);
+    },
+  );
 
-  testWidgets('old POST acknowledgement after account switch cannot confirm or reload the new account', (tester) async {
-    final f = await _mount(tester);
-    f.api.pendingFirstPost = Completer();
-    await tester.enterText(find.byType(TextField), 'OLD_ACCOUNT_PENDING_DRAFT');
-    await tester.tap(find.text('发送'));
-    await tester.pumpAndSettle();
-    expect(f.api.posts, hasLength(1));
-    expect(f.api.pendingFirstPost!.isCompleted, isFalse);
-    final originalKey = f.api.posts.single['client_message_id'];
-    final readsBefore = f.api.events.where((event) => event == 'message-read').length;
-    (f.container.read(sessionProvider.notifier) as _Session).switchAccount();
-    await tester.pumpAndSettle();
-    final writesAfterSwitch = f.secure.writes;
-    final cacheAfterSwitch = Map<String, String>.from(f.secure.values);
+  testWidgets(
+    'old POST acknowledgement after account switch cannot confirm or reload the new account',
+    (tester) async {
+      final f = await _mount(tester);
+      f.api.pendingFirstPost = Completer();
+      await tester.enterText(
+        find.byType(TextField),
+        'OLD_ACCOUNT_PENDING_DRAFT',
+      );
+      await tester.tap(find.text('发送'));
+      await tester.pumpAndSettle();
+      expect(f.api.posts, hasLength(1));
+      expect(f.api.pendingFirstPost!.isCompleted, isFalse);
+      final originalKey = f.api.posts.single['client_message_id'];
+      final readsBefore = f.api.events
+          .where((event) => event == 'message-read')
+          .length;
+      (f.container.read(sessionProvider.notifier) as _Session).switchAccount();
+      await tester.pumpAndSettle();
+      final writesAfterSwitch = f.secure.writes;
+      final cacheAfterSwitch = Map<String, String>.from(f.secure.values);
 
-    f.api.pendingFirstPost!.complete(NetworkSuccess({'id': 999, 'client_message_id': originalKey}));
-    await tester.pumpAndSettle();
-    expect(find.text('服务器已确认此消息'), findsNothing);
-    expect(find.text('使用原消息编号重试'), findsNothing);
-    expect(find.text('OLD_ACCOUNT_PENDING_DRAFT'), findsNothing);
-    expect(find.text('会话已锁定'), findsOneWidget);
-    expect(find.byType(TextField), findsNothing);
-    expect(f.api.posts, hasLength(1));
-    expect(f.api.events.where((event) => event == 'message-read').length, readsBefore);
-    expect(f.secure.writes, writesAfterSwitch);
-    expect(f.secure.values, cacheAfterSwitch);
-    expect(tester.takeException(), isNull);
-    await _dispose(tester, f);
-  });
+      f.api.pendingFirstPost!.complete(
+        NetworkSuccess({'id': 999, 'client_message_id': originalKey}),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('服务器已持久化此消息'), findsNothing);
+      expect(find.text('使用原消息编号重试'), findsNothing);
+      expect(find.text('OLD_ACCOUNT_PENDING_DRAFT'), findsNothing);
+      expect(find.text('会话已锁定'), findsOneWidget);
+      expect(find.byType(TextField), findsNothing);
+      expect(f.api.posts, hasLength(1));
+      expect(
+        f.api.events.where((event) => event == 'message-read').length,
+        readsBefore,
+      );
+      expect(f.secure.writes, writesAfterSwitch);
+      expect(f.secure.values, cacheAfterSwitch);
+      expect(tester.takeException(), isNull);
+      await _dispose(tester, f);
+    },
+  );
 
-  testWidgets('refresh reads the newest chronological window beyond 100 messages', (tester) async {
-    final f = await _mount(tester);
-    f.api.longHistoryCount = 105;
-    await tester.tap(find.byIcon(Icons.refresh));
-    await tester.pumpAndSettle();
-    var saved = await f.cache.readOnlineAuthorized('live-chat:2');
-    var messages = saved!['messages'] as List;
-    expect(messages.length, 100);
-    expect(messages.first['id'], 6);
-    expect(messages.last['id'], 105);
-    f.api.longHistoryCount = 106;
-    await tester.tap(find.byIcon(Icons.refresh));
-    await tester.pumpAndSettle();
-    saved = await f.cache.readOnlineAuthorized('live-chat:2');
-    messages = saved!['messages'] as List;
-    expect(messages.first['id'], 7);
-    expect(messages.last['id'], 106);
-    expect(messages.map((m) => m['id']).toSet().length, 100);
-    await _dispose(tester, f);
-  });
+  testWidgets(
+    'refresh reads the newest chronological window beyond 100 messages',
+    (tester) async {
+      final f = await _mount(tester);
+      f.api.longHistoryCount = 105;
+      await tester.tap(find.byIcon(Icons.refresh));
+      await tester.pumpAndSettle();
+      var saved = await f.cache.readOnlineAuthorized('live-chat:2');
+      var messages = saved!['messages'] as List;
+      expect(messages.length, 100);
+      expect(messages.first['id'], 6);
+      expect(messages.last['id'], 105);
+      f.api.longHistoryCount = 106;
+      await tester.tap(find.byIcon(Icons.refresh));
+      await tester.pumpAndSettle();
+      saved = await f.cache.readOnlineAuthorized('live-chat:2');
+      messages = saved!['messages'] as List;
+      expect(messages.first['id'], 7);
+      expect(messages.last['id'], 106);
+      expect(messages.map((m) => m['id']).toSet().length, 100);
+      await _dispose(tester, f);
+    },
+  );
   testWidgets(
     'large authorized history keeps recent offline messages without locking online',
     (tester) async {
       final f = await _mount(tester);
       final content = List.filled(2000, '文').join();
-      f.api.pendingRead = Completer()..complete(NetworkSuccess({
-        'items': List.generate(100, (index) => {
-          'id': index + 1, 'content': content, 'attachments': <dynamic>[],
-        }),
-      }));
+      f.api.pendingRead = Completer()
+        ..complete(
+          NetworkSuccess({
+            'items': List.generate(
+              100,
+              (index) => {
+                'id': index + 1,
+                'content': content,
+                'attachments': <dynamic>[],
+              },
+            ),
+          }),
+        );
       await tester.tap(find.byIcon(Icons.refresh));
       await tester.pumpAndSettle();
       expect(find.text('会话已锁定'), findsNothing);
-      expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isFalse);
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).readOnly,
+        isFalse,
+      );
       final saved = await f.cache.readOnlineAuthorized('live-chat:2');
       final selected = saved!['messages'] as List;
       expect(selected.length, inExclusiveRange(0, 100));
       expect(selected.last['id'], 100);
       expect(selected.first['id'], greaterThan(1));
-      expect(f.secure.values.values.every((v) => utf8.encode(v).length <= 512 * 1024), isTrue);
+      expect(
+        f.secure.values.values.every(
+          (v) => utf8.encode(v).length <= 512 * 1024,
+        ),
+        isTrue,
+      );
       await _dispose(tester, f);
     },
   );
@@ -364,36 +423,64 @@ void main() {
         'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNgAAIAAAUAAXpeqz8AAAAASUVORK5CYII=',
       );
       final image = Uint8List(400 * 1024)..setRange(0, png.length, png);
-      final mediaDio = Dio()..interceptors.add(
-        InterceptorsWrapper(onRequest: (options, handler) {
-          handler.resolve(Response<List<int>>(
-            requestOptions: options, data: image, statusCode: 200,
-          ));
-        }),
-      );
+      final mediaDio = Dio()
+        ..interceptors.add(
+          InterceptorsWrapper(
+            onRequest: (options, handler) {
+              handler.resolve(
+                Response<List<int>>(
+                  requestOptions: options,
+                  data: image,
+                  statusCode: 200,
+                ),
+              );
+            },
+          ),
+        );
       final f = await _mount(tester, mediaDio: mediaDio);
-      f.api.pendingRead = Completer()..complete(const NetworkSuccess({
-        'items': [{
-          'id': 5, 'content': '合法大图及当前文字',
-          'attachments': [{ 'media_asset': {'id': 31, 'media_type': 'image'}}],
-        }],
-      }));
+      f.api.pendingRead = Completer()
+        ..complete(
+          const NetworkSuccess({
+            'items': [
+              {
+                'id': 5,
+                'content': '合法大图及当前文字',
+                'attachments': [
+                  {
+                    'media_asset': {'id': 31, 'media_type': 'image'},
+                  },
+                ],
+              },
+            ],
+          }),
+        );
       await tester.tap(find.byIcon(Icons.refresh));
       await tester.pumpAndSettle();
       expect(find.text('合法大图及当前文字'), findsOneWidget);
       expect(find.byType(Image), findsOneWidget);
       expect(find.text('会话已锁定'), findsNothing);
       expect(f.cache.isUnlocked, isTrue);
-      expect(f.secure.values.values.every((v) => utf8.encode(v).length <= 512 * 1024), isTrue);
+      expect(
+        f.secure.values.values.every(
+          (v) => utf8.encode(v).length <= 512 * 1024,
+        ),
+        isTrue,
+      );
 
       // The periodic retention check must keep the authorized online image.
       await tester.pump(const Duration(seconds: 3));
       await tester.pumpAndSettle();
       expect(find.text('合法大图及当前文字'), findsOneWidget);
-      f.api.pendingRead = Completer()..complete(NetworkFailure(
-        message: 'synthetic offline',
-        error: DioException(requestOptions: RequestOptions(), type: DioExceptionType.connectionError),
-      ));
+      f.api.pendingRead = Completer()
+        ..complete(
+          NetworkFailure(
+            message: 'synthetic offline',
+            error: DioException(
+              requestOptions: RequestOptions(),
+              type: DioExceptionType.connectionError,
+            ),
+          ),
+        );
       await tester.tap(find.byIcon(Icons.refresh));
       await tester.pumpAndSettle();
       expect(find.text('合法大图及当前文字'), findsOneWidget);
@@ -407,46 +494,84 @@ void main() {
       mediaDio.close();
     },
   );
-  testWidgets('blank resume revalidation survives a legitimate slow current read', (tester) async {
-    final f=await _mount(tester);f.api.pendingRead=Completer();
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
-    await tester.pump();
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
-    await tester.pump();await tester.pump(const Duration(seconds:4));
-    expect(find.text('此前合法保存的合成私密消息'),findsNothing);
-    f.api.pendingRead!.complete(const NetworkSuccess({'items':[{'id':98,'content':'FRESH_CURRENT_AFTER_SLOW_RESUME','attachments':<dynamic>[]}]}));
-    await tester.pumpAndSettle();
-    expect(find.text('FRESH_CURRENT_AFTER_SLOW_RESUME'),findsOneWidget);
-    expect(find.byType(TextField),findsOneWidget);
-    await _dispose(tester,f);
-  });
+  testWidgets(
+    'blank resume revalidation survives a legitimate slow current read',
+    (tester) async {
+      final f = await _mount(tester);
+      f.api.pendingRead = Completer();
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      await tester.pump();
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 4));
+      expect(find.text('此前合法保存的合成私密消息'), findsNothing);
+      f.api.pendingRead!.complete(
+        const NetworkSuccess({
+          'items': [
+            {
+              'id': 98,
+              'content': 'FRESH_CURRENT_AFTER_SLOW_RESUME',
+              'attachments': <dynamic>[],
+            },
+          ],
+        }),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('FRESH_CURRENT_AFTER_SLOW_RESUME'), findsOneWidget);
+      expect(find.byType(TextField), findsOneWidget);
+      await _dispose(tester, f);
+    },
+  );
 
-  testWidgets('secure cache write failure after current HTTP200 locks rendered chat', (tester) async {
-    final f=await _mount(tester);f.secure.failWrites=true;
-    await tester.pump(const Duration(seconds:3));await tester.pumpAndSettle();
-    expect(find.text('此前合法保存的合成私密消息'),findsNothing);
-    expect(find.byType(TextField),findsNothing);
-    expect(find.textContaining('私密内容已锁定'),findsOneWidget);
-    await _dispose(tester,f);
-  });
+  testWidgets(
+    'secure cache write failure after current HTTP200 locks rendered chat',
+    (tester) async {
+      final f = await _mount(tester);
+      f.secure.failWrites = true;
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(find.text('此前合法保存的合成私密消息'), findsNothing);
+      expect(find.byType(TextField), findsNothing);
+      expect(find.textContaining('私密内容已锁定'), findsOneWidget);
+      await _dispose(tester, f);
+    },
+  );
 
-  testWidgets('authorized-before-expiry delayed HTTP200 never displays after the 15-day deadline', (tester) async {
-    var age=Duration.zero;final anchor=DateTime.utc(2026,10,21);
-    final f=await _mount(tester,wallNow:()=>anchor.add(age),elapsed:()=>age);
-    f.api.pendingRead=Completer();
-    await tester.pump(const Duration(seconds:3));
-    age=const Duration(days:15);
-    f.api.pendingRead!.complete(const NetworkSuccess({'items':[{'id':99,'content':'LATE_PRIVATE_AT_15_DAYS','attachments':<dynamic>[]}]}));
-    await tester.pumpAndSettle();
-    expect(find.text('LATE_PRIVATE_AT_15_DAYS'),findsNothing);
-    expect(find.text('此前合法保存的合成私密消息'),findsNothing);
-    expect(find.byType(TextField),findsNothing);
-    await _dispose(tester,f);
-  });
+  testWidgets(
+    'authorized-before-expiry delayed HTTP200 never displays after the 15-day deadline',
+    (tester) async {
+      var age = Duration.zero;
+      final anchor = DateTime.utc(2026, 10, 21);
+      final f = await _mount(
+        tester,
+        wallNow: () => anchor.add(age),
+        elapsed: () => age,
+      );
+      f.api.pendingRead = Completer();
+      await tester.pump(const Duration(seconds: 3));
+      age = const Duration(days: 15);
+      f.api.pendingRead!.complete(
+        const NetworkSuccess({
+          'items': [
+            {
+              'id': 99,
+              'content': 'LATE_PRIVATE_AT_15_DAYS',
+              'attachments': <dynamic>[],
+            },
+          ],
+        }),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('LATE_PRIVATE_AT_15_DAYS'), findsNothing);
+      expect(find.text('此前合法保存的合成私密消息'), findsNothing);
+      expect(find.byType(TextField), findsNothing);
+      await _dispose(tester, f);
+    },
+  );
 
   testWidgets(
     'pending POST survives pause and resume with the same immutable retry',
@@ -466,20 +591,21 @@ void main() {
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
       await tester.pumpAndSettle();
-      f.api.pendingFirstPost!.complete(NetworkFailure(
-        message: 'synthetic response lost after pause',
-        error: TimeoutException('synthetic'),
-      ));
+      f.api.pendingFirstPost!.complete(
+        NetworkFailure(
+          message: 'synthetic response lost after pause',
+          error: TimeoutException('synthetic'),
+        ),
+      );
       await tester.pumpAndSettle();
       await tester.tap(find.text('使用原消息编号重试'));
       await tester.pumpAndSettle();
       expect(f.api.posts, hasLength(2));
       expect(f.api.posts.last, original);
-      expect(find.text('服务器已确认此消息'), findsOneWidget);
+      expect(find.text('服务器已持久化此消息'), findsOneWidget);
       await _dispose(tester, f);
     },
   );
-
 
   testWidgets(
     'unknown result keeps immutable payload even if the controller is changed',
@@ -492,17 +618,28 @@ void main() {
       final original = Map<String, dynamic>.from(f.api.posts.single);
       final input = tester.widget<TextField>(find.byType(TextField));
       expect(input.readOnly, isTrue);
-      expect(tester.widget<TextButton>(find.widgetWithText(TextButton, '发送')).onPressed, isNull);
+      expect(
+        tester
+            .widget<TextButton>(find.widgetWithText(TextButton, '发送'))
+            .onPressed,
+        isNull,
+      );
       expect(tester.widget<IconButton>(_mediaButton('发送图片')).onPressed, isNull);
-      expect(tester.widget<IconButton>(_mediaButton('发送短视频')).onPressed, isNull);
+      expect(
+        tester.widget<IconButton>(_mediaButton('发送短视频')).onPressed,
+        isNull,
+      );
       // Simulate a programmatic controller write that bypasses the read-only UI.
       input.controller!.text = '不得取代未确认尝试';
       await tester.tap(find.text('使用原消息编号重试'));
       await tester.pumpAndSettle();
       expect(f.api.posts, hasLength(2));
       expect(f.api.posts.last, original);
-      expect(find.text('服务器已确认此消息'), findsOneWidget);
-      expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isFalse);
+      expect(find.text('服务器已持久化此消息'), findsOneWidget);
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).readOnly,
+        isFalse,
+      );
       await _dispose(tester, f);
     },
   );
@@ -512,14 +649,17 @@ void main() {
     (tester) async {
       final f = await _mount(tester);
       f.api.timeoutFirstSend = true;
-      f.gateway.picked.complete(const ChatPickedMedia(path: 'synthetic.png', name: 'synthetic.png'));
+      f.gateway.picked.complete(
+        const ChatPickedMedia(path: 'synthetic.png', name: 'synthetic.png'),
+      );
       await tester.tap(find.byTooltip('发送图片'));
       await tester.pumpAndSettle();
       expect(f.gateway.uploads, 1);
       final original = Map<String, dynamic>.from(f.api.posts.single);
       expect(original['attachment_ids'], [31]);
       expect(tester.widget<IconButton>(_mediaButton('发送图片')).onPressed, isNull);
-      tester.widget<TextField>(find.byType(TextField)).controller!.text = '不得替换附件请求';
+      tester.widget<TextField>(find.byType(TextField)).controller!.text =
+          '不得替换附件请求';
       await tester.tap(find.text('使用原消息编号重试'));
       await tester.pumpAndSettle();
       expect(f.api.posts, hasLength(2));
@@ -529,82 +669,89 @@ void main() {
     },
   );
 
-  testWidgets('uploaded video remains retryable while resumed draft read is pending', (
-    tester,
-  ) async {
-    final f = await _mount(tester);
-    expect(await f.cache.saveAuthorized('live-chat-draft:2', {'text': ''},
-        expectedAccountId: 1), isTrue);
-    await tester.tap(find.byTooltip('发送短视频'));
-    await tester.pump();
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
-    await tester.pump();
-    f.api.pendingRead = Completer();
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
-    await tester.pumpAndSettle();
-    f.gateway.picked.complete(const ChatPickedMedia(path: 'synthetic.mp4', name: 'synthetic.mp4'));
-    await tester.pumpAndSettle();
-    expect(f.gateway.uploads, 1);
-    expect(f.api.posts, isEmpty);
-    expect(find.text('重试发送附件'), findsOneWidget);
-    expect(find.text('附件已上传，等待发送确认。'), findsOneWidget);
-    f.api.pendingRead!.complete(const NetworkSuccess({'items': <dynamic>[]}));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('重试发送附件'));
-    await tester.pumpAndSettle();
-    expect(f.gateway.uploads, 1);
-    expect(f.api.posts, hasLength(1));
-    expect(f.api.posts.single['attachment_ids'], [31]);
-    expect(find.text('重试发送附件'), findsNothing);
-    await _dispose(tester, f);
-  });
+  testWidgets(
+    'authorized picker restores draft and sends while unrelated history is pending',
+    (tester) async {
+      final f = await _mount(tester);
+      expect(
+        await f.cache.saveAuthorized('live-chat-draft:2', {
+          'text': '',
+        }, expectedAccountId: 1),
+        isTrue,
+      );
+      await tester.tap(find.byTooltip('发送短视频'));
+      await tester.pump();
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      await tester.pump();
+      f.api.pendingRead = Completer();
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      f.gateway.picked.complete(
+        const ChatPickedMedia(path: 'synthetic.mp4', name: 'synthetic.mp4'),
+      );
+      await tester.pumpAndSettle();
+      expect(f.gateway.uploads, 1);
+      expect(f.api.posts, hasLength(1));
+      expect(f.api.posts.single['attachment_ids'], [31]);
+      f.api.pendingRead!.complete(const NetworkSuccess({'items': <dynamic>[]}));
+      await tester.pumpAndSettle();
+      expect(f.api.posts, hasLength(1));
+      expect(find.text('重试发送附件'), findsNothing);
+      await _dispose(tester, f);
+    },
+  );
 
-  testWidgets('new upload cannot implicitly replay a restored different attachment', (
-    tester,
-  ) async {
-    final f = await _mount(tester);
-    await tester.tap(find.byTooltip('发送短视频'));
-    await tester.pump();
-    const oldKey = '00000000-0000-4000-8000-000000000002';
-    expect(await f.cache.saveAuthorized('live-chat-draft:2', {
-      'text': '',
-      'pending_attempt': {
-        'client_message_id': oldKey,
-        'peer_user_id': 2,
-        'content': '',
-        'attachment_ids': [12],
-      },
-    }, expectedAccountId: 1), isTrue);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
-    await tester.pump();
-    f.api.pendingRead = Completer();
-    f.gateway.uploadReply = Completer();
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
-    await tester.pumpAndSettle();
-    f.gateway.picked.complete(const ChatPickedMedia(path: 'new.mp4', name: 'new.mp4'));
-    await tester.pumpAndSettle();
-    expect(f.gateway.uploads, 1);
-    f.api.pendingRead!.complete(const NetworkSuccess({'items': <dynamic>[]}));
-    await tester.pumpAndSettle();
-    f.gateway.uploadReply!.complete(const ChatMediaUploadResponse(
-      assetId: 31, publicUrl: null, status: 'ready',
-    ));
-    await tester.pumpAndSettle();
-    expect(f.api.posts, isEmpty);
-    await tester.tap(find.text('使用原消息编号重试'));
-    await tester.pumpAndSettle();
-    expect(f.api.posts.single['client_message_id'], oldKey);
-    expect(f.api.posts.single['attachment_ids'], [12]);
-    expect(find.text('重试发送附件'), findsOneWidget);
-    await tester.tap(find.text('重试发送附件'));
-    await tester.pumpAndSettle();
-    expect(f.gateway.uploads, 1);
-    expect(f.api.posts, hasLength(2));
-    expect(f.api.posts.last['attachment_ids'], [31]);
-    expect(f.api.posts.last['client_message_id'], isNot(oldKey));
-    await _dispose(tester, f);
-  });
-
+  testWidgets(
+    'new upload cannot implicitly replay a restored different attachment',
+    (tester) async {
+      final f = await _mount(tester);
+      await tester.tap(find.byTooltip('发送短视频'));
+      await tester.pump();
+      const oldKey = '00000000-0000-4000-8000-000000000002';
+      expect(
+        await f.cache.saveAuthorized('live-chat-draft:2', {
+          'text': '',
+          'pending_attempt': {
+            'client_message_id': oldKey,
+            'peer_user_id': 2,
+            'content': '',
+            'attachment_ids': [12],
+          },
+        }, expectedAccountId: 1),
+        isTrue,
+      );
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      await tester.pump();
+      f.api.pendingRead = Completer();
+      f.gateway.uploadReply = Completer();
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      f.gateway.picked.complete(
+        const ChatPickedMedia(path: 'new.mp4', name: 'new.mp4'),
+      );
+      await tester.pumpAndSettle();
+      expect(f.gateway.uploads, 0);
+      f.api.pendingRead!.complete(const NetworkSuccess({'items': <dynamic>[]}));
+      await tester.pumpAndSettle();
+      f.gateway.uploadReply!.complete(
+        const ChatMediaUploadResponse(
+          assetId: 31,
+          publicUrl: null,
+          status: 'ready',
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(f.api.posts, isEmpty);
+      await tester.tap(find.text('使用原消息编号重试'));
+      await tester.pumpAndSettle();
+      expect(f.api.posts.single['client_message_id'], oldKey);
+      expect(f.api.posts.single['attachment_ids'], [12]);
+      expect(find.text('重试发送附件'), findsNothing);
+      expect(f.gateway.uploads, 0);
+      expect(f.api.posts, hasLength(1));
+      await _dispose(tester, f);
+    },
+  );
 
   testWidgets(
     'current-authority read during pending POST cannot replace retry identity before receive timeout',
@@ -633,7 +780,7 @@ void main() {
         readsBefore + 1,
       );
       expect(f.api.pendingFirstPost!.isCompleted, isFalse);
-      expect(find.text('服务器已确认此消息'), findsNothing);
+      expect(find.text('服务器已持久化此消息'), findsNothing);
       expect(find.text('发送中，等待服务器确认'), findsOneWidget);
       expect(
         tester.widget<TextField>(find.byType(TextField)).controller!.text,
@@ -660,7 +807,7 @@ void main() {
       expect(f.api.posts.last['client_message_id'], originalKey);
       expect(f.api.posts.last, f.api.posts.first);
       expect(f.api.successfulPostAcknowledgements, 1);
-      expect(find.text('服务器已确认此消息'), findsOneWidget);
+      expect(find.text('服务器已持久化此消息'), findsOneWidget);
       expect(find.text('使用原消息编号重试'), findsNothing);
       expect(
         tester.widget<TextField>(find.byType(TextField)).controller!.text,
@@ -683,7 +830,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(f.api.posts, hasLength(1));
       expect(find.textContaining('发送结果尚未确认'), findsOneWidget);
-      expect(find.text('服务器已确认此消息'), findsNothing);
+      expect(find.text('服务器已持久化此消息'), findsNothing);
       await tester.tap(find.text('使用原消息编号重试'));
       await tester.pumpAndSettle();
       expect(f.api.posts, hasLength(2));
@@ -692,7 +839,7 @@ void main() {
         f.api.posts[1]['client_message_id'],
       );
       expect(f.api.posts[0]['content'], f.api.posts[1]['content']);
-      expect(find.text('服务器已确认此消息'), findsOneWidget);
+      expect(find.text('服务器已持久化此消息'), findsOneWidget);
       expect(
         tester.widget<TextField>(find.byType(TextField)).controller!.text,
         isEmpty,
