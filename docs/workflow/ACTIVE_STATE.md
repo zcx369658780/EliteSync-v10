@@ -1,3 +1,47 @@
+# 当前入口 2026-11-14 v10.1.8 语音主链完成，保存交接
+
+Owner要求继续，并建议完成一个目标后先保存本地/GitHub再交接。本会话选择语音真实录制、明确发送、另一端播放，节点已达到；当前停在文档保存与同步回读交接点。整版工程自验仍 `IN_PROGRESS`，顾问/Owner本版接受 `PENDING`。
+
+稳定根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.8-communication-notifications-20261113`，APP源码 `ab86489aa576f95618fae48abc79b8c7f6a70258`。候选继续 `10.1.8-dev / 1010804`，APK SHA256 `d2f777465c06f5797abce3c87f586373b62f643a41474e28efa3da2df3da46b8`。本节点保存昨日已通过的权限回归测试及当前文档，产品逻辑和APK沿原身份。
+
+实际APP录制8.3秒、试听、用户17→16明确发送消息131/附件25、另一端完成播放，试听和接收端纯输出均检出440/880Hz受控音调。实际库单条通知277，入站前未读、前台ACK后已读；AAC-LC/M4A成品8267ms、103842字节，真实完整解码通过。人工听感NOT_RUN、实机硬件UNVERIFIED。详见[唯一接续交接](../versions/v10.1.8/CONTINUATION_HANDOFF_20261114.md)与[去敏证据](../versions/v10.1.8/VOICE_EVIDENCE_20261114.json)。
+
+六项AC集中收口继续待办，语音完整AC暂PARTIAL。发送结果未知同号重试、剩余语音边界、APP通知回流/偏好、统一重登/重启持久化，以及SFU媒体/有限恢复/新5秒撤权尾窗见交接。昨日55项PHP/632断言及182项Flutter按具名范围继承，当前文字/引用证据候选1010803，媒体及语音1010804。真实Push `REAL_PUSH_PROVIDER_PENDING`，历史SFU精确原因 `UNKNOWN`。
+
+资源实读截至2026-11-14 06:29:56.971676北京时间，当前DB/API/WS运行、SFU exited/exit1、Room UNAVAILABLE；双模拟器和本包进程已停止，Android用户11/12及AVD数据保留。ADB5038运行且USB排除，手机NOT_RUN。原主库dirty/index及本根 `%SystemDrive%/` 保护。
+
+按同名授权分支保存同步，固定提交由远端回读确认并写入交接输出；同步失败记 `PENDING_SYNC`。本次普通工程授权延续，收到新的继续指令后接续下一个目标，版本最终交付仍按本版计划执行。
+
+---
+## 历史节点 2026-11-13 Owner停止回执
+
+Owner于本轮恢复后明确要求立即停止、明天继续。本轮实现和验证已停止，仅保存此接续位置。稳定根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.8-communication-notifications-20261113`，已保存源码HEAD `ab86489aa576f95618fae48abc79b8c7f6a70258`。工作区当前状态文档和语音权限回归测试仍未提交，受保护 `%SystemDrive%/` 保留。当前未执行同步，`PENDING_SYNC`。工程自验仍 IN_PROGRESS，顾问/Owner本版接受 PENDING。
+
+当前候选1010804及既有真实文字127、引用128、图片129、短视频130、Web审核通知274和最终定向测试继续沿具名范围保留。真实语音录制发送跨端播放、APP通知回流、一次未知发送响应重试、统一重登/服务重启持久化，以及SFU当前实际媒体/有限恢复/新撤权尾窗尚未完成，不能判六项AC全部PASS。
+
+恢复时发现API8021拒绝连接，Docker日志为WSL启动 `HCS_E_CONNECTION_TIMEOUT`。已普通关闭重启Docker并执行WSL shutdown，临时停止两个自有模拟器释放资源后恢复现有DB/API/WS/SFU。最近实际服务观测约2026-11-13 23:30北京时间，四个当前自有服务running，API `/up` HTTP200；SFU旧超时/失败日志保留，当前通话媒体未验，历史精确根因UNKNOWN。归档SFU容器曾随Docker重启被自动唤起，已停止这两个自有旧实例，数据保留。双模拟器原AVD保留，启用音频、隐藏Qt窗口，实际测试用户已回11/12。ADB仍5038且USB排除，手机NOT_RUN。以上是停止前最近观测，停止时未另做资源检查或采集停止断言。
+
+停止前最后动作是普通API读取当前connection成功，辅助脚本随后因读取不存在的`state`键退出，后续force-stop/启动APP及open_chat没有执行。尚未发起本轮新录音/通话。单次本机消息响应丢失辅助工具已写入私有目录但未启动，未注入故障。原资源和数据保留，不因本次停止回退源码或清理。
+
+私有原证/候选 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev\v1018-current`，接续说明 `PAUSED_HANDOFF_20261113.md`。明天收到继续指令后核实际Git/index和资源，先普通APP登录/聊天恢复，再完成剩余定向验证与集中报告、manifest、同步回读。真实Push `REAL_PUSH_PROVIDER_PENDING`；不合main、不发布、不自动进入v10.1.9。
+
+---
+
+## 停止前的进行中入口（保留原文）
+### 停止前的实现状态 2026-11-13
+
+稳定根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.8-communication-notifications-20261113`。任务发布 `fda6d3db4e5fe25167bece23e2773ad46f68e5ab`，当前源码保存 `ab86489aa576f95618fae48abc79b8c7f6a70258`。本版实现已保存，工程自验仍 IN_PROGRESS，顾问/Owner 本版接受 PENDING。
+
+已接通精确前台消息 ACK、有界搜索与引用、语音原生录制/私密媒体/单播放器、业务通知稳定事件去重及当前目标。后端定向55项/632断言、Flutter定向182项通过。当前APK `10.1.8-dev / 1010804 / com.elitesync.v1015dev`，123801854字节，SHA256 `d2f777465c06f5797abce3c87f586373b62f643a41474e28efa3da2df3da46b8`，双端已安装回读一致。普通APP文字127、搜索/引用128、图片129及短视频130的真实API/持久化链已验证，文字证据在1010803，媒体在1010804。实际Web审核submission6产生通知274且未自动发布，APP点击回流与剩余持久化链继续验证。
+
+语音授权返回前台的实际缺陷已修并补定向回归。当前正在处理源模拟器显示/受控音源联测卡死，保留原AVD数据并改完整Qt隐藏窗口后端，随后完成真实录放、当前SFU媒体/有限恢复与撤权新尾窗。SFU旧容器启动失败已保留并按同镜像/原1秒读取及3.5秒watchdog重建自有服务，当前媒体AC尚未判PASS；旧精确根因 UNKNOWN。真实Push `REAL_PUSH_PROVIDER_PENDING`，手机 NOT_RUN。
+
+本机原证与候选位于 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev\v1018-current`。原主库dirty/index及本根 `%SystemDrive%/` 保护。沿既有授权连续完成剩余定向验证，集中报告/manifest、同步回读后停下；不合main、不发布、不进入v10.1.9。资源快照将在最终交付时实读。
+
+---
+
+## 历史任务发布入口
+
 # 当前入口 2026-11-13 v10.1.8任务已下达
 
 Owner已接受v10.1.7的约定开发范围，并明确同意进入v10.1.8「通信与通知功能完善」。执行[版本任务](../versions/v10.1.8/task_order.md)、[计划及六项AC](../versions/v10.1.8/plan.md)，[Codex接续prompt](../versions/v10.1.8/CODEX_START_PROMPT.txt)。依据见[Owner决定](../decisions/OWNER_V10_1_7_ACCEPTANCE_AND_V10_1_8_AUTHORIZATION_20261113.md)。

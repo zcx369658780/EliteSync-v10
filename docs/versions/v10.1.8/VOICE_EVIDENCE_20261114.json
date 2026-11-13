@@ -1,0 +1,312 @@
+{
+  "schema": "elitesync.v1018.voice_checkpoint.v1",
+  "checkpoint_date_china": "2026-11-14",
+  "scope": "Actual APP voice recording, preview, explicit send and other endpoint playback",
+  "result": "VOICE_MAIN_CHAIN_OBSERVED_SCOPED",
+  "version_engineering_status": "IN_PROGRESS",
+  "full_ac18_03": "PARTIAL_PENDING_REMAINING_AFFECTED_PATHS",
+  "advisor_acceptance": "PENDING",
+  "owner_version_acceptance": "PENDING",
+  "source_commit": "ab86489aa576f95618fae48abc79b8c7f6a70258",
+  "backend_last_changed_commit": "e22b0c95c2358672a8f81a9b6d6d0dd07f36830d",
+  "apk": {
+    "version_name": "10.1.8-dev",
+    "version_code": 1010804,
+    "package": "com.elitesync.v1015dev",
+    "variant": "source Debug",
+    "abi": "arm64-v8a",
+    "bytes": 123801854,
+    "sha256": "d2f777465c06f5797abce3c87f586373b62f643a41474e28efa3da2df3da46b8",
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+    "installation_evidence": "Inherited named 1010804 dual-install readback from20261113; no reinstall or product source change this checkpoint"
+  },
+  "business": {
+    "sender_fictional_user": 17,
+    "receiver_fictional_user": 16,
+    "message_id": 131,
+    "asset_id": 25,
+    "notification_id": 277,
+    "notification_count": 1,
+    "explicit_app_send": true,
+    "unread_before_receiver_foreground": true,
+    "read_after_receiver_foreground": true,
+    "first_read_at_utc": "2026-11-13T22:28:09.000000Z",
+    "notification_read_at": null,
+    "source_event_key": "message:131",
+    "format": {
+      "mime": "audio/mp4",
+      "container": "M4A",
+      "codec": "aac",
+      "profile": "LC",
+      "sample_rate": "44100",
+      "channels": 1,
+      "duration_ms": 8267,
+      "bytes": 103842,
+      "sha256": "fc0b1637f34a873451264aa4cece6deaf5a6b6a0ef52d2aaac406c9f60c58c2d",
+      "full_decode_exit": 0
+    },
+    "authorized_content_http": 200,
+    "range_http": 206,
+    "range_bytes": 1024,
+    "range_matches": true
+  },
+  "media": {
+    "input": "Authenticated emulator RPC controlled440Hz then880Hz into actual APP MediaRecorder",
+    "source_emulator": {
+      "index": 1,
+      "serial": "emulator-5582",
+      "android_user": 12,
+      "renderer": "swangle"
+    },
+    "receiver_emulator": {
+      "index": 0,
+      "serial": "emulator-5580",
+      "android_user": 11,
+      "renderer": "swiftshader"
+    },
+    "execution": "Serial retained emulators; recorder endpoint stopped after send before receiver resumed",
+    "recording_native_active": true,
+    "native_inactive_after_recording_stop": true,
+    "preview_completed": true,
+    "receiver_final_ui": [
+      "Dismiss",
+      "语音留言",
+      "8.3 / 8.3 秒",
+      "重播",
+      "关闭"
+    ],
+    "preview_output": {
+      "Mode": "OUTPUT_CAPTURE_ONLY",
+      "Seconds": 14,
+      "Packets": 1089,
+      "Bytes": 1123884,
+      "DeadlineReached": true,
+      "Tone440Observed": true,
+      "Tone880Observed": true,
+      "Rms": 0.007688737154320018,
+      "Peak": 0.04986572265625
+    },
+    "receiver_output": {
+      "Mode": "OUTPUT_CAPTURE_ONLY",
+      "Seconds": 14,
+      "Packets": 1107,
+      "Bytes": 1144030,
+      "DeadlineReached": true,
+      "Tone440Observed": true,
+      "Tone880Observed": true,
+      "Rms": 0.0076207316189192496,
+      "Peak": 0.04986572265625
+    },
+    "human_listening": "NOT_RUN",
+    "hardware": "EMULATOR_ONLY"
+  },
+  "failures_and_adjustments": [
+    {
+      "event": "First microphone grant invalidated current private-context epoch",
+      "outcome": "APP asked to re-enter recording; re-entry used; no message or recording falsely reported"
+    },
+    {
+      "event": "v3 source emulator exited near input registration, last renderer log bad color buffer handle275",
+      "outcome": "Retained failure; exact renderer/RPC cause UNKNOWN"
+    },
+    {
+      "event": "v4 changed source to swangle, serialized emulator use and started APP native capture before input",
+      "outcome": "Actual record and both playbacks observed; individual causal effect not established"
+    },
+    {
+      "event": "Cold Debug APP startup exceeded helper30second wait",
+      "outcome": "Waited for actual page readiness, resumed ordinary navigation; no success response fabricated"
+    }
+  ],
+  "inherited_tests": {
+    "backend": {
+      "tests": 55,
+      "assertions": 632,
+      "result": "PASS"
+    },
+    "flutter": {
+      "tests": 182,
+      "result": "PASS"
+    },
+    "permission_panel": {
+      "tests": 2,
+      "result": "PASS"
+    },
+    "run_date_china": "2026-11-13",
+    "rerun_this_checkpoint": false,
+    "counts_overlap": "Permission panel is included in the final Flutter selection; do not add counts"
+  },
+  "deployed_voice_source_bytes": [
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MessageController.php",
+      "source_commit": "ab86489aa576f95618fae48abc79b8c7f6a70258",
+      "bytes": 16035,
+      "sha256_git_worktree_container": "6e1c5cd72041803e4a7c777840d71386e2a82e7c94ad3a7f198908964cd5a659",
+      "raw_bytes_equal": true
+    },
+    {
+      "path": "services/backend-laravel/app/Services/PrivateAudioValidator.php",
+      "source_commit": "ab86489aa576f95618fae48abc79b8c7f6a70258",
+      "bytes": 2509,
+      "sha256_git_worktree_container": "cb91c913a927a102d3913190451eacb34a569e6882fc9d611ce7d17f0cdce78e",
+      "raw_bytes_equal": true
+    },
+    {
+      "path": "services/backend-laravel/app/Services/NotificationService.php",
+      "source_commit": "ab86489aa576f95618fae48abc79b8c7f6a70258",
+      "bytes": 16209,
+      "sha256_git_worktree_container": "91b38f080ad62002e9aeecbccfdcc656e2216e5b7e56ec05b3e99d0d19783be3",
+      "raw_bytes_equal": true
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+      "source_commit": "ab86489aa576f95618fae48abc79b8c7f6a70258",
+      "bytes": 13628,
+      "sha256_git_worktree_container": "b532b3ea0d15892216510321599277f51c7fd1af8df496661b56d1cf05157c96",
+      "raw_bytes_equal": true
+    }
+  ],
+  "resources": {
+    "observed_at_utc": "2026-11-13T22:29:56.971676+00:00",
+    "observed_at_china": "2026-11-14T06:29:56.971676+08:00",
+    "services": {
+      "db": {
+        "id": "61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+        "image": "sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2",
+        "status": "running",
+        "exit_code": 0,
+        "started_at": "2026-11-13T22:14:33.256248885Z",
+        "finished_at": "2026-11-13T22:13:50.530952643Z"
+      },
+      "api": {
+        "id": "56a29d27e5219d9b1ce69a7230766c592535339988b84eb2bbc866b458d7a54b",
+        "image": "sha256:fac4d1a092d669227aa7f018d849ec659996cb1ac616927efe7821e45424d70b",
+        "status": "running",
+        "exit_code": 0,
+        "started_at": "2026-11-13T22:14:34.50815018Z",
+        "finished_at": "2026-11-13T22:13:50.530988953Z"
+      },
+      "ws": {
+        "id": "04e4b97a55addf4978c877960d9235602c999436e5845a8808f197b44dc69644",
+        "image": "sha256:893014a9e551183fa7e9c36503f8ed61e98641e3999081db86d9b02e34f37b3d",
+        "status": "running",
+        "exit_code": 0,
+        "started_at": "2026-11-13T22:14:34.638783086Z",
+        "finished_at": "2026-11-13T22:13:50.531695432Z"
+      },
+      "sfu": {
+        "id": "bd15c12a986c03043eacadf35449d2ec83b78194aa15362a821de56b9d08d6ab",
+        "image": "sha256:954f0e1bd94cbab763dfcca219d730446d064c5c832c179ce31d8225852cbb95",
+        "status": "exited",
+        "exit_code": 1,
+        "started_at": "2026-11-13T22:14:31.15705371Z",
+        "finished_at": "2026-11-13T22:14:36.124642603Z"
+      }
+    },
+    "rooms": "UNAVAILABLE_SFU_EXITED",
+    "emulators": [
+      {
+        "index": 0,
+        "serial": "emulator-5580",
+        "status": "STOPPED_HANDOFF_20261114_DATA_RETAINED",
+        "last_test_user": 11,
+        "data_retained": true
+      },
+      {
+        "index": 1,
+        "serial": "emulator-5582",
+        "status": "STOPPED_HANDOFF_20261114_DATA_RETAINED",
+        "last_test_user": 12,
+        "data_retained": true
+      }
+    ],
+    "receiver_native_capture_active": {
+      "CAMERA": false,
+      "RECORD_AUDIO": false
+    },
+    "adb_port": 5038,
+    "usb_exclusion_command_observed": true,
+    "phone": "NOT_RUN"
+  },
+  "remaining": [
+    "60second automatic preview and cancellation/background/current-authority affected runtime paths",
+    "One real APP unknown-send-response retry with immutable identifier and one persisted message/notice",
+    "APP notification current-target return, stale target/other-ID and preference paths",
+    "Unified relogin/development-service-restart persistence readback",
+    "Current SFU media call, one bounded recovery, new revocation native-stop5second tail",
+    "Final version IMPLEMENTATION_REPORT.md, artifact_manifest.json and final source/deployment binding"
+  ],
+  "boundaries": {
+    "historical_sfu_timeout_root_cause": "UNKNOWN",
+    "current_sfu": "EXITED_UNAVAILABLE",
+    "real_push": "REAL_PUSH_PROVIDER_PENDING",
+    "phone": "NOT_RUN"
+  },
+  "local_only_evidence": [
+    {
+      "file": "voice-record-input-v3-20261114-actions-private.json",
+      "bytes": 502,
+      "sha256": "e58330480a5adc630b3260e2062b84554adbe99f034e8a9332310aff35ab2403"
+    },
+    {
+      "file": "voice-record-input-v3-20261114-probe-private.json",
+      "bytes": 122,
+      "sha256": "78bf67acf6c3949ca707f7a6b49e8c6e15b6a6c0b780a0a4b11ac8b17d8694ac"
+    },
+    {
+      "file": "voice-record-input-v4-20261114-actions-private.json",
+      "bytes": 1724,
+      "sha256": "a026752ab346bf9a4f1fc3385a835a9cb5451a400c136d753004248a76f9f23a"
+    },
+    {
+      "file": "voice-record-input-v4-20261114-probe-private.json",
+      "bytes": 179,
+      "sha256": "78ae8f942a544290649813d2b937e4855a96e3fbd2c0e84e1293f8e16fc21fa1"
+    },
+    {
+      "file": "voice-preview-v1-20261114-actions-private.json",
+      "bytes": 1017,
+      "sha256": "a09efc645e766fae31e82d121a4b8f075d26266ba6584ef9a4573ae3b8c5c191"
+    },
+    {
+      "file": "voice-receiver-v1-20261114-actions-private.json",
+      "bytes": 880,
+      "sha256": "d2c8c05d4236ab23c6670342cb79796a9fae8bd2628cc716287a3e1292d667bd"
+    },
+    {
+      "file": "normal-voice-send-20261114-private.json",
+      "bytes": 2464,
+      "sha256": "341c5263657141a088cbfbfb09f657cc3afd3e9bbe966732d0fca2ca54801ebf"
+    },
+    {
+      "file": "normal-voice-content-20261114-private.json",
+      "bytes": 197,
+      "sha256": "fde1b62035aef78750f92887d2044e87b71e19be01617c5b305bd873a8c3e4a8"
+    },
+    {
+      "file": "normal-voice-persistence-20261114-private.json",
+      "bytes": 3386,
+      "sha256": "75a540ef1b18a9116546422903c5febdf9f11860a5609d0c04dcfa3890a0628f"
+    },
+    {
+      "file": "checkpoint-resources-20261114-private.json",
+      "bytes": 4161,
+      "sha256": "181d0fd27c43edba7c23fb51be98d3dbfd9db4352a16645fa9084a1a9d68b6d1"
+    },
+    {
+      "file": "backend-final-private.log",
+      "bytes": 193,
+      "sha256": "d44cb5d46bb20aadd955e7a7497fc4890d4d310e6e726c523ce8a32d754b706d"
+    },
+    {
+      "file": "flutter-final-current-private.log",
+      "bytes": 62218,
+      "sha256": "5f9ece351aa6ee1654a9b5de30e219c7ab753bbcaa6e8c2b4201d0058117179c"
+    },
+    {
+      "file": "voice-panel-permission-tests-private.log",
+      "bytes": 372,
+      "sha256": "fe807b8317efdfc1b06d5509518d3b858801755c4a8070f2f75fbbbdaf37d292"
+    }
+  ]
+}
