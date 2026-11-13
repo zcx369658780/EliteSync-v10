@@ -48,7 +48,7 @@ Owner 于11月14日要求继续，并建议长会话完成一个目标后先交�
 
 ## 证据与继承范围
 
-[VOICE_EVIDENCE_20261114.json](VOICE_EVIDENCE_20261114.json) SHA256 为 `ee2c67a35fdda309197b74b0a66cc474d1ab7f9e9e186c2b1008e4e30f962f5b`，包含必要去敏结果、四个部署文件字节核对及私有固定回执摘要哈希。原始 PCM/M4A、截图、APK、日志、凭据和数据库保留本机。
+[VOICE_EVIDENCE_20261114.json](VOICE_EVIDENCE_20261114.json) SHA256 为 `3739e3955eed7ae8343cf81940b0f05c908f0edfb88bcd8c49e36764f9f51e42`，包含必要去敏结果、四个部署文件字节核对及私有固定回执摘要哈希。按该摘要路径设置 LF 换行，工作树与 Git Blob 字节保持一致。原始 PCM/M4A、截图、APK、日志、凭据和数据库保留本机。
 
 私有原证根为 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev\v1018-current`。关键文件为 `voice-record-input-v4-20261114-actions-private.json`、`voice-preview-v1-20261114-actions-private.json`、`voice-receiver-v1-20261114-actions-private.json`、`normal-voice-send-20261114-private.json`、`normal-voice-persistence-20261114-private.json` 和 `checkpoint-resources-20261114-private.json`。失败 v3 独立保留。
 
