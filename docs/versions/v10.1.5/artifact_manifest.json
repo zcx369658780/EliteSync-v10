@@ -1,20 +1,23 @@
 {
   "schema_version": 2,
   "version": "10.1.5",
-  "status": "EXISTING_FEATURE_ADVISOR_PACKAGE_WITH_OPEN_ACCEPTANCE_ITEMS",
-  "date": "2026-11-12",
+  "status": "R1_CHANGES_REQUIRED_PARTIAL_SFU_CAUSE_OPEN",
+  "date": "2026-11-13",
   "branch": "codex/v10.1.5-software-continuation-20261101",
   "source": {
-    "commit": "0badb31c38db63fe0fb1b5fcbfb43e5cb4e68d3f",
-    "root_tree": "cab9e7f5700eb8f7402401ee56cdc6e4e92d795f",
-    "apps_tree": "a4e4b62f58a1c6de353d2f69bace6c9d51eb6bd9",
-    "services_tree": "8bc64ce9d43e84897eac0c56782c8f17870ae05f",
-    "api_source_commit": "6549f02880968f99ae3f45439d15a37c1b3d5251"
+    "commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+    "root_tree": "e80b50c4cd00af50cdb3972cd2e129e3cf3ce378",
+    "apps_tree": "ce9a68ba47807e496764d80980593958b094b2ba",
+    "services_tree": "72edf681992d8f80910addb5858bd15a5bb7bca3",
+    "api_source_commit": "e7b21c7fdb0991a5fbd5a9272c92c2331c0dec2d",
+    "api_core_source_commit": "6549f02880968f99ae3f45439d15a37c1b3d5251",
+    "backend_tools_source_commit": "e7b21c7fdb0991a5fbd5a9272c92c2331c0dec2d",
+    "document_commit_resolution": "current authorized branch Git history after APP source commit"
   },
   "apk": {
-    "filename": "EliteSync-v10.1.5-dev-0badb31c-arm64-debug.apk",
-    "sha256": "1e9adad71b962c8adfcfd280450ed9ae9e5b1f7127988d225a036e3c3826dfea",
-    "bytes": 154570461,
+    "filename": "EliteSync-v10.1.5-dev-cfdce773-arm64-debug.apk",
+    "sha256": "311632a8c735b53d97984dc9b45f00c1d7cdc6e72f848807cb40d99f62d7fc69",
+    "bytes": 154580169,
     "package": "com.elitesync.v1015dev",
     "version_name": "10.1.5-dev",
     "version_code": 1010501,
@@ -23,41 +26,113 @@
     "signature": "v2_verified",
     "offline": true,
     "build_exit_code": 0,
-    "build_elapsed_seconds": 46.0227167,
+    "build_elapsed_seconds": 38.3564155,
     "distribution": "LOCAL_ONLY"
   },
   "validation": {
-    "targeted_tests": 15,
-    "analyze": "incoming page/test clean, prior coordinator/test and chat page/test clean",
-    "non_author_review": "media-picker handoff, RTC independent polling and incoming lifecycle changes each received scoped non-author static review. Advisor final acceptance pending.",
-    "version_controller_tests": {
-      "tests": 9,
-      "assertions": 54,
-      "database": "isolated sqlite :memory:"
-    },
+    "report": "supplement-r1-20261112/README.md",
+    "completeness": "supplement-r1-20261112/COMPLETENESS_AC.md",
+    "applicability": "supplement-r1-20261112/EVIDENCE_APPLICABILITY.md",
+    "redacted_evidence": "supplement-r1-20261112/EVIDENCE_SUMMARY.json",
+    "screenshots": "supplement-r1-20261112/SCREENSHOTS.json",
     "same_apk_installed_targets": [
-      "Owner fictional A phone",
-      "emulator5580 fictional B"
+      "emulator5580",
+      "emulator5582"
     ],
-    "notification_stable_scroll_and_mark_read": "8216 same-candidate phone, no periodic loading, scroll anchor retained, unread50 to49",
-    "owner_notification_feedback": "正常，不再闪烁，按钮可用",
-    "paused_emulator5582_installed_source": "cdb0b46dc4613b35eba7adb0c50415a455f3063c",
-    "prior_audio_5e": "call44 Owner very clear speech; original source and evidence boundaries retained",
-    "scope": "existing-feature device acceptance and advisor package in progress",
-    "notification_targeted_tests_prior": 45,
-    "previous_notification_review": "coordinator/provider scan isolation, session ownership, autoDispose and manual error handling retain their original review boundaries",
-    "phone_bidirectional_text": "26c same APK normal UI120/121 persisted, original e5 115/116 retained",
-    "media_picker_original_failure": "e5aa image uploaded as14 but blocked before POST. One explicit retry reused asset14 as message117.",
-    "phone_image_video_current": "26c same APK image122/asset17 and video123/asset18, phone preview and0:02/0:02.0bad changes incoming page only.",
-    "prior_notification_failure_and_manual_retry": "final e5 phone scoped503, error remains after real service restoration, explicit UI retry recovers",
-    "rtc_poll_tests": 17,
-    "rtc_incoming_selector_tests": 4,
-    "prior_chat_tests": 33,
-    "prior_notification_tests": 45,
-    "actual_incoming_final": "same0bad phone A/B,46 natural30s missed reflected automatically without manual refresh,47 normal UI rejected",
-    "final_memory": "0bad120.843s, explicit GC only endpoints,65 sessions/120events retained both endpoints, heap140628224 to140298784 bytes.26c prior240.906s0 to4 entities during new call. Long-duration coverage pending.",
-    "final_sleep_resume": "0bad emulator20s screen sleep, wake, existing chat read and settings input passed, current-PID OOM0",
-    "source_scope": "Current installed dev restoration build. Formal-build conditional pages retain SRC_ONLY where untested."
+    "phone_used": false,
+    "commit_to_both_native_stop_conservative_upper_seconds": 2.18725,
+    "commit_visibility_interval_seconds": 0.016,
+    "old_unexpired_jwt_after_revoke": [
+      403,
+      403
+    ],
+    "old_jwt_after_new_generation": [
+      403,
+      403
+    ],
+    "normal_recovery_call": {
+      "id": 54,
+      "duration_seconds": 261,
+      "room_participants": 2,
+      "normal_hangup_room_count": 0,
+      "both_native_captures_stopped": true
+    },
+    "unknown_post_current": {
+      "message": 125,
+      "same_uuid": true,
+      "one_encrypted_row": true,
+      "automatic_posts": 0
+    },
+    "old_notification_current": {
+      "id": 259,
+      "revoked_during_detail": true,
+      "read_posts": 0,
+      "navigation_denied": true
+    },
+    "finite_observation": {
+      "sample_window_seconds": 1500.031,
+      "tool_elapsed_seconds": 1500.906,
+      "samples": 51,
+      "same_pid": true,
+      "explicit_gc": "endpoints only",
+      "heap_bytes": [
+        120759792,
+        126337216
+      ],
+      "heap_peak_bytes": 142433968,
+      "pss_kib": [
+        757743,
+        734208
+      ],
+      "pss_range_kib": [
+        678666,
+        757743
+      ],
+      "final_rtc_sessions": 13,
+      "final_rtc_events": 15,
+      "anr_oom_fatal_markers": 0
+    },
+    "targeted_test_groups": [
+      {
+        "name": "initial joint Flutter",
+        "tests": 53
+      },
+      {
+        "name": "final affected qualification inflight",
+        "tests": 22
+      },
+      {
+        "name": "connection lifecycle",
+        "tests": 14
+      },
+      {
+        "name": "final connection envelope",
+        "tests": 22
+      },
+      {
+        "name": "feedback password errors and onboarding router",
+        "tests": 11
+      },
+      {
+        "name": "SFU Python",
+        "tests": 8
+      }
+    ],
+    "test_group_note": "Groups overlap and ran at their respective source stages; final affected groups and unchanged-dependency cases support final candidate",
+    "backend_targeted": {
+      "initial_tests": 76,
+      "initial_errors": 2,
+      "initial_error_reason": "missing existing question bank mount",
+      "affected_retry_tests": 2,
+      "affected_retry_assertions": 26,
+      "affected_retry_exit_code": 0,
+      "initial_failure_retained": true,
+      "environment": "isolated SQLite memory, network none"
+    },
+    "non_author_review": "Scoped static review of qualification state ownership and connection lifecycle/envelope; no new P1/P2 in final review. Author test results separately recorded.",
+    "engineering_result": "CHANGES_REQUIRED/PARTIAL",
+    "advisor_result": "CHANGES_REQUIRED/PARTIAL pending R1 review",
+    "owner_acceptance": "PENDING"
   },
   "acceptance": {
     "partial_ac": [
@@ -77,56 +152,27 @@
     ],
     "g2": false,
     "real_push": "PENDING",
-    "owner_product_acceptance": "PENDING"
+    "owner_product_acceptance": "PENDING",
+    "advisor_review": "CHANGES_REQUIRED/PARTIAL",
+    "supplement_engineering": "CHANGES_REQUIRED/PARTIAL"
   },
   "unverified": [
+    "post-isolation non-injected authority_sweep TimeoutError at2026-11-13T00:06:45.631Z; simultaneous public/private PHP delay about6s; specific blocking cause UNKNOWN",
+    "complete actor/peer, in-flight message/attachment and APP/WS/cache permission-concurrency combinations",
     "hardware Keystore and physical storage faults",
-    "natural 30-day elapsed observation",
-    "complete actor/peer and in-flight permission/concurrency matrix",
-    "full leaf-page/accessibility device matrix",
-    "real Push delivery",
-    "independent astrology precision",
-    "complete physical audio routing/background/interruption/long-duration and complex AEC matrix; physical first-permission revocation/regrant retest",
-    "actual automatic re-subscription route retention and same-call media reconnect on final ba",
-    "root cause/stage of rare authority monitor timeout; full under-load recovery/media revocation matrix",
-    "route failure device injection NOT_RUN, Bluetooth headset unavailable",
-    "actual TrackSubscribed receipt on final call44 UNKNOWN; UI recovery and native capture observed"
+    "natural15/30-day elapsed observation",
+    "complete physical audio routing, interruption, prolonged calls and complex AEC; Bluetooth headset unavailable",
+    "real Push provider delivery PENDING",
+    "real identity provider and active formal relationship in current MariaDB environment",
+    "independent astrology precision UNVERIFIED",
+    "alternate formal build pages and specified conditional leaves in completeness table",
+    "advisor re-review and Owner final acceptance PENDING"
   ],
   "evidence": [
     {
-      "file": "review-package-20261112/version-check-fix-private.json",
-      "sha256": "69f0f5d2220839cae32eff848b8dbe0d4796b69904cd42abbf105f04c7e9c263",
-      "location": "LOCAL_ONLY"
-    },
-    {
-      "file": "review-package-20261112/notification-preferences-runtime-private.json",
-      "sha256": "c0ae17ccb635e6a1cd0c347587d3d9ef035adb2347162045955c053e8c7df896",
-      "location": "LOCAL_ONLY"
-    },
-    {
-      "file": "review-package-20261112/nickname-runtime-private.json",
-      "sha256": "889807280f277dda2ca50d276cc870366bd18301e9fb371a7bc10aff0b43e8fe",
-      "location": "LOCAL_ONLY"
-    },
-    {
-      "file": "review-package-20261112/notification-installed-private.json",
-      "sha256": "e4bf422f3061db9330341c03c79b28458830b8eeda442c7c81668d8829b7ef06",
-      "location": "LOCAL_ONLY"
-    },
-    {
-      "file": "review-package-20261112/notification-source-checks-private.json",
-      "sha256": "0b70315610221b7d04a0e8739fe05fbb07236d1d8aa9aee81673be79e33d09b2",
-      "location": "LOCAL_ONLY"
-    },
-    {
-      "file": "review-package-20261112/notification-fixed-runtime-private.json",
-      "sha256": "c5835c81e5edaae4c1136986f3ec52f0780e6b7eba30c8352c6fa083454a76d7",
-      "location": "LOCAL_ONLY"
-    },
-    {
-      "file": "review-package-20261112/notification-failure-runtime-private.json",
-      "sha256": "949fd46ee6b2dace99fb58074ded5c69becceb91f7949af1cbc5da40f0d6360a",
-      "location": "LOCAL_ONLY"
+      "file": "supplement-r1-20261112/EVIDENCE_SUMMARY.json",
+      "sha256": "1a73117957ce8d531dee461817e06ebb02d2c7a654f5e24dca2d96477932500c",
+      "location": "redacted result summary; originals LOCAL_ONLY"
     }
   ],
   "prior_candidate_cdb": {
@@ -486,9 +532,9 @@
       "api_source_commit": "25bc01f7d6ce848f5fe964bbc544e9be87325a0e"
     },
     "apk": {
-      "filename": "EliteSync-v10.1.5-dev-5e023b06-arm64-debug.apk",
-      "sha256": "d60d8bc7c1aba006c5ed8d6a2a2344cfec6941c580ac06a3eaedbc7bf75761a1",
-      "bytes": 154567981,
+      "filename": "EliteSync-v10.1.5-dev-ba5a5c26-arm64-debug.apk",
+      "sha256": "cc1be2f69ecf96486628fb31584c7fc3e89b4ea26e843998ac277f1e2017fa14",
+      "bytes": 154560362,
       "package": "com.elitesync.v1015dev",
       "version_name": "10.1.5-dev",
       "version_code": 1010501,
@@ -497,7 +543,7 @@
       "signature": "v2_verified",
       "offline": true,
       "build_exit_code": 0,
-      "build_elapsed_seconds": 32.8432527,
+      "build_elapsed_seconds": 47.496801,
       "distribution": "LOCAL_ONLY"
     },
     "validation": {
@@ -573,9 +619,9 @@
       "api_source_commit": "25bc01f7d6ce848f5fe964bbc544e9be87325a0e"
     },
     "apk": {
-      "filename": "EliteSync-v10.1.5-dev-e5aa6a29-arm64-debug.apk",
-      "sha256": "398d9e1a30a92b39e6a8f95c8218a3ea1a528e7baedb924636f5f8705f6a7608",
-      "bytes": 154568851,
+      "filename": "EliteSync-v10.1.5-dev-5e023b06-arm64-debug.apk",
+      "sha256": "d60d8bc7c1aba006c5ed8d6a2a2344cfec6941c580ac06a3eaedbc7bf75761a1",
+      "bytes": 154567981,
       "package": "com.elitesync.v1015dev",
       "version_name": "10.1.5-dev",
       "version_code": 1010501,
@@ -584,7 +630,7 @@
       "signature": "v2_verified",
       "offline": true,
       "build_exit_code": 0,
-      "build_elapsed_seconds": 32.4737954,
+      "build_elapsed_seconds": 32.8432527,
       "distribution": "LOCAL_ONLY"
     },
     "validation": {
@@ -637,5 +683,163 @@
     ],
     "advisor_final_acceptance": "PENDING",
     "owner_final_acceptance": "PENDING"
+  },
+  "r1_identity_corrections": {
+    "date": "2026-11-13",
+    "corrections": [
+      {
+        "candidate": "prior_candidate_ba",
+        "source_receipt": "speaker-output-installed-20261112-private.json",
+        "previous_mapping": {
+          "filename": "EliteSync-v10.1.5-dev-5e023b06-arm64-debug.apk",
+          "sha256": "d60d8bc7c1aba006c5ed8d6a2a2344cfec6941c580ac06a3eaedbc7bf75761a1",
+          "bytes": 154567981,
+          "build_elapsed_seconds": 32.8432527
+        },
+        "reason": "R1 historical material mapping correction from original installation receipt, no historical rebuild or device-installation change inferred"
+      },
+      {
+        "candidate": "prior_candidate_5e",
+        "source_receipt": "media-output-installed-20261112-private.json",
+        "previous_mapping": {
+          "filename": "EliteSync-v10.1.5-dev-e5aa6a29-arm64-debug.apk",
+          "sha256": "398d9e1a30a92b39e6a8f95c8218a3ea1a528e7baedb924636f5f8705f6a7608",
+          "bytes": 154568851,
+          "build_elapsed_seconds": 32.4737954
+        },
+        "reason": "R1 historical material mapping correction from original installation receipt, no historical rebuild or device-installation change inferred"
+      }
+    ]
+  },
+  "prior_candidate_0bad": {
+    "date": "2026-11-12",
+    "status": "EXISTING_FEATURE_ADVISOR_PACKAGE_WITH_OPEN_ACCEPTANCE_ITEMS",
+    "source": {
+      "commit": "0badb31c38db63fe0fb1b5fcbfb43e5cb4e68d3f",
+      "root_tree": "cab9e7f5700eb8f7402401ee56cdc6e4e92d795f",
+      "apps_tree": "a4e4b62f58a1c6de353d2f69bace6c9d51eb6bd9",
+      "services_tree": "8bc64ce9d43e84897eac0c56782c8f17870ae05f",
+      "api_source_commit": "6549f02880968f99ae3f45439d15a37c1b3d5251"
+    },
+    "apk": {
+      "filename": "EliteSync-v10.1.5-dev-0badb31c-arm64-debug.apk",
+      "sha256": "1e9adad71b962c8adfcfd280450ed9ae9e5b1f7127988d225a036e3c3826dfea",
+      "bytes": 154570461,
+      "package": "com.elitesync.v1015dev",
+      "version_name": "10.1.5-dev",
+      "version_code": 1010501,
+      "abi": "arm64-v8a",
+      "build_type": "debug",
+      "signature": "v2_verified",
+      "offline": true,
+      "build_exit_code": 0,
+      "build_elapsed_seconds": 46.0227167,
+      "distribution": "LOCAL_ONLY"
+    },
+    "validation": {
+      "targeted_tests": 15,
+      "analyze": "incoming page/test clean, prior coordinator/test and chat page/test clean",
+      "non_author_review": "media-picker handoff, RTC independent polling and incoming lifecycle changes each received scoped non-author static review. Advisor final acceptance pending.",
+      "version_controller_tests": {
+        "tests": 9,
+        "assertions": 54,
+        "database": "isolated sqlite :memory:"
+      },
+      "same_apk_installed_targets": [
+        "Owner fictional A phone",
+        "emulator5580 fictional B"
+      ],
+      "notification_stable_scroll_and_mark_read": "8216 same-candidate phone, no periodic loading, scroll anchor retained, unread50 to49",
+      "owner_notification_feedback": "正常，不再闪烁，按钮可用",
+      "paused_emulator5582_installed_source": "cdb0b46dc4613b35eba7adb0c50415a455f3063c",
+      "prior_audio_5e": "call44 Owner very clear speech; original source and evidence boundaries retained",
+      "scope": "existing-feature device acceptance and advisor package in progress",
+      "notification_targeted_tests_prior": 45,
+      "previous_notification_review": "coordinator/provider scan isolation, session ownership, autoDispose and manual error handling retain their original review boundaries",
+      "phone_bidirectional_text": "26c same APK normal UI120/121 persisted, original e5 115/116 retained",
+      "media_picker_original_failure": "e5aa image uploaded as14 but blocked before POST. One explicit retry reused asset14 as message117.",
+      "phone_image_video_current": "26c same APK image122/asset17 and video123/asset18, phone preview and0:02/0:02.0bad changes incoming page only.",
+      "prior_notification_failure_and_manual_retry": "final e5 phone scoped503, error remains after real service restoration, explicit UI retry recovers",
+      "rtc_poll_tests": 17,
+      "rtc_incoming_selector_tests": 4,
+      "prior_chat_tests": 33,
+      "prior_notification_tests": 45,
+      "actual_incoming_final": "same0bad phone A/B,46 natural30s missed reflected automatically without manual refresh,47 normal UI rejected",
+      "final_memory": "0bad120.843s, explicit GC only endpoints,65 sessions/120events retained both endpoints, heap140628224 to140298784 bytes.26c prior240.906s0 to4 entities during new call. Long-duration coverage pending.",
+      "final_sleep_resume": "0bad emulator20s screen sleep, wake, existing chat read and settings input passed, current-PID OOM0",
+      "source_scope": "Current installed dev restoration build. Formal-build conditional pages retain SRC_ONLY where untested."
+    },
+    "unverified": [
+      "hardware Keystore and physical storage faults",
+      "natural 30-day elapsed observation",
+      "complete actor/peer and in-flight permission/concurrency matrix",
+      "full leaf-page/accessibility device matrix",
+      "real Push delivery",
+      "independent astrology precision",
+      "complete physical audio routing/background/interruption/long-duration and complex AEC matrix; physical first-permission revocation/regrant retest",
+      "actual automatic re-subscription route retention and same-call media reconnect on final ba",
+      "root cause/stage of rare authority monitor timeout; full under-load recovery/media revocation matrix",
+      "route failure device injection NOT_RUN, Bluetooth headset unavailable",
+      "actual TrackSubscribed receipt on final call44 UNKNOWN; UI recovery and native capture observed"
+    ],
+    "evidence": [
+      {
+        "file": "review-package-20261112/version-check-fix-private.json",
+        "sha256": "69f0f5d2220839cae32eff848b8dbe0d4796b69904cd42abbf105f04c7e9c263",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "review-package-20261112/notification-preferences-runtime-private.json",
+        "sha256": "c0ae17ccb635e6a1cd0c347587d3d9ef035adb2347162045955c053e8c7df896",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "review-package-20261112/nickname-runtime-private.json",
+        "sha256": "889807280f277dda2ca50d276cc870366bd18301e9fb371a7bc10aff0b43e8fe",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "review-package-20261112/notification-installed-private.json",
+        "sha256": "e4bf422f3061db9330341c03c79b28458830b8eeda442c7c81668d8829b7ef06",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "review-package-20261112/notification-source-checks-private.json",
+        "sha256": "0b70315610221b7d04a0e8739fe05fbb07236d1d8aa9aee81673be79e33d09b2",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "review-package-20261112/notification-fixed-runtime-private.json",
+        "sha256": "c5835c81e5edaae4c1136986f3ec52f0780e6b7eba30c8352c6fa083454a76d7",
+        "location": "LOCAL_ONLY"
+      },
+      {
+        "file": "review-package-20261112/notification-failure-runtime-private.json",
+        "sha256": "949fd46ee6b2dace99fb58074ded5c69becceb91f7949af1cbc5da40f0d6360a",
+        "location": "LOCAL_ONLY"
+      }
+    ]
+  },
+  "build_variant": {
+    "restorationLocalBuild": true,
+    "ELITESYNC_V1015_LOCAL_BUILD": true,
+    "ELITESYNC_V1014_LOCAL_BUILD": true,
+    "configured_api_origin": "http://127.0.0.1:8021/",
+    "configured_ws_origin": "ws://127.0.0.1:8022",
+    "targets": [
+      "emulator-5580 Android user0 fictional B2",
+      "emulator-5582 Android user0 fictional A1",
+      "emulator-5582 isolated Android user10 fictional C6/E8 during specified ordinary checks"
+    ],
+    "target_mapping_note": "HTTP api0=A1/api1=B2; Android index0=B2/index1=A1, isolated user10 separately labeled",
+    "formal_build_alternate_message_match_connection_pages": "SRC_ONLY; tests in this supplement bind to restoration development variant",
+    "legacy_qualification_component_entry": "existing registered route via Debug GoRouter, controlled response; main readiness opens journey"
+  },
+  "r1_result": {
+    "local_work_remaining": "R1-01 unexplained post-isolation timeout cause",
+    "report": "supplement-r1-20261112/README.md",
+    "original_acceptance_snapshot": "85197adec124ef94bbef2994c0668dc990f9bed4",
+    "original_120_screenshot_identity": "preserved",
+    "new_reviewed_screenshots": 6
   }
 }

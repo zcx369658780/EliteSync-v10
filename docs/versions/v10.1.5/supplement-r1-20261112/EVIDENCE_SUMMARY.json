@@ -1,0 +1,1096 @@
+{
+  "schema_version": 1,
+  "app_source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+  "apk_sha256": "311632a8c735b53d97984dc9b45f00c1d7cdc6e72f848807cb40d99f62d7fc69",
+  "engineering_status": "CHANGES_REQUIRED/PARTIAL",
+  "receipts": [
+    {
+      "local_receipt": "current-measured-revoke-private.json",
+      "sha256": "31e333593940d9ba9dfa545b0942c146b4a7182a65b93c8015e19f77a0b39ee6",
+      "result": {
+        "status": "CURRENT_COMMIT_BOUND_REVOKE_MEDIA_AND_OLD_TOKEN_DENIAL_VERIFIED",
+        "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+        "apk_sha256": "311632a8c735b53d97984dc9b45f00c1d7cdc6e72f848807cb40d99f62d7fc69",
+        "call_id": 51,
+        "commit_interval_width_seconds": 0.01600000000325963,
+        "post_commit_native_stop_upper_seconds": 2.1872500000026776,
+        "within_five_seconds": true,
+        "both_captures_inactive": true,
+        "rooms_after": [],
+        "old_jwt_after_revoke": [
+          403,
+          403
+        ],
+        "media_before": [
+          {
+            "asset": 17,
+            "actor": 1,
+            "full": 200,
+            "range": 206
+          },
+          {
+            "asset": 17,
+            "actor": 2,
+            "full": 200,
+            "range": 206
+          },
+          {
+            "asset": 18,
+            "actor": 1,
+            "full": 200,
+            "range": 206
+          },
+          {
+            "asset": 18,
+            "actor": 2,
+            "full": 200,
+            "range": 206
+          }
+        ],
+        "media_after_revoke": [
+          {
+            "asset": 17,
+            "actor": 1,
+            "full": 404,
+            "range": 404
+          },
+          {
+            "asset": 17,
+            "actor": 2,
+            "full": 404,
+            "range": 404
+          },
+          {
+            "asset": 18,
+            "actor": 1,
+            "full": 404,
+            "range": 404
+          },
+          {
+            "asset": 18,
+            "actor": 2,
+            "full": 404,
+            "range": 404
+          }
+        ],
+        "restored_generation": 15,
+        "old_jwt_after_new_generation": [
+          403,
+          403
+        ],
+        "old_room_after_new_generation": []
+      }
+    },
+    {
+      "local_receipt": "finite-observation-private.json",
+      "sha256": "2ead4828c95fc3db60a89e93668d4695db214354b0b9361b04b56e55c998acfe",
+      "result": {
+        "status": "FINITE_OBSERVATION_COMPLETED",
+        "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+        "apk_sha256": "311632a8c735b53d97984dc9b45f00c1d7cdc6e72f848807cb40d99f62d7fc69",
+        "sampling_window_seconds": 1500.031,
+        "tool_elapsed_seconds": 1500.906,
+        "samples": 51,
+        "pid": "5915",
+        "all_samples_same_pid": true,
+        "heap_bytes": {
+          "first": 120759792,
+          "last": 126337216,
+          "min": 120759792,
+          "max": 142433968
+        },
+        "pss_kib": {
+          "first": 757743,
+          "last": 734208,
+          "min": 678666,
+          "max": 757743
+        },
+        "final_retained_classes": {
+          "RtcSessionEntity": {
+            "instances": 13,
+            "bytes": 1456
+          },
+          "RtcSessionEventEntity": {
+            "instances": 15,
+            "bytes": 480
+          }
+        },
+        "initial_retained_classes": {
+          "RtcSessionEntity": {
+            "instances": 0,
+            "bytes": 0
+          },
+          "RtcSessionEventEntity": {
+            "instances": 0,
+            "bytes": 0
+          }
+        },
+        "anr_oom_fatal_markers": 0,
+        "gc_policy": "explicit GC at first/final allocation profiles only, normal memory samples between"
+      }
+    },
+    {
+      "local_receipt": "sfu-media-fault-recovery-private.json",
+      "sha256": "502ec340969790f152b8e6630f9d0930eaa58f5f26dccb6ecdb54dc164750a3a",
+      "result": {
+        "status": "FINITE_MEDIA_FAULT_FAILCLOSED_AND_NORMAL_NEW_CALL_VERIFIED",
+        "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+        "apk_sha256": "311632a8c735b53d97984dc9b45f00c1d7cdc6e72f848807cb40d99f62d7fc69",
+        "fault_call": 53,
+        "fault_requested_seconds": 1.8,
+        "pause_window_upper_seconds": 3.110000000000582,
+        "monitor_events": [
+          {
+            "event": "authority_monitor_failed",
+            "phase": "authority_sweep",
+            "error_type": "TimeoutError",
+            "elapsed_ms": 1003,
+            "time": 1794531199.6845858
+          }
+        ],
+        "sfu_before": {
+          "status": "running",
+          "restarts": 2,
+          "started": "2026-11-13T00:50:57.651271008Z"
+        },
+        "sfu_after": {
+          "status": "running",
+          "restarts": 3,
+          "started": "2026-11-13T00:53:21.169238247Z"
+        },
+        "rooms_after": [],
+        "capture_after": [
+          {
+            "CAMERA": false,
+            "RECORD_AUDIO": false
+          },
+          {
+            "CAMERA": false,
+            "RECORD_AUDIO": false
+          }
+        ],
+        "old_jwt_after_recovery": [
+          403,
+          403
+        ],
+        "old_jwt_after_new_generation": [
+          403,
+          403
+        ],
+        "gateway_startup_read_failures": [
+          "RemoteDisconnected",
+          "ConnectionResetError"
+        ],
+        "recovery_call": 54,
+        "recovery_room_participants": [
+          2
+        ],
+        "recovery_call_capture": [
+          {
+            "CAMERA": true,
+            "RECORD_AUDIO": true
+          },
+          {
+            "CAMERA": true,
+            "RECORD_AUDIO": true
+          }
+        ],
+        "normal_call_started_at": "2026-11-13T00:54:15.000000Z",
+        "normal_call_ended_at": "2026-11-13T00:58:36.000000Z",
+        "normal_call_status": "ended",
+        "normal_hangup_rooms": [],
+        "normal_hangup_capture": [
+          {
+            "CAMERA": false,
+            "RECORD_AUDIO": false
+          },
+          {
+            "CAMERA": false,
+            "RECORD_AUDIO": false
+          }
+        ],
+        "preserved_observation_failure": {
+          "type": "AssertionError",
+          "detail": "",
+          "stage": "initial room participant count not settled"
+        },
+        "hangup_helper_correction": "merged semantics required actual visible button coordinate after scrolling; no API hangup used"
+      }
+    },
+    {
+      "local_receipt": "current-pending-cold-private.json",
+      "sha256": "5c10558b16cd14f7fddc13825ba8e43574f912513e583e58cb8ceb881555e00f",
+      "result": {
+        "status": "NATIVE_PENDING_POST_COLD_ORIGINAL_ID_REPLAY_SINGLE_ROW_VERIFIED",
+        "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+        "apk_sha256": "311632a8c735b53d97984dc9b45f00c1d7cdc6e72f848807cb40d99f62d7fc69",
+        "send_actions": 1,
+        "manual_retry_actions": 1,
+        "auto_post_count": 0,
+        "server_message_ids": [
+          125,
+          125
+        ],
+        "same_uuid": true,
+        "first_ack_replaced": true,
+        "second_is_replay": true,
+        "matching_rows": 1,
+        "encrypted_at_rest": true,
+        "confirmed_cold_empty_draft": true,
+        "direct_routes_restored": true
+      }
+    },
+    {
+      "local_receipt": "current-stale-notification-private.json",
+      "sha256": "1bfd9f92c801181f06f743087552276058ba892f05b1b107a03ba9c19f6fe1bf",
+      "result": {
+        "status": "ACTUAL_OLD_NOTIFICATION_CLICK_REVALIDATED_AND_BLOCKED",
+        "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+        "apk_sha256": "311632a8c735b53d97984dc9b45f00c1d7cdc6e72f848807cb40d99f62d7fc69",
+        "target_notification_id": 259,
+        "handler_detail_request_observed": true,
+        "consent_revoked_before_detail_forward": true,
+        "actual_detail_presentation": {
+          "id": 259,
+          "route_name": "",
+          "route_args": [],
+          "payload": [],
+          "read_at": null
+        },
+        "target_read_posts": 0,
+        "read_at_before": null,
+        "read_at_after": null,
+        "notification_center_retained": true,
+        "restored_generation": 18,
+        "direct_mapping_restored": true
+      }
+    },
+    {
+      "local_receipt": "qualification-controlled-current-ui-private.json",
+      "sha256": "3e842b76fc04f696e097e28a94b52a1fe01254d56a967def392a98504214d786",
+      "result": {
+        "status": "CONTROLLED_FAILURE_RETRY_ACCEPTED_READBACK_FAILURE_AND_GET_ONLY_CONFIRMATION_VERIFIED",
+        "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+        "apk_sha256": "311632a8c735b53d97984dc9b45f00c1d7cdc6e72f848807cb40d99f62d7fc69",
+        "result": "POST503 retained input; explicit retry accepted, statusGET503 retained page; explicit status-only GET confirmed and navigated",
+        "actual_posts": 2,
+        "actual_status_gets": 3,
+        "provider_calls": 0,
+        "qualification_db_writes": 0,
+        "entry": "Existing registered legacy qualification route opened through Debug GoRouter; current main readiness route opens journey"
+      }
+    },
+    {
+      "local_receipt": "mbti-readability-current-private.json",
+      "sha256": "b343fc8ad2fbf25427563e0f39e51519e3931a0086f60877c7fc777b7cd47b5d",
+      "result": {
+        "status": "CURRENT_DEVICE_MBTI_SELECTED_A_B_A_REVIEW_IN_BOTH_THEMES_OBSERVED",
+        "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+        "apk_sha256": "311632a8c735b53d97984dc9b45f00c1d7cdc6e72f848807cb40d99f62d7fc69",
+        "modes": [
+          {
+            "mode": "dark",
+            "sequence": [
+              "A",
+              "B",
+              "A"
+            ],
+            "answered": 3
+          },
+          {
+            "mode": "light",
+            "sequence": [
+              "A",
+              "B",
+              "A"
+            ],
+            "answered": 3
+          }
+        ],
+        "server_submission_actions": 0,
+        "visual_review": "Main inspected both images: selected option text complete and visible in dark and light themes",
+        "theme_restored": true
+      }
+    },
+    {
+      "local_receipt": "feedback-current-private.json",
+      "sha256": "e445550097ab5e0f83d2010c1862680841c21067cae259ddb3f1a9f36daa881f",
+      "result": {
+        "status": "CURRENT_LOCAL_DRAFT_GENERATE_EDIT_INVALIDATE_NATIVE_COPY_RETURN_VERIFIED",
+        "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+        "apk_sha256": "311632a8c735b53d97984dc9b45f00c1d7cdc6e72f848807cb40d99f62d7fc69",
+        "entry": "Me > Settings > Help and feedback > Improve experience",
+        "generated": true,
+        "edit_invalidates_prior_draft": true,
+        "native_clipboard_paste_confirmed": true,
+        "returned_settings": true,
+        "server_submission_actions": 0,
+        "copy_toast_note": "toast missed by accessibility timing, actual native clipboard readback verified through Paste toolbar"
+      }
+    },
+    {
+      "local_receipt": "ordinary-social-formal-current-private.json",
+      "sha256": "5280dac6c7744e86cac7736ead55a59d53f45520e427cf14c2168c154f3f29ee",
+      "result": {
+        "status": "ACTUAL_FRIEND_BUDDY_COMMUNITY_FORMAL_PENDING_AND_BOUNDARIES_VERIFIED",
+        "backend_core": "6549f02880968f99ae3f45439d15a37c1b3d5251",
+        "backend_tools": "e7b21c7fdb0991a5fbd5a9272c92c2331c0dec2d",
+        "checks": [
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/messages?peer_id=6",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/social/preferences",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "POST",
+            "route": "/social/preferences",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/social/requests",
+            "http": 201
+          },
+          {
+            "actor": 7,
+            "method": "POST",
+            "route": "/social/requests/2/accept",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/social",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/formal-relationships",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/formal-relationships/c3c0b6ed-be01-48cd-8a8f-80ea51606c04/actions",
+            "http": 403
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/formal-relationships/c3c0b6ed-be01-48cd-8a8f-80ea51606c04/actions",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/formal-relationships",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "GET",
+            "route": "/buddy",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "PUT",
+            "route": "/buddy/preferences",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/buddy",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "PUT",
+            "route": "/buddy/preferences",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/buddy/activities",
+            "http": 201
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/buddy/f9dcecc2-9b22-4c99-b555-3cba7934264f/actions",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/buddy/f9dcecc2-9b22-4c99-b555-3cba7934264f/invites",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/buddy/f9dcecc2-9b22-4c99-b555-3cba7934264f",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "POST",
+            "route": "/buddy/f9dcecc2-9b22-4c99-b555-3cba7934264f/actions",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/buddy/f9dcecc2-9b22-4c99-b555-3cba7934264f/actions",
+            "http": 409
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/buddy/f9dcecc2-9b22-4c99-b555-3cba7934264f/actions",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/buddy/f9dcecc2-9b22-4c99-b555-3cba7934264f",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "POST",
+            "route": "/buddy/f9dcecc2-9b22-4c99-b555-3cba7934264f/actions",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "GET",
+            "route": "/buddy/f9dcecc2-9b22-4c99-b555-3cba7934264f",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/status/posts",
+            "http": 201
+          },
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/status/posts/3",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "PUT",
+            "route": "/status/posts/3/audience",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/status/posts/3",
+            "http": 404
+          },
+          {
+            "actor": 6,
+            "method": "PUT",
+            "route": "/status/posts/3/audience",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/status/posts/3",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "POST",
+            "route": "/moderation/blocks",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/status/posts/3",
+            "http": 404
+          },
+          {
+            "actor": 6,
+            "method": "DELETE",
+            "route": "/moderation/blocks/7",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/status/posts/3",
+            "http": 404
+          },
+          {
+            "actor": 6,
+            "method": "DELETE",
+            "route": "/status/posts/3",
+            "http": 200
+          },
+          {
+            "actor": 6,
+            "method": "GET",
+            "route": "/social",
+            "http": 200
+          },
+          {
+            "actor": 7,
+            "method": "GET",
+            "route": "/connections/6",
+            "http": 200
+          }
+        ],
+        "current_app_message_persistent_peer_readback": true,
+        "friendship_current_persisted": true,
+        "unblock_does_not_restore_prior_friendship_or_access": true,
+        "helper_corrections": [
+          "friend request correctly created201; helper expected200, continued same request",
+          "helper expected old friend grant to revive; actual404 confirms explicit fresh relationship required"
+        ],
+        "identity_provider_configured": false
+      }
+    },
+    {
+      "local_receipt": "authority-pool-deployment-private.json",
+      "sha256": "2d17a761324e45ca5ccaa50b514ba31f7a1f667ab7a522b98adfd43bd47a9e28",
+      "result": {
+        "status": "DEPLOYED_PRIVATE_AUTHORITY_POOL",
+        "utc": "2026-11-12T23:38:44.479298+00:00",
+        "gateway_response_deadline_seconds": 1,
+        "watchdog_seconds": 3.5,
+        "gateway_source_sha256": "79b185e9308156edccd1c9fe30397f07670414f5b4f58002a7ddf72a35c5b272"
+      }
+    },
+    {
+      "local_receipt": "after-isolation-complete-group-worker-pause-private.json",
+      "sha256": "54c1a071940444b84a8fc20319f2d039e28b8d5e1d2d00dfe34fdc850f740331",
+      "result": {
+        "before": {
+          "state": "running",
+          "started": "2026-11-12T23:38:54.345453379Z",
+          "restarts": 0
+        },
+        "during": {
+          "state": "running",
+          "started": "2026-11-12T23:38:54.345453379Z",
+          "restarts": 0
+        },
+        "after": {
+          "state": "running",
+          "started": "2026-11-12T23:38:54.345453379Z",
+          "restarts": 0
+        },
+        "authority_timeout_seconds": 1,
+        "watchdog_seconds": 3.5,
+        "data_mutations": false
+      }
+    },
+    {
+      "local_receipt": "private-authority-interface-private.json",
+      "sha256": "20c48d10e7fbfabab508c15897fff02117b22c5b88281fce8802a4e210336bba",
+      "result": {
+        "checks": [
+          [
+            "current_guard",
+            200
+          ],
+          [
+            "missing_guard",
+            404
+          ],
+          [
+            "wrong_guard",
+            404
+          ],
+          [
+            "wrong_method",
+            404
+          ],
+          [
+            "other_route",
+            404
+          ]
+        ],
+        "authority_port_published": false,
+        "gateway_authority_port": 8082,
+        "existing_kernel_and_guard": true
+      }
+    },
+    {
+      "local_receipt": "backend-missing-bank-retry-private.json",
+      "sha256": "dcc73dd065f94b01a906af10687442dd599e3d4b48a4f93e33ec341a8c5644dd",
+      "result": {
+        "files": [
+          "AdminApiTest.php"
+        ],
+        "exit_code": 0,
+        "environment": "testing, SQLite :memory:, network none, temporary storage/cache",
+        "persistent_development_db_used": false
+      }
+    },
+    {
+      "local_receipt": "ordinary-authentication-private.json",
+      "sha256": "7d960479f727849cbd548d0c083ce6a91293af31e6c079099caea4f44d81cb5f",
+      "result": {
+        "status": "REGISTRATION_LOGIN_PASSWORD_SUCCESS_AND_FAILURE_VERIFIED",
+        "started_utc": "2026-11-12T23:41:37.565769+00:00",
+        "scope": "new fictional local API accounts, original four users untouched",
+        "checks": [
+          {
+            "label": "register fictional 0",
+            "http": 201,
+            "expected": 201
+          },
+          {
+            "label": "duplicate registration rejected 0",
+            "http": 422,
+            "expected": 422
+          },
+          {
+            "label": "wrong login password rejected 0",
+            "http": 422,
+            "expected": 422
+          },
+          {
+            "label": "registered account logs in 0",
+            "http": 200,
+            "expected": 200
+          },
+          {
+            "label": "register fictional 1",
+            "http": 201,
+            "expected": 201
+          },
+          {
+            "label": "duplicate registration rejected 1",
+            "http": 422,
+            "expected": 422
+          },
+          {
+            "label": "wrong login password rejected 1",
+            "http": 422,
+            "expected": 422
+          },
+          {
+            "label": "registered account logs in 1",
+            "http": 200,
+            "expected": 200
+          },
+          {
+            "label": "wrong old password rejected",
+            "http": 422,
+            "expected": 422
+          },
+          {
+            "label": "password updated",
+            "http": 200,
+            "expected": 200
+          },
+          {
+            "label": "old password no longer logs in",
+            "http": 422,
+            "expected": 422
+          },
+          {
+            "label": "new password logs in",
+            "http": 200,
+            "expected": 200
+          },
+          {
+            "label": "prior session remains usable after password update",
+            "http": 200,
+            "expected": 200
+          },
+          {
+            "label": "new verification session logout",
+            "http": 200,
+            "expected": 200
+          },
+          {
+            "label": "logged-out verification token rejected",
+            "http": 401,
+            "expected": 401
+          }
+        ],
+        "fictional_user_ids": [
+          6,
+          7
+        ],
+        "password_policy": "existing sessions stay valid, prior password rejected, verification-only session revoked",
+        "real_identity_provider": "NOT_USED",
+        "app_ui": "separate observation required"
+      }
+    },
+    {
+      "local_receipt": "admin-review-current-private.json",
+      "sha256": "5c029430ffd65cd778d511218e68f87a1f1f05dcf6aff148cd0a9689b9240aed",
+      "result": {
+        "status": "NORMAL_ADMIN_REVIEW_STALE_REJECTION_AND_CURRENT_API_READBACK_VERIFIED",
+        "scope": "new fictional accounts only, operational approval without real identity",
+        "users": [
+          {
+            "user_id": 6,
+            "previous_revision": 0,
+            "readback": {
+              "status": "approved",
+              "reason": "TEST_ONLY R1 fictional software flow, no real identity certification",
+              "revision": 1,
+              "moderation_status": "normal",
+              "matching_eligibility": {
+                "eligible": false,
+                "reason_code": "questionnaire_incomplete",
+                "required_answer_count": 20,
+                "answered_answer_count": 0,
+                "missing_answer_count": 20,
+                "next_action_code": "complete_questionnaire"
+              }
+            },
+            "first_success_recovered_from_current_persisted_revision": true,
+            "stale_form_http": 409,
+            "approved_option_selected": true
+          },
+          {
+            "user_id": 7,
+            "previous_revision": 0,
+            "readback": {
+              "status": "approved",
+              "reason": "TEST_ONLY R1 fictional software flow, no real identity certification",
+              "revision": 1,
+              "moderation_status": "normal",
+              "matching_eligibility": {
+                "eligible": false,
+                "reason_code": "questionnaire_incomplete",
+                "required_answer_count": 20,
+                "answered_answer_count": 0,
+                "missing_answer_count": 20,
+                "next_action_code": "complete_questionnaire"
+              }
+            },
+            "first_success_recovered_from_current_persisted_revision": false,
+            "stale_form_http": 409,
+            "approved_option_selected": true
+          }
+        ]
+      }
+    },
+    {
+      "local_receipt": "journey-participation-private.json",
+      "sha256": "ba033a3b54892578583016c7ee77b77e082970af651632d47e9b30e85c1073bb",
+      "result": {
+        "status": "QUESTIONNAIRE_READINESS_PARTICIPATION_GENERATION_AND_STALE_REJECTION_VERIFIED",
+        "users": [
+          {
+            "id": 6,
+            "answers": 20,
+            "initial": {
+              "state": "NOT_ENROLLED",
+              "revision": 0,
+              "generation": 0,
+              "intent": "",
+              "opted_in_at": null
+            },
+            "active": {
+              "state": "ACTIVE",
+              "revision": 2,
+              "generation": 1,
+              "intent": "R1 local fictional dating preferences",
+              "opted_in_at": "2026-11-12 23:51:14"
+            },
+            "paused": {
+              "state": "PAUSED",
+              "revision": 3,
+              "generation": 1,
+              "intent": "R1 local fictional dating preferences",
+              "opted_in_at": "2026-11-12 23:51:14"
+            },
+            "resumed": {
+              "state": "ACTIVE",
+              "revision": 4,
+              "generation": 2,
+              "intent": "R1 local fictional dating preferences",
+              "opted_in_at": "2026-11-12 23:51:14"
+            },
+            "real_identity": {
+              "status": "PROVIDER_NOT_CONFIGURED",
+              "test_only": false,
+              "real_provider": "PENDING",
+              "activation_available": false
+            }
+          },
+          {
+            "id": 7,
+            "answers": 20,
+            "initial": {
+              "state": "NOT_ENROLLED",
+              "revision": 0,
+              "generation": 0,
+              "intent": "",
+              "opted_in_at": null
+            },
+            "active": {
+              "state": "ACTIVE",
+              "revision": 2,
+              "generation": 1,
+              "intent": "R1 local fictional dating preferences",
+              "opted_in_at": "2026-11-12 23:51:15"
+            },
+            "paused": {
+              "state": "PAUSED",
+              "revision": 3,
+              "generation": 1,
+              "intent": "R1 local fictional dating preferences",
+              "opted_in_at": "2026-11-12 23:51:15"
+            },
+            "resumed": {
+              "state": "ACTIVE",
+              "revision": 4,
+              "generation": 2,
+              "intent": "R1 local fictional dating preferences",
+              "opted_in_at": "2026-11-12 23:51:15"
+            },
+            "real_identity": {
+              "status": "PROVIDER_NOT_CONFIGURED",
+              "test_only": false,
+              "real_provider": "PENDING",
+              "activation_available": false
+            }
+          }
+        ],
+        "checks": [
+          {
+            "user_id": 6,
+            "method": "GET",
+            "route": "/journey",
+            "http": 200
+          },
+          {
+            "user_id": 6,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 422
+          },
+          {
+            "user_id": 6,
+            "method": "GET",
+            "route": "/questionnaire/questions",
+            "http": 200
+          },
+          {
+            "user_id": 6,
+            "method": "POST",
+            "route": "/questionnaire/answers",
+            "http": 200
+          },
+          {
+            "user_id": 6,
+            "method": "GET",
+            "route": "/journey",
+            "http": 200
+          },
+          {
+            "user_id": 6,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 200
+          },
+          {
+            "user_id": 6,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 200
+          },
+          {
+            "user_id": 6,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 200
+          },
+          {
+            "user_id": 6,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 200
+          },
+          {
+            "user_id": 6,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 409
+          },
+          {
+            "user_id": 6,
+            "method": "GET",
+            "route": "/journey",
+            "http": 200
+          },
+          {
+            "user_id": 7,
+            "method": "GET",
+            "route": "/journey",
+            "http": 200
+          },
+          {
+            "user_id": 7,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 422
+          },
+          {
+            "user_id": 7,
+            "method": "GET",
+            "route": "/questionnaire/questions",
+            "http": 200
+          },
+          {
+            "user_id": 7,
+            "method": "POST",
+            "route": "/questionnaire/answers",
+            "http": 200
+          },
+          {
+            "user_id": 7,
+            "method": "GET",
+            "route": "/journey",
+            "http": 200
+          },
+          {
+            "user_id": 7,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 200
+          },
+          {
+            "user_id": 7,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 200
+          },
+          {
+            "user_id": 7,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 200
+          },
+          {
+            "user_id": 7,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 200
+          },
+          {
+            "user_id": 7,
+            "method": "PUT",
+            "route": "/journey/participation",
+            "http": 409
+          },
+          {
+            "user_id": 7,
+            "method": "GET",
+            "route": "/journey",
+            "http": 200
+          }
+        ]
+      }
+    },
+    {
+      "local_receipt": "isolated-first-use-private.json",
+      "sha256": "d5faa18a203f38a1aa53767039229c8fcc8238e14d084d71b30596e35d20f4f5",
+      "result": {
+        "status": "REGISTER_LOGIN_AND_FIRST_AUTOMATIC_ONBOARDING_OBSERVED",
+        "source_commit": "e7b21c7fdb0991a5fbd5a9272c92c2331c0dec2d",
+        "original_user_zero_data_cleared": false,
+        "android_user": 10,
+        "skip_completed": true,
+        "scope": "normal UI registration/login then first automatic onboarding in isolated fictional test user"
+      }
+    },
+    {
+      "local_receipt": "connection-lifecycle-current-ui-private.json",
+      "sha256": "5e563b33f8afeff2f9266c2794ca61934b684aeb7543582e73b8f434c4cde727",
+      "result": {
+        "status": "CURRENT_APP_CONNECTION_AND_WITHDRAWN_CONSENT_NEW_GENERATION_VERIFIED",
+        "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+        "app_actor": 6,
+        "counterpart_api_actor": 7,
+        "android_user": 10,
+        "events": [
+          {
+            "app_action": "请求连接"
+          },
+          {
+            "counterpart_action": "accept-connection-d"
+          },
+          {
+            "app_action": "刷新当前状态"
+          },
+          {
+            "app_action": "请求消息同意"
+          },
+          {
+            "app_action": "撤回消息同意请求"
+          },
+          {
+            "app_action": "重新请求消息同意"
+          },
+          {
+            "counterpart_action": "accept-consent-d"
+          },
+          {
+            "app_action": "刷新当前状态"
+          },
+          {
+            "app_action": "进入消息"
+          }
+        ]
+      }
+    },
+    {
+      "local_receipt": "finite-incoming-expiry-private.json",
+      "sha256": "35d8b49d940e3e9abd265adec54146e2be91593f7414f2ca07f247d879776350",
+      "result": {
+        "status": "OBSERVED",
+        "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+        "scope": "current final APK actual incoming expiry/sleep-wake or normal UI rejection",
+        "call_id": 48
+      }
+    },
+    {
+      "local_receipt": "finite-incoming-reject-private.json",
+      "sha256": "ddb105e426ddbe1350866b017218e7cf39416516f02d3a761424bd9437f79c90",
+      "result": {
+        "status": "CURRENT_NORMAL_UI_REJECTION_OBSERVED",
+        "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+        "scope": "current final APK actual incoming expiry/sleep-wake or normal UI rejection",
+        "call_id": 49
+      }
+    }
+  ],
+  "unresolved_sfu_event": {
+    "utc": "2026-11-13T00:06:45.631007+00:00",
+    "phase": "authority_sweep",
+    "error_type": "TimeoutError",
+    "elapsed_ms": 1079,
+    "root_cause": "UNKNOWN",
+    "nearby_public_and_private_php_elapsed_approximately_seconds": 6
+  },
+  "receipt_policy": "Only selected result fields. Original receipts, credentials, SQL, tokens and raw logs stay LOCAL_ONLY."
+}

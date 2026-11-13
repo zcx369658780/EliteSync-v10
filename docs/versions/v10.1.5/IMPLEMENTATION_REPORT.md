@@ -1,4 +1,12 @@
-# v10.1.5 已有功能实机验收与顾问资料
+# v10.1.5 当前补充结果
+
+2026-11-13。当前 **CHANGES_REQUIRED / PARTIAL**。R1修复、当前候选及实测、继承证据和限制统一见 [R1补充结果](supplement-r1-20261112/README.md)、[完成度与AC表](supplement-r1-20261112/COMPLETENESS_AC.md)与 [manifest](artifact_manifest.json)。APP源码cfdce773，后端核心6549f028、开发工具e7b21c7f。当前包撤权停媒上界2.187250秒，25分钟窗口及故障恢复链已完成限定验证，独立工作池部署后一次非注入超时的具体根因仍UNKNOWN。冻结判定为10 PARTIAL / AC05 OPEN / G2 false /真实Push PENDING。顾问复核与Owner最终接受待定。
+
+11月12日原验收材料已编制并上传固定快照85197adec，原120图和历史结果保留各自身份。本轮补充材料已形成，新增6张必要补图及20份去敏回执摘要。以下均为具名历史节点。
+
+---
+
+# 2026-11-12 历史验收与顾问资料
 
 2026-11-12。当前 **EXISTING_FEATURE_ADVISOR_PACKAGE_WITH_OPEN_ACCEPTANCE_ITEMS**。本轮范围为已有功能实机测试、实际缺陷修复与顾问资料整理。冻结判定保持 **10 PARTIAL / AC05 OPEN / G2 false / 真实Push PENDING**。
 

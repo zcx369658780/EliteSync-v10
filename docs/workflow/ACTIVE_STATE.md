@@ -1,4 +1,14 @@
-# 当前入口｜2026-11-12 已继续并完成工作流规则迁移
+# 当前入口｜2026-11-13 v10.1.5 R1 已保存，待复核讨论
+
+本轮按Owner任务完成缺陷修复和集中补证材料，工程出口 **CHANGES_REQUIRED / PARTIAL**。独立权威工作池解决可复现的公共PHP占用机制，部署后00:06:45 UTC一次非注入authority_sweep超时仍有具体根因UNKNOWN，R1-01未关闭。当前包call51真实COMMIT停采集保守上界2.187250秒，call53故障收尾/旧令牌拒绝和恢复后call54正常261秒通话及挂断通过。1500.031秒采样、1500.906秒工具耗时的同PID窗口未见旧快照累积与ANR/OOM标记。完整结果见[R1补充结果](../versions/v10.1.5/supplement-r1-20261112/README.md)、[当前完成度表](../versions/v10.1.5/supplement-r1-20261112/COMPLETENESS_AC.md)及[manifest](../versions/v10.1.5/artifact_manifest.json)。
+
+实际产品根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`。APP源码 `cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d`，后端核心 `6549f02880968f99ae3f45439d15a37c1b3d5251`，开发服务工具 `e7b21c7fdb0991a5fbd5a9272c92c2331c0dec2d`。离线arm64 Debug恢复开发包154580169字节，SHA256 `311632a8c735b53d97984dc9b45f00c1d7cdc6e72f848807cb40d99f62d7fc69`。资料提交由该分支后续Git历史定位，普通同步结果见交付回执。
+
+资格失败留页/GET-only确认、MBTI明暗选中态、首次引导文案、连接提案envelope与终态新生命周期已修。当前未知POST125冷启同UUID重放及旧通知259撤权点击、普通虚构账号注册/改密/管理审核、好友/搭子/社区/正式关系pending和本地反馈复制链分别保留原证。原120图保持原候选，新补6图和20份去敏摘要，历史ba/5e APK映射已修订。材料编制完成，顾问与Owner接受PENDING。
+
+维持 **10 PARTIAL / AC05 OPEN / G2 false /真实Push PENDING**。自然期限、硬件、蓝牙、完整并发/实机音频矩阵及盘面独立精度等按具名限制记录。手机本轮未操作，5580实际B2、5582 user0实际A1，隔离user10虚构测试数据保留。最终资源实读为2026-11-13 09:20:51中国时间，四服务运行、Room0、双端无采集，两APP已force-stop，模拟器和数据保留；私有当前节点见本次保存回执。原主库dirty/index、无关%SystemDrive%/、历史STOP与已耗记录保留。工作流迁移已完成。本次保存后交Owner/顾问复核讨论，后续按新安排继续。
+
+## 历史节点｜2026-11-12 工作流规则迁移
 
 Owner已发出新的继续指令。本轮按授权完成三份旧规则的一致性收尾，[任务发布协议](TASK_DISPATCH_CLOSURE_PROTOCOL.md)标为历史，[交接模板](SESSION_HANDOFF_TEMPLATE.md)改用实际本地工程身份启动，[项目源规则](PROJECT_SOURCE_COMPACTION_POLICY.md)统一本地进度、按需读取与当前授权分支同步方式。文档检查覆盖内容、链接、差异及Git范围，产品测试为NOT_RUN。
 

@@ -1,0 +1,53 @@
+{
+  "images": [
+    {
+      "file": "screenshots/mbti-selected-dark.png",
+      "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+      "scope": "selected options dark",
+      "sha256": "b2d4e3957b30aa55ff872d8614aca39533ab7bf37eb20f5084ec86a84d404191",
+      "bytes": 146836,
+      "visual_review": "main reviewed; fictional input; no credential or real-user data"
+    },
+    {
+      "file": "screenshots/mbti-selected-light.png",
+      "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+      "scope": "selected options light",
+      "sha256": "a9b0333fc7ea4627ef689008f5b53990de61c86cc008c02f7f899a575dbc9d6a",
+      "bytes": 134257,
+      "visual_review": "main reviewed; fictional input; no credential or real-user data"
+    },
+    {
+      "file": "screenshots/qualification-failure-inputs-retained.png",
+      "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+      "scope": "controlled fictional failure with retained input",
+      "sha256": "5026c025ecadfca0cd6551bdb56d97778b6c5142e9104cbfa311bcc1d6e7cfb8",
+      "bytes": 65220,
+      "visual_review": "main reviewed; fictional input; no credential or real-user data"
+    },
+    {
+      "file": "screenshots/qualification-controlled-confirmed.png",
+      "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+      "scope": "controlled fictional submission confirmation",
+      "sha256": "a7386b96cdbd2c4c0ed341df833521e2e80828d9883f340aafeea40f275a3147",
+      "bytes": 79464,
+      "visual_review": "main reviewed; fictional input; no credential or real-user data"
+    },
+    {
+      "file": "screenshots/first-automatic-onboarding.png",
+      "source_commit": "e7b21c7fdb0991a5fbd5a9272c92c2331c0dec2d",
+      "scope": "first automatic onboarding in isolated Android user",
+      "sha256": "a1d7acde8a794af2c7b636b197e56543612475476ed44009e8f35941480e021b",
+      "bytes": 42062,
+      "visual_review": "main reviewed; fictional input; no credential or real-user data"
+    },
+    {
+      "file": "screenshots/current-connection-consent-active.png",
+      "source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+      "scope": "C6/D7 actual current connection and consent",
+      "sha256": "52b1d2ddbfd6f204ca89b38e183855d7793f144c320d1a514e9719d12d3602e6",
+      "bytes": 105175,
+      "visual_review": "main reviewed; fictional input; no credential or real-user data"
+    }
+  ],
+  "original_120_images": "unchanged original candidates; no recapture"
+}

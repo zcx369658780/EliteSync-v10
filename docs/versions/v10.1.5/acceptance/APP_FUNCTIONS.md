@@ -1,5 +1,7 @@
 # APP 功能说明
 
+本文件保留2026-11-12原验收包及原候选范围。2026-11-13当前修复、普通功能补证和限制见 [R1补充结果](../supplement-r1-20261112/README.md)，当前完成度以其AC表与manifest为准。
+
 当前手机安装源码 `0badb31c38db63fe0fb1b5fcbfb43e5cb4e68d3f`；后端源码 `6549f02880968f99ae3f45439d15a37c1b3d5251`。当前安装与manifest已对齐，历史证据逐项保留其原候选。源码中的入口和行为不等同于最终实机验收。候选与证据归属见[实施报告](../IMPLEMENTATION_REPORT.md)和[版本清单](../artifact_manifest.json)。
 
 ## 功能目录
