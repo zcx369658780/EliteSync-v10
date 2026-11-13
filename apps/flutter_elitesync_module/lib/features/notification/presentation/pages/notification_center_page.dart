@@ -32,8 +32,8 @@ class NotificationCenterPage extends ConsumerStatefulWidget {
       _NotificationCenterPageState();
 }
 
-class _NotificationCenterPageState
-    extends ConsumerState<NotificationCenterPage> {
+class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
+    with WidgetsBindingObserver {
   List<NotificationItemEntity>? _firstPage;
   List<NotificationItemEntity> _olderItems = [];
   int _historyGeneration = 0;
@@ -159,9 +159,23 @@ class _NotificationCenterPageState
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    ref.invalidate(notificationListProvider);
+    ref.invalidate(notificationUnreadCountProvider);
     ref
         .read(frontendTelemetryProvider)
         .notificationCenterOpened(sourcePage: 'notification_center');
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed && mounted) _refresh();
   }
 
   Future<void> _refresh() async {

@@ -892,19 +892,19 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         throw StateError('Confirmed draft cleanup was superseded.');
       }
     } catch (_) {
-      if (!_current(session, epoch)) return false;
+      if (!_current(session, epoch)) return true;
       _cache.lock();
       _reject('消息已确认，但本机草稿清理未完成；请重新登录后重试清理。');
       setState(() {
         _timeLocked = true;
         _sendStatus = '服务器已确认此消息';
       });
-      return false;
+      return true;
     }
-    if (!_current(session, epoch)) return false;
+    if (!_current(session, epoch)) return true;
     _draftStatus = null;
     await _load();
-    return _current(session, epoch);
+    return true;
   }
 
   Future<bool> _send({int? asset}) async {

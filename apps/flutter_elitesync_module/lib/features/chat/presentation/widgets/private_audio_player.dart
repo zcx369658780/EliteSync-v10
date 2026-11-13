@@ -92,6 +92,9 @@ class _PrivateAudioPlayerState extends ConsumerState<PrivateAudioPlayer>
     try {
       if (++_ticks % 8 == 0) await _authorize();
       final status = await _gateway.status();
+      if (status.errorCode != null) {
+        throw StateError('Playback failed');
+      }
       if (_current) setState(() => _status = status);
     } catch (_) {
       await _stop();
