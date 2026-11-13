@@ -87,7 +87,15 @@ final getConversationUseCaseProvider = Provider<GetConversationUseCase>(
 final conversationDetailProvider =
     FutureProvider.family<ConversationEntity, int>((ref, conversationId) async {
       final current = _chatCurrent(ref);
-      if (!ref.watch(conversationAccessProvider).canRevealPrivateContent) {
+      final env = ref.watch(appEnvProvider);
+      final liveBackendSession =
+          env.restorationLocalBuild &&
+          !env.useMockChat &&
+          ref.watch(sessionProvider).asData?.value.isLoggedIn == true;
+      // Live details are authorized by the current backend request. The local
+      // synthetic lifecycle does not represent that server-side consent.
+      if (!liveBackendSession &&
+          !ref.watch(conversationAccessProvider).canRevealPrivateContent) {
         return _conversationAccessUnavailable();
       }
       final item = await ref
