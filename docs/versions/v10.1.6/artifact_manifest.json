@@ -1,8 +1,8 @@
 {
   "schema": "elitesync.v10.1.6.artifact_manifest.v1",
   "version": "10.1.6-dev",
-  "engineering_status": "R1_01_AND_R1_02_COMPLETED_AWAITING_ADVISOR",
-  "advisor_acceptance": "PENDING_R1_REVIEW",
+  "engineering_status": "R1_01_AND_R1_02_COMPLETED",
+  "advisor_acceptance": "ACCEPTED_SCOPED_V10_1_6",
   "owner_acceptance": "PENDING",
   "repository": "zcx369658780/EliteSync-v10",
   "branch": "codex/v10.1.6-backend-productization-20261113",
@@ -207,32 +207,32 @@
     "AC16-01": {
       "engineering_result": "PASS",
       "scope": "v10.1.6 profile workflow",
-      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
+      "advisor_review": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE"
     },
     "AC16-02": {
       "engineering_result": "PASS",
       "scope": "v10.1.6 profile workflow",
-      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
+      "advisor_review": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE"
     },
     "AC16-03": {
       "engineering_result": "PASS",
       "scope": "v10.1.6 profile workflow",
-      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
+      "advisor_review": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE"
     },
     "AC16-04": {
       "engineering_result": "PASS",
       "scope": "v10.1.6 profile workflow",
-      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
+      "advisor_review": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE"
     },
     "AC16-05": {
       "engineering_result": "PASS",
       "scope": "v10.1.6 profile workflow",
-      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
+      "advisor_review": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE"
     },
     "AC16-06": {
       "engineering_result": "PASS",
       "scope": "v10.1.6 deliverable; SFU resource limitation separately OPEN",
-      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
+      "advisor_review": "ACCEPTED_SCOPED_WITH_SFU_OPEN"
     }
   },
   "evidence": {
@@ -317,7 +317,9 @@
     },
     {
       "id": "ADVISOR_AND_OWNER_REVIEW",
-      "status": "PENDING"
+      "status": "OWNER_ACCEPTANCE_PENDING",
+      "advisor_review": "ACCEPTED_SCOPED",
+      "owner_acceptance": "PENDING"
     },
     {
       "id": "INHERITED_EXTERNAL_LIMITS",
@@ -330,7 +332,7 @@
       ]
     }
   ],
-  "scope_exit": "Save, sync and read back same version branch; stop for advisor R1 review",
+  "scope_exit": "Advisor scoped acceptance recorded; remain stopped for Owner discussion and subsequent version task; no automatic v10.1.7",
   "previous_advisor_decision": {
     "reviewed_commit": "222923bdec970bc2b2fcec4c51320edcb4f74688",
     "verdict": "CHANGES_REQUIRED",
@@ -349,7 +351,7 @@
     "results": {
       "R1-01": {
         "engineering_result": "CLOSED",
-        "advisor_review": "PENDING",
+        "advisor_review": "CLOSED_ACCEPTED",
         "scope": [
           "shared publication/audience/current relationship predicate",
           "journey and decision including replay",
@@ -358,7 +360,7 @@
       },
       "R1-02": {
         "engineering_result": "CLOSED",
-        "advisor_review": "PENDING",
+        "advisor_review": "CLOSED_ACCEPTED",
         "difference": "One additional CR byte only at the final newline of each of three controllers",
         "controller_previous_identity": [
           {
@@ -468,10 +470,36 @@
         "result": "PASS"
       }
     },
-    "review": "Non-author Codex focused source review; no remaining findings; advisor review pending",
+    "review": "Non-author Codex focused source review retained; advisor R1 review accepted within declared scope; Owner acceptance remains pending",
     "app_changes": false,
     "apk_rebuild": "NOT_RUN",
     "phone_actions": false,
     "private_receipt_root": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\v1016-current\\supplement-r1"
+  },
+  "advisor_review_record": {
+    "date_china": "2026-11-13",
+    "reviewed_delivery_commit": "5e20fe1393fb0ee43b59617e938beb80f110a032",
+    "reviewed_backend_source_commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
+    "decision": "ACCEPTED_SCOPED_V10_1_6",
+    "report": "docs/versions/v10.1.6/supplement-r1-20261113/ADVISOR_ACCEPTANCE.md",
+    "r1_findings": "R1-01 CLOSED; R1-02 CLOSED; no R2 required",
+    "independently_checked": [
+      "Git remote fixed-content readback",
+      "affected source and regression design",
+      "old APP consumer compatibility",
+      "8 source subtree IDs",
+      "8 Git file blob IDs, byte lengths and SHA256",
+      "3 historical hashes exactly reproduced by final LF to CRLF only"
+    ],
+    "runtime_evidence": "Codex-reported named local tests, deployment bytes, HTTP reads and prior APP evidence; advisor did not independently operate Owner environment",
+    "remote_content_readback": "Advisor completed fixed-commit content readback after Codex-reported fetch disconnects; no claim that Owner network was repaired",
+    "preserved_limits": [
+      "SFU exited / UNAVAILABLE / OPEN / UNKNOWN",
+      "real Push",
+      "external identity provider",
+      "hardware",
+      "independent algorithm accuracy"
+    ],
+    "owner_acceptance": "PENDING"
   }
 }

@@ -1,4 +1,18 @@
-# 当前入口 2026-11-13 v10.1.6 R1工程补修完成待顾问复核
+# 当前入口 2026-11-13 v10.1.6顾问验收通过
+
+顾问已复核固定交付5e20fe1393fb0ee43b59617e938beb80f110a032：R1-01受众旁路、R1-02三控制器身份均关闭；v10.1.6六项AC在约定开发范围内接受，不再下达R2。详见[R1顾问验收](../versions/v10.1.6/supplement-r1-20261113/ADVISOR_ACCEPTANCE.md)及[当前manifest](../versions/v10.1.6/artifact_manifest.json)。原222923bd的CHANGES_REQUIRED保留为原候选历史判断。
+
+当前源码为R1后端69b95628a35ceae6fb7a3f726b5034ddb0d1750a；APP仍为fe9360b7及既有10.1.6-dev / 1010601候选，本轮未重建APK。顾问核对受众修复、旧APP兼容、8份Git文件及3份历史末行CR变换，远端固定内容回读已完成。本机测试、工作树/容器读取和HTTP执行沿Codex具名报告，顾问未在本机复演。
+
+分支继续codex/v10.1.6-backend-productization-20261113，稳定根D:\EliteSync-v10-product-v1015-20261101。本次顾问仅写验收与状态文档，未启动本地任务或切换设备。Codex保持交付后停止，Owner最终接受独立保留；后续v10.1.7按路线再具体下达，本次不自动开启。
+
+最近服务回执为2026-11-13 17:05:32.754北京时间：DB/API/WS运行，SFU exited、房间UNAVAILABLE、原因OPEN/UNKNOWN，结转v10.1.8相关通信工作。设备仍引用15:57停止/数据保留快照，R1无设备/手机动作；未来恢复时再核实时状态。
+
+v10继续后端业务和必要APP/Web功能优先，v10.1.12集中UI/文字；相识后新增工具仅接口，已有关系能力保留。普通工程授权持续有效，后续按具体任务接续；不合main、不发布、不启动公司或内测，不恢复旧执行器或重复已关闭验收。
+
+---
+
+## 历史节点｜2026-11-13 R1工程交付5e20fe13待复核
 
 R1-01受众旁路与R1-02三文件身份工程闭合，顾问复核PENDING。顾问对222923bd的CHANGES_REQUIRED保留固定候选身份。详见[R1结果](../versions/v10.1.6/supplement-r1-20261113/README.md)、[manifest](../versions/v10.1.6/artifact_manifest.json)和[顾问原复核](../versions/v10.1.6/ADVISOR_ACCEPTANCE_20261113.md)。
 
