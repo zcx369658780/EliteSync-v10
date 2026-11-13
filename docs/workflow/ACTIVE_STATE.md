@@ -1,4 +1,18 @@
-# 当前入口 2026-11-13 v10.1.6工程交付待顾问验收
+# 当前入口 2026-11-13 v10.1.6顾问复核需R1补修
+
+顾问已复核固定候选222923bdec970bc2b2fcec4c51320edcb4f74688，结论CHANGES_REQUIRED。已有资料、照片和真实审核发布成果保留；本轮只下达两个补修项：R1-01旧慢约投影未执行Showcase所选受众；R1-02三个控制器的部署SHA256声明与固定Git字节未对齐。详见[顾问验收](../versions/v10.1.6/ADVISOR_ACCEPTANCE_20261113.md)、[R1任务](../versions/v10.1.6/supplement-r1-20261113/TASK_ORDER.md)与[接续prompt](../versions/v10.1.6/supplement-r1-20261113/CODEX_SUPPLEMENT_PROMPT.txt)。
+
+继续分支codex/v10.1.6-backend-productization-20261113及稳定根D:\EliteSync-v10-product-v1015-20261101。顾问本次仅提交复核与任务文档，尚未从本机回执确认R1开始。Codex恢复时核实际Git与资源，保护新成果并正常接续，不以旧main覆盖当前工程。
+
+顾问独立核对了源码、候选差异及清单；PHP/Flutter执行、APK安装与双模拟器运行仍属Codex报告，未在Owner本机复演。详细有效继承范围见验收记录。
+
+最近资源回执为2026-11-13 15:57:02北京时间：DB/API/WS运行，SFU恢复超时后exited，房间UNAVAILABLE，双APP停止并保留数据；不把此快照当恢复时实时状态。SFU继续OPEN/UNKNOWN，按v10.1.8通信工作结转，本R1不追加定位。
+
+普通工程与必要定向验证继续沿长期授权。两项补修完成后集中保存、同步与回读，停下再次验收；不启动v10.1.7、不合main、不发布、不操作手机。v10.1.5阶段收尾及v10功能优先、相识后仅接口、v10.1.12集中UI的安排保持有效。
+
+---
+
+## 历史节点｜2026-11-13 v10.1.6工程自验交付222923bd
 
 本版六项AC工程自验完成，顾问验收及Owner接受PENDING。普通APP资料/0至6张照片编辑、真实API与MariaDB、Web版本审核反馈、本人发布/替换/撤回、获准对象详情及私有图片链已接通。新增四项相识后能力当前unavailable并保留接口。详见[唯一实施报告](../versions/v10.1.6/IMPLEMENTATION_REPORT.md)和[manifest](../versions/v10.1.6/artifact_manifest.json)。
 

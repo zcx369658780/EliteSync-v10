@@ -1,0 +1,14 @@
+请在现有EliteSync本地会话继续v10.1.6补修R1，顾问已复核222923bdec970bc2b2fcec4c51320edcb4f74688，结论CHANGES_REQUIRED。
+
+分支：codex/v10.1.6-backend-productization-20261113
+稳定根：D:\EliteSync-v10-product-v1015-20261101
+
+先保护并核对实际工作区，正常接续本分支新增文档提交。读取AGENTS、ACTIVE_STATE当前块、docs/versions/v10.1.6/ADVISOR_ACCEPTANCE_20261113.md和supplement-r1-20261113/TASK_ORDER.md，然后连续完成两项：
+
+R1-01：SlowDatingService::projectLocked未执行新的Showcase audiences，导致仅好友/正式关系内容可能经journey及decision向不符受众的有效匹配对象返回。统一当前发布与受众判定；无权时隐藏Showcase，不阻断合法提案决策。补实际应用路径的必要正反例和重放检查。
+
+R1-02：manifest中DraftController、PublicationController、AdminShowcaseController三文件部署SHA256与固定Git字节不符。读取Git Blob、工作树和实际容器文件，查清并对齐最终源码及部署身份；只按实际逻辑差异补验证。
+
+已完成的资料/照片/真实审核发布成果继续继承。SFU当前exited/UNAVAILABLE仍OPEN/UNKNOWN，不是本轮补修任务。不重跑整套截图或RTC矩阵；APP未改则不强制重建APK。
+
+按任务书自主修复、部署与定向验证，集中交一份R1结果、必要manifest和ACTIVE_STATE，普通同步并回读固定提交后停下供顾问复核。不启动v10.1.7，不合main、不发布，不操作手机。
