@@ -192,6 +192,8 @@ Route::prefix('v1')->group(function () {
                 return response()->json(['status' => $u->verify_status, 'reason' => $u->verify_reason ?? '', 'revision' => (int) $u->verify_revision, 'moderation_status' => $u->moderation_status, 'matching_eligibility' => app(ProfileReadinessService::class)->forUser($u)['matching_eligibility']]);
             });
 
+            Route::get('/operating-application', [\App\Http\Controllers\Api\V1\OperatingApplicationController::class, 'show']);
+            Route::post('/operating-application', [\App\Http\Controllers\Api\V1\OperatingApplicationController::class, 'store']);
             Route::get('/basic', [ProfileController::class, 'basic']);
             Route::post('/basic', [ProfileController::class, 'saveBasic']);
             Route::post('/city', [ProfileController::class, 'saveCity']);
@@ -204,6 +206,10 @@ Route::prefix('v1')->group(function () {
             Route::delete('/showcase/draft', [ProfileShowcaseDraftController::class, 'destroy']);
             Route::get('/showcase/publication', [ProfileShowcasePublicationController::class, 'show']);
             Route::post('/showcase/publication', [ProfileShowcasePublicationController::class, 'store']);
+            Route::delete('/showcase/publication', [ProfileShowcasePublicationController::class, 'destroy']);
+            Route::post('/showcase/photos', [\App\Http\Controllers\Api\V1\ProfileShowcasePhotoController::class, 'store'])->middleware('throttle:10,1');
+            Route::get('/showcase/{owner}/photos/{photo}', [\App\Http\Controllers\Api\V1\ProfileShowcasePhotoController::class, 'content'])->whereNumber('owner')->whereNumber('photo');
+            Route::get('/showcase/{owner}', [ProfileShowcasePublicationController::class, 'detail'])->whereNumber('owner');
             Route::get('/astro/summary', [AstroProfileController::class, 'showSummary']);
             Route::get('/astro/chart', [AstroProfileController::class, 'showChart']);
             Route::get('/astro', [AstroProfileController::class, 'show']);

@@ -1,3 +1,6 @@
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
+import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
@@ -28,6 +31,7 @@ const _summary = ProfileSummaryEntity(
 Widget _wrap(PersonalShowcaseSnapshot snapshot) {
   return ProviderScope(
     overrides: [
+      sessionProvider.overrideWith(_TestSession.new),
       profileShowcaseDraftRepositoryProvider.overrideWithValue(
         _FakeDraftRepository(),
       ),
@@ -50,6 +54,7 @@ Widget _wrapWithRepo(
 ) {
   return ProviderScope(
     overrides: [
+      sessionProvider.overrideWith(_TestSession.new),
       profileShowcaseDraftRepositoryProvider.overrideWithValue(repo),
       profileShowcasePublicationRepositoryProvider.overrideWithValue(
         _FakePublicationRepository(),
@@ -71,6 +76,7 @@ Widget _wrapWithRepos(
 ) {
   return ProviderScope(
     overrides: [
+      sessionProvider.overrideWith(_TestSession.new),
       profileShowcaseDraftRepositoryProvider.overrideWithValue(draftRepo),
       profileShowcasePublicationRepositoryProvider.overrideWithValue(
         publicationRepo,
@@ -81,6 +87,22 @@ Widget _wrapWithRepos(
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.light,
       home: PersonalShowcasePage(snapshotOverride: snapshot),
+    ),
+  );
+}
+
+class _TestSession extends SessionNotifier {
+  @override
+  SessionState build() => const SessionState(
+    status: AuthStatus.authenticated,
+    user: UserSummary(id: 1, phone: 'fictional-showcase'),
+    accessToken: 'fixture-only',
+  );
+  void switchAccount() => state = const AsyncData(
+    SessionState(
+      status: AuthStatus.authenticated,
+      user: UserSummary(id: 2, phone: 'fictional-second'),
+      accessToken: 'fixture-second',
     ),
   );
 }
@@ -97,14 +119,21 @@ class _FakeDraftRepository implements ProfileShowcaseDraftRepository {
 
   @override
   Future<ProfileShowcaseDraftEntity?> saveDraft(
-    ProfileShowcaseDraftInput input,
-  ) async {
+    ProfileShowcaseDraftInput input, {
+    int expectedRevision = 0,
+  }) async {
     if (throwOnSave) {
       throw Exception('Service unavailable');
     }
     savedInput = input;
     draft = ProfileShowcaseDraftEntity(
       id: 1,
+      revision: expectedRevision + 1,
+      displayName: input.displayName,
+      city: input.city,
+      relationshipGoal: input.relationshipGoal,
+      photoIds: input.photoIds,
+      audiences: input.audiences,
       selfIntro: input.selfIntro,
       interestTags: input.interestTags,
       lifestyleTags: input.lifestyleTags,
@@ -115,7 +144,9 @@ class _FakeDraftRepository implements ProfileShowcaseDraftRepository {
   }
 
   @override
-  Future<ProfileShowcaseDraftEntity?> submitForReview() async {
+  Future<ProfileShowcaseDraftEntity?> submitForReview({
+    int expectedRevision = 0,
+  }) async {
     submitCount += 1;
     if (throwOnSubmit) {
       throw Exception('Connection timeout');
@@ -124,6 +155,12 @@ class _FakeDraftRepository implements ProfileShowcaseDraftRepository {
         draft ?? const ProfileShowcaseDraftEntity(selfIntro: '私有草稿');
     draft = ProfileShowcaseDraftEntity(
       id: current.id,
+      revision: current.revision,
+      displayName: current.displayName,
+      city: current.city,
+      relationshipGoal: current.relationshipGoal,
+      photoIds: current.photoIds,
+      audiences: current.audiences,
       selfIntro: current.selfIntro,
       interestTags: current.interestTags,
       lifestyleTags: current.lifestyleTags,
@@ -137,8 +174,18 @@ class _FakeDraftRepository implements ProfileShowcaseDraftRepository {
   }
 
   @override
-  Future<void> clearDraft() async {
+  Future<void> clearDraft({int expectedRevision = 0}) async {
     draft = null;
+  }
+
+  @override
+  Future<ProfileShowcaseDraftEntity?> uploadPhoto({
+    required String path,
+    required String name,
+    required int expectedRevision,
+    required String clientUploadId,
+  }) async {
+    throw UnsupportedError('This fixture does not upload photos');
   }
 }
 
@@ -160,7 +207,10 @@ class _FakePublicationRepository
   }
 
   @override
-  Future<ProfileShowcasePublicationEntity> publishApprovedDraft() async {
+  Future<ProfileShowcasePublicationEntity> publishApprovedDraft({
+    int expectedRevision = 0,
+    int publicationRevision = 0,
+  }) async {
     publishCount += 1;
     publication = const ProfileShowcasePublicationEntity(
       id: 22,
@@ -169,6 +219,17 @@ class _FakePublicationRepository
       moderationStatus: 'approved',
       publicDisplayEligible: true,
       matchingScoringEligible: false,
+    );
+    return publication;
+  }
+
+  @override
+  Future<ProfileShowcasePublicationEntity> withdraw({
+    required int expectedRevision,
+  }) async {
+    publication = ProfileShowcasePublicationEntity(
+      publicationStatus: 'withdrawn',
+      revision: expectedRevision + 1,
     );
     return publication;
   }
@@ -366,14 +427,14 @@ void main() {
     await tester.pumpWidget(_wrapWithRepo(snapshot, repo));
     await tester.pumpAndSettle();
 
-    await tester.enterText(find.byType(TextField).at(0), '我喜欢慢慢认识人');
-    await tester.enterText(find.byType(TextField).at(1), '咖啡、徒步');
+    await tester.enterText(find.byType(TextField).at(3), '我喜欢慢慢认识人');
+    await tester.enterText(find.byType(TextField).at(4), '咖啡、徒步');
     await tester.scrollUntilVisible(
       find.text('聊天开场话题').first,
       300,
       scrollable: find.byType(Scrollable).first,
     );
-    final openerField = find.byType(TextField).at(3);
+    final openerField = find.byType(TextField).at(6);
     await tester.enterText(openerField, '可以先聊聊最近喜欢的咖啡');
     await tester.scrollUntilVisible(
       find.text('保存为私有草稿').first,
@@ -483,7 +544,7 @@ void main() {
     await tester.pumpWidget(_wrapWithRepo(snapshot, repo));
     await tester.pumpAndSettle();
 
-    await tester.enterText(find.byType(TextField).at(0), '我想补充新的私有表达');
+    await tester.enterText(find.byType(TextField).at(3), '我想补充新的私有表达');
     await tester.pumpAndSettle();
 
     final visibleText = _visibleText(tester);
@@ -614,7 +675,7 @@ void main() {
       await tester.tap(find.text('确认发布这份审核通过的草稿'));
       await tester.pumpAndSettle();
       expect(find.text('确认发布这份草稿？'), findsOneWidget);
-      expect(find.textContaining('不承诺对其他用户的可见范围'), findsOneWidget);
+      expect(find.textContaining('内容仅供当前符合所选范围的对象读取'), findsOneWidget);
       expect(find.textContaining('不会改变匹配结果'), findsWidgets);
 
       await tester.tap(find.text('确认发布'));
@@ -702,12 +763,12 @@ void main() {
       await tester.pumpWidget(_wrapWithRepo(snapshot, repo));
       await tester.pumpAndSettle();
 
-      await tester.enterText(find.byType(TextField).at(0), '失败后保留这段草稿');
+      await tester.enterText(find.byType(TextField).at(3), '失败后保留这段草稿');
       await tester.tap(find.text('保存为私有草稿'));
       await tester.pumpAndSettle();
 
       final visibleText = _visibleText(tester);
-      expect(visibleText, contains('服务暂时不可用，请稍后再保存私有草稿。'));
+      expect(visibleText, contains('保存结果未确认，输入已保留。请重试保存或刷新核对。'));
       expect(visibleText, contains('保存失败时不会提交安全审核'));
       expect(find.text('重试保存私有草稿'), findsOneWidget);
       expect(find.text('保存为私有草稿'), findsNothing);
@@ -787,7 +848,7 @@ void main() {
     await tester.pumpAndSettle();
 
     final visibleText = _visibleText(tester);
-    expect(visibleText, contains('当前草稿还没有提交安全审核'));
+    expect(visibleText, contains('提交结果未确认'));
     expect(visibleText, isNot(contains('已提交审核，等待处理')));
     expect(visibleText, isNot(contains('可展示前不会打开展示')));
   });

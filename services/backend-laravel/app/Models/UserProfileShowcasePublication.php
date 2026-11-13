@@ -17,6 +17,7 @@ class UserProfileShowcasePublication extends Model
         'public_display_eligible',
         'matching_scoring_eligible',
         'published_at',
+        'revision', 'publication_status', 'source_revision', 'source_submission_id',
     ];
 
     protected function casts(): array
@@ -27,6 +28,9 @@ class UserProfileShowcasePublication extends Model
             'public_display_eligible' => 'boolean',
             'matching_scoring_eligible' => 'boolean',
             'published_at' => 'datetime',
+            'revision' => 'integer',
+            'source_revision' => 'integer',
+            'source_submission_id' => 'integer',
         ];
     }
 

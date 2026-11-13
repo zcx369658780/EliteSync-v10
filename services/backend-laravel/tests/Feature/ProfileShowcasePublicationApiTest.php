@@ -17,6 +17,8 @@ class ProfileShowcasePublicationApiTest extends TestCase
         $this->getJson('/api/v1/profile/showcase/publication')->assertUnauthorized();
         $this->postJson('/api/v1/profile/showcase/publication', [
             'confirm_public_display' => true,
+            'expected_revision' => 1,
+            'publication_revision' => 0,
         ])->assertUnauthorized();
     }
 
@@ -39,9 +41,11 @@ class ProfileShowcasePublicationApiTest extends TestCase
 
         $this->postJson('/api/v1/profile/showcase/publication', [
             'confirm_public_display' => true,
-        ])->assertStatus(422)
+            'expected_revision' => 1,
+            'publication_revision' => 0,
+        ])->assertStatus(409)
             ->assertJsonPath('ok', false)
-            ->assertJsonPath('error.code', 'profile_showcase_publication_draft_missing');
+            ->assertJsonPath('error.code', 'http_error');
     }
 
     public function test_post_rejects_non_approved_private_draft_states(): void
@@ -62,9 +66,11 @@ class ProfileShowcasePublicationApiTest extends TestCase
 
             $this->postJson('/api/v1/profile/showcase/publication', [
                 'confirm_public_display' => true,
-            ])->assertStatus(422)
+            'expected_revision' => 1,
+            'publication_revision' => 0,
+            ])->assertStatus(409)
                 ->assertJsonPath('ok', false)
-                ->assertJsonPath('error.code', 'profile_showcase_publication_requires_approved_draft');
+                ->assertJsonPath('error.code', 'http_error');
         }
 
         $this->assertDatabaseCount('user_profile_showcase_publications', 0);
@@ -79,12 +85,14 @@ class ProfileShowcasePublicationApiTest extends TestCase
 
         $this->postJson('/api/v1/profile/showcase/publication')
             ->assertStatus(422)
-            ->assertJsonPath('error.code', 'profile_showcase_publication_requires_owner_confirmation');
+            ->assertJsonPath('error.code', 'validation_error')
+            ->assertJsonStructure(['error' => ['details' => ['confirm_public_display']]]);
 
         $this->postJson('/api/v1/profile/showcase/publication', [
             'confirm_public_display' => false,
         ])->assertStatus(422)
-            ->assertJsonPath('error.code', 'profile_showcase_publication_requires_owner_confirmation');
+            ->assertJsonPath('error.code', 'validation_error')
+            ->assertJsonStructure(['error' => ['details' => ['confirm_public_display']]]);
 
         $this->assertDatabaseCount('user_profile_showcase_publications', 0);
     }
@@ -97,6 +105,8 @@ class ProfileShowcasePublicationApiTest extends TestCase
 
         $response = $this->postJson('/api/v1/profile/showcase/publication', [
             'confirm_public_display' => true,
+            'expected_revision' => 1,
+            'publication_revision' => 0,
         ])->assertOk()
             ->assertJsonPath('ok', true)
             ->assertJsonPath('publication.publication_status', 'published')
@@ -150,10 +160,14 @@ class ProfileShowcasePublicationApiTest extends TestCase
 
         $first = $this->postJson('/api/v1/profile/showcase/publication', [
             'confirm_public_display' => true,
+            'expected_revision' => 1,
+            'publication_revision' => 0,
         ])->assertOk();
 
         $second = $this->postJson('/api/v1/profile/showcase/publication', [
             'confirm_public_display' => true,
+            'expected_revision' => 1,
+            'publication_revision' => 0,
         ])->assertOk();
 
         $this->assertSame($first->json('publication.id'), $second->json('publication.id'));
@@ -170,6 +184,8 @@ class ProfileShowcasePublicationApiTest extends TestCase
         $this->draft($userA, 'approved');
         $this->postJson('/api/v1/profile/showcase/publication', [
             'confirm_public_display' => true,
+            'expected_revision' => 1,
+            'publication_revision' => 0,
         ])->assertOk();
 
         Sanctum::actingAs($userB);
@@ -180,8 +196,10 @@ class ProfileShowcasePublicationApiTest extends TestCase
 
         $this->postJson('/api/v1/profile/showcase/publication', [
             'confirm_public_display' => true,
-        ])->assertStatus(422)
-            ->assertJsonPath('error.code', 'profile_showcase_publication_draft_missing');
+            'expected_revision' => 1,
+            'publication_revision' => 0,
+        ])->assertStatus(409)
+            ->assertJsonPath('error.code', 'http_error');
     }
 
     private function user(string $phone): User
@@ -193,6 +211,24 @@ class ProfileShowcasePublicationApiTest extends TestCase
 
     private function draft(User $user, string $moderationStatus): UserProfileShowcaseDraft
     {
+        if ($moderationStatus === 'approved') {
+            Sanctum::actingAs($user);
+            $this->putJson('/api/v1/profile/showcase/draft', [
+                'expected_revision' => 0, 'audiences' => ['friends'],
+                'self_intro' => '想公开展示的一段介绍。', 'interest_tags' => ['阅读', '咖啡'],
+                'lifestyle_tags' => ['周末慢生活'], 'opener_note' => '可以从一本书聊起。',
+            ])->assertOk();
+            $submission = $this->postJson('/api/v1/profile/showcase/draft/submit-review',
+                ['expected_revision' => 1])->assertOk()->json('submission');
+            $admin = User::factory()->create(['phone' => '9'.substr($user->phone, 1), 'role' => 'admin']);
+            config(['app.admin_phones' => [$admin->phone]]);
+            $this->actingAs($admin, 'web')->post('/admin/showcase/'.$submission['id'], [
+                'expected_revision' => 1, 'result' => 'approved', 'reason' => 'Fixture Web approval', 'confirm' => '1',
+            ])->assertRedirect();
+            Sanctum::actingAs($user);
+            return UserProfileShowcaseDraft::where('user_id', $user->id)->firstOrFail();
+        }
+
         return UserProfileShowcaseDraft::query()->create([
             'user_id' => $user->id,
             'self_intro' => '想公开展示的一段介绍。',

@@ -52,14 +52,14 @@ class MediaStorageService
             throw new RuntimeException('failed to write media file to storage');
         }
 
-        if (in_array($disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
+        if (in_array($disk, ['v1007', 'v1009', 'v1011_relationship', 'v1016_showcase'], true)) {
             return ['disk' => $disk, 'provider' => 'local', 'storage_key' => $storedPath, 'public_url' => null];
         }
         $publicUrl = null;
         try {
             $publicUrl = Storage::disk($disk)->url($storedPath);
         } catch (\Throwable) {
-            if (in_array($disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
+            if (in_array($disk, ['v1007', 'v1009', 'v1011_relationship', 'v1016_showcase'], true)) {
                 return ['disk' => $disk, 'provider' => 'local', 'storage_key' => $storedPath, 'public_url' => null];
             }
             $publicUrl = null;

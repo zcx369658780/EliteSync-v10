@@ -24,6 +24,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/matching', [AdminMatchingWebController::class, 'action'])->middleware('matching.operation')->name('matching.action');
         Route::get('/account-security', AccountSecurityAuditController::class)->name('account-security');
         Route::get('/audits', [AdminOperationsController::class, 'audits'])->name('audits');
+        $showcase = \App\Http\Controllers\Web\AdminShowcaseController::class;
+        Route::get('/showcase', [$showcase, 'index'])->name('showcase.index');
+        Route::get('/showcase/{submission}', [$showcase, 'show'])->whereNumber('submission')->name('showcase.show');
+        Route::post('/showcase/{submission}', [$showcase, 'review'])->whereNumber('submission')->name('showcase.review');
+        Route::get('/showcase/{submission}/photos/{photo}', [$showcase, 'photo'])->whereNumber('submission')->whereNumber('photo')->name('showcase.photo');
         $platform = \App\Http\Controllers\Web\PlatformController::class;
         Route::get('/platform-events', [$platform, 'index'])->name('platform-events');
         Route::post('/platform-events', [$platform, 'store']);

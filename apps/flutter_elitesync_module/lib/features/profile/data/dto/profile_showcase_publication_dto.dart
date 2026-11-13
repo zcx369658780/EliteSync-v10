@@ -1,5 +1,6 @@
 import 'package:flutter_elitesync_module/features/profile/domain/entities/profile_showcase_draft_entity.dart';
 import 'package:flutter_elitesync_module/features/profile/domain/entities/profile_showcase_publication_entity.dart';
+import 'package:flutter_elitesync_module/features/profile/data/dto/profile_showcase_draft_dto.dart';
 
 class ProfileShowcasePublicationDto {
   const ProfileShowcasePublicationDto({
@@ -12,6 +13,9 @@ class ProfileShowcasePublicationDto {
     this.publicFields = ProfileShowcaseDraftInput.empty,
     this.publishedAt,
     this.updatedAt,
+    this.revision = 0,
+    this.sourceRevision = 0,
+    this.photos = const [],
   });
 
   final int? id;
@@ -23,6 +27,9 @@ class ProfileShowcasePublicationDto {
   final ProfileShowcaseDraftInput publicFields;
   final DateTime? publishedAt;
   final DateTime? updatedAt;
+  final int revision;
+  final int sourceRevision;
+  final List<ShowcasePhoto> photos;
 
   factory ProfileShowcasePublicationDto.fromJson(Map<String, dynamic> json) {
     final publication = json['publication'];
@@ -59,13 +66,13 @@ class ProfileShowcasePublicationDto {
       publicDisplayEligible: safeStatus == 'published',
       matchingScoringEligible: false,
       publicFields: publicFields is Map<String, dynamic>
-          ? ProfileShowcaseDraftInput(
-              selfIntro: _stringValue(publicFields['self_intro']),
-              interestTags: _stringList(publicFields['interest_tags']),
-              lifestyleTags: _stringList(publicFields['lifestyle_tags']),
-              openerNote: _stringValue(publicFields['opener_note']),
-            )
+          ? parseShowcaseInput(publicFields)
           : ProfileShowcaseDraftInput.empty,
+      revision: _intValue(publication['revision']) ?? 0,
+      sourceRevision: _intValue(publication['source_revision']) ?? 0,
+      photos: publicFields is Map
+          ? parseShowcasePhotos(publicFields['photos'])
+          : const [],
       publishedAt: DateTime.tryParse(
         (publication['published_at'] ?? '').toString(),
       ),
@@ -86,13 +93,16 @@ class ProfileShowcasePublicationDto {
       publicFields: publicFields,
       publishedAt: publishedAt,
       updatedAt: updatedAt,
+      revision: revision,
+      sourceRevision: sourceRevision,
+      photos: photos,
     );
   }
 }
 
 String _safeEmptyStatus(String value) {
   return switch (value) {
-    'not_published' || 'unavailable' => value,
+    'not_published' || 'unavailable' || 'withdrawn' => value,
     _ => 'unavailable',
   };
 }
@@ -106,12 +116,4 @@ String _stringValue(Object? value) => (value ?? '').toString().trim();
 String? _nullableString(Object? value) {
   final text = _stringValue(value);
   return text.isEmpty ? null : text;
-}
-
-List<String> _stringList(Object? value) {
-  if (value is! List) return const [];
-  return value
-      .map((item) => item.toString().trim())
-      .where((item) => item.isNotEmpty)
-      .toList(growable: false);
 }

@@ -3,5 +3,12 @@ import 'package:flutter_elitesync_module/features/profile/domain/entities/profil
 abstract class ProfileShowcasePublicationRepository {
   Future<ProfileShowcasePublicationEntity> getPublication();
 
-  Future<ProfileShowcasePublicationEntity> publishApprovedDraft();
+  Future<ProfileShowcasePublicationEntity> publishApprovedDraft({
+    int expectedRevision = 0,
+    int publicationRevision = 0,
+  });
+
+  Future<ProfileShowcasePublicationEntity> withdraw({
+    required int expectedRevision,
+  });
 }

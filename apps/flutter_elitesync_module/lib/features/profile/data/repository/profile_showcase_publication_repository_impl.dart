@@ -14,7 +14,19 @@ class ProfileShowcasePublicationRepositoryImpl
   }
 
   @override
-  Future<ProfileShowcasePublicationEntity> publishApprovedDraft() async {
-    return (await remote.publishApprovedDraft()).toEntity();
+  Future<ProfileShowcasePublicationEntity> publishApprovedDraft({
+    int expectedRevision = 0,
+    int publicationRevision = 0,
+  }) async {
+    return (await remote.publishApprovedDraft(
+      expectedRevision: expectedRevision,
+      publicationRevision: publicationRevision,
+    )).toEntity();
   }
+
+  @override
+  Future<ProfileShowcasePublicationEntity> withdraw({
+    required int expectedRevision,
+  }) async =>
+      (await remote.withdraw(expectedRevision: expectedRevision)).toEntity();
 }

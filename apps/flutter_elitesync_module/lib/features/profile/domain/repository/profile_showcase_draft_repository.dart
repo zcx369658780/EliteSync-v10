@@ -4,10 +4,20 @@ abstract class ProfileShowcaseDraftRepository {
   Future<ProfileShowcaseDraftEntity?> getDraft();
 
   Future<ProfileShowcaseDraftEntity?> saveDraft(
-    ProfileShowcaseDraftInput input,
-  );
+    ProfileShowcaseDraftInput input, {
+    int expectedRevision = 0,
+  });
 
-  Future<ProfileShowcaseDraftEntity?> submitForReview();
+  Future<ProfileShowcaseDraftEntity?> submitForReview({
+    int expectedRevision = 0,
+  });
 
-  Future<void> clearDraft();
+  Future<void> clearDraft({int expectedRevision = 0});
+
+  Future<ProfileShowcaseDraftEntity?> uploadPhoto({
+    required String path,
+    required String name,
+    required int expectedRevision,
+    required String clientUploadId,
+  });
 }

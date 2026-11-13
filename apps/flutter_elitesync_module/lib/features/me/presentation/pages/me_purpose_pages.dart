@@ -126,8 +126,8 @@ class ShowcasePurposePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const _CompatibilityPurposePage(
     title: '展示资料',
-    description: '这里面向候选人范围内的展示准备；没有全局公开个人主页授权。',
-    compatibilityNote: '当前可编辑本人私有草稿。候选人范围的发布功能尚未完成，保存草稿不会公开内容或改变匹配资格。',
+    description: '编辑本人展示资料和照片，选择可查看的关系范围。',
+    compatibilityNote: '草稿保存后可提交审核。审核通过后由你明确发布，已有发布版也可撤回。',
     actionLabel: '编辑展示资料',
     actionRoute: AppRouteNames.personalShowcase,
   );

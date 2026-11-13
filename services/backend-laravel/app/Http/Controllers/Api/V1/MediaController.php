@@ -140,6 +140,8 @@ class MediaController extends Controller
     public function content(Request $request, int $assetId)
     {
         $asset = MediaAsset::query()->find($assetId);
+        // Showcase reads require current draft/publication membership and audience.
+        abort_if($asset?->storage_disk === 'v1016_showcase', 404, 'unavailable');
         if ($asset && in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true)) {
             return $this->privateContent($request, $assetId, (int) $asset->owner_user_id);
         }

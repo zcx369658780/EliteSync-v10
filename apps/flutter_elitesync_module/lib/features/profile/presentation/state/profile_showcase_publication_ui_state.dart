@@ -23,6 +23,7 @@ class ProfileShowcasePublicationUiState {
     if (publication.isPublished) return '已发布版本';
     return switch (publication.publicationStatus) {
       'unavailable' => '暂不可确认发布',
+      'withdrawn' => '已撤回展示',
       _ => '尚未发布',
     };
   }
@@ -61,7 +62,6 @@ class ProfileShowcasePublicationUiState {
 
   bool canPublish(ProfileShowcaseDraftUiState? draftState) {
     if (publishing ||
-        publication.isPublished ||
         publication.isUnavailable ||
         error != null ||
         draftState == null) {
@@ -70,6 +70,11 @@ class ProfileShowcasePublicationUiState {
     if (draftState.isBusy ||
         draftState.dirty ||
         !draftState.hasSavedPrivateDraft) {
+      return false;
+    }
+    if (publication.isPublished &&
+        (publication.sourceRevision == 0 ||
+            publication.sourceRevision == draftState.serverDraft?.revision)) {
       return false;
     }
     return draftState.reviewStatus == 'approved' &&

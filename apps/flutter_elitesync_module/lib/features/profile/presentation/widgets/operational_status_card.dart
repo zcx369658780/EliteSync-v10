@@ -5,6 +5,9 @@ import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
 import 'package:flutter_elitesync_module/design_system/components/cards/app_info_section_card.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 
 /// A server snapshot, independent of self-reported identity or local progress.
 class OperationalStatus {
@@ -72,9 +75,23 @@ class OperationalStatus {
 
 final operationalStatusProvider = FutureProvider.autoDispose<OperationalStatus>(
   (ref) async {
+    final session = ref.watch(sessionProvider).asData?.value;
+    if (session?.isLoggedIn != true) throw StateError('请登录后读取。');
     final result = await ref
         .watch(apiClientProvider)
-        .get('/api/v1/profile/operating-status');
+        .get(
+          '/api/v1/profile/operating-status',
+          options: Options(
+            extra: {
+              requestSessionGuardKey: () =>
+                  identical(session, ref.read(sessionProvider).asData?.value),
+            },
+          ),
+        );
+    if (!ref.mounted ||
+        !identical(session, ref.read(sessionProvider).asData?.value)) {
+      throw StateError('登录已变化。');
+    }
     if (result is! NetworkSuccess<Map<String, dynamic>>) {
       throw const FormatException('Operating status unavailable');
     }

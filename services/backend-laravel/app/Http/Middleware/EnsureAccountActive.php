@@ -18,7 +18,8 @@ final class EnsureAccountActive
         // Only owner-private writers use this lock. Pair operations retain their
         // ordered two-user locks, rather than acquiring an actor lock first.
         $privateWriter = $request->is('api/v1/profile/*', 'api/v1/questionnaire/*', 'api/v1/questions', 'api/v1/questions/answers', 'api/v1/auth/password')
-            && ! $request->is('api/v1/profile/astro/pair');
+            && ! $request->is('api/v1/profile/astro/pair', 'api/v1/profile/operating-application')
+            && ! preg_match('#^api/v1/profile/showcase/[1-9][0-9]*(/photos/[1-9][0-9]*)?$#', $request->path());
         $privateWriter = $privateWriter || ($request->isMethod('POST') && $request->is('api/v1/media'));
         if ($privateWriter && $request->user()) {
             return DB::transaction(function () use ($request, $next) {

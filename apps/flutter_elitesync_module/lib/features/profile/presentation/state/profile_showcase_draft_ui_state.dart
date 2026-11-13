@@ -34,7 +34,10 @@ class ProfileShowcaseDraftUiState {
   bool get hasSavedPrivateDraft => serverDraft?.hasContent ?? false;
 
   bool get isPublicDisplayEligible =>
-      serverDraft?.publicDisplayEligible == true;
+      serverDraft?.revision != null && serverDraft!.revision > 0
+      ? serverDraft!.submission?.revision == serverDraft!.revision &&
+            serverDraft!.submission?.state == 'approved'
+      : serverDraft?.publicDisplayEligible == true;
 
   String get reviewStatus => serverDraft?.moderationStatus ?? 'not_submitted';
 
@@ -52,13 +55,26 @@ class ProfileShowcaseDraftUiState {
 
   bool get canSubmitForReview {
     if (isBusy || dirty || !hasSavedPrivateDraft) return false;
+    if ((serverDraft?.revision ?? 0) > 0 && editor.audiences.isEmpty) {
+      return false;
+    }
+    final submission = serverDraft?.submission;
+    if (submission != null && submission.revision == serverDraft?.revision) {
+      return false;
+    }
     return switch (reviewStatus) {
-      'pending' || 'approved' || 'manual_review_required' || 'error' => false,
+      'approved' => (serverDraft?.revision ?? 0) > 0 && submission == null,
+      'pending' || 'manual_review_required' || 'error' => false,
       _ => true,
     };
   }
 
   String get submitCtaLabel {
+    if ((serverDraft?.revision ?? 0) > 0 &&
+        reviewStatus == 'approved' &&
+        serverDraft?.submission == null) {
+      return '提交当前版本审核';
+    }
     if (submitting) return '正在提交';
     if ((loadError ?? '').isNotEmpty || (saveError ?? '').isNotEmpty) {
       return '状态恢复后再提交审核';
@@ -75,6 +91,11 @@ class ProfileShowcaseDraftUiState {
   }
 
   String get ctaGuidanceText {
+    if ((serverDraft?.revision ?? 0) > 0 &&
+        reviewStatus == 'approved' &&
+        serverDraft?.submission == null) {
+      return '当前草稿缺少对应内容版本的审核记录，请提交当前版本审核后再确认发布。';
+    }
     if ((loadError ?? '').isNotEmpty) {
       return '暂时无法读取私有草稿；请先重新读取或稍后再试，确认保存成功前不要提交安全审核。';
     }

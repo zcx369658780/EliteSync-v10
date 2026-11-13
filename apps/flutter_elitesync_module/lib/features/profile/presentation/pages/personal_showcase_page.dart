@@ -17,6 +17,9 @@ import 'package:flutter_elitesync_module/features/profile/presentation/providers
 import 'package:flutter_elitesync_module/features/profile/presentation/providers/profile_providers.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/state/personal_showcase_model.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/state/profile_showcase_draft_ui_state.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/widgets/showcase_photo_editor.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/widgets/authenticated_showcase_photo.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 
 class PersonalShowcasePage extends ConsumerWidget {
   const PersonalShowcasePage({super.key, this.snapshotOverride});
@@ -25,9 +28,14 @@ class PersonalShowcasePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final session = ref.watch(sessionProvider).asData?.value;
+    final accountKey = ValueKey((
+      session?.user?.id,
+      ref.read(sessionProvider.notifier).currentAuthenticationIntent,
+    ));
     final override = snapshotOverride;
     if (override != null) {
-      return PersonalShowcaseContent(snapshot: override);
+      return PersonalShowcaseContent(key: accountKey, snapshot: override);
     }
 
     final async = ref.watch(personalShowcaseProvider);
@@ -43,7 +51,8 @@ class PersonalShowcasePage extends ConsumerWidget {
           description: '暂时无法读取展示内容，请稍后重试。',
         ),
       ),
-      data: (snapshot) => PersonalShowcaseContent(snapshot: snapshot),
+      data: (snapshot) =>
+          PersonalShowcaseContent(key: accountKey, snapshot: snapshot),
     );
   }
 }
@@ -78,7 +87,7 @@ class PersonalShowcaseContent extends StatelessWidget {
           SizedBox(height: t.spacing.md),
           SectionReveal(
             delay: const Duration(milliseconds: 120),
-            child: _PreviewCard(snapshot: snapshot),
+            child: const _PreviewCard(),
           ),
           SizedBox(height: t.spacing.md),
           SectionReveal(
@@ -149,6 +158,9 @@ class _PrivateDraftSaveCard extends ConsumerStatefulWidget {
 }
 
 class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
+  late final TextEditingController _displayName;
+  late final TextEditingController _city;
+  late final TextEditingController _relationshipGoal;
   late final TextEditingController _selfIntro;
   late final TextEditingController _interestTags;
   late final TextEditingController _lifestyleTags;
@@ -159,6 +171,9 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
   void initState() {
     super.initState();
     final seed = _seedFromSnapshot(widget.snapshot);
+    _displayName = TextEditingController(text: seed.displayName);
+    _city = TextEditingController(text: seed.city);
+    _relationshipGoal = TextEditingController(text: seed.relationshipGoal);
     _selfIntro = TextEditingController(text: seed.selfIntro);
     _interestTags = TextEditingController(text: seed.interestTags.join('、'));
     _lifestyleTags = TextEditingController(text: seed.lifestyleTags.join('、'));
@@ -167,6 +182,9 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
 
   @override
   void dispose() {
+    _displayName.dispose();
+    _city.dispose();
+    _relationshipGoal.dispose();
     _selfIntro.dispose();
     _interestTags.dispose();
     _lifestyleTags.dispose();
@@ -179,6 +197,19 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
     final t = context.appTokens;
     final async = ref.watch(profileShowcaseDraftControllerProvider);
     final draftState = async.asData?.value;
+    final publication = ref
+        .watch(profileShowcasePublicationControllerProvider)
+        .asData
+        ?.value;
+    final busy =
+        draftState?.isBusy == true ||
+        publication?.publishing == true ||
+        async.isLoading;
+    final editor = draftState?.editor ?? ProfileShowcaseDraftInput.empty;
+    final photos = {
+      for (final photo in draftState?.serverDraft?.photos ?? <ShowcasePhoto>[])
+        photo.id: photo,
+    };
     _syncControllers(draftState);
 
     return AppCard(
@@ -243,7 +274,35 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
           ],
           SizedBox(height: t.spacing.md),
           AppTextField(
+            controller: _displayName,
+            label: '展示昵称',
+            maxLength: 80,
+            enabled: !busy,
+            errorText: draftState?.validationErrors['display_name'],
+            onChanged: (_) => _markDirty(),
+          ),
+          SizedBox(height: t.spacing.sm),
+          AppTextField(
+            controller: _city,
+            label: '展示城市',
+            maxLength: 80,
+            enabled: !busy,
+            errorText: draftState?.validationErrors['city'],
+            onChanged: (_) => _markDirty(),
+          ),
+          SizedBox(height: t.spacing.sm),
+          AppTextField(
+            controller: _relationshipGoal,
+            label: '展示关系目标',
+            maxLength: 80,
+            enabled: !busy,
+            errorText: draftState?.validationErrors['relationship_goal'],
+            onChanged: (_) => _markDirty(),
+          ),
+          SizedBox(height: t.spacing.sm),
+          AppTextField(
             controller: _selfIntro,
+            enabled: !busy,
             label: '一句自我介绍',
             hint: '写一句最近的生活状态或想被理解的方式',
             maxLength: 500,
@@ -255,6 +314,7 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
           SizedBox(height: t.spacing.sm),
           AppTextField(
             controller: _interestTags,
+            enabled: !busy,
             label: '兴趣标签',
             hint: '咖啡、徒步、电影，最多 10 个',
             errorText: draftState?.validationErrors['interest_tags'],
@@ -268,6 +328,7 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
           SizedBox(height: t.spacing.sm),
           AppTextField(
             controller: _lifestyleTags,
+            enabled: !busy,
             label: '生活线索',
             hint: '周末早起、稳定作息、常去书店',
             errorText: draftState?.validationErrors['lifestyle_tags'],
@@ -281,6 +342,7 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
           SizedBox(height: t.spacing.sm),
           AppTextField(
             controller: _openerNote,
+            enabled: !busy,
             label: '聊天开场话题',
             hint: '别人可以从哪个轻问题开始了解你？',
             maxLength: 280,
@@ -289,6 +351,78 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
             errorText: draftState?.validationErrors['opener_note'],
             onChanged: (_) => _markDirty(),
           ),
+          SizedBox(height: t.spacing.sm),
+          Text('展示范围', style: Theme.of(context).textTheme.titleMedium),
+          for (final audience in showcaseAudienceLabels.entries)
+            CheckboxListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(audience.value),
+              value: editor.audiences.contains(audience.key),
+              onChanged: busy
+                  ? null
+                  : (selected) {
+                      final values = [...editor.audiences];
+                      if (selected == true) {
+                        values.add(audience.key);
+                      } else {
+                        values.remove(audience.key);
+                      }
+                      ref
+                          .read(profileShowcaseDraftControllerProvider.notifier)
+                          .edit(_currentInput().copyWith(audiences: values));
+                    },
+            ),
+          const Text('仅当前符合所选范围的对象可读取发布版。提交前至少选择一个范围。'),
+          SizedBox(height: t.spacing.md),
+          ShowcasePhotoEditor(
+            photos: [
+              for (final id in editor.photoIds)
+                if (photos[id] != null)
+                  AuthenticatedShowcasePhoto(
+                    key: ValueKey(photos[id]!.contentPath),
+                    contentPath: photos[id]!.contentPath,
+                    refreshKey: draftState?.serverDraft?.revision,
+                  )
+                else
+                  const Center(child: Text('照片待刷新')),
+            ],
+            busy: busy || draftState?.loadError != null,
+            onAdd: () => ref
+                .read(profileShowcaseDraftControllerProvider.notifier)
+                .uploadPhoto(),
+            onRemove: (index) => _changePhotoOrder(index, remove: true),
+            onMoveEarlier: (index) =>
+                _changePhotoOrder(index, destination: index - 1),
+            onMoveLater: (index) =>
+                _changePhotoOrder(index, destination: index + 1),
+          ),
+          const Text('添加照片前请先保存当前修改。排序和移除在保存草稿后生效。'),
+          if (ref
+              .read(profileShowcaseDraftControllerProvider.notifier)
+              .hasPendingUpload)
+            TextButton(
+              onPressed: busy
+                  ? null
+                  : () => ref
+                        .read(profileShowcaseDraftControllerProvider.notifier)
+                        .discardPendingUpload(),
+              child: const Text('取消本次照片上传'),
+            ),
+          if (draftState?.serverDraft?.revision != null)
+            Text('当前草稿版本：${draftState!.serverDraft!.revision}'),
+          if (draftState?.serverDraft?.submission != null) ...[
+            SizedBox(height: t.spacing.md),
+            Text('最近提交版本：${draftState!.serverDraft!.submission!.revision}'),
+            Text(
+              '处理状态：${_reviewStatusTagLabel(draftState.serverDraft!.submission!.state)}',
+            ),
+            if (draftState.serverDraft!.submission!.feedback != null)
+              Text('处理反馈：${draftState.serverDraft!.submission!.feedback}'),
+            _ShowcaseFieldsPreview(
+              input: draftState.serverDraft!.submission!.snapshot,
+              photos: draftState.serverDraft!.photos,
+            ),
+          ],
           SizedBox(height: t.spacing.sm),
           _DraftNotice(
             icon: Icons.privacy_tip_outlined,
@@ -347,7 +481,10 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
                 ? '重试保存私有草稿'
                 : '保存为私有草稿',
             isLoading: draftState?.saving == true,
-            onPressed: draftState?.isBusy == true
+            onPressed:
+                busy ||
+                    draftState?.loaded != true ||
+                    draftState?.loadError != null
                 ? null
                 : () => ref
                       .read(profileShowcaseDraftControllerProvider.notifier)
@@ -367,7 +504,7 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
                     : '重新读取',
                 style: AppSecondaryButtonStyle.outline,
                 prefixIcon: const Icon(Icons.refresh_rounded, size: 18),
-                onPressed: draftState?.isBusy == true
+                onPressed: busy
                     ? null
                     : () => ref
                           .read(profileShowcaseDraftControllerProvider.notifier)
@@ -377,7 +514,7 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
                 label: draftState?.submitCtaLabel ?? '提交安全审核',
                 isLoading: draftState?.submitting == true,
                 prefixIcon: const Icon(Icons.verified_user_outlined, size: 18),
-                onPressed: draftState?.canSubmitForReview != true
+                onPressed: busy || draftState?.canSubmitForReview != true
                     ? null
                     : () => ref
                           .read(profileShowcaseDraftControllerProvider.notifier)
@@ -386,9 +523,7 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
               AppGhostButton(
                 label: '清除私有草稿',
                 isDestructive: true,
-                onPressed:
-                    draftState?.isBusy == true ||
-                        draftState?.hasSavedPrivateDraft != true
+                onPressed: busy || draftState?.hasSavedPrivateDraft != true
                     ? null
                     : () => _confirmClear(context, draftState!),
               ),
@@ -402,10 +537,13 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
   void _syncControllers(ProfileShowcaseDraftUiState? draftState) {
     if (draftState == null || draftState.dirty) return;
     final draft = draftState.serverDraft;
-    final key = draft?.updatedAt?.toIso8601String() ?? draft?.id ?? 'empty';
+    final key = (draft?.id, draft?.revision, draft?.updatedAt);
     if (_lastAppliedDraftKey == key) return;
     _lastAppliedDraftKey = key;
     final input = draft?.toInput() ?? _seedFromSnapshot(widget.snapshot);
+    _displayName.text = input.displayName;
+    _city.text = input.city;
+    _relationshipGoal.text = input.relationshipGoal;
     _selfIntro.text = input.selfIntro;
     _interestTags.text = input.interestTags.join('、');
     _lifestyleTags.text = input.lifestyleTags.join('、');
@@ -419,7 +557,13 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
   }
 
   ProfileShowcaseDraftInput _currentInput() {
-    return ProfileShowcaseDraftInput(
+    final input =
+        ref.read(profileShowcaseDraftControllerProvider).asData?.value.editor ??
+        ProfileShowcaseDraftInput.empty;
+    return input.copyWith(
+      displayName: _displayName.text,
+      city: _city.text,
+      relationshipGoal: _relationshipGoal.text,
       selfIntro: _selfIntro.text,
       interestTags: _splitTags(_interestTags.text),
       lifestyleTags: _splitTags(_lifestyleTags.text),
@@ -427,10 +571,22 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
     );
   }
 
+  void _changePhotoOrder(int index, {int? destination, bool remove = false}) {
+    final input = _currentInput();
+    final ids = [...input.photoIds];
+    final id = ids.removeAt(index);
+    if (!remove) ids.insert(destination!, id);
+    ref
+        .read(profileShowcaseDraftControllerProvider.notifier)
+        .edit(input.copyWith(photoIds: ids));
+  }
+
   Future<void> _confirmClear(
     BuildContext context,
     ProfileShowcaseDraftUiState draftState,
   ) async {
+    final session = ref.read(sessionProvider).asData?.value;
+    final revision = draftState.serverDraft?.revision ?? 0;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
@@ -448,10 +604,12 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
         ],
       ),
     );
-    if (confirmed == true) {
+    if (confirmed == true &&
+        mounted &&
+        identical(session, ref.read(sessionProvider).asData?.value)) {
       await ref
           .read(profileShowcaseDraftControllerProvider.notifier)
-          .clearDraft();
+          .clearDraft(expectedRevision: revision);
     }
   }
 }
@@ -608,6 +766,16 @@ class _PublicDisplayPublicationCard extends ConsumerWidget {
               color: t.success,
             ),
           ],
+          if (publicationState?.publication.id != null) ...[
+            SizedBox(height: t.spacing.md),
+            Text(
+              '发布版本：${publicationState!.publication.revision}；来源草稿版本：${publicationState.publication.sourceRevision}',
+            ),
+            _ShowcaseFieldsPreview(
+              input: publicationState.publication.publicFields,
+              photos: publicationState.publication.photos,
+            ),
+          ],
           SizedBox(height: t.spacing.md),
           Wrap(
             spacing: t.spacing.sm,
@@ -633,6 +801,14 @@ class _PublicDisplayPublicationCard extends ConsumerWidget {
                   prefixIcon: const Icon(Icons.public_rounded, size: 18),
                   onPressed: () => _confirmPublish(context, ref),
                 ),
+              if (publicationState?.isPublished == true)
+                AppGhostButton(
+                  label: '撤回展示',
+                  isDestructive: true,
+                  onPressed: publicationState?.publishing == true
+                      ? null
+                      : () => _confirmWithdraw(context, ref),
+                ),
             ],
           ),
         ],
@@ -641,11 +817,28 @@ class _PublicDisplayPublicationCard extends ConsumerWidget {
   }
 
   Future<void> _confirmPublish(BuildContext context, WidgetRef ref) async {
+    final session = ref.read(sessionProvider).asData?.value;
+    final draft = ref
+        .read(profileShowcaseDraftControllerProvider)
+        .asData
+        ?.value;
+    final publication = ref
+        .read(profileShowcasePublicationControllerProvider)
+        .asData
+        ?.value;
+    if (draft == null || publication == null) return;
+    final revision = draft.serverDraft?.revision ?? 0;
+    final publicationRevision = publication.publication.revision;
+    final audiences = draft.editor.audiences
+        .map((key) => showcaseAudienceLabels[key] ?? key)
+        .join('、');
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
         title: const Text('确认发布这份草稿？'),
-        content: const Text('发布需要你主动确认；本页只确认保存发布版本，不承诺对其他用户的可见范围，也不会改变匹配结果。'),
+        content: Text(
+          '发布草稿版本 $revision，展示范围：${audiences.isEmpty ? "尚未选择" : audiences}。内容仅供当前符合所选范围的对象读取。',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(false),
@@ -658,10 +851,50 @@ class _PublicDisplayPublicationCard extends ConsumerWidget {
         ],
       ),
     );
-    if (confirmed == true) {
+    if (confirmed == true &&
+        context.mounted &&
+        identical(session, ref.read(sessionProvider).asData?.value)) {
       await ref
           .read(profileShowcasePublicationControllerProvider.notifier)
-          .publishApprovedDraft();
+          .publishApprovedDraft(
+            expectedDraftRevision: revision,
+            expectedPublicationRevision: publicationRevision,
+          );
+    }
+  }
+
+  Future<void> _confirmWithdraw(BuildContext context, WidgetRef ref) async {
+    final session = ref.read(sessionProvider).asData?.value;
+    final revision = ref
+        .read(profileShowcasePublicationControllerProvider)
+        .asData
+        ?.value
+        .publication
+        .revision;
+    if (revision == null) return;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('撤回当前展示？'),
+        content: const Text('撤回后，对方的新读取请求按当前权限停止提供展示内容。'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text('取消'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: const Text('确认撤回'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed == true &&
+        context.mounted &&
+        identical(session, ref.read(sessionProvider).asData?.value)) {
+      await ref
+          .read(profileShowcasePublicationControllerProvider.notifier)
+          .withdraw(expectedPublicationRevision: revision);
     }
   }
 }
@@ -716,19 +949,8 @@ AppTagVariant _reviewStatusTagVariant(String status) {
   };
 }
 
-ProfileShowcaseDraftInput _seedFromSnapshot(PersonalShowcaseSnapshot snapshot) {
-  final intro = snapshot.expressionAdvice.isNotEmpty
-      ? snapshot.expressionAdvice.first
-      : '';
-  return ProfileShowcaseDraftInput(
-    selfIntro: intro,
-    interestTags: snapshot.pendingSuggestions.take(2).toList(growable: false),
-    lifestyleTags: snapshot.city.trim().isEmpty
-        ? const []
-        : ['常驻${snapshot.city.trim()}'],
-    openerNote: '可以从${snapshot.primaryMissingClue}聊起。',
-  );
-}
+ProfileShowcaseDraftInput _seedFromSnapshot(PersonalShowcaseSnapshot _) =>
+    ProfileShowcaseDraftInput.empty;
 
 List<String> _splitTags(String value) {
   return value
@@ -739,51 +961,80 @@ List<String> _splitTags(String value) {
       .toList(growable: false);
 }
 
-class _PreviewCard extends StatelessWidget {
-  const _PreviewCard({required this.snapshot});
-
-  final PersonalShowcaseSnapshot snapshot;
+class _PreviewCard extends ConsumerWidget {
+  const _PreviewCard();
 
   @override
-  Widget build(BuildContext context) {
-    final t = context.appTokens;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final draft = ref
+        .watch(profileShowcaseDraftControllerProvider)
+        .asData
+        ?.value;
     return AppCard(
-      backgroundColor: t.browseSurface,
-      border: Border.all(color: t.browseBorder),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '别人可能这样理解你',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: t.textPrimary,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          SizedBox(height: t.spacing.sm),
-          ...snapshot.previewLines.map(
-            (line) => Padding(
-              padding: EdgeInsets.only(bottom: t.spacing.xs),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(Icons.check_circle_outline, size: 18, color: t.success),
-                  SizedBox(width: t.spacing.xs),
-                  Expanded(
-                    child: Text(
-                      line,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: t.textSecondary,
-                        height: 1.4,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          Text('当前私有草稿预览', style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 8),
+          _ShowcaseFieldsPreview(
+            input: draft?.editor ?? ProfileShowcaseDraftInput.empty,
+            photos: draft?.serverDraft?.photos ?? const [],
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ShowcaseFieldsPreview extends StatelessWidget {
+  const _ShowcaseFieldsPreview({required this.input, required this.photos});
+
+  final ProfileShowcaseDraftInput input;
+  final List<ShowcasePhoto> photos;
+
+  @override
+  Widget build(BuildContext context) {
+    final references = {for (final photo in photos) photo.id: photo};
+    final fields = {
+      '展示昵称': input.displayName,
+      '展示城市': input.city,
+      '展示关系目标': input.relationshipGoal,
+      '自我介绍': input.selfIntro,
+      '兴趣标签': input.interestTags.join('、'),
+      '生活线索': input.lifestyleTags.join('、'),
+      '开场话题': input.openerNote,
+    };
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (final field in fields.entries)
+          if (field.value.trim().isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: Text('${field.key}：${field.value}'),
+            ),
+        Text(
+          input.audiences.isEmpty
+              ? '展示范围尚未选择'
+              : '展示范围：${input.audiences.map((key) => showcaseAudienceLabels[key] ?? key).join('、')}',
+        ),
+        if (input.photoIds.isNotEmpty)
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final id in input.photoIds)
+                SizedBox.square(
+                  dimension: 144,
+                  child: references[id] == null
+                      ? const Center(child: Text('照片当前不可用'))
+                      : AuthenticatedShowcasePhoto(
+                          contentPath: references[id]!.contentPath,
+                        ),
+                ),
+            ],
+          ),
+      ],
     );
   }
 }

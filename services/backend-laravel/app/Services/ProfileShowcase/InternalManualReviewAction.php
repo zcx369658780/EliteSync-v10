@@ -2,7 +2,9 @@
 
 namespace App\Services\ProfileShowcase;
 
+use App\Models\User;
 use App\Models\UserProfileShowcaseDraft;
+use App\Services\Admin\UserGovernance;
 use App\Models\UserProfileShowcaseReviewAudit;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
@@ -13,6 +15,7 @@ class InternalManualReviewAction
     private const ALLOWED_ACTOR_TYPES = [
         'internal_manual_reviewer',
         'strict_test_harness',
+        'web_admin',
     ];
 
     private const ALLOWED_RESULTS = [
@@ -37,6 +40,8 @@ class InternalManualReviewAction
 
         $this->assertAllowedActor($draft, $actorType, $actorId, $actorUserId);
         $this->assertAllowedResult($result);
+        $expectedRevision = (int) ($metadata['expected_revision'] ?? $draft->revision);
+        $expectedFieldsHash = $this->reviewedFieldsHash($draft);
 
         if ($draft->moderation_status !== 'pending') {
             throw new RuntimeException('profile_showcase_review_requires_pending_draft');
@@ -46,7 +51,12 @@ class InternalManualReviewAction
             throw new InvalidArgumentException('profile_showcase_review_reason_required');
         }
 
-        return DB::transaction(function () use ($draft, $actorType, $actorId, $result, $reasonCode, $note, $correlationId): UserProfileShowcaseReviewAudit {
+        return DB::transaction(function () use ($draft, $actorType, $actorId, $actorUserId, $result, $reasonCode, $note, $correlationId, $expectedRevision, $expectedFieldsHash): UserProfileShowcaseReviewAudit {
+            if ($actorType === 'web_admin') {
+                abort_unless($actorUserId !== null && $actorId === (string) $actorUserId, 403);
+                $admin = User::findOrFail((int) $actorUserId);
+                app(UserGovernance::class)->target($admin, (int) $draft->user_id);
+            }
             /** @var UserProfileShowcaseDraft $lockedDraft */
             $lockedDraft = UserProfileShowcaseDraft::query()
                 ->whereKey($draft->id)
@@ -56,6 +66,10 @@ class InternalManualReviewAction
             if ($lockedDraft->moderation_status !== 'pending') {
                 throw new RuntimeException('profile_showcase_review_requires_pending_draft');
             }
+
+            abort_unless((int) $lockedDraft->revision === $expectedRevision
+                && hash_equals($expectedFieldsHash, $this->reviewedFieldsHash($lockedDraft)),
+                409, 'profile_showcase_review_revision_changed');
 
             $previousStatus = (string) $lockedDraft->moderation_status;
 
@@ -122,12 +136,7 @@ class InternalManualReviewAction
 
     private function reviewedFieldsHash(UserProfileShowcaseDraft $draft): string
     {
-        $payload = [
-            'self_intro' => $draft->self_intro,
-            'interest_tags' => $draft->interest_tags ?? [],
-            'lifestyle_tags' => $draft->lifestyle_tags ?? [],
-            'opener_note' => $draft->opener_note,
-        ];
+        $payload = app(ShowcaseWorkflow::class)->snapshot($draft);
 
         return hash('sha256', json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
     }

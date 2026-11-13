@@ -11,6 +11,9 @@ class ProfileShowcasePublicationEntity {
     this.publicFields = ProfileShowcaseDraftInput.empty,
     this.publishedAt,
     this.updatedAt,
+    this.revision = 0,
+    this.sourceRevision = 0,
+    this.photos = const [],
   });
 
   final int? id;
@@ -22,6 +25,9 @@ class ProfileShowcasePublicationEntity {
   final ProfileShowcaseDraftInput publicFields;
   final DateTime? publishedAt;
   final DateTime? updatedAt;
+  final int revision;
+  final int sourceRevision;
+  final List<ShowcasePhoto> photos;
 
   bool get isPublished =>
       publicationStatus == 'published' &&

@@ -29,6 +29,7 @@ return [
     */
 
     'disks' => [
+        'v1016_showcase' => ['driver' => 'local', 'root' => storage_path('app/v1016-showcase-private'), 'visibility' => 'private', 'serve' => false, 'throw' => true],
         'v1011_relationship' => ['driver' => 'local', 'root' => storage_path('app/v1011-relationship-private'), 'throw' => true],
         'v1009' => ['driver' => 'local', 'root' => env('V1009_MEDIA_ROOT', storage_path('app/v1009-private')), 'visibility' => 'private', 'serve' => false, 'throw' => true],
         'v1007' => [

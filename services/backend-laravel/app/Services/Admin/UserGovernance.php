@@ -48,6 +48,10 @@ final class UserGovernance
             abort_unless((int) $user->verify_revision === $expected, 409, 'stale verification revision');
             $before = ['status' => $user->verify_status, 'revision' => (int) $user->verify_revision];
             $user->forceFill(['verify_status' => $status, 'verify_reason' => $reason, 'verify_revision' => $expected + 1])->save();
+            DB::table('profile_operating_applications')->where('user_id', $id)->update([
+                'state' => $status, 'feedback' => $reason, 'reviewer_id' => $actor->id,
+                'revision' => DB::raw('revision + 1'), 'updated_at' => now(),
+            ]);
             OperationAudit::record($actor->id, 'user.review', 'user', $id, $reason, $expected,
                 $before, ['status' => $status, 'revision' => $expected + 1]);
         });

@@ -115,7 +115,11 @@ void main() {
       await remote.publishApprovedDraft();
       expect(client.method, 'POST');
       expect(client.path, '/api/v1/profile/showcase/publication');
-      expect(client.body, {'confirm_public_display': true});
+      expect(client.body, {
+        'confirm_public_display': true,
+        'expected_revision': 0,
+        'publication_revision': 0,
+      });
     },
   );
 

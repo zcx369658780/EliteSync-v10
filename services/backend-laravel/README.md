@@ -1,6 +1,16 @@
-# EliteSync Backend (Laravel 11)
+# EliteSync Backend
 
-当前目录已经初始化为 Laravel 11 项目骨架，并完成了第一批 P0 迁移（认证 + 问卷基础接口）。
+当前锁定 Laravel 13、PHP 8.4，稳定本地开发服务使用持久 MariaDB 10.11。以下早期环境说明保留其历史背景。
+
+## v10.1.6 展示资料闭环
+
+本机 API 与管理端入口为 `http://127.0.0.1:8021`，沿用既有 Docker 容器和数据库卷。私有配置由 Owner 本机 `EliteSyncDev/v1015-current-dev/runtime-private.json` 定位，凭据和数据库留在本机。迁移 `2026_11_13_120000_complete_profile_showcase_workflow` 增加内容版本、不可变提交快照、私有照片引用和运营申请，启动过程保留现有业务。
+
+普通 APP 使用 `/api/v1/profile/showcase/draft` 保存，`draft/submit-review` 提交，`photos` 上传。Web `/admin/showcase` 处理具名版本并返回反馈。本人显式 POST `publication` 后发布，DELETE 可撤回。`/api/v1/profile/showcase/{owner}` 及其 `photos/{photo}` 根据当前关系、受众和发布版本逐次鉴权。照片存于私有 `v1016_showcase` disk，最多6张，解码后重编码并去除原始元数据。发布快照与后续草稿分离。
+
+修改携带 `expected_revision`，发布另带 `publication_revision` 与明确确认。已审核的内容不能自动批准新版本。旧草稿可重新提交，受限账号保留本人只读。移除和撤回约束后续读取，已发布的旧快照在替换或撤回前继续按其既有受众生效。
+
+运营参与申请使用 `/api/v1/profile/operating-application`，管理端在账号页面审核，普通展示资料独立可用。相识后新增能力仅有应用层接口契约，见本版 `AFTER_ACQUAINTANCE_CONTRACT.md`。
 
 ## 版本建议（当前仓库要求）
 

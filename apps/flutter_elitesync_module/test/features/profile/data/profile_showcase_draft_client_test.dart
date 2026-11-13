@@ -137,6 +137,12 @@ void main() {
     ).toJson();
 
     expect(request, {
+      'expected_revision': 0,
+      'display_name': null,
+      'city': null,
+      'relationship_goal': null,
+      'photo_ids': <int>[],
+      'audiences': <String>[],
       'self_intro': '你好',
       'interest_tags': ['咖啡'],
       'lifestyle_tags': ['周末早起'],

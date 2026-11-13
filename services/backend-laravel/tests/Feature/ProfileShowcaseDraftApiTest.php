@@ -38,6 +38,8 @@ class ProfileShowcaseDraftApiTest extends TestCase
         Sanctum::actingAs($user);
 
         $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 0,
+            'audiences' => ['friends'],
             'self_intro' => '  喜欢慢节奏聊天，也重视边界感。  ',
             'interest_tags' => ['咖啡', '散步'],
             'lifestyle_tags' => ['周末慢生活'],
@@ -80,11 +82,15 @@ class ProfileShowcaseDraftApiTest extends TestCase
         Sanctum::actingAs($user);
 
         $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 0,
+            'audiences' => ['friends'],
             'self_intro' => '第一版',
             'interest_tags' => ['咖啡'],
         ])->assertOk();
 
         $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 1,
+            'audiences' => ['friends'],
             'self_intro' => '第二版',
             'interest_tags' => ['电影', '散步'],
             'lifestyle_tags' => [],
@@ -104,16 +110,18 @@ class ProfileShowcaseDraftApiTest extends TestCase
         Sanctum::actingAs($user);
 
         $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 0,
+            'audiences' => ['friends'],
             'self_intro' => '待清空',
         ])->assertOk();
 
-        $this->deleteJson('/api/v1/profile/showcase/draft')
+        $this->deleteJson('/api/v1/profile/showcase/draft', ['expected_revision' => 1])
             ->assertOk()
             ->assertJsonPath('ok', true)
             ->assertJsonPath('draft', null)
             ->assertJsonPath('copy_state.save_label', 'cleared_private_draft');
 
-        $this->deleteJson('/api/v1/profile/showcase/draft')->assertOk();
+        $this->deleteJson('/api/v1/profile/showcase/draft', ['expected_revision' => 1])->assertOk()->assertJsonPath('revision', 2);
         $this->getJson('/api/v1/profile/showcase/draft')
             ->assertOk()
             ->assertJsonPath('draft', null);
@@ -135,6 +143,8 @@ class ProfileShowcaseDraftApiTest extends TestCase
 
         Sanctum::actingAs($userA);
         $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 0,
+            'audiences' => ['friends'],
             'self_intro' => '用户A草稿',
         ])->assertOk();
 
@@ -143,7 +153,7 @@ class ProfileShowcaseDraftApiTest extends TestCase
             ->assertOk()
             ->assertJsonPath('draft', null);
 
-        $this->deleteJson('/api/v1/profile/showcase/draft')->assertOk();
+        $this->deleteJson('/api/v1/profile/showcase/draft', ['expected_revision' => 0])->assertOk();
 
         Sanctum::actingAs($userA);
         $this->getJson('/api/v1/profile/showcase/draft')
@@ -156,6 +166,8 @@ class ProfileShowcaseDraftApiTest extends TestCase
         Sanctum::actingAs($this->user('13800001207'));
 
         $response = $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 0,
+            'audiences' => ['friends'],
             'self_intro' => str_repeat('a', 501),
             'interest_tags' => array_fill(0, 11, 'tag'),
             'lifestyle_tags' => ['ok', str_repeat('b', 25)],
@@ -176,6 +188,8 @@ class ProfileShowcaseDraftApiTest extends TestCase
         Sanctum::actingAs($this->user('13800001208'));
 
         $response = $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 0,
+            'audiences' => ['friends'],
             'self_intro' => '安全默认值尝试',
             'source' => ['type' => 'questionnaire_answer'],
             'visibility' => 'public',
@@ -211,6 +225,8 @@ class ProfileShowcaseDraftApiTest extends TestCase
 
         Sanctum::actingAs($user);
         $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 0,
+            'audiences' => ['friends'],
             'self_intro' => '仅私有草稿',
             'interest_tags' => ['阅读'],
         ])->assertOk()
@@ -234,10 +250,10 @@ class ProfileShowcaseDraftApiTest extends TestCase
         $user = $this->user('13800001210');
         Sanctum::actingAs($user);
 
-        $this->postJson('/api/v1/profile/showcase/draft/submit-review')
+        $this->postJson('/api/v1/profile/showcase/draft/submit-review', ['expected_revision' => 0])
             ->assertStatus(422)
             ->assertJsonPath('ok', false)
-            ->assertJsonPath('error.code', 'private_draft_required');
+            ->assertJsonPath('error.message', 'private_draft_required');
 
         $this->assertDatabaseCount('user_profile_showcase_drafts', 0);
     }
@@ -249,13 +265,15 @@ class ProfileShowcaseDraftApiTest extends TestCase
         Sanctum::actingAs($user);
 
         $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 0,
+            'audiences' => ['friends'],
             'self_intro' => '想先提交审核，但仍保持私有。',
             'interest_tags' => ['阅读'],
             'lifestyle_tags' => ['周末慢生活'],
             'opener_note' => '可以从最近读到的一本书聊起。',
         ])->assertOk();
 
-        $this->postJson('/api/v1/profile/showcase/draft/submit-review')
+        $this->postJson('/api/v1/profile/showcase/draft/submit-review', ['expected_revision' => 1])
             ->assertOk()
             ->assertJsonPath('ok', true)
             ->assertJsonPath('draft.visibility_intent', 'private_draft')
@@ -301,10 +319,13 @@ class ProfileShowcaseDraftApiTest extends TestCase
         Sanctum::actingAs($user);
 
         $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 0,
+            'audiences' => ['friends'],
             'self_intro' => '审核覆盖尝试',
         ])->assertOk();
 
         $response = $this->postJson('/api/v1/profile/showcase/draft/submit-review', [
+            'expected_revision' => 1,
             'moderation_status' => 'approved',
             'public_display_eligible' => true,
             'matching_scoring_eligible' => true,
@@ -333,11 +354,15 @@ class ProfileShowcaseDraftApiTest extends TestCase
         Sanctum::actingAs($user);
 
         $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 0,
+            'audiences' => ['friends'],
             'self_intro' => '待审核版本',
         ])->assertOk();
-        $this->postJson('/api/v1/profile/showcase/draft/submit-review')->assertOk();
+        $this->postJson('/api/v1/profile/showcase/draft/submit-review', ['expected_revision' => 1])->assertOk();
 
         $this->putJson('/api/v1/profile/showcase/draft', [
+            'expected_revision' => 1,
+            'audiences' => ['friends'],
             'self_intro' => '修改后重新变为未提交',
         ])->assertOk()
             ->assertJsonPath('draft.self_intro', '修改后重新变为未提交')

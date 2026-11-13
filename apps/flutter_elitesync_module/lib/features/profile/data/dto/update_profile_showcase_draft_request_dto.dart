@@ -6,16 +6,29 @@ class UpdateProfileShowcaseDraftRequestDto {
     required this.interestTags,
     required this.lifestyleTags,
     required this.openerNote,
+    this.displayName = '',
+    this.city = '',
+    this.relationshipGoal = '',
+    this.photoIds = const [],
+    this.audiences = const [],
+    this.expectedRevision = 0,
   });
 
   factory UpdateProfileShowcaseDraftRequestDto.fromInput(
-    ProfileShowcaseDraftInput input,
-  ) {
+    ProfileShowcaseDraftInput input, {
+    int expectedRevision = 0,
+  }) {
     return UpdateProfileShowcaseDraftRequestDto(
       selfIntro: input.selfIntro.trim(),
       interestTags: _normalizeTags(input.interestTags),
       lifestyleTags: _normalizeTags(input.lifestyleTags),
       openerNote: input.openerNote.trim(),
+      displayName: input.displayName.trim(),
+      city: input.city.trim(),
+      relationshipGoal: input.relationshipGoal.trim(),
+      photoIds: input.photoIds,
+      audiences: input.audiences,
+      expectedRevision: expectedRevision,
     );
   }
 
@@ -23,9 +36,21 @@ class UpdateProfileShowcaseDraftRequestDto {
   final List<String> interestTags;
   final List<String> lifestyleTags;
   final String openerNote;
+  final String displayName;
+  final String city;
+  final String relationshipGoal;
+  final List<int> photoIds;
+  final List<String> audiences;
+  final int expectedRevision;
 
   Map<String, dynamic> toJson() {
     return {
+      'expected_revision': expectedRevision,
+      'display_name': displayName.isEmpty ? null : displayName,
+      'city': city.isEmpty ? null : city,
+      'relationship_goal': relationshipGoal.isEmpty ? null : relationshipGoal,
+      'photo_ids': photoIds,
+      'audiences': audiences,
       'self_intro': selfIntro.isEmpty ? null : selfIntro,
       'interest_tags': interestTags,
       'lifestyle_tags': lifestyleTags,

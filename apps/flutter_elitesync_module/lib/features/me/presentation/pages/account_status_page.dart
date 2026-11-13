@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/features/platform_v1014/safety_cases_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/operational_status_card.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/widgets/operating_application_card.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/sanction_appeal_card.dart';
 
 class AccountStatusPage extends StatelessWidget {
@@ -18,6 +19,7 @@ class AccountStatusPage extends StatelessWidget {
         children: [
           if (restorationLocalBuild) ...[
             const OperationalStatusCard(),
+            const OperatingApplicationCard(),
             SizedBox(height: t.spacing.md),
           ],
           if (const bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD') ||

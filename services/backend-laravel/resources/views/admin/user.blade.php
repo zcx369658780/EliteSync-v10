@@ -12,6 +12,11 @@
 <p style="white-space:pre-wrap;overflow-wrap:anywhere">{{ $appeal->note }}</p></article>
 @empty<p>此账号暂无本人处罚申诉。</p>@endforelse</section>
 <section class="panel"><h2>运营参与资格</h2><p>当前原因：{{ $user->verify_reason }}</p>
+@php($application = \Illuminate\Support\Facades\DB::table('profile_operating_applications')->where('user_id', $user->id)->first())
+@if($application)
+<p>本人申请 v{{ $application->revision }} · {{ $application->state }}</p>
+<p style="white-space:pre-wrap">{{ $application->note }}</p>
+@endif
 <form method="post" action="{{ route('admin.review',$user->id) }}">@csrf
 <input type="hidden" name="expected_revision" value="{{ $user->verify_revision }}">
 <label for="review-status">审核结果</label>
