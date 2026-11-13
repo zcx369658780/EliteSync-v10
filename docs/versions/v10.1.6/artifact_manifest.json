@@ -1,20 +1,20 @@
 {
   "schema": "elitesync.v10.1.6.artifact_manifest.v1",
   "version": "10.1.6-dev",
-  "engineering_status": "SCOPED_SIX_AC_COMPLETED",
-  "advisor_acceptance": "PENDING",
+  "engineering_status": "R1_01_AND_R1_02_COMPLETED_AWAITING_ADVISOR",
+  "advisor_acceptance": "PENDING_R1_REVIEW",
   "owner_acceptance": "PENDING",
   "repository": "zcx369658780/EliteSync-v10",
   "branch": "codex/v10.1.6-backend-productization-20261113",
   "product_root": "D:\\EliteSync-v10-product-v1015-20261101",
   "task_commit": "4471bed660d6d9a1eac00f56ee54b9bb9d9e8a1a",
   "inherited_baseline": "2687a39ca09440f17ed3e5e586c5c3ab4a318130",
-  "product_source_commit": "fe9360b7c0abd0abb88d1e2623d1c9ec1660eacc",
-  "backend_business_commit": "df7de198ac28e97a0fee4c9ec80f29723d8ea178",
+  "product_source_commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
+  "backend_business_commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
   "source_tree_ids": {
     "apps/flutter_elitesync_module/lib": "c14578de1c98d338fcff5279bfa8087f78b77b06",
     "apps/android/app": "1effa1ae14c4e3a89b5206496d61911f9694abac",
-    "services/backend-laravel/app": "4e42778d7a51cdacfc529bcbcbe480057e3a0b0a",
+    "services/backend-laravel/app": "7b7825b38b0af8e2bb542219ccc2e0511d6193ee",
     "services/backend-laravel/routes": "80a1e76c2706daaaeae07d118968fd92f98ea59f",
     "services/backend-laravel/config": "324f63e32e00a91348ff6b6d030f13d4eaa50d28",
     "services/backend-laravel/database": "c61cafafbcbddfb25f7830d16dd155ad26c72a62",
@@ -36,7 +36,9 @@
     "fixed_owner_local_path": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\delivery\\v10.1.6-dev-1010601-fe9360b7.apk",
     "distribution": "LOCAL_ONLY",
     "installed_emulator_bytes_verified": true,
-    "build_elapsed_seconds": 36.3294921
+    "build_elapsed_seconds": 36.3294921,
+    "inherited_for_r1": true,
+    "inheritance_basis": "All apps source trees byte-identical to fe9360b7; this R1 changes backend consumers and source/deployment identity records"
   },
   "runtime": {
     "backend": "Laravel13/PHP8.4.27",
@@ -48,99 +50,238 @@
     "deployed_source_bytes": [
       {
         "path": "services/backend-laravel/app/Services/ProfileShowcase/ShowcaseWorkflow.php",
-        "sha256_worktree_and_container_bytes": "a4d65b537edc8b5c14842703798a403b2dcb864d0ed8a34b8b2cb3bc9838f595"
+        "git_blob": {
+          "commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
+          "object_id": "667590bf578b25ddaa414ed524f465c3cbfbe7ec",
+          "bytes": 22689,
+          "sha256": "c34eda094dac3631fd4ec44c0bbe5aaa39f40a87d7801cc179840e585e392678"
+        },
+        "worktree": {
+          "bytes": 22689,
+          "sha256": "c34eda094dac3631fd4ec44c0bbe5aaa39f40a87d7801cc179840e585e392678"
+        },
+        "container": {
+          "bytes": 22689,
+          "sha256": "c34eda094dac3631fd4ec44c0bbe5aaa39f40a87d7801cc179840e585e392678"
+        },
+        "all_three_byte_streams_equal": true,
+        "sha256_worktree_and_container_bytes": "c34eda094dac3631fd4ec44c0bbe5aaa39f40a87d7801cc179840e585e392678"
       },
       {
         "path": "services/backend-laravel/app/Http/Controllers/Api/V1/ProfileShowcaseDraftController.php",
-        "sha256_worktree_and_container_bytes": "868da4744bde6e301ef25ce1c98c7d5f71c356871ae06671acc6eb52685c5dd9"
+        "git_blob": {
+          "commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
+          "object_id": "3703f86fd99408ed0a754050510b819c2cc1e825",
+          "bytes": 3018,
+          "sha256": "e3ddf8654e2a8d06107be18367bca92617cb5b46e2423621035768c9f6a9d02f"
+        },
+        "worktree": {
+          "bytes": 3018,
+          "sha256": "e3ddf8654e2a8d06107be18367bca92617cb5b46e2423621035768c9f6a9d02f"
+        },
+        "container": {
+          "bytes": 3018,
+          "sha256": "e3ddf8654e2a8d06107be18367bca92617cb5b46e2423621035768c9f6a9d02f"
+        },
+        "all_three_byte_streams_equal": true,
+        "sha256_worktree_and_container_bytes": "e3ddf8654e2a8d06107be18367bca92617cb5b46e2423621035768c9f6a9d02f"
       },
       {
         "path": "services/backend-laravel/app/Http/Controllers/Api/V1/ProfileShowcasePublicationController.php",
-        "sha256_worktree_and_container_bytes": "a3a38511d7bbe5a95e4ab8b4a1ef0cd7bf713b7d86bb93f1ccad7cc51753567c"
+        "git_blob": {
+          "commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
+          "object_id": "320ad47a39f5868cccdd2e6b28a855dfe8e4c44b",
+          "bytes": 2247,
+          "sha256": "b1c5e8402623bb5e1c903eace94ca5546520823ce95bc38e1cde4613ab5890aa"
+        },
+        "worktree": {
+          "bytes": 2247,
+          "sha256": "b1c5e8402623bb5e1c903eace94ca5546520823ce95bc38e1cde4613ab5890aa"
+        },
+        "container": {
+          "bytes": 2247,
+          "sha256": "b1c5e8402623bb5e1c903eace94ca5546520823ce95bc38e1cde4613ab5890aa"
+        },
+        "all_three_byte_streams_equal": true,
+        "sha256_worktree_and_container_bytes": "b1c5e8402623bb5e1c903eace94ca5546520823ce95bc38e1cde4613ab5890aa"
       },
       {
         "path": "services/backend-laravel/app/Http/Controllers/Web/AdminShowcaseController.php",
-        "sha256_worktree_and_container_bytes": "277fc02b4c63ab82517b2962bb6ece369467d250d32ef728c25cbbb54df422fc"
+        "git_blob": {
+          "commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
+          "object_id": "194f3c118175cdbd9f26e1a09fb20b1628fe8d46",
+          "bytes": 3773,
+          "sha256": "d07a286a83f4370313dbde5f994fd688ec575aff0354ff340097bc8deb36253b"
+        },
+        "worktree": {
+          "bytes": 3773,
+          "sha256": "d07a286a83f4370313dbde5f994fd688ec575aff0354ff340097bc8deb36253b"
+        },
+        "container": {
+          "bytes": 3773,
+          "sha256": "d07a286a83f4370313dbde5f994fd688ec575aff0354ff340097bc8deb36253b"
+        },
+        "all_three_byte_streams_equal": true,
+        "sha256_worktree_and_container_bytes": "d07a286a83f4370313dbde5f994fd688ec575aff0354ff340097bc8deb36253b"
       },
       {
         "path": "services/backend-laravel/database/migrations/2026_11_13_120000_complete_profile_showcase_workflow.php",
+        "git_blob": {
+          "commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
+          "object_id": "e7601a4ac99416fcbf863d9d5a62b30762cfb027",
+          "bytes": 3506,
+          "sha256": "171c6bbf0c22420afbe03a57b65ad384f648f93ae0cfab1488a8bcb971c090e8"
+        },
+        "worktree": {
+          "bytes": 3506,
+          "sha256": "171c6bbf0c22420afbe03a57b65ad384f648f93ae0cfab1488a8bcb971c090e8"
+        },
+        "container": {
+          "bytes": 3506,
+          "sha256": "171c6bbf0c22420afbe03a57b65ad384f648f93ae0cfab1488a8bcb971c090e8"
+        },
+        "all_three_byte_streams_equal": true,
         "sha256_worktree_and_container_bytes": "171c6bbf0c22420afbe03a57b65ad384f648f93ae0cfab1488a8bcb971c090e8"
       },
       {
         "path": "services/backend-laravel/config/filesystems.php",
+        "git_blob": {
+          "commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
+          "object_id": "4182d6a3b47514050633a4b25178d889576466ef",
+          "bytes": 3840,
+          "sha256": "38197c148d047ea721387b706c697bdcac337af31eb5eb17ceca7db1decccbbb"
+        },
+        "worktree": {
+          "bytes": 3840,
+          "sha256": "38197c148d047ea721387b706c697bdcac337af31eb5eb17ceca7db1decccbbb"
+        },
+        "container": {
+          "bytes": 3840,
+          "sha256": "38197c148d047ea721387b706c697bdcac337af31eb5eb17ceca7db1decccbbb"
+        },
+        "all_three_byte_streams_equal": true,
         "sha256_worktree_and_container_bytes": "38197c148d047ea721387b706c697bdcac337af31eb5eb17ceca7db1decccbbb"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/SlowDatingService.php",
+        "git_blob": {
+          "commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
+          "object_id": "5a3ac99890ed2961b2f6cc207074b2896f40cf2e",
+          "bytes": 14104,
+          "sha256": "91be53969b2a267cda636274c25808ee46c0e498e5eb818642968ef6168a7866"
+        },
+        "worktree": {
+          "bytes": 14104,
+          "sha256": "91be53969b2a267cda636274c25808ee46c0e498e5eb818642968ef6168a7866"
+        },
+        "container": {
+          "bytes": 14104,
+          "sha256": "91be53969b2a267cda636274c25808ee46c0e498e5eb818642968ef6168a7866"
+        },
+        "all_three_byte_streams_equal": true,
+        "sha256_worktree_and_container_bytes": "91be53969b2a267cda636274c25808ee46c0e498e5eb818642968ef6168a7866"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/MatchRoundProjectionService.php",
+        "git_blob": {
+          "commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
+          "object_id": "f1f0a8c62f8c84498849b0051af5fe0b53322e32",
+          "bytes": 6668,
+          "sha256": "45a5f57f49473a2e58e92db414f879095b74bc2243171fdbfb331bccc505738d"
+        },
+        "worktree": {
+          "bytes": 6668,
+          "sha256": "45a5f57f49473a2e58e92db414f879095b74bc2243171fdbfb331bccc505738d"
+        },
+        "container": {
+          "bytes": 6668,
+          "sha256": "45a5f57f49473a2e58e92db414f879095b74bc2243171fdbfb331bccc505738d"
+        },
+        "all_three_byte_streams_equal": true,
+        "sha256_worktree_and_container_bytes": "45a5f57f49473a2e58e92db414f879095b74bc2243171fdbfb331bccc505738d"
       }
-    ]
+    ],
+    "deployment_method": "Existing read-only source bind mounts; PHP timestamp revalidation; existing DB and private storage retained"
   },
   "acceptance": {
     "AC16-01": {
       "engineering_result": "PASS",
-      "scope": "v10.1.6 profile workflow"
+      "scope": "v10.1.6 profile workflow",
+      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
     },
     "AC16-02": {
       "engineering_result": "PASS",
-      "scope": "v10.1.6 profile workflow"
+      "scope": "v10.1.6 profile workflow",
+      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
     },
     "AC16-03": {
       "engineering_result": "PASS",
-      "scope": "v10.1.6 profile workflow"
+      "scope": "v10.1.6 profile workflow",
+      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
     },
     "AC16-04": {
       "engineering_result": "PASS",
-      "scope": "v10.1.6 profile workflow"
+      "scope": "v10.1.6 profile workflow",
+      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
     },
     "AC16-05": {
       "engineering_result": "PASS",
-      "scope": "v10.1.6 profile workflow"
+      "scope": "v10.1.6 profile workflow",
+      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
     },
     "AC16-06": {
       "engineering_result": "PASS",
-      "scope": "v10.1.6 deliverable; SFU resource limitation separately OPEN"
+      "scope": "v10.1.6 deliverable; SFU resource limitation separately OPEN",
+      "advisor_review": "PENDING_R1_REVIEW; previous advisor findings retained in ADVISOR_ACCEPTANCE_20261113.md"
     }
   },
   "evidence": {
-    "final_candidate": [
-      "APP draft8 save",
-      "normal Web approval of submission4",
-      "APP explicit publication5",
-      "B ordinary community author entry and private images",
-      "DB API WS restart identical scoped rows and image availability",
-      "dual APP cold readback and installed byte identity"
-    ],
-    "inherited_v1016_candidate": {
-      "source_commit": "8973568a3a0b34d25efa2ff149a718e84a66ee7e",
-      "apk_sha256": "7c45c820d85163f7d5d9363624e73f600ee3ca46844a81cb5a85b96e25bead98",
-      "scope": [
-        "needs_revision5 to revised approved6",
-        "three uploads, order and removal",
-        "save failure retained input and retry7",
-        "new private draft isolation",
-        "replacement/withdrawal/old URL/block boundary",
-        "normal A-C-A account isolation and re-login"
+    "inherited_v1016_delivery": {
+      "final_candidate": [
+        "APP draft8 save",
+        "normal Web approval of submission4",
+        "APP explicit publication5",
+        "B ordinary community author entry and private images",
+        "DB API WS restart identical scoped rows and image availability",
+        "dual APP cold readback and installed byte identity"
       ],
-      "final_delta": "one photo guidance string and backend README; business and request logic identical"
+      "inherited_v1016_candidate": {
+        "source_commit": "8973568a3a0b34d25efa2ff149a718e84a66ee7e",
+        "apk_sha256": "7c45c820d85163f7d5d9363624e73f600ee3ca46844a81cb5a85b96e25bead98",
+        "scope": [
+          "needs_revision5 to revised approved6",
+          "three uploads, order and removal",
+          "save failure retained input and retry7",
+          "new private draft isolation",
+          "replacement/withdrawal/old URL/block boundary",
+          "normal A-C-A account isolation and re-login"
+        ],
+        "final_delta": "one photo guidance string and backend README; business and request logic identical"
+      },
+      "backend_tests": {
+        "runtime": "PHP8.4.27 with isolated SQLite",
+        "tests": 62,
+        "assertions": 902,
+        "result": "PASS"
+      },
+      "flutter_targeted_tests": {
+        "tests": 57,
+        "result": "PASS"
+      },
+      "noninjected_reciprocal_reads": {
+        "requests": 8,
+        "result": "PASS"
+      },
+      "raw_private_root": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\v1016-current",
+      "raw_logs_screenshots_apk_credentials": "LOCAL_ONLY",
+      "documents": [
+        "docs/versions/v10.1.6/IMPLEMENTATION_REPORT.md",
+        "docs/versions/v10.1.6/AFTER_ACQUAINTANCE_CONTRACT.md",
+        "services/backend-laravel/README.md"
+      ]
     },
-    "backend_tests": {
-      "runtime": "PHP8.4.27 with isolated SQLite",
-      "tests": 62,
-      "assertions": 902,
-      "result": "PASS"
-    },
-    "flutter_targeted_tests": {
-      "tests": 57,
-      "result": "PASS"
-    },
-    "noninjected_reciprocal_reads": {
-      "requests": 8,
-      "result": "PASS"
-    },
-    "raw_private_root": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\v1016-current",
-    "raw_logs_screenshots_apk_credentials": "LOCAL_ONLY",
-    "documents": [
-      "docs/versions/v10.1.6/IMPLEMENTATION_REPORT.md",
-      "docs/versions/v10.1.6/AFTER_ACQUAINTANCE_CONTRACT.md",
-      "services/backend-laravel/README.md"
-    ]
+    "r1_result": "docs/versions/v10.1.6/supplement-r1-20261113/README.md",
+    "distinction": "Original APP/Web ordinary success chain is inherited by named scope; new permission fixtures and actual deployed reads are separately recorded"
   },
   "future_interfaces": {
     "implemented": false,
@@ -154,26 +295,18 @@
     "contract": "App\\Contracts\\AfterAcquaintanceExtension"
   },
   "resources": {
-    "snapshot_china_time": "2026-11-13T15:57:02.492391+08:00",
+    "snapshot_china_time": "2026-11-13T17:05:32.754024+08:00",
     "containers": {
       "db": "running",
       "api": "running",
       "ws": "running",
       "sfu": "exited"
     },
-    "apps": "STOPPED_DATA_RETAINED",
-    "emulators_retained": true,
-    "android_test_users": {
-      "5580": 10,
-      "5582": 11
-    },
-    "active_android_users": {
-      "5580": 0,
-      "5582": 0
-    },
-    "adb": "5038 with USB excluded",
+    "rooms": "UNAVAILABLE_SFU_EXITED",
+    "sfu_cause": "OPEN/UNKNOWN",
+    "device_actions_this_r1": "NOT_RUN",
     "phone_actions": false,
-    "rooms": "UNAVAILABLE_SFU_EXITED"
+    "last_device_snapshot": "2026-11-13T15:57:02+08:00; apps stopped and retained Android user data; no device replay in R1"
   },
   "open_items": [
     {
@@ -197,5 +330,148 @@
       ]
     }
   ],
-  "scope_exit": "Saved and synchronized version branch, then await advisor review"
+  "scope_exit": "Save, sync and read back same version branch; stop for advisor R1 review",
+  "previous_advisor_decision": {
+    "reviewed_commit": "222923bdec970bc2b2fcec4c51320edcb4f74688",
+    "verdict": "CHANGES_REQUIRED",
+    "record": "docs/versions/v10.1.6/ADVISOR_ACCEPTANCE_20261113.md"
+  },
+  "original_v1016_delivery": {
+    "saved_commit": "222923bdec970bc2b2fcec4c51320edcb4f74688",
+    "product_source_commit": "fe9360b7c0abd0abb88d1e2623d1c9ec1660eacc",
+    "backend_business_commit": "df7de198ac28e97a0fee4c9ec80f29723d8ea178",
+    "report": "docs/versions/v10.1.6/IMPLEMENTATION_REPORT.md"
+  },
+  "supplement_task_commit": "64a09b2ba75e7e10227059e617310a7ad045fe23",
+  "r1": {
+    "source_commit": "69b95628a35ceae6fb7a3f726b5034ddb0d1750a",
+    "report": "docs/versions/v10.1.6/supplement-r1-20261113/README.md",
+    "results": {
+      "R1-01": {
+        "engineering_result": "CLOSED",
+        "advisor_review": "PENDING",
+        "scope": [
+          "shared publication/audience/current relationship predicate",
+          "journey and decision including replay",
+          "candidate state independent from optional Showcase content"
+        ]
+      },
+      "R1-02": {
+        "engineering_result": "CLOSED",
+        "advisor_review": "PENDING",
+        "difference": "One additional CR byte only at the final newline of each of three controllers",
+        "controller_previous_identity": [
+          {
+            "path": "services/backend-laravel/app/Http/Controllers/Api/V1/ProfileShowcaseDraftController.php",
+            "reviewed_git": {
+              "bytes": 3018,
+              "sha256": "e3ddf8654e2a8d06107be18367bca92617cb5b46e2423621035768c9f6a9d02f"
+            },
+            "before_worktree": {
+              "bytes": 3019,
+              "sha256": "868da4744bde6e301ef25ce1c98c7d5f71c356871ae06671acc6eb52685c5dd9"
+            },
+            "before_container": {
+              "bytes": 3019,
+              "sha256": "868da4744bde6e301ef25ce1c98c7d5f71c356871ae06671acc6eb52685c5dd9"
+            },
+            "old_manifest_sha256": "868da4744bde6e301ef25ce1c98c7d5f71c356871ae06671acc6eb52685c5dd9",
+            "difference": "Only the final LF was CRLF; every preceding line retained LF",
+            "deterministic_equation": "before_worktree == reviewed_git_blob[:-1] + CRLF",
+            "final_git_worktree_container": {
+              "bytes": 3018,
+              "sha256": "e3ddf8654e2a8d06107be18367bca92617cb5b46e2423621035768c9f6a9d02f"
+            }
+          },
+          {
+            "path": "services/backend-laravel/app/Http/Controllers/Api/V1/ProfileShowcasePublicationController.php",
+            "reviewed_git": {
+              "bytes": 2247,
+              "sha256": "b1c5e8402623bb5e1c903eace94ca5546520823ce95bc38e1cde4613ab5890aa"
+            },
+            "before_worktree": {
+              "bytes": 2248,
+              "sha256": "a3a38511d7bbe5a95e4ab8b4a1ef0cd7bf713b7d86bb93f1ccad7cc51753567c"
+            },
+            "before_container": {
+              "bytes": 2248,
+              "sha256": "a3a38511d7bbe5a95e4ab8b4a1ef0cd7bf713b7d86bb93f1ccad7cc51753567c"
+            },
+            "old_manifest_sha256": "a3a38511d7bbe5a95e4ab8b4a1ef0cd7bf713b7d86bb93f1ccad7cc51753567c",
+            "difference": "Only the final LF was CRLF; every preceding line retained LF",
+            "deterministic_equation": "before_worktree == reviewed_git_blob[:-1] + CRLF",
+            "final_git_worktree_container": {
+              "bytes": 2247,
+              "sha256": "b1c5e8402623bb5e1c903eace94ca5546520823ce95bc38e1cde4613ab5890aa"
+            }
+          },
+          {
+            "path": "services/backend-laravel/app/Http/Controllers/Web/AdminShowcaseController.php",
+            "reviewed_git": {
+              "bytes": 3773,
+              "sha256": "d07a286a83f4370313dbde5f994fd688ec575aff0354ff340097bc8deb36253b"
+            },
+            "before_worktree": {
+              "bytes": 3774,
+              "sha256": "277fc02b4c63ab82517b2962bb6ece369467d250d32ef728c25cbbb54df422fc"
+            },
+            "before_container": {
+              "bytes": 3774,
+              "sha256": "277fc02b4c63ab82517b2962bb6ece369467d250d32ef728c25cbbb54df422fc"
+            },
+            "old_manifest_sha256": "277fc02b4c63ab82517b2962bb6ece369467d250d32ef728c25cbbb54df422fc",
+            "difference": "Only the final LF was CRLF; every preceding line retained LF",
+            "deterministic_equation": "before_worktree == reviewed_git_blob[:-1] + CRLF",
+            "final_git_worktree_container": {
+              "bytes": 3773,
+              "sha256": "d07a286a83f4370313dbde5f994fd688ec575aff0354ff340097bc8deb36253b"
+            }
+          }
+        ],
+        "resolution": "Working tree and actual container files rewritten to exact fixed Git Blob bytes; final Git/worktree/container identical; no controller logic difference"
+      }
+    },
+    "tests": {
+      "before_fix_permission_group": {
+        "tests": 9,
+        "failures": 7,
+        "assertions": 56,
+        "scope": "HTTP-kernel SQLite named permission fixtures"
+      },
+      "focused_after_fix": {
+        "tests": 49,
+        "assertions": 790,
+        "result": "PASS",
+        "runtime": "PHP8.4.27 SQLite isolated",
+        "suites": [
+          "ShowcaseJourneyAudienceTest",
+          "ProfileShowcaseWorkflowTest",
+          "V1012JourneyTest",
+          "V1012R1BoundaryTest",
+          "MatchRoundApiFoundationTest"
+        ]
+      },
+      "deployed_mariadb_kernel": {
+        "requests": 8,
+        "result": "PASS",
+        "fixture_authentication": true,
+        "transaction_rolled_back": true,
+        "scope": "Named permissions fixtures only; all fixture rows rolled back; auto-increment sequences can advance"
+      },
+      "existing_normal_http_readback": {
+        "requests": 9,
+        "result": "PASS",
+        "scope": "Actual existing bearer sessions, owner/peer/outsider detail and photos, journey read-only"
+      },
+      "controller_php84_lint": {
+        "files": 3,
+        "result": "PASS"
+      }
+    },
+    "review": "Non-author Codex focused source review; no remaining findings; advisor review pending",
+    "app_changes": false,
+    "apk_rebuild": "NOT_RUN",
+    "phone_actions": false,
+    "private_receipt_root": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\v1016-current\\supplement-r1"
+  }
 }

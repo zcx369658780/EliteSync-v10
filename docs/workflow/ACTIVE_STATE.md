@@ -1,3 +1,19 @@
+# 当前入口 2026-11-13 v10.1.6 R1工程补修完成待顾问复核
+
+R1-01受众旁路与R1-02三文件身份工程闭合，顾问复核PENDING。顾问对222923bd的CHANGES_REQUIRED保留固定候选身份。详见[R1结果](../versions/v10.1.6/supplement-r1-20261113/README.md)、[manifest](../versions/v10.1.6/artifact_manifest.json)和[顾问原复核](../versions/v10.1.6/ADVISOR_ACCEPTANCE_20261113.md)。
+
+实际根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.6-backend-productization-20261113`。接续文档64a09b2b，R1源码 `69b95628a35ceae6fb7a3f726b5034ddb0d1750a`。详情、图片和journey/decision/有效重放已统一当前发布及audiences判定，无权展示时保留合法提案和决策。三个控制器此前仅末行多一个CR，当前Git/工作树/容器精确同字节。49项790断言定向检查、8次现有容器MariaDB回滚夹具请求及9次普通会话真实HTTP只读检查通过。
+
+APP源码fe9360b7保持，继承APK `10.1.6-dev / 1010601 / com.elitesync.v1015dev / arm64-v8a`、123715466字节、SHA256 `444da1b6361734bcfd589ef2983add1fa823abb5709b6e7bfee238ca3db6bbf8`。原普通资料、照片、真实Web审核发布和持久化成果按具名范围继承，本轮构建/安装/设备动作NOT_RUN。
+
+资源实读 `2026-11-13T17:05:32.754024+08:00`，DB/API/WS运行，SFU exited、房间UNAVAILABLE、原因OPEN/UNKNOWN，结转后续通信工作。原设备状态保持其15:57具名回执，手机本轮无动作。私有R1回执位于Owner本机既有根的v1016-current/supplement-r1。
+
+本次按同版分支集中保存同步并回读，最终保存提交见Git历史及私有交付回执，随后停下顾问验收。原主库dirty/index、无关%SystemDrive%/和历史记录继续保护。
+
+---
+
+## 历史节点｜2026-11-13 顾问下达v10.1.6 R1
+
 # 当前入口 2026-11-13 v10.1.6顾问复核需R1补修
 
 顾问已复核固定候选222923bdec970bc2b2fcec4c51320edcb4f74688，结论CHANGES_REQUIRED。已有资料、照片和真实审核发布成果保留；本轮只下达两个补修项：R1-01旧慢约投影未执行Showcase所选受众；R1-02三个控制器的部署SHA256声明与固定Git字节未对齐。详见[顾问验收](../versions/v10.1.6/ADVISOR_ACCEPTANCE_20261113.md)、[R1任务](../versions/v10.1.6/supplement-r1-20261113/TASK_ORDER.md)与[接续prompt](../versions/v10.1.6/supplement-r1-20261113/CODEX_SUPPLEMENT_PROMPT.txt)。
@@ -9,6 +25,7 @@
 最近资源回执为2026-11-13 15:57:02北京时间：DB/API/WS运行，SFU恢复超时后exited，房间UNAVAILABLE，双APP停止并保留数据；不把此快照当恢复时实时状态。SFU继续OPEN/UNKNOWN，按v10.1.8通信工作结转，本R1不追加定位。
 
 普通工程与必要定向验证继续沿长期授权。两项补修完成后集中保存、同步与回读，停下再次验收；不启动v10.1.7、不合main、不发布、不操作手机。v10.1.5阶段收尾及v10功能优先、相识后仅接口、v10.1.12集中UI的安排保持有效。
+
 
 ---
 
