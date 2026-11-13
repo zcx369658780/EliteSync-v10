@@ -43,3 +43,19 @@ The pool prevents ordinary API accept-queue contention from blocking authority
 checks. CPU, database and lock contention remain shared dependencies. Monitor
 failures report the phase and elapsed time without private request data. The
 one-second response deadline and independent 3.5-second watchdog are retained.
+
+## Finite transport diagnostics
+
+Set `RTC_DIAGNOSTIC_UNTIL` to an absolute Unix deadline for an owned diagnostic
+window. The API supervisor and gateway clamp it once at startup to at most
+600 seconds. Gateway transport records stop at the deadline or 2048 records
+per process and go to stderr, preserving JSON stdout consumers. Expiry restores
+the original HTTP path, including its 0.6-second connect and one-second response
+read limits. The independent watchdog keeps its 3.5-second limit.
+
+Attempt IDs associate transport phases with PHP worker and database connection
+IDs. Records contain durations, byte counts, status and aggregate query timings.
+Content-Length completion timing is available when that response header exists.
+Read completion measures EOF. PHP query hooks begin after application boot.
+Each process reports its own clock durations, so cross-process absolute values
+require an independently established clock mapping before subtraction.

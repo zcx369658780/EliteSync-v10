@@ -6,7 +6,7 @@ owned child, not merely the client websocket. No request URLs or JWTs are logged
 Adapted from docs/versions/v10.0.9/rtc-gateway.py. Historical launchers and
 filesystem request/reply bridges are not invoked by this implementation.
 """
-import asyncio, base64, hashlib, hmac, json, os, signal, time, sys
+import asyncio, base64, hashlib, hmac, json, os, signal, time, sys, uuid
 from urllib.parse import urlsplit, parse_qs
 
 SECRET=os.environ['LIVEKIT_API_SECRET'].encode()
@@ -19,6 +19,19 @@ last_sweep=0.0
 ready=False
 watchdog=None
 watchdog_pipe=None
+diagnostic_until=min(float(os.environ.get('RTC_DIAGNOSTIC_UNTIL', '0')), time.time()+600)
+diagnostic_records=0
+
+
+def diagnostics_active():
+    return time.time() < diagnostic_until and diagnostic_records < 2048
+
+
+def transport_diagnostic(record):
+    global diagnostic_records
+    if diagnostics_active():
+        diagnostic_records += 1
+        print(json.dumps({'event': 'rtc_transport', **record}), file=sys.stderr, flush=True)
 
 def b64(raw): return base64.urlsafe_b64encode(raw).decode().rstrip('=')
 def decode(raw): return json.loads(base64.urlsafe_b64decode(raw+'='*(-len(raw)%4)))
@@ -26,28 +39,101 @@ def jwt(claims):
     data=b64(b'{"alg":"HS256","typ":"JWT"}')+'.'+b64(json.dumps({'iss':KEY, **claims},separators=(',',':')).encode())
     return data+'.'+b64(hmac.new(SECRET,data.encode(),hashlib.sha256).digest())
 
-async def http(host,port,path,payload,headers):
-    reader,writer=await asyncio.wait_for(asyncio.open_connection(host,port),.6)
+async def http(host,port,path,payload,headers,operation='control'):
+    if not diagnostics_active():
+        return await http_unobserved(host,port,path,payload,headers)
+    started=time.monotonic()
+    record={'attempt_id': str(os.getpid())+'-'+uuid.uuid4().hex[:12],
+            'operation': operation, 'clock': 'process monotonic durations', 'phase': 'connect'}
+    writer=None
     body=json.dumps(payload).encode()
     raw=f'POST {path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\nContent-Type: application/json\r\nContent-Length: {len(body)}\r\n'
     for k,v in headers.items(): raw+=k+': '+v+'\r\n'
+    raw+='X-RTC-Attempt: '+record['attempt_id']+'\r\n'
     try:
-        writer.write(raw.encode()+b'\r\n'+body); await writer.drain()
+        reader,writer=await asyncio.wait_for(asyncio.open_connection(host,port),.6)
+        record['connect_ms']=round((time.monotonic()-started)*1000,3)
+        record['phase']='drain'
+        drain_started=time.monotonic()
+        writer.write(raw.encode()+b'\r\n'+body)
+        await writer.drain()
+        record['drain_ms']=round((time.monotonic()-drain_started)*1000,3)
+        record['phase']='response_first_byte'
+        read_started=time.monotonic()
+        response=bytearray()
+        content_length=None
+        header_end=None
+
+        async def read_response():
+            nonlocal content_length,header_end
+            while True:
+                chunk=await reader.read(65536)
+                if not chunk:
+                    return bytes(response)
+                if not response:
+                    record['first_byte_ms']=round((time.monotonic()-read_started)*1000,3)
+                    record['phase']='response_eof'
+                response.extend(chunk)
+                record['response_bytes']=len(response)
+                if header_end is None and b'\r\n\r\n' in response:
+                    header_end=response.index(b'\r\n\r\n')+4
+                    lengths=[line.split(b':',1)[1].strip() for line in response[:header_end].split(b'\r\n')
+                             if line.lower().startswith(b'content-length:')]
+                    if len(lengths)==1 and lengths[0].isdigit():
+                        content_length=int(lengths[0])
+                if content_length is not None and len(response)-header_end>=content_length:
+                    record.setdefault('body_complete_ms',round((time.monotonic()-read_started)*1000,3))
+
+        response=await asyncio.wait_for(read_response(),1)
+        record['read_ms']=round((time.monotonic()-read_started)*1000,3)
+        record['phase']='parse'
+        head,body=response.split(b'\r\n\r\n',1)
+        record['response_status']=int(head.split(b' ')[1])
+        if record['response_status']!=200: raise RuntimeError('control denied')
+        value=json.loads(body)
+        record['phase']='complete'
+        record['outcome']='success'
+        return value
+    except Exception as error:
+        record['outcome']=type(error).__name__
+        record['elapsed_ms']=round((time.monotonic()-started)*1000,3)
+        if diagnostics_active():
+            error.rtc_transport=dict(record)
+        raise
+    finally:
+        record['elapsed_ms']=round((time.monotonic()-started)*1000,3)
+        transport_diagnostic(record)
+        if writer:
+            writer.close()
+            await writer.wait_closed()
+
+
+async def http_unobserved(host,port,path,payload,headers):
+    reader,writer=await asyncio.wait_for(asyncio.open_connection(host,port),.6)
+    body=json.dumps(payload).encode()
+    raw=f'POST {path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\nContent-Type: application/json\r\nContent-Length: {len(body)}\r\n'
+    for key,value in headers.items():
+        raw+=key+': '+value+'\r\n'
+    try:
+        writer.write(raw.encode()+b'\r\n'+body)
+        await writer.drain()
         response=await asyncio.wait_for(reader.read(),1)
         head,body=response.split(b'\r\n\r\n',1)
-        if int(head.split(b' ')[1])!=200: raise RuntimeError('control denied')
+        if int(head.split(b' ')[1])!=200:
+            raise RuntimeError('control denied')
         return json.loads(body)
     finally:
-        writer.close(); await writer.wait_closed()
+        writer.close()
+        await writer.wait_closed()
 
 async def backend(action,payload):
     if action not in {'authorize','sweep','audit'}:
         raise ValueError('unsupported authority action')
-    return await http(BACKEND,BACKEND_PORT,'/api/v1/rtc-guard/'+action,payload,{'X-RTC-Gateway':GATE})
+    return await http(BACKEND,BACKEND_PORT,'/api/v1/rtc-guard/'+action,payload,{'X-RTC-Gateway':GATE},operation='authority_'+action)
 
 async def control(action,payload):
     token=jwt({'sub':'rtc-supervisor','nbf':int(time.time())-2,'exp':int(time.time())+20,'video':{'roomList':True,'roomCreate':True,'roomAdmin':True,'room':payload.get('room','')}})
-    return await http('127.0.0.1',7880,'/twirp/livekit.RoomService/'+action,payload,{'Authorization':'Bearer '+token})
+    return await http('127.0.0.1',7880,'/twirp/livekit.RoomService/'+action,payload,{'Authorization':'Bearer '+token},operation='control_'+action)
 
 def stop_sfu():
     global ready
@@ -87,7 +173,10 @@ async def reconcile():
             os.write(watchdog_pipe,b'.')
             ready=True
         except Exception as error:
-            print(json.dumps({'event':'authority_monitor_failed','phase':phase,'error_type':type(error).__name__,'elapsed_ms':round((time.monotonic()-started)*1000),'time':time.time()}),flush=True)
+            event={'event':'authority_monitor_failed','phase':phase,'error_type':type(error).__name__,'elapsed_ms':round((time.monotonic()-started)*1000),'time':time.time()}
+            if hasattr(error,'rtc_transport'):
+                event['transport']=error.rtc_transport
+            print(json.dumps(event),flush=True)
             stop_sfu()
             return
         await asyncio.sleep(.25)

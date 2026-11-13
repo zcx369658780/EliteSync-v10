@@ -2,6 +2,7 @@ import asyncio
 import importlib.util
 import json
 import os
+import sys
 from pathlib import Path
 import time
 import unittest
@@ -49,6 +50,8 @@ class GatewayTest(unittest.IsolatedAsyncioTestCase):
         gateway.last_sweep = time.monotonic()
         gateway.child = Process()
         gateway.watchdog = Process()
+        gateway.diagnostic_until = time.time()+30
+        gateway.diagnostic_records = 0
 
     def token(self, **changes):
         return gateway.jwt({'sub': 'current-test-identity', 'nbf': int(time.time()) - 1,
@@ -99,6 +102,60 @@ class GatewayTest(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(writer.data.startswith(b'HTTP/1.1 101 '))
         self.assertTrue(upstream.data.startswith(b'GET /rtc?access_token='))
         self.assertTrue(writer.closed)
+
+    async def test_diagnostics_distinguish_complete_body_waiting_for_connection_close(self):
+        async def handler(reader, writer):
+            await reader.readuntil(b'\r\n\r\n')
+            body=b'{"allowed_rooms":[]}'
+            writer.write(b'HTTP/1.1 200 OK\r\nContent-Length: '+str(len(body)).encode()+b'\r\n\r\n'+body)
+            await writer.drain()
+            await asyncio.sleep(1.2)
+            writer.close()
+
+        server=await asyncio.start_server(handler, '127.0.0.1', 0)
+        self.addAsyncCleanup(server.wait_closed)
+        self.addCleanup(server.close)
+        port=server.sockets[0].getsockname()[1]
+        with self.assertRaises(TimeoutError) as caught:
+            await gateway.http('127.0.0.1', port, '/fixed-test-route', {}, {}, operation='authority_sweep')
+        record=caught.exception.rtc_transport
+        self.assertEqual(record['phase'], 'response_eof')
+        self.assertLess(record['body_complete_ms'], 900)
+        self.assertGreaterEqual(record['elapsed_ms'], 990)
+        self.assertNotIn('fixed-test-route', json.dumps(record))
+
+    async def test_diagnostics_identify_connect_and_drain_failures_without_request_data(self):
+        writer=Writer()
+        for phase in ('connect', 'drain'):
+            with self.subTest(phase=phase):
+                connection=AsyncMock(side_effect=TimeoutError())
+                if phase=='drain':
+                    writer.drain=AsyncMock(side_effect=TimeoutError())
+                    connection=AsyncMock(return_value=(asyncio.StreamReader(), writer))
+                with patch.object(gateway.asyncio, 'open_connection', connection):
+                    with self.assertRaises(TimeoutError) as caught:
+                        await gateway.http('127.0.0.1', 1, '/private-route', {'secret':'private-body'}, {'Secret':'private-header'})
+                record=caught.exception.rtc_transport
+                self.assertEqual(record['phase'], phase)
+                self.assertNotIn('private', json.dumps(record))
+
+    def test_diagnostic_window_and_record_count_are_bounded(self):
+        with patch.object(gateway, 'diagnostic_until', time.time()+30), patch.object(gateway, 'diagnostic_records', 2047), patch('builtins.print') as output:
+            gateway.transport_diagnostic({'phase':'complete'})
+            gateway.transport_diagnostic({'phase':'complete'})
+            self.assertEqual(output.call_count, 1)
+            self.assertIs(output.call_args.kwargs['file'], sys.stderr)
+        with patch.object(gateway, 'diagnostic_until', 0), patch('builtins.print') as output:
+            gateway.transport_diagnostic({'phase':'complete'})
+            output.assert_not_called()
+
+    async def test_expired_or_exhausted_diagnostics_do_not_attach_transport_to_failures(self):
+        for until,count in ((0,0),(time.time()+30,2048)):
+            with self.subTest(until=until,count=count):
+                with patch.object(gateway,'diagnostic_until',until), patch.object(gateway,'diagnostic_records',count), patch.object(gateway.asyncio,'open_connection',AsyncMock(side_effect=TimeoutError())):
+                    with self.assertRaises(TimeoutError) as caught:
+                        await gateway.http('127.0.0.1',1,'/fixed-route',{}, {})
+                    self.assertFalse(hasattr(caught.exception,'rtc_transport'))
 
     async def test_invalid_or_ambiguous_join_never_reaches_authority_or_raw_sfu(self):
         head, signature = self.token().rsplit('.', 1)

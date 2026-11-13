@@ -36,9 +36,11 @@ def main():
 
     signal.signal(signal.SIGTERM, stop)
     signal.signal(signal.SIGINT, stop)
+    diagnostic_until = min(float(os.environ.get('RTC_DIAGNOSTIC_UNTIL', '0')), time.time() + 600)
     try:
         for command, workers in commands():
-            env = dict(os.environ, PHP_CLI_SERVER_WORKERS=str(workers))
+            env = dict(os.environ, PHP_CLI_SERVER_WORKERS=str(workers),
+                       RTC_DIAGNOSTIC_UNTIL=str(diagnostic_until))
             processes.append(subprocess.Popen(command, env=env, start_new_session=True))
         while all(process.poll() is None for process in processes):
             time.sleep(.1)
