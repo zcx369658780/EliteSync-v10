@@ -44,7 +44,7 @@ class MatchingEngineService
                     $best = [
                         'user_a' => $a, 'user_b' => $b, 'score' => $score,
                         'score_base' => $score, 'score_final' => $score, 'score_fair' => $score,
-                        'score_overall' => $score, 'match_verdict' => 'questionnaire_ordered',
+                        'score_overall' => $score, 'match_verdict' => 'questionnaire',
                         'highlights' => '已满足双方填写的基本条件，根据当前有效问卷进行排序',
                         'explanation_tags' => ['bilateral_preferences', 'current_questionnaire'],
                         'penalty_factors' => [],

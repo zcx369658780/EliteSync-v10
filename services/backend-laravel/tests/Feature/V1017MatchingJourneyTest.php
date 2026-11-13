@@ -147,6 +147,8 @@ class V1017MatchingJourneyTest extends TestCase
         $pairs = app(MatchingEngineService::class)->buildPairs([$c->id => [], $a->id => [], $b->id => []]);
         $this->assertSame($c->id, $pairs[0]['user_b']);
         $this->assertSame(1.0, $pairs[0]['match_reasons']['rank_score']);
+        $this->assertSame('questionnaire', $pairs[0]['match_verdict']);
+        $this->assertLessThanOrEqual(16, strlen($pairs[0]['match_verdict']));
         QuestionnaireAnswer::where('user_id', $b->id)->update(['selected_answer_json' => json_encode(['A'])]);
         $this->assertSame($b->id, app(MatchingEngineService::class)->buildPairs([$c->id => [], $a->id => [], $b->id => []])[0]['user_b']);
     }
