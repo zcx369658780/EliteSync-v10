@@ -32,11 +32,14 @@ class _Api extends ApiClient {
   String connection = 'CN_NONE';
   String consent = 'MC_NONE';
   int revision = 0;
+  int? connectionId;
+  int? consentId;
   int requester = 1;
   bool reject = false;
   bool noMatch = false;
   bool failMatch = false;
   int reads = 0;
+  int posts = 0;
   Object? body;
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
@@ -59,11 +62,13 @@ class _Api extends ApiClient {
     return NetworkSuccess({
       'peer_id': 2,
       'connection': {
+        'id': connectionId,
         'state': connection,
         'revision': revision,
         'requester_id': requester,
       },
       'consent': {
+        'id': consentId,
         'state': consent,
         'revision': revision,
         'requester_id': requester,
@@ -80,11 +85,16 @@ class _Api extends ApiClient {
     Map<String, dynamic>? query,
     Options? options,
   }) async {
+    posts++;
     this.body = body;
     if (reject) {
       return const NetworkFailure(message: 'stale revision', statusCode: 409);
     }
-    connection = 'CN_PENDING';
+    if (path.endsWith('/consent')) {
+      consent = 'MC_PENDING';
+    } else {
+      connection = 'CN_PENDING';
+    }
     revision++;
     return const NetworkSuccess({});
   }
@@ -107,6 +117,83 @@ Future<void> _show(WidgetTester tester, ApiClient api) async {
 }
 
 void main() {
+  for (final terminal in [
+    'CN_CLOSED',
+    'CN_DECLINED',
+    'CN_WITHDRAWN',
+    'CN_EXPIRED',
+  ]) {
+    testWidgets(
+      '$terminal can explicitly request a new connection with observed IDs',
+      (tester) async {
+        final api = _Api()
+          ..connection = terminal
+          ..consent = 'MC_REVOKED'
+          ..revision = 4
+          ..connectionId = 10
+          ..consentId = 20;
+        await _show(tester, api);
+        expect(api.posts, 0);
+        expect(find.text('重新请求消息同意'), findsNothing);
+        await tester.tap(find.text('重新请求连接'));
+        await tester.pumpAndSettle();
+        expect(api.body, {
+          'action': 'request',
+          'expected_revision': 4,
+          'expected_connection_id': 10,
+          'expected_consent_id': 20,
+        });
+        expect(api.posts, 1);
+        expect(api.reads, 2);
+        expect(find.textContaining('CN_PENDING'), findsOneWidget);
+        expect(find.text('撤回连接请求'), findsOneWidget);
+        expect(find.text('接受连接'), findsNothing);
+        expect(
+          tester
+              .widget<FilledButton>(find.widgetWithText(FilledButton, '进入消息'))
+              .onPressed,
+          isNull,
+        );
+      },
+    );
+  }
+
+  for (final terminal in ['MC_REVOKED', 'MC_DECLINED', 'MC_WITHDRAWN']) {
+    testWidgets(
+      '$terminal can explicitly request a new consent generation with observed IDs',
+      (tester) async {
+        final api = _Api()
+          ..connection = 'CN_ACTIVE'
+          ..consent = terminal
+          ..revision = 4
+          ..connectionId = 10
+          ..consentId = 20;
+        await _show(tester, api);
+        expect(api.posts, 0);
+        await tester.ensureVisible(find.text('重新请求消息同意'));
+        await tester.tap(find.text('重新请求消息同意'));
+        await tester.pumpAndSettle();
+        expect(api.body, {
+          'action': 'request',
+          'expected_revision': 4,
+          'expected_connection_id': 10,
+          'expected_consent_id': 20,
+        });
+        expect(api.posts, 1);
+        expect(api.reads, 2);
+        expect(find.textContaining('CN_ACTIVE'), findsOneWidget);
+        expect(find.textContaining('MC_PENDING'), findsOneWidget);
+        expect(find.text('撤回消息同意请求'), findsOneWidget);
+        expect(find.text('接受消息同意'), findsNothing);
+        expect(
+          tester
+              .widget<FilledButton>(find.widgetWithText(FilledButton, '进入消息'))
+              .onPressed,
+          isNull,
+        );
+      },
+    );
+  }
   testWidgets('successful empty match shows neutral guidance and can refresh', (
     tester,
   ) async {
@@ -238,7 +325,9 @@ void main() {
     expect(find.textContaining('连接状态已变化，请刷新后重试'), findsOneWidget);
     expect(find.textContaining('CN_PENDING'), findsNothing);
   });
-  testWidgets('terminal state never offers new requests', (tester) async {
+  testWidgets('terminal consent stays unavailable until connection is active', (
+    tester,
+  ) async {
     await _show(
       tester,
       _Api()

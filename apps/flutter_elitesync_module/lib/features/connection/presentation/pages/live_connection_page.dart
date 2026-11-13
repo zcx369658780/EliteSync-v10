@@ -108,6 +108,8 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
   ) async {
     final peer = _peer;
     if (peer == null) throw StateError('请刷新当前连接。');
+    final connectionId = (_server?['connection'] as Map?)?['id'];
+    final consentId = (_server?['consent'] as Map?)?['id'];
     // Discard the projection while writing, and always confirm with a fresh GET.
     _server = null;
     _data(
@@ -117,7 +119,12 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
             '/api/v1/connections/$peer/$kind',
             cancelToken: _requestCancellation,
             options: _options(session, epoch),
-            body: {'action': action, 'expected_revision': revision},
+            body: {
+              'action': action,
+              'expected_revision': revision,
+              'expected_connection_id': ?connectionId,
+              'expected_consent_id': ?consentId,
+            },
           ),
     );
     if (!_current(session, epoch)) return;
@@ -168,6 +175,19 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
       return [];
     }
     if (name == 'CN_NONE' || name == 'MC_NONE') return ['request'];
+    if (kind == 'connection' &&
+        [
+          'CN_CLOSED',
+          'CN_DECLINED',
+          'CN_WITHDRAWN',
+          'CN_EXPIRED',
+        ].contains(name)) {
+      return ['request'];
+    }
+    if (kind == 'consent' &&
+        ['MC_REVOKED', 'MC_DECLINED', 'MC_WITHDRAWN'].contains(name)) {
+      return ['request'];
+    }
     if (name == 'CN_PENDING' || name == 'MC_PENDING') {
       final requester = (state['requester_id'] as num?)?.toInt();
       if (actor == null || requester == null) return [];
@@ -179,10 +199,13 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
     return [];
   }
 
-  String _label(String kind, String action) {
+  String _label(String kind, String action, String state) {
     final subject = kind == 'connection' ? '连接' : '消息同意';
     return switch (action) {
-      'request' => '请求$subject',
+      'request' => switch (state) {
+        'CN_NONE' || 'MC_NONE' => '请求$subject',
+        _ => '重新请求$subject',
+      },
       'accept' => '接受$subject',
       'decline' => '拒绝$subject',
       'withdraw' => '撤回$subject请求',
@@ -205,7 +228,7 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
               onPressed: _busy
                   ? null
                   : () => _action(kind, action, state['revision'] as int),
-              child: Text(_label(kind, action)),
+              child: Text(_label(kind, action, state['state'] as String)),
             ),
         ],
       ),
