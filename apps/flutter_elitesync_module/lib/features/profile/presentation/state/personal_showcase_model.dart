@@ -119,7 +119,7 @@ class PersonalShowcaseSnapshot {
       ),
       const ShowcaseChecklistItem(
         title: '照片/头像',
-        description: '当前版本先提醒完善，不新增上传或存储链路。',
+        description: '可在上方自愿添加展示照片，并管理排序和移除。',
         status: ShowcaseItemStatus.later,
         iconName: 'photo',
       ),
