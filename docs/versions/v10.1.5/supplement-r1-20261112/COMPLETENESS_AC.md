@@ -17,7 +17,7 @@
 | AC01 候选身份、源码与索引保护 | PARTIAL | 当前 cfd 候选、APK SHA256、签名及两台模拟器安装包 hash 可由 `final-build-private.json` 和 `final-installed-private.json` 复核。构建回执排除了报告、manifest 与补充文档变更 | 此身份记录不代替最终工作区/index 与原库保护摘要。主代理更新最终 manifest 并关联受影响源码；Owner 保留最终接受 |
 | AC02 会话消息、冷启和草稿 | PARTIAL，当前未知 POST 有界复核通过 | 当前候选 `current-pending-cold-private.json` 记录一次正常发送的成功响应被观察代理替换为 503。离线冷启不显示草稿，联网后在原会话以原 UUID 明确重试，服务端返回同一行 125 和 200 idempotent replay，数据库只留一条密文消息，自动 POST 为 0，确认后 pending 为空。历史附件和媒体消息按原候选范围继承 | 当前 receipt 不扩大为弱网全组合或所有附件时序通过。聊天权限竞态仍按 AC03，当前消息链由 Codex 工程自验 |
 | AC03 权限、连接与在途并发 | PARTIAL，关键撤权链通过 | 当前 call51 回执 `current-measured-revoke-private.json` 在真实开发 DB 查询夹定 commit 单调时钟区间，区间宽 0.016 秒。commit 后双端 CAMERA 与 RECORD_AUDIO 停止上界 2.187250 秒，符合 5 秒目标。双端 inactive，撤权后旧 JWT 为 403，新同意生成后旧 JWT 仍为 403，旧房间不存在。`ordinary-social-formal-current-private.json` 另记录 37 次本机 HTTP 与 MariaDB 操作，涵盖好友、搭子、社区、正式关系 pending、确认拒绝与撤回。block/unblock 后旧好友访问不复活 | 完整 actor/peer、消息/附件在途撤权、迟到切号和 APP/WS/cache 并发矩阵未由这些场景穷尽。主代理按当前受影响路径保留部分状态并核对剩余风险 |
-| AC04 媒体与附件生命周期 | PARTIAL，当前有限恢复旅程通过 | 当前 call54 在故障恢复后双端入房并双端 CAMERA/RECORD_AUDIO active。Room 为 2 参与者。正常 APP 挂断后服务端 ended、Room0、双端采集 inactive。实际通话 261 秒。609 历史回执继续限定图片/视频关联、读取与播放范围 | 不据此宣称媒体在途撤权、全路由、长时或声学矩阵完成。主代理维护当前候选适用范围，Owner 保留实机听感与物理路由接受 |
+| AC04 图片与短视频附件生命周期 | PARTIAL，具名媒体证据保留 | 当前call51资产17/18双方full200、Range206，撤权后full和Range均404。26c同包正常图片122/asset17、视频123/asset18发送/预览与播放至0:02/0:02沿其原证继承。相关聊天附件路径R1无改动 | 全部媒体故障和在途竞态组合按原限制记录。call54通话恢复归AC05，负责人Codex |
 | AC05 RTC 通话、权限失效与 SFU 恢复 | OPEN，R1-01 PARTIAL | `sfu-media-fault-recovery-private.json` 记录 call53 权威池故障后服务进入 restarting，撤权令双端采集停止，Room0，旧未过期 JWT 为 403。恢复 authority 后再次同意，旧 JWT 仍为 403。随后正常 call54 双端媒体恢复并正常清理。`finite-incoming-expiry-private.json` 记录来电到期后 missed，唤醒后显示未接通。`finite-incoming-reject-private.json` 记录正常拒绝后 rejected。有限观察回执记录工具完成耗时 1500.906 秒、采样覆盖 1500.031 秒、51 个间隔采样、同一 PID，ANR/OOM/Fatal 标记数为 0。Heap 为 120759792 到 126337216 字节，峰值 142433968。PSS 为 757743 到 734208 KiB，范围 678666 到 757743。末次 retained RTC session/event 分别为 13/15 | 独立池部署后，00:06:45 UTC 另有一次未注入的 authority query 超时。普通 PHP 与 authority PHP 同时约 6 秒延迟，具体阻塞根因 UNKNOWN。没有将 call53 故障注入恢复替代该根因调查。本轮有限观察判读已记录，非注入超时的具体根因仍待定位，R1-01 保持 PARTIAL。硬件、实机声学、AEC 与自然长时仍受限 |
 | AC06 认证期限与本地时钟边界 | PARTIAL，受控路由边界通过 | `retention-route-boundary-20261112-private.json` 对真实 Laravel HTTP kernel 与 MariaDB 事务使用受控服务端时钟，16 个登录、私有读取、verify/refresh 请求覆盖 15/30 天前、当日和之后。回执记录用户/session/token 指纹不变并回滚夹具 | 自然经过 15/30 天未发生，客户端时钟未改。该项不得写成自然时间通过。历史受控结果按后端核心身份继承，主代理在总表保留限定语 |
 | AC07 Android 缓存清理与故障恢复 | PARTIAL，受限范围通过 | `cache-android-cold-local-cleanup-private.json` 记录产品已知键清理完成且已知对象剩余 0。`cache-native-probe-runtime-20261112-private.json` 记录真实 Android 加密存储插件的独立 probe UID，7 次 wrapper 故障及新 PID 冷启重试完成 | 产品清理不是 UI logout，未枚举未知对象。probe 不是产品 UID、硬件 Keystore 或物理故障证明。主代理只继承原证限定范围 |
@@ -31,7 +31,7 @@
 | 入口 | 当前状态 | 证据与结果 | 剩余项与负责方 |
 |---|---|---|---|
 | 资格提交与状态读回 | 当前候选受控 UI 与定向测试通过 | `qualification-controlled-current-ui-private.json` 绑定 cfd 和当前 APK。实际控制响应覆盖提交失败保留输入、重试接受、接受后读回失败继续留在表单，之后 GET-only 确认。提交未调用身份供应商，也未写真实资格数据库。联合53项及后续资格22项分别通过，相关analyze无问题，重叠集合分别记账 | 仅验证本地受控 UI 状态处理，不证明真实身份认证或审核。由 Codex 主代理收口材料 |
-| MBTI 选项可读性 | 当前候选实机截图已观察并复核 | `mbti-readability-current-private.json` 绑定 cfd。暗色和亮色截图均完整显示题干及 A/B 选项，3/3 的 A/B/A 选择可读。主代理已复核两图 | 服务端提交动作数为 0，不声称测评服务端读回。此样式项可按当前截图证据记录 |
+| MBTI 选项可读性 | 当前候选实机截图已观察并复核 | `mbti-readability-current-private.json` 绑定 cfd。暗色和亮色截图均完整显示题干及 A/B 选项，首题A→B→A为交互过程，补图最终A/A/A三项均可读。主代理已复核两图 | 服务端提交动作数为 0，不声称测评服务端读回。此样式项可按当前截图证据记录 |
 | 注册、登录、改密与退出 | 受控 API 回执，候选绑定有限 | `ordinary-authentication-private.json` 记录 15 次本地 API 检查，涵盖注册、重复注册拒绝、错密码拒绝、成功登录、错误旧密码拒绝、改密后旧密码拒绝、新密码登录、既有会话状态、退出和已退出 token 拒绝 | 原回执未写APP身份。部署时序将实际API关联到6549核心/e7开发工具，APP UI结果按另外回执记录。仅虚构账户 |
 | 首次自动引导与跳过 | 隔离 Android user 受控观察 | `isolated-first-use-private.json` 记录虚构注册、登录后首次引导自动出现，跳过后回到首页并指向进展入口。未清除原 Android user 数据 | 原回执缺少源码字段，经构建/安装时序关联e7包，cfd后续只改连接，继承首次引导文案及触发结果。仅此隔离用户和入口 |
 | 问卷和参与状态 | 本地开发 API 受控证据 | `journey-participation-private.json` 记录两名虚构对象各答完 20 题，参与状态可 active、paused、resumed，旧 revision 返回冲突 | 部署时序关联相同6549核心/e7工具，证明虚构账号问卷与参与软件状态。真实招募和身份验证另行记账 |
@@ -57,3 +57,9 @@
 上述条目的原入口与控件可由[既有导航清单](../acceptance/UI_NAVIGATION_AND_CONTROLS.md)定位，原120图按11月12日各候选身份引用。
 
 主代理继续定位未注入 authority query 超时的共同 PHP 延迟根因并完成 R1-01 判定。当前撤权停媒 5 秒链、call53 故障恢复、call54 正常呼叫和 25 分钟级观察均保留各自证据，不合并成根因关闭结论。完整并发矩阵、自然 15/30 天、硬件 Keystore、物理故障、复杂 AEC、真实 Push、顾问验收和 Owner 接受仍按原边界记录。本轮总状态继续为 **CHANGES_REQUIRED / PARTIAL**。
+
+## R2顾问复核状态
+
+2026-11-13顾问已限定接受R1资格提交、MBTI、引导、连接修复，以及call51、消息125、通知259、普通具名链、25分钟观察和call53/54故障恢复范围。剩余工程主项为独立池部署后非注入超时，R2诊断结果见[当前R2节点](../supplement-r2-20261113/README.md)。整体CHANGES_REQUIRED/PARTIAL，顾问分项接受、Owner最终接受与历史冻结AC分别记账。
+
+call51独立复算端点与余量见EVIDENCE_SUMMARY。原两尾样本止于提交下端后3.984秒、上端后3.968秒，样本观察跨度0.031秒，无反弹，完整提交后5秒尾窗未采集。原2.187250秒工程上界结论与此尾窗覆盖分别记录。

@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "version": "10.1.5",
-  "status": "R1_CHANGES_REQUIRED_PARTIAL_SFU_CAUSE_OPEN",
+  "status": "R2_CHANGES_REQUIRED_PARTIAL_NON_INJECTED_SFU_CAUSE_OPEN",
   "date": "2026-11-13",
   "branch": "codex/v10.1.5-software-continuation-20261101",
   "source": {
@@ -9,10 +9,11 @@
     "root_tree": "e80b50c4cd00af50cdb3972cd2e129e3cf3ce378",
     "apps_tree": "ce9a68ba47807e496764d80980593958b094b2ba",
     "services_tree": "72edf681992d8f80910addb5858bd15a5bb7bca3",
-    "api_source_commit": "e7b21c7fdb0991a5fbd5a9272c92c2331c0dec2d",
+    "api_source_commit": "9520a494e7c8ca6b7a96080541df708854139803",
     "api_core_source_commit": "6549f02880968f99ae3f45439d15a37c1b3d5251",
-    "backend_tools_source_commit": "e7b21c7fdb0991a5fbd5a9272c92c2331c0dec2d",
-    "document_commit_resolution": "current authorized branch Git history after APP source commit"
+    "backend_tools_source_commit": "9520a494e7c8ca6b7a96080541df708854139803",
+    "document_commit_resolution": "current authorized branch Git history after APP source commit",
+    "tree_scope": "Root/apps/services tree fields identify the APP source commit. Deployed backend runtime source has its own separate tree identity."
   },
   "apk": {
     "filename": "EliteSync-v10.1.5-dev-cfdce773-arm64-debug.apk",
@@ -132,7 +133,27 @@
     "non_author_review": "Scoped static review of qualification state ownership and connection lifecycle/envelope; no new P1/P2 in final review. Author test results separately recorded.",
     "engineering_result": "CHANGES_REQUIRED/PARTIAL",
     "advisor_result": "CHANGES_REQUIRED/PARTIAL pending R1 review",
-    "owner_acceptance": "PENDING"
+    "owner_acceptance": "PENDING",
+    "call51_tail_coverage": "2 inactive endpoint samples only, final sample3.968s after commit upper endpoint; full5s tail not observed",
+    "r2": {
+      "report": "supplement-r2-20261113/README.md",
+      "source_commit": "9520a494e7c8ca6b7a96080541df708854139803",
+      "tests": 12,
+      "tests_result": "PASS",
+      "ordinary_read_count": 120,
+      "database_samples": 120,
+      "resource_samples_retained": 109,
+      "resource_collector_final_wait": "8s exceeded, partial coverage retained",
+      "detailed_lock_metadata": "current account SQLSTATE42000 driver1227; global current-lock-wait counter available",
+      "marked_fault_requested_seconds": 1.3,
+      "marked_fault_measured_process_window_seconds": 1.300104697000279,
+      "marked_fault_transport_phase": "response_first_byte",
+      "diagnostic_expiry_runtime": "no new diagnostic events after fixed deadlines; original HTTP path active; guard positives and negatives passed",
+      "non_injected_original_cause": "OPEN/UNKNOWN",
+      "r1_results": "advisor limited acceptance retained",
+      "app_build": "inherited cfd artifact",
+      "media_runtime": "inherited R1 accepted scope"
+    }
   },
   "acceptance": {
     "partial_ac": [
@@ -154,7 +175,10 @@
     "real_push": "PENDING",
     "owner_product_acceptance": "PENDING",
     "advisor_review": "CHANGES_REQUIRED/PARTIAL",
-    "supplement_engineering": "CHANGES_REQUIRED/PARTIAL"
+    "supplement_engineering": "CHANGES_REQUIRED/PARTIAL",
+    "r1_advisor_review": "LIMITED_ITEMS_ACCEPTED_OVERALL_CHANGES_REQUIRED_PARTIAL",
+    "r2_engineering": "CHANGES_REQUIRED/PARTIAL",
+    "r2_advisor_review": "PENDING"
   },
   "unverified": [
     "post-isolation non-injected authority_sweep TimeoutError at2026-11-13T00:06:45.631Z; simultaneous public/private PHP delay about6s; specific blocking cause UNKNOWN",
@@ -171,8 +195,17 @@
   "evidence": [
     {
       "file": "supplement-r1-20261112/EVIDENCE_SUMMARY.json",
-      "sha256": "1a73117957ce8d531dee461817e06ebb02d2c7a654f5e24dca2d96477932500c",
-      "location": "redacted result summary; originals LOCAL_ONLY"
+      "sha256": "3c90f3fbf304397793c152f4f1bb527789cb703a01cf3fdfb5d38891f60c371a",
+      "bytes": 36717,
+      "encoding": "UTF-8 LF",
+      "location": "redacted summary; raw receipts LOCAL_ONLY"
+    },
+    {
+      "file": "supplement-r2-20261113/EVIDENCE_SUMMARY.json",
+      "sha256": "8f5d0388bb2be609cd21210c14470618b986544160271a4ffdab6f940080c623",
+      "bytes": 9603,
+      "encoding": "UTF-8 LF",
+      "location": "redacted summary; raw receipts LOCAL_ONLY"
     }
   ],
   "prior_candidate_cdb": {
@@ -841,5 +874,25 @@
     "original_acceptance_snapshot": "85197adec124ef94bbef2994c0668dc990f9bed4",
     "original_120_screenshot_identity": "preserved",
     "new_reviewed_screenshots": 6
+  },
+  "evidence_hash_correction_r2": {
+    "previous_manifest_sha256": "1a73117957ce8d531dee461817e06ebb02d2c7a654f5e24dca2d96477932500c",
+    "prior_c86_git_bytes": 33566,
+    "prior_c86_git_sha256": "54fac6656ac970c7e946972695b15a59344cb43cdad19ef68d4703f3efeb7aab",
+    "prior_worktree_bytes": 34662,
+    "reason": "Manifest originally hashed CRLF worktree bytes while Git stored LF bytes. Current summary/manifest use explicit LF and path-scoped eol attributes; final staged blob bytes verified separately."
+  },
+  "backend_runtime_source": {
+    "commit": "9520a494e7c8ca6b7a96080541df708854139803",
+    "root_tree": "d14e209bea6d9ac769ad68f603eb251534e64253",
+    "services_tree": "682dab281fe11e8fbfd6c81b1a7b520db78b08f8",
+    "core_source_commit": "6549f02880968f99ae3f45439d15a37c1b3d5251",
+    "scope": "R2 RTC diagnostic tools, core application unchanged from named baseline"
+  },
+  "r2_result": {
+    "engineering": "CHANGES_REQUIRED/PARTIAL",
+    "R2_01": "OPEN non-injected cause",
+    "R2_02": "CORRECTED final-byte hashes and AC04/call51/MBTI evidence",
+    "report": "supplement-r2-20261113/README.md"
   }
 }

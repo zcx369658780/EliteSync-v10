@@ -1,4 +1,10 @@
-# v10.1.5 当前补充结果
+# v10.1.5 当前R2补充结果
+
+2026-11-13。当前 **CHANGES_REQUIRED / PARTIAL**。R2已补有界传输/PHP/DB关联诊断，并完成最终字节hash、AC04和call51端点/余量/尾窗等资料校正。非注入SFU超时在本轮有限窗口未复现，具体原因仍OPEN/UNKNOWN。当前候选、实际验证与剩余最小动作见[R2节点](supplement-r2-20261113/README.md)及[manifest](artifact_manifest.json)。R1已获顾问限定接受的修复与证据按原范围继承，冻结10 PARTIAL / AC05 OPEN / G2 false /真实Push PENDING继续保留。
+
+---
+
+# v10.1.5 R1历史补充结果
 
 2026-11-13。当前 **CHANGES_REQUIRED / PARTIAL**。R1修复、当前候选及实测、继承证据和限制统一见 [R1补充结果](supplement-r1-20261112/README.md)、[完成度与AC表](supplement-r1-20261112/COMPLETENESS_AC.md)与 [manifest](artifact_manifest.json)。APP源码cfdce773，后端核心6549f028、开发工具e7b21c7f。当前包撤权停媒上界2.187250秒，25分钟窗口及故障恢复链已完成限定验证，独立工作池部署后一次非注入超时的具体根因仍UNKNOWN。冻结判定为10 PARTIAL / AC05 OPEN / G2 false /真实Push PENDING。顾问复核与Owner最终接受待定。
 

@@ -78,7 +78,72 @@
           403,
           403
         ],
-        "old_room_after_new_generation": []
+        "old_room_after_new_generation": [],
+        "independent_calculation": {
+          "origin": "last ACTIVE query start",
+          "commit_interval_relative_seconds": [
+            0,
+            0.01600000000325963
+          ],
+          "stopped_samples": [
+            {
+              "emulator": 0,
+              "query_start_seconds": 2.125,
+              "observed_seconds": 2.1560000000026776,
+              "active": {
+                "CAMERA": false,
+                "RECORD_AUDIO": false
+              }
+            },
+            {
+              "emulator": 1,
+              "query_start_seconds": 2.125,
+              "observed_seconds": 2.1560000000026776,
+              "active": {
+                "CAMERA": false,
+                "RECORD_AUDIO": false
+              }
+            }
+          ],
+          "raw_endpoint_difference_seconds": 2.1560000000026776,
+          "inferred_clock_allowance_seconds": 0.03125,
+          "inferred_resolution_seconds": 0.015625,
+          "resolution_current_same_python_seconds": 0.015625,
+          "resolution_provenance": "Original receipt omitted resolution field. Allowance inferred from recorded upper bound and endpoints; original script uses twice monotonic resolution; current same Python reports matching resolution.",
+          "formula": "max(stopped observed) - last ACTIVE query start + 2 * resolution",
+          "original_engineering_upper_seconds": 2.1872500000026776,
+          "tail": {
+            "samples": [
+              {
+                "emulator": 0,
+                "query_start_seconds": 3.937000000005355,
+                "observed_seconds": 3.9530000000086147,
+                "active": {
+                  "CAMERA": false,
+                  "RECORD_AUDIO": false
+                }
+              },
+              {
+                "emulator": 1,
+                "query_start_seconds": 3.9530000000086147,
+                "observed_seconds": 3.9839999999967404,
+                "active": {
+                  "CAMERA": false,
+                  "RECORD_AUDIO": false
+                }
+              }
+            ],
+            "sample_count": 2,
+            "first_query_start_seconds": 3.937000000005355,
+            "last_observed_seconds": 3.9839999999967404,
+            "observation_span_seconds": 0.030999999988125637,
+            "rebound_observed": false,
+            "covers_full_five_seconds_after_commit": false
+          },
+          "historical_resolution_directly_recorded": false,
+          "conditional_independent_recalculation_seconds": 2.1872500000026776,
+          "independent_recalculation_status": "Endpoints recomputed independently; margin conditional on current same-Python resolution, also matching allowance implied by original engineering upper bound"
+        }
       }
     },
     {
@@ -309,7 +374,13 @@
         ],
         "server_submission_actions": 0,
         "visual_review": "Main inspected both images: selected option text complete and visible in dark and light themes",
-        "theme_restored": true
+        "theme_restored": true,
+        "final_screenshot_selection": [
+          "A",
+          "A",
+          "A"
+        ],
+        "sequence_scope": "A-B-A is first-question interaction history, screenshots show final A/A/A selections"
       }
     },
     {
@@ -1092,5 +1163,9 @@
     "root_cause": "UNKNOWN",
     "nearby_public_and_private_php_elapsed_approximately_seconds": 6
   },
-  "receipt_policy": "Only selected result fields. Original receipts, credentials, SQL, tokens and raw logs stay LOCAL_ONLY."
+  "receipt_policy": "Only selected result fields. Original receipts, credentials, SQL, tokens and raw logs stay LOCAL_ONLY.",
+  "r2_correction": {
+    "date": "2026-11-13",
+    "scope": "call51 independent endpoint calculation, actual tail coverage, MBTI sequence versus screenshot final state; original experiments retained"
+  }
 }

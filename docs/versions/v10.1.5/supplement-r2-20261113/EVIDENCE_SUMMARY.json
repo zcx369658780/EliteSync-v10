@@ -1,0 +1,303 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-13",
+  "status": "CHANGES_REQUIRED/PARTIAL",
+  "non_injected_sfu_cause": "OPEN/UNKNOWN",
+  "app_source_commit": "cfdce773d94e75af13fcc12d17f56a9cf9ab1f8d",
+  "backend_core_commit": "6549f02880968f99ae3f45439d15a37c1b3d5251",
+  "backend_tools_commit": "9520a494e7c8ca6b7a96080541df708854139803",
+  "original_event": {
+    "utc": "2026-11-13T00:06:45.631007+00:00",
+    "china_time": "2026-11-13 08:06:45.631",
+    "phase": "authority_sweep",
+    "whole_reconcile_elapsed_ms": 1079,
+    "original_transport_subphase": "UNKNOWN",
+    "php_intervals": [
+      {
+        "worker_pid": 18,
+        "pool": "public8080",
+        "accepted_utc": "2026-11-13T00:06:44.598124632Z",
+        "closing_utc": "2026-11-13T00:06:50.236233221Z",
+        "log_interval_seconds": 5.638109
+      },
+      {
+        "worker_pid": 9,
+        "pool": "authority8082",
+        "accepted_utc": "2026-11-13T00:06:44.628620037Z",
+        "closing_utc": "2026-11-13T00:06:50.462955369Z",
+        "log_interval_seconds": 5.834335
+      },
+      {
+        "worker_pid": 16,
+        "pool": "public8080",
+        "accepted_utc": "2026-11-13T00:06:44.760579126Z",
+        "closing_utc": "2026-11-13T00:06:50.530633780Z",
+        "log_interval_seconds": 5.770054
+      }
+    ],
+    "db_query_or_lock_trace": "not recorded",
+    "host_or_vm_resource_trace": "not recorded",
+    "tool_timeline": [
+      {
+        "utc": "2026-11-13T00:04:48.6885986Z",
+        "action": "5e APK build finished, prebuild available10150MiB is earlier snapshot"
+      },
+      {
+        "utc": "2026-11-13T00:05:42.039877Z",
+        "action": "B5e install completed"
+      },
+      {
+        "utc": "2026-11-13T00:05:56.708682Z",
+        "action": "A5e install completed"
+      },
+      {
+        "utc": "2026-11-13T00:06:08.765883Z",
+        "action": "A5e normal APP start completed; B start finished00:05:52.283986Z"
+      },
+      {
+        "utc": "2026-11-13T00:06:35.583Z",
+        "action": "APK private delivery copy tool completed"
+      },
+      {
+        "utc": "2026-11-13T00:06:45.631007Z",
+        "action": "original non-injected monitor timeout"
+      },
+      {
+        "utc": "2026-11-13T00:06:55.393Z",
+        "action": "next tool launched after original failure; included next finite observer"
+      }
+    ],
+    "injection_in_this_tool_window": false,
+    "timeline_scope": "exact current chat tool trace and own Android action journal, bounded original event window only"
+  },
+  "finite_observation": {
+    "status": "FINITE_READS_COMPLETE_RESOURCE_COLLECTION_PARTIAL",
+    "planned_seconds": 120,
+    "api_reads": 120,
+    "api_outcomes": [
+      "200"
+    ],
+    "php_log_capture": {
+      "first_docker_utc": "2026-11-13T02:29:29.008906119Z",
+      "last_docker_utc": "2026-11-13T02:33:51.392678183Z",
+      "docker_log_span_seconds": 262.383772
+    },
+    "gateway_log_capture": {
+      "first_docker_utc": "2026-11-13T02:29:29.043838571Z",
+      "last_docker_utc": "2026-11-13T02:32:54.960093065Z",
+      "docker_log_span_seconds": 205.916255
+    },
+    "capture_scope": "API/DB read script has120s planned phase window; retrospective diagnostic logs extend through collector cleanup and subsequent extraction. Durations and clocks are recorded separately.",
+    "api_read_max_ms": 687.9999999946449,
+    "database_samples": 120,
+    "database_probe_max_ms": 11.01387,
+    "detailed_lock_metadata_unavailable_samples": 120,
+    "lock_metadata_access": {
+      "accessible": false,
+      "class": "Illuminate\\Database\\QueryException",
+      "sqlstate": "42000",
+      "driver_code": 1227
+    },
+    "global_current_lock_wait_counter_max": 0,
+    "resource_samples": 109,
+    "resource_loop_lateness_max_ms": 0.14053699851501733,
+    "resource_alignment_limit": "resource samples have process elapsed times only; startup alignment to host phase not captured",
+    "collector_error": "resource process final wait exceeded8s;120 API reads and120 DB samples retained;109 resource samples persisted",
+    "php_requests": 636,
+    "php_total_max_ms": 118.386,
+    "php_booted_max_ms": 95.687,
+    "php_query_total_max_ms": 0.6,
+    "php_single_query_max_ms": 0.6,
+    "gateway_sweeps": 636,
+    "gateway_sweep_max_ms": 143.972,
+    "connect_max_ms": 90.185,
+    "first_byte_max_ms": 121.164,
+    "read_eof_max_ms": 121.36,
+    "php_gateway_matched_attempts": 636,
+    "new_non_injected_monitor_failures": 0,
+    "conclusion": "No reproduction in this window. Original DB, bootstrap/IO, scheduling and response EOF causes remain unconfirmed."
+  },
+  "marked_diagnostic_probe": {
+    "status": "FINITE_DIAGNOSTIC_GUARD_AND_MARKED_FAULT_CLASSIFICATION_VERIFIED",
+    "scope": "empty-room diagnostic contract and one marked1.3s authority-worker pause; no APP/phone/media experiment",
+    "guard_before": [
+      {
+        "label": "current",
+        "http": 200
+      },
+      {
+        "label": "missing",
+        "http": 404
+      },
+      {
+        "label": "wrong",
+        "http": 404
+      },
+      {
+        "label": "method",
+        "http": 404
+      },
+      {
+        "label": "route",
+        "http": 404
+      }
+    ],
+    "fault": {
+      "pids": [
+        9,
+        16,
+        17
+      ],
+      "requested_seconds": 1.3,
+      "process_monotonic_pause_window_seconds": 1.300104697000279
+    },
+    "sfu_before": 0,
+    "sfu_after": 1,
+    "rooms_after": [],
+    "guard_after": [
+      {
+        "label": "current",
+        "http": 200
+      },
+      {
+        "label": "missing",
+        "http": 404
+      },
+      {
+        "label": "wrong",
+        "http": 404
+      },
+      {
+        "label": "method",
+        "http": 404
+      },
+      {
+        "label": "route",
+        "http": 404
+      }
+    ],
+    "marked_fault_monitor_failures": [
+      {
+        "event": "authority_monitor_failed",
+        "phase": "authority_sweep",
+        "error_type": "TimeoutError",
+        "elapsed_ms": 1016,
+        "time": 1794537617.056901,
+        "transport": {
+          "attempt_id": "1-ebe05e3d32f8",
+          "operation": "authority_sweep",
+          "clock": "process monotonic durations",
+          "phase": "response_first_byte",
+          "connect_ms": 15.213,
+          "drain_ms": 0.021,
+          "outcome": "TimeoutError",
+          "elapsed_ms": 1015.976
+        }
+      }
+    ]
+  },
+  "final_readback": {
+    "status": "FINAL_RUNTIME_AND_DIAGNOSTIC_EXPIRY_READBACK_VERIFIED",
+    "utc": "2026-11-13T02:45:01.117833+00:00",
+    "services": {
+      "db": "running",
+      "api": "running",
+      "ws": "running",
+      "sfu": "running"
+    },
+    "rooms": [],
+    "expired_transport_records": 0,
+    "expired_php_records": 0,
+    "guard_after_expiry": [
+      {
+        "label": "current",
+        "http": 200
+      },
+      {
+        "label": "missing",
+        "http": 404
+      },
+      {
+        "label": "wrong",
+        "http": 404
+      },
+      {
+        "label": "method",
+        "http": 404
+      },
+      {
+        "label": "route",
+        "http": 404
+      }
+    ]
+  },
+  "targeted_tests": {
+    "tests": 12,
+    "result": "PASS",
+    "log": "gateway-final-tests-private.log",
+    "non_author_static_review": "2 findings corrected, final scoped re-review no new P1/P2; author tests separately recorded"
+  },
+  "source_review_corrections": [
+    "expiry and budget cover error transport fields; original HTTP path resumes",
+    "API deadline clamped once at startup",
+    "transport diagnostics stderr preserves JSON stdout readers"
+  ],
+  "existing_r1_media_and_client_results": "advisor limited acceptance retained; R2 did not repeat those experiments",
+  "raw_receipts": [
+    {
+      "file": "api-original-window-private.log",
+      "sha256": "8e8882cb5919c2fa889b64718e8675f1f4d79e6901cc4e7ae5af77882f059e9d",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "sfu-original-window-private.log",
+      "sha256": "4837d07ecd23aabb30322a2ebed5a926cba40e0f83ec823a7b94788874c65039",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "db-original-window-private.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "finite-correlation-private.json",
+      "sha256": "92b4a149ad712fdfe6878458f59dcd07e439b0ade4b2b9b1172e08e9e98496cb",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "api-finite-diagnostic-private.log",
+      "sha256": "4961fc59eff39586b386f05e0fb7c80eb1474c3e7e80a87a67ef1ad155c62baa",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "sfu-finite-diagnostic-private.log",
+      "sha256": "b931a1c173e94f9fc7d80367f6995a35d131d6000fde7502beff5e3bf8a500cf",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "final-diagnostic-probe-private.json",
+      "sha256": "c97672406eef9ba879362e4bbf2bfbeb5248a8ef3f2d1d5c24b1969caf623558",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "final-resource-and-expiry-private.json",
+      "sha256": "b412355f2996a84dcc53c50c385983f55c22c1ae87ad24e4d015113d093a3afc",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "gateway-final-tests-private.log",
+      "sha256": "458b6c07f3d4f02d66967f57e5b1c1c8548b8c962f12e4fbf07704659d45498a",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "call51-independent-calculation-private.json",
+      "sha256": "d7fcd01ae806f72126223f634ffcf084e7f253746d0acc1f15a1b4af5e283ea1",
+      "location": "LOCAL_ONLY"
+    },
+    {
+      "file": "lock-metadata-access-private.json",
+      "sha256": "dc58080636e282e3b559bebd3c5df6e5b73fa0c62b7696e3994f8c0535d9cdad",
+      "location": "LOCAL_ONLY"
+    }
+  ]
+}

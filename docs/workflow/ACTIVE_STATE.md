@@ -1,4 +1,14 @@
-# 当前入口｜2026-11-13 v10.1.5 R1 已保存，待复核讨论
+# 当前入口｜2026-11-13 v10.1.5 R2 已保存，待复核讨论
+
+当前 **CHANGES_REQUIRED / PARTIAL**。本轮只处理非注入SFU超时与资料校正。已对齐08:06:45.631北京时间原事件及普通工具负载，新增固定截止/限量的gateway传输与PHP/DB关联诊断。120次普通读取、120个DB采样及636个关联请求未复现原异常，资源109点与采样收尾失败、DB锁明细权限限制均如实记录。非注入根因仍 **OPEN/UNKNOWN**。最终12项定向检查、正常guard/拒绝、标记暂停阶段分类、空房间恢复及诊断到期退出通过。具体时间窗、候选与边界见[R2结果](../versions/v10.1.5/supplement-r2-20261113/README.md)。
+
+实际根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.5-software-continuation-20261101`，本轮开发工具源码 `9520a494e7c8ca6b7a96080541df708854139803`。APP仍按cfdce773、后端核心6549f028及APK311632a8…/154580169字节的具名身份继承。当前部署源hash和到期后的四服务运行/Room0已实读，手机无本轮动作。R1已获顾问限定接受的资格、MBTI、引导、连接、call51、消息125、通知259、普通链、25分钟观察和call53/54范围保留。
+
+manifest已按最终LF字节更新两份摘要hash，并加入精确路径eol规则及暂存blob核对。AC04归图片/短视频附件，call54归AC05。call51端点差2.156秒，余量历史未直录，当前同Python分辨率条件复算2.187250秒；2个尾样本止于提交上端后3.968秒，完整5秒尾窗未采集。MBTI重选过程与最终A/A/A图、e7引导图分别标明。当前完成度与[manifest](../versions/v10.1.5/artifact_manifest.json)已集中更新。
+
+维持 **10 PARTIAL / AC05 OPEN / G2 false /真实Push PENDING**。R2资料校正完成，非注入工程问题仍待证据归因，顾问R2复核与Owner最终接受PENDING。原主库dirty/index、无关%SystemDrive%/、历史STOP与已耗记录保留。本次普通分支同步后停下供复核讨论，保存提交由当前分支Git历史及本机R2最终回执定位。
+
+# 历史节点｜2026-11-13 v10.1.5 R1保存
 
 本轮按Owner任务完成缺陷修复和集中补证材料，工程出口 **CHANGES_REQUIRED / PARTIAL**。独立权威工作池解决可复现的公共PHP占用机制，部署后00:06:45 UTC一次非注入authority_sweep超时仍有具体根因UNKNOWN，R1-01未关闭。当前包call51真实COMMIT停采集保守上界2.187250秒，call53故障收尾/旧令牌拒绝和恢复后call54正常261秒通话及挂断通过。1500.031秒采样、1500.906秒工具耗时的同PID窗口未见旧快照累积与ANR/OOM标记。完整结果见[R1补充结果](../versions/v10.1.5/supplement-r1-20261112/README.md)、[当前完成度表](../versions/v10.1.5/supplement-r1-20261112/COMPLETENESS_AC.md)及[manifest](../versions/v10.1.5/artifact_manifest.json)。
 
