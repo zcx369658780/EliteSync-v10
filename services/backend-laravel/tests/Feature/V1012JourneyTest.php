@@ -298,12 +298,14 @@ class V1012JourneyTest extends TestCase
         $a = $this->subject('a'); $b = $this->subject('b');
         $id = $this->proposalFixture($a, $b);
         $stamp = ['created_at' => now(), 'updated_at' => now()];
+        DB::table('friendships')->insert(['user_a' => min($a->id, $b->id), 'user_b' => max($a->id, $b->id),
+            'state' => 'ACTIVE', 'revision' => 1] + $stamp);
         $draft = DB::table('user_profile_showcase_drafts')->insertGetId(['user_id' => $b->id,
             'self_intro' => 'Unpublished private draft'] + $stamp);
         DB::table('user_profile_showcase_publications')->insert(['user_id' => $b->id,
             'source_draft_id' => $draft, 'source_moderation_status' => 'approved', 'published_at' => now(),
             'published_payload' => json_encode(['self_intro' => 'First published introduction',
-                'interest_tags' => ['reading'], 'lifestyle_tags' => ['early_riser']]),
+                'interest_tags' => ['reading'], 'lifestyle_tags' => ['early_riser'], 'audiences' => ['friends']]),
             'public_display_eligible' => true] + $stamp);
         $body = ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'accept-a'];
         $url = "/api/v1/journey/proposals/$id/decision";
@@ -313,7 +315,7 @@ class V1012JourneyTest extends TestCase
             ->assertJsonMissing(['summary' => 'Unpublished private draft']);
         DB::table('user_profile_showcase_publications')->where('user_id', $b->id)->update([
             'published_payload' => json_encode(['self_intro' => 'Later published introduction',
-                'interest_tags' => ['music'], 'lifestyle_tags' => []]), 'updated_at' => now(),
+                'interest_tags' => ['music'], 'lifestyle_tags' => [], 'audiences' => ['friends']]), 'updated_at' => now(),
         ]);
         $this->postJson($url, $body)->assertOk()->assertJsonPath('state', 'ACCEPTED_BY_ONE')
             ->assertJsonPath('revision', 2)->assertJsonPath('showcase.summary', 'Later published introduction')

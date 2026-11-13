@@ -142,14 +142,17 @@ final class SlowDatingService
         $out = ['id' => $p->id, 'match_id' => (int) $p->dating_match_id, 'round_id' => (int) $p->round_id, 'run_id' => (int) $p->run_id, 'revision' => (int) $p->revision, 'state' => $p->state, 'decision_me' => $isA ? $p->decision_a : $p->decision_b, 'decision_peer' => $isA ? $p->decision_b : $p->decision_a, 'peer_id' => $peer, 'revealed_at' => $p->revealed_at, 'expires_at' => $p->expires_at, 'showcase' => null, 'explanation' => null, 'connection_eligible' => false];
         $pending = in_array($p->state, ['PENDING', 'ACCEPTED_BY_ONE'], true);
         $current = $this->proposalContextActive($p);
-        $out += ['decision_available' => $pending && $current, 'withdraw_available' => $pending, 'availability_reason' => $current ? null : 'participation_paused_or_changed'];
+        $out += ['decision_available' => $pending && $current, 'withdraw_available' => $pending, 'availability_reason' => $current ? null : 'participation_paused_or_changed', 'candidate_available' => false];
         $allowed = app(SocialPolicy::class)->pairAllowed($actor, $peer)
             && User::whereIn('id', [$actor, $peer])->where('disabled', false)->where('account_status', 'active')->where('moderation_status', 'normal')->count() === 2;
         if (! $allowed || ! $current || Carbon::parse($p->expires_at, 'UTC')->lte(now()->utc()) || ! in_array($p->state, ['PENDING','ACCEPTED_BY_ONE','MUTUALLY_ACCEPTED'], true)) { return $out; }
-        $publication = DB::table('user_profile_showcase_publications')->where('user_id', $peer)->where('public_display_eligible', true)->lockForUpdate()->first();
+        $out['candidate_available'] = true;
+        $publication = app(\App\Services\ProfileShowcase\ShowcaseWorkflow::class)->visiblePublicationLocked($actor, $peer);
         // No raw payload, questions, exact birth inputs, internal scores or Safety facts.
-        $payload = $publication ? json_decode($publication->published_payload, true) : [];
-        $out['showcase'] = ['public_id' => 'ES-'.$peer, 'summary' => $payload['self_intro'] ?? null, 'interest_tags' => $payload['interest_tags'] ?? [], 'lifestyle_tags' => $payload['lifestyle_tags'] ?? []];
+        if ($publication) {
+            $payload = $publication->published_payload;
+            $out['showcase'] = ['public_id' => 'ES-'.$peer, 'summary' => $payload['self_intro'] ?? null, 'interest_tags' => $payload['interest_tags'] ?? [], 'lifestyle_tags' => $payload['lifestyle_tags'] ?? []];
+        }
         $out['explanation'] = ['categories' => ['questionnaire_preferences'], 'source' => 'existing_matching_run', 'uncertainty' => '候选来自有限自填输入，不保证相处效果', 'non_goals' => ['不构成实人认证或恋爱事实','不授予连接、消息或通话同意']];
         $out['connection_eligible'] = $p->state === 'MUTUALLY_ACCEPTED';
         return $out;

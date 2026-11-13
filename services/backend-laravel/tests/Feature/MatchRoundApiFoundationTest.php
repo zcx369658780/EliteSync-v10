@@ -111,6 +111,19 @@ class MatchRoundApiFoundationTest extends TestCase
             'drop_released' => true,
         ]);
         $round->forceFill(['state' => RoundState::Revealed])->save();
+        // A released match needs its current proposal and participation context.
+        $stamp = ['created_at' => now(), 'updated_at' => now()];
+        $proposalId = (string) \Illuminate\Support\Str::uuid();
+        \Illuminate\Support\Facades\DB::table('match_proposals')->insert([
+            'id' => $proposalId, 'dating_match_id' => $match->id, 'round_id' => $round->id, 'run_id' => $run->id,
+            'user_a' => $user->id, 'user_b' => $peer->id, 'generation_a' => 1, 'generation_b' => 1,
+            'revealed_at' => now(), 'expires_at' => now()->addDay(),
+        ] + $stamp);
+        foreach ([$user, $peer] as $participant) {
+            \Illuminate\Support\Facades\DB::table('matching_participations')->insert([
+                'user_id' => $participant->id, 'state' => 'ACTIVE', 'generation' => 1, 'revision' => 1,
+            ] + $stamp);
+        }
         DatingRoundUserState::query()->updateOrCreate(
             ['round_id' => $round->id, 'user_id' => $user->id],
             ['state' => UserRoundState::Revealed, 'dating_match_id' => $match->id, 'projection_version' => 3],

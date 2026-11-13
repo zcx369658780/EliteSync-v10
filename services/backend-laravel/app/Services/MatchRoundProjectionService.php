@@ -36,13 +36,13 @@ class MatchRoundProjectionService
                 } else {
                     $peerId = (int) ((int) $match->user_a === $userId ? $match->user_b : $match->user_a);
                     $proposal = app(SlowDatingService::class)->proposal($userId);
-                    if (! $proposal || $proposal['match_id'] !== (int)$match->id || ! $proposal['showcase']) {
+                    if (! $proposal || $proposal['match_id'] !== (int)$match->id || ! ($proposal['candidate_available'] ?? false)) {
                         return $this->envelope('closed', ['reason_code'=>'proposal_unavailable', 'conversation_capability'=>null]);
                     }
                     $result = [
                         'match_id' => (int) $match->id,
                         'partner_id' => $peerId,
-                        'partner_nickname' => $proposal['showcase']['public_id'],
+                        'partner_nickname' => 'ES-'.$peerId,
                         'headline' => '本轮候选已揭晓，请独立选择',
                     ];
                 }

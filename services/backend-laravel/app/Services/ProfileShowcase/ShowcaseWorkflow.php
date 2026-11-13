@@ -241,17 +241,40 @@ final class ShowcaseWorkflow
             || (in_array('relationship', $audiences, true) && app(FormalRelationshipService::class)->sharingAllowed($viewer, $owner));
     }
 
+    /** Caller already holds the participants' ordered user locks. */
+    public function visiblePublicationLocked(int $viewer, int $owner): ?UserProfileShowcasePublication
+    {
+        $publication = UserProfileShowcasePublication::where('user_id', $owner)->lockForUpdate()->first();
+        return $this->publicationAccessErrorLocked($viewer, $owner, $publication) === null ? $publication : null;
+    }
+
+    private function publicationAccessErrorLocked(int $viewer, int $owner, ?UserProfileShowcasePublication $publication): ?string
+    {
+        $users = User::whereIn('id', [$viewer, $owner])->orderBy('id')->lockForUpdate()
+            ->get(['id', 'disabled', 'account_status', 'moderation_status']);
+        // Establish current context before revealing publication state.
+        if ($users->count() !== ($viewer === $owner ? 1 : 2)
+            || $users->contains(fn ($user) => $user->disabled || $user->account_status !== 'active' || $user->moderation_status !== 'normal')
+            || ! $this->canView($viewer, $owner, ['friends', 'contacts', 'relationship'])) {
+            return 'showcase_unavailable';
+        }
+        if (! $publication) return 'showcase_not_published';
+        if ($publication->publication_status === 'withdrawn') return 'showcase_withdrawn';
+        if (! $this->canView($viewer, $owner, $publication->published_payload['audiences'] ?? [])) {
+            return 'showcase_unavailable';
+        }
+        if ($publication->publication_status !== 'published' || ! $publication->public_display_eligible) {
+            return 'showcase_not_published';
+        }
+        return null;
+    }
+
     private function requirePublication(int $viewer, int $owner): UserProfileShowcasePublication
     {
         app(JourneyStore::class)->users([$viewer, $owner]);
         $publication = UserProfileShowcasePublication::where('user_id', $owner)->lockForUpdate()->first();
-        // Check current context before exposing whether a publication exists.
-        abort_unless($this->canView($viewer, $owner, ['friends', 'contacts', 'relationship']), 404, 'showcase_unavailable');
-        abort_unless($publication, 404, 'showcase_not_published');
-        abort_if($publication->publication_status === 'withdrawn', 404, 'showcase_withdrawn');
-        $audiences = $publication->published_payload['audiences'] ?? [];
-        abort_unless($this->canView($viewer, $owner, $audiences), 404, 'showcase_unavailable');
-        abort_unless($publication->publication_status === 'published' && $publication->public_display_eligible, 404, 'showcase_not_published');
+        $error = $this->publicationAccessErrorLocked($viewer, $owner, $publication);
+        abort_if($error !== null, 404, $error ?? 'showcase_unavailable');
         return $publication;
     }
 
