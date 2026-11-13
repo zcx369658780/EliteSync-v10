@@ -202,7 +202,9 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
           '暂停后不再接受候选，可独立撤回当前未决提案；请先撤回再明确重新报名，进入新代际。退出会撤回未决提案，不影响独立连接与消息同意。',
         ),
         const Divider(),
-        Text('当前轮次：${journeyStateLabel(round['state'])}'),
+        Text(
+          '当前轮次：${round['state'] == 'scheduled' && round['next_action_code'] == 'wait_for_reveal' ? '结果已生成，等待揭晓' : journeyStateLabel(round['state'])}',
+        ),
         if (round['reason_code'] != null || round['failure_code'] != null)
           Text('轮次说明：${journeyStateLabel(round['state'])}'),
         if (round['retry_eligible'] == true)

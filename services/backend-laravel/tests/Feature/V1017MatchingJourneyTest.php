@@ -71,6 +71,9 @@ class V1017MatchingJourneyTest extends TestCase
         $run = app(MatchingRunService::class)->request($round, 'v1017-request', 'test', null);
         $this->artisan('app:matching:execute-pending', ['--once' => true, '--run-id' => $run->id])->assertSuccessful();
         $this->assertSame(1, $run->fresh()->pair_count, json_encode(app(ProfileReadinessService::class)->forUser($a)));
+        $projection = app(\App\Services\MatchRoundProjectionService::class)->currentForUser($a->id)['data'];
+        $this->assertSame('awaiting_reveal', $projection['reason_code']);
+        $this->assertNull($projection['result']);
         return [$round->fresh(), $run->fresh()];
     }
 

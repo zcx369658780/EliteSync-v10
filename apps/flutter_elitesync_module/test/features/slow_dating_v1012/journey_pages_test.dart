@@ -402,4 +402,26 @@ void main() {
       expect(find.textContaining('分享授权已撤回'), findsOneWidget);
     },
   );
+  testWidgets(
+    'completed consumer waits for reveal without exposing a candidate',
+    (tester) async {
+      final response = journey(state: 'ACTIVE');
+      response['round'] = {
+        'state': 'scheduled',
+        'next_action_code': 'wait_for_reveal',
+      };
+      await mount(
+        tester,
+        const SlowDatingJourneyPage(),
+        FakeApi((method, path, body) async => response),
+      );
+      await tester.scrollUntilVisible(
+        find.text('当前轮次：结果已生成，等待揭晓'),
+        400,
+        scrollable: find.byType(Scrollable).first,
+      );
+      expect(find.text('当前轮次：结果已生成，等待揭晓'), findsOneWidget);
+      expect(find.text('独立接受候选'), findsNothing);
+    },
+  );
 }

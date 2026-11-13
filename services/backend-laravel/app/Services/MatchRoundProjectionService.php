@@ -70,7 +70,8 @@ class MatchRoundProjectionService
             'state_version' => $round->state_version,
             'scheduled_for' => $round->scheduled_for?->toISOString(),
             'reveal_at' => $round->reveal_at?->toISOString(),
-            'reason_code' => $state === 'no_candidate' ? 'no_candidate' : ($userState?->reason_code ?? $round->failure_code),
+            'reason_code' => $state === 'no_candidate' ? 'no_candidate'
+                : (in_array($state, ['scheduled', 'preparing', 'running'], true) ? 'awaiting_reveal' : ($userState?->reason_code ?? $round->failure_code)),
             'next_action_code' => in_array($state, ['revealed', 'closed'], true)
                 ? null
                 : ($state === 'no_candidate' ? 'wait_next_round' : $userState?->next_action_code),

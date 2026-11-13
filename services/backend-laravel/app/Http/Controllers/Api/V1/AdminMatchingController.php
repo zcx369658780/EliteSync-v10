@@ -75,7 +75,7 @@ class AdminMatchingController extends Controller
 
         ExecuteMatchingRun::dispatch((int) $run->id);
 
-        return response()->json(['data' => $run, 'meta' => ['consumer' => 'database_queue', 'background_started' => false]], 202);
+        return response()->json(['data' => $run->fresh(), 'meta' => ['consumer' => 'app:matching:execute-pending', 'queue_driver' => (string) config('queue.default'), 'background_started' => false]], 202);
     }
 
     public function reveal(Request $request, string $roundKey, MatchingRoundService $service): JsonResponse
@@ -120,7 +120,7 @@ class AdminMatchingController extends Controller
         $run = $service->retry($failed, $idempotencyKey, 'admin', (int) $request->user()->id);
         ExecuteMatchingRun::dispatch((int) $run->id);
 
-        return response()->json(['data' => $run], 201);
+        return response()->json(['data' => $run->fresh()], 201);
     }
 
     public function close(Request $request, string $roundKey, MatchingRoundService $service): JsonResponse

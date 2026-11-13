@@ -346,7 +346,9 @@ class MatchingRunService
             'required_answers' => (int) config('questionnaire.required_answer_count', 10),
             'questions' => $questions,
             'ordinary_rule' => MatchingInputService::RULE_VERSION,
-            'prior_match_version' => DatingMatch::query()->where('drop_released', true)->max('updated_at'),
+            'prior_match_version' => DatingMatch::query()->where('drop_released', true)
+                ->where('created_at', '>=', now()->subDays(max(0, (int) config('matching.hard_filters.exclude_recent_pair_days', 14))))
+                ->orderBy('id')->get(['id', 'pair_key', 'updated_at'])->toArray(),
         ];
 
         return hash('sha256', json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
