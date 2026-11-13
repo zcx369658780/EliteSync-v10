@@ -1,14 +1,12 @@
-# 当前入口 2026-11-13 v10.1.6任务已下达
+# 当前入口 2026-11-13 v10.1.6工程交付待顾问验收
 
-Owner已确认项目交接完成、v10.1.5阶段收尾，授权新的功能路线与下一版本。当前目标是[v10.1.6真实后端接续与资料展示闭环](../versions/v10.1.6/task_order.md)，范围及六项AC见[plan](../versions/v10.1.6/plan.md)。先真实API/持久DB/实际Web和APP业务，集中UI/文字放在v10.1.12；新增相识后工具仅留接口。[Owner决定](../decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)与[新路线图](../architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)已同步。
+本版六项AC工程自验完成，顾问验收及Owner接受PENDING。普通APP资料/0至6张照片编辑、真实API与MariaDB、Web版本审核反馈、本人发布/替换/撤回、获准对象详情及私有图片链已接通。新增四项相识后能力当前unavailable并保留接口。详见[唯一实施报告](../versions/v10.1.6/IMPLEMENTATION_REPORT.md)和[manifest](../versions/v10.1.6/artifact_manifest.json)。
 
-远端任务/开发分支：codex/v10.1.6-backend-productization-20261113；承接保存基线2687a39ca09440f17ed3e5e586c5c3ab4a318130，本次发布只改文档。当前尚未从本机回执确认v10.1.6执行开始，不把远端分支建立写成本地已切支或服务已运行。
+实际根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.6-backend-productization-20261113`。产品源码 `fe9360b7c0abd0abb88d1e2623d1c9ec1660eacc`，任务发布4471bed6，承接基线2687a39c。当前源码Debug APK为 `10.1.6-dev / 1010601 / com.elitesync.v1015dev / arm64-v8a`，123715466字节，SHA256 `444da1b6361734bcfd589ef2983add1fa823abb5709b6e7bfee238ca3db6bbf8`。最终包双端安装字节一致，实际完成草稿8→Web审核→本人发布5→B普通入口读取，以及DB/API/WS受控重启和APP冷启读回。62项PHP测试902断言、57项Flutter定向测试通过，原具名有效证据沿限定范围继承。
 
-最近已知稳定根为 D:\EliteSync-v10-product-v1015-20261101；本机最近报告分支为codex/v10.1.5-software-continuation-20261101。Codex恢复时核实际根、remote、HEAD、工作区/index与必要资源，保护新成果并正常接续本版分支，不以旧main覆盖、不复制全工程。
+资源实读为2026-11-13 15:57:02中国时间。DB/API/WS运行，SFU恢复出现authority_sweep TimeoutError并沿原最大3次重试退出，当前exited、房间查询UNAVAILABLE，原因OPEN/UNKNOWN。本版RTC源码与承接基线一致，相关历史结论保持身份。双模拟器保留，APP均停止、原user0与新增测试user10/11数据保留，已切回原user0；ADB5038保持USB排除，手机无本轮动作。私有配置、DB、日志、截图和APK位于Owner本机既有目录。
 
-原R1限定接受保留；R2-02资料修正关闭，本轮有界诊断交付限定接受。v10.1.5原10 PARTIAL / AC05 OPEN / G2 false /真实Push PENDING以及SFU UNKNOWN保持历史事实，承接见[收尾记录](../versions/v10.1.5/CLOSEOUT_20261113.md)，不再作为v10.1.6前置门。
-
-普通本地工程、定向验证、必要构建及双模拟器已有长期授权，手机不使用。本版集中完成、保存与普通同步后停下供顾问验收，不自动开v10.1.7、不合main、不发布。当前运行资源由实际恢复时核验，不把此前四服务/Room0快照当现在状态。
+当前按本版分支集中保存与普通同步，最终保存提交及远端一致性见Git历史和私有交付回执。本轮交付后停下供顾问复核。v10.1.5已按Owner决定收尾，原判定、旧STOP和已耗记录保留，原主库dirty/index及无关%SystemDrive%/保持保护。
 
 ---
 

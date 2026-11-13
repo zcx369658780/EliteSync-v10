@@ -1,0 +1,201 @@
+{
+  "schema": "elitesync.v10.1.6.artifact_manifest.v1",
+  "version": "10.1.6-dev",
+  "engineering_status": "SCOPED_SIX_AC_COMPLETED",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "repository": "zcx369658780/EliteSync-v10",
+  "branch": "codex/v10.1.6-backend-productization-20261113",
+  "product_root": "D:\\EliteSync-v10-product-v1015-20261101",
+  "task_commit": "4471bed660d6d9a1eac00f56ee54b9bb9d9e8a1a",
+  "inherited_baseline": "2687a39ca09440f17ed3e5e586c5c3ab4a318130",
+  "product_source_commit": "fe9360b7c0abd0abb88d1e2623d1c9ec1660eacc",
+  "backend_business_commit": "df7de198ac28e97a0fee4c9ec80f29723d8ea178",
+  "source_tree_ids": {
+    "apps/flutter_elitesync_module/lib": "c14578de1c98d338fcff5279bfa8087f78b77b06",
+    "apps/android/app": "1effa1ae14c4e3a89b5206496d61911f9694abac",
+    "services/backend-laravel/app": "4e42778d7a51cdacfc529bcbcbe480057e3a0b0a",
+    "services/backend-laravel/routes": "80a1e76c2706daaaeae07d118968fd92f98ea59f",
+    "services/backend-laravel/config": "324f63e32e00a91348ff6b6d030f13d4eaa50d28",
+    "services/backend-laravel/database": "c61cafafbcbddfb25f7830d16dd155ad26c72a62",
+    "services/backend-laravel/resources": "5b477bd497c155c105b0c840cf45b72cb3b21bbe",
+    "services/backend-laravel/tools/rtc": "f812fe84f87d5129c656a12a990d8a1da5d0e61e"
+  },
+  "apk": {
+    "source_commit": "fe9360b7c0abd0abb88d1e2623d1c9ec1660eacc",
+    "package": "com.elitesync.v1015dev",
+    "version_name": "10.1.6-dev",
+    "version_code": 1010601,
+    "variant": "source Debug",
+    "abi": "arm64-v8a",
+    "debuggable": true,
+    "signature": "existing key, v2 verified",
+    "sha256": "444da1b6361734bcfd589ef2983add1fa823abb5709b6e7bfee238ca3db6bbf8",
+    "bytes": 123715466,
+    "kernel_bytes": 91975416,
+    "fixed_owner_local_path": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\delivery\\v10.1.6-dev-1010601-fe9360b7.apk",
+    "distribution": "LOCAL_ONLY",
+    "installed_emulator_bytes_verified": true,
+    "build_elapsed_seconds": 36.3294921
+  },
+  "runtime": {
+    "backend": "Laravel13/PHP8.4.27",
+    "database": "persistent MariaDB10.11.19",
+    "api_and_web": "http://127.0.0.1:8021",
+    "ws": "http://127.0.0.1:8022",
+    "migration": "2026_11_13_120000_complete_profile_showcase_workflow",
+    "configuration_provenance": "Owner LOCAL_ONLY EliteSyncDev/v1015-current-dev/runtime-private.json; existing Docker environment and volumes",
+    "deployed_source_bytes": [
+      {
+        "path": "services/backend-laravel/app/Services/ProfileShowcase/ShowcaseWorkflow.php",
+        "sha256_worktree_and_container_bytes": "a4d65b537edc8b5c14842703798a403b2dcb864d0ed8a34b8b2cb3bc9838f595"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/ProfileShowcaseDraftController.php",
+        "sha256_worktree_and_container_bytes": "868da4744bde6e301ef25ce1c98c7d5f71c356871ae06671acc6eb52685c5dd9"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/ProfileShowcasePublicationController.php",
+        "sha256_worktree_and_container_bytes": "a3a38511d7bbe5a95e4ab8b4a1ef0cd7bf713b7d86bb93f1ccad7cc51753567c"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Web/AdminShowcaseController.php",
+        "sha256_worktree_and_container_bytes": "277fc02b4c63ab82517b2962bb6ece369467d250d32ef728c25cbbb54df422fc"
+      },
+      {
+        "path": "services/backend-laravel/database/migrations/2026_11_13_120000_complete_profile_showcase_workflow.php",
+        "sha256_worktree_and_container_bytes": "171c6bbf0c22420afbe03a57b65ad384f648f93ae0cfab1488a8bcb971c090e8"
+      },
+      {
+        "path": "services/backend-laravel/config/filesystems.php",
+        "sha256_worktree_and_container_bytes": "38197c148d047ea721387b706c697bdcac337af31eb5eb17ceca7db1decccbbb"
+      }
+    ]
+  },
+  "acceptance": {
+    "AC16-01": {
+      "engineering_result": "PASS",
+      "scope": "v10.1.6 profile workflow"
+    },
+    "AC16-02": {
+      "engineering_result": "PASS",
+      "scope": "v10.1.6 profile workflow"
+    },
+    "AC16-03": {
+      "engineering_result": "PASS",
+      "scope": "v10.1.6 profile workflow"
+    },
+    "AC16-04": {
+      "engineering_result": "PASS",
+      "scope": "v10.1.6 profile workflow"
+    },
+    "AC16-05": {
+      "engineering_result": "PASS",
+      "scope": "v10.1.6 profile workflow"
+    },
+    "AC16-06": {
+      "engineering_result": "PASS",
+      "scope": "v10.1.6 deliverable; SFU resource limitation separately OPEN"
+    }
+  },
+  "evidence": {
+    "final_candidate": [
+      "APP draft8 save",
+      "normal Web approval of submission4",
+      "APP explicit publication5",
+      "B ordinary community author entry and private images",
+      "DB API WS restart identical scoped rows and image availability",
+      "dual APP cold readback and installed byte identity"
+    ],
+    "inherited_v1016_candidate": {
+      "source_commit": "8973568a3a0b34d25efa2ff149a718e84a66ee7e",
+      "apk_sha256": "7c45c820d85163f7d5d9363624e73f600ee3ca46844a81cb5a85b96e25bead98",
+      "scope": [
+        "needs_revision5 to revised approved6",
+        "three uploads, order and removal",
+        "save failure retained input and retry7",
+        "new private draft isolation",
+        "replacement/withdrawal/old URL/block boundary",
+        "normal A-C-A account isolation and re-login"
+      ],
+      "final_delta": "one photo guidance string and backend README; business and request logic identical"
+    },
+    "backend_tests": {
+      "runtime": "PHP8.4.27 with isolated SQLite",
+      "tests": 62,
+      "assertions": 902,
+      "result": "PASS"
+    },
+    "flutter_targeted_tests": {
+      "tests": 57,
+      "result": "PASS"
+    },
+    "noninjected_reciprocal_reads": {
+      "requests": 8,
+      "result": "PASS"
+    },
+    "raw_private_root": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\v1016-current",
+    "raw_logs_screenshots_apk_credentials": "LOCAL_ONLY",
+    "documents": [
+      "docs/versions/v10.1.6/IMPLEMENTATION_REPORT.md",
+      "docs/versions/v10.1.6/AFTER_ACQUAINTANCE_CONTRACT.md",
+      "services/backend-laravel/README.md"
+    ]
+  },
+  "future_interfaces": {
+    "implemented": false,
+    "status": "unavailable",
+    "capabilities": [
+      "icebreaker",
+      "meetup",
+      "shared_plan",
+      "anniversary"
+    ],
+    "contract": "App\\Contracts\\AfterAcquaintanceExtension"
+  },
+  "resources": {
+    "snapshot_china_time": "2026-11-13T15:57:02.492391+08:00",
+    "containers": {
+      "db": "running",
+      "api": "running",
+      "ws": "running",
+      "sfu": "exited"
+    },
+    "apps": "STOPPED_DATA_RETAINED",
+    "emulators_retained": true,
+    "android_test_users": {
+      "5580": 10,
+      "5582": 11
+    },
+    "active_android_users": {
+      "5580": 0,
+      "5582": 0
+    },
+    "adb": "5038 with USB excluded",
+    "phone_actions": false,
+    "rooms": "UNAVAILABLE_SFU_EXITED"
+  },
+  "open_items": [
+    {
+      "id": "SFU_RESTORE_AUTHORITY_TIMEOUT",
+      "status": "OPEN",
+      "cause": "UNKNOWN",
+      "observation": "authority_sweep TimeoutError approximately601-602ms; existing maximum3 restart policy exhausted; no RTC source changes or timeout adjustment in this version"
+    },
+    {
+      "id": "ADVISOR_AND_OWNER_REVIEW",
+      "status": "PENDING"
+    },
+    {
+      "id": "INHERITED_EXTERNAL_LIMITS",
+      "status": "PER_EXISTING_VERSION_RECORDS",
+      "scope": [
+        "real Push",
+        "external identity provider",
+        "hardware",
+        "independent algorithm accuracy"
+      ]
+    }
+  ],
+  "scope_exit": "Saved and synchronized version branch, then await advisor review"
+}

@@ -1,6 +1,6 @@
 # EliteSync Backend
 
-当前锁定 Laravel 13、PHP 8.4，稳定本地开发服务使用持久 MariaDB 10.11。以下早期环境说明保留其历史背景。
+当前锁定 Laravel 13、PHP 8.4，稳定本地开发服务使用持久 MariaDB 10.11。以下早期 Laravel 11 / MySQL 8 环境说明保留为历史记录。
 
 ## v10.1.6 展示资料闭环
 
@@ -12,9 +12,9 @@
 
 修改携带 `expected_revision`，发布另带 `publication_revision` 与明确确认。已审核的内容不能自动批准新版本。旧草稿可重新提交，受限账号保留本人只读。移除和撤回约束后续读取，已发布的旧快照在替换或撤回前继续按其既有受众生效。
 
-运营参与申请使用 `/api/v1/profile/operating-application`，管理端在账号页面审核，普通展示资料独立可用。相识后新增能力仅有应用层接口契约，见本版 `AFTER_ACQUAINTANCE_CONTRACT.md`。
+运营参与申请使用 `/api/v1/profile/operating-application`，管理端在账号页面审核，普通展示资料独立可用。相识后新增能力的应用层定义见[扩展契约](../../docs/versions/v10.1.6/AFTER_ACQUAINTANCE_CONTRACT.md)。
 
-## 版本建议（当前仓库要求）
+## 历史环境建议
 
 - PHP: `8.4+`（`composer.lock` 当前包含 Symfony 8 组件，需 8.4）
 - Composer: `2.9.x` ✅
@@ -67,7 +67,7 @@
 - MySQL: `localhost:3306`
 - Redis: `localhost:6379`
 
-## 本地（非 Docker）调试
+## 历史本地（非 Docker）调试
 
 ```bash
 cd services/backend-laravel
