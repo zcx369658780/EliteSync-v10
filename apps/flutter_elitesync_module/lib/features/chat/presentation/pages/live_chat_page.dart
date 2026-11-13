@@ -105,14 +105,16 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     if (_timeLocked || (!_hadTrustedCache && _messages.isEmpty)) return;
     final epoch = _epoch;
     final session = _session;
-    final receipt = await _cache.purgeExpired();
+    final cache = _cache;
+    final receipt = await cache.purgeExpired();
+    if (!mounted || epoch != _epoch || !identical(_session, session)) return;
     final saved = _offline
-        ? await _cache.readOffline(_cacheKey)
-        : await _cache.readOnlineAuthorized(_cacheKey);
+        ? await cache.readOffline(_cacheKey)
+        : await cache.readOnlineAuthorized(_cacheKey);
     if (!mounted || epoch != _epoch || !identical(_session, session)) return;
     if (_offline &&
-        !_cache.isOffline &&
-        _cache.isUnlocked &&
+        !cache.isOffline &&
+        cache.isUnlocked &&
         receipt.status == PrivateCachePurgeStatus.notDue) {
       // Another retained page recovered first. Hide this page's old offline
       // copy until its own current read, instead of treating a mode change as
@@ -123,7 +125,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     }
     if ((saved == null && (_messages.isNotEmpty || _images.isNotEmpty)) ||
         receipt.status != PrivateCachePurgeStatus.notDue ||
-        !_cache.isUnlocked) {
+        !cache.isUnlocked) {
       _reject(
         receipt.status == PrivateCachePurgeStatus.completed
             ? '30天期限已到，本账户离线缓存已清理。'

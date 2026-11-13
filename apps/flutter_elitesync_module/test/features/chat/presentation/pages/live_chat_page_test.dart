@@ -5,8 +5,10 @@ import 'package:flutter_elitesync_module/features/profile/avatar/authenticated_a
 import '../../../../support/synthetic_private_login.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_elitesync_module/core/network/api_client.dart';
@@ -17,6 +19,7 @@ import 'package:flutter_elitesync_module/shared/providers/session_provider.dart'
 import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/live_chat_page.dart';
+import 'package:flutter_elitesync_module/features/chat/presentation/widgets/voice_memo_panel.dart';
 import 'package:flutter_elitesync_module/features/chat/data/gateway/chat_media_gateway.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 
@@ -299,9 +302,15 @@ class _DraftStore extends SyntheticPrivateStore {
   bool blockDraftDelete = false;
   Completer<void>? blockDelete;
   Completer<void>? deleteEntered;
+  Completer<void>? blockWrite;
+  Completer<void>? writeEntered;
   bool draftKey(String key) => key.contains(':live-chat-draft%3A');
   @override
   Future<void> write(String key, String value) async {
+    if (draftKey(key) && blockWrite != null) {
+      if (!writeEntered!.isCompleted) writeEntered!.complete();
+      await blockWrite!.future;
+    }
     if (draftKey(key) && failDraftWrite) {
       throw StateError('fictional write failure');
     }
@@ -318,6 +327,63 @@ class _DraftStore extends SyntheticPrivateStore {
     }
     if (draftKey(key) && refuseDraftDelete) return;
     await super.delete(key);
+  }
+}
+
+class _ConfirmedVoiceApi extends ApiClient {
+  _ConfirmedVoiceApi() : super(dio: Dio());
+  final messageBodies = <Map<String, dynamic>>[];
+  int mediaUploads = 0;
+  int failedHistoryReads = 0;
+
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> get(
+    String path, {
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
+    if (path == '/api/v1/connections/2') {
+      return const NetworkSuccess({
+        'peer_id': 2,
+        'gates': {'live_read_allowed': true, 'live_send_allowed': true},
+      });
+    }
+    expect(path, '/api/v1/messages');
+    if (messageBodies.isNotEmpty) {
+      failedHistoryReads++;
+      return const NetworkFailure(
+        message: 'fixture history failure', statusCode: 500,
+      );
+    }
+    return const NetworkSuccess({'items': <dynamic>[], 'has_more': false});
+  }
+
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> post(
+    String path, {
+    Object? body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
+    if (path == '/api/v1/media') {
+      mediaUploads++;
+      final form = body! as FormData;
+      expect(
+        form.fields.singleWhere((entry) => entry.key == 'media_type').value,
+        'audio',
+      );
+      return const NetworkSuccess({
+        'asset': {'id': 77, 'media_type': 'audio', 'status': 'ready'},
+      });
+    }
+    expect(path, '/api/v1/messages');
+    final data = Map<String, dynamic>.from(body! as Map);
+    messageBodies.add(data);
+    return NetworkSuccess({
+      'id': 200, 'client_message_id': data['client_message_id'],
+    });
   }
 }
 
@@ -386,6 +452,116 @@ Future<void> _show(
 }
 
 void main() {
+  testWidgets('confirmed voice send closes panel even when following history read fails', (tester) async {
+    // The native status and media upload are named fixtures. This verifies the
+    // real LiveChatPage callback and persistence acknowledgement, not recording.
+    final directory = Directory.systemTemp.createTempSync(
+      'elitesync-voice-widget-',
+    );
+    final preview = File('${directory.path}/fixture-preview.m4a')
+      ..writeAsBytesSync([1, 2, 3, 4]);
+    addTearDown(() {
+      if (preview.existsSync()) preview.deleteSync();
+      directory.deleteSync();
+    });
+    const channel = MethodChannel('elitesync/voice_memo');
+    var released = 0;
+    var hasPreview = true;
+    final messenger = TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      if (call.method == 'release') {
+        released++;
+        hasPreview = false;
+      }
+      return <String, Object?>{
+        'recording': false,
+        'previewPath': hasPreview ? preview.path : null,
+        'durationMs': hasPreview ? 2000 : 0,
+        'sizeBytes': hasPreview ? 4 : 0,
+        'recordingElapsedMs': 0,
+        'playbackState': 'idle',
+        'positionMs': 0,
+        'playbackDurationMs': 0,
+        'errorCode': null,
+      };
+    });
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
+    final api = _ConfirmedVoiceApi();
+    await _show(tester, api);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('语音留言'));
+    await tester.pumpAndSettle();
+    await tester.pump(const Duration(milliseconds: 250));
+    await tester.pumpAndSettle();
+    expect(find.byType(VoiceMemoPanel), findsOneWidget);
+    expect(find.text('时长 2.0秒'), findsOneWidget);
+    await tester.runAsync(() async {
+      await tester.tap(find.text('确认发送语音'));
+      // MultipartFile.fromFile reads this test-owned fixture on the real IO loop.
+      await Future<void>.delayed(const Duration(milliseconds: 100));
+    });
+    await tester.pumpAndSettle();
+    for (var wait = 0;
+        wait < 20 && find.byType(VoiceMemoPanel).evaluate().isNotEmpty;
+        wait++) {
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 20)),
+      );
+      await tester.pump();
+    }
+    await tester.pumpAndSettle();
+    expect(api.mediaUploads, 1);
+    final panelText = tester.widgetList<Text>(find.descendant(
+      of: find.byType(VoiceMemoPanel), matching: find.byType(Text),
+    )).map((text) => text.data).join(' | ');
+    expect(api.messageBodies, hasLength(1), reason: panelText);
+    expect(api.messageBodies.single['attachment_ids'], [77]);
+    expect(
+      api.messageBodies.single['client_message_id'],
+      matches(RegExp(r'^[0-9a-f-]{36}$')),
+    );
+    expect(api.failedHistoryReads, greaterThanOrEqualTo(1));
+    expect(find.byType(VoiceMemoPanel), findsNothing, reason: panelText);
+    expect(released, 1);
+    expect(find.text('重试发送语音'), findsNothing);
+    expect(find.textContaining('消息尚未确认'), findsNothing);
+    expect(find.text('使用原消息编号重试'), findsNothing);
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pumpAndSettle();
+    expect(api.messageBodies, hasLength(1));
+    expect(api.mediaUploads, 1);
+    await tester.pumpWidget(const SizedBox());
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('voice memo cannot open while an explicit draft save is pending', (tester) async {
+    final secure = await _draftStore();
+    await _show(tester, _MediaApi(), secureStore: secure);
+    await tester.pumpAndSettle();
+    final button = find.byWidgetPredicate(
+      (widget) => widget is IconButton && widget.tooltip == '语音留言',
+    );
+    expect(tester.widget<IconButton>(button).onPressed, isNotNull);
+    secure.blockWrite = Completer();
+    secure.writeEntered = Completer();
+    addTearDown(() {
+      if (!secure.blockWrite!.isCompleted) secure.blockWrite!.complete();
+    });
+    await tester.enterText(find.byType(TextField), 'fixture pending private draft');
+    await tester.tap(find.text('保存草稿'));
+    await tester.pump();
+    await secure.writeEntered!.future;
+    expect(tester.widget<IconButton>(button).onPressed, isNull);
+    await tester.tap(button);
+    await tester.pump();
+    expect(find.byType(VoiceMemoPanel), findsNothing);
+    secure.blockWrite!.complete();
+    await tester.pumpAndSettle();
+    expect(tester.widget<IconButton>(button).onPressed, isNotNull);
+    await tester.pumpWidget(const SizedBox());
+    await tester.pumpAndSettle();
+  });
+
   testWidgets('only the presented foreground conversation ACKs inbound IDs', (
     tester,
   ) async {
