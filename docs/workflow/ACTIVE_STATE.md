@@ -1,4 +1,18 @@
-# 当前入口 2026-11-13 v10.1.7工程交付待顾问验收
+# 当前入口 2026-11-13 v10.1.7顾问验收通过
+
+固定交付e6bc14f6456421e006d1073dfe64d3b28c243102的六项AC在约定开发范围内接受，结论ACCEPTED_SCOPED_V10_1_7，本轮无需R1补修。详见[顾问验收](../versions/v10.1.7/ADVISOR_ACCEPTANCE_20261113.md)及[当前manifest](../versions/v10.1.7/artifact_manifest.json)。Owner最终接受仍PENDING；Codex保持交付后停止，下一版进入范围讨论，本次不自动下达v10.1.8。
+
+后端源码0229e9d8018296701236f8a9b5fc919fd66096d2，APP源码44d4b96daa7e84d2f92c4385b258159de1c45dc1；候选10.1.7-dev / 1010703 / com.elitesync.v1015dev，123730978字节，SHA256 1afe17fff97fae81153e8de7e2ffeed174a48d639de55e42f77b45f7cf7d8a5e。分支继续codex/v10.1.7-matching-journey-20261113，稳定根D:\EliteSync-v10-product-v1015-20261101。
+
+顾问独立核对输入/双向筛选/实际问卷排序、生成与揭晓版本、参与/决策及当前受众历史、测试设计、报告哈希、22份Git文件和8个源码子树；均与声明相符。本机39项PHP/479断言、22项Flutter、容器/安装字节和普通APP/Web/MariaDB/重启链沿Codex具名报告，顾问未在Owner本机复演。MariaDB字段长度缺陷已修复，run5注入失败、run6普通失败及run7正常成功保留分别身份。
+
+最近资源回执仍为2026-11-13 19:38:46.598446北京时间：DB/API/WS运行，SFU exited / UNAVAILABLE / OPEN / UNKNOWN；双模拟器回user0、本包进程停止、测试用户11/12与数据保留，手机NOT_RUN。这是交付时快照，不代表验收时实时读取。SFU随v10.1.8通信工作结转，真实Push等限制保持原账。
+
+本次仅写顾问验收、当前状态及必要路线状态，产品源码和候选不变。普通工程长期授权保留，具体下一版另行下达；整个v10继续功能优先、v10.1.12集中UI/文字，相识后新增工具仅接口，不开展公司/内测/发布。以下节点保留历史身份。
+
+---
+
+## 历史节点｜2026-11-13 v10.1.7工程交付待顾问验收
 
 婚恋偏好与匹配旅程六项AC工程自验PASS，顾问与Owner接受PENDING。详见[实施报告](../versions/v10.1.7/IMPLEMENTATION_REPORT.md)与[manifest](../versions/v10.1.7/artifact_manifest.json)。普通双端APP/API/MariaDB/Web/consumer链、本人历史及当前受众保护已接通。
 

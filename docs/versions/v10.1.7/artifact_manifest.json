@@ -1,8 +1,8 @@
 {
   "schema": "elitesync.v10.1.7.artifact_manifest.v1",
   "version": "10.1.7-dev",
-  "engineering_status": "SIX_AC_PASS_AWAITING_ADVISOR",
-  "advisor_acceptance": "PENDING",
+  "engineering_status": "SIX_AC_PASS",
+  "advisor_acceptance": "ACCEPTED_SCOPED_V10_1_7",
   "owner_acceptance": "PENDING",
   "repository": "zcx369658780/EliteSync-v10",
   "branch": "codex/v10.1.7-matching-journey-20261113",
@@ -310,33 +310,39 @@
   "acceptance": {
     "AC17-01": {
       "engineering_result": "PASS",
-      "advisor_review": "PENDING",
-      "report": "IMPLEMENTATION_REPORT.md"
+      "advisor_review": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "report": "IMPLEMENTATION_REPORT.md",
+      "advisor_report": "ADVISOR_ACCEPTANCE_20261113.md"
     },
     "AC17-02": {
       "engineering_result": "PASS",
-      "advisor_review": "PENDING",
-      "report": "IMPLEMENTATION_REPORT.md"
+      "advisor_review": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "report": "IMPLEMENTATION_REPORT.md",
+      "advisor_report": "ADVISOR_ACCEPTANCE_20261113.md"
     },
     "AC17-03": {
       "engineering_result": "PASS",
-      "advisor_review": "PENDING",
-      "report": "IMPLEMENTATION_REPORT.md"
+      "advisor_review": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "report": "IMPLEMENTATION_REPORT.md",
+      "advisor_report": "ADVISOR_ACCEPTANCE_20261113.md"
     },
     "AC17-04": {
       "engineering_result": "PASS",
-      "advisor_review": "PENDING",
-      "report": "IMPLEMENTATION_REPORT.md"
+      "advisor_review": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "report": "IMPLEMENTATION_REPORT.md",
+      "advisor_report": "ADVISOR_ACCEPTANCE_20261113.md"
     },
     "AC17-05": {
       "engineering_result": "PASS",
-      "advisor_review": "PENDING",
-      "report": "IMPLEMENTATION_REPORT.md"
+      "advisor_review": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "report": "IMPLEMENTATION_REPORT.md",
+      "advisor_report": "ADVISOR_ACCEPTANCE_20261113.md"
     },
     "AC17-06": {
       "engineering_result": "PASS",
-      "advisor_review": "PENDING",
-      "report": "IMPLEMENTATION_REPORT.md"
+      "advisor_review": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "report": "IMPLEMENTATION_REPORT.md",
+      "advisor_report": "ADVISOR_ACCEPTANCE_20261113.md"
     }
   },
   "actual_checks": {
@@ -630,7 +636,9 @@
   "remaining": [
     {
       "id": "ADVISOR_AND_OWNER_ACCEPTANCE",
-      "status": "PENDING"
+      "status": "OWNER_ACCEPTANCE_PENDING",
+      "advisor_acceptance": "ACCEPTED_SCOPED_V10_1_7",
+      "owner_acceptance": "PENDING"
     },
     {
       "id": "SFU",
@@ -656,5 +664,33 @@
     }
   ],
   "unfinished_current_software_ac": [],
-  "exit": "Save and sync the current branch, verify fixed remote commit, stop for advisor review"
+  "exit": "Advisor accepted six AC within declared development scope; remain stopped for Owner acceptance and subsequent version discussion; no automatic v10.1.8",
+  "advisor_review_record": {
+    "date_china": "2026-11-13",
+    "reviewed_delivery_commit": "e6bc14f6456421e006d1073dfe64d3b28c243102",
+    "reviewed_backend_source_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+    "reviewed_app_source_commit": "44d4b96daa7e84d2f92c4385b258159de1c45dc1",
+    "engineering_status_at_delivery": "SIX_AC_PASS_AWAITING_ADVISOR",
+    "decision": "ACCEPTED_SCOPED_V10_1_7",
+    "report": "docs/versions/v10.1.7/ADVISOR_ACCEPTANCE_20261113.md",
+    "required_supplement_tasks": [],
+    "independently_checked": [
+      "Fixed Git content, affected source, test design and task scope",
+      "Implementation report: 11307 bytes; SHA256 bf7fd5fc69efcae7895c3471f5ca18eeba42477021929d8c400016ae025f5424",
+      "22 declared source files: Git Blob IDs, byte lengths and SHA256",
+      "8 APP and backend subtree identities",
+      "44d4b96d to 0229e9d8: backend marker and regression only; APP unchanged",
+      "0229e9d8 to e6bc14f6: delivery documents only",
+      "Ordinary consumer path, input and ranking rules, state transitions and current history audience"
+    ],
+    "runtime_evidence": "Codex-reported named local tests, container/worktree bytes, APK signing and installed bytes, ordinary APP/Web/MariaDB operations and restart; advisor did not independently replay Owner runtime",
+    "retained_limits": [
+      "SFU exited / UNAVAILABLE / OPEN / UNKNOWN",
+      "Natural 168-hour wait NOT_RUN; controlled-clock expiry scope retained",
+      "Real Push",
+      "External real identity provider",
+      "Hardware and independent algorithm accuracy"
+    ],
+    "owner_acceptance": "PENDING"
+  }
 }
