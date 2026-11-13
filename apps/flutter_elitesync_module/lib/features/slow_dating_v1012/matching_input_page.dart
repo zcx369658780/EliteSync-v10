@@ -1,3 +1,4 @@
+import '../profile/presentation/providers/profile_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -108,6 +109,7 @@ class _MatchingInputState extends SessionBoundPage<MatchingInputPage> {
       () => ref.read(relationshipApiProvider).call('PUT', resource, body),
     );
     if (result == null || !mounted) return;
+    ref.invalidate(profileProvider);
     ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
     setState(() => _saved = true);
   }
