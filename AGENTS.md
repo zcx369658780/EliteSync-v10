@@ -1,16 +1,16 @@
 # EliteSync-v10 工程约定
 
-生效：2026-11-13。当前范围依据[Owner后端功能优先与新版授权](docs/decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
+生效：2026-11-13。当前任务依据[Owner接受v10.1.6并授权v10.1.7](docs/decisions/OWNER_V10_1_6_ACCEPTANCE_AND_V10_1_7_AUTHORIZATION_20261113.md)，方向延续[后端功能优先决定](docs/decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
 ## 产品目标
 
 Owner已确认项目交接及选定旧版主要功能接续完成。当前完善可实际使用的EliteSync APP、真实后端、持久数据库及独立Web管理面板。先完成业务功能与最小可操作界面，必要安全封装随功能收口处理，最后集中打磨UI和文字。现有鉴权、私信权限与数据隔离保留。
 
-整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，剩余项随后续版本处理；当前已授权[v10.1.6任务](docs/versions/v10.1.6/task_order.md)。集中UI/文字版本为v10.1.12，前序界面须支持真实操作和清楚反馈。新破冰、约见、共同计划、纪念日仅留接口。
+整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6 R1已按约定开发范围接受；当前已授权[v10.1.7任务](docs/versions/v10.1.7/task_order.md)。集中UI/文字版本为v10.1.12，前序界面须支持真实操作和清楚反馈。新破冰、约见、共同计划、纪念日仅留接口。
 
 ## 2026-11-13 当前执行范围
 
-依据[新路线图](docs/architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)执行v10.1.6真实后端接续与资料展示闭环，具体范围和六项AC见[计划](docs/versions/v10.1.6/plan.md)。正常APP/API/DB/Web路径完成业务，测试替身不代替产品成功链；Docker可承载真实开发服务，不为此迁移环境。
+依据[路线图](docs/architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)执行v10.1.7婚恋偏好与匹配旅程，具体范围、默认规则和六项AC见[计划](docs/versions/v10.1.7/plan.md)。正常APP/API/DB/Web/consumer路径完成业务，测试替身不代替产品成功链；Docker可承载真实开发服务，不为此迁移环境。SFU结转v10.1.8，不是本版普通匹配前置。
 
 11月12日已有功能验收阶段已结束，原报告与测试结论保留，见[v10.1.5收尾](docs/versions/v10.1.5/CLOSEOUT_20261113.md)。本版集中交付后停下供顾问验收；不自动开下一版、合main或发布。
 
@@ -40,4 +40,4 @@ Owner负责方向和保留决定；顾问提供路线；Codex负责工程拆解�
 
 Owner于2026-11-12具体授权验收说明、120张测试截图、画廊/控件元数据和29份去敏证据摘要上传独立验收分支，范围及发布清单见[验收入口](https://github.com/zcx369658780/EliteSync-v10/blob/85197adec124ef94bbef2994c0668dc990f9bed4/docs/versions/v10.1.5/advisor-acceptance-20261112/README.md)。完整原始回执、APK、素材、凭据、许可证、SQL/数据库与设备原始日志由Owner本机保管。有意义节点维护ACTIVE_STATE单一当前入口及必要进度，常规同步授权分支，失败记PENDING_SYNC。
 
-历史上Owner于2026-11-12要求保存并手动交接，该[交接记录](docs/workflow/V1015_ADVISOR_ACCEPTANCE_HANDOFF_20261112.md)保留。2026-11-13的新继续与版本授权已覆盖当时等待状态；当前按ACTIVE_STATE和v10.1.6任务执行，不再从旧交接递归恢复。
+历史上Owner于2026-11-12要求保存并手动交接，该[交接记录](docs/workflow/V1015_ADVISOR_ACCEPTANCE_HANDOFF_20261112.md)保留。2026-11-13的新继续与版本授权已覆盖当时等待状态；当前按ACTIVE_STATE和v10.1.7任务执行，不再从旧交接递归恢复。

@@ -3,7 +3,7 @@
   "version": "10.1.6-dev",
   "engineering_status": "R1_01_AND_R1_02_COMPLETED",
   "advisor_acceptance": "ACCEPTED_SCOPED_V10_1_6",
-  "owner_acceptance": "PENDING",
+  "owner_acceptance": "ACCEPTED_SCOPED_V10_1_6",
   "repository": "zcx369658780/EliteSync-v10",
   "branch": "codex/v10.1.6-backend-productization-20261113",
   "product_root": "D:\\EliteSync-v10-product-v1015-20261101",
@@ -317,9 +317,10 @@
     },
     {
       "id": "ADVISOR_AND_OWNER_REVIEW",
-      "status": "OWNER_ACCEPTANCE_PENDING",
+      "status": "CLOSED_ACCEPTED_SCOPED",
       "advisor_review": "ACCEPTED_SCOPED",
-      "owner_acceptance": "PENDING"
+      "owner_acceptance": "ACCEPTED_SCOPED_V10_1_6",
+      "record": "docs/decisions/OWNER_V10_1_6_ACCEPTANCE_AND_V10_1_7_AUTHORIZATION_20261113.md"
     },
     {
       "id": "INHERITED_EXTERNAL_LIMITS",
@@ -332,7 +333,7 @@
       ]
     }
   ],
-  "scope_exit": "Advisor scoped acceptance recorded; remain stopped for Owner discussion and subsequent version task; no automatic v10.1.7",
+  "scope_exit": "v10.1.6 scoped closeout accepted by Owner; v10.1.7 explicitly authorized by subsequent Owner instruction; historical reports and external limits retained",
   "previous_advisor_decision": {
     "reviewed_commit": "222923bdec970bc2b2fcec4c51320edcb4f74688",
     "verdict": "CHANGES_REQUIRED",
@@ -470,7 +471,7 @@
         "result": "PASS"
       }
     },
-    "review": "Non-author Codex focused source review retained; advisor R1 review accepted within declared scope; Owner acceptance remains pending",
+    "review": "Non-author Codex focused source review retained; advisor R1 review accepted within declared scope; subsequent Owner scoped acceptance recorded without new runtime verification",
     "app_changes": false,
     "apk_rebuild": "NOT_RUN",
     "phone_actions": false,
@@ -500,6 +501,14 @@
       "hardware",
       "independent algorithm accuracy"
     ],
-    "owner_acceptance": "PENDING"
+    "owner_acceptance": "ACCEPTED_SCOPED_V10_1_6",
+    "owner_acceptance_at_review": "PENDING"
+  },
+  "owner_acceptance_record": {
+    "date_china": "2026-11-13",
+    "decision": "ACCEPTED_SCOPED_V10_1_6_AND_AUTHORIZED_V10_1_7",
+    "instruction": "好的我同意，请下达v10.1.7版本github任务单",
+    "scope": "Owner accepted advisor scoped closeout and continuation; no new device test, independent runtime verification, or production release claim",
+    "record": "docs/decisions/OWNER_V10_1_6_ACCEPTANCE_AND_V10_1_7_AUTHORIZATION_20261113.md"
   }
 }

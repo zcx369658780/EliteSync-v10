@@ -1,0 +1,26 @@
+你正在接续 EliteSync v10 本地工作流。Owner 已同意 v10.1.6 按顾问验收范围收尾，并明确授权下达和执行 v10.1.7。
+
+任务：v10.1.7 婚恋偏好与匹配旅程。
+仓库：zcx369658780/EliteSync-v10
+任务分支：codex/v10.1.7-matching-journey-20261113
+接续基线：0b44ce83c8501a6752129d2fea6cdda715048cc0
+稳定本地根：D:\EliteSync-v10-product-v1015-20261101
+
+先核实际根、remote、分支、HEAD、工作区和 index。保护本地新成果、原受保护未跟踪目录、数据与私有配置；正常 fetch 并核对该任务分支，安全接续任务。不要用旧 main/远端旧代码覆盖本地成果，不盲 reset/rebase/stash/clean，不复制整套工程。如果本地有正常新进度，保留后按本任务继续，不因历史停止说明重新请求普通授权。
+
+先读 AGENTS.md、docs/workflow/ACTIVE_STATE.md 当前短入口，然后读：
+1. docs/versions/v10.1.7/task_order.md
+2. docs/versions/v10.1.7/plan.md
+按需读 CURRENT_WORKFLOW 与目标必要源码，不递归重读旧交接、全 Sources 或拆解证据。
+
+连续完成六项 AC，重点是正常 APP 输入和确认、真实后端保存、准备度与本人报名、正常 Web/consumer 候选生成和揭晓、选择与恢复、本人持久历史。复用现有 20 题、Showcase、轮次/提案和连接同意，按计划统一 relationship_goal、双方年龄/地域硬条件及问卷排序；新输入 revision 必须覆盖 freeze/finalize/reveal。旧资料不静默重释，未知不假设满足，匹配不自动授予资料或消息权限。
+
+当前普通匹配路径需要摆脱强制星盘计算；按计划直接消费当前有效问卷可接受项和重要程度，实际排序与记录一致，特色工具仍保留。必要 APP/Web 界面本版完成，整体 UI/文字留 v10.1.12。
+
+普通后端、迁移、APP/Web 实现、调试、必要构建、定向验证、虚构数据、双模拟器及常规 Git 已获长期授权。稳定 Docker 开发服务与持久 MariaDB 继续使用，不重装环境。先实现，再做一条最短真实业务链和必要边界回归。主链不得以 TEST_ONLY 提案、直接改库批准或受控响应代替；故障/期限夹具可用于明确标记的反例，不等自然七天，不重跑全 APP/RTC 矩阵。
+
+当前 SFU exited / UNAVAILABLE / OPEN / UNKNOWN 只是上一轮具名快照；开工按需核实时资源，SFU相关事项继续结转 v10.1.8，不把它作为本版匹配前置。手机不连接或操作，保护所有已有数据。普通实现不逐动作询问，不先交方案等待许可；确遇真实保留风险时只暂停受影响动作。
+
+交付 docs/versions/v10.1.7/IMPLEMENTATION_REPORT.md、artifact_manifest.json，更新 ACTIVE_STATE 单一当前短入口。说明逐 AC 实现与实际验证、主链和夹具区别、配置/迁移/候选身份、未完成项及带时间资源状态。候选按 10.1.7-dev / 1010701 规划，沿用既有包名/签名；编号若已占用顺增并记录。原始凭据、数据库、APK及完整原始日志留本机。
+
+保存同步当前任务分支并回读，完成后停下供顾问验收。未完成如实写 PARTIAL / CHANGES_REQUIRED，不把工程自验写成顾问通过；同步失败写 PENDING_SYNC 并保护成果。不启动 v10.1.8、不合 main、不发布、不开展公司或内测；相识后新增工具仍只留接口。
