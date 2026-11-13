@@ -1,10 +1,10 @@
 # EliteSync-v10 当前工作流
 
-2026-11-13 更新。当前任务依据 [Owner接受v10.1.6并授权v10.1.7](../decisions/OWNER_V10_1_6_ACCEPTANCE_AND_V10_1_7_AUTHORIZATION_20261113.md)，方向延续 [后端功能优先决定](../decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治沿用 [11月10日决定](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)，工程边界见 [AGENTS](../../AGENTS.md)。当前事实只维护 [ACTIVE_STATE](ACTIVE_STATE.md)，历史小步记录从 Git 历史查询。
+2026-11-13 更新。当前任务依据 [Owner接受v10.1.7并授权v10.1.8](../decisions/OWNER_V10_1_7_ACCEPTANCE_AND_V10_1_8_AUTHORIZATION_20261113.md)，方向延续 [后端功能优先决定](../decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治沿用 [11月10日决定](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)，工程边界见 [AGENTS](../../AGENTS.md)。当前事实只维护 [ACTIVE_STATE](ACTIVE_STATE.md)，历史小步记录从 Git 历史查询。
 
 ## 2026-11-13 当前版本安排
 
-[Owner已确认交接完成、v10.1.5收尾并授权新版](../decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)。v10.1.6 R1已按约定开发范围接受；Owner现已同意下达[v10.1.7](../versions/v10.1.7/task_order.md)，由既有本地Codex会话连续执行并集中报告后停下验收。[路线图V2](../architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)安排真实后端功能优先、v10.1.12集中UI/文字；相识后新增工具只留接口。后面的旧停止/不启动下一版描述按其历史时点解释，不覆盖当前授权。远端任务发布不表示本地已经开始执行。
+[Owner已确认交接完成、v10.1.5收尾并授权新版](../decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)。v10.1.6 R1及v10.1.7已按约定开发范围接受；Owner现已明确同意进入[v10.1.8通信与通知](../versions/v10.1.8/task_order.md)，由既有本地Codex会话连续执行并集中报告后停下验收。[路线图V2](../architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)安排真实后端功能优先、v10.1.12集中UI/文字；相识后新增工具只留接口。后面的旧停止/不启动下一版描述按其历史时点解释，不覆盖当前授权。远端任务发布不表示本地已经开始执行。
 
 远端任务分支与本地当前分支分别记录。沿用稳定本地根，先保护实际工作区后接续新分支，不复制全工程、不用旧main覆盖新成果。
 
@@ -33,7 +33,7 @@
 
 此前资产清理阶段已结束，当前保护稳定工程及独有本地资料。公开历史由 GitHub 归档分支恢复，既有紧凑恢复资料继续保留。未经核实，不把私有配置、数据库、素材或 APK 当作 GitHub 已备份内容删除。
 
-不改原主库dirty/index，不盲pull/reset/rebase/stash/clean/prune，不force push、不合main、不发布。普通Git同步当前具名版本授权分支；v10.1.7已由11月13日本次决定授权，v10.1.8及后续版本不由本轮自动开启。私密资料不上GitHub。
+不改原主库dirty/index，不盲pull/reset/rebase/stash/clean/prune，不force push、不合main、不发布。普通Git同步当前具名版本授权分支；v10.1.8已由11月13日本次决定授权，v10.1.9及后续版本不由本轮自动开启。私密资料不上GitHub。
 
 具体设备、外部服务、生产/真实数据、费用和版本发布仍按 Owner 授权。旧预算、已耗次数和 STOP 只作历史事实保留，不自动退款、续额或复用。已退役的冻结测试链不继续当工程入口。当前优先完善 APP 功能，相关定向主机检查随实现进行。Owner 已允许后续双模拟器联测，实际运行可等功能完成后再安排；不占用或操作手机，不恢复旧停止的执行器。
 

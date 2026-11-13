@@ -1,4 +1,20 @@
-# 当前入口 2026-11-13 v10.1.7顾问验收通过
+# 当前入口 2026-11-13 v10.1.8任务已下达
+
+Owner已接受v10.1.7的约定开发范围，并明确同意进入v10.1.8「通信与通知功能完善」。执行[版本任务](../versions/v10.1.8/task_order.md)、[计划及六项AC](../versions/v10.1.8/plan.md)，[Codex接续prompt](../versions/v10.1.8/CODEX_START_PROMPT.txt)。依据见[Owner决定](../decisions/OWNER_V10_1_7_ACCEPTANCE_AND_V10_1_8_AUTHORIZATION_20261113.md)。
+
+远端任务分支：`codex/v10.1.8-communication-notifications-20261113`；基线：`86c7a1badb785fa0eb3c1d8097111a58ac39de33`。稳定本地根仍为 `D:\EliteSync-v10-product-v1015-20261101`。本次只发布任务及必要状态文档，状态 `TASK_ISSUED / IMPLEMENTATION_NOT_YET_REPORTED`；最后已知本地交付分支仍为v10.1.7，实际分支、HEAD和工作区/index由Codex接续时核验，不能把远端发布说成本地已切换或开工。
+
+本版完成真实聊天与重试、显式已读/未读、当前会话搜索和引用、语音录制发送播放、当前SFU普通通话及一次有限恢复、对应真实业务的站内通知。默认搜索每次最多扫描200条/返回20命中，语音1–60秒/5 MiB。当前SFU功能与历史超时精确根因分列；当前不可用则相应AC保持PARTIAL，不用安全退出冒充可用，也不让无新线索的归因独占全版。真实Push保持 `REAL_PUSH_PROVIDER_PENDING`。
+
+v10.1.7六项AC顾问与Owner均在约定开发范围接受，不增补修；[原验收报告](../versions/v10.1.7/ADVISOR_ACCEPTANCE_20261113.md)与源码/候选不变，[manifest](../versions/v10.1.7/artifact_manifest.json)仅更新Owner接受元数据。最近资源快照仍为2026-11-13 19:38:46.598446北京时间：DB/API/WS运行，SFU exited / UNAVAILABLE / OPEN / UNKNOWN，模拟器回user0、本包进程停止、测试用户11/12与数据保留，手机NOT_RUN；此为上版交付快照，不代表当前实时状态。
+
+沿长期授权在稳定目录连续完成本版，必要开发库迁移、虚构数据、定向验证、APK及双模拟器可自主执行。保留本地成果与数据，手机不使用；旧STOP/已耗记录和退役执行器不复活。整个v10功能优先、v10.1.12集中UI/文字，相识后新增工具仅接口。集中交付并保存同步后停下供顾问验收；不自动进入v10.1.9，不合main、不发布。
+
+以下节点按当时状态保留，其中旧PENDING和不自动开启下一版不覆盖本次新授权。
+
+---
+
+## 历史节点｜2026-11-13 v10.1.7顾问验收通过
 
 固定交付e6bc14f6456421e006d1073dfe64d3b28c243102的六项AC在约定开发范围内接受，结论ACCEPTED_SCOPED_V10_1_7，本轮无需R1补修。详见[顾问验收](../versions/v10.1.7/ADVISOR_ACCEPTANCE_20261113.md)及[当前manifest](../versions/v10.1.7/artifact_manifest.json)。Owner最终接受仍PENDING；Codex保持交付后停止，下一版进入范围讨论，本次不自动下达v10.1.8。
 

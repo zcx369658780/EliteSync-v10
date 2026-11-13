@@ -1,0 +1,16 @@
+继续 EliteSync v10 本地工程。Owner 已接受 v10.1.7 的约定开发范围，并明确同意进入 v10.1.8「通信与通知功能完善」。本版已授权，请在既有会话连续完成，不逐动作请求许可。
+
+稳定根：D:\EliteSync-v10-product-v1015-20261101
+仓库：zcx369658780/EliteSync-v10
+目标分支：codex/v10.1.8-communication-notifications-20261113
+接续基线：86c7a1badb785fa0eb3c1d8097111a58ac39de33
+
+先核实际根、remote、分支、HEAD、工作区/index 与当前资源；保护未提交成果和受保护目录后接续目标分支，不盲 pull/reset/rebase/stash/clean，不复制整套工程。读取 AGENTS.md、docs/workflow/ACTIVE_STATE.md 顶部、CURRENT_WORKFLOW.md，以及 docs/versions/v10.1.8/task_order.md 和 plan.md。不要从旧交接递归恢复或重分析历史拆解证据。
+
+按 plan.md 六项 AC 完成：真实聊天与幂等状态；显式已读/未读、当前会话搜索和引用；1–60 秒/5 MiB 语音录制试听发送播放；当前 SFU 普通通话及一次有限恢复；匹配决定、CN/MC、本人资料审核和通话结果的站内通知；最终普通链、持久化和交付身份。
+
+实现默认值和有限验证以 plan.md 为准。复用当前真实 APP/API/MariaDB/WS/SFU，按新改动和具体风险做定向验证。允许必要开发库迁移、虚构数据、构建、双模拟器与常规 Git；保留数据，手机不使用。真实成功链、受控音源、注入故障和测试适配分别记录。
+
+SFU 当前功能与历史超时根因分列：正常通话及恢复必须实证，安全退出不能代替通信 PASS；旧精确原因可以继续 UNKNOWN。当前仍不可用则 AC18-04 写 PARTIAL，其余 AC 继续完成后集中交付。真实 Push 保持 REAL_PUSH_PROVIDER_PENDING，不接新供应商、不把 test_only 当真实送达。旧失败、STOP、已耗记录和退役执行器不改写、不复活。
+
+最终提供一个 IMPLEMENTATION_REPORT.md、artifact_manifest.json、ACTIVE_STATE 短入口，列明各 AC 实际结论、源码与候选/部署身份、实际测试/普通链、失败与修复、沿用证据、未完成项及带时间资源状态。沿用包名和签名，候选从 10.1.8-dev / 1010801 起按实际递增。同步本版分支并回读固定提交；完整原始日志、APK、SQL 和私密音频留本机。完成本版集中交付后停下通知我，等待顾问验收；不要自动进入 v10.1.9，不合 main、不发布。

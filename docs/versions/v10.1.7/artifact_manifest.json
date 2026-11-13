@@ -3,7 +3,7 @@
   "version": "10.1.7-dev",
   "engineering_status": "SIX_AC_PASS",
   "advisor_acceptance": "ACCEPTED_SCOPED_V10_1_7",
-  "owner_acceptance": "PENDING",
+  "owner_acceptance": "ACCEPTED_SCOPED_V10_1_7",
   "repository": "zcx369658780/EliteSync-v10",
   "branch": "codex/v10.1.7-matching-journey-20261113",
   "product_root": "D:\\EliteSync-v10-product-v1015-20261101",
@@ -635,12 +635,6 @@
   },
   "remaining": [
     {
-      "id": "ADVISOR_AND_OWNER_ACCEPTANCE",
-      "status": "OWNER_ACCEPTANCE_PENDING",
-      "advisor_acceptance": "ACCEPTED_SCOPED_V10_1_7",
-      "owner_acceptance": "PENDING"
-    },
-    {
       "id": "SFU",
       "status": "OPEN",
       "cause": "UNKNOWN",
@@ -664,7 +658,7 @@
     }
   ],
   "unfinished_current_software_ac": [],
-  "exit": "Advisor accepted six AC within declared development scope; remain stopped for Owner acceptance and subsequent version discussion; no automatic v10.1.8",
+  "exit": "v10.1.7 accepted by advisor and Owner within declared development scope; v10.1.8 explicitly authorized and task issued; local continuation not yet reported",
   "advisor_review_record": {
     "date_china": "2026-11-13",
     "reviewed_delivery_commit": "e6bc14f6456421e006d1073dfe64d3b28c243102",
@@ -692,5 +686,17 @@
       "Hardware and independent algorithm accuracy"
     ],
     "owner_acceptance": "PENDING"
+  },
+  "owner_acceptance_record": {
+    "date_china": "2026-11-13",
+    "decision": "ACCEPTED_SCOPED_V10_1_7",
+    "source": "Owner agreed with advisor review and explicitly requested entering v10.1.8 communication and notifications",
+    "record": "docs/decisions/OWNER_V10_1_7_ACCEPTANCE_AND_V10_1_8_AUTHORIZATION_20261113.md",
+    "accepted_delivery_commit": "e6bc14f6456421e006d1073dfe64d3b28c243102",
+    "advisor_record_owner_pending_is_historical_snapshot": true,
+    "new_runtime_or_release_claim": false,
+    "next_task": "docs/versions/v10.1.8/task_order.md",
+    "next_branch": "codex/v10.1.8-communication-notifications-20261113",
+    "local_implementation": "NOT_YET_REPORTED"
   }
 }
