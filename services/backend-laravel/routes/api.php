@@ -136,6 +136,10 @@ Route::prefix('v1')->group(function () {
         });
         $journey = \App\Http\Controllers\Api\V1\SlowDatingController::class;
         Route::get('/journey', [$journey, 'show']);
+        Route::get('/matching-inputs', [\App\Http\Controllers\Api\V1\MatchingInputController::class, 'show']);
+        Route::put('/matching-inputs', [\App\Http\Controllers\Api\V1\MatchingInputController::class, 'update']);
+        Route::get('/journey/history', [$journey, 'history']);
+        Route::get('/journey/history/{id}', [$journey, 'historyDetail'])->whereUuid('id');
         Route::put('/journey/participation', [$journey, 'participate']);
         Route::post('/journey/proposals/{id}/decision', [$journey, 'decision'])->whereUuid('id');
         Route::get('/formal-relationships', [$journey, 'relationships']);

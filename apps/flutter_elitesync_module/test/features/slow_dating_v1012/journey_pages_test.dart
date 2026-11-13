@@ -20,7 +20,7 @@ SessionState session(int id) => SessionState(
 
 class TestSession extends SessionNotifier {
   @override
-  Future<SessionState> build() async => session(1);
+  SessionState build() => session(1);
   void change(int id) => state = AsyncData(session(id));
 }
 

@@ -17,7 +17,17 @@ class ProfileReadinessService
         $query = User::query()->where('disabled',false)
             ->where('verify_status','approved')->where('moderation_status','normal')
             ->where('account_status','active')->where('is_match_eligible',true);
-        $ids = (clone $query)->get()->filter(fn($u) => (!$u->is_synthetic || app(TrustedIdentityService::class)->registered((int)$u->id)) && app(CurrentQuestionnaire::class)->validCount((int)$u->id)>=$required && app(SlowDatingService::class)->enrolled((int)$u->id))->pluck('id');
+        $ids = (clone $query)->get()->filter(function (User $user) use ($required) {
+            if (($user->is_synthetic && ! app(TrustedIdentityService::class)->registered((int) $user->id))
+                || app(CurrentQuestionnaire::class)->validCount((int) $user->id) < $required
+                || app(MatchingInputService::class)->readinessReason($user) !== null
+                || ! app(SlowDatingService::class)->enrolled((int) $user->id)) {
+                return false;
+            }
+            // Reading the current proposal reconciles expiry/withdrawal before excluding its slot.
+            app(SlowDatingService::class)->proposal((int) $user->id);
+            return ! \Illuminate\Support\Facades\DB::table('match_proposal_slots')->where('user_id', $user->id)->exists();
+        })->pluck('id');
         return $query->whereIn('id',$ids);
 
     }
@@ -28,6 +38,7 @@ class ProfileReadinessService
         $answered = app(CurrentQuestionnaire::class)->validCount((int)$user->id);
         $enabledQuestions = QuestionnaireQuestion::query()->where('enabled', true)->count();
 
+        $inputReason = app(MatchingInputService::class)->readinessReason($user);
         [$eligible, $reasonCode, $nextActionCode] = match (true) {
             (bool) $user->disabled => [false, 'account_disabled', 'contact_support'],
             ($user->moderation_status ?? 'normal') === 'restricted' => [false, 'account_restricted', 'contact_support'],
@@ -36,6 +47,7 @@ class ProfileReadinessService
             ($user->verify_status ?? 'pending') !== 'approved' => [false, 'operational_review_'.($user->verify_status ?? 'pending'), 'wait_for_review'],
             (bool) $user->is_synthetic && ! app(TrustedIdentityService::class)->registered((int) $user->id) => [false, 'synthetic_account_excluded', 'contact_support'],
             $enabledQuestions === 0 => [false, 'questionnaire_unavailable', 'wait_for_service'],
+            $inputReason !== null => [false, $inputReason, 'complete_matching_inputs'],
             $answered < $required => [false, 'questionnaire_incomplete', 'complete_questionnaire'],
             default => [true, 'eligible', 'wait_for_matching'],
         };
@@ -55,7 +67,8 @@ class ProfileReadinessService
         );
 
         return [
-            'contract_version' => 'profile_readiness_v1',
+            'contract_version' => 'profile_readiness_v1017',
+            'matching_input_revision' => app(MatchingInputService::class)->read($user)['revision'],
             'operational_review' => ['status'=>$user->verify_status ?? 'pending','reason'=>$user->verify_reason ?? '', 'revision'=>(int)$user->verify_revision,'scope'=>'运营参与资格，非实名认证'],
             'matching_eligibility' => [
                 'eligible' => $eligible,

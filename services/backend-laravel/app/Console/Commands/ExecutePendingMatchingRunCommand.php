@@ -39,7 +39,7 @@ class ExecutePendingMatchingRunCommand extends Command
             $profileMap = []; $userMeta = [];
             foreach ($users as $index => $user) {
                 if ($index % 10 === 0 && !$runs->heartbeat($run, $owner, $fence, (int) config('matching.foundation.lease_seconds', 60))) throw new \RuntimeException('lease_lost');
-                $profileMap[(int) $user->id] = $profiles->buildForUser((int) $user->id);
+                $profileMap[(int) $user->id] = ['current_answers' => true];
                 $userMeta[(int) $user->id] = ['created_at' => $user->created_at, 'updated_at' => $user->updated_at];
             }
             if (!$runs->heartbeat($run, $owner, $fence, (int) config('matching.foundation.lease_seconds', 60))) throw new \RuntimeException('lease_lost');
@@ -48,7 +48,7 @@ class ExecutePendingMatchingRunCommand extends Command
             $this->line('Matching run completed: '.$run->run_key);
             return self::SUCCESS;
         } catch (\Throwable $error) {
-            try { $runs->fail($run, $owner, $fence, 'execution_failed', 'Protected matching execution failed.'); } catch (\Throwable) {
+            try { $runs->fail($run, $owner, $fence, ($error instanceof \DomainException ? $error->getMessage() : 'execution_failed'), 'Protected matching execution failed.'); } catch (\Throwable) {
                 try { $runs->expireLease((int) $run->id); } catch (\Throwable) {}
             }
             $this->error('Matching run failed: '.$run->run_key);

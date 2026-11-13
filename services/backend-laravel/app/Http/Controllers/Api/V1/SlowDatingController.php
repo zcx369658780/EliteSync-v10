@@ -23,6 +23,15 @@ final class SlowDatingController extends Controller
         $d = $r->validate(['action' => 'required|in:accept,decline,withdraw', 'revision' => 'required|integer|min:1', 'idempotency_key' => 'required|string|max:100']);
         return response()->json($s->decision((int) $r->user()->id, $id, $d['action'], $d['revision'], $d['idempotency_key']));
     }
+    public function history(Request $request, SlowDatingService $service)
+    {
+        $data = $request->validate(['page' => 'sometimes|integer|min:1', 'per_page' => 'sometimes|integer|between:1,50']);
+        return response()->json($service->history((int) $request->user()->id, (int) ($data['page'] ?? 1), (int) ($data['per_page'] ?? 20)));
+    }
+    public function historyDetail(Request $request, string $id, SlowDatingService $service)
+    {
+        return response()->json($service->historyDetail((int) $request->user()->id, $id));
+    }
     public function relationships(Request $r, FormalRelationshipService $s) { return response()->json($s->listing((int) $r->user()->id)); }
     public function requestRelationship(Request $r, FormalRelationshipService $s)
     {

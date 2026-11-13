@@ -1,3 +1,7 @@
+import '../relationships_v1011/relationship_api.dart';
+import 'matching_input_page.dart';
+import 'matching_history_page.dart';
+import '../questionnaire/presentation/pages/questionnaire_page.dart';
 import '../buddy_v1013/buddy_page.dart';
 import '../status/presentation/pages/status_square_page.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +17,21 @@ class SlowDatingJourneyPage extends ConsumerStatefulWidget {
   ConsumerState<SlowDatingJourneyPage> createState() => _JourneyState();
 }
 
-class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage> {
+class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+    }
+  }
+
   @override
   String get resource => '/journey';
   final _intent = TextEditingController();
@@ -30,6 +48,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage> {
   void onAuthorityChanged() => _clear();
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _intent.dispose();
     super.dispose();
   }
@@ -59,6 +78,32 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage> {
     final explanation = objectMap(proposal['explanation']);
     return frame('慢约会旅程', [
       const Text('准备 → 主动报名 → 等待揭晓 → 独立选择。匹配不会自动建立连接、消息同意或正式恋爱关系。'),
+      OutlinedButton(
+        key: const Key('journey-matching-inputs'),
+        onPressed: () async {
+          await Navigator.of(context).push(
+            MaterialPageRoute<void>(builder: (_) => const MatchingInputPage()),
+          );
+          if (mounted) await refresh();
+        },
+        child: const Text('我的匹配输入'),
+      ),
+      OutlinedButton(
+        onPressed: () async {
+          await Navigator.of(context).push(
+            MaterialPageRoute<void>(builder: (_) => const QuestionnairePage()),
+          );
+          if (mounted) await refresh();
+        },
+        child: const Text('填写或修改必要问卷'),
+      ),
+      OutlinedButton(
+        key: const Key('journey-matching-history'),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => const MatchingHistoryPage()),
+        ),
+        child: const Text('本人慢约历史'),
+      ),
       OutlinedButton(
         onPressed: () => Navigator.of(
           context,
@@ -162,6 +207,10 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage> {
           Text('轮次说明：${journeyStateLabel(round['state'])}'),
         if (round['retry_eligible'] == true)
           const Text('服务器标记轮次可重试；由获准运营处理，刷新可查看进展。'),
+        if (round['scheduled_at'] != null)
+          Text('本轮配置时间 ${round['scheduled_at']}'),
+        if (round['next_transition_at'] != null)
+          Text('下次阶段时间 ${round['next_transition_at']}'),
         if (proposal.isEmpty) const Text('当前没有可回应的候选。请按本轮状态等待或稍后刷新。'),
         if (proposal.isNotEmpty) ...[
           Text(

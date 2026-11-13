@@ -62,10 +62,17 @@ String journeyStateLabel(Object? state) => switch ('$state'.toUpperCase()) {
   _ => '状态暂未确认',
 };
 
-String decisionLabel(Object? decision) =>
-    decision == 'ACCEPTED' ? '已接受' : '尚未回应';
+String decisionLabel(Object? decision) => switch ('$decision') {
+  'ACCEPTED' => '已接受',
+  'DECLINED' => '已拒绝',
+  'WITHDRAWN' => '已撤回',
+  _ => '尚未回应',
+};
 String preparationReasonLabel(Object? reason) => switch ('$reason') {
   'eligible' => '已完成当前必要准备，可自行决定是否参与',
+  'matching_inputs_unconfirmed' => '请进入我的匹配输入，确认本人资料及双方偏好',
+  'adult_self_report_required' => '普通婚恋慢约需要本人自述年满18周岁',
+  'friendship_only' => '仅交友用途不参与普通婚恋慢约，可继续使用独立交友功能',
   'questionnaire_incomplete' => '请先完成必要问卷',
   'questionnaire_unavailable' => '问卷暂不可用，请稍后再试',
   'account_disabled' ||

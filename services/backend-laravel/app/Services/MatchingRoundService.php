@@ -56,7 +56,7 @@ class MatchingRoundService
             $publishing = in_array($next, [RoundState::Revealed, RoundState::NoCandidate], true);
             $currentUsers = collect();
             if ($publishing) {
-                $ids = DatingRoundUserState::query()->where('round_id', $round->id)->lockForUpdate()->pluck('user_id')->all();
+                $ids = \App\Models\MatchingRunCandidate::where('matching_run_id', $round->active_run_id)->pluck('user_id')->all();
                 $currentUsers = User::query()->whereIn('id', $ids)->orderBy('id')->lockForUpdate()->get()->keyBy('id');
             }
             $locked = DatingRound::query()->whereKey($round->id)->lockForUpdate()->firstOrFail();
@@ -72,7 +72,24 @@ class MatchingRoundService
             $before = ['state' => $locked->state->value, 'state_version' => $locked->state_version];
             $values = ['state' => $next, 'state_version' => $locked->state_version + 1];
             if ($publishing) {
-                $participants = DatingRoundUserState::where('round_id', $locked->id)->pluck('user_id')->map(fn ($id) => (int) $id)->all();
+                $participants = \App\Models\MatchingRunCandidate::where('matching_run_id', $locked->active_run_id)->pluck('user_id')->map(fn ($id) => (int) $id)->all();
+                $run = MatchingRun::whereKey($locked->active_run_id)->firstOrFail();
+                $inputsCurrent = app(MatchingRunService::class)->revealInputsCurrent($run, $currentUsers);
+                foreach ($participants as $userId) {
+                    $currentUser = $currentUsers->get($userId);
+                    $inputsCurrent = $inputsCurrent && $currentUser
+                        && app(ProfileReadinessService::class)->forUser($currentUser)['matching_eligibility']['eligible'];
+                }
+                if (! $inputsCurrent) {
+                    $run->forceFill(['state' => \App\Domain\Matching\RunState::Failed, 'outcome' => null,
+                        'error_code' => 'input_changed_before_reveal', 'error_summary' => 'Inputs changed; request a fresh retry.'])->save();
+                    $locked->forceFill(['state' => RoundState::Failed, 'failure_code' => 'input_changed_before_reveal',
+                        'failure_summary' => 'Inputs changed; request a fresh retry.', 'state_version' => $locked->state_version + 1])->save();
+                    DatingRoundUserState::where('round_id', $locked->id)->update(['state' => UserRoundState::Failed->value,
+                        'reason_code' => 'input_changed_before_reveal', 'conversation_eligible' => false]);
+                    $this->audit($locked, $action, $actorType, $actorId, ['state' => 'failed', 'reason' => 'input_changed_before_reveal'], $idempotencyKey);
+                    return $locked->fresh();
+                }
                 foreach ($participants as $userId) {
                     $user = $currentUsers->get($userId);
                     if (! $user || ! app(ProfileReadinessService::class)->forUser($user)['matching_eligibility']['eligible'] || ! app(SlowDatingService::class)->enrolled((int) $userId)) {
@@ -82,7 +99,7 @@ class MatchingRoundService
                 if (! $locked->reveal_at || $locked->reveal_at->isFuture()) {
                     throw new \DomainException('round_not_reveal_eligible');
                 }
-                $matchedCount = DatingRoundUserState::query()->where('round_id', $locked->id)->whereNotNull('dating_match_id')->count();
+                $matchedCount = DatingMatch::where('matching_run_id', $locked->active_run_id)->count();
                 if ($next === RoundState::NoCandidate && $matchedCount > 0) {
                     throw new \DomainException('round_has_matches');
                 }
@@ -91,8 +108,8 @@ class MatchingRoundService
                 }
                 DatingRoundUserState::query()->where('round_id', $locked->id)->where('state', UserRoundState::Waiting->value)->whereNotNull('dating_match_id')->update(['state' => UserRoundState::Revealed->value, 'conversation_eligible' => false, 'reason_code' => 'match_revealed', 'next_action_code' => 'review_proposal', 'projection_version' => DB::raw('projection_version + 1')]);
                 DatingRoundUserState::query()->where('round_id', $locked->id)->where('state', UserRoundState::Waiting->value)->whereNull('dating_match_id')->update(['state' => UserRoundState::NoCandidate->value, 'conversation_eligible' => false, 'reason_code' => 'no_candidate', 'next_action_code' => 'wait_next_round', 'projection_version' => DB::raw('projection_version + 1')]);
-                DatingMatch::query()->where('round_id', $locked->id)->update(['drop_released' => true, 'released_at' => now()->utc()]);
-                foreach (DatingMatch::where('round_id', $locked->id)->lockForUpdate()->get() as $match) { app(SlowDatingService::class)->reveal($match); }
+                DatingMatch::query()->where('round_id', $locked->id)->where('matching_run_id', $locked->active_run_id)->update(['drop_released' => true, 'released_at' => now()->utc()]);
+                foreach (DatingMatch::where('round_id', $locked->id)->where('matching_run_id', $locked->active_run_id)->lockForUpdate()->get() as $match) { app(SlowDatingService::class)->reveal($match); }
                 $runKey = MatchingRun::whereKey($locked->active_run_id)->value('run_key');
                 foreach ($currentUsers->keys() as $userId) {
                     app(NotificationService::class)->createForUser((int) $userId, 'matching_round',

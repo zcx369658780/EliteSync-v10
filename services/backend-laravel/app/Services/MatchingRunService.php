@@ -48,7 +48,7 @@ class MatchingRunService
                 'round_id' => $locked->id, 'run_key' => (string) Str::uuid(), 'idempotency_key' => $idempotencyKey,
                 'correlation_id' => (string) Str::uuid(), 'attempt_no' => $attempt, 'state' => RunState::Pending,
                 'trigger_source' => 'admin', 'actor_type' => $actorType, 'actor_id' => $actorId, 'reason_code' => $reasonCode,
-                'eligibility_cutoff_at' => now()->utc(), 'algorithm_version' => (string) config('matching.contract.version', 'v1'),
+                'eligibility_cutoff_at' => now()->utc(), 'algorithm_version' => MatchingInputService::RULE_VERSION,
                 'config_version' => (string) config('matching.foundation.config_version', 'c1'),
             ]);
             $locked->forceFill(['active_run_id' => $run->id, 'state_version' => $locked->state_version + 1, 'state' => RoundState::Preparing])->save();
@@ -84,7 +84,7 @@ class MatchingRunService
                 'round_id' => $round->id, 'run_key' => (string) Str::uuid(), 'idempotency_key' => $idempotencyKey,
                 'correlation_id' => (string) Str::uuid(), 'attempt_no' => $attempt, 'state' => RunState::Pending,
                 'trigger_source' => 'admin', 'actor_type' => $actorType, 'actor_id' => $actorId, 'reason_code' => 'retry',
-                'eligibility_cutoff_at' => now()->utc(), 'algorithm_version' => (string) config('matching.contract.version', 'v1'),
+                'eligibility_cutoff_at' => now()->utc(), 'algorithm_version' => MatchingInputService::RULE_VERSION,
                 'config_version' => (string) config('matching.foundation.config_version', 'c1'), 'supersedes_run_id' => $lockedFailed->id,
             ]);
             $round->forceFill(['active_run_id' => $run->id, 'state' => RoundState::Preparing, 'state_version' => $round->state_version + 1, 'failure_code' => null, 'failure_summary' => null])->save();
@@ -147,7 +147,7 @@ class MatchingRunService
             foreach ($currentUsers as $user) {
                 $id = (int) $user->id;
                 [$eligibilityVersion, $profileVersion] = $this->sourceVersions($id, $user->updated_at);
-                MatchingRunCandidate::query()->updateOrCreate(['matching_run_id' => $locked->id, 'user_id' => $id], ['eligibility_version_at' => $eligibilityVersion, 'profile_version_at' => $profileVersion, 'participation_generation' => app(SlowDatingService::class)->participation($id)['generation']]);
+                MatchingRunCandidate::query()->updateOrCreate(['matching_run_id' => $locked->id, 'user_id' => $id], ['eligibility_version_at' => $eligibilityVersion, 'profile_version_at' => $profileVersion, 'participation_generation' => app(SlowDatingService::class)->participation($id)['generation'], 'matching_input_digest' => app(MatchingInputService::class)->sourceDigest($user)]);
             }
             sort($ids, SORT_NUMERIC);
             $key = (string) config('matching.foundation.digest_key');
@@ -198,10 +198,15 @@ class MatchingRunService
                 [$eligibilityVersion, $profileVersion] = $this->sourceVersions((int) $userId, $currentVersion);
                 if (! $candidate
                     || ! $this->sameTimestamp($candidate->eligibility_version_at, $eligibilityVersion)
-                    || ! $this->sameTimestamp($candidate->profile_version_at, $profileVersion)) {
+                    || ! $this->sameTimestamp($candidate->profile_version_at, $profileVersion)
+                    || ! hash_equals((string) $candidate->matching_input_digest, app(MatchingInputService::class)->sourceDigest($currentUser))) {
                     throw new \DomainException('input_changed');
                 }
             }
+            DatingRoundUserState::where('round_id', $round->id)->whereNotIn('user_id', $frozenIds)
+                ->update(['state' => UserRoundState::Waiting->value, 'dating_match_id' => null,
+                    'reason_code' => 'not_in_current_run_pending_reveal', 'conversation_eligible' => false,
+                    'projection_version' => DB::raw('projection_version + 1')]);
             $matchByUser = [];
             $usedUsers = [];
             foreach ($plannedPairs as $pair) {
@@ -211,6 +216,9 @@ class MatchingRunService
                     throw new \DomainException('pair_outside_frozen_candidates');
                 }
                 if (! app(SocialPolicy::class)->pairAllowed($a, $b)) { throw new \DomainException('pair_blocked'); }
+                if (! app(MatchingInputService::class)->pairAllowed($currentUsers[$a], $currentUsers[$b])) {
+                    throw new \DomainException('pair_preferences_changed');
+                }
                 if (isset($usedUsers[$a]) || isset($usedUsers[$b])) {
                     throw new \DomainException('candidate_used_more_than_once');
                 }
@@ -274,6 +282,31 @@ class MatchingRunService
         });
     }
 
+    /** Caller holds questionnaire, ordered users, round and run locks. */
+    public function revealInputsCurrent(MatchingRun $run, $users): bool
+    {
+        if (! hash_equals((string) $run->config_version, $this->inputFingerprint())) {
+            return false;
+        }
+        foreach (MatchingRunCandidate::where('matching_run_id', $run->id)->get() as $candidate) {
+            $user = $users->get((int) $candidate->user_id);
+            if (! $user || ! hash_equals((string) $candidate->matching_input_digest, app(MatchingInputService::class)->sourceDigest($user))
+                || ! app(SlowDatingService::class)->enrolled((int) $user->id, (int) $candidate->participation_generation)) {
+                return false;
+            }
+        }
+        foreach (DatingMatch::where('matching_run_id', $run->id)->get() as $match) {
+            if (! app(SocialPolicy::class)->pairAllowed((int) $match->user_a, (int) $match->user_b)
+                || ! app(MatchingInputService::class)->pairAllowed($users[$match->user_a], $users[$match->user_b])) {
+                return false;
+            }
+        }
+        if (DB::table('match_proposal_slots')->whereIn('user_id', $users->keys())->exists()) {
+            return false;
+        }
+        return true;
+    }
+
     private function matchPayload(array $pair): array
     {
         return collect(['highlights', 'explanation_tags', 'score_base', 'score_final', 'score_fair', 'score_personality_total', 'score_mbti_total', 'score_astro_total', 'score_overall', 'score_bazi', 'score_zodiac', 'score_constellation', 'score_natal_chart', 'match_verdict', 'match_reasons', 'penalty_factors'])->mapWithKeys(fn ($key) => [$key => $pair[$key] ?? null])->all();
@@ -312,7 +345,8 @@ class MatchingRunService
             'personality_enabled' => (bool) config('features.personality_test_enabled', false),
             'required_answers' => (int) config('questionnaire.required_answer_count', 10),
             'questions' => $questions,
-            'prior_match_version' => DatingMatch::query()->max('updated_at'),
+            'ordinary_rule' => MatchingInputService::RULE_VERSION,
+            'prior_match_version' => DatingMatch::query()->where('drop_released', true)->max('updated_at'),
         ];
 
         return hash('sha256', json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));

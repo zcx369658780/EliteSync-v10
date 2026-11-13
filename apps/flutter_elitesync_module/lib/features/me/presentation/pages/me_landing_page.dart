@@ -57,8 +57,8 @@ class MeLandingPage extends StatelessWidget {
               _MePurposeEntry(
                 key: matchingInputsKey,
                 icon: Icons.tune_rounded,
-                title: '匹配问卷',
-                subtitle: '继续填写与修改，完成后仍需自主报名。',
+                title: '我的匹配输入',
+                subtitle: '确认本人资料与年龄、地域偏好，保存后自主报名。',
                 route: AppRouteNames.meMatchingInputs,
               ),
               _MePurposeEntry(

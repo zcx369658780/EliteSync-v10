@@ -45,6 +45,21 @@ class ShowcaseJourneyAudienceTest extends TestCase
 
     private function proposal(User $owner, User $viewer, bool $mutual = true): string
     {
+        // v10.1.7 adds explicit private-input confirmation to the pending-proposal fixture.
+        config(['questionnaire.required_answer_count' => 1]);
+        $question = \App\Models\QuestionnaireQuestion::firstOrCreate(['question_key' => 'r1-current-input'],
+            ['category' => 'lifestyle', 'content' => 'Fixture', 'question_type' => 'single_choice',
+                'options' => [['option_id' => 'A']], 'enabled' => true, 'version' => 1]);
+        foreach ([$owner, $viewer] as $index => $user) {
+            $user->forceFill(['verify_status' => 'approved'])->save();
+            \App\Models\QuestionnaireAnswer::create(['user_id' => $user->id, 'questionnaire_question_id' => $question->id,
+                'answer_payload' => ['selected_answer' => ['A']], 'version' => 1]);
+            app(\App\Services\MatchingInputService::class)->save($user->id, [
+                'revision' => 0, 'confirm' => true, 'birthday' => '1995-01-01',
+                'gender' => $index === 0 ? 'male' : 'female', 'city_key' => 'fixture_city',
+                'relationship_goal' => 'marriage', 'age_mode' => 'adult_any', 'region_mode' => 'same_city',
+            ]);
+        }
         $stamp = ['created_at' => now(), 'updated_at' => now()];
         DB::table('dating_round_channels')->insertOrIgnore(['channel_key' => 'default'] + $stamp);
         $round = DB::table('dating_rounds')->insertGetId(['round_key' => (string) Str::uuid(),

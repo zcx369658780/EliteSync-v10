@@ -672,7 +672,7 @@ class MatchController extends Controller
 
     public function history(Request $request): JsonResponse
     {
-        return response()->json(['data' => [], 'message' => 'Historical matching is retained; use /journey for the current authorized proposal']);
+        return app(SlowDatingController::class)->history($request, app(\App\Services\SlowDatingService::class));
     }
 
     public function explanationByTarget(Request $request, int $targetUserId, EventLogger $events): JsonResponse

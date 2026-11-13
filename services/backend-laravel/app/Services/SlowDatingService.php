@@ -111,7 +111,26 @@ final class SlowDatingService
             || $a['generation'] !== (int) $p->generation_a || $b['generation'] !== (int) $p->generation_b) {
             $this->finish($p, 'WITHDRAWN');
             app(JourneyStore::class)->audit(null, $p->id, 'PARTICIPATION_AUTHORITY_INVALIDATED', ['state' => 'WITHDRAWN', 'reason' => 'exit_or_generation_changed', 'revision' => $p->revision]);
+        } elseif (! $this->currentEligibilityAllowed($p)) {
+            $this->finish($p, 'WITHDRAWN');
+            app(JourneyStore::class)->audit(null, $p->id, 'CURRENT_ELIGIBILITY_WITHDRAWAL',
+                ['state' => 'WITHDRAWN', 'reason' => 'current_eligibility_unavailable', 'revision' => $p->revision]);
         }
+    }
+
+    /** Caller holds both ordered user locks. Pending process facts survive hidden Showcase content. */
+    private function currentEligibilityAllowed(object $proposal): bool
+    {
+        if (! app(SocialPolicy::class)->pairAllowed((int) $proposal->user_a, (int) $proposal->user_b)) {
+            return false;
+        }
+        foreach ([(int) $proposal->user_a, (int) $proposal->user_b] as $id) {
+            $user = User::find($id);
+            if (! $user || ! app(ProfileReadinessService::class)->forUser($user)['matching_eligibility']['eligible']) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function proposalContextActive(object $p): bool
@@ -123,9 +142,11 @@ final class SlowDatingService
     public function proposal(int $actor, ?string $id = null): ?array
     {
         // Immutable locator only, outside transaction. Revalidated after ordered user locks.
-        $hint = DB::table('match_proposals')->where(fn ($q) => $q->where('user_a', $actor)->orWhere('user_b', $actor))->when($id !== null, fn ($q) => $q->where('id', $id))->orderByDesc('created_at')->first();
+        $id ??= DB::table('match_proposal_slots')->where('user_id', $actor)->value('proposal_id');
+        $hint = DB::table('match_proposals')->where(fn ($q) => $q->where('user_a', $actor)->orWhere('user_b', $actor))->when($id !== null, fn ($q) => $q->where('id', $id))->orderByDesc('created_at')->orderByDesc('id')->first();
         if (! $hint) { return null; }
         return DB::transaction(function () use ($actor, $hint) {
+            app(CurrentQuestionnaire::class)->lock();
             app(JourneyStore::class)->users([(int) $hint->user_a, (int) $hint->user_b], true);
             $p = DB::table('match_proposals')->where('id', $hint->id)->lockForUpdate()->first();
             abort_unless($p && $p->user_a === $hint->user_a && $p->user_b === $hint->user_b, 404);
@@ -165,6 +186,7 @@ final class SlowDatingService
         // Persist expiry independently, so a rejected stale mutation cannot roll it back.
         $this->proposal($actor, $id);
         return DB::transaction(function () use ($actor, $id, $action, $revision, $key, $hint) {
+            app(CurrentQuestionnaire::class)->lock();
             app(JourneyStore::class)->users([(int) $hint->user_a, (int) $hint->user_b]);
             $p = DB::table('match_proposals')->where('id', $id)->lockForUpdate()->first();
             abort_unless($p && $p->user_a === $hint->user_a && $p->user_b === $hint->user_b, 404);
@@ -173,19 +195,50 @@ final class SlowDatingService
                 abort_unless(in_array($p->state, ['PENDING','ACCEPTED_BY_ONE'], true) && Carbon::parse($p->expires_at, 'UTC')->gt(now()->utc()), 409, 'proposal terminal or expired');
                 $isA = (int) $p->user_a === $actor;
                 $generation = (int) ($isA ? $p->generation_a : $p->generation_b);
-                if ($action !== 'withdraw') { abort_unless($this->enrolled((int)$p->user_a, (int)$p->generation_a) && $this->enrolled((int)$p->user_b, (int)$p->generation_b), 409, 'participation generation unavailable'); }
+                if ($action !== 'withdraw') { abort_unless($this->currentEligibilityAllowed($p), 409, 'current matching eligibility changed'); abort_unless($this->enrolled((int)$p->user_a, (int)$p->generation_a) && $this->enrolled((int)$p->user_b, (int)$p->generation_b), 409, 'participation generation unavailable'); }
                 if ($action === 'accept') {
                     $field = $isA ? 'decision_a' : 'decision_b';
                     abort_unless($p->$field === 'PENDING', 409, 'already decided');
                     $p->$field = 'ACCEPTED';
                     $next = $p->decision_a === 'ACCEPTED' && $p->decision_b === 'ACCEPTED' ? 'MUTUALLY_ACCEPTED' : 'ACCEPTED_BY_ONE';
-                } elseif (in_array($action, ['decline','withdraw'], true)) { $next = $action === 'decline' ? 'DECLINED' : 'WITHDRAWN';
+                } elseif (in_array($action, ['decline','withdraw'], true)) {
+                    $field = $isA ? 'decision_a' : 'decision_b';
+                    $p->$field = $action === 'decline' ? 'DECLINED' : 'WITHDRAWN';
+                    $next = $action === 'decline' ? 'DECLINED' : 'WITHDRAWN';
                 } else { abort(422, 'unknown proposal action'); }
                 $this->finish($p, $next);
                 app(JourneyStore::class)->audit($actor, $p->id, strtoupper($action), ['state' => $next, 'revision' => $p->revision]);
                 return $this->projectLocked($p, $actor);
             });
         });
+    }
+
+    public function history(int $actor, int $page, int $perPage): array
+    {
+        $rows = DB::table('match_proposals')->where(fn ($query) => $query->where('user_a', $actor)->orWhere('user_b', $actor))
+            ->orderByDesc('created_at')->orderByDesc('id')->paginate($perPage, ['id'], 'page', $page);
+        return ['data' => collect($rows->items())->map(fn ($row) => $this->historyDetail($actor, $row->id))->all(),
+            'current_page' => $rows->currentPage(), 'last_page' => $rows->lastPage(), 'total' => $rows->total()];
+    }
+
+    public function historyDetail(int $actor, string $id): array
+    {
+        $row = DB::table('match_proposals')->where('id', $id)
+            ->where(fn ($query) => $query->where('user_a', $actor)->orWhere('user_b', $actor))->first();
+        abort_unless($row, 404, 'unavailable');
+        $projection = $this->proposal($actor, $id);
+        // History is always read-only, including a still-current proposal displayed in the list.
+        $projection['decision_available'] = false;
+        $projection['withdraw_available'] = false;
+        $projection['created_at'] = $row->created_at;
+        $projection['updated_at'] = DB::table('match_proposals')->where('id', $id)->value('updated_at');
+        $projection['reason_code'] = match ($projection['state']) {
+            'WITHDRAWN' => 'withdrawn_or_current_authority_unavailable',
+            'EXPIRED' => 'proposal_expired', 'DECLINED' => 'independent_decline',
+            default => 'proposal_process_fact',
+        };
+        $projection['rule_version'] = DB::table('matching_runs')->where('id', $row->run_id)->value('algorithm_version');
+        return $projection;
     }
 
     public function journey(int $actor): array

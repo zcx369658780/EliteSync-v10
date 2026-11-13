@@ -1,3 +1,4 @@
+import '../../../slow_dating_v1012/matching_input_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -189,6 +190,14 @@ class _MatchingReadinessCard extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
+          OutlinedButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const MatchingInputPage(),
+              ),
+            ),
+            child: const Text('我的匹配输入'),
+          ),
           if (hasFreshTruth &&
               (matching.eligible ||
                   (matching.reasonCode == 'questionnaire_incomplete' &&
@@ -215,6 +224,9 @@ class _MatchingReadinessCard extends StatelessWidget {
   String _matchingReason(MatchingEligibilityEntity matching) {
     if (matching.eligible) return '服务器已确认当前满足匹配准入条件。';
     return switch (matching.reasonCode) {
+      'matching_inputs_unconfirmed' => '请确认本人资料、关系目标与年龄地域偏好。',
+      'adult_self_report_required' => '普通婚恋慢约需要本人自述年满18周岁。',
+      'friendship_only' => '仅交友用途不能报名普通婚恋慢约。',
       'questionnaire_incomplete' => '还需完成 ${matching.missingAnswerCount} 项匹配问卷',
       'account_disabled' => '账号当前不可参与匹配，请联系支持。',
       'synthetic_account_excluded' => '此测试账号不参与普通匹配。',
