@@ -1,4 +1,20 @@
-# 当前入口 2026-11-14 v10.1.8 语音主链完成，保存交接
+# 当前入口 2026-11-14 v10.1.8 同编号重试完成，保存交接
+
+Owner的新继续指令已接续固定保存点 `d25f25b89cb3694706813ba0dad4e4da7e4b40b1`。本会话选择一次真实APP结果未知后的同编号重试，已达到节点，按Owner要求保存本地/GitHub并给出接续prompt后停下。整版工程自验 `IN_PROGRESS`，顾问及Owner本版接受 `PENDING`。
+
+稳定根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.8-communication-notifications-20261113`。APP构建源码 `ab86489aa576f95618fae48abc79b8c7f6a70258`，沿用 `10.1.8-dev / 1010804` 安装与候选。直接相关四个后端文件Git/工作树/API容器字节相等。
+
+虚构用户16→17普通APP发送文字，真实后端成功提交后仅本机一次断开响应socket。APP提示结果尚未确认，用户点击原编号重试，两次UUID、完整载荷及原始请求字节相同，返回同一消息132。MariaDB仅一条消息、一条通知278，来源 `message:132`。原路由已恢复、注入监听已关闭，普通API及APP刷新通过。见[最新交接](../versions/v10.1.8/RETRY_HANDOFF_20261114.md)与[去敏证据](../versions/v10.1.8/RETRY_EVIDENCE_20261114.json)。
+
+本节点为文字消息故障检查。既有普通成功链127–131、搜索/引用、图片/视频、真实语音及具名测试继续按原范围继承。六项AC仍待集中核验，剩余语音边界、APP通知回流/偏好、统一重登/重启、SFU媒体/有限恢复/新撤权5秒尾窗与最终报告见交接。建议下一目标为APP通知回流与偏好。
+
+资源实读截至2026-11-14 06:49:03.008461北京时间，DB/API/WS running，SFU exited/exit1、Room UNAVAILABLE。双模拟器及本包进程已停止，用户11/12与AVD、数据库保留，ADB5038保持USB排除，手机NOT_RUN。首次资源快照的模拟器退出时序断言失败及后续只读补证留在交接中。真实Push `REAL_PUSH_PROVIDER_PENDING`，历史SFU精确根因UNKNOWN，语音人工听感NOT_RUN、硬件UNVERIFIED。
+
+按同名授权分支保存并回读固定提交，失败记PENDING_SYNC。原主库dirty/index及受保护 `%SystemDrive%/` 保留，后续继续本版长期工程授权。
+
+---
+
+## 历史节点 2026-11-14 语音主链完成
 
 Owner要求继续，并建议完成一个目标后先保存本地/GitHub再交接。本会话选择语音真实录制、明确发送、另一端播放，节点已达到；当前停在文档保存与同步回读交接点。整版工程自验仍 `IN_PROGRESS`，顾问/Owner本版接受 `PENDING`。
 

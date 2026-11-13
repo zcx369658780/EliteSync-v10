@@ -1,0 +1,221 @@
+{
+  "schema": "elitesync.v1018.response_loss_checkpoint.v1",
+  "result": "APP_SAME_UUID_RETRY_OBSERVED_SCOPED",
+  "scope": "One plain-text APP send, upstream commit succeeded, one socket response discarded, explicit APP retry",
+  "version_engineering_status": "IN_PROGRESS",
+  "advisor_acceptance": "PENDING",
+  "owner_version_acceptance": "PENDING",
+  "pre_checkpoint_commit": "d25f25b89cb3694706813ba0dad4e4da7e4b40b1",
+  "app_build_source": "ab86489aa576f95618fae48abc79b8c7f6a70258",
+  "backend_last_product_change": "e22b0c95c2358672a8f81a9b6d6d0dd07f36830d",
+  "candidate": {
+    "version_name": "10.1.8-dev",
+    "version_code": 1010804,
+    "package": "com.elitesync.v1015dev",
+    "apk_sha256_inherited": "d2f777465c06f5797abce3c87f586373b62f643a41474e28efa3da2df3da46b8",
+    "new_build": false,
+    "sender_installed_version_readback": true
+  },
+  "injected_fault": {
+    "kind": "SOCKET_SHUT_RDWR_WITHOUT_HTTP_RESPONSE",
+    "listener": "127.0.0.1:8023",
+    "real_upstream": "127.0.0.1:8021",
+    "target": "Unique preselected test body, receiver17, no attachments; first matching APP-generated UUID latched",
+    "successful_upstream_before_loss": true,
+    "injections": 1,
+    "matching_requests": 2,
+    "other_message_requests": [],
+    "first_http": 200,
+    "retry_http": 200
+  },
+  "business": {
+    "sender_fictional_user": 16,
+    "receiver_fictional_user": 17,
+    "client_message_id": "78f42482-4107-416d-82fb-8ad3adfa8e5d",
+    "raw_request_sha256_first": "8ec1185a19a6ed4d7d2166f46eb50f3a4bc738122b64eab1d08b2521b56fe5b8",
+    "raw_request_sha256_retry": "8ec1185a19a6ed4d7d2166f46eb50f3a4bc738122b64eab1d08b2521b56fe5b8",
+    "same_uuid": true,
+    "same_payload": true,
+    "same_raw_request_bytes": true,
+    "same_response_message_id": true,
+    "message_id": 132,
+    "message_count": 1,
+    "message_is_read": false,
+    "attachment_count": 0,
+    "notification_id": 278,
+    "notification_count_for_receiver": 1,
+    "notification_count_all_receivers_for_event": 1,
+    "notification_source_event_key": "message:132",
+    "notification_read_at": null,
+    "database_connection": "mysql"
+  },
+  "app": {
+    "sender_emulator": "emulator-5580",
+    "android_user": 11,
+    "unknown_result_observed": true,
+    "unknown_screenshot_later_status": "上次发送尚未完成，请使用原消息编号重试。",
+    "explicit_same_identifier_retry_clicked": true,
+    "confirmation_observed": true,
+    "draft_input_cleared_after_confirmation": true,
+    "ordinary_refresh_after_restored_route": "OBSERVED_IN_PARENT_TOOL_OUTPUT_BEFORE_STOP"
+  },
+  "restoration": {
+    "restore_exit": 0,
+    "reverse_before": "host-17 tcp:8021 tcp:8021\nhost-17 tcp:8022 tcp:8022\nhost-17 tcp:7880 tcp:7880\nhost-17 tcp:7881 tcp:7881\n\n",
+    "reverse_after": "host-17 tcp:8021 tcp:8021\nhost-17 tcp:8022 tcp:8022\nhost-17 tcp:7880 tcp:7880\nhost-17 tcp:7881 tcp:7881\n\n",
+    "ordinary_up_after": 200,
+    "proxy_listener_closed": true,
+    "restoration_ok": true
+  },
+  "related_deployed_source_bytes": [
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MessageController.php",
+      "bytes": 16035,
+      "sha256_git_worktree_container": "6e1c5cd72041803e4a7c777840d71386e2a82e7c94ad3a7f198908964cd5a659",
+      "raw_bytes_equal": true
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ConversationAtomicSendService.php",
+      "bytes": 13628,
+      "sha256_git_worktree_container": "b532b3ea0d15892216510321599277f51c7fd1af8df496661b56d1cf05157c96",
+      "raw_bytes_equal": true
+    },
+    {
+      "path": "services/backend-laravel/app/Services/NotificationService.php",
+      "bytes": 16209,
+      "sha256_git_worktree_container": "91b38f080ad62002e9aeecbccfdcc656e2216e5b7e56ec05b3e99d0d19783be3",
+      "raw_bytes_equal": true
+    },
+    {
+      "path": "services/backend-laravel/app/Domain/MessagingReplayContract.php",
+      "bytes": 1412,
+      "sha256_git_worktree_container": "748373572358f5bf78b6768fe5c3b27933e32fe8de93d8b7409f1df9c688af81",
+      "raw_bytes_equal": true
+    }
+  ],
+  "initial_resource_snapshot_failure": {
+    "failure": "Immediate port-closed assertion ran during emulator shutdown transition",
+    "prior_steps_completed": [
+      "DB and four deployed source byte assertions passed",
+      "APP refresh displayed exact target text",
+      "Native CAMERA/RECORD_AUDIO inactivity assertion passed",
+      "Package force-stop completed and pidof was empty",
+      "Emulator kill returned zero"
+    ],
+    "raw_native_sample": "NOT_SAVED_BEFORE_INITIAL_ATTEMPT_EXIT",
+    "recovery": "Only finalize read-only business/source receipts and stopped resource status"
+  },
+  "resources": {
+    "observed_at_china": "2026-11-14T06:49:03.008461+08:00",
+    "containers": {
+      "db": {
+        "id": "61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+        "image": "sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2",
+        "status": "running",
+        "exit_code": 0
+      },
+      "api": {
+        "id": "56a29d27e5219d9b1ce69a7230766c592535339988b84eb2bbc866b458d7a54b",
+        "image": "sha256:fac4d1a092d669227aa7f018d849ec659996cb1ac616927efe7821e45424d70b",
+        "status": "running",
+        "exit_code": 0
+      },
+      "ws": {
+        "id": "04e4b97a55addf4978c877960d9235602c999436e5845a8808f197b44dc69644",
+        "image": "sha256:893014a9e551183fa7e9c36503f8ed61e98641e3999081db86d9b02e34f37b3d",
+        "status": "running",
+        "exit_code": 0
+      },
+      "sfu": {
+        "id": "bd15c12a986c03043eacadf35449d2ec83b78194aa15362a821de56b9d08d6ab",
+        "image": "sha256:954f0e1bd94cbab763dfcca219d730446d064c5c832c179ce31d8225852cbb95",
+        "status": "exited",
+        "exit_code": 1
+      }
+    },
+    "emulators": [
+      {
+        "index": 0,
+        "serial": "emulator-5580",
+        "running": false,
+        "android_user_retained": 11,
+        "data_retained": true
+      },
+      {
+        "index": 1,
+        "serial": "emulator-5582",
+        "running": false,
+        "android_user_retained": 12,
+        "data_retained": true
+      }
+    ],
+    "phone": "NOT_RUN",
+    "adb_port": 5038,
+    "adb_usb_exclusion": "Verified live process command before resume; unchanged",
+    "room": "UNAVAILABLE_SFU_EXITED"
+  },
+  "inherited_normal_success": {
+    "messages": [
+      127,
+      128,
+      129,
+      130,
+      131
+    ],
+    "source": "CONTINUATION_HANDOFF_20261114.md and VOICE_EVIDENCE_20261114.json",
+    "retry_message132_identity": "INJECTED_FAULT_CHECK",
+    "backend_tests": "55 tests / 632 assertions, named20261113 scope",
+    "flutter_tests": "182 tests, named20261113 scope; permission panel overlaps",
+    "rerun_here": false
+  },
+  "limits": {
+    "runtime_media_attachment_retry": "NOT_RUN_THIS_CHECKPOINT",
+    "other_remaining_version_paths": "See RETRY_HANDOFF_20261114.md",
+    "real_push": "REAL_PUSH_PROVIDER_PENDING",
+    "historical_sfu_exact_root_cause": "UNKNOWN",
+    "voice_human_listening": "NOT_RUN",
+    "hardware": "UNVERIFIED"
+  },
+  "local_only_evidence": [
+    {
+      "file": "retry-response-loss-20261114-private.json",
+      "bytes": 5053,
+      "sha256": "db4e935abef4a276bc4845f4798f96e150b9be3dd379d775d9ecbdca2e47f11b"
+    },
+    {
+      "file": "retry-persistence-resources-20261114-private.json",
+      "bytes": 4385,
+      "sha256": "6871810064ad63e0c0139d053f8c0c6cb7baf527a75b9d67122e51f00fdea5bd"
+    },
+    {
+      "file": "retry-response-loss-20261114-unknown.png",
+      "bytes": 120945,
+      "sha256": "ffa4b88e2913374921837d7bd6ef7a263523f45559f26639a9b0c1d98ea45431"
+    },
+    {
+      "file": "retry-response-loss-20261114-confirmed.png",
+      "bytes": 103999,
+      "sha256": "069fcb3e2a3de15849e319f39b08aa3eeb2deb0c84ac3e291592b3b92be040da"
+    },
+    {
+      "file": "retry-startup-20261114-private.log",
+      "bytes": 88107,
+      "sha256": "ae8a7d7f711a1a2f2764451bdbc0a6b013245fe2298afa808cb1cb8b011b98d1"
+    },
+    {
+      "file": "v1018_retry_checkpoint_20261114.py",
+      "bytes": 8377,
+      "sha256": "9bd8e8bfc06684213db1963c9dcdb6aa368aa6a9234a1421344c5620c9ae8225"
+    },
+    {
+      "file": "retry-protected-readback-20261114-private.json",
+      "bytes": 102,
+      "sha256": "45ea806f5de141ddc15fba56d32ef499510a78630eca5828f769601de651f0ad"
+    }
+  ],
+  "protected_original_worktree_readback": {
+    "main_status_unchanged": true,
+    "main_index_unchanged": true,
+    "main_diff_unchanged": true
+  }
+}
