@@ -1,0 +1,660 @@
+{
+  "schema": "elitesync.v10.1.7.artifact_manifest.v1",
+  "version": "10.1.7-dev",
+  "engineering_status": "SIX_AC_PASS_AWAITING_ADVISOR",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "repository": "zcx369658780/EliteSync-v10",
+  "branch": "codex/v10.1.7-matching-journey-20261113",
+  "product_root": "D:\\EliteSync-v10-product-v1015-20261101",
+  "task_commit": "a33ee96c373ca7ccc5827f456106098325a0dc8b",
+  "baseline": "0b44ce83c8501a6752129d2fea6cdda715048cc0",
+  "backend_source_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+  "app_source_commit": "44d4b96daa7e84d2f92c4385b258159de1c45dc1",
+  "app_source_tree_equal_at_backend_commit": true,
+  "source_tree_ids": {
+    "apps/flutter_elitesync_module/lib": "9a0520e13473db423e002f0c404c1f79d3881b09",
+    "apps/android/app": "9e672e1d4eefb27fd10ea051a76bda966c9d80df",
+    "services/backend-laravel/app": "99e10cd968c2465bdb0216329902f24d35f2ae15",
+    "services/backend-laravel/routes": "bd7baedf90f7c21f8ccc2fb414bb1a85483a9222",
+    "services/backend-laravel/database": "2fa23e7ee77cc90a377ca759595c4aec1245c308",
+    "services/backend-laravel/config": "324f63e32e00a91348ff6b6d030f13d4eaa50d28",
+    "services/backend-laravel/resources": "84bcc2bfe93211c9f86979db618df0d7caf6b786",
+    "services/backend-laravel/tools/rtc": "f812fe84f87d5129c656a12a990d8a1da5d0e61e"
+  },
+  "apk": {
+    "source_commit": "44d4b96daa7e84d2f92c4385b258159de1c45dc1",
+    "apk_path": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\delivery\\v10.1.7-dev-1010703-44d4b96d.apk",
+    "bytes": 123730978,
+    "sha256": "1afe17fff97fae81153e8de7e2ffeed174a48d639de55e42f77b45f7cf7d8a5e",
+    "package_badging": "package: name='com.elitesync.v1015dev' versionCode='1010703' versionName='10.1.7-dev' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'",
+    "install": [
+      {
+        "android_index": 0,
+        "serial": "emulator-5580",
+        "user": 11,
+        "installed_sha256": "1afe17fff97fae81153e8de7e2ffeed174a48d639de55e42f77b45f7cf7d8a5e",
+        "data_retained": true
+      },
+      {
+        "android_index": 1,
+        "serial": "emulator-5582",
+        "user": 12,
+        "installed_sha256": "1afe17fff97fae81153e8de7e2ffeed174a48d639de55e42f77b45f7cf7d8a5e",
+        "data_retained": true
+      }
+    ],
+    "signing": {
+      "verified": true,
+      "certificate_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+      "v2_verified": true
+    },
+    "kernel_bytes": 92014248,
+    "version_name": "10.1.7-dev",
+    "version_code": 1010703,
+    "package": "com.elitesync.v1015dev",
+    "variant": "source Debug",
+    "abi": "arm64-v8a",
+    "debuggable": true,
+    "distribution": "LOCAL_ONLY"
+  },
+  "runtime": {
+    "backend": "Laravel13/PHP8.4.27",
+    "database": "MariaDB10.11.19 persistent development database",
+    "api_and_web": "http://127.0.0.1:8021",
+    "configuration": {
+      "rule_version": "questionnaire_bilateral_v1017",
+      "confirmation_version": "matching_input_v1",
+      "recent_pair_days": 14,
+      "opposite_gender_only": true,
+      "legacy_core_weights_ignored_by_ordinary_path": {
+        "personality": 0,
+        "mbti": 0,
+        "astro": 1
+      },
+      "queue_driver": "sync",
+      "manual_consumer_configured": true,
+      "admin_operations_enabled": true,
+      "execution_enabled": true,
+      "configuration_version": "v1017-dev-1",
+      "business_timezone": "Asia/Shanghai"
+    },
+    "configuration_provenance": "Owner app.env plus existing persistent bootstrap config cache",
+    "deployed_source_bytes": [
+      {
+        "path": "services/backend-laravel/app/Console/Commands/ExecutePendingMatchingRunCommand.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "79acb962dd04d88e8b6a25ae2a5385e1565907b8",
+        "bytes": 3337,
+        "sha256_git": "a2d49d669b04309c120725d6310c622268d1a02c4e898c70038ba2fd94a894f1",
+        "sha256_worktree": "a2d49d669b04309c120725d6310c622268d1a02c4e898c70038ba2fd94a894f1",
+        "sha256_container": "a2d49d669b04309c120725d6310c622268d1a02c4e898c70038ba2fd94a894f1",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/AdminMatchingController.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "2aea5cc34247a7ff8a4661516a72ecf882777d95",
+        "bytes": 11534,
+        "sha256_git": "a3b2d67c03323d22eb0bc0c0689a0be4e8c6eac4520fdb14b0eb45ed646d78ff",
+        "sha256_worktree": "a3b2d67c03323d22eb0bc0c0689a0be4e8c6eac4520fdb14b0eb45ed646d78ff",
+        "sha256_container": "a3b2d67c03323d22eb0bc0c0689a0be4e8c6eac4520fdb14b0eb45ed646d78ff",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MatchController.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "5c4795f6529e10a3fa29f77865cf7fda90d5c961",
+        "bytes": 26464,
+        "sha256_git": "2908af1fe1a0c1bf502ddeee3e80beef4dec731f2faefcff88ba24fec58450f9",
+        "sha256_worktree": "2908af1fe1a0c1bf502ddeee3e80beef4dec731f2faefcff88ba24fec58450f9",
+        "sha256_container": "2908af1fe1a0c1bf502ddeee3e80beef4dec731f2faefcff88ba24fec58450f9",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MatchingInputController.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "9edec4b43ca609a6ba12ac9e7eda2b8efed8e3b7",
+        "bytes": 1751,
+        "sha256_git": "c5eb05d523281276ab58f4650c529cf335cd4a4d24edf2b52abc31720300d3dc",
+        "sha256_worktree": "c5eb05d523281276ab58f4650c529cf335cd4a4d24edf2b52abc31720300d3dc",
+        "sha256_container": "c5eb05d523281276ab58f4650c529cf335cd4a4d24edf2b52abc31720300d3dc",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/SlowDatingController.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "72ffd758a661768bf20b61e7cef47dd8d6525734",
+        "bytes": 3211,
+        "sha256_git": "c13f77b2ec3bc5bdd6673b5e121bbce260edea1301dbbbb201595033e15dc2f8",
+        "sha256_worktree": "c13f77b2ec3bc5bdd6673b5e121bbce260edea1301dbbbb201595033e15dc2f8",
+        "sha256_container": "c13f77b2ec3bc5bdd6673b5e121bbce260edea1301dbbbb201595033e15dc2f8",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Middleware/JourneyPrivateResponse.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "587215de9218d97183463a66e7052bfa4449d223",
+        "bytes": 471,
+        "sha256_git": "d1b60d6e39607e56e9ed6a61ca075db2679c490e0049f217469589b87bb4ba17",
+        "sha256_worktree": "d1b60d6e39607e56e9ed6a61ca075db2679c490e0049f217469589b87bb4ba17",
+        "sha256_container": "d1b60d6e39607e56e9ed6a61ca075db2679c490e0049f217469589b87bb4ba17",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Models/MatchingRunCandidate.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "14f2d6bd1c15a5078bb2b43def58741190fc726b",
+        "bytes": 641,
+        "sha256_git": "e5f1519f891fe217c20d454b28666fbc84b6bc6c832159edcd918a4185ed0259",
+        "sha256_worktree": "e5f1519f891fe217c20d454b28666fbc84b6bc6c832159edcd918a4185ed0259",
+        "sha256_container": "e5f1519f891fe217c20d454b28666fbc84b6bc6c832159edcd918a4185ed0259",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Services/CurrentQuestionnaire.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "ba13786e13444be7a3683551acc96e74431143fc",
+        "bytes": 2265,
+        "sha256_git": "9dfffc30a274f82944a812573c9c2009312b7bce6753ecd02c6e1e1f4c9987ec",
+        "sha256_worktree": "9dfffc30a274f82944a812573c9c2009312b7bce6753ecd02c6e1e1f4c9987ec",
+        "sha256_container": "9dfffc30a274f82944a812573c9c2009312b7bce6753ecd02c6e1e1f4c9987ec",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Services/MatchRoundProjectionService.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "20b15b65fff34e2c166fd081ae24669f0d1aa773",
+        "bytes": 6770,
+        "sha256_git": "1caff44a89450d44c06721bb93756a1bcbc31416ec2f5b17963322de1efc41be",
+        "sha256_worktree": "1caff44a89450d44c06721bb93756a1bcbc31416ec2f5b17963322de1efc41be",
+        "sha256_container": "1caff44a89450d44c06721bb93756a1bcbc31416ec2f5b17963322de1efc41be",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Services/MatchingEngineService.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "46baa5357cf4be164ff1759599a21ec8c452b347",
+        "bytes": 6011,
+        "sha256_git": "0efa2966ef8fd6d40e3d654b1829b1722b47118449c249b0bcf84191f23ccd38",
+        "sha256_worktree": "0efa2966ef8fd6d40e3d654b1829b1722b47118449c249b0bcf84191f23ccd38",
+        "sha256_container": "0efa2966ef8fd6d40e3d654b1829b1722b47118449c249b0bcf84191f23ccd38",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Services/MatchingInputService.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "b4dfc5862cf67c99e2c12844c4448df9ea2f0ceb",
+        "bytes": 6614,
+        "sha256_git": "9ce34774f6f5acd4b63a08f9523ba3eb7a7a9ab095410972d8beb5ce67de56f9",
+        "sha256_worktree": "9ce34774f6f5acd4b63a08f9523ba3eb7a7a9ab095410972d8beb5ce67de56f9",
+        "sha256_container": "9ce34774f6f5acd4b63a08f9523ba3eb7a7a9ab095410972d8beb5ce67de56f9",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Services/MatchingRoundService.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "d8f9e12744a7c9d8ce3a8afde9384f8f1c457d4d",
+        "bytes": 10083,
+        "sha256_git": "4b08b88b7b8f94c0ec23f18b35368d211181d515e6b57768a397f46635a14103",
+        "sha256_worktree": "4b08b88b7b8f94c0ec23f18b35368d211181d515e6b57768a397f46635a14103",
+        "sha256_container": "4b08b88b7b8f94c0ec23f18b35368d211181d515e6b57768a397f46635a14103",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Services/MatchingRunService.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "396462a76b8a9d844aa45c866c3d7309015f0e8a",
+        "bytes": 24243,
+        "sha256_git": "464de9af65e45db67d2dfcefd68bb68600081295da04aac1015b30a5b9bf2a04",
+        "sha256_worktree": "464de9af65e45db67d2dfcefd68bb68600081295da04aac1015b30a5b9bf2a04",
+        "sha256_container": "464de9af65e45db67d2dfcefd68bb68600081295da04aac1015b30a5b9bf2a04",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Services/ProfileReadinessService.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "9a8a6f2dfaa1b6f8d15abf4abec1d70bd3c66602",
+        "bytes": 5017,
+        "sha256_git": "be64e62bdf39e2ed9c6b8e61780294a7285916a20f473427ca976f04330900f9",
+        "sha256_worktree": "be64e62bdf39e2ed9c6b8e61780294a7285916a20f473427ca976f04330900f9",
+        "sha256_container": "be64e62bdf39e2ed9c6b8e61780294a7285916a20f473427ca976f04330900f9",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Services/SlowDatingService.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "51397127a634a90755028dd48f17188ac1662c7c",
+        "bytes": 17228,
+        "sha256_git": "0963dd400160985fbe21f5912a2a687dee6d3fa1fc989072fc22b5a6a725663d",
+        "sha256_worktree": "0963dd400160985fbe21f5912a2a687dee6d3fa1fc989072fc22b5a6a725663d",
+        "sha256_container": "0963dd400160985fbe21f5912a2a687dee6d3fa1fc989072fc22b5a6a725663d",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/database/migrations/2026_11_13_180000_add_confirmed_matching_inputs.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "81882e3c0cf9c71d6c794e1c399dfbf1b44451c3",
+        "bytes": 1066,
+        "sha256_git": "9544f21e3e349dcef8f0502fcf9e7e9be8639550385c3ef1d74573ce01135607",
+        "sha256_worktree": "9544f21e3e349dcef8f0502fcf9e7e9be8639550385c3ef1d74573ce01135607",
+        "sha256_container": "9544f21e3e349dcef8f0502fcf9e7e9be8639550385c3ef1d74573ce01135607",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/database/migrations/2026_11_13_181000_scope_match_pairs_to_execution_attempt.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "b69dea84fbc1f0ba78fced9a340a32e4ebf34b9c",
+        "bytes": 1191,
+        "sha256_git": "d2174b61e67e4db03e54d8e30ac68fc1de318c42bba52795f63725272711c55f",
+        "sha256_worktree": "d2174b61e67e4db03e54d8e30ac68fc1de318c42bba52795f63725272711c55f",
+        "sha256_container": "d2174b61e67e4db03e54d8e30ac68fc1de318c42bba52795f63725272711c55f",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/resources/views/admin/matching.blade.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "604fd6252fcea4b05992c4e26cdc8df4c40d5a37",
+        "bytes": 2731,
+        "sha256_git": "1ca059af42ff454fe68e6a5384bef861db42d65fa287e1f1209caa6495810263",
+        "sha256_worktree": "1ca059af42ff454fe68e6a5384bef861db42d65fa287e1f1209caa6495810263",
+        "sha256_container": "1ca059af42ff454fe68e6a5384bef861db42d65fa287e1f1209caa6495810263",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/routes/api.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "c56f43d04c2a32a75cb64b764281115acdeadbb2",
+        "bytes": 27094,
+        "sha256_git": "9623e4a3406cfda7b5b4b0cb06e03fb3d6626598cd82962c84d1ffd3e2ea7fba",
+        "sha256_worktree": "9623e4a3406cfda7b5b4b0cb06e03fb3d6626598cd82962c84d1ffd3e2ea7fba",
+        "sha256_container": "9623e4a3406cfda7b5b4b0cb06e03fb3d6626598cd82962c84d1ffd3e2ea7fba",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/ProfileShowcaseDraftController.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "3703f86fd99408ed0a754050510b819c2cc1e825",
+        "bytes": 3018,
+        "sha256_git": "e3ddf8654e2a8d06107be18367bca92617cb5b46e2423621035768c9f6a9d02f",
+        "sha256_worktree": "e3ddf8654e2a8d06107be18367bca92617cb5b46e2423621035768c9f6a9d02f",
+        "sha256_container": "e3ddf8654e2a8d06107be18367bca92617cb5b46e2423621035768c9f6a9d02f",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/ProfileShowcasePublicationController.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "320ad47a39f5868cccdd2e6b28a855dfe8e4c44b",
+        "bytes": 2247,
+        "sha256_git": "b1c5e8402623bb5e1c903eace94ca5546520823ce95bc38e1cde4613ab5890aa",
+        "sha256_worktree": "b1c5e8402623bb5e1c903eace94ca5546520823ce95bc38e1cde4613ab5890aa",
+        "sha256_container": "b1c5e8402623bb5e1c903eace94ca5546520823ce95bc38e1cde4613ab5890aa",
+        "raw_bytes_equal": true
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Web/AdminShowcaseController.php",
+        "git_commit": "0229e9d8018296701236f8a9b5fc919fd66096d2",
+        "git_blob": "194f3c118175cdbd9f26e1a09fb20b1628fe8d46",
+        "bytes": 3773,
+        "sha256_git": "d07a286a83f4370313dbde5f994fd688ec575aff0354ff340097bc8deb36253b",
+        "sha256_worktree": "d07a286a83f4370313dbde5f994fd688ec575aff0354ff340097bc8deb36253b",
+        "sha256_container": "d07a286a83f4370313dbde5f994fd688ec575aff0354ff340097bc8deb36253b",
+        "raw_bytes_equal": true
+      }
+    ],
+    "migrations": [
+      "2026_11_13_180000_add_confirmed_matching_inputs",
+      "2026_11_13_181000_scope_match_pairs_to_execution_attempt"
+    ]
+  },
+  "acceptance": {
+    "AC17-01": {
+      "engineering_result": "PASS",
+      "advisor_review": "PENDING",
+      "report": "IMPLEMENTATION_REPORT.md"
+    },
+    "AC17-02": {
+      "engineering_result": "PASS",
+      "advisor_review": "PENDING",
+      "report": "IMPLEMENTATION_REPORT.md"
+    },
+    "AC17-03": {
+      "engineering_result": "PASS",
+      "advisor_review": "PENDING",
+      "report": "IMPLEMENTATION_REPORT.md"
+    },
+    "AC17-04": {
+      "engineering_result": "PASS",
+      "advisor_review": "PENDING",
+      "report": "IMPLEMENTATION_REPORT.md"
+    },
+    "AC17-05": {
+      "engineering_result": "PASS",
+      "advisor_review": "PENDING",
+      "report": "IMPLEMENTATION_REPORT.md"
+    },
+    "AC17-06": {
+      "engineering_result": "PASS",
+      "advisor_review": "PENDING",
+      "report": "IMPLEMENTATION_REPORT.md"
+    }
+  },
+  "actual_checks": {
+    "php": {
+      "tests": 39,
+      "assertions": 479,
+      "result": "PASS",
+      "environment": "PHP8.4.27 isolated SQLite"
+    },
+    "flutter": {
+      "tests": 22,
+      "result": "PASS"
+    },
+    "dart_analysis": "PASS",
+    "ordinary_chain": {
+      "actors": [
+        16,
+        17
+      ],
+      "operational_review": "normal Web forms, non-real-identity scope",
+      "questionnaire": "20 normal APP option selections per actor; debug autofill not used",
+      "no_candidate_round_run": [
+        4,
+        4
+      ],
+      "current_round_run": [
+        5,
+        7
+      ],
+      "proposal_id": "bd7673c0-1a61-4151-b1b6-a4d4b459fbab",
+      "proposal_state": "MUTUALLY_ACCEPTED",
+      "proposal_revision": 3,
+      "participation_generations": {
+        "16": 2,
+        "17": 1
+      },
+      "frozen_input_revisions": {
+        "16": 3,
+        "17": 1
+      },
+      "final_input_revisions": {
+        "16": 4,
+        "17": 1
+      },
+      "self_history_count_each": 1,
+      "astro_profile_count_for_actors": 0
+    },
+    "withdrawal_history_old_detail_photo": "PASS normal API and final APP resume",
+    "database_api_ws_restart": "PASS exact scoped rows and normal HTTP readback",
+    "final_app_relogin_and_save": "PASS",
+    "deployed_raw_byte_equal_files": 22
+  },
+  "failure_records": [
+    {
+      "run_id": 5,
+      "type": "explicit missing-matching-digest injection",
+      "web_http": 500,
+      "durable_state": "failed",
+      "error_code": "execution_failed",
+      "configuration_restored_exactly": true,
+      "scope": "failure evidence"
+    },
+    {
+      "run_id": 6,
+      "type": "ordinary MariaDB compatibility defect",
+      "web_http": 500,
+      "durable_state": "failed",
+      "root_cause": "SQLSTATE22001/MariaDB1406: 21-character match_verdict exceeded varchar16",
+      "resolution": "13-character questionnaire marker; regression plus ordinary run7 success",
+      "diagnostic": "one rolled-back column probe; business row counts equal; auto-increment may advance"
+    },
+    {
+      "run_id": 7,
+      "type": "normal Web retry and actual consumer",
+      "durable_state": "succeeded",
+      "supersedes_run_id": 6,
+      "pair_count": 1
+    }
+  ],
+  "evidence": {
+    "report": {
+      "path": "docs/versions/v10.1.7/IMPLEMENTATION_REPORT.md",
+      "bytes": 11307,
+      "sha256": "bf7fd5fc69efcae7895c3471f5ca18eeba42477021929d8c400016ae025f5424"
+    },
+    "raw_private_root": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\v1017-current",
+    "records": [
+      {
+        "name": "php-final-focused.log",
+        "classification": "LOCAL_ONLY",
+        "bytes": 201,
+        "sha256": "03327aa3aa034617be7c272af597e60443c78780299d7b30ac33fbe0f4f7985d"
+      },
+      {
+        "name": "flutter-final-focused.log",
+        "classification": "LOCAL_ONLY",
+        "bytes": 4735,
+        "sha256": "9b881658764fed83ed859bed2a0b83450c75106d5a544ab7ba858cf95f4077fe"
+      },
+      {
+        "name": "dart-final-analysis.log",
+        "classification": "LOCAL_ONLY",
+        "bytes": 114,
+        "sha256": "e3b933c1d81584b211475eb01f7915f35d744d6687511a3b9db59121aac6be67"
+      },
+      {
+        "name": "final-build-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 760,
+        "sha256": "d70f4ec2afe8a85281ccdd163844db2c7434ee4a12e4c1f6459785266509d3de"
+      },
+      {
+        "name": "apk-candidate-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 1161,
+        "sha256": "d17a03515d116370cf9b630cb020a87692040552e68cddfc6650f6bb9cc3e5a3"
+      },
+      {
+        "name": "effective-config-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 494,
+        "sha256": "5bb7c2c2ed7119380c542a3be136ce06533c6c8885e14e333f25e9e63aaa5eab"
+      },
+      {
+        "name": "normal-app-inputs-0-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 726,
+        "sha256": "165ed52587379ea7286e7b2595a06bb226609ec7ddc9cd90293f2b5febf16889"
+      },
+      {
+        "name": "normal-app-inputs-1-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 726,
+        "sha256": "077b498fb8149a8d5f3b62d164e90ceb530ac1dded816b06050e3f7a9b0a05f1"
+      },
+      {
+        "name": "questionnaire-complete-0-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 59,
+        "sha256": "b00246226c0f10c34ababbbc74d6f006ac609df47f04764367a0f1bee29650a4"
+      },
+      {
+        "name": "questionnaire-complete-1-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 59,
+        "sha256": "b00246226c0f10c34ababbbc74d6f006ac609df47f04764367a0f1bee29650a4"
+      },
+      {
+        "name": "no-candidate-revealed-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 3153,
+        "sha256": "142827376cbc775527a849dbadc93bd9ff995c29d462a89fe0a4c69cfe9b3d8a"
+      },
+      {
+        "name": "bounded-run-failure-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 2640,
+        "sha256": "efdab9fe01d8cf29fcdd6dfe261e9f046df52995596511c183929b438640d2b2"
+      },
+      {
+        "name": "mysql-verdict-diagnostic-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 755,
+        "sha256": "29ef26e70c4c33d58790159f86d98217850720a8fd6d9036d0f32c827d5a0c0a"
+      },
+      {
+        "name": "normal-retry-success-before-reveal-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 4523,
+        "sha256": "d18b72428eac445edf409c07c3b7805c2039d287ed630187d24422176f728a2a"
+      },
+      {
+        "name": "normal-main-revealed-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 8093,
+        "sha256": "4b5223bf38f32ea2717fa58642553866c06d2092211518cf4907b1bb1c6a34f1"
+      },
+      {
+        "name": "normal-dual-accept-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 2264,
+        "sha256": "95321055b5e1d82b65ea1e55a00342d3c9b6be9b6fcee8dce0ad20b523fc859f"
+      },
+      {
+        "name": "normal-history-withdrawal-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 661,
+        "sha256": "61cd49024f86cda0d7fbaa1623cbd6c5cc27c5a5779f63f5f1f829185f7c2bfb"
+      },
+      {
+        "name": "controlled-restart-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 375,
+        "sha256": "52f57ec1b16321a41fb877da1faa1853173198fa3ee7e54bb73398f566eee5ef"
+      },
+      {
+        "name": "normal-app-relogin-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 284,
+        "sha256": "bc1183ba3dd96cf226db6c09a494bedbb2f9a0d8fafc761942b3e2428f789f9a"
+      },
+      {
+        "name": "final-app-input-save-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 386,
+        "sha256": "fd2ed8391e2e1f7a44af37376680381ebdf31c5bdf2e3c170e8b8ec02cc04c9f"
+      },
+      {
+        "name": "normal-no-astro-prerequisite-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 32,
+        "sha256": "dfe81b39e9f08e4fd50e0b46ba866ef8bb8ae2d3c451283c436fbbfcbb7822ba"
+      },
+      {
+        "name": "final-business-snapshot-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 15203,
+        "sha256": "6c028c6b77fa6ad58af4b85410dbd5ab089810da77a8b2d3a7230191cabddae8"
+      },
+      {
+        "name": "final-deployment-identity-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 12595,
+        "sha256": "2c0579ac77b512fe93dc6ed403afd3d315dc528df9bfd36172238247cbc805ae"
+      },
+      {
+        "name": "final-resource-snapshot-private.json",
+        "classification": "LOCAL_ONLY",
+        "bytes": 1404,
+        "sha256": "5cee1a87120566cef59a7b9fb3c5a04af15013e1e26591e45b21887efc22a862"
+      }
+    ],
+    "screenshots": "Necessary new-state screenshots remain LOCAL_ONLY",
+    "inherited": [
+      "v10.1.6 R1 audience contract and accepted profile/photo workflow",
+      "1010701 normal questionnaire/input operations by named unchanged business scope"
+    ],
+    "intermediate_candidate": "1010702 built; installation NOT_RUN; final delivery1010703"
+  },
+  "resources": {
+    "utc": "2026-11-13T11:38:46.598446+00:00",
+    "china_time": "2026-11-13T19:38:46.598446+08:00",
+    "containers": {
+      "db": {
+        "id": "61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+        "status": "running",
+        "exit_code": 0,
+        "restart_count": 0
+      },
+      "api": {
+        "id": "56a29d27e5219d9b1ce69a7230766c592535339988b84eb2bbc866b458d7a54b",
+        "status": "running",
+        "exit_code": 0,
+        "restart_count": 0
+      },
+      "ws": {
+        "id": "04e4b97a55addf4978c877960d9235602c999436e5845a8808f197b44dc69644",
+        "status": "running",
+        "exit_code": 0,
+        "restart_count": 0
+      },
+      "sfu": {
+        "id": "9413b128fca8fae857bf88243217714e3b2a50739d72961a8edb641a1714e55c",
+        "status": "exited",
+        "exit_code": 1,
+        "restart_count": 3
+      }
+    },
+    "emulators": [
+      {
+        "android_index": 0,
+        "serial": "emulator-5580",
+        "current_android_user": 0,
+        "isolated_test_user_retained": 11,
+        "app_stopped_all_users": true
+      },
+      {
+        "android_index": 1,
+        "serial": "emulator-5582",
+        "current_android_user": 0,
+        "isolated_test_user_retained": 12,
+        "app_stopped_all_users": true
+      }
+    ],
+    "rooms": "UNAVAILABLE_SFU_EXITED",
+    "sfu_cause": "OPEN/UNKNOWN",
+    "phone_actions": false,
+    "adb_server_port": 5038,
+    "app_processes_running": false
+  },
+  "remaining": [
+    {
+      "id": "ADVISOR_AND_OWNER_ACCEPTANCE",
+      "status": "PENDING"
+    },
+    {
+      "id": "SFU",
+      "status": "OPEN",
+      "cause": "UNKNOWN",
+      "runtime": "exited / UNAVAILABLE",
+      "route": "subsequent communication work"
+    },
+    {
+      "id": "NATURAL_168_HOUR_WAIT",
+      "status": "NOT_RUN",
+      "scope": "controlled-clock expiry passed"
+    },
+    {
+      "id": "INHERITED_EXTERNAL_LIMITS",
+      "status": "PER_PREVIOUS_NAMED_RECORDS",
+      "scope": [
+        "real Push",
+        "real identity provider",
+        "hardware",
+        "independent algorithm accuracy"
+      ]
+    }
+  ],
+  "unfinished_current_software_ac": [],
+  "exit": "Save and sync the current branch, verify fixed remote commit, stop for advisor review"
+}
