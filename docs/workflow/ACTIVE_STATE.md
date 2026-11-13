@@ -1,4 +1,18 @@
-# 当前入口｜2026-11-13 v10.1.5 R2 已保存，待复核讨论
+# 当前入口 2026-11-13 v10.1.6任务已下达
+
+Owner已确认项目交接完成、v10.1.5阶段收尾，授权新的功能路线与下一版本。当前目标是[v10.1.6真实后端接续与资料展示闭环](../versions/v10.1.6/task_order.md)，范围及六项AC见[plan](../versions/v10.1.6/plan.md)。先真实API/持久DB/实际Web和APP业务，集中UI/文字放在v10.1.12；新增相识后工具仅留接口。[Owner决定](../decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)与[新路线图](../architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)已同步。
+
+远端任务/开发分支：codex/v10.1.6-backend-productization-20261113；承接保存基线2687a39ca09440f17ed3e5e586c5c3ab4a318130，本次发布只改文档。当前尚未从本机回执确认v10.1.6执行开始，不把远端分支建立写成本地已切支或服务已运行。
+
+最近已知稳定根为 D:\EliteSync-v10-product-v1015-20261101；本机最近报告分支为codex/v10.1.5-software-continuation-20261101。Codex恢复时核实际根、remote、HEAD、工作区/index与必要资源，保护新成果并正常接续本版分支，不以旧main覆盖、不复制全工程。
+
+原R1限定接受保留；R2-02资料修正关闭，本轮有界诊断交付限定接受。v10.1.5原10 PARTIAL / AC05 OPEN / G2 false /真实Push PENDING以及SFU UNKNOWN保持历史事实，承接见[收尾记录](../versions/v10.1.5/CLOSEOUT_20261113.md)，不再作为v10.1.6前置门。
+
+普通本地工程、定向验证、必要构建及双模拟器已有长期授权，手机不使用。本版集中完成、保存与普通同步后停下供顾问验收，不自动开v10.1.7、不合main、不发布。当前运行资源由实际恢复时核验，不把此前四服务/Room0快照当现在状态。
+
+---
+
+## 历史节点｜2026-11-13 v10.1.5 R2 保存与待复核快照
 
 当前 **CHANGES_REQUIRED / PARTIAL**。本轮只处理非注入SFU超时与资料校正。已对齐08:06:45.631北京时间原事件及普通工具负载，新增固定截止/限量的gateway传输与PHP/DB关联诊断。120次普通读取、120个DB采样及636个关联请求未复现原异常，资源109点与采样收尾失败、DB锁明细权限限制均如实记录。非注入根因仍 **OPEN/UNKNOWN**。最终12项定向检查、正常guard/拒绝、标记暂停阶段分类、空房间恢复及诊断到期退出通过。具体时间窗、候选与边界见[R2结果](../versions/v10.1.5/supplement-r2-20261113/README.md)。
 
