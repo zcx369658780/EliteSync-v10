@@ -15,6 +15,18 @@ class NotificationApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_unversioned_legacy_sources_preserve_later_events(): void
+    {
+        $user = User::factory()->create(['phone' => '19900001891']);
+        $service = app(NotificationService::class);
+        $first = $service->createForUser($user->id, 'buddy', '搭子有更新', '请查看', ['buddy_activity_id' => 'fixture-activity']);
+        $this->assertSame($first->id, $service->createForUser($user->id, 'buddy', '搭子有更新', '请查看', ['buddy_activity_id' => 'fixture-activity'])->id);
+        $this->travel(6)->minutes();
+        $later = $service->createForUser($user->id, 'buddy', '搭子有更新', '请查看', ['buddy_activity_id' => 'fixture-activity']);
+        $this->assertNotSame($first->id, $later->id);
+        $this->assertNull($later->source_event_key);
+    }
+
     public function test_notification_pages_skip_unavailable_notices_and_keep_exclusive_owner_cursor(): void
     {
         $user = User::factory()->create(['phone' => '19900010201']);

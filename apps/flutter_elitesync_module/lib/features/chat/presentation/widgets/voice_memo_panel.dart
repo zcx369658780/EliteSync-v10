@@ -41,6 +41,7 @@ class _VoiceMemoPanelState extends ConsumerState<VoiceMemoPanel>
   bool _polling = false;
   bool _foreground = true;
   bool _permissionPrompt = false;
+  Completer<void>? _permissionResume;
   bool _submissionAttempted = false;
   int _pollCount = 0;
   int? _assetId;
@@ -152,10 +153,13 @@ class _VoiceMemoPanelState extends ConsumerState<VoiceMemoPanel>
     try {
       _permissionPrompt = true;
       final granted = await Permission.microphone.request();
-      _permissionPrompt = false;
-      if (!_foreground && !_blocked) {
-        await WidgetsBinding.instance.endOfFrame;
+      if (!_foreground && mounted && !_blocked) {
+        final resumed = Completer<void>();
+        _permissionResume = resumed;
+        await resumed.future.timeout(const Duration(seconds: 5));
       }
+      _permissionPrompt = false;
+      _permissionResume = null;
       if (!_current) return;
       if (!granted.isGranted) {
         setState(() => _message = '麦克风权限未允许，尚未录制或发送。');
@@ -174,7 +178,7 @@ class _VoiceMemoPanelState extends ConsumerState<VoiceMemoPanel>
       if (_current) setState(() => _message = '录制未能开始，请检查麦克风并重试。');
     } finally {
       _permissionPrompt = false;
-      if (_current) setState(() => _busy = false);
+      if (mounted && !_disposing && !_blocked) setState(() => _busy = false);
     }
   }
 
@@ -300,6 +304,9 @@ class _VoiceMemoPanelState extends ConsumerState<VoiceMemoPanel>
     final pending = _releaseFuture;
     if (pending != null) return pending;
     _blocked = true;
+    final resumed = _permissionResume;
+    if (resumed != null && !resumed.isCompleted) resumed.complete();
+    _permissionResume = null;
     _timer?.cancel();
     _cancel.cancel('Voice context ended');
     final attached = _attached;
@@ -315,6 +322,10 @@ class _VoiceMemoPanelState extends ConsumerState<VoiceMemoPanel>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     _foreground = state == AppLifecycleState.resumed;
+    if (_foreground) {
+      final resumed = _permissionResume;
+      if (resumed != null && !resumed.isCompleted) resumed.complete();
+    }
     if (_foreground ||
         (_permissionPrompt && state == AppLifecycleState.inactive)) {
       return;
