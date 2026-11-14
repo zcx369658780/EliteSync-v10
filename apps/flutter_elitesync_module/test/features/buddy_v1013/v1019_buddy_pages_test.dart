@@ -18,7 +18,32 @@ class _Session extends SessionNotifier {
     accessToken: 'synthetic-buddy-1',
     user: UserSummary(id: 1, phone: ''),
   );
+  void changeAccount() => state = AsyncData(
+    SessionState(
+      status: AuthStatus.authenticated,
+      accessToken: 'synthetic-buddy-2',
+      user: UserSummary(id: 2, phone: ''),
+    ),
+  );
 }
+
+Map<String, dynamic> _discoveryPage(String subject, {bool more = true}) => {
+  'items': [
+    {
+      'publication_id': subject == 'NEW_CARD' ? 2 : 1,
+      'activity_id': 'activity',
+      'generation': 1,
+      'revision': 3,
+      'type': 'MEAL',
+      'subject': subject,
+      'author_label': '公开称呼',
+      'general_city': '线上',
+      'place_kind': 'ONLINE',
+    },
+  ],
+  'next_cursor': more ? '1' : null,
+  'has_more': more,
+};
 
 class _Api extends RelationshipApi {
   _Api(this.handler) : super(ApiClient(dio: Dio()));
@@ -54,6 +79,112 @@ Future<void> _mount(WidgetTester tester, Widget child, _Api api) async {
 }
 
 void main() {
+  testWidgets(
+    'loaded discovery cards and cursor disappear after pagination business 403',
+    (tester) async {
+      final api = _Api((method, path, body) async {
+        if (path.contains('cursor=')) {
+          throw const RelationshipFailure(
+            'enable Buddy first',
+            statusCode: 403,
+          );
+        }
+        return _discoveryPage('OLD_CARD');
+      });
+      await _mount(tester, const BuddyDiscoveryPage(), api);
+      expect(find.textContaining('OLD_CARD'), findsOneWidget);
+      await tester.enterText(
+        find.byKey(const Key('buddy-discovery-city')),
+        '合法草稿',
+      );
+      await tester.tap(find.byKey(const Key('buddy-discovery-more')));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('OLD_CARD'), findsNothing);
+      expect(find.byKey(const Key('buddy-discovery-apply-1')), findsNothing);
+      expect(find.byKey(const Key('buddy-discovery-more')), findsNothing);
+      expect(find.textContaining('搭子发现当前不可用'), findsOneWidget);
+      expect(find.text('合法草稿'), findsOneWidget);
+    },
+  );
+
+  for (final status in <int?>[null, 503]) {
+    testWidgets(
+      'discovery pagination keeps lawful city and retry after network $status',
+      (tester) async {
+        var moreCalls = 0;
+        final api = _Api((method, path, body) async {
+          if (path.contains('cursor=')) {
+            moreCalls++;
+            throw RelationshipFailure(
+              'temporary network failure',
+              statusCode: status,
+            );
+          }
+          return _discoveryPage('OLD_CARD');
+        });
+        await _mount(tester, const BuddyDiscoveryPage(), api);
+        await tester.enterText(
+          find.byKey(const Key('buddy-discovery-city')),
+          '合法草稿',
+        );
+        await tester.tap(find.byKey(const Key('buddy-discovery-more')));
+        await tester.pumpAndSettle();
+        expect(find.textContaining('OLD_CARD'), findsOneWidget);
+        expect(find.text('合法草稿'), findsOneWidget);
+        expect(
+          find.byKey(const Key('buddy-discovery-apply-1')),
+          findsOneWidget,
+        );
+        expect(find.byKey(const Key('buddy-discovery-more')), findsOneWidget);
+        expect(find.textContaining('搭子发现当前不可用'), findsNothing);
+        await tester.tap(find.byKey(const Key('buddy-discovery-more')));
+        await tester.pumpAndSettle();
+        expect(moreCalls, 2);
+      },
+    );
+  }
+
+  for (final switchAccount in [true, false]) {
+    testWidgets(
+      'late discovery pagination denial preserves new ${switchAccount ? 'account' : 'authority'} cards',
+      (tester) async {
+        final late = Completer<Map<String, dynamic>>();
+        var reads = 0;
+        final api = _Api((method, path, body) async {
+          if (path.contains('cursor=')) return late.future;
+          reads++;
+          return _discoveryPage(
+            reads == 1 ? 'OLD_CARD' : 'NEW_CARD',
+            more: reads == 1,
+          );
+        });
+        await _mount(tester, const BuddyDiscoveryPage(), api);
+        expect(find.textContaining('OLD_CARD'), findsOneWidget);
+        await tester.tap(find.byKey(const Key('buddy-discovery-more')));
+        await tester.pump();
+        final container = ProviderScope.containerOf(
+          tester.element(find.byType(BuddyDiscoveryPage)),
+        );
+        if (switchAccount) {
+          (container.read(sessionProvider.notifier) as _Session)
+              .changeAccount();
+        } else {
+          container
+              .read(relationshipAuthorityEpochProvider.notifier)
+              .invalidate();
+        }
+        await tester.pumpAndSettle();
+        expect(find.textContaining('NEW_CARD'), findsOneWidget);
+        late.completeError(
+          const RelationshipFailure('enable Buddy first', statusCode: 403),
+        );
+        await tester.pumpAndSettle();
+        expect(find.textContaining('NEW_CARD'), findsOneWidget);
+        expect(find.textContaining('搭子发现当前不可用'), findsNothing);
+      },
+    );
+  }
+
   testWidgets(
     'discovery discards background late response and reloads on resume',
     (tester) async {

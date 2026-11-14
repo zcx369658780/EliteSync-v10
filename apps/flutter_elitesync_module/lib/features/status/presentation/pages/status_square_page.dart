@@ -47,6 +47,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
   String _audience = 'SELF';
   bool _submitting = false;
   bool _prefilledLocation = false;
+  bool _feedUnavailable = false;
   String? _coverImagePath;
   String? _coverImageName;
   int? _coverMediaAssetId;
@@ -54,6 +55,8 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
   _CoverUploadStage _coverStage = _CoverUploadStage.idle;
 
   void _refreshPosts({bool firstPage = false}) {
+    if (!mounted) return;
+    setState(() => _feedUnavailable = false);
     if (firstPage) ref.read(statusPageCursorProvider.notifier).firstPage();
     ref.invalidate(statusPostPageProvider);
     ref.invalidate(statusPostsProvider);
@@ -68,6 +71,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
       _audience = 'SELF';
       _submitting = false;
       _prefilledLocation = false;
+      _feedUnavailable = false;
     });
   }
 
@@ -266,7 +270,15 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
       if (current()) _refreshPosts();
     } catch (error) {
       if (mounted && current()) {
-        AppFeedback.showError(context, '收藏状态未确认，可按原操作重试：$error');
+        if (error is RelationshipFailure &&
+            const [401, 403, 404].contains(error.statusCode)) {
+          setState(() => _feedUnavailable = true);
+          ref.invalidate(statusPostPageProvider);
+          ref.invalidate(statusPostsProvider);
+          AppFeedback.showInfo(context, '当前动态已不可用，旧内容已清除。');
+        } else {
+          AppFeedback.showError(context, '收藏状态未确认，可按原操作重试：$error');
+        }
       }
     }
   }
@@ -667,12 +679,22 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                 skipLoadingOnRefresh: false,
                 loading: () => const AppLoadingSkeleton(lines: 5),
                 error: (e, _) => AppErrorState(
-                  title: '好友动态读取未完成',
-                  description: '网络或当前受众授权尚未完成，请刷新后重试。',
-                  retryLabel: '重新加载当前页',
+                  title: _feedUnavailable ? '当前动态已不可用' : '好友动态读取未完成',
+                  description: _feedUnavailable
+                      ? '旧内容已清除，请读取当前有权动态。'
+                      : '网络或当前受众授权尚未完成，请刷新后重试。',
+                  retryLabel: _feedUnavailable ? '读取当前动态' : '重新加载当前页',
                   onRetry: _refreshPosts,
                 ),
                 data: (page) {
+                  if (_feedUnavailable) {
+                    return AppEmptyState(
+                      title: '当前动态已不可用',
+                      description: '已清除旧内容，请读取当前有权动态。',
+                      actionLabel: '读取当前动态',
+                      onAction: () => _refreshPosts(firstPage: true),
+                    );
+                  }
                   final posts = page.items;
                   if (posts.isEmpty) {
                     return Column(

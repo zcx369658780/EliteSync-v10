@@ -71,6 +71,7 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
   Future<Map<String, dynamic>?> run(
     Future<Map<String, dynamic>> Function() work, {
     bool replace = false,
+    void Function(Object error)? onFailure,
   }) async {
     if (busy || _identity == null) return null;
     final generation = _generation;
@@ -93,6 +94,7 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
             data = null;
             onAuthorityChanged();
           }
+          onFailure?.call(e);
         });
       }
       return null;

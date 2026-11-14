@@ -95,6 +95,17 @@ class _ContactPickerPageState extends SessionBoundPage<ContactPickerPage> {
       () => ref
           .read(relationshipApiProvider)
           .call('GET', _path(cursor: cursor, query: _appliedQuery)),
+      onFailure: (failure) {
+        if (failure is RelationshipFailure &&
+            const [401, 403].contains(failure.statusCode)) {
+          _queryRevision++;
+          _items = [];
+          _cursor = null;
+          _hasMore = false;
+          data = null;
+          error = '当前联系人不可用，请检查当前账号权限。';
+        }
+      },
     );
     if (!mounted || result == null || revision != _queryRevision) return;
     setState(() {

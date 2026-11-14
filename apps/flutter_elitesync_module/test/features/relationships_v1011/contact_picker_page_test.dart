@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +19,40 @@ SessionState _session(int id) => SessionState(
 class _TestSession extends SessionNotifier {
   @override
   SessionState build() => _session(1);
+  void changeAccount() => state = AsyncData(_session(2));
+}
+
+Map<String, dynamic> _contactPage(String label, {bool more = true}) => {
+  'items': [
+    {
+      'peer_id': label == '新联系人' ? 2 : 42,
+      'label': label,
+      'allowed_actions': ['invite'],
+    },
+  ],
+  'next_cursor': more ? '42' : null,
+  'has_more': more,
+};
+
+Future<ProviderContainer> _mountPicker(
+  WidgetTester tester,
+  _FakeApi api,
+) async {
+  await tester.pumpWidget(
+    ProviderScope(
+      overrides: [
+        sessionProvider.overrideWith(_TestSession.new),
+        relationshipApiProvider.overrideWithValue(api),
+      ],
+      child: const MaterialApp(
+        home: ContactPickerPage(purpose: 'buddy_invite'),
+      ),
+    ),
+  );
+  await tester.pumpAndSettle();
+  return ProviderScope.containerOf(
+    tester.element(find.byType(ContactPickerPage)),
+  );
 }
 
 class _FakeApi extends RelationshipApi {
@@ -33,6 +68,104 @@ class _FakeApi extends RelationshipApi {
 }
 
 void main() {
+  testWidgets(
+    'loaded contacts and cursor disappear after pagination business 403',
+    (tester) async {
+      final api = _FakeApi((method, path) async {
+        if (path.contains('cursor=')) {
+          throw const RelationshipFailure(
+            'account unavailable',
+            statusCode: 403,
+          );
+        }
+        return _contactPage('旧联系人');
+      });
+      await _mountPicker(tester, api);
+      expect(find.text('旧联系人'), findsOneWidget);
+      await tester.enterText(
+        find.byKey(const Key('contact-picker-query')),
+        'legal draft',
+      );
+      await tester.tap(find.byKey(const Key('contact-picker-load-more')));
+      await tester.pumpAndSettle();
+      expect(find.text('旧联系人'), findsNothing);
+      expect(find.byKey(const Key('contact-picker-load-more')), findsNothing);
+      expect(find.textContaining('当前联系人不可用'), findsOneWidget);
+      expect(find.text('legal draft'), findsOneWidget);
+    },
+  );
+
+  for (final status in <int?>[null, 503]) {
+    testWidgets(
+      'contact pagination keeps lawful draft and retry after network $status',
+      (tester) async {
+        var moreCalls = 0;
+        final api = _FakeApi((method, path) async {
+          if (path.contains('cursor=')) {
+            moreCalls++;
+            throw RelationshipFailure(
+              'temporary network failure',
+              statusCode: status,
+            );
+          }
+          return _contactPage('旧联系人');
+        });
+        await _mountPicker(tester, api);
+        await tester.enterText(
+          find.byKey(const Key('contact-picker-query')),
+          'legal draft',
+        );
+        await tester.tap(find.byKey(const Key('contact-picker-load-more')));
+        await tester.pumpAndSettle();
+        expect(find.text('旧联系人'), findsOneWidget);
+        expect(find.text('legal draft'), findsOneWidget);
+        expect(
+          find.byKey(const Key('contact-picker-load-more')),
+          findsOneWidget,
+        );
+        expect(find.textContaining('当前联系人不可用'), findsNothing);
+        await tester.tap(find.byKey(const Key('contact-picker-load-more')));
+        await tester.pumpAndSettle();
+        expect(moreCalls, 2);
+      },
+    );
+  }
+
+  for (final switchAccount in [true, false]) {
+    testWidgets(
+      'late contact pagination denial preserves new ${switchAccount ? 'account' : 'authority'} data',
+      (tester) async {
+        final late = Completer<Map<String, dynamic>>();
+        var reads = 0;
+        final api = _FakeApi((method, path) async {
+          if (path.contains('cursor=')) return late.future;
+          reads++;
+          return _contactPage(reads == 1 ? '旧联系人' : '新联系人', more: reads == 1);
+        });
+        final container = await _mountPicker(tester, api);
+        expect(find.text('旧联系人'), findsOneWidget);
+        await tester.tap(find.byKey(const Key('contact-picker-load-more')));
+        await tester.pump();
+        if (switchAccount) {
+          (container.read(sessionProvider.notifier) as _TestSession)
+              .changeAccount();
+        } else {
+          container
+              .read(relationshipAuthorityEpochProvider.notifier)
+              .invalidate();
+        }
+        await tester.pumpAndSettle();
+        expect(find.text('新联系人'), findsOneWidget);
+        late.completeError(
+          const RelationshipFailure('account unavailable', statusCode: 403),
+        );
+        await tester.pumpAndSettle();
+        expect(find.text('新联系人'), findsOneWidget);
+        expect(find.textContaining('当前联系人不可用'), findsNothing);
+      },
+    );
+  }
+
   testWidgets('filters authorized contacts and returns selected peer map', (
     tester,
   ) async {
