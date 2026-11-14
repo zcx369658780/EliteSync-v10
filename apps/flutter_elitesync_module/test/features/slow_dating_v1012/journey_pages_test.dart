@@ -8,6 +8,7 @@ import 'package:flutter_elitesync_module/features/relationships_v1011/relationsh
 import 'package:flutter_elitesync_module/features/slow_dating_v1012/slow_dating_journey_page.dart';
 import 'package:flutter_elitesync_module/features/slow_dating_v1012/formal_relationship_page.dart';
 import 'package:flutter_elitesync_module/features/slow_dating_v1012/relationship_privacy_page.dart';
+import 'package:flutter_elitesync_module/features/me/presentation/pages/me_purpose_pages.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
@@ -86,6 +87,10 @@ Future<void> mount(
 }
 
 void main() {
+  testWidgets('Readiness detail keeps its own title when opened under Me', (tester) async {
+    await mount(tester, const ReadinessPurposePage(), FakeApi((method, path, body) async => journey()));
+    expect(find.widgetWithText(AppBar, '慢约会旅程'), findsOneWidget);
+  });
   testWidgets(
     'resume saves own value and blank clears without changing audience',
     (tester) async {

@@ -76,8 +76,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
     ].contains(proposal['state']);
     final showcase = objectMap(proposal['showcase']);
     final explanation = objectMap(proposal['explanation']);
-    return frame('进展', [
-      Text('慢约会参与与连接', style: Theme.of(context).textTheme.titleLarge),
+    return frame('慢约会旅程', [
       const Text('准备 → 主动报名 → 等待揭晓 → 独立选择。匹配不会自动建立连接、消息同意或正式恋爱关系。'),
       Wrap(
         spacing: 8,
