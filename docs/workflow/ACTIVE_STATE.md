@@ -1,4 +1,20 @@
-# 当前入口 2026-11-14 v10.1.9 R1工程交付，待顾问复核
+# 当前入口 2026-11-14 v10.1.9 R1顾问关闭，六项范围接受
+
+**V1019_ADVISOR_SCOPE_ACCEPTED_OWNER_PENDING**。唯一补充项**V1019-R1-01 CLOSED**，无需R2；AC19-01/02/03的明确拒绝后页面投影清理通过本轮有界复核，AC19-04/05/06按已接受未变范围继承。六项均获顾问按约定开发范围接受，**Owner最终接受仍PENDING**。见[R1顾问验收](../versions/v10.1.9/supplement-r1-20261114/ADVISOR_ACCEPTANCE.md)及[manifest.current_state](../versions/v10.1.9/artifact_manifest.json)。
+
+被审R1交付a62b746f2ea64a6f5f3b2283971211001e8d4adf；最终APP源码000025dea4d6c13e01397fa8fb8b9ae833bc2812，后端沿用dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6。本轮后端/迁移未变。当前候选10.1.9-dev / 1010903，APK SHA256 e627e796e96f7670ffb22cdf31a8feca650d63e90a5637828b9cf88a166def6b；原包名/签名/数据沿用。原1010902及初验PARTIAL/CHANGES_REQUIRED保留历史，不覆盖本入口。
+
+A联系人与C发现分页采用任务允许的受控Widget，真实APP403为NOT_RUN；B动态收藏有具名1010903真实APP/API404清理链和前后截图。顾问核源码、测试设计、固定身份及文件/截图，未在Windows或设备复跑。额外“读取当前动态”点击NOT_RUN，但按钮可见且源码回调完整，为非阻断证据限制。R1 41项Widget、七份改动Dart分析为Codex最终批次；12项既有全库静态FAIL保留，不累计旧批次。
+
+稳定根D:\EliteSync-v10-product-v1015-20261101，分支codex/v10.1.9-social-buddy-activities-20261114。先前R1任务文档LOCAL_DOCS_SYNCED回执为2026-11-14T13:09:00.097487+08:00，六份Git Blob已与原顾问提交核对；**本次新增接受文档的Windows同步PENDING_LOCAL_SYNC**，顾问未直接访问D盘。
+
+最新资源仍为Codex2026-11-14T13:35:23.108507+08:00历史快照；四服务running，模拟器B已停止并保留数据，A本轮未启动，手机NOT_USED。本顾问没有更新实时资源状态。真实Push PENDING、历史SFU/RPC精确根因UNKNOWN、硬件和自然期限限制不变。
+
+当前停在Owner最终接受本版和讨论下一版本的节点；**未下达v10.1.10**，不启动工程/设备、不合main、不发布。无需为本轮文档保存重新运行已通过功能链。
+
+---
+
+# 历史节点 2026-11-14 v10.1.9 R1工程交付，待顾问复核
 
 **R1_ENGINEERING_PASS_ADVISOR_PENDING**。唯一补修 V1019-R1-01 的A联系人分页拒绝清理、B旧动态收藏拒绝清理、C发现分页拒绝清理均工程 PASS。A/C由先显示再403的受控Widget证明，B另有真实APP/API FRIENDS→SELF→旧卡收藏404→即时清正文/图片/动作链。顾问R1关闭与Owner接受均PENDING，原顾问AC19-01/02/03 PARTIAL及CHANGES_REQUIRED保留历史。见[R1报告](../versions/v10.1.9/supplement-r1-20261114/README.md)、[去敏摘要](../versions/v10.1.9/supplement-r1-20261114/EVIDENCE_SUMMARY.json)及[manifest增量](../versions/v10.1.9/artifact_manifest.json)。
 

@@ -2,7 +2,7 @@
   "schema": "elitesync.v1019.artifact_manifest.v1",
   "version": "v10.1.9",
   "engineering_status": "ENGINEERING_DELIVERED_ADVISOR_PENDING",
-  "advisor_acceptance": "CHANGES_REQUIRED",
+  "advisor_acceptance": "SCOPE_ACCEPTED",
   "owner_acceptance": "PENDING",
   "ac": {
     "AC19-01": "PASS",
@@ -388,7 +388,7 @@
   "supplement_r1": {
     "engineering_status": "PASS_DELIVERED_ADVISOR_PENDING",
     "item": "V1019-R1-01",
-    "advisor_r1_closure": "PENDING",
+    "advisor_r1_closure": "CLOSED",
     "owner_acceptance": "PENDING",
     "advisor_task_commit": "7648d72d0e48ef9fc3f9fe4f437365571b10f266",
     "app_source_commit": "000025dea4d6c13e01397fa8fb8b9ae833bc2812",
@@ -524,6 +524,52 @@
     ],
     "hash_encoding": "UTF-8 canonical LF for new public text; raw bytes for PNG/APK",
     "delivery_commit": "Final commit containing this supplement; remote fixed-object readback reported in delivery reply",
-    "historical_top_level_candidate_and_advisor_review_preserved": true
+    "historical_top_level_candidate_and_advisor_review_preserved": true,
+    "advisor_review": {
+      "date_china": "2026-11-14",
+      "status": "R1_CLOSED_VERSION_SCOPE_ACCEPTED_OWNER_PENDING",
+      "reviewed_delivery_commit": "a62b746f2ea64a6f5f3b2283971211001e8d4adf",
+      "reviewed_app_source_commit": "000025dea4d6c13e01397fa8fb8b9ae833bc2812",
+      "inherited_backend_source_commit": "dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6",
+      "report": "supplement-r1-20261114/ADVISOR_ACCEPTANCE.md",
+      "item": "V1019-R1-01",
+      "item_status": "CLOSED",
+      "scenarios": {
+        "A": "SCOPE_ACCEPTED_CONTROLLED_WIDGET",
+        "B": "SCOPE_ACCEPTED_WITH_CODEX_REPORTED_REAL_APP_CHAIN",
+        "C": "SCOPE_ACCEPTED_CONTROLLED_WIDGET"
+      },
+      "ac": {
+        "AC19-01": "SCOPE_ACCEPTED",
+        "AC19-02": "SCOPE_ACCEPTED",
+        "AC19-03": "SCOPE_ACCEPTED",
+        "AC19-04": "SCOPE_ACCEPTED_INHERITED",
+        "AC19-05": "SCOPE_ACCEPTED_INHERITED",
+        "AC19-06": "SCOPE_ACCEPTED_WITH_R1_IDENTITY_CHECK"
+      },
+      "evidence_basis": "Advisor fixed-source/test-design/Git/text/PNG review plus named Codex execution reports; no advisor Windows/device/test reexecution",
+      "advisor_windows_device_test_execution": "NOT_RUN",
+      "A_C_real_APP403": "NOT_RUN",
+      "optional_reread_APP_click": "NOT_RUN_NONBLOCKING; visible in screenshot and callback verified in source",
+      "prior_task_docs_sync": "LOCAL_DOCS_SYNCED_CODEX_REPORTED; six fixed Git Blobs match",
+      "new_acceptance_windows_docs": "PENDING_LOCAL_SYNC",
+      "R2_required": false,
+      "owner_acceptance": "PENDING",
+      "next_version_authorized": false
+    }
+  },
+  "current_state": {
+    "status": "V1019_ADVISOR_SCOPE_ACCEPTED_OWNER_PENDING",
+    "candidate_version_code": 1010903,
+    "candidate_ref": "supplement_r1.apk",
+    "app_source_commit": "000025dea4d6c13e01397fa8fb8b9ae833bc2812",
+    "backend_source_commit": "dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6",
+    "engineering_delivery_commit": "a62b746f2ea64a6f5f3b2283971211001e8d4adf",
+    "advisor_review_ref": "supplement_r1.advisor_review",
+    "advisor_report": "supplement-r1-20261114/ADVISOR_ACCEPTANCE.md",
+    "r1_status": "CLOSED",
+    "owner_acceptance": "PENDING",
+    "next_version": "NOT_ISSUED",
+    "historical_snapshot_note": "Top-level apk/app_source_commit/resources/checks and advisor_review retain the original 1010902/initial-review snapshot; current candidate and acceptance use this current_state and supplement_r1."
   }
 }
