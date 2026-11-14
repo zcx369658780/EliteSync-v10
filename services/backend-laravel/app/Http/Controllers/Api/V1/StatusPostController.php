@@ -188,6 +188,8 @@ class StatusPostController extends Controller
             'can_delete' => $canDelete,
             'likes_count' => (int) ($post->likes_count ?? 0),
             'liked_by_viewer' => (bool) ((int) ($post->viewer_liked_count ?? 0) > 0),
+            'favorited_by_viewer' => $viewerId !== null && DB::table('status_post_favorites')
+                ->where('user_id', $viewerId)->where('status_post_id', $post->id)->exists(),
             'cover_media_asset_id' => $post->cover_media_asset_id ? (int) $post->cover_media_asset_id : null,
             'media' => $media,
             'cover_media' => $this->shapeMediaAsset($coverMedia),
@@ -218,7 +220,71 @@ class StatusPostController extends Controller
     }
     public function author(Request $request,int $userId): JsonResponse
     {
-        $viewer=(int)$request->user()->id;return DB::transaction(function()use($viewer,$userId){app(\App\Services\JourneyStore::class)->users([$viewer,$userId]);abort_unless($viewer===$userId||app(SocialPolicy::class)->friendship($viewer,$userId),404,'unavailable');$ids=$this->visibleFeedQuery($viewer,false)->where('author_user_id',$userId)->limit(10)->pluck('id');$items=[];foreach($ids as $id){$p=StatusPost::whereKey($id)->lockForUpdate()->first();if($p&&app(\App\Services\PostAudience::class)->allowedLocked($p,$viewer)){$fresh=$this->visibleStatusQueryForPost($p->id,$viewer,false)->first();if($fresh)$items[]=$this->shapePost($fresh,$viewer,false);}}return response()->json(['ok'=>true,'author'=>['id'=>$userId,'public_id'=>'ES-'.$userId,'name'=>'ES-'.$userId,'avatar'=>null],'items'=>$items,'total'=>count($items)]);},3);
+        $data = $request->validate(['limit' => 'sometimes|integer|min:1|max:20', 'cursor' => 'nullable|integer|min:1']);
+        $viewer = (int) $request->user()->id;
+        return DB::transaction(function () use ($viewer, $userId, $data) {
+            app(\App\Services\JourneyStore::class)->users([$viewer, $userId], true);
+            abort_unless(app(SocialPolicy::class)->pairAllowed($viewer, $userId)
+                && ($viewer === $userId || app(SocialPolicy::class)->friendship($viewer, $userId)), 404, 'unavailable');
+            $limit = $data['limit'] ?? 20;
+            $ids = $this->visibleFeedQuery($viewer, false)->where('author_user_id', $userId)
+                ->when(isset($data['cursor']), fn ($q) => $q->where('id', '<', $data['cursor']))
+                ->limit($limit + 1)->pluck('id');
+            $items = [];
+            foreach ($ids->take($limit) as $id) {
+                $post = StatusPost::whereKey($id)->lockForUpdate()->first();
+                if ($post && app(\App\Services\PostAudience::class)->allowedLocked($post, $viewer)) {
+                    $fresh = $this->visibleStatusQueryForPost($id, $viewer, false)->first();
+                    if ($fresh) $items[] = $this->shapePost($fresh, $viewer, false);
+                }
+            }
+            $more = $ids->count() > $limit;
+            return response()->json(['ok' => true, 'author' => ['id' => $userId, 'public_id' => 'ES-'.$userId,
+                'name' => 'ES-'.$userId, 'avatar' => null], 'items' => $items, 'total' => count($items),
+                'meta' => ['has_more' => $more, 'next_cursor' => $more ? (string) $ids[$limit - 1] : null]]);
+        }, 3);
+    }
+
+    public function favorite(Request $request, int $postId): JsonResponse
+    {
+        $data = $request->validate(['favorited' => 'required|boolean']);
+        $viewer = (int) $request->user()->id;
+        if (! $data['favorited']) {
+            return DB::transaction(function () use ($viewer, $postId) {
+                app(\App\Services\JourneyStore::class)->users([$viewer], true);
+                DB::table('status_post_favorites')->where('user_id', $viewer)->where('status_post_id', $postId)->delete();
+                return response()->json(['post_id' => $postId, 'favorited' => false]);
+            }, 3);
+        }
+        return app(\App\Services\PostAudience::class)->run($viewer, $postId, function () use ($viewer, $postId) {
+            DB::table('status_post_favorites')->insertOrIgnore(['user_id' => $viewer, 'status_post_id' => $postId,
+                'created_at' => now(), 'updated_at' => now()]);
+            return response()->json(['post_id' => $postId, 'favorited' => true]);
+        });
+    }
+
+    public function favorites(Request $request): JsonResponse
+    {
+        $data = $request->validate(['limit' => 'sometimes|integer|min:1|max:20', 'cursor' => 'nullable|integer|min:1']);
+        $viewer = (int) $request->user()->id;
+        DB::transaction(fn () => app(\App\Services\JourneyStore::class)->users([$viewer], true));
+        $limit = $data['limit'] ?? 20;
+        $saved = DB::table('status_post_favorites')->where('user_id', $viewer)
+            ->when(isset($data['cursor']), fn ($q) => $q->where('id', '<', $data['cursor']))
+            ->orderByDesc('id')->limit($limit + 1)->get();
+        $items = [];
+        foreach ($saved->take($limit) as $favorite) {
+            $post = app(\App\Services\PostAudience::class)->run($viewer, (int) $favorite->status_post_id,
+                function () use ($viewer, $favorite) {
+                    $current = $this->visibleStatusQueryForPost((int) $favorite->status_post_id, $viewer, false)->first();
+                    return $current ? $this->shapePost($current, $viewer, false) : null;
+                }, [], true);
+            $items[] = ['favorite_id' => (int) $favorite->id, 'post_id' => (int) $favorite->status_post_id,
+                'saved_at' => $favorite->created_at, 'available' => $post !== null, 'post' => $post];
+        }
+        $more = $saved->count() > $limit;
+        return response()->json(['items' => $items, 'meta' => ['has_more' => $more,
+            'next_cursor' => $more ? (string) $saved[$limit - 1]->id : null]]);
     }
 
     public function store(Request $request): JsonResponse

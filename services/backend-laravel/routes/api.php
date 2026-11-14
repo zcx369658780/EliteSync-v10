@@ -152,6 +152,8 @@ Route::prefix('v1')->group(function () {
         Route::get('/avatars/{owner}/{revision}', [$avatar, 'content'])->whereNumber('owner')->whereNumber('revision');
         $social = SocialController::class;
         Route::get('/social', [$social, 'index']);
+        Route::get('/social/contacts', [\App\Http\Controllers\Api\V1\ContactController::class, 'index'])
+            ->middleware(\App\Http\Middleware\JourneyPrivateResponse::class);
         Route::post('/social/preferences', [$social, 'preferences']);
         Route::post('/social/invites', [$social, 'invite'])->middleware('throttle:10,1');
         Route::delete('/social/invites/{id}', [$social, 'revokeInvite'])->whereNumber('id');
@@ -339,6 +341,8 @@ Route::prefix('v1')->group(function () {
 
         Route::prefix('status')->middleware(\App\Http\Middleware\JourneyPrivateResponse::class)->group(function () {
             Route::get('/posts', [StatusPostController::class, 'index']);
+            Route::get('/favorites', [StatusPostController::class, 'favorites']);
+            Route::put('/posts/{postId}/favorite', [StatusPostController::class, 'favorite'])->whereNumber('postId');
             Route::get('/posts/{postId}', [StatusPostController::class, 'show'])
                 ->whereNumber('postId');
             Route::post('/posts', [StatusPostController::class, 'store']);
