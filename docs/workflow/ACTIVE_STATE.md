@@ -1,10 +1,24 @@
-# 当前入口 2026-11-14 v10.1.9顾问复核完成，限定R1已下达
+# 当前入口 2026-11-14 v10.1.9 R1工程交付，待顾问复核
+
+**R1_ENGINEERING_PASS_ADVISOR_PENDING**。唯一补修 V1019-R1-01 的A联系人分页拒绝清理、B旧动态收藏拒绝清理、C发现分页拒绝清理均工程 PASS。A/C由先显示再403的受控Widget证明，B另有真实APP/API FRIENDS→SELF→旧卡收藏404→即时清正文/图片/动作链。顾问R1关闭与Owner接受均PENDING，原顾问AC19-01/02/03 PARTIAL及CHANGES_REQUIRED保留历史。见[R1报告](../versions/v10.1.9/supplement-r1-20261114/README.md)、[去敏摘要](../versions/v10.1.9/supplement-r1-20261114/EVIDENCE_SUMMARY.json)及[manifest增量](../versions/v10.1.9/artifact_manifest.json)。
+
+稳定根 `D:\EliteSync-v10-product-v1015-20261101`，分支 `codex/v10.1.9-social-buddy-activities-20261114`。顾问固定提交 `7648d72d0e48ef9fc3f9fe4f437365571b10f266` 的六份必要文档Git Blob匹配，LOCAL_DOCS_SYNCED实读 `2026-11-14T13:09:00.097487+08:00`。APP源码 `000025dea4d6c13e01397fa8fb8b9ae833bc2812`，后端沿用 `dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6`，本次后端/迁移差异为空。
+
+最终候选 `10.1.9-dev / 1010903`，APK SHA256 `e627e796e96f7670ffb22cdf31a8feca650d63e90a5637828b9cf88a166def6b`，原包名/签名与数据沿用。模拟器B用户12已安装且包hash匹配。最终41项定向Widget和七份改动Dart分析PASS，重叠批次不累加。修复前反例失败、中间分析提示及既有12项全库静态FAIL按报告保留。原工程六项PASS及1010902身份保留，AC19-04/05/06与部署/持久化按顾问已接受未变范围继承。
+
+资源实读 `2026-11-14T13:35:23.108507+08:00`，DB/API/WS/SFU running，模拟器B已停止且数据保留，A本轮未启动，调试forward已移除，ADB5038 USB排除通过，手机NOT_USED。A/C真实APP403、本轮服务重启与SFU媒体测试NOT_RUN。原主库HEAD/status/diff/index与开工保护基线匹配，受保护目录保留。完整原证/APK/数据库/凭据/私有工具留本机。真实Push REAL_PUSH_PROVIDER_PENDING，历史非注入SFU/RPC精确原因UNKNOWN。
+
+最终交付以包含本入口及R1报告的固定提交为准，远端回读见交付回复与本机回执。保存同步后停下供顾问复核。
+
+---
+
+# 历史节点 2026-11-14 v10.1.9顾问复核完成，限定R1已下达
 
 **ADVISOR_CHANGES_REQUIRED_R1_ISSUED**。被审工程交付6a9f28d9e60ff8abbad96494925ccea3b2dd46a4、最终源码dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6、候选1010902。原工程六项PASS保留；顾问对AC19-04/05/06按约定开发范围接受，AC19-01/02/03因同一个明确失权后页面投影清理缺口记PARTIAL。见[顾问验收](../versions/v10.1.9/ADVISOR_ACCEPTANCE_20261114.md)。
 
 唯一补充项**V1019-R1-01（P2，OPEN）**：联系人分页业务403、广场旧动态收藏404、搭子发现分页403后清除旧投影/旧动作并准确反馈。服务端仍拒绝操作，未发现授权旁路。按[R1任务](../versions/v10.1.9/supplement-r1-20261114/task_order.md)及[Codex prompt](../versions/v10.1.9/supplement-r1-20261114/CODEX_PROMPT.txt)执行；具体实现由Codex决定，其他已接受链按未变范围继承。
 
-稳定根D:\EliteSync-v10-product-v1015-20261101，分支codex/v10.1.9-social-buddy-activities-20261114。原任务文档LOCAL_DOCS_SYNCED为Codex2026-11-14T10:12:51.864247+08:00具名回执；**本次新增顾问/R1文档的Windows同步PENDING_LOCAL_SYNC**，Codex开工安全同步并回报。顾问未操作D盘、设备或服务。
+稳定根D:\EliteSync-v10-product-v1015-20261101，分支codex/v10.1.9-social-buddy-activities-20261114。原任务文档LOCAL_DOCS_SYNCED为Codex2026-11-14T10:12:51.864247+08:00具名回执；**本次顾问/R1文档LOCAL_DOCS_SYNCED**，实读时间`2026-11-14T13:09:00.097487+08:00`，固定提交`7648d72d0e48ef9fc3f9fe4f437365571b10f266`，六份必要文件Git Blob匹配，Codex开工安全同步并回报。顾问未操作D盘、设备或服务。
 
 12项既有全库静态问题仍FAIL并保留，不纳入本次R1。最近资源仅为工程2026-11-14T12:09:08.960013+08:00历史快照；手机NOT_USED。真实Push PENDING、旧SFU/RPC精确根因UNKNOWN及v10.1.8已接受范围不变。
 

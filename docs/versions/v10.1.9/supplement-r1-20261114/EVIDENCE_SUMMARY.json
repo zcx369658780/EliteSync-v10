@@ -1,0 +1,204 @@
+{
+  "schema": "elitesync.v1019.supplement_r1.evidence.v1",
+  "item": "V1019-R1-01",
+  "engineering_status": "PASS",
+  "advisor_r1_closure": "PENDING",
+  "owner_acceptance": "PENDING",
+  "advisor_task_commit": "7648d72d0e48ef9fc3f9fe4f437365571b10f266",
+  "original_engineering_delivery": "6a9f28d9e60ff8abbad96494925ccea3b2dd46a4",
+  "app_source_commit": "000025dea4d6c13e01397fa8fb8b9ae833bc2812",
+  "backend_source_commit_inherited": "dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6",
+  "backend_and_migration_diff": "EMPTY",
+  "local_docs_sync": {
+    "status": "LOCAL_DOCS_SYNCED",
+    "china_time": "2026-11-14T13:09:00.097487+08:00",
+    "fixed_advisor_commit": "7648d72d0e48ef9fc3f9fe4f437365571b10f266",
+    "branch": "codex/v10.1.9-social-buddy-activities-20261114",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "git_blob": "4c202c225ce17512fff45e1dc0f2a30a9772cab9"
+      },
+      {
+        "path": "docs/workflow/ACTIVE_STATE.md",
+        "git_blob": "6f699b22f33c82e1590baa355fe1d961ad343812"
+      },
+      {
+        "path": "docs/versions/v10.1.9/ADVISOR_ACCEPTANCE_20261114.md",
+        "git_blob": "c41128354578df0517f450257e32414251a4d84f"
+      },
+      {
+        "path": "docs/versions/v10.1.9/supplement-r1-20261114/task_order.md",
+        "git_blob": "04adf0303b85ad89c6fe03490e1c76847b7b9d1a"
+      },
+      {
+        "path": "docs/versions/v10.1.9/supplement-r1-20261114/CODEX_PROMPT.txt",
+        "git_blob": "cc8aa0f107ff98bbe27cba2f415fdc90da1c9776"
+      },
+      {
+        "path": "docs/versions/v10.1.9/artifact_manifest.json",
+        "git_blob": "a8eda710b181d4f5d777a488c353edaf330397ed"
+      }
+    ]
+  },
+  "scenarios": {
+    "A": {
+      "engineering": "PASS",
+      "controlled_widget": "displayed contacts -> pagination403 -> old items/cursor/options removed",
+      "real_APP403": "NOT_RUN"
+    },
+    "B": {
+      "engineering": "PASS",
+      "controlled_widget": "displayed body/image -> favorite404 -> content/actions removed; draft retained",
+      "real_APP_API": "PASS"
+    },
+    "C": {
+      "engineering": "PASS",
+      "controlled_widget": "displayed discovery -> pagination403 -> old cards/cursor/apply removed",
+      "real_APP403": "NOT_RUN"
+    }
+  },
+  "checks": {
+    "widgets": {
+      "batch": "directed-final-v2",
+      "tests": 41,
+      "new": 15,
+      "existing_affected": 26,
+      "test_files": 5,
+      "result": "PASS",
+      "overlapping_batches_added": false
+    },
+    "changed_dart_analysis": {
+      "batch": "analyze-final-v2",
+      "files": 7,
+      "result": "PASS"
+    },
+    "network_controls": "null status and 503 retain legal inputs/current content; original favorite set payload and pending buddy key/payload preserved",
+    "late_response_controls": "old account and old authority generation failures cannot clear current data",
+    "red_before_fix": {
+      "paging": "17 PASS / 2 FAIL",
+      "favorite": "4 PASS / 1 FAIL"
+    },
+    "intermediate_analyzer": "one new curly-braces info fixed; original log retained",
+    "repository_analysis": "INHERITED_FAIL_12_EXISTING_ISSUES; NOT_RERUN_R1"
+  },
+  "apk": {
+    "version_code": 1010903,
+    "version_name": "10.1.9-dev",
+    "package": "com.elitesync.v1015dev",
+    "apk_sha256": "e627e796e96f7670ffb22cdf31a8feca650d63e90a5637828b9cf88a166def6b",
+    "apk_bytes": 123861454,
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42"
+  },
+  "installation": {
+    "index": 1,
+    "android_user": 12,
+    "version_code": 1010903,
+    "apk_sha256": "e627e796e96f7670ffb22cdf31a8feca650d63e90a5637828b9cf88a166def6b",
+    "source": "000025dea4d6c13e01397fa8fb8b9ae833bc2812",
+    "data": "RETAINED",
+    "phone": "NOT_USED"
+  },
+  "real_APP_denial_chain": {
+    "china_time": "2026-11-14T13:31:29.412603+08:00",
+    "candidate": 1010903,
+    "app_source": "000025dea4d6c13e01397fa8fb8b9ae833bc2812",
+    "author": 16,
+    "viewer": 17,
+    "post_id": 8,
+    "fresh_cover_asset_id": 27,
+    "ordinary_APP_favorite_and_cancel_before_permission_change": "PASS",
+    "author_normal_API_audience_change": {
+      "id": 8,
+      "audience": "SELF"
+    },
+    "stale_body_still_visible_after_SELF_before_favorite": true,
+    "APP_network_error": {
+      "utc": "2026-11-14T05:31:20.960253+00:00",
+      "app_pid": "6039",
+      "message": "[ERR] 404 PUT badResponse"
+    },
+    "after_denial_body_image_actions_removed": true,
+    "current_detail_http": 404,
+    "current_media_http": 404,
+    "favorite_relation_absent": true,
+    "response_injection": false,
+    "observer": "read-only Debug Logging subscription, no evaluate/invoke",
+    "A_C_runtime": "NOT_RUN; controlled Widget counterexamples"
+  },
+  "resources": {
+    "china_time": "2026-11-14T13:35:23.108507+08:00",
+    "containers": [
+      {
+        "name": "v1015-current-dev-db",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:12.271074943Z"
+      },
+      {
+        "name": "v1015-current-dev-api",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:14.686258003Z"
+      },
+      {
+        "name": "v1015-current-dev-ws",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:15.905342048Z"
+      },
+      {
+        "name": "v1015-current-dev-sfu",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:12.326838226Z"
+      }
+    ],
+    "R1_DB_API_WS_restart": "NOT_RUN",
+    "emulator_B": "STOPPED_DATA_RETAINED",
+    "android_user": 12,
+    "emulator_A": "NOT_STARTED_R1",
+    "debug_observer_forward_removed": true,
+    "adb5038_usb_excluded": true,
+    "phone": "NOT_USED",
+    "SFU_media": "NOT_RUN_R1"
+  },
+  "preserved_failures_and_limits": {
+    "old_asset26_reuse": "APP image unavailable; retained; final ordinary chain uses fresh asset27/post8",
+    "initial_activity_start": "failed once after user switch; normal launch succeeded after current user/package reread; precise transient mechanism UNKNOWN",
+    "optional_authorized_reread_APP_click": "NOT_RUN; automation did not locate control",
+    "full_six_AC_rerun": "NOT_RUN_R1",
+    "full_hardware_matrix": "NOT_RUN_R1",
+    "real_push": "REAL_PUSH_PROVIDER_PENDING",
+    "historical_non_injected_SFU_RPC_exact_cause": "UNKNOWN"
+  },
+  "inherited": {
+    "AC19-04": "ADVISOR_SCOPE_ACCEPTED_UNCHANGED",
+    "AC19-05": "ADVISOR_SCOPE_ACCEPTED_UNCHANGED",
+    "AC19-06": "ADVISOR_SCOPE_ACCEPTED_UNCHANGED",
+    "deployment_migrations_persistence": "original v1019 delivery 6a9f28d9 and artifact_manifest.json",
+    "communication": "v1018 scoped call63/call64 acceptance"
+  },
+  "original_main_protection": {
+    "startup_baseline_match": true,
+    "compared": [
+      "HEAD",
+      "status --porcelain=v1 -z SHA256",
+      "diff --binary SHA256",
+      "index SHA256"
+    ],
+    "protected_directory_retained": true
+  },
+  "screenshots": [
+    {
+      "path": "evidence/stale-after-self-before-favorite.png",
+      "sha256": "a1564865db8c935682bd79a5568cfeac04bad85a4a2b480ca2953588dbf5f3cf",
+      "candidate": 1010903,
+      "content": "Manually inspected fictional development UI"
+    },
+    {
+      "path": "evidence/after-explicit-denial-cleared.png",
+      "sha256": "5aa44ff666ad98d0e9d20023e51e90c920526cff4a46318c81c890a52913816a",
+      "candidate": 1010903,
+      "content": "Manually inspected fictional development UI"
+    }
+  ],
+  "hash_encoding": "UTF-8 canonical LF for new public text; raw bytes for PNG/APK",
+  "private_materials": "Full receipts, APK, database, credentials, private tools and Debug VM addresses remain on Owner PC"
+}

@@ -384,5 +384,146 @@
     "original_task_local_docs_sync": "LOCAL_DOCS_SYNCED_CODEX_REPORTED",
     "new_advisor_r1_windows_docs": "PENDING_LOCAL_SYNC",
     "next_version_authorized": false
+  },
+  "supplement_r1": {
+    "engineering_status": "PASS_DELIVERED_ADVISOR_PENDING",
+    "item": "V1019-R1-01",
+    "advisor_r1_closure": "PENDING",
+    "owner_acceptance": "PENDING",
+    "advisor_task_commit": "7648d72d0e48ef9fc3f9fe4f437365571b10f266",
+    "app_source_commit": "000025dea4d6c13e01397fa8fb8b9ae833bc2812",
+    "backend_source_commit_inherited": "dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6",
+    "apk": {
+      "version_code": 1010903,
+      "version_name": "10.1.9-dev",
+      "package": "com.elitesync.v1015dev",
+      "apk_sha256": "e627e796e96f7670ffb22cdf31a8feca650d63e90a5637828b9cf88a166def6b",
+      "apk_bytes": 123861454,
+      "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+      "variant": "source Debug",
+      "abi": "arm64-v8a",
+      "local_only_locator": "%USERPROFILE%/EliteSyncDev/v1015-current-dev/v1019-r1-current/candidate-1010903-private.apk"
+    },
+    "installation": {
+      "index": 1,
+      "android_user": 12,
+      "version_code": 1010903,
+      "apk_sha256": "e627e796e96f7670ffb22cdf31a8feca650d63e90a5637828b9cf88a166def6b",
+      "source": "000025dea4d6c13e01397fa8fb8b9ae833bc2812",
+      "data": "RETAINED",
+      "phone": "NOT_USED"
+    },
+    "scenarios": {
+      "A": {
+        "engineering": "PASS",
+        "controlled_widget": "displayed contacts -> pagination403 -> old items/cursor/options removed",
+        "real_APP403": "NOT_RUN"
+      },
+      "B": {
+        "engineering": "PASS",
+        "controlled_widget": "displayed body/image -> favorite404 -> content/actions removed; draft retained",
+        "real_APP_API": "PASS"
+      },
+      "C": {
+        "engineering": "PASS",
+        "controlled_widget": "displayed discovery -> pagination403 -> old cards/cursor/apply removed",
+        "real_APP403": "NOT_RUN"
+      }
+    },
+    "checks": {
+      "widgets": {
+        "batch": "directed-final-v2",
+        "tests": 41,
+        "new": 15,
+        "existing_affected": 26,
+        "test_files": 5,
+        "result": "PASS",
+        "overlapping_batches_added": false
+      },
+      "changed_dart_analysis": {
+        "batch": "analyze-final-v2",
+        "files": 7,
+        "result": "PASS"
+      },
+      "network_controls": "null status and 503 retain legal inputs/current content; original favorite set payload and pending buddy key/payload preserved",
+      "late_response_controls": "old account and old authority generation failures cannot clear current data",
+      "red_before_fix": {
+        "paging": "17 PASS / 2 FAIL",
+        "favorite": "4 PASS / 1 FAIL"
+      },
+      "intermediate_analyzer": "one new curly-braces info fixed; original log retained",
+      "repository_analysis": "INHERITED_FAIL_12_EXISTING_ISSUES; NOT_RERUN_R1"
+    },
+    "resources": {
+      "china_time": "2026-11-14T13:35:23.108507+08:00",
+      "containers": [
+        {
+          "name": "v1015-current-dev-db",
+          "status": "running",
+          "started_at": "2026-11-14T03:58:12.271074943Z"
+        },
+        {
+          "name": "v1015-current-dev-api",
+          "status": "running",
+          "started_at": "2026-11-14T03:58:14.686258003Z"
+        },
+        {
+          "name": "v1015-current-dev-ws",
+          "status": "running",
+          "started_at": "2026-11-14T03:58:15.905342048Z"
+        },
+        {
+          "name": "v1015-current-dev-sfu",
+          "status": "running",
+          "started_at": "2026-11-14T03:58:12.326838226Z"
+        }
+      ],
+      "R1_DB_API_WS_restart": "NOT_RUN",
+      "emulator_B": "STOPPED_DATA_RETAINED",
+      "android_user": 12,
+      "emulator_A": "NOT_STARTED_R1",
+      "debug_observer_forward_removed": true,
+      "adb5038_usb_excluded": true,
+      "phone": "NOT_USED",
+      "SFU_media": "NOT_RUN_R1"
+    },
+    "local_docs_sync": {
+      "status": "LOCAL_DOCS_SYNCED",
+      "at_china": "2026-11-14T13:09:00.097487+08:00",
+      "fixed_advisor_commit": "7648d72d0e48ef9fc3f9fe4f437365571b10f266",
+      "files_verified": 6
+    },
+    "inherited": {
+      "AC19-04": "ADVISOR_SCOPE_ACCEPTED_UNCHANGED",
+      "AC19-05": "ADVISOR_SCOPE_ACCEPTED_UNCHANGED",
+      "AC19-06": "ADVISOR_SCOPE_ACCEPTED_UNCHANGED",
+      "deployment_migrations_persistence": "original v1019 delivery 6a9f28d9 and artifact_manifest.json",
+      "communication": "v1018 scoped call63/call64 acceptance"
+    },
+    "public_artifacts": [
+      {
+        "path": "supplement-r1-20261114/README.md",
+        "sha256": "24eb0d3694d4fcfe8d05e5df4997fb85928310cbaacda2679515bf4952bf8a29"
+      },
+      {
+        "path": "supplement-r1-20261114/EVIDENCE_SUMMARY.json",
+        "sha256": "4a43c594b2fa82021bf8ba77f054c6ccc38d93bb7f45f97500bd819f62945411"
+      },
+      {
+        "path": "supplement-r1-20261114/evidence/stale-after-self-before-favorite.png",
+        "sha256": "a1564865db8c935682bd79a5568cfeac04bad85a4a2b480ca2953588dbf5f3cf",
+        "candidate": 1010903,
+        "content": "Manually inspected fictional development UI"
+      },
+      {
+        "path": "supplement-r1-20261114/evidence/after-explicit-denial-cleared.png",
+        "sha256": "5aa44ff666ad98d0e9d20023e51e90c920526cff4a46318c81c890a52913816a",
+        "candidate": 1010903,
+        "content": "Manually inspected fictional development UI"
+      }
+    ],
+    "hash_encoding": "UTF-8 canonical LF for new public text; raw bytes for PNG/APK",
+    "delivery_commit": "Final commit containing this supplement; remote fixed-object readback reported in delivery reply",
+    "historical_top_level_candidate_and_advisor_review_preserved": true
   }
 }
