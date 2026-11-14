@@ -1,31 +1,51 @@
 # EliteSync-v10 工程约定
 
-生效：2026-11-15。当前版本依据[Owner接受v10.1.12顾问范围并授权v10.1.13](docs/decisions/OWNER_V10_1_12_ADVISOR_ACCEPTANCE_AND_V10_1_13_AUTHORIZATION_20261115.md)，普通工程自治与简化验证沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
+生效：2026-11-15。当前版本依据[Owner接受v10.1.12顾问范围并授权v10.1.13](docs/decisions/OWNER_V10_1_12_ADVISOR_ACCEPTANCE_AND_V10_1_13_AUTHORIZATION_20261115.md)，方向延续[后端功能优先决定](docs/decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
 ## 产品目标
 
-EliteSync是Relationship Decision Support System。保持Home / Progress / Messages / Me主入口；Match、Connection、Messaging Consent、Conversation、Relationship保持独立语义。产品功能、真实持久化、可理解体验优先，不做AI关系判官、安全权威或参与度最大化系统。整个v10不安排公司、内测、运营或正式发布。
+Owner已确认项目交接及选定旧版主要功能接续完成。当前完善可实际使用的EliteSync APP、真实后端、持久数据库及独立Web管理面板。先完成业务功能与最小可操作界面，必要安全封装随功能收口处理，最后集中打磨UI和文字。现有鉴权、私信权限与数据隔离保留。
 
-v10.1.12集中UI版本已获顾问具名范围接受，R1-01 CLOSED。R1源码尚未进入安装候选；原1011204只绑定旧源码，不能声称包含R1。Owner整版接受状态继续按ACTIVE_STATE记录，不与顾问接受混淆。
+整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6—v10.1.9按各自已接受范围保留。v10.1.10六项AC及手机补证获顾问范围接受，Owner整版最终接受沿原记录PENDING。v10.1.11六项AC声明工程范围已获顾问与Owner接受，AC11-02为限定能力接受，R1-01 CLOSED；原NOT_RUN/UNKNOWN继续保留。v10.1.12六项AC具名代表性范围已获顾问接受，R1-01 CLOSED；Owner整版接受仍单独记PENDING。当前授权版本为v10.1.13「全局集成与关键旅程可靠性收口」。新破冰、约见、共同计划、纪念日仅留接口。
 
-## 当前执行范围
+## 2026-11-15 当前交付状态
 
-执行[v10.1.13任务](docs/versions/v10.1.13/task_order.md)、[计划](docs/versions/v10.1.13/plan.md)和[启动Prompt](docs/versions/v10.1.13/CODEX_START_PROMPT.txt)。本版是全局集成与关键旅程可靠性收口：R1源码候选、模拟器真实TalkBack、关键导航/已实现深链、APP受控结果未知恢复、虚构开发环境API/DB重启持久性和有限联合回归。不新增大型业务、不重写后端业务模型或权限合同。
+v10.1.12六项AC具名代表性范围获顾问接受，R1-01已关闭，无R2。Owner整版接受仍单独记录PENDING。范围与证据见[R1报告](docs/versions/v10.1.12/supplement-r1-20261115/README.md)、[实施报告](docs/versions/v10.1.12/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.12/artifact_manifest.json)。
 
-任务分支：`codex/v10.1.13-integration-reliability-20261115`；唯一父基线：`ffddf23dd07743538c43ef8f9a6dd7f1ff580467`。R1 APP源码：`3e0e75758acf81e1ea754f739c9687226fbfcaff`。原1011204仅绑定`ac7fb5b28396394e58c72002e19cc9bbad805941`。GitHub发布不代表本地同步，Codex先核实际工程并保护dirty/index。
+v10.1.12任务分支`codex/v10.1.12-ui-information-architecture-20261114`，R1固定提交`ffddf23dd07743538c43ef8f9a6dd7f1ff580467`，R1源码`3e0e75758acf81e1ea754f739c9687226fbfcaff`，27项定向Widget及4文件分析PASS。R1 APK构建/设备验证NOT_RUN；原候选1011204仅绑定基线源码`ac7fb5b28396394e58c72002e19cc9bbad805941`。当前任务分支`codex/v10.1.13-integration-reliability-20261115`，唯一父基线`ffddf23dd07743538c43ef8f9a6dd7f1ff580467`。
 
-## 自主执行与验证
+真实Push为REAL_PUSH_PROVIDER_PENDING，历史非注入SFU/RPC精确根因为UNKNOWN，未验硬件/自然期限及旧失败分别保留。已接受的通信、好友/搭子/活动与自我认识工具按具名范围继承。
 
-Owner负责方向和重大不可逆决定；顾问按要求独立验收；Codex负责拆解、实现、调试、必要测试、工程审查和常规Git。在授权范围内连续完成工作，不逐动作申请。普通可恢复错误自主修复；超出手机、真实用户/生产数据、外部供应商/费用、main或正式发布边界时停止受影响动作。
+## 入口与自主执行
 
-仅做受影响代码分析和本版AC定向验证，不重跑全部历史AC。真实APP/API/DB/Web链、Widget、TalkBack实际服务会话、受控故障注入、API/DB重启分开记账。NOT_RUN/UNKNOWN/UNVERIFIED如实保留。文档整理不构建APK、不启动服务。
+先核实际仓库根、remote、分支、HEAD 和工作区/index；只读 [ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md) 短入口及当前目标必要源码，规则见 [CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)。不再递归阅读旧交接、全部 Sources、SDK 清单或测试档案。
+
+Owner负责方向和保留决定；顾问提供路线；Codex负责工程拆解、实现、调试、必要测试、审查、工程验收及常规 Git。在已授权目标内连续完成一项功能，可以跨 APP、后端、数据库和管理面板，不逐动作请求许可，不把普通实现修复变成新的任务审批。
+
+普通可恢复错误自行修复，正常页面变化、导航、短暂等待和有限重读不自动导致整段 STOP。遇错设备/账号、真实数据、不可逆操作、明确额度/时间边界或 Owner 停止时，只停止受影响动作，其余授权工作可继续。
+
+## 精简验证
+
+默认仅做受影响代码的检查与定向测试；有必要时做一次最短功能验证。无代码变化、失败或具体未解决风险，不重复全量回归、全资产哈希或已通过的检查。文档整理只检查内容、链接、差异和 Git 状态，不构建 APK、不启动设备或服务。
+
+不为普通小修强制多模型审批、新建冻结 case、复制 SDK/AVD/源码快照、生成多份同义报告。检查应直接证明功能或关键缺陷；不以测试数量、控制器通过或文档完成代替产品进展。只有具体高风险变更或既有明确要求才需要独立审查。
+
+最终功能标准保留；开发中未完成事项明确列出，不因简化测试改成 PASS。自测、工程审查、外部独立验收、Owner 接受及发布分别记录；NOT_RUN/UNKNOWN 如实使用。
 
 ## 资产与权限
 
-保护原D:\\EliteSync-v10及当前稳定目录未提交成果、index、私有配置、数据库、AVD、APK、凭据和原始证据。不盲pull/reset/rebase/stash/clean/prune，不force push，不夹带无关内容。GitHub远端不等于本地资产备份。
+此前资产清理阶段已结束，既有版本摘要和恢复说明保留；当前以保护稳定工程及独有本地资料、完成本版功能为目标。GitHub 不覆盖未提交代码、私有配置、APK、素材、许可证、SQL/数据库及私有工具；这些仅保留必要的一份，不冒充已有远端备份。不为清理再复制整套工程。
 
-普通开发、必要定向测试、Debug APK、本机独立开发服务、虚构数据、必要双模拟器及常规Git沿Owner长期授权。不操作Owner手机，不访问真实用户或生产数据，不接新供应商/付费服务，不合main、不正式发布、不开展公司/内测/运营。
+保护原 D:\EliteSync-v10 的未提交成果和 index、当前开发目录及无关 %SystemDrive%/。不盲 pull/reset/rebase/stash/clean/prune，不 force push，不夹带无关内容。远端历史归档不是 main 合并或功能接受。
 
-## 历史限制
+设备、真实用户/生产数据、外部服务、费用、重大架构/版本和发布仍由 Owner 决定。旧 STOP、已耗次数和余额不追溯修改，不因规则简化自动恢复任何运行。历史测试脚本只作参考，退役路径不能作为现行可执行合同。资产清理阶段已结束。Owner 已授权继续 APP 功能开发；实际联测可等功能完成后进行，届时允许同时使用两个模拟器。手机由 Owner 使用，不连接或操作手机，不要求 Owner 保持手机就位。Owner 已长期授权普通功能工程、定向验证与必要APK构建、本机独立开发服务及虚构数据库、必要双模拟器联测、已有许可的免费官方依赖和常规Git。优先源码功能，不为普通重编/启动/安装反复申请；旧执行器/已耗记录不复活。Owner 要求停下时及时保存并手动交接，长期授权本身继续有效。
 
-真实Push为REAL_PUSH_PROVIDER_PENDING；历史非注入SFU/RPC精确根因UNKNOWN；算法独立精度UNVERIFIED；未覆盖手机、RTC硬件、全部深链/通知、全部社交/排盘变体按原报告NOT_RUN。v10.1.13不自动解除这些限制。集中交付后停下供顾问验收，不自动启动下一版。
+Owner于2026-11-12具体授权验收说明、120张测试截图、画廊/控件元数据和29份去敏证据摘要上传独立验收分支，范围及发布清单见[验收入口](https://github.com/zcx369658780/EliteSync-v10/blob/85197adec124ef94bbef2994c0668dc990f9bed4/docs/versions/v10.1.5/advisor-acceptance-20261112/README.md)。完整原始回执、APK、素材、凭据、许可证、SQL/数据库与设备原始日志由Owner本机保管。有意义节点维护ACTIVE_STATE单一当前入口及必要进度，常规同步授权分支，失败记PENDING_SYNC。
+
+## 历史决策
+
+11月12日已有功能验收阶段已结束，原报告与测试结论见[v10.1.5收尾](docs/versions/v10.1.5/CLOSEOUT_20261113.md)。Owner当日要求保存并手动交接的[历史记录](docs/workflow/V1015_ADVISOR_ACCEPTANCE_HANDOFF_20261112.md)保留，后续版本按各自明确授权接续。
+
+2026-11-14 [Owner接受v10.1.9并授权v10.1.10的决定](docs/decisions/OWNER_V10_1_9_ACCEPTANCE_AND_V10_1_10_AUTHORIZATION_20261114.md)作为历史依据保留。v10.1.9六项AC获顾问与Owner范围接受，V1019-R1-01 CLOSED，无需R2。v10.1.10任务分支为`codex/v10.1.10-self-knowledge-specialty-tools-20261114`，固定父基线为`8e74d1f7496f066a586afb1e5653ed563b64c46d`，其[实施报告](docs/versions/v10.1.10/IMPLEMENTATION_REPORT.md)记录实际交付。MBTI不作诊断或匹配硬筛选，双人盘使用本人已确认或明确手填输入，既有用途权限继续适用。
+
+此后[Owner单独授权v10.1.11](docs/decisions/OWNER_V10_1_10_ADVISOR_ACCEPTANCE_AND_V10_1_11_AUTHORIZATION_20261114.md)。v10.1.10的历史停止条件及开工指令按其当时范围保留在版本档案中，当前入口见本文件当前交付状态、ACTIVE_STATE和CURRENT_WORKFLOW。
