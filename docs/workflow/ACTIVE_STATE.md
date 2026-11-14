@@ -1,18 +1,23 @@
-# 当前入口 2026-11-14 v10.1.11工程集中交付，等待顾问验收
+# 当前入口 2026-11-14 v10.1.12已授权，等待本地Codex同步并开工
 
-**V10111_ENGINEERING_DELIVERED_WITH_DECLARED_LIMITS / LOCAL_DOCS_SYNCED**。报告见[IMPLEMENTATION_REPORT](../versions/v10.1.11/IMPLEMENTATION_REPORT.md)，身份与范围见[manifest](../versions/v10.1.11/artifact_manifest.json)及[去敏证据](../versions/v10.1.11/EVIDENCE_SUMMARY.json)。顾问验收与Owner接受均PENDING，main集成与正式发布NOT_RUN。
+**V10112_TASK_ISSUED**。Owner已接受v10.1.11顾问范围验收，R1-01 CLOSED；无R2、无产品修补任务。Owner授权进入v10.1.12「集中UI、信息结构与文案完善」。任务书、计划和启动Prompt见[task_order](../versions/v10.1.12/task_order.md)、[plan](../versions/v10.1.12/plan.md)、[CODEX_START_PROMPT](../versions/v10.1.12/CODEX_START_PROMPT.txt)，Owner决定见[决定](../decisions/OWNER_V10_1_11_ACCEPTANCE_AND_V10_1_12_AUTHORIZATION_20261114.md)。
 
-R1-01文档修正已完成，待顾问文档差异与治理复核。AGENTS已更新为当前v10.1.11交付入口，ACTIVE_STATE与CURRENT_WORKFLOW已核对一致。原工程固定提交为`3888c6eb63ecfb6798a80387f4b27cd891a10457`，本次修正范围为三份入口文档。v10.1.12仍未授权，不得自动启动。
+任务分支：`codex/v10.1.12-ui-information-architecture-20261114`。唯一父基线：`2f3058d39a936063768ffb895f577d97a088e04c`。v10.1.11 APP/后端源码：`47e1b4fd8fad3dd8165d1be6dc9f059095290e75`；原工程交付固定提交：`3888c6eb63ecfb6798a80387f4b27cd891a10457`；R1-01关闭：`2f3058d39a936063768ffb895f577d97a088e04c`。新分支以本版唯一父基线建立；远端任务文件发布不代表Windows本地已同步。
 
-实际稳定根`D:\EliteSync-v10-product-v1015-20261101`，origin为`git@github.com:zcx369658780/EliteSync-v10.git`，任务分支`codex/v10.1.11-account-support-quality-20261114`。唯一父基线`96a2125370677d5d508710b590a808f44e50a119`，任务文档固定提交`eb1ef7680d5327e5338695ecd2538264c9dacb8c`。七份文件Git Blob/规范文本匹配，LOCAL_DOCS_SYNCED实读`2026-11-14T18:28:55.425018+08:00`。
+## 最近接受状态
 
-APP/后端源码`47e1b4fd8fad3dd8165d1be6dc9f059095290e75`。最终候选`10.1.11-dev / 1011101 / com.elitesync.v1015dev`，APK SHA256 `df0e74e3a23becaa5d5e0511b1d62518425f9d4ca6e48538e050cc6229a259e4`，沿用签名与数据，模拟器安装哈希核验通过。文档集中交付以本块所在固定Git提交为准，完整远端固定回读在交付回复和本机回执提供。
+v10.1.11：顾问接受六项AC的声明工程范围，AC11-02限定能力接受；R1-01已关闭。Owner已接受上述范围。遗忘密码重置、真实身份核验后的正式关系正向披露、APP最终故障注入、数据库重启、全库分析、手机及RTC硬件矩阵仍按原报告NOT_RUN；真实Push为REAL_PUSH_PROVIDER_PENDING，历史非注入SFU/RPC根因UNKNOWN。不得升级这些状态。
 
-AC11-01、03、04、05、06工程PASS，AC11-02按计划限定能力PASS。真实API/Web/MariaDB与最终APP已完成改密旧凭据失效/新密码重登、隐私revision3重登读回及SELF撤回至4、反馈#2提交和后台回复版本2回流、19→20切号清旧草稿/反馈、API进程重启后重登与APP冷启动。PHP36项/199断言、Widget28项、改动Dart9文件分析PASS，重叠不累计。遗忘密码重置验证供应商未配置，实际重置NOT_RUN。注销回执取回保持用途受限。
+## v10.1.12范围
 
-资源实读`2026-11-14T19:25:14.117641+08:00`，DB/API/WS/SFU运行，双模拟器停止，AVD与用户11/12数据保留。手机NOT_RUN，ADB5038保持USB排除。原主库dirty/index指纹匹配开工，受保护`%SystemDrive%/`、配置、数据库及私有原证保留。真实Push为REAL_PUSH_PROVIDER_PENDING，旧SFU/RPC精确根因UNKNOWN，未变旧链按具名范围继承。
+集中UI与信息结构，不新增大型业务。按顺序：我的/设置 → 消息/聊天 → 首页/进展 → 匹配/社交/特色工具 → 必要独立Web管理页面。重点是四入口职责、共享组件/字体/颜色/密度/主题、普通与高级信息分层、返回/键盘、大字/可访问性及准确的全状态文案。
 
-v10.1.10六项AC和手机补证的顾问接受继续保留，Owner整版最终接受字段沿原记录PENDING。当前v10.1.11普通工程由本次独立授权执行。最终APP故障注入、DB重启、全库分析、真实核验后正式关系正向披露及旧RTC矩阵NOT_RUN。集中交付后停下，等待新顾问复核；v10.1.12授权PENDING。
+## 治理边界
+
+不合main、不正式发布、不操作手机、不接新供应商或付费服务、不用真实用户/生产数据、不开展内测/运营。保留既有业务合同和权限语义。集中交付后停下供顾问验收，不自动进入下一版。
 
 ---
 
+## v10.1.11 历史交付记录
+
+v10.1.11原工程报告、manifest、去敏证据见`docs/versions/v10.1.11/`。最终候选1011101，源码47e1b4fd8fad3dd8165d1be6dc9f059095290e75，交付文档提交3888c6eb63ecfb6798a80387f4b27cd891a10457。R1-01仅修正AGENTS/ACTIVE_STATE/CURRENT_WORKFLOW，关闭提交2f3058d39a936063768ffb895f577d97a088e04c。原版未验范围与限制以原报告和manifest为准。
