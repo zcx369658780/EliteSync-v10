@@ -2,7 +2,7 @@
   "schema": "elitesync.v1018.artifact_manifest.v1",
   "version": "v10.1.8",
   "engineering_status": "PASS_SOFTWARE_EMULATOR_SCOPE",
-  "advisor_acceptance": "CHANGES_REQUIRED",
+  "advisor_acceptance": "ACCEPTED_SCOPED_V10_1_8",
   "owner_acceptance": "PENDING",
   "repository": "zcx369658780/EliteSync-v10",
   "branch": "codex/v10.1.8-communication-notifications-20261113",
@@ -150,7 +150,7 @@
     "real_push": "REAL_PUSH_PROVIDER_PENDING",
     "voice_human_listening": "NOT_RUN",
     "hardware": "SCOPED_PHONE_VOICE_RTC_PASS_OTHER_HARDWARE_UNVERIFIED",
-    "advisor_acceptance": "CHANGES_REQUIRED",
+    "advisor_acceptance": "ACCEPTED_SCOPED_V10_1_8",
     "owner_acceptance": "PENDING",
     "rtc_phone_human_listening": "OWNER_CONFIRMED_AUDIBLE_CLEAR_GENERALLY_NORMAL_THIS_PHONE_CALL64"
   },
@@ -212,9 +212,9 @@
     "task": "R1-01",
     "task_commit": "b84928181f86af7724bee9357db55c074ea2194e",
     "reviewed_original_delivery_commit": "35a415803f0034fff15450b129a68de762b3a3bb",
-    "engineering_status": "COMPLETE_PENDING_ADVISOR_REVIEW",
+    "engineering_status": "COMPLETE",
     "result": "PASS_SOFTWARE_DUAL_EMULATOR_SCOPE",
-    "advisor_review_status": "PENDING",
+    "advisor_review_status": "ACCEPTED_SCOPED_R1_01",
     "owner_acceptance": "PENDING",
     "report": {
       "path": "supplement-r1-20261114/README.md",
@@ -235,7 +235,7 @@
       "IMPLEMENTATION_REPORT.md": "0fd3166254b87b8dec17add460810c82fcff2125242ec02d32c72d01a61362fb",
       "FINAL_EVIDENCE_20261114.json": "2b87c77a670bc49a507c1b46c0163fb49dad58c36f7e9a8df9ae061cd8c71eb7"
     },
-    "fixed_delivery_commit": "The commit containing this R1 result; fixed GitHub readback recorded in final reply and local receipt",
+    "fixed_delivery_commit": "1074c210ee7fa6641799fa6e19d29fc46ef6b2bc",
     "physical_phone_supplement": {
       "call_id": 64,
       "result": "PASS_SCOPED_THIS_PHONE_VOICE_RTC",
@@ -245,10 +245,56 @@
         "能听清，基本正常"
       ],
       "reverse_phone_mic_control": "PASS_PCM_NONZERO_ZERO_NONZERO",
-      "advisor_review": "PENDING",
+      "advisor_review": "ACCEPTED_SCOPED_THIS_PHONE_VOICE_RTC",
       "owner_version_acceptance": "PENDING",
       "full_hardware_matrix": "UNVERIFIED",
       "voice_memo_human_listening": "NOT_RUN"
-    }
+    },
+    "engineering_status_at_delivery": "COMPLETE_PENDING_ADVISOR_REVIEW",
+    "task_status": "CLOSED",
+    "advisor_report": "supplement-r1-20261114/ADVISOR_ACCEPTANCE.md"
+  },
+  "advisor_r1_review_record": {
+    "date_china": "2026-11-14",
+    "reviewed_r1_delivery_commit": "1074c210ee7fa6641799fa6e19d29fc46ef6b2bc",
+    "prior_software_r1_delivery_commit": "58ba1728a38f38f739ab759cb7d6bbd9b59856f5",
+    "original_delivery_commit": "35a415803f0034fff15450b129a68de762b3a3bb",
+    "decision": "ACCEPTED_SCOPED_V10_1_8",
+    "report": "docs/versions/v10.1.8/supplement-r1-20261114/ADVISOR_ACCEPTANCE.md",
+    "prior_advisor_review_record_is_historical": true,
+    "ac": {
+      "AC18-01": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "AC18-02": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "AC18-03": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "AC18-04": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "AC18-05": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "AC18-06": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE"
+    },
+    "closed_tasks": [
+      "R1-01"
+    ],
+    "required_supplement_tasks": [],
+    "rtc_software_basis": "Same candidate call63: both directions receiver output nonzero, APP mute zero, APP unmute nonzero; current input route corrected; normal end release observed",
+    "phone_scope": "call64 current designated phone voice RTC accepted; Owner confirmed phone playback clear/generally normal; reverse physical microphone proven by APP mute/unmute and receiver output",
+    "independently_checked": [
+      "R1 README and EVIDENCE_SUMMARY SHA256 and Git Blob identities match fixed manifest",
+      "Only five documentation files changed since b8492818; product sources and relevant RTC components unchanged",
+      "Candidate, installed phone SHA256 and signature declarations consistently refer to 1010805",
+      "APP mute/unmute event timing and selected output windows are internally consistent",
+      "call59 endpoint-based stop upper bound 1.35925s, margin 3.64075s, tail lower bound 5.31275s"
+    ],
+    "runtime_evidence": "Named Codex local receipts and Owner phone listening feedback; advisor did not operate devices or independently listen to raw audio",
+    "retained_limits": [
+      "REAL_PUSH_PROVIDER_PENDING",
+      "Full hardware matrix UNVERIFIED",
+      "Quantitative latency and echo NOT_RUN",
+      "Reverse phrase content human validation NOT_RUN",
+      "Voice memo human listening NOT_RUN",
+      "Natural long-duration limits per prior scope",
+      "Old RPC input/registration precise cause UNKNOWN",
+      "Historical non-injected SFU timeout root cause UNKNOWN"
+    ],
+    "owner_version_acceptance": "PENDING",
+    "next_stage": "Remain stopped for Owner version acceptance and subsequent version scope discussion; no automatic v10.1.9"
   }
 }
