@@ -134,6 +134,35 @@ Future<PrivateCacheService> _show(
 
 void main() {
   testWidgets(
+    'current 404 explains unavailable conversations without an unknown result',
+    (tester) async {
+      final api = _Api();
+      final cache = await _show(tester, api);
+      api.temporaryStatus = 404;
+      await tester.tap(find.byTooltip('刷新会话'));
+      await tester.pumpAndSettle();
+      expect(find.text('服务器消息'), findsNothing);
+      expect(find.textContaining('当前没有可读取的会话'), findsOneWidget);
+      expect(find.textContaining('未确认'), findsNothing);
+      expect(find.textContaining('Bad state'), findsNothing);
+      expect(
+        await cache.readOnlineAuthorized('live-conversations:visible'),
+        isNull,
+      );
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets(
+    'manual 503 keeps an unconfirmed read distinct from a current 404',
+    (tester) async {
+      await _show(tester, _Api()..temporaryStatus = 503);
+      expect(find.textContaining('会话读取未确认'), findsOneWidget);
+      expect(find.textContaining('当前没有可读取的会话'), findsNothing);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+  testWidgets(
     'Large unread summary stays readable at 200 percent on a narrow screen',
     (tester) async {
       tester.view.physicalSize = const Size(320, 740);

@@ -300,6 +300,13 @@ class _LiveConversationListPageState
           return;
         }
         _cache.revokeObject(_cacheObject);
+        if (response.statusCode == 404) {
+          _items = [];
+          _offlineReadOnly = false;
+          _cacheStatus = null;
+          _error = '当前没有可读取的会话。请先完成双方连接和消息同意，或刷新核验。';
+          return;
+        }
         throw StateError(
           '${response.message}（HTTP ${response.statusCode ?? "未知"}）',
         );
@@ -342,7 +349,7 @@ class _LiveConversationListPageState
           epoch == _epoch &&
           (started == null || _current(started, epoch))) {
         _items = [];
-        _error = error.toString();
+        _error = '会话读取未确认：$error';
       }
     } finally {
       if (mounted && epoch == _epoch) setState(() => _busy = false);
@@ -428,7 +435,7 @@ class _LiveConversationListPageState
           if (_busy && items.isEmpty) const LinearProgressIndicator(),
           if (_error != null)
             Text(
-              '会话读取未确认：$_error',
+              _error!,
               style: TextStyle(color: Theme.of(context).colorScheme.error),
             ),
           if (!_busy &&
