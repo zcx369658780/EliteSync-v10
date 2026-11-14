@@ -1,0 +1,864 @@
+{
+  "schema": "elitesync.v1018.r1.evidence_summary.v1",
+  "date_china": "2026-11-14",
+  "result": "PASS_SOFTWARE_DUAL_EMULATOR_SCOPE",
+  "app_source_commit": "18491f2a65717c52300897ff6ffebfdf010c91dc",
+  "version_code": 1010805,
+  "product_source_changed_this_completion": false,
+  "owner_authorization": "Continue v10.1.8, enable emulator microphones, use currently playing PC video speech",
+  "successful_source_route": "Live authorized PC playback via host microphone, enabled on only the sender for each direction",
+  "call": {
+    "id": 63,
+    "mode": "video",
+    "status": "ended",
+    "initiator_user_id": 16,
+    "peer_user_id": 17,
+    "accepted_by_user_id": 17,
+    "ended_by_user_id": 16,
+    "ringing_at": "2026-11-14T00:49:21.000000Z",
+    "accepted_at": "2026-11-14T00:49:26.000000Z",
+    "started_at": "2026-11-14T00:49:28.000000Z",
+    "ended_at": "2026-11-14T00:53:14.000000Z"
+  },
+  "directions": [
+    {
+      "sender_fictional_user": 16,
+      "receiver_fictional_user": 17,
+      "source_index": 0,
+      "receiver_index": 1,
+      "actual_output_seconds": 23.96997916666667,
+      "capture_deadline_seconds": 24,
+      "capture_exit_code": 0,
+      "rms": 0.017563536124560433,
+      "peak": 0.216644287109375,
+      "format": "48000Hz mono S16LE emulator output",
+      "windows": [
+        {
+          "state": "before_mute",
+          "start_seconds": 1,
+          "end_seconds": 6,
+          "rms": 0.026584547818390866,
+          "peak": 0.216644287109375,
+          "all_zero": false
+        },
+        {
+          "state": "muted",
+          "start_seconds": 10,
+          "end_seconds": 13,
+          "rms": 0.0,
+          "peak": 0.0,
+          "all_zero": true
+        },
+        {
+          "state": "after_unmute",
+          "start_seconds": 20,
+          "end_seconds": 23,
+          "rms": 0.021002960001380026,
+          "peak": 0.188446044921875,
+          "all_zero": false
+        }
+      ],
+      "app_mute_and_unmute_elapsed_seconds": [
+        7.125,
+        14.562000000005355
+      ],
+      "result": "LIVE_SPEECH_OUTPUT_WITH_MUTE_UNMUTE_CONTROL_OBSERVED"
+    },
+    {
+      "sender_fictional_user": 17,
+      "receiver_fictional_user": 16,
+      "source_index": 1,
+      "receiver_index": 0,
+      "actual_output_seconds": 23.96997916666667,
+      "capture_deadline_seconds": 24,
+      "capture_exit_code": 0,
+      "rms": 0.01986606877688855,
+      "peak": 0.217987060546875,
+      "format": "48000Hz mono S16LE emulator output",
+      "windows": [
+        {
+          "state": "before_mute",
+          "start_seconds": 1,
+          "end_seconds": 6,
+          "rms": 0.0288563941255776,
+          "peak": 0.210906982421875,
+          "all_zero": false
+        },
+        {
+          "state": "muted",
+          "start_seconds": 10,
+          "end_seconds": 13,
+          "rms": 0.0,
+          "peak": 0.0,
+          "all_zero": true
+        },
+        {
+          "state": "after_unmute",
+          "start_seconds": 20,
+          "end_seconds": 23,
+          "rms": 0.024369932159431684,
+          "peak": 0.21337890625,
+          "all_zero": false
+        }
+      ],
+      "app_mute_and_unmute_elapsed_seconds": [
+        7.219000000011874,
+        14.797000000020489
+      ],
+      "result": "LIVE_SPEECH_OUTPUT_WITH_MUTE_UNMUTE_CONTROL_OBSERVED"
+    }
+  ],
+  "media_stats": [
+    {
+      "index": 0,
+      "local_frame_diagnostic_count": 158,
+      "max_local_abs_avg": 0.182,
+      "max_local_peak": 0.4366,
+      "remote_inbound_first_last_same_track": [
+        {
+          "bytesReceived": 1110.0,
+          "packetsReceived": 30.0,
+          "totalAudioEnergy": 3.385564194013775e-08,
+          "totalSamplesDuration": 4.089999999999957
+        },
+        {
+          "bytesReceived": 311397.0,
+          "packetsReceived": 2855.0,
+          "totalAudioEnergy": 7.737140957520107,
+          "totalSamplesDuration": 59.84999999999666
+        }
+      ],
+      "max_inbound_video_frames_decoded": 852,
+      "scope": "Cumulative same-track statistics, independently supporting media activity. No attribution to individual mute windows."
+    },
+    {
+      "index": 1,
+      "local_frame_diagnostic_count": 290,
+      "max_local_abs_avg": 0.2797,
+      "max_local_peak": 0.5723,
+      "remote_inbound_first_last_same_track": [
+        {
+          "bytesReceived": 16968.0,
+          "packetsReceived": 143.0,
+          "totalAudioEnergy": 0.5732544253848195,
+          "totalSamplesDuration": 3.139999999999977
+        },
+        {
+          "bytesReceived": 557979.0,
+          "packetsReceived": 5087.0,
+          "totalAudioEnergy": 14.547260334385465,
+          "totalSamplesDuration": 107.43000000001805
+        }
+      ],
+      "max_inbound_video_frames_decoded": 2361,
+      "scope": "Cumulative same-track statistics, independently supporting media activity. No attribution to individual mute windows."
+    }
+  ],
+  "clock_offsets": [
+    {
+      "index": 0,
+      "guest_behind_host_lower_seconds": 23.799221992492676,
+      "guest_behind_host_upper_seconds": 23.841598987579346,
+      "drift": "UNKNOWN_SINGLE_BRACKETED_SNAPSHOT"
+    },
+    {
+      "index": 1,
+      "guest_behind_host_lower_seconds": 20.46346378326416,
+      "guest_behind_host_upper_seconds": 20.500669717788696,
+      "drift": "UNKNOWN_SINGLE_BRACKETED_SNAPSHOT"
+    }
+  ],
+  "normal_end": {
+    "both_native_camera_and_microphone_inactive": true,
+    "room_count": 0,
+    "host_microphones_after_test": "OFF_BOTH"
+  },
+  "earlier_valid_evidence": {
+    "fault": "call58 one owned SFU restart, explicitly ended before new call59",
+    "recovered_new_call": 59,
+    "revocation_call": 59,
+    "conservative_stop_upper_seconds": 1.35925,
+    "complete_tail_lower_seconds": 5.31275,
+    "source": "FINAL_EVIDENCE_20261114.json",
+    "inheritance_basis": "Same1010805 APP source, backend and SFU configuration. Completion changes only host input route and evidence."
+  },
+  "retained_failed_diagnostics": [
+    {
+      "scope": "calls57_59_61",
+      "result": "16_to17_controlled_tones_not_detected",
+      "exact_failure_boundary": "UNKNOWN"
+    },
+    {
+      "scope": "call62",
+      "result": "missed ring while diagnostic controls were being inspected"
+    },
+    {
+      "scope": "call63 captured-PC-speech RPC injection attempt",
+      "result": "DEADLINE_OR_CANCELLATION exit1",
+      "used_for_success_claim": false,
+      "private_receipts_retained": true
+    }
+  ],
+  "evidence_interpretation": {
+    "speech_output_basis": "Receiver PCM, sender APP mute/unmute control, nonzero/silence/nonzero output segments, both native capture and decoded video",
+    "tone_detector_flags_for_speech": "UNUSED",
+    "cumulative_stats_are_window_proof": false,
+    "exact_host_guest_log_window_alignment": "UNKNOWN_CLOCK_DRIFT",
+    "human_listening": "NOT_RUN",
+    "real_hardware": "UNVERIFIED"
+  },
+  "local_diagnostic_dependency": "PyAudioWPatch0.2.12.9 isolated private tools folder for an initial WASAPI sample; project dependencies unchanged",
+  "raw_audio_and_logs": "LOCAL_ONLY",
+  "private_receipt_identities": [
+    {
+      "file": "authorized-pc-speech-20261114-private.json",
+      "bytes": 402,
+      "sha256": "5011812ec1e80aadd8386cc1e035df9ae2e673d7c5174e84c1330d9307ff55f2"
+    },
+    {
+      "file": "speech63-start-private.json",
+      "bytes": 401,
+      "sha256": "ebb21f83df3edb2c96d28ab7edc4c56c53a9938d7ad1fa0294be7f6da30fb3b1"
+    },
+    {
+      "file": "speech63-0-to1-20261114-probe-private.json",
+      "bytes": 129,
+      "sha256": "a6fae25d2da31cf6634683e12457f06260570414a325b7f0ea4137ed55993946"
+    },
+    {
+      "file": "speech63-0-to1-20261114-private.json",
+      "bytes": 196,
+      "sha256": "7ff36773ee7dc6354f8e374894d5c6353720fc0ef1a67d49a7fb84583983aa21"
+    },
+    {
+      "file": "speech63-end-private.json",
+      "bytes": 1346,
+      "sha256": "5555a35df3dbc5b948743add26c3dcc2c405443ebd7b14c880c524b576efcf4c"
+    },
+    {
+      "file": "speech63-ended-call-list-private.json",
+      "bytes": 122822,
+      "sha256": "6f7eb8b663f9fdeaae3ef17e11d85eb6489acbba8b8659d61edc4acc28ff9114"
+    },
+    {
+      "file": "speech63-clock-offset-private.json",
+      "bytes": 299,
+      "sha256": "fb28093d50c8947be8247536e0a12ca987620dfe564f0172505e84db7f28b585"
+    },
+    {
+      "file": "speech63-closeout-resources-private.json",
+      "bytes": 2784,
+      "sha256": "ad2274345ae36f8c954fad4f3d58512585ce61e7d996c92c2d2289ca929363ff"
+    },
+    {
+      "file": "speech63-protected-readback-private.json",
+      "bytes": 87,
+      "sha256": "2e452caf8f4622bb66d2b97eea021df0cf70c601016c9a636d2258f58b40e262"
+    },
+    {
+      "file": "speech63-ended-index0-private.log",
+      "bytes": 10954258,
+      "sha256": "ae20933cb650d0e27d3740106f6b02530db47f74817a9477049d6d97576a9126"
+    },
+    {
+      "file": "speech63-ended-index1-private.log",
+      "bytes": 10711634,
+      "sha256": "54854e6dc86da1c61610bbc2c9483c5206634af37d23646974a99be6d38a4011"
+    },
+    {
+      "file": "speech63-live0-to1-20261114-private.json",
+      "bytes": 2151,
+      "sha256": "11ce60dc8353ecef284da6c3b1f855e60ad8dc6d7f58f19c46c9763d676daabf"
+    },
+    {
+      "file": "speech63-live0-to1-20261114-capture-private.json",
+      "bytes": 374,
+      "sha256": "81a30f9ef4806f03504b9017466ca1004e2fdc72b78f94615a3f170348900826"
+    },
+    {
+      "file": "speech63-live0-to1-20261114-output-private.pcm",
+      "bytes": 2301118,
+      "sha256": "548245f3c0ed1ac8c0a35fadc804a5d684242110cdef7432cafd8fdd853b5c17"
+    },
+    {
+      "file": "speech63-live0-to1-20261114-muted-private.png",
+      "bytes": 104804,
+      "sha256": "ccaaaace3b47c9b183a640ccdaa0b54f88d00520f3a3b242452cc1b827f54f56"
+    },
+    {
+      "file": "speech63-live0-to1-20261114-unmuted-private.png",
+      "bytes": 103311,
+      "sha256": "0d998ae8b2b86432d79b84115e0e54328e77dbae871bf3e3a30ddd13e19cd9b6"
+    },
+    {
+      "file": "speech63-live1-to0-20261114-private.json",
+      "bytes": 2151,
+      "sha256": "66c4f6e3e9d97462a70d3b7bfbeb4229487e56369413f0e3f12a81649d1f288d"
+    },
+    {
+      "file": "speech63-live1-to0-20261114-capture-private.json",
+      "bytes": 373,
+      "sha256": "2a4577c7d23c9e9b86caec348a518b1c0cef03b0605da5fa46a77411021d8b6b"
+    },
+    {
+      "file": "speech63-live1-to0-20261114-output-private.pcm",
+      "bytes": 2301118,
+      "sha256": "7ffcaef4d8aeb8308bdc33bd00696235a7805fcf52752919811bf94cc2bb2c8d"
+    },
+    {
+      "file": "speech63-live1-to0-20261114-muted-private.png",
+      "bytes": 86943,
+      "sha256": "e244d2f0f9930074e6bbd5267f26f15e4976ac74d3a3d408678c2fa8669218c5"
+    },
+    {
+      "file": "speech63-live1-to0-20261114-unmuted-private.png",
+      "bytes": 86979,
+      "sha256": "0309712ff6ace79afb8648acb60d45a6bf6ef3029f3be35cb91802ac040b11a0"
+    },
+    {
+      "file": "final-rtc57-index0-private.log",
+      "bytes": 400560,
+      "sha256": "605c1e99c3607bb4992f83eae52bf5b0d73ef5b415d7dddbe0e2e81a89a03d84"
+    },
+    {
+      "file": "final-rtc57-index1-private.log",
+      "bytes": 596148,
+      "sha256": "66f9fb812bf66323102df318802ef15d86c74150ca0caaefd535a08c0cdf9747"
+    },
+    {
+      "file": "final-rtc59-index0-private.log",
+      "bytes": 2134366,
+      "sha256": "d64f6cc524c492fdadce5b52e1209af2c731341c0a5f9c158b33738d6e52b8c8"
+    },
+    {
+      "file": "final-rtc59-index1-private.log",
+      "bytes": 2311119,
+      "sha256": "06e16203fb3d91f7a67249b5bd7c6ba9e0bed6d5f768b21cd98e23429126a8da"
+    },
+    {
+      "file": "final-rtc61-index0-private.log",
+      "bytes": 571185,
+      "sha256": "7f67a36b9326534c586ea144e929a71249586a90091d4d9a6cdcd5f30bd9af02"
+    },
+    {
+      "file": "final-rtc61-index1-private.log",
+      "bytes": 557131,
+      "sha256": "d55060a390a3cc3f442890df35ed1468acec579102eab68f9fbc360e41a67179"
+    }
+  ],
+  "resources": {
+    "observed_at_china": "2026-11-14T08:57:01.251827+08:00",
+    "containers": {
+      "db": {
+        "id": "61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+        "image": "sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2",
+        "status": "running",
+        "exit": 0
+      },
+      "api": {
+        "id": "56a29d27e5219d9b1ce69a7230766c592535339988b84eb2bbc866b458d7a54b",
+        "image": "sha256:fac4d1a092d669227aa7f018d849ec659996cb1ac616927efe7821e45424d70b",
+        "status": "running",
+        "exit": 0
+      },
+      "ws": {
+        "id": "04e4b97a55addf4978c877960d9235602c999436e5845a8808f197b44dc69644",
+        "image": "sha256:893014a9e551183fa7e9c36503f8ed61e98641e3999081db86d9b02e34f37b3d",
+        "status": "running",
+        "exit": 0
+      },
+      "sfu": {
+        "id": "bd15c12a986c03043eacadf35449d2ec83b78194aa15362a821de56b9d08d6ab",
+        "image": "sha256:954f0e1bd94cbab763dfcca219d730446d064c5c832c179ce31d8225852cbb95",
+        "status": "running",
+        "exit": 0
+      }
+    },
+    "rooms": [],
+    "emulators": [
+      {
+        "index": 0,
+        "serial": "emulator-5580",
+        "stopped": true,
+        "android_user_retained": 11,
+        "data_retained": true
+      },
+      {
+        "index": 1,
+        "serial": "emulator-5582",
+        "stopped": true,
+        "android_user_retained": 12,
+        "data_retained": true
+      }
+    ],
+    "native_before_stop": [
+      {
+        "index": 0,
+        "active": {
+          "CAMERA": false,
+          "RECORD_AUDIO": false
+        }
+      },
+      {
+        "index": 1,
+        "active": {
+          "CAMERA": false,
+          "RECORD_AUDIO": false
+        }
+      }
+    ],
+    "app_processes_stopped": true,
+    "host_microphones": "OFF_BOTH_AFTER_TEST",
+    "adb5038_usb_excluded": true,
+    "phone": "NOT_RUN"
+  },
+  "protected_original_worktree": {
+    "status_unchanged": true,
+    "index_unchanged": true,
+    "diff_unchanged": true
+  },
+  "task": "R1-01",
+  "task_commit": "b84928181f86af7724bee9357db55c074ea2194e",
+  "reviewed_original_delivery": "35a415803f0034fff15450b129a68de762b3a3bb",
+  "engineering_status": "COMPLETE_PENDING_ADVISOR_REVIEW",
+  "advisor_review_status": "PENDING",
+  "owner_acceptance": "PENDING",
+  "native_tail_original_endpoints": {
+    "call_id": 59,
+    "clock": "single host time.monotonic",
+    "commit_interval": [
+      174446.765,
+      174446.812
+    ],
+    "resolution_seconds": 0.015625,
+    "two_endpoint_margin_seconds": 0.03125,
+    "per_endpoint": [
+      {
+        "index": 0,
+        "first_inactive_query_interval": [
+          174448.046,
+          174448.093
+        ],
+        "last_valid_query_interval": [
+          174452.156,
+          174452.187
+        ],
+        "last_sample_native_active": {
+          "CAMERA": false,
+          "RECORD_AUDIO": false
+        },
+        "samples": 34,
+        "maximum_query_start_gap_seconds": 0.20300000000861473
+      },
+      {
+        "index": 1,
+        "first_inactive_query_interval": [
+          174447.703,
+          174447.75
+        ],
+        "last_valid_query_interval": [
+          174452.156,
+          174452.187
+        ],
+        "last_sample_native_active": {
+          "CAMERA": false,
+          "RECORD_AUDIO": false
+        },
+        "samples": 34,
+        "maximum_query_start_gap_seconds": 0.20300000000861473
+      }
+    ],
+    "stop_upper_formula": "174448.093 - 174446.765 + 0.03125 = 1.35925",
+    "stop_upper_seconds": 1.35925,
+    "stop_safety_margin_seconds": 3.64075,
+    "tail_lower_formula": "174452.156 - 174446.812 - 0.03125 = 5.31275",
+    "tail_lower_seconds": 5.31275,
+    "observation": "Discrete native AppOps observations, subsequent samples inactive; continuous hardware tracing UNVERIFIED",
+    "original_raw_receipt": {
+      "file": "final-rtc59-revocation-five-second-tail-20261114-private.json",
+      "bytes": 41767,
+      "sha256": "5d811e832625b6745b9b7cdcd8498dc9163dd5048fc75b3acefb6e559e34329c"
+    },
+    "replayed_for_r1": false
+  },
+  "input_route_diagnosis": {
+    "old_injection_last_proven_boundary": "Host gRPC request acknowledged and first audio frame flushed",
+    "old_injection_first_unconfirmed_boundary": "Exact injected content entering sender16 RTC capture. Prior sampled identified-track PCM is zero or near-zero; observer binding and precise input window correspondence remain UNKNOWN.",
+    "precise_old_rpc_registration_or_input_root_cause": "UNKNOWN",
+    "actual_correction": "Enable emulator hostmicon, route Owner-authorized live PC sound through sender host microphone, disable receiver host microphone; reverse roles for control direction",
+    "current_success_basis": "call63 source RTC PCM nonzero, same-track inbound energy and video decoded, receiver output PCM with APP sender mute/unmute control in each direction",
+    "product_changes": false,
+    "processing_options": "Existing AEC/NS/AGC/high-pass settings retained",
+    "sdk_note": "Existing native flutter_webrtc AudioSource.MIC retained"
+  },
+  "task_compliance": {
+    "original_five_ac_acceptance": "INHERITED_UNCHANGED_SCOPE",
+    "original_implementation_report_and_final_evidence": "Preserved exact35a41580 Git bytes",
+    "new_product_build": "NOT_NEEDED_SAME1010805_PRODUCT_SOURCE",
+    "fault_recovery_and_revocation": "INHERITED_NAMED_UNCHANGED_COMPONENTS",
+    "normal_end_release": "NEW_CALL63_OBSERVED",
+    "call59_tail_endpoints_formula": "EXTRACTED_FROM_EXISTING_RAW_RECEIPT",
+    "fixed_github_readback": "RECORDED_AFTER_COMMIT_IN_FINAL_REPLY_AND_LOCAL_RECEIPT"
+  },
+  "old_direction_table": [
+    {
+      "call_id": 57,
+      "sender_fictional_user": 16,
+      "receiver_fictional_user": 17,
+      "source_index": 0,
+      "destination_index": 1,
+      "android_users": [
+        11,
+        12
+      ],
+      "source_local_track_ids": [
+        "81f077df-c683-434d-9a06-28de4f15d246"
+      ],
+      "destination_remote_track_ids": [
+        "TR_AMUsazFb6iW5Zv"
+      ],
+      "connection_generation": "UNKNOWN_NOT_RECORDED",
+      "explicit_observer_binding": "UNKNOWN_IN_AVAILABLE_OLD_LOGS",
+      "first_frame_host_utc": "2026-11-13T23:31:59.316000+00:00",
+      "first_frame_semantics": "First frame flushed; server injection registration unconfirmed",
+      "injection_seconds": 7.3,
+      "capture_deadline_seconds": 12,
+      "grpc_status": 0,
+      "captured_output_samples": 573599,
+      "output_rms": 1.7834588377857004e-06,
+      "output_peak": 0.0001220703125,
+      "tones_observed": [
+        false,
+        false
+      ],
+      "local_sampled_abs_avg_max": 0.0,
+      "local_sampled_peak_max": 0.0,
+      "source_outbound_first_last": [
+        {
+          "bytes": 1337,
+          "packets": 35
+        },
+        {
+          "bytes": 5949,
+          "packets": 183
+        }
+      ],
+      "destination_inbound_first_last": [
+        {
+          "bytesReceived": 1097.0,
+          "packetsReceived": 28.0,
+          "totalAudioEnergy": 2.009916789733623e-08,
+          "totalSamplesDuration": 3.789999999999963
+        },
+        {
+          "bytesReceived": 7014.0,
+          "packetsReceived": 218.0,
+          "totalAudioEnergy": 2.6029260668530533e-07,
+          "totalSamplesDuration": 43.53999999999991
+        }
+      ],
+      "destination_last_track_state": {
+        "enabled": "true",
+        "muted": "false",
+        "active": "true"
+      },
+      "log_sample_window_guest_clock": {
+        "local_first": "11-13 23:31:12.966  7474  7474",
+        "local_last": "11-13 23:31:55.423  7474  7474",
+        "remote_first": "11-13 23:31:43.490  3994  3994",
+        "remote_last": "11-13 23:32:23.071  3994  3994"
+      },
+      "same_input_window_rtp_energy_alignment": "UNKNOWN_NO_CONCURRENT_GUEST_HOST_CLOCK_BRACKET",
+      "stats_scope": "Cumulative old call log endpoints and 1s sampled PCM, not attribution of the injected content to exact RTP/energy windows"
+    },
+    {
+      "call_id": 57,
+      "sender_fictional_user": 17,
+      "receiver_fictional_user": 16,
+      "source_index": 1,
+      "destination_index": 0,
+      "android_users": [
+        12,
+        11
+      ],
+      "source_local_track_ids": [
+        "e07bfd1a-7df3-4f43-9ba2-3494cd7a86e2"
+      ],
+      "destination_remote_track_ids": [
+        "TR_AMLEqf5zumhomf"
+      ],
+      "connection_generation": "UNKNOWN_NOT_RECORDED",
+      "explicit_observer_binding": "UNKNOWN_IN_AVAILABLE_OLD_LOGS",
+      "first_frame_host_utc": "2026-11-13T23:32:12.530000+00:00",
+      "first_frame_semantics": "First frame flushed; server injection registration unconfirmed",
+      "injection_seconds": 7.3,
+      "capture_deadline_seconds": 12,
+      "grpc_status": 0,
+      "captured_output_samples": 574559,
+      "output_rms": 0.0626044687963746,
+      "output_peak": 0.200103759765625,
+      "tones_observed": [
+        true,
+        true
+      ],
+      "local_sampled_abs_avg_max": 0.2566,
+      "local_sampled_peak_max": 0.486,
+      "source_outbound_first_last": [
+        {
+          "bytes": 1057,
+          "packets": 25
+        },
+        {
+          "bytes": 30209,
+          "packets": 457
+        }
+      ],
+      "destination_inbound_first_last": [
+        {
+          "bytesReceived": 615.0,
+          "packetsReceived": 20.0,
+          "totalAudioEnergy": 2.8947272393383196e-08,
+          "totalSamplesDuration": 4.129999999999956
+        },
+        {
+          "bytesReceived": 14486.0,
+          "packetsReceived": 264.0,
+          "totalAudioEnergy": 0.6755944763161292,
+          "totalSamplesDuration": 40.790000000000454
+        }
+      ],
+      "destination_last_track_state": {
+        "enabled": "true",
+        "muted": "false",
+        "active": "true"
+      },
+      "log_sample_window_guest_clock": {
+        "local_first": "11-13 23:31:30.692  3994  3994",
+        "local_last": "11-13 23:32:22.794  3994  3994",
+        "remote_first": "11-13 23:31:11.897  7474  7474",
+        "remote_last": "11-13 23:31:48.568  7474  7474"
+      },
+      "same_input_window_rtp_energy_alignment": "UNKNOWN_NO_CONCURRENT_GUEST_HOST_CLOCK_BRACKET",
+      "stats_scope": "Cumulative old call log endpoints and 1s sampled PCM, not attribution of the injected content to exact RTP/energy windows"
+    },
+    {
+      "call_id": 59,
+      "sender_fictional_user": 16,
+      "receiver_fictional_user": 17,
+      "source_index": 0,
+      "destination_index": 1,
+      "android_users": [
+        11,
+        12
+      ],
+      "source_local_track_ids": [
+        "93330200-82cf-47ec-8e72-605fb818d9df"
+      ],
+      "destination_remote_track_ids": [
+        "TR_AMuiuznC7oUBk2"
+      ],
+      "connection_generation": "UNKNOWN_NOT_RECORDED",
+      "explicit_observer_binding": "UNKNOWN_IN_AVAILABLE_OLD_LOGS",
+      "first_frame_host_utc": "2026-11-13T23:43:02.647000+00:00",
+      "first_frame_semantics": "First frame flushed; server injection registration unconfirmed",
+      "injection_seconds": 8.3,
+      "capture_deadline_seconds": 13,
+      "grpc_status": 0,
+      "captured_output_samples": 622079,
+      "output_rms": 0,
+      "output_peak": 0,
+      "tones_observed": [
+        false,
+        false
+      ],
+      "local_sampled_abs_avg_max": 0.0,
+      "local_sampled_peak_max": 0.0001,
+      "source_outbound_first_last": [
+        {
+          "bytes": 1119,
+          "packets": 29
+        },
+        {
+          "bytes": 13043,
+          "packets": 449
+        }
+      ],
+      "destination_inbound_first_last": [
+        {
+          "bytesReceived": 519.0,
+          "packetsReceived": 18.0,
+          "totalAudioEnergy": 2.174770947186293e-08,
+          "totalSamplesDuration": 3.8699999999999615
+        },
+        {
+          "bytesReceived": 12386.0,
+          "packetsReceived": 436.0,
+          "totalAudioEnergy": 1.2198276272078951e-07,
+          "totalSamplesDuration": 91.91000000001011
+        }
+      ],
+      "destination_last_track_state": {
+        "enabled": "true",
+        "muted": "false",
+        "active": "true"
+      },
+      "log_sample_window_guest_clock": {
+        "local_first": "11-13 23:41:29.533  7474  7474",
+        "local_last": "11-13 23:43:00.833  7474  7474",
+        "remote_first": "11-13 23:42:00.556  3994  3994",
+        "remote_last": "11-13 23:43:28.553  3994  3994"
+      },
+      "same_input_window_rtp_energy_alignment": "UNKNOWN_NO_CONCURRENT_GUEST_HOST_CLOCK_BRACKET",
+      "stats_scope": "Cumulative old call log endpoints and 1s sampled PCM, not attribution of the injected content to exact RTP/energy windows"
+    },
+    {
+      "call_id": 59,
+      "sender_fictional_user": 17,
+      "receiver_fictional_user": 16,
+      "source_index": 1,
+      "destination_index": 0,
+      "android_users": [
+        12,
+        11
+      ],
+      "source_local_track_ids": [
+        "9630b2db-60d9-4b94-a2a1-97f528b6b62a"
+      ],
+      "destination_remote_track_ids": [
+        "TR_AMdmmLee6R3rbZ"
+      ],
+      "connection_generation": "UNKNOWN_NOT_RECORDED",
+      "explicit_observer_binding": "UNKNOWN_IN_AVAILABLE_OLD_LOGS",
+      "first_frame_host_utc": "2026-11-13T23:43:16.788000+00:00",
+      "first_frame_semantics": "First frame flushed; server injection registration unconfirmed",
+      "injection_seconds": 8.3,
+      "capture_deadline_seconds": 13,
+      "grpc_status": 0,
+      "captured_output_samples": 622079,
+      "output_rms": 0.04615117663377006,
+      "output_peak": 0.134796142578125,
+      "tones_observed": [
+        true,
+        true
+      ],
+      "local_sampled_abs_avg_max": 0.2515,
+      "local_sampled_peak_max": 0.4804,
+      "source_outbound_first_last": [
+        {
+          "bytes": 1518,
+          "packets": 43
+        },
+        {
+          "bytes": 36324,
+          "packets": 663
+        }
+      ],
+      "destination_inbound_first_last": [
+        {
+          "bytesReceived": 112.0,
+          "packetsReceived": 4.0,
+          "totalAudioEnergy": 3.0735520881005517e-10,
+          "totalSamplesDuration": 1.310000000000001
+        },
+        {
+          "bytesReceived": 35519.0,
+          "packetsReceived": 644.0,
+          "totalAudioEnergy": 0.9706157630905823,
+          "totalSamplesDuration": 93.31000000001083
+        }
+      ],
+      "destination_last_track_state": {
+        "enabled": "true",
+        "muted": "false",
+        "active": "true"
+      },
+      "log_sample_window_guest_clock": {
+        "local_first": "11-13 23:41:53.697  3994  3994",
+        "local_last": "11-13 23:43:28.821  3994  3994",
+        "remote_first": "11-13 23:41:29.529  7474  7474",
+        "remote_last": "11-13 23:43:01.567  7474  7474"
+      },
+      "same_input_window_rtp_energy_alignment": "UNKNOWN_NO_CONCURRENT_GUEST_HOST_CLOCK_BRACKET",
+      "stats_scope": "Cumulative old call log endpoints and 1s sampled PCM, not attribution of the injected content to exact RTP/energy windows"
+    },
+    {
+      "call_id": 61,
+      "sender_fictional_user": 16,
+      "receiver_fictional_user": 17,
+      "source_index": 0,
+      "destination_index": 1,
+      "android_users": [
+        11,
+        12
+      ],
+      "source_local_track_ids": [
+        "be7a2f6c-0a6c-49b3-8fd7-7232b0893a76"
+      ],
+      "destination_remote_track_ids": [
+        "TR_AMnupMEWsycjab"
+      ],
+      "connection_generation": "UNKNOWN_NOT_RECORDED",
+      "explicit_observer_binding": "UNKNOWN_IN_AVAILABLE_OLD_LOGS",
+      "first_frame_host_utc": "2026-11-14T00:08:16.806000+00:00",
+      "first_frame_semantics": "First frame flushed; server injection registration unconfirmed",
+      "injection_seconds": 8.3,
+      "capture_deadline_seconds": 13,
+      "grpc_status": 0,
+      "captured_output_samples": 623039,
+      "output_rms": 6.388130391482463e-07,
+      "output_peak": 0.0001220703125,
+      "tones_observed": [
+        false,
+        false
+      ],
+      "local_sampled_abs_avg_max": 0.0001,
+      "local_sampled_peak_max": 0.0002,
+      "source_outbound_first_last": [
+        {
+          "bytes": 1049,
+          "packets": 25
+        },
+        {
+          "bytes": 32587,
+          "packets": 1013
+        }
+      ],
+      "destination_inbound_first_last": [
+        {
+          "bytesReceived": 1049.0,
+          "packetsReceived": 25.0,
+          "totalAudioEnergy": 1.789179867042774e-08,
+          "totalSamplesDuration": 3.47999999999997
+        },
+        {
+          "bytesReceived": 32587.0,
+          "packetsReceived": 1013.0,
+          "totalAudioEnergy": 1.0446537857745357e-06,
+          "totalSamplesDuration": 211.14999999995294
+        }
+      ],
+      "destination_last_track_state": {
+        "enabled": "true",
+        "muted": "false",
+        "active": "true"
+      },
+      "log_sample_window_guest_clock": {
+        "local_first": "11-14 00:06:45.347 14175 14175",
+        "local_last": "11-14 00:10:18.190 14175 14175",
+        "remote_first": "11-14 00:07:17.849 11157 11157",
+        "remote_last": "11-14 00:10:45.308 11157 11157"
+      },
+      "same_input_window_rtp_energy_alignment": "UNKNOWN_NO_CONCURRENT_GUEST_HOST_CLOCK_BRACKET",
+      "stats_scope": "Cumulative old call log endpoints and 1s sampled PCM, not attribution of the injected content to exact RTP/energy windows"
+    }
+  ],
+  "old_evidence_boundary": {
+    "last_proven_tool_boundary": "Host frames flushed and gRPC0 response",
+    "first_unconfirmed_signal_boundary": "Requested tone entering sender16 RTC local capture. Recorded identified local-track PCM is zero or near-zero; exact content/window mapping unavailable.",
+    "later_encode_publish_transport_split": "UNKNOWN",
+    "working_direction_control": "calls57 and59 user17/index1 to user16/index0, both tones captured at actual output",
+    "call61_reverse_probe": "NOT_RUN",
+    "old_clock_offsets": "UNKNOWN. New call63 clock bracket applies only to63.",
+    "warmup_repeat_call57": "Separate warmup5 attempt10.3s injection/15s capture, outputRMS0, both tones absent; retained original diagnostic, no new success claim"
+  }
+}
