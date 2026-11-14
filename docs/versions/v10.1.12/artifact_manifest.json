@@ -1,0 +1,392 @@
+{
+  "schema": "elitesync-v10112-artifact-manifest-v1",
+  "branch": "codex/v10.1.12-ui-information-architecture-20261114",
+  "unique_parent_baseline": "2f3058d39a936063768ffb895f577d97a088e04c",
+  "task_documents_commit": "a7bd6305c35a7317c365a1abb73ae20b00bea1a9",
+  "engineering_status": "PASS_BOUNDED_ENGINEERING_SELF_CHECK",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "APP_source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941",
+  "backend_API_source_commit": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+  "Web_view_source_commit": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+  "apk": {
+    "candidate": 1011204,
+    "version_name": "10.1.12-dev",
+    "package": "com.elitesync.v1015dev",
+    "ABI": "arm64-v8a",
+    "build": "Debug",
+    "sha256": "34d5ba051250c0516d937bb1d6c5773463f379f1c295231f9e37f1172d9938be",
+    "bytes": 123922910,
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+    "signature_scheme": "v2",
+    "installed_APK_sha256_matches": true,
+    "android_user": 11,
+    "emulator": "5580",
+    "original_data": "RETAINED"
+  },
+  "earlier_candidates": [
+    {
+      "code": 1011201,
+      "role": "INTERMEDIATE_INITIAL_UI"
+    },
+    {
+      "code": 1011202,
+      "role": "INTERMEDIATE_PROGRESS_HIERARCHY"
+    },
+    {
+      "code": 1011203,
+      "role": "INTERMEDIATE_READINESS_TITLE"
+    }
+  ],
+  "migration": "NONE",
+  "deployment": {
+    "final_source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941",
+    "web_view_source": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+    "backend_API_source": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+    "files": [
+      {
+        "path": "services/backend-laravel/resources/views/admin/layout.blade.php",
+        "runtime_sha256": "c77cd54a7d1eb0067f3246cdcf68a6757b4dbc37fbe61961b95b4d4a737298a1",
+        "git_blob": "093a04d8f3fa1dc2b21117b30f95212b5cf7cfd5"
+      },
+      {
+        "path": "services/backend-laravel/resources/views/admin/support-feedback-index.blade.php",
+        "runtime_sha256": "9c2af34371da134466762dbbeacda81a2b3f99d5858538dd4d1a77c70099b5ce",
+        "git_blob": "882197499308d19f9aef5b4235bba48fe42732ab"
+      },
+      {
+        "path": "services/backend-laravel/resources/views/admin/support-feedback-label.blade.php",
+        "runtime_sha256": "86a521d9ac954d988defce9370699aec802cd858c2e4490443433f2021e7da44",
+        "git_blob": "f664b3f4b8f6ffda1c3c55093fd7a3e11b2b3087"
+      },
+      {
+        "path": "services/backend-laravel/resources/views/admin/support-feedback.blade.php",
+        "runtime_sha256": "a52deaa06cb9412470a5dd1d93466946afb1b959b56fc9e5452e3e13984854d9",
+        "git_blob": "d60ea43d8270e008d1b373e1df78871f10305533"
+      }
+    ],
+    "migration": "NONE",
+    "readback_at": "2026-11-14T22:27:52.084501+08:00"
+  },
+  "tests": {
+    "flutter_widget": {
+      "status": "PASS",
+      "unique_cases": 247,
+      "files": 23,
+      "batches": [
+        {
+          "log": "final-widget-v2-private.log",
+          "cases": 242
+        },
+        {
+          "log": "restoration-progress-green-private.log",
+          "new_disjoint_cases": 2,
+          "define": "ELITESYNC_V1014_LOCAL_BUILD=true"
+        },
+        {
+          "log": "readiness-title-green-private.log",
+          "cases": 30,
+          "new_disjoint_cases": 1
+        },
+        {
+          "log": "conversation-404-green-private.log",
+          "cases": 15,
+          "new_disjoint_cases": 2
+        }
+      ],
+      "overlapping_incremental_batches_not_added": [
+        "progress-incremental-private.log",
+        "readiness-title-green-private.log",
+        "conversation-404-green-private.log"
+      ]
+    },
+    "php": {
+      "status": "PASS",
+      "tests": 4,
+      "assertions": 45,
+      "file": "V10111SupportFeedbackTest.php",
+      "environment": "PHP8.4.27 / PHPUnit12.5.42 / isolated SQLite :memory:",
+      "log": "stage-e-views-v1-php-private.log"
+    },
+    "dart_analysis": {
+      "status": "PASS",
+      "changed_dart_files": 37,
+      "scope": "Changed files analyzed in affected increments; initial brace lint corrected and rechecked"
+    },
+    "whole_repository_analysis": "NOT_RUN",
+    "all_historical_AC_regression": "NOT_RUN"
+  },
+  "acceptance": {
+    "AC12-01": {
+      "status": "PASS",
+      "scope": "Four destinations, restoration progress hierarchy, match/readiness distinction, actual branch switching/system back, targeted legacy redirect tests",
+      "final_APP_all_deeplinks_and_notification_matrix": "NOT_RUN"
+    },
+    "AC12-02": {
+      "status": "PASS",
+      "scope": "Existing tokens, shared Material controls, contrast/48dp/200pct counterexamples, actual dark/light/system theme and persistence",
+      "theme_storage_failure": "CONTROLLED_WIDGET"
+    },
+    "AC12-03": {
+      "status": "PASS",
+      "scope": "Me/settings grouping, real feedback4 creation and public reply, form validation, real IME/back retention, 200pct account-help boundary",
+      "account_security_and_privacy_business": "INHERITED_UNCHANGED_V10111"
+    },
+    "AC12-04": {
+      "status": "PASS",
+      "scope": "Real ordinary APP message16to17, recipient API and MariaDB readback, conversation404 presentation, narrow/large-font layout tests and existing failure/authority tests",
+      "final_APP_attachments_voice_RTC": "NOT_RUN_INHERITED_NAMED_PRIOR_EVIDENCE"
+    },
+    "AC12-05": {
+      "status": "PASS",
+      "scope": "Real matching not-ready state, progress expandable social navigation, ordinary APP MBTI and historical API readback, natal validation/advanced parameters and dynamic empty history",
+      "final_APP_every_social_and_chart_variant": "NOT_RUN"
+    },
+    "AC12-06": {
+      "status": "PASS",
+      "scope": "Real Web CSRF feedback3 write, APP feedback4 Web/API/APP round-trip, desktop/320px/200pct/focus, final APP keyboard/back/relogin/coldstart and shared semantics tests",
+      "screen_reader_hardware": "NOT_RUN"
+    }
+  },
+  "resources": {
+    "at": "2026-11-14T22:28:15.674719+08:00",
+    "containers": [
+      {
+        "name": "v1015-current-dev-db",
+        "status": "running",
+        "started_at": "2026-11-14T08:26:19.573161264Z"
+      },
+      {
+        "name": "v1015-current-dev-api",
+        "status": "running",
+        "started_at": "2026-11-14T11:22:40.427020294Z"
+      },
+      {
+        "name": "v1015-current-dev-ws",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:15.905342048Z"
+      },
+      {
+        "name": "v1015-current-dev-sfu",
+        "status": "running",
+        "started_at": "2026-11-14T11:22:41.848908924Z"
+      }
+    ],
+    "emulator_A": "STOPPED_DATA_RETAINED",
+    "emulator_B": "NOT_STARTED_THIS_VERSION_DATA_RETAINED",
+    "phone": "NOT_USED",
+    "adb5038_USB_excluded": true,
+    "font_scale_original_restored": "1.0",
+    "reverse_routes": "EMULATOR_A_REMOVED",
+    "original_main_protection": "MATCHED_STARTUP_HEAD_STATUS_DIFF_CACHED_DIFF_INDEX",
+    "SystemDrive_directory": "UNTOUCHED_UNTRACKED",
+    "API_DB_restart": "NOT_RUN",
+    "migration": "NONE"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/home-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:02:16.443470+00:00",
+      "sha256": "9c5a178582541bc475f41e016351cee2aa9c6683b6da802e3b9e261c1bf534f5",
+      "bytes": 142221,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/progress-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:02:26.098084+00:00",
+      "sha256": "b2e6c24a3767c2e0e1526a5fef6b33a3f3f4a4ea96850b2a87763826d5d98086",
+      "bytes": 142661,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/me-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:02:43.296575+00:00",
+      "sha256": "0b949697ac369aec069362e00d520ce45f5d73146cbfda82bc2d8ba54f823601",
+      "bytes": 159313,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/settings-dark-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:02:50.974310+00:00",
+      "sha256": "1aeb711642dd6244c3ad5c7e8a4bab74f8787b3b4ebd94cbf8ca9df50795d1aa",
+      "bytes": 121297,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/settings-system-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:03:20.919242+00:00",
+      "sha256": "64d7898c98f0f3adabb0e58ed47a36ac76d841182c8d174d385699a43af7ced4",
+      "bytes": 121893,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/feedback-keyboard-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:07:35.620436+00:00",
+      "sha256": "38b072111b3c75cead9566d751b7b2f7e1483092d84dcb0cc6048304f5b1698d",
+      "bytes": 125401,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/feedback-reply-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:08:29.304453+00:00",
+      "sha256": "e3faa577dd0db2ef376281bc0d561ac0a16cd1fefc07c80d05d7fbd2f4c9761c",
+      "bytes": 158637,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/feedback-large-text-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:08:35.598238+00:00",
+      "sha256": "f9f5a8aacd5c286caf8ea15a44dda8ade457fc24c3d8a2c964091c715fcf0a05",
+      "bytes": 154786,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/account-help-large-text-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:10:30.196425+00:00",
+      "sha256": "c5f90a24ce12e33a411d50b32c9a9a2ada85eb954f1f6eff8b4eca4f93cce742",
+      "bytes": 173816,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/matching-not-ready-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:10:56.657862+00:00",
+      "sha256": "e60c56c88cde45ace0e4a1b6c4ec760b20ca0676088fa73938f8ef1086c5752f",
+      "bytes": 210237,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/chat-controls-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:24:07.822506+00:00",
+      "sha256": "ac1e7ef5eae9fae9df95119e05100cad1d1d82909f49c5c4f927f6c5d137d76c",
+      "bytes": 73021,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/chat-sent-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:24:28.662326+00:00",
+      "sha256": "a687c3b8841f9ac922d9500a7d1e473c5bccbc35137ce8f9b742f3bbf0c9111d",
+      "bytes": 110340,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/mbti-result-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:15:01.306546+00:00",
+      "sha256": "0ebd171aceb0051afc167edbbe4c4e7a28f3bf062cf7eb9c57334dc050170351",
+      "bytes": 104138,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/natal-advanced-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:19:01.404973+00:00",
+      "sha256": "d6313bf315c39df2f51df637c124b6eb10986be80d118f01a006ee3456267385",
+      "bytes": 137248,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/natal-validation-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:19:15.998779+00:00",
+      "sha256": "8cb8fd7a1ac7f67862f3594e2da155ce6a1edb48bd4d35faa72462fbe866dc7e",
+      "bytes": 139636,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/dynamic-entry-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:20:23.936853+00:00",
+      "sha256": "e0199191502aca6c0722bfae7860bb63ef026844279a76989f1c96f9ae6e524e",
+      "bytes": 125285,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/feedback-coldstart-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:27:17.027382+00:00",
+      "sha256": "9c6aab2d5aa0fe966e47a0765f97a6f043eb3cb7e7ca7cef221a706c10ea0b1c",
+      "bytes": 157695,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/web-review-support-desktop.png",
+      "captured_at": "2026-11-14T13:13:55.109Z",
+      "web_view_source": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+      "sha256": "527c14d69a86e4d1ec175d309aabdca762cf3f994ed4d841e8512ad053f853b9",
+      "bytes": 43994,
+      "device": "Existing Edge / dedicated fictional-data profile",
+      "data": "FICTIONAL_ONLY"
+    },
+    {
+      "path": "evidence/web-review-support-large-text.png",
+      "captured_at": "2026-11-14T13:13:55.109Z",
+      "web_view_source": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+      "sha256": "411d23f420580ccd41fa30108bf823fa980b256e841f6d2fc644eeb74d069706",
+      "bytes": 31250,
+      "device": "Existing Edge / dedicated fictional-data profile",
+      "data": "FICTIONAL_ONLY"
+    },
+    {
+      "path": "evidence/web-review-support-list.png",
+      "captured_at": "2026-11-14T13:13:55.109Z",
+      "web_view_source": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+      "sha256": "584313680b3420a655a357644d803d0c25c330fe2441b4b6460d7bcee9048521",
+      "bytes": 38204,
+      "device": "Existing Edge / dedicated fictional-data profile",
+      "data": "FICTIONAL_ONLY"
+    }
+  ],
+  "artifacts": [
+    "IMPLEMENTATION_REPORT.md",
+    "artifact_manifest.json",
+    "EVIDENCE_SUMMARY.json"
+  ],
+  "private_evidence": "Complete logs, APKs, database, credentials, tools and original receipts retained locally",
+  "fixed_commit_readback": "Containing documentation commit is identified by final delivery response and same-origin remote branch readback receipt retained locally"
+}

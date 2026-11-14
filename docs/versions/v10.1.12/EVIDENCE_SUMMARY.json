@@ -1,0 +1,587 @@
+{
+  "schema": "elitesync-v10112-evidence-v1",
+  "generated_at": "2026-11-14T22:30:33.406557+08:00",
+  "engineering_status": "PASS_BOUNDED_ENGINEERING_SELF_CHECK",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941",
+  "candidate": 1011204,
+  "local_documents": {
+    "status": "LOCAL_DOCS_SYNCED",
+    "at": "2026-11-14T20:39:06.687827+08:00",
+    "task_commit": "a7bd6305c35a7317c365a1abb73ae20b00bea1a9",
+    "branch": "codex/v10.1.12-ui-information-architecture-20261114",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "git_blob": "1046759cedfea7bcbba1ee9e6f55d828d06dd87f",
+        "canonical_LF_sha256": "323eded21d2a711e6f89b3624018fbd18a3c6639ac68fca6850aeec090cbb8df"
+      },
+      {
+        "path": "docs/architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md",
+        "git_blob": "3b73dc217cc3796a13e8203f2ff9fce26edee482",
+        "canonical_LF_sha256": "fe7cdf7ad8056c1cff1a9f238643dead1dec842dafbaa2b2335ddb4bee0eb23d"
+      },
+      {
+        "path": "docs/decisions/OWNER_V10_1_11_ACCEPTANCE_AND_V10_1_12_AUTHORIZATION_20261114.md",
+        "git_blob": "6d925c723199b5abb4b5656e90a422666e41e19e",
+        "canonical_LF_sha256": "ebcb369e10604b4f98dc6f93f5e5203e4b8dd64d4cf437f12ae4f15e952f6f0d"
+      },
+      {
+        "path": "docs/versions/v10.1.12/CODEX_START_PROMPT.txt",
+        "git_blob": "382a91f56032a9fc7322aae1c5f1264b5bf6ed88",
+        "canonical_LF_sha256": "d40744da3900ef64dd2757c7147ae0797c764c6df7942c0e5891964ebf492409"
+      },
+      {
+        "path": "docs/versions/v10.1.12/plan.md",
+        "git_blob": "3b8bdc861fae836778c813f5a337600a017b937f",
+        "canonical_LF_sha256": "dd641a188805d61fe04521a9ee525275a22d9b59f1aadc4ccb9b77f378ec9ead"
+      },
+      {
+        "path": "docs/versions/v10.1.12/task_order.md",
+        "git_blob": "20be720702c52318448c306d0c2d0ab19b214c15",
+        "canonical_LF_sha256": "fdc38287e9be2ceb805afb5d43429d9e70e186e64e67f1fcc150f8405a9eb3e7"
+      },
+      {
+        "path": "docs/workflow/ACTIVE_STATE.md",
+        "git_blob": "c72cb28d0f3c02cd7ab68f04f57a940421557999",
+        "canonical_LF_sha256": "f679a9cc8eb4dc2b1da0fc74855f64ff26d09ea1c7348761622570f0f1b1ff7b"
+      },
+      {
+        "path": "docs/workflow/CURRENT_WORKFLOW.md",
+        "git_blob": "6fe1c1c66e357eebf207c16cf3a4d52942619492",
+        "canonical_LF_sha256": "834e796c9c007da3e6680595d51c5ae7d10a22fb0f5d41d6f944064f26d299e6"
+      }
+    ]
+  },
+  "acceptance": {
+    "AC12-01": {
+      "status": "PASS",
+      "scope": "Four destinations, restoration progress hierarchy, match/readiness distinction, actual branch switching/system back, targeted legacy redirect tests",
+      "final_APP_all_deeplinks_and_notification_matrix": "NOT_RUN"
+    },
+    "AC12-02": {
+      "status": "PASS",
+      "scope": "Existing tokens, shared Material controls, contrast/48dp/200pct counterexamples, actual dark/light/system theme and persistence",
+      "theme_storage_failure": "CONTROLLED_WIDGET"
+    },
+    "AC12-03": {
+      "status": "PASS",
+      "scope": "Me/settings grouping, real feedback4 creation and public reply, form validation, real IME/back retention, 200pct account-help boundary",
+      "account_security_and_privacy_business": "INHERITED_UNCHANGED_V10111"
+    },
+    "AC12-04": {
+      "status": "PASS",
+      "scope": "Real ordinary APP message16to17, recipient API and MariaDB readback, conversation404 presentation, narrow/large-font layout tests and existing failure/authority tests",
+      "final_APP_attachments_voice_RTC": "NOT_RUN_INHERITED_NAMED_PRIOR_EVIDENCE"
+    },
+    "AC12-05": {
+      "status": "PASS",
+      "scope": "Real matching not-ready state, progress expandable social navigation, ordinary APP MBTI and historical API readback, natal validation/advanced parameters and dynamic empty history",
+      "final_APP_every_social_and_chart_variant": "NOT_RUN"
+    },
+    "AC12-06": {
+      "status": "PASS",
+      "scope": "Real Web CSRF feedback3 write, APP feedback4 Web/API/APP round-trip, desktop/320px/200pct/focus, final APP keyboard/back/relogin/coldstart and shared semantics tests",
+      "screen_reader_hardware": "NOT_RUN"
+    }
+  },
+  "tests": {
+    "flutter_widget": {
+      "status": "PASS",
+      "unique_cases": 247,
+      "files": 23,
+      "batches": [
+        {
+          "log": "final-widget-v2-private.log",
+          "cases": 242
+        },
+        {
+          "log": "restoration-progress-green-private.log",
+          "new_disjoint_cases": 2,
+          "define": "ELITESYNC_V1014_LOCAL_BUILD=true"
+        },
+        {
+          "log": "readiness-title-green-private.log",
+          "cases": 30,
+          "new_disjoint_cases": 1
+        },
+        {
+          "log": "conversation-404-green-private.log",
+          "cases": 15,
+          "new_disjoint_cases": 2
+        }
+      ],
+      "overlapping_incremental_batches_not_added": [
+        "progress-incremental-private.log",
+        "readiness-title-green-private.log",
+        "conversation-404-green-private.log"
+      ]
+    },
+    "php": {
+      "status": "PASS",
+      "tests": 4,
+      "assertions": 45,
+      "file": "V10111SupportFeedbackTest.php",
+      "environment": "PHP8.4.27 / PHPUnit12.5.42 / isolated SQLite :memory:",
+      "log": "stage-e-views-v1-php-private.log"
+    },
+    "dart_analysis": {
+      "status": "PASS",
+      "changed_dart_files": 37,
+      "scope": "Changed files analyzed in affected increments; initial brace lint corrected and rechecked"
+    },
+    "whole_repository_analysis": "NOT_RUN",
+    "all_historical_AC_regression": "NOT_RUN"
+  },
+  "ordinary_business": {
+    "cohort": {
+      "new_fictional_users": [
+        21,
+        22
+      ],
+      "existing_legal_chat_users": [
+        16,
+        17
+      ],
+      "creation": "Ordinary registration API and Web operational approval; real identity unverified"
+    },
+    "feedback": {
+      "browser_API_created": 3,
+      "ordinary_APP_created": 4,
+      "owner": 21,
+      "final_revision": 2,
+      "final_status": "RESOLVED",
+      "API_confirmation_after_APP_POST": true,
+      "APP_readback_after_Web_reply": true,
+      "other_owner_detail_http": 404,
+      "internal_note_not_in_user_response": true
+    },
+    "chat": {
+      "id": 133,
+      "sender": 16,
+      "receiver": 17,
+      "content": "TEST_ONLY V10112 ordinary APP message 16 to 17",
+      "single_in_latest_window": true
+    },
+    "mbti": [
+      {
+        "id": 8,
+        "version_code": "lite3_v1",
+        "result_letters": "ENFP"
+      }
+    ],
+    "natal": "Empty birthday validator plus explicit unknown time and advanced settings; no new natal calculation in this version",
+    "dynamic": "New account private history empty; ordinary APP form entry plus ordinary API empty-list readback",
+    "navigation": {
+      "four_destinations": true,
+      "cross_branch_retains_detail": true,
+      "system_back_to_progress_root": true,
+      "branch_reselect_root": true,
+      "scroll_position_preserved": true
+    },
+    "persistence": {
+      "candidate": 1011204,
+      "user": 21,
+      "feedback_id": 4,
+      "feedback_revision": 2,
+      "status": "RESOLVED",
+      "ordinary_APP_relogin": true,
+      "APP_force_stop_coldstart": true,
+      "system_theme_persisted": true,
+      "API_DB_restart": "NOT_RUN_UNCHANGED_BUSINESS_MODEL"
+    }
+  },
+  "controlled_evidence": {
+    "Widget_fakes": "Layout, semantics, storage failure, explicit denial, transport failure, session/authority late responses",
+    "PHP_SQLite": "Affected support views and handlers; separate from MariaDB ordinary chain",
+    "final_APP_fault_injection": "NOT_RUN",
+    "APP_font_scale": "Controlled Android user11 setting2.0, restored1.0",
+    "Web_large_text": "Controlled320px viewport/body32px, normal CSRF session and real data"
+  },
+  "database": {
+    "database_driver": "mysql",
+    "version": "10.11.19-MariaDB-ubu2204",
+    "feedback": [
+      {
+        "id": 3,
+        "user_id": 21,
+        "source": "feedback",
+        "category": "other_suggestion",
+        "status": "RESOLVED",
+        "revision": 2
+      },
+      {
+        "id": 4,
+        "user_id": 21,
+        "source": "settings",
+        "category": "other_suggestion",
+        "status": "RESOLVED",
+        "revision": 2
+      }
+    ],
+    "updates": [
+      {
+        "feedback_id": 3,
+        "status": "RESOLVED",
+        "revision": 2
+      },
+      {
+        "feedback_id": 4,
+        "status": "RESOLVED",
+        "revision": 2
+      }
+    ],
+    "mbti": [
+      {
+        "id": 8,
+        "version_code": "lite3_v1",
+        "result_letters": "ENFP"
+      }
+    ],
+    "tool_revisions": [],
+    "message": [
+      {
+        "id": 133,
+        "sender_id": 16,
+        "receiver_id": 17
+      }
+    ],
+    "migration_count": 84,
+    "latest_migration": {
+      "migration": "2026_11_14_190000_create_support_feedback",
+      "batch": 10
+    }
+  },
+  "deployment": {
+    "final_source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941",
+    "web_view_source": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+    "backend_API_source": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+    "files": [
+      {
+        "path": "services/backend-laravel/resources/views/admin/layout.blade.php",
+        "runtime_sha256": "c77cd54a7d1eb0067f3246cdcf68a6757b4dbc37fbe61961b95b4d4a737298a1",
+        "git_blob": "093a04d8f3fa1dc2b21117b30f95212b5cf7cfd5"
+      },
+      {
+        "path": "services/backend-laravel/resources/views/admin/support-feedback-index.blade.php",
+        "runtime_sha256": "9c2af34371da134466762dbbeacda81a2b3f99d5858538dd4d1a77c70099b5ce",
+        "git_blob": "882197499308d19f9aef5b4235bba48fe42732ab"
+      },
+      {
+        "path": "services/backend-laravel/resources/views/admin/support-feedback-label.blade.php",
+        "runtime_sha256": "86a521d9ac954d988defce9370699aec802cd858c2e4490443433f2021e7da44",
+        "git_blob": "f664b3f4b8f6ffda1c3c55093fd7a3e11b2b3087"
+      },
+      {
+        "path": "services/backend-laravel/resources/views/admin/support-feedback.blade.php",
+        "runtime_sha256": "a52deaa06cb9412470a5dd1d93466946afb1b959b56fc9e5452e3e13984854d9",
+        "git_blob": "d60ea43d8270e008d1b373e1df78871f10305533"
+      }
+    ],
+    "migration": "NONE",
+    "readback_at": "2026-11-14T22:27:52.084501+08:00"
+  },
+  "installation": {
+    "at": "2026-11-14T14:01:14.289303+00:00",
+    "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941",
+    "candidate": 1011204,
+    "apk_sha256": "34d5ba051250c0516d937bb1d6c5773463f379f1c295231f9e37f1172d9938be",
+    "android_user": 11,
+    "emulator_index": 0,
+    "data": "RETAINED",
+    "phone": "NOT_USED"
+  },
+  "web_browser": {
+    "at": "2026-11-14T13:13:55.109Z",
+    "browser": "Existing Edge, dedicated local development profile",
+    "origin": "http://127.0.0.1:8021",
+    "feedback_id": 3,
+    "normal_csrf_form_write": false,
+    "desktop": {
+      "width": 1280,
+      "overflow": false,
+      "selectFont": "16px",
+      "reply": "TEST_ONLY V10112 desktop public reply",
+      "required": true
+    },
+    "table": {
+      "columns": 5,
+      "translatedStatus": true,
+      "overflow": false
+    },
+    "large_text": {
+      "width": 320,
+      "overflow": false,
+      "bodyFont": "32px",
+      "focused": "status",
+      "outline": "3px"
+    },
+    "native_confirmation_required": true,
+    "runtime_exceptions": [],
+    "scope": "Support feedback list/detail and base styles, ordinary virtual data"
+  },
+  "resource_snapshot": {
+    "at": "2026-11-14T22:28:15.674719+08:00",
+    "containers": [
+      {
+        "name": "v1015-current-dev-db",
+        "status": "running",
+        "started_at": "2026-11-14T08:26:19.573161264Z"
+      },
+      {
+        "name": "v1015-current-dev-api",
+        "status": "running",
+        "started_at": "2026-11-14T11:22:40.427020294Z"
+      },
+      {
+        "name": "v1015-current-dev-ws",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:15.905342048Z"
+      },
+      {
+        "name": "v1015-current-dev-sfu",
+        "status": "running",
+        "started_at": "2026-11-14T11:22:41.848908924Z"
+      }
+    ],
+    "emulator_A": "STOPPED_DATA_RETAINED",
+    "emulator_B": "NOT_STARTED_THIS_VERSION_DATA_RETAINED",
+    "phone": "NOT_USED",
+    "adb5038_USB_excluded": true,
+    "font_scale_original_restored": "1.0",
+    "reverse_routes": "EMULATOR_A_REMOVED",
+    "original_main_protection": "MATCHED_STARTUP_HEAD_STATUS_DIFF_CACHED_DIFF_INDEX",
+    "SystemDrive_directory": "UNTOUCHED_UNTRACKED",
+    "API_DB_restart": "NOT_RUN",
+    "migration": "NONE"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/home-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:02:16.443470+00:00",
+      "sha256": "9c5a178582541bc475f41e016351cee2aa9c6683b6da802e3b9e261c1bf534f5",
+      "bytes": 142221,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/progress-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:02:26.098084+00:00",
+      "sha256": "b2e6c24a3767c2e0e1526a5fef6b33a3f3f4a4ea96850b2a87763826d5d98086",
+      "bytes": 142661,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/me-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:02:43.296575+00:00",
+      "sha256": "0b949697ac369aec069362e00d520ce45f5d73146cbfda82bc2d8ba54f823601",
+      "bytes": 159313,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/settings-dark-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:02:50.974310+00:00",
+      "sha256": "1aeb711642dd6244c3ad5c7e8a4bab74f8787b3b4ebd94cbf8ca9df50795d1aa",
+      "bytes": 121297,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/settings-system-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:03:20.919242+00:00",
+      "sha256": "64d7898c98f0f3adabb0e58ed47a36ac76d841182c8d174d385699a43af7ced4",
+      "bytes": 121893,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/feedback-keyboard-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:07:35.620436+00:00",
+      "sha256": "38b072111b3c75cead9566d751b7b2f7e1483092d84dcb0cc6048304f5b1698d",
+      "bytes": 125401,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/feedback-reply-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:08:29.304453+00:00",
+      "sha256": "e3faa577dd0db2ef376281bc0d561ac0a16cd1fefc07c80d05d7fbd2f4c9761c",
+      "bytes": 158637,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/feedback-large-text-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:08:35.598238+00:00",
+      "sha256": "f9f5a8aacd5c286caf8ea15a44dda8ade457fc24c3d8a2c964091c715fcf0a05",
+      "bytes": 154786,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/account-help-large-text-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:10:30.196425+00:00",
+      "sha256": "c5f90a24ce12e33a411d50b32c9a9a2ada85eb954f1f6eff8b4eca4f93cce742",
+      "bytes": 173816,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/matching-not-ready-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:10:56.657862+00:00",
+      "sha256": "e60c56c88cde45ace0e4a1b6c4ec760b20ca0676088fa73938f8ef1086c5752f",
+      "bytes": 210237,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/chat-controls-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:24:07.822506+00:00",
+      "sha256": "ac1e7ef5eae9fae9df95119e05100cad1d1d82909f49c5c4f927f6c5d137d76c",
+      "bytes": 73021,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/chat-sent-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:24:28.662326+00:00",
+      "sha256": "a687c3b8841f9ac922d9500a7d1e473c5bccbc35137ce8f9b742f3bbf0c9111d",
+      "bytes": 110340,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/mbti-result-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:15:01.306546+00:00",
+      "sha256": "0ebd171aceb0051afc167edbbe4c4e7a28f3bf062cf7eb9c57334dc050170351",
+      "bytes": 104138,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/natal-advanced-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:19:01.404973+00:00",
+      "sha256": "d6313bf315c39df2f51df637c124b6eb10986be80d118f01a006ee3456267385",
+      "bytes": 137248,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/natal-validation-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:19:15.998779+00:00",
+      "sha256": "8cb8fd7a1ac7f67862f3594e2da155ce6a1edb48bd4d35faa72462fbe866dc7e",
+      "bytes": 139636,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/dynamic-entry-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:20:23.936853+00:00",
+      "sha256": "e0199191502aca6c0722bfae7860bb63ef026844279a76989f1c96f9ae6e524e",
+      "bytes": 125285,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/feedback-coldstart-final-1011204.png",
+      "candidate": 1011204,
+      "captured_at": "2026-11-14T14:27:17.027382+00:00",
+      "sha256": "9c6aab2d5aa0fe966e47a0765f97a6f043eb3cb7e7ca7cef221a706c10ea0b1c",
+      "bytes": 157695,
+      "device": "emulator-5580 / Android user11",
+      "data": "FICTIONAL_ONLY",
+      "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941"
+    },
+    {
+      "path": "evidence/web-review-support-desktop.png",
+      "captured_at": "2026-11-14T13:13:55.109Z",
+      "web_view_source": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+      "sha256": "527c14d69a86e4d1ec175d309aabdca762cf3f994ed4d841e8512ad053f853b9",
+      "bytes": 43994,
+      "device": "Existing Edge / dedicated fictional-data profile",
+      "data": "FICTIONAL_ONLY"
+    },
+    {
+      "path": "evidence/web-review-support-large-text.png",
+      "captured_at": "2026-11-14T13:13:55.109Z",
+      "web_view_source": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+      "sha256": "411d23f420580ccd41fa30108bf823fa980b256e841f6d2fc644eeb74d069706",
+      "bytes": 31250,
+      "device": "Existing Edge / dedicated fictional-data profile",
+      "data": "FICTIONAL_ONLY"
+    },
+    {
+      "path": "evidence/web-review-support-list.png",
+      "captured_at": "2026-11-14T13:13:55.109Z",
+      "web_view_source": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+      "sha256": "584313680b3420a655a357644d803d0c25c330fe2441b4b6460d7bcee9048521",
+      "bytes": 38204,
+      "device": "Existing Edge / dedicated fictional-data profile",
+      "data": "FICTIONAL_ONLY"
+    }
+  ],
+  "failures_preserved": [
+    "Contrast, long buttons, minimum target, storage-failure feedback and dangerous confirmation counterexamples failed before correction.",
+    "Final walk-through found restoration progress activity-first hierarchy and shared readiness mislabeled as progress; corrected in candidates1011202/1011203.",
+    "Ordinary no-authorized-conversation404 displayed as unknown read with internal error; presentation fixed and guarded by404/503 Widget cases in1011204.",
+    "Build resource precheck stopped before Java; own emulator released, original threshold retained, subsequent build passed.",
+    "Cold emulator user service/activity/UI hierarchy readiness failures retained; normal readiness wait and installed APK hash readback passed.",
+    "Private UI script initially expected empty200 instead of actual contract404, omitted Android input hints, tapped oversized semantics card center, searched wrong scroll direction, and expected offscreen headings/history selector. Selectors corrected using current UI without altering product business.",
+    "Old Widget harness dependency and synchronous SessionNotifier fixtures adapted while keeping HTTP0/storageWrites0/RTCfalse assertions.",
+    "One initial formatter/lint issue corrected; focused Dart analysis passed."
+  ],
+  "inherited_evidence": {
+    "v10111": "docs/versions/v10.1.11/IMPLEMENTATION_REPORT.md at3888c6eb63ecfb6798a80387f4b27cd891a10457; R1 closed2f3058d39a936063768ffb895f577d97a088e04c",
+    "v10110": "docs/versions/v10.1.10/IMPLEMENTATION_REPORT.md and ADVISOR_ACCEPTANCE_20261114.md atf8872d352fc55af2c0bb8d3cc67f2440019c51e9; source0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+    "v1019": "docs/versions/v10.1.9/IMPLEMENTATION_REPORT.md at6a9f28d9e60ff8abbad96494925ccea3b2dd46a4; V1019-R1-01 retained",
+    "v1018": "docs/versions/v10.1.8/supplement-r1-20261114/README.md at1074c210ee7fa6641799fa6e19d29fc46ef6b2bc; R1-01 CLOSED by Owner"
+  },
+  "limitations": {
+    "algorithm_independent_accuracy": "UNVERIFIED",
+    "REAL_PUSH": "REAL_PUSH_PROVIDER_PENDING",
+    "historical_SFU_RPC_precise_root_cause": "UNKNOWN",
+    "phone": "NOT_RUN",
+    "RTC_media_hardware": "NOT_RUN",
+    "TalkBack_or_screen_reader_device_session": "NOT_RUN",
+    "final_APP_fault_injection": "NOT_RUN",
+    "all_final_APP_chart_variants": "NOT_RUN",
+    "API_DB_restart": "NOT_RUN",
+    "main_integration": "NOT_RUN",
+    "release": "NOT_RUN"
+  }
+}

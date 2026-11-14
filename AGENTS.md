@@ -8,11 +8,11 @@ Owner已确认项目交接及选定旧版主要功能接续完成。当前完善
 
 整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6—v10.1.9按各自已接受范围保留。v10.1.10六项AC及手机补证获顾问范围接受，Owner整版最终接受沿原记录PENDING。v10.1.11六项AC声明工程范围已获顾问与Owner接受，AC11-02为限定能力接受，R1-01 CLOSED；原NOT_RUN/UNKNOWN继续保留。当前授权版本为v10.1.12「集中UI、信息结构与文案完善」。新破冰、约见、共同计划、纪念日仅留接口。
 
-## 2026-11-14 当前执行范围
+## 2026-11-14 当前交付状态
 
-v10.1.12「集中UI、信息结构与文案完善」已授权。按[任务](docs/versions/v10.1.12/task_order.md)、[计划](docs/versions/v10.1.12/plan.md)和[启动Prompt](docs/versions/v10.1.12/CODEX_START_PROMPT.txt)执行；五阶段顺序为我的/设置、消息/聊天、首页/进展、匹配/社交/特色工具、必要Web页面。v10.1.11原工程固定提交为`3888c6eb63ecfb6798a80387f4b27cd891a10457`，R1-01关闭提交为`2f3058d39a936063768ffb895f577d97a088e04c`。顾问验收、Owner接受、main集成与发布分别记录。
+v10.1.12「集中UI、信息结构与文案完善」已集中工程交付，等待新顾问验收。六项AC按代表性旅程和受影响范围工程自验PASS，顾问验收与Owner整版接受均为PENDING。实施范围与限制见[实施报告](docs/versions/v10.1.12/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.12/artifact_manifest.json)。五阶段为我的/设置、消息/聊天、首页/进展、匹配/社交/特色工具、必要Web页面。
 
-当前执行v10.1.12集中UI、信息结构与文案完善。任务分支`codex/v10.1.12-ui-information-architecture-20261114`，唯一父基线`2f3058d39a936063768ffb895f577d97a088e04c`。保留已接受业务合同与权限，不新增大型业务；集中交付后停下供顾问验收，不自动启动后续版本。
+任务分支`codex/v10.1.12-ui-information-architecture-20261114`，唯一父基线`2f3058d39a936063768ffb895f577d97a088e04c`。最终APP源码`ac7fb5b28396394e58c72002e19cc9bbad805941`，候选10.1.12-dev / 1011204。当前停在顾问验收点。后续版本等待Owner新授权，main集成与正式发布分别等待对应决定。
 
 真实Push为REAL_PUSH_PROVIDER_PENDING，历史非注入SFU/RPC精确根因为UNKNOWN，未验硬件/自然期限及旧失败分别保留。已接受的通信、好友/搭子/活动与自我认识工具按具名范围继承。
 
@@ -48,4 +48,4 @@ Owner于2026-11-12具体授权验收说明、120张测试截图、画廊/控件�
 
 2026-11-14 [Owner接受v10.1.9并授权v10.1.10的决定](docs/decisions/OWNER_V10_1_9_ACCEPTANCE_AND_V10_1_10_AUTHORIZATION_20261114.md)作为历史依据保留。v10.1.9六项AC获顾问与Owner范围接受，V1019-R1-01 CLOSED，无需R2。v10.1.10任务分支为`codex/v10.1.10-self-knowledge-specialty-tools-20261114`，固定父基线为`8e74d1f7496f066a586afb1e5653ed563b64c46d`，其[实施报告](docs/versions/v10.1.10/IMPLEMENTATION_REPORT.md)记录实际交付。MBTI不作诊断或匹配硬筛选，双人盘使用本人已确认或明确手填输入，既有用途权限继续适用。
 
-此后[Owner单独授权v10.1.11](docs/decisions/OWNER_V10_1_10_ADVISOR_ACCEPTANCE_AND_V10_1_11_AUTHORIZATION_20261114.md)。v10.1.10的历史停止条件及开工指令按其当时范围保留在版本档案中，当前入口见本文件当前执行范围、ACTIVE_STATE和CURRENT_WORKFLOW。
+此后[Owner单独授权v10.1.11](docs/decisions/OWNER_V10_1_10_ADVISOR_ACCEPTANCE_AND_V10_1_11_AUTHORIZATION_20261114.md)。v10.1.10的历史停止条件及开工指令按其当时范围保留在版本档案中，当前入口见本文件当前交付状态、ACTIVE_STATE和CURRENT_WORKFLOW。
