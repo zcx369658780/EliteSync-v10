@@ -1,0 +1,267 @@
+{
+  "schema": "elitesync-v10111-artifact-manifest-v1",
+  "version": "10.1.11",
+  "state": "ENGINEERING_DELIVERED_WITH_DECLARED_LIMITS_ADVISOR_PENDING",
+  "branch": "codex/v10.1.11-account-support-quality-20261114",
+  "task_parent": "96a2125370677d5d508710b590a808f44e50a119",
+  "task_documents": "eb1ef7680d5327e5338695ecd2538264c9dacb8c",
+  "local_docs_sync": "LOCAL_DOCS_SYNCED",
+  "local_docs_synced_at": "2026-11-14T18:28:55.425018+08:00",
+  "app_source": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+  "backend_source": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+  "candidate": {
+    "source_commit": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+    "version_code": 1011101,
+    "version_name": "10.1.11-dev",
+    "package": "com.elitesync.v1015dev",
+    "apk_sha256": "df0e74e3a23becaa5d5e0511b1d62518425f9d4ca6e48538e050cc6229a259e4",
+    "apk_bytes": 123918058,
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42"
+  },
+  "apk_verification": {
+    "v2_signature": "PASS",
+    "abi": "arm64-v8a",
+    "ZIP_integrity": "PASS",
+    "new_feature_kernel_markers": "PASS",
+    "installed_bytes_sha256": "df0e74e3a23becaa5d5e0511b1d62518425f9d4ca6e48538e050cc6229a259e4",
+    "emulator": "5580 / Android user11",
+    "data": "RETAINED"
+  },
+  "changed_source_paths": [
+    "apps/android/app/build.gradle.kts",
+    "apps/flutter_elitesync_module/lib/features/auth/presentation/pages/login_page.dart",
+    "apps/flutter_elitesync_module/lib/features/feedback/presentation/pages/inner_test_feedback_page.dart",
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/account_recovery_help_page.dart",
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/change_password_page.dart",
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/settings_page.dart",
+    "apps/flutter_elitesync_module/lib/features/slow_dating_v1012/relationship_privacy_page.dart",
+    "apps/flutter_elitesync_module/test/features/feedback/presentation/pages/inner_test_feedback_page_test.dart",
+    "apps/flutter_elitesync_module/test/features/profile/presentation/pages/change_password_page_test.dart",
+    "apps/flutter_elitesync_module/test/features/profile/v10111_support_quality_test.dart",
+    "services/backend-laravel/app/Http/Controllers/Api/V1/AccountSupportController.php",
+    "services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php",
+    "services/backend-laravel/app/Http/Controllers/Api/V1/PrivacyController.php",
+    "services/backend-laravel/app/Http/Controllers/Api/V1/SupportFeedbackController.php",
+    "services/backend-laravel/app/Http/Controllers/Web/SupportFeedbackController.php",
+    "services/backend-laravel/app/Models/SupportFeedback.php",
+    "services/backend-laravel/app/Services/Accounts/DeviceSessions.php",
+    "services/backend-laravel/app/Services/SupportFeedbackService.php",
+    "services/backend-laravel/bootstrap/app.php",
+    "services/backend-laravel/database/migrations/2026_11_14_190000_create_support_feedback.php",
+    "services/backend-laravel/resources/views/admin/layout.blade.php",
+    "services/backend-laravel/resources/views/admin/support-feedback-index.blade.php",
+    "services/backend-laravel/resources/views/admin/support-feedback.blade.php",
+    "services/backend-laravel/routes/api.php",
+    "services/backend-laravel/routes/web.php",
+    "services/backend-laravel/tests/Feature/V10111AccountSupportTest.php",
+    "services/backend-laravel/tests/Feature/V10111SupportFeedbackTest.php"
+  ],
+  "acceptance": {
+    "AC11-01": {
+      "status": "PASS",
+      "scope": "APP password change and re-login, API device revoke, old access/refresh/password rejection, controlled session deadline tests"
+    },
+    "AC11-02": {
+      "status": "PASS",
+      "scope": "Plan-limited capability status, accurate APP help and existing receipt lookup entry",
+      "forgot_password_reset": "NOT_RUN / VERIFICATION_PROVIDER_NOT_CONFIGURED",
+      "closure_receipt_recovery_positive_chain": "INHERITED_UNCHANGED_SOURCE_AND_ACCOUNT_SECURITY_TESTS",
+      "closure_account_reactivation": "UNAVAILABLE"
+    },
+    "AC11-03": {
+      "status": "PASS",
+      "scope": "Account fields default SELF, APP/API save and re-login readback, return to SELF revision4, actual unentitled peer404",
+      "verified_ACTIVE_formal_relationship_positive_disclosure": "NOT_RUN / IDENTITY_PROVIDER_NOT_CONFIGURED"
+    },
+    "AC11-04": {
+      "status": "PASS",
+      "scope": "APP feedback2 creation then independent GET confirmation, own history, MariaDB persistence, API key replay and immutable payload"
+    },
+    "AC11-05": {
+      "status": "PASS",
+      "scope": "Real Web CSRF classification/RESOLVED/public reply, idempotent review, API and APP revision2 readback, internal fields excluded"
+    },
+    "AC11-06": {
+      "status": "PASS",
+      "scope": "Real APP account19 to20 clears feedback and unsent draft, re-login and cold start after API restart; controlled rejection/network/late-response cases"
+    }
+  },
+  "tests": {
+    "php": {
+      "status": "PASS",
+      "tests": 36,
+      "assertions": 199,
+      "runtime": "PHP8.4.27 / PHPUnit12.5.42 / isolated SQLite :memory:",
+      "files": [
+        "V10111AccountSupportTest.php",
+        "V10111SupportFeedbackTest.php",
+        "V1015TrustedLoginTest.php",
+        "V1011AccountSecurityTest.php"
+      ],
+      "private_log": "backend-directed-v6-php-private.log"
+    },
+    "flutter_widget": {
+      "status": "PASS",
+      "tests": 28,
+      "files": [
+        "test/features/profile/v10111_support_quality_test.dart",
+        "test/features/feedback/presentation/pages/inner_test_feedback_page_test.dart",
+        "test/features/profile/presentation/pages/change_password_page_test.dart",
+        "test/features/slow_dating_v1012/journey_pages_test.dart"
+      ],
+      "private_log": "widget-directed-v5-private.log"
+    },
+    "dart_analyze": {
+      "status": "PASS",
+      "changed_files": 9,
+      "private_log": "analyze-directed-v3-private.log"
+    },
+    "php_syntax": {
+      "status": "PASS",
+      "scope": "changed deployed non-Blade PHP"
+    },
+    "repository_wide_analysis": "NOT_RUN",
+    "deduplication": "Final suites counted once; earlier batches and overlapping evidence not added."
+  },
+  "migration": {
+    "id": 84,
+    "migration": "2026_11_14_190000_create_support_feedback",
+    "batch": 10
+  },
+  "deployment": {
+    "source_commit": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+    "changed_mounted_files_verified": 15,
+    "all_match_local_committed_source": true,
+    "line_endings": "Git canonical LF used for task document identity; deployment byte hashes compared to actual local files."
+  },
+  "resource_snapshot": {
+    "at": "2026-11-14T19:25:14.117641+08:00",
+    "containers": [
+      {
+        "name": "v1015-current-dev-db",
+        "status": "running",
+        "started_at": "2026-11-14T08:26:19.573161264Z"
+      },
+      {
+        "name": "v1015-current-dev-api",
+        "status": "running",
+        "started_at": "2026-11-14T11:22:40.427020294Z"
+      },
+      {
+        "name": "v1015-current-dev-ws",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:15.905342048Z"
+      },
+      {
+        "name": "v1015-current-dev-sfu",
+        "status": "running",
+        "started_at": "2026-11-14T11:22:41.848908924Z"
+      }
+    ],
+    "emulator_ports": {
+      "5580": false,
+      "5582": false
+    },
+    "emulator_a": "STOPPED_AFTER_FINAL_CANDIDATE_CHECKS",
+    "emulator_b": "NOT_STARTED",
+    "avd_and_android_user11_12_data": "RETAINED",
+    "phone": "NOT_USED",
+    "adb_server_port": 5038,
+    "adb_usb_filter": "elitesync-current-emulators-only-no-usb",
+    "original_main_protection": "MATCHED_STARTUP_HEAD_STATUS_DIFF_INDEX",
+    "api_restart": "CONTROLLED_PROCESS_RESTART_NORMAL_READBACK_PASS",
+    "database_restart": "NOT_RUN"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/account-help.png",
+      "sha256": "d33695b492f62da1b737f94d6c3f8714af9dd830e13f4d981b94aa06fec49ac9",
+      "bytes": 100034,
+      "captured_at": "2026-11-14T11:09:38.507802+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/password-reauth.png",
+      "sha256": "266a88c34427c8f7707b81bca2c4a3a2ea37a10bb0619b455d8378ed2a08f2ac",
+      "bytes": 175924,
+      "captured_at": "2026-11-14T11:18:10.426613+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/feedback-submitted.png",
+      "sha256": "0eb344f952baf4452c388d0b7d7acb792c6a796841b25a8e14e183633387a319",
+      "bytes": 145268,
+      "captured_at": "2026-11-14T11:12:55.656782+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/feedback-reply.png",
+      "sha256": "e2ae02c613ef13b0fcad54fa6881e72e0ec56e26cfb7ec6f2f6f5a7d96d429ac",
+      "bytes": 165187,
+      "captured_at": "2026-11-14T11:13:55.174949+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/privacy-relogin.png",
+      "sha256": "33df0e3b18d8c8cbed4b872f505dbbff10b6cfb9e3cb539239f9583b00a5eb5c",
+      "bytes": 118728,
+      "captured_at": "2026-11-14T11:19:44.967926+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/privacy-self.png",
+      "sha256": "3a56032448349196799fd4c5c511593a0ec2c93398a8567a2fb4910134cbf197",
+      "bytes": 116143,
+      "captured_at": "2026-11-14T11:20:52.326142+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/other-owner-empty.png",
+      "sha256": "063594b4ff0dd76cbae220624244c8bcd704811ff268f863d729c57c2ea475fb",
+      "bytes": 134501,
+      "captured_at": "2026-11-14T11:21:57.602094+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    }
+  ],
+  "evidence": "EVIDENCE_SUMMARY.json",
+  "implementation_report": "IMPLEMENTATION_REPORT.md",
+  "review": {
+    "codex_engineering": "COMPLETED_DIRECTED_SCOPE",
+    "external_advisor": "PENDING",
+    "owner_acceptance": "PENDING",
+    "main_integration": "NOT_RUN",
+    "release": "NOT_RUN"
+  },
+  "inherited": {
+    "baseline": "96a2125370677d5d508710b590a808f44e50a119",
+    "v10.1.10_phone_evidence": "605985d5b6e4e18854da04b37ce1178b825fa27b",
+    "scope": "Unmodified accepted social/activity/private-tool and communication behavior; current credentials invalidation covered in directed tests.",
+    "real_push": "REAL_PUSH_PROVIDER_PENDING",
+    "historical_non_injected_SFU_RPC_root_cause": "UNKNOWN",
+    "algorithm_independent_accuracy": "UNVERIFIED"
+  },
+  "not_run": [
+    "Owner phone",
+    "second emulator",
+    "full project regression and analysis",
+    "final APP offline/fault injection",
+    "real verification-provider password reset",
+    "verified ACTIVE formal relationship positive disclosure",
+    "database restart",
+    "RTC/media/hardware matrix"
+  ],
+  "git_delivery": {
+    "remote": "origin",
+    "push_branch": "codex/v10.1.11-account-support-quality-20261114",
+    "fixed_delivery_commit": "Resolve from the Git commit containing this manifest; exact remote fixed readback reported in delivery response.",
+    "private_readback_receipt": "delivery-readback-private.json"
+  },
+  "local_only": "Full original evidence, credentials, database, APK and private tools retained on Owner PC."
+}

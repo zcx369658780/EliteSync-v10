@@ -1,0 +1,324 @@
+{
+  "schema": "elitesync-v10111-evidence-summary-v1",
+  "source_commit": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+  "candidate": 1011101,
+  "local_documents": {
+    "at": "2026-11-14T18:28:55.425018+08:00",
+    "status": "LOCAL_DOCS_SYNCED",
+    "task_commit": "eb1ef7680d5327e5338695ecd2538264c9dacb8c",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "git_blob": "6591b1f51cbbf33b60333ba7b6280507c50ad5d1",
+        "canonical_LF_sha256": "2759e35d0476bafd4cfd0708cecbf0c3d71650b7b229c40607cc9ae1f22a74b5"
+      },
+      {
+        "path": "docs/workflow/ACTIVE_STATE.md",
+        "git_blob": "59765a44551c0174b69bb66420bc3c8ab112675f",
+        "canonical_LF_sha256": "67572ed2577bdb34c0d69d8be3282f21aeea4b7be82396fa1063130aacab0acf"
+      },
+      {
+        "path": "docs/workflow/CURRENT_WORKFLOW.md",
+        "git_blob": "f371de80451ff5a1c9501b02fe55382a95f95800",
+        "canonical_LF_sha256": "b8d4780aeee7aa60970a3e9b476293e0a3dc1334620451d57b43cdfe2d39484e"
+      },
+      {
+        "path": "docs/decisions/OWNER_V10_1_10_ADVISOR_ACCEPTANCE_AND_V10_1_11_AUTHORIZATION_20261114.md",
+        "git_blob": "d553566f90bc560e763d590419b7262d9cf6ceba",
+        "canonical_LF_sha256": "455a94378548125f4ba4a5404bd50b64d5e630952ccdcb321b5296ed87ec71fe"
+      },
+      {
+        "path": "docs/versions/v10.1.11/task_order.md",
+        "git_blob": "3f6d30f892906bc3faa358ced3f2b3b5724a678c",
+        "canonical_LF_sha256": "7ff5736210cefb11f776c26e2e510bb56d58678b6a9072da556a53f19bc2704f"
+      },
+      {
+        "path": "docs/versions/v10.1.11/plan.md",
+        "git_blob": "0e586e0da185d0ada5ede48d766bea23076a1f8a",
+        "canonical_LF_sha256": "5ba566d016a2acb623ec1eaaa7a96902e0733af2f98ebec0b28180955cfbdb51"
+      },
+      {
+        "path": "docs/versions/v10.1.11/CODEX_START_PROMPT.txt",
+        "git_blob": "5c286680a08edcb279315950fffcba75dfcb43ba",
+        "canonical_LF_sha256": "fc712094ea0ac37a7bcf7a00b10f5a2b2560d73da1f8398dbbe59b9aad0e0275"
+      }
+    ]
+  },
+  "ordinary_business": {
+    "fictional_users": [
+      19,
+      20
+    ],
+    "registration": "POST auth/register, no SQL writes",
+    "password_changes": [
+      "normal API change",
+      "normal APP change to login screen"
+    ],
+    "old_access_and_refresh_http": 401,
+    "old_password_login_http": 422,
+    "new_password_login_http": 200,
+    "current_device_API_revoke": "PASS; current device family revoked and subsequent credential401",
+    "feedback": {
+      "api_created_id": 1,
+      "app_created_id": 2,
+      "owner": 19,
+      "source": "settings",
+      "API_initial_category": "bug_report",
+      "APP_initial_category": "profile_data",
+      "admin_category": "other_suggestion",
+      "final_status": "RESOLVED",
+      "final_revision": 2,
+      "rows": 2,
+      "admin_update_rows": 2,
+      "each_original_web_command_replayed": "one persisted update per feedback",
+      "api_same_key_changed_payload_http": 409,
+      "other_owner_detail_http": 404,
+      "other_owner_list": [],
+      "internal_note_in_user_response": false,
+      "APP_GET_after_POST_confirmation": true
+    },
+    "privacy": {
+      "owner": 19,
+      "api_sharing_revision": 1,
+      "api_return_SELF_revision": 2,
+      "APP_sharing_revision": 3,
+      "APP_relogin_readback_revision": 3,
+      "APP_return_SELF_revision": 4,
+      "final_fields": {
+        "birthday": "SELF",
+        "interests": "SELF",
+        "resume": "SELF",
+        "zodiac": "SELF"
+      },
+      "unentitled_peer_http_before_and_after_revoke": 404,
+      "actual_identity_provider": "PROVIDER_NOT_CONFIGURED"
+    },
+    "receipt_recovery_boundary": {
+      "unclosed_account_and_unknown_fictional_phone": "same generic422",
+      "account_reactivation": false
+    },
+    "account_switch": {
+      "from": 19,
+      "to": 20,
+      "old_feedback_and_unsent_draft_absent": true
+    },
+    "relogin_and_cold_start": {
+      "user": 19,
+      "feedback": 2,
+      "status": "RESOLVED",
+      "revision": 2,
+      "privacy_revision": 4
+    }
+  },
+  "controlled_operations": {
+    "API_process_restart": {
+      "performed": true,
+      "first_immediate_GET": "CONNECTION_RESET_DURING_STARTUP",
+      "subsequent_normal_readback": "PASS; feedback2 revision2 and privacy revision4"
+    },
+    "SQLite_fixtures_and_Widget_responses": "Only directed counterexamples and unit coverage",
+    "final_APP_network_fault_injection": "NOT_RUN",
+    "database_restart": "NOT_RUN"
+  },
+  "tests": {
+    "php": {
+      "status": "PASS",
+      "tests": 36,
+      "assertions": 199,
+      "runtime": "PHP8.4.27 / PHPUnit12.5.42 / isolated SQLite :memory:",
+      "files": [
+        "V10111AccountSupportTest.php",
+        "V10111SupportFeedbackTest.php",
+        "V1015TrustedLoginTest.php",
+        "V1011AccountSecurityTest.php"
+      ],
+      "private_log": "backend-directed-v6-php-private.log"
+    },
+    "flutter_widget": {
+      "status": "PASS",
+      "tests": 28,
+      "files": [
+        "test/features/profile/v10111_support_quality_test.dart",
+        "test/features/feedback/presentation/pages/inner_test_feedback_page_test.dart",
+        "test/features/profile/presentation/pages/change_password_page_test.dart",
+        "test/features/slow_dating_v1012/journey_pages_test.dart"
+      ],
+      "private_log": "widget-directed-v5-private.log"
+    },
+    "dart_analyze": {
+      "status": "PASS",
+      "changed_files": 9,
+      "private_log": "analyze-directed-v3-private.log"
+    },
+    "php_syntax": {
+      "status": "PASS",
+      "scope": "changed deployed non-Blade PHP"
+    },
+    "repository_wide_analysis": "NOT_RUN",
+    "deduplication": "Final suites counted once; earlier batches and overlapping evidence not added."
+  },
+  "acceptance": {
+    "AC11-01": {
+      "status": "PASS",
+      "scope": "APP password change and re-login, API device revoke, old access/refresh/password rejection, controlled session deadline tests"
+    },
+    "AC11-02": {
+      "status": "PASS",
+      "scope": "Plan-limited capability status, accurate APP help and existing receipt lookup entry",
+      "forgot_password_reset": "NOT_RUN / VERIFICATION_PROVIDER_NOT_CONFIGURED",
+      "closure_receipt_recovery_positive_chain": "INHERITED_UNCHANGED_SOURCE_AND_ACCOUNT_SECURITY_TESTS",
+      "closure_account_reactivation": "UNAVAILABLE"
+    },
+    "AC11-03": {
+      "status": "PASS",
+      "scope": "Account fields default SELF, APP/API save and re-login readback, return to SELF revision4, actual unentitled peer404",
+      "verified_ACTIVE_formal_relationship_positive_disclosure": "NOT_RUN / IDENTITY_PROVIDER_NOT_CONFIGURED"
+    },
+    "AC11-04": {
+      "status": "PASS",
+      "scope": "APP feedback2 creation then independent GET confirmation, own history, MariaDB persistence, API key replay and immutable payload"
+    },
+    "AC11-05": {
+      "status": "PASS",
+      "scope": "Real Web CSRF classification/RESOLVED/public reply, idempotent review, API and APP revision2 readback, internal fields excluded"
+    },
+    "AC11-06": {
+      "status": "PASS",
+      "scope": "Real APP account19 to20 clears feedback and unsent draft, re-login and cold start after API restart; controlled rejection/network/late-response cases"
+    }
+  },
+  "database": {
+    "engine": "10.11.19-MariaDB-ubu2204",
+    "migration": {
+      "id": 84,
+      "migration": "2026_11_14_190000_create_support_feedback",
+      "batch": 10
+    }
+  },
+  "deployment": {
+    "source_commit": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+    "changed_mounted_files_verified": 15,
+    "all_match_local_committed_source": true,
+    "line_endings": "Git canonical LF used for task document identity; deployment byte hashes compared to actual local files."
+  },
+  "installation": {
+    "at": "2026-11-14T11:06:09.564139+00:00",
+    "android_user": 11,
+    "emulator_index": 0,
+    "version_code": 1011101,
+    "apk_sha256": "df0e74e3a23becaa5d5e0511b1d62518425f9d4ca6e48538e050cc6229a259e4",
+    "source_commit": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+    "data": "RETAINED",
+    "phone": "NOT_USED",
+    "initial_launch": "ACTIVITY_NOT_READY_THEN_LAUNCH_WAIT_TIMEOUT",
+    "recovery": "RESOLVED_ACTIVITY_AND_CURRENT_UI_READBACK"
+  },
+  "resource_snapshot": {
+    "at": "2026-11-14T19:25:14.117641+08:00",
+    "containers": [
+      {
+        "name": "v1015-current-dev-db",
+        "status": "running",
+        "started_at": "2026-11-14T08:26:19.573161264Z"
+      },
+      {
+        "name": "v1015-current-dev-api",
+        "status": "running",
+        "started_at": "2026-11-14T11:22:40.427020294Z"
+      },
+      {
+        "name": "v1015-current-dev-ws",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:15.905342048Z"
+      },
+      {
+        "name": "v1015-current-dev-sfu",
+        "status": "running",
+        "started_at": "2026-11-14T11:22:41.848908924Z"
+      }
+    ],
+    "emulator_ports": {
+      "5580": false,
+      "5582": false
+    },
+    "emulator_a": "STOPPED_AFTER_FINAL_CANDIDATE_CHECKS",
+    "emulator_b": "NOT_STARTED",
+    "avd_and_android_user11_12_data": "RETAINED",
+    "phone": "NOT_USED",
+    "adb_server_port": 5038,
+    "adb_usb_filter": "elitesync-current-emulators-only-no-usb",
+    "original_main_protection": "MATCHED_STARTUP_HEAD_STATUS_DIFF_INDEX",
+    "api_restart": "CONTROLLED_PROCESS_RESTART_NORMAL_READBACK_PASS",
+    "database_restart": "NOT_RUN"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/account-help.png",
+      "sha256": "d33695b492f62da1b737f94d6c3f8714af9dd830e13f4d981b94aa06fec49ac9",
+      "bytes": 100034,
+      "captured_at": "2026-11-14T11:09:38.507802+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/password-reauth.png",
+      "sha256": "266a88c34427c8f7707b81bca2c4a3a2ea37a10bb0619b455d8378ed2a08f2ac",
+      "bytes": 175924,
+      "captured_at": "2026-11-14T11:18:10.426613+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/feedback-submitted.png",
+      "sha256": "0eb344f952baf4452c388d0b7d7acb792c6a796841b25a8e14e183633387a319",
+      "bytes": 145268,
+      "captured_at": "2026-11-14T11:12:55.656782+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/feedback-reply.png",
+      "sha256": "e2ae02c613ef13b0fcad54fa6881e72e0ec56e26cfb7ec6f2f6f5a7d96d429ac",
+      "bytes": 165187,
+      "captured_at": "2026-11-14T11:13:55.174949+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/privacy-relogin.png",
+      "sha256": "33df0e3b18d8c8cbed4b872f505dbbff10b6cfb9e3cb539239f9583b00a5eb5c",
+      "bytes": 118728,
+      "captured_at": "2026-11-14T11:19:44.967926+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/privacy-self.png",
+      "sha256": "3a56032448349196799fd4c5c511593a0ec2c93398a8567a2fb4910134cbf197",
+      "bytes": 116143,
+      "captured_at": "2026-11-14T11:20:52.326142+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    },
+    {
+      "path": "evidence/other-owner-empty.png",
+      "sha256": "063594b4ff0dd76cbae220624244c8bcd704811ff268f863d729c57c2ea475fb",
+      "bytes": 134501,
+      "captured_at": "2026-11-14T11:21:57.602094+00:00",
+      "candidate": 1011101,
+      "scope": "FICTIONAL_DATA_OWNED_EMULATOR_5580_ANDROID_USER11"
+    }
+  ],
+  "failures_preserved": [
+    "PHP earlier cache-header assertion order and test auth-guard reuse corrected.",
+    "Dart missing map helper and changed-file lint corrected.",
+    "Widget theme setup and obsolete draft-footer wording assertion corrected.",
+    "Normal peer projection returned404 because there was no relationship context; script expectation corrected without changing policy.",
+    "Initial emulator Activity not ready, followed by launch wait timeout; activity resolution, installed APK hash, UI and ordinary business chain subsequently verified.",
+    "UI driver selector, dropdown tap location and login readiness timing corrected.",
+    "Immediate GET during controlled API restart reset; normal ready-service GET subsequently passed."
+  ],
+  "private_evidence": "Credentials, request bodies containing secrets, raw HTTP/Web/device logs, APK and tools retained locally.",
+  "independent_review": "PENDING_NEW_ADVISOR_SESSION",
+  "owner_acceptance": "PENDING"
+}
