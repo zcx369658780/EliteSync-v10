@@ -19,7 +19,7 @@ class DynamicChartService
 
     public function prepare(User $user, array $body): array
     {
-        $this->keys($body, ['chart_type', 'first', 'second', 'event', 'settings', 'expected_revision', 'selected_event_index']);
+        $this->keys($body, ['chart_type', 'first', 'second', 'event', 'settings', 'expected_revision', 'selected_event_index', 'request_key']);
         $selected = $body['selected_event_index'] ?? null;
         if ($selected !== null && (! is_int($selected) || $selected < 0)) {
             throw new InvalidArgumentException('invalid_selected_event_index');

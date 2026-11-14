@@ -5,6 +5,8 @@ import 'package:flutter_elitesync_module/shared/providers/session_provider.dart'
 import '../providers/natal_restoration_provider.dart';
 import '../providers/astro_chart_settings_provider.dart';
 import '../widgets/natal_restoration_charts.dart';
+import '../widgets/tool_revision_history.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 
 class NatalRestorationPage extends ConsumerStatefulWidget {
   const NatalRestorationPage({super.key});
@@ -39,6 +41,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
   int _sessionEpoch = 0;
   SessionState? _inputSession;
   Map<String, dynamic>? _profile;
+  Map<String, dynamic>? _pendingBody;
   String? _error;
 
   bool _current(SessionState session, int epoch) =>
@@ -111,10 +114,11 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
         _year.text = settings['target_year']?.toString() ?? '';
         _loaded = true;
         _conflict = false;
+        _pendingBody = null;
       });
-    } catch (_) {
+    } catch (error) {
       if (mounted && (started == null || _current(started, epoch))) {
-        setState(() => _error = '读取失败。未显示之前的结果，请重新读取。');
+        _failure(error, fallback: '读取失败，当前输入已保留，请重新读取。');
       }
     } finally {
       if (mounted && epoch == _sessionEpoch) setState(() => _busy = false);
@@ -122,12 +126,44 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
   }
 
   Future<void> _save() async {
-    if (_busy || !_loaded || _conflict || !_form.currentState!.validate()) {
+    if (_busy ||
+        !_loaded ||
+        _conflict ||
+        (_pendingBody == null && !_form.currentState!.validate())) {
       return;
     }
     final epoch = _sessionEpoch;
     final session = _inputSession;
     if (session == null || !_current(session, epoch)) return;
+    final body =
+        _pendingBody ??
+        {
+          'input': {
+            'civil_date': _date.text.trim(),
+            'civil_time': _precision == 'unknown' ? null : _time.text.trim(),
+            'time_precision': _precision,
+            'timezone': _timezone.text.trim(),
+            'latitude': double.tryParse(_latitude.text.trim()),
+            'longitude': double.tryParse(_longitude.text.trim()),
+            'fold': int.tryParse(_fold),
+            'algorithm_sex': _sex,
+            'time_source': _precision == 'unknown'
+                ? 'unknown'
+                : 'user_provided',
+            'location_label': _place.text.trim(),
+          },
+          'settings': {
+            'zodiac_mode': _zodiac,
+            'house_system': _house,
+            'aspect_mode': _aspect,
+            'orb_preset': _orb,
+            'point_set': _points,
+            'true_solar_time': _solar,
+            'target_year': int.tryParse(_year.text.trim()),
+          },
+          'expected_revision': _revision,
+        };
+    _pendingBody = body;
     setState(() {
       _busy = true;
       _error = null;
@@ -139,34 +175,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
           .post(
             '/api/v1/profile/natal',
             options: natalSessionOptions(() => _current(session, epoch)),
-            body: {
-              'input': {
-                'civil_date': _date.text.trim(),
-                'civil_time': _precision == 'unknown'
-                    ? null
-                    : _time.text.trim(),
-                'time_precision': _precision,
-                'timezone': _timezone.text.trim(),
-                'latitude': double.tryParse(_latitude.text.trim()),
-                'longitude': double.tryParse(_longitude.text.trim()),
-                'fold': int.tryParse(_fold),
-                'algorithm_sex': _sex,
-                'time_source': _precision == 'unknown'
-                    ? 'unknown'
-                    : 'user_provided',
-                'location_label': _place.text.trim(),
-              },
-              'settings': {
-                'zodiac_mode': _zodiac,
-                'house_system': _house,
-                'aspect_mode': _aspect,
-                'orb_preset': _orb,
-                'point_set': _points,
-                'true_solar_time': _solar,
-                'target_year': int.tryParse(_year.text.trim()),
-              },
-              'expected_revision': _revision,
-            },
+            body: body,
           );
       if (!_current(session, epoch)) return;
       final written = natalProfileFromResponse(response);
@@ -183,28 +192,43 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
       setState(() {
         _profile = saved;
         _revision = (saved['input_revision'] as num?)?.toInt() ?? _revision;
+        _pendingBody = null;
       });
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('已保存并重新读取。计算与独立核验状态见各盘。')));
-    } on NatalRequestException catch (e) {
+    } catch (error) {
       if (_current(session, epoch)) {
-        setState(() {
-          _error = '${e.message} 请重新读取后再保存。';
-          _conflict = true;
-        });
-      }
-    } catch (_) {
-      if (_current(session, epoch)) {
-        setState(() {
-          _error = '保存或持久化重读失败，当前未展示结果。请重新读取确认。';
-          _conflict = true;
-        });
+        _failure(error, fallback: '保存结果未确认，输入及原操作已保留。可按原操作重试或重新读取确认。');
       }
     } finally {
       if (_current(session, epoch)) setState(() => _busy = false);
     }
+  }
+
+  void _failure(Object error, {required String fallback}) {
+    final status = error is NatalRequestException ? error.statusCode : null;
+    setState(() {
+      if ([401, 403, 404, 410].contains(status)) {
+        _profile = null;
+        _pendingBody = null;
+        _loaded = false;
+        _conflict = true;
+        _error = '当前本命资料不可用，请检查登录和权限后重新读取。';
+      } else if (status == 409) {
+        _pendingBody = null;
+        _conflict = true;
+        _error =
+            '${error is NatalRequestException ? error.message : '资料版本冲突。'} 输入已保留，请重新读取确认后再编辑。';
+      } else if (status == 422) {
+        _pendingBody = null;
+        _conflict = false;
+        _error = '输入未通过校验，请检查日期、时区、夏令时选择和坐标后重试。';
+      } else {
+        _error = fallback;
+      }
+    });
   }
 
   Widget _choice(
@@ -220,7 +244,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
       for (final e in options.entries)
         DropdownMenuItem(value: e.key, child: Text(e.value)),
     ],
-    onChanged: _busy
+    onChanged: _busy || _pendingBody != null
         ? null
         : (v) {
             if (v != null) {
@@ -241,7 +265,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
     padding: const EdgeInsets.symmetric(vertical: 6),
     child: TextFormField(
       controller: controller,
-      enabled: !_busy,
+      enabled: !_busy && _pendingBody == null,
       decoration: InputDecoration(labelText: label, hintText: hint),
       validator: validator,
       keyboardType: keyboard,
@@ -268,6 +292,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
         setState(() {
           _sessionEpoch++;
           _profile = null;
+          _pendingBody = null;
           _inputSession = null;
           _busy = false;
           _loaded = false;
@@ -283,6 +308,18 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
             field.clear();
           }
           _error = '登录身份已变化，请重新读取。';
+        });
+      }
+    });
+    ref.listen(relationshipAuthorityEpochProvider, (before, after) {
+      if (before != after) {
+        setState(() {
+          _sessionEpoch++;
+          _profile = null;
+          _loaded = false;
+          _busy = false;
+          _conflict = true;
+          _error = '当前权限已变化，请重新读取。输入已保留。';
         });
       }
     });
@@ -395,61 +432,69 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                       'female': '女（算法规则）',
                     }, (v) => _sex = v),
                     const SizedBox(height: 12),
-                    Text('计算设置', style: Theme.of(context).textTheme.titleLarge),
-                    _choice('黄道', _zodiac, {
-                      'tropical': '回归黄道',
-                      'sidereal': '自定义恒星黄道（CRC1956）',
-                    }, (v) => _zodiac = v),
-                    if (_zodiac == 'sidereal')
-                      const Text('CRC1956 自定义重建，非官方 Lahiri；定义与核验状态见盘面详情。'),
-                    _choice('宫制', _house, {
-                      'placidus': 'Placidus',
-                      'whole': '整宫制',
-                      'alcabitius': 'Alcabitius',
-                    }, (v) => _house = v),
-                    _choice('相位集合', _aspect, {
-                      'major': '主要相位',
-                      'standard': '标准相位',
-                      'extended': '扩展相位',
-                    }, (v) => _aspect = v),
-                    _choice('容许度', _orb, {
-                      'tight': '紧（3°）',
-                      'standard': '标准（6°）',
-                      'wide': '宽（8°）',
-                    }, (v) => _orb = v),
-                    _choice('本命点集合', _points, {
-                      'core': '核心十主体',
-                      'extended': '扩展点',
-                      'full': '完整准入点',
-                    }, (v) => _points = v),
-                    SwitchListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: const Text('使用真太阳时'),
-                      subtitle: const Text('需要明确坐标；以返回的时间来源与计算规则为准'),
-                      value: _solar,
-                      onChanged: _busy
-                          ? null
-                          : (v) => setState(() {
-                              _solar = v;
-                              _profile = null;
-                            }),
+                    ExpansionTile(
+                      title: const Text('高级计算参数'),
+                      children: [
+                        _choice('黄道', _zodiac, {
+                          'tropical': '回归黄道',
+                          'sidereal': '自定义恒星黄道（CRC1956）',
+                        }, (v) => _zodiac = v),
+                        if (_zodiac == 'sidereal')
+                          const Text('CRC1956 自定义重建，非官方 Lahiri；定义与核验状态见盘面详情。'),
+                        _choice('宫制', _house, {
+                          'placidus': 'Placidus',
+                          'whole': '整宫制',
+                          'alcabitius': 'Alcabitius',
+                        }, (v) => _house = v),
+                        _choice('相位集合', _aspect, {
+                          'major': '主要相位',
+                          'standard': '标准相位',
+                          'extended': '扩展相位',
+                        }, (v) => _aspect = v),
+                        _choice('容许度', _orb, {
+                          'tight': '紧（3°）',
+                          'standard': '标准（6°）',
+                          'wide': '宽（8°）',
+                        }, (v) => _orb = v),
+                        _choice('本命点集合', _points, {
+                          'core': '核心十主体',
+                          'extended': '扩展点',
+                          'full': '完整准入点',
+                        }, (v) => _points = v),
+                        SwitchListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: const Text('使用真太阳时'),
+                          subtitle: const Text('需要明确坐标；以返回的时间来源与计算规则为准'),
+                          value: _solar,
+                          onChanged: _busy || _pendingBody != null
+                              ? null
+                              : (v) => setState(() {
+                                  _solar = v;
+                                  _profile = null;
+                                }),
+                        ),
+                        _field(
+                          '运限目标年份（可选）',
+                          _year,
+                          keyboard: TextInputType.number,
+                          validator: (v) {
+                            if (v == null || v.trim().isEmpty) return null;
+                            final y = int.tryParse(v.trim());
+                            return y == null || y < 1800 || y > 2100
+                                ? '请输入支持范围内的年份'
+                                : null;
+                          },
+                        ),
+                      ],
                     ),
-                    _field(
-                      '运限目标年份（可选）',
-                      _year,
-                      keyboard: TextInputType.number,
-                      validator: (v) {
-                        if (v == null || v.trim().isEmpty) return null;
-                        final y = int.tryParse(v.trim());
-                        return y == null || y < 1800 || y > 2100
-                            ? '请输入支持范围内的年份'
-                            : null;
-                      },
-                    ),
+                    if (_pendingBody != null)
+                      const Text('未确认操作保留原输入与版本。重新读取会替换当前表单，请先确认操作结果。'),
                     FilledButton.icon(
                       onPressed: _busy || _conflict ? null : _save,
                       icon: const Icon(Icons.save),
-                      label: const Text('保存、计算并持久重读'),
+                      label: Text(
+                        _pendingBody == null ? '保存、计算并持久重读' : '按原操作重试',
+                      ),
                     ),
                   ],
                 ),
@@ -461,6 +506,12 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
               value: _explanation,
               onChanged: (v) => setState(() => _explanation = v),
             ),
+            if (_loaded)
+              ToolRevisionHistory(
+                key: ValueKey('natal-revisions:$_revision:$_sessionEpoch'),
+                endpoint: '/api/v1/profile/natal/history',
+                detailKey: 'profile',
+              ),
             if (_profile != null) ...[
               Text(
                 '输入版本 $_revision · 结果版本 ${natalText(_profile!['result_revision'])} · ${natalText(_profile!['status'])}',

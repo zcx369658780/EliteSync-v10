@@ -57,6 +57,9 @@ class NatalProfileController extends Controller
                 return [$row, true];
             }
             $revision = (int) ($row?->input_revision ?? 0) + 1;
+            if ($row) {
+                app(\App\Services\ToolRevisionHistory::class)->archive($row, 'natal');
+            }
             $row ??= new UserNatalProfile(['user_id' => $userId]);
             $row->fill(['input' => $data['input'], 'settings' => $settings, 'context' => $context,
                 'input_signature' => $context['input_signature'], 'input_revision' => $revision,

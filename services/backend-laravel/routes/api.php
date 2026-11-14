@@ -195,8 +195,13 @@ Route::prefix('v1')->group(function () {
             Route::get('/dynamic/{id}', [DynamicChartController::class, 'show'])->whereNumber('id');
             Route::post('/dynamic', [DynamicChartController::class, 'save']);
             Route::post('/dynamic/{id}', [DynamicChartController::class, 'save'])->whereNumber('id');
+            Route::delete('/dynamic/{id}', [DynamicChartController::class, 'destroy'])->whereNumber('id');
+            Route::get('/dynamic/{id}/history', [\App\Http\Controllers\Api\V1\ToolRevisionController::class, 'dynamicIndex'])->whereNumber('id');
+            Route::get('/dynamic/{id}/history/{archive}', [\App\Http\Controllers\Api\V1\ToolRevisionController::class, 'dynamicShow'])->whereNumber(['id', 'archive']);
             Route::get('/natal', [NatalProfileController::class, 'show']);
             Route::post('/natal', [NatalProfileController::class, 'save']);
+            Route::get('/natal/history', [\App\Http\Controllers\Api\V1\ToolRevisionController::class, 'natalIndex']);
+            Route::get('/natal/history/{archive}', [\App\Http\Controllers\Api\V1\ToolRevisionController::class, 'natalShow'])->whereNumber('archive');
             Route::get('/operating-status', function (Request $r) {
                 $u = $r->user();
 
@@ -231,6 +236,8 @@ Route::prefix('v1')->group(function () {
             Route::get('/mbti/quiz', [MbtiProfileController::class, 'quiz']);
             Route::post('/mbti/submit', [MbtiProfileController::class, 'submit']);
             Route::get('/mbti/result', [MbtiProfileController::class, 'result']);
+            Route::get('/mbti/history', [MbtiProfileController::class, 'history']);
+            Route::get('/mbti/history/{id}', [MbtiProfileController::class, 'attempt'])->whereNumber('id');
         });
 
         Route::prefix('matches')->group(function () {

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserDynamicChart;
+use App\Models\UserToolRevision;
 use App\Services\DynamicChartService;
+use App\Services\ToolRevisionHistory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,12 +49,30 @@ class DynamicChartController extends Controller
 
     public function save(Request $request, DynamicChartService $service, ?int $id = null): JsonResponse
     {
+        $request->validate(['request_key' => 'sometimes|uuid']);
         return $this->respond(function () use ($request, $service, $id) {
             $body = $request->json()->all();
             [$row, $prepared, $cached] = DB::transaction(function () use ($request, $service, $id, $body) {
                 $user = $this->owner($request, true);
                 $row = $id === null ? null : $this->row($user, $id, true);
                 $prepared = $service->prepare($user, $body);
+                $key = $body['request_key'] ?? null;
+                $hash = hash('sha256', json_encode($body, JSON_THROW_ON_ERROR));
+                $replay = $key === null ? null : DB::table('dynamic_chart_commands')->where('user_id', $user->id)
+                    ->where('request_key', $key)->first();
+                if ($replay) {
+                    if (($id !== null && $replay->chart_id != $id) || ! hash_equals($replay->request_hash, $hash)) {
+                        throw new HttpException(409, 'dynamic_request_key_conflict');
+                    }
+                    $current = UserDynamicChart::where('user_id', $user->id)->find($replay->chart_id);
+                    if (! $current) {
+                        throw new HttpException(410, 'dynamic_chart_deleted');
+                    }
+                    if ($current->input_revision != $replay->input_revision) {
+                        throw new HttpException(409, 'dynamic_command_superseded');
+                    }
+                    return [$current, $prepared, $current->status === 'COMPUTED_UNVERIFIED'];
+                }
                 if (($row?->input_revision ?? 0) !== $body['expected_revision']) {
                     throw new HttpException(409, 'dynamic_input_revision_conflict');
                 }
@@ -61,6 +81,7 @@ class DynamicChartController extends Controller
                     if (array_key_exists('selected_event_index', $body)) {
                         $selection = $service->selectEvent($row->results, $body['selected_event_index']);
                         if ($selection !== $row->selected_event_index) {
+                            app(ToolRevisionHistory::class)->archive($row, 'dynamic');
                             $row->selected_event_index = $selection;
                             // Selection is a workspace edit too. Reuse the numeric
                             // result, but advance CAS so a late choice cannot win.
@@ -69,6 +90,7 @@ class DynamicChartController extends Controller
                             $row->save();
                         }
                     }
+                    $this->rememberCommand($user, $row, $key, $hash);
                     return [$row, $prepared, true];
                 }
                 // Trusted persisted first chart only: user-supplied caches are never admitted.
@@ -79,6 +101,9 @@ class DynamicChartController extends Controller
                     $prepared['payload']['first_calculated'] = $row->results['first'];
                 }
                 $revision = ($row?->input_revision ?? 0) + 1;
+                if ($row) {
+                    app(ToolRevisionHistory::class)->archive($row, 'dynamic');
+                }
                 $row ??= new UserDynamicChart(['user_id' => $user->id]);
                 $storedPrepared = $prepared['payload'];
                 unset($storedPrepared['first_calculated']);
@@ -87,6 +112,7 @@ class DynamicChartController extends Controller
                     'settings' => $prepared['settings'], 'prepared' => $storedPrepared,
                     'input_signature' => $prepared['input_signature'], 'input_revision' => $revision,
                     'selected_event_index' => null, 'result_revision' => null, 'results' => null, 'status' => 'COMPUTING'])->save();
+                $this->rememberCommand($user, $row, $key, $hash);
                 return [$row, $prepared, false];
             });
             if (! $cached) {
@@ -134,6 +160,29 @@ class DynamicChartController extends Controller
             $user = $this->owner($request);
             return ['chart' => $service->view($user, $this->row($user, $row->id))];
         });
+    }
+
+    public function destroy(Request $request, int $id): JsonResponse
+    {
+        return $this->respond(function () use ($request, $id) {
+            DB::transaction(function () use ($request, $id) {
+                $user = $this->owner($request, true);
+                $row = $this->row($user, $id, true);
+                UserToolRevision::where('user_id', $user->id)->where('tool', 'dynamic')
+                    ->where('record_id', $id)->delete();
+                $row->delete();
+            });
+            return ['deleted' => true];
+        });
+    }
+
+    private function rememberCommand(User $user, UserDynamicChart $row, ?string $key, string $hash): void
+    {
+        if ($key !== null) {
+            DB::table('dynamic_chart_commands')->insert(['user_id' => $user->id, 'request_key' => $key,
+                'request_hash' => $hash, 'chart_id' => $row->id, 'input_revision' => $row->input_revision,
+                'created_at' => now(), 'updated_at' => now()]);
+        }
     }
 
     private function owner(Request $request, bool $lock = false): User

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\MbtiAttempt;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -80,8 +81,7 @@ class MbtiProfileController extends Controller
             ->latest('id')
             ->first();
 
-        // Canonical MBTI source is users.public_mbti (used by matching engine).
-        // Attempt records are detail/history; if missing, still return persisted public_mbti.
+        // Preserve legacy profile letters. Attempts hold the versioned self-knowledge result.
         $userMbti = strtoupper((string) ($user->public_mbti ?? ''));
         if (!$latest) {
             if ($userMbti !== '') {
@@ -109,11 +109,49 @@ class MbtiProfileController extends Controller
 
         return response()->json([
             'exists' => true,
+            'attempt_id' => $latest->id,
+            'version_code' => $latest->version_code,
+            'source' => 'configured_lite_quiz',
+            'scope' => 'optional_self_knowledge',
             'result' => $result,
             'updated_at' => optional($latest->submitted_at ?? $latest->created_at)->toIso8601String(),
             'scores' => $latest->score_json ?? [],
             'confidence' => $latest->confidence_json ?? [],
-        ]);
+        ])->header('Cache-Control', 'no-store, private');
+    }
+
+    public function history(Request $request): JsonResponse
+    {
+        if (!$this->isEnabled()) {
+            return $this->disabledResponse();
+        }
+        $data = $request->validate(['before_id' => 'sometimes|integer|min:1']);
+        $rows = MbtiAttempt::where('user_id', $request->user()->id)
+            ->when(isset($data['before_id']), fn ($query) => $query->where('id', '<', $data['before_id']))
+            ->orderByDesc('id')->limit(21)->get();
+        $more = $rows->count() > 20;
+        $rows = $rows->take(20);
+        return response()->json(['items' => $rows->map(fn ($row) => $this->attemptData($row, false))->values(),
+            'next_before_id' => $more ? $rows->last()->id : null])->header('Cache-Control', 'no-store, private');
+    }
+
+    public function attempt(Request $request, int $id): JsonResponse
+    {
+        if (!$this->isEnabled()) {
+            return $this->disabledResponse();
+        }
+        $row = MbtiAttempt::where('user_id', $request->user()->id)->findOrFail($id);
+        return response()->json(['attempt' => $this->attemptData($row, true)])
+            ->header('Cache-Control', 'no-store, private');
+    }
+
+    private function attemptData(MbtiAttempt $row, bool $detail): array
+    {
+        return ['id' => $row->id, 'result' => $row->result_letters, 'version_code' => $row->version_code,
+            'submitted_at' => $row->submitted_at?->toIso8601String(), 'scores' => $row->score_json,
+            'confidence' => $row->confidence_json, 'source' => 'configured_lite_quiz',
+            'scope' => 'optional_self_knowledge',
+            ...($detail ? ['answers' => $row->answers_json, 'tie_break' => $row->tie_break_log_json] : [])];
     }
 
     public function submit(Request $request): JsonResponse
@@ -128,6 +166,7 @@ class MbtiProfileController extends Controller
             'answers' => ['required', 'array', 'min:1'],
             'answers.*.question_id' => ['required', 'integer', 'min:1'],
             'answers.*.option' => ['required', 'in:A,B'],
+            'request_key' => ['sometimes', 'uuid'],
         ]);
 
         $version = (string) $data['version_code'];
@@ -142,7 +181,7 @@ class MbtiProfileController extends Controller
 
         $expectedIds = $quiz->keys()->map(fn ($v) => (int) $v)->sort()->values()->all();
         $keys = $answers->keys()->map(static fn ($v): int => (int) $v)->sort()->values()->all();
-        if ($answers->count() !== count($expectedIds) || $keys !== $expectedIds) {
+        if (count($data['answers']) !== count($expectedIds) || $answers->count() !== count($expectedIds) || $keys !== $expectedIds) {
             // keep deterministic message even if malformed payload passes schema checks
             return response()->json(['message' => 'invalid answers payload'], 422);
         }
@@ -204,9 +243,20 @@ class MbtiProfileController extends Controller
 
         $result = $letters['EI'] . $letters['SN'] . $letters['TF'] . $letters['JP'];
 
-        DB::transaction(function () use ($user, $version, $data, $score, $confidence, $tieBreak, $result): void {
-            MbtiAttempt::query()->create([
+        $attempt = DB::transaction(function () use ($user, $version, $data, $score, $confidence, $tieBreak, $result) {
+            User::whereKey($user->id)->lockForUpdate()->firstOrFail();
+            $key = $data['request_key'] ?? null;
+            $canonical = collect($data['answers'])->sortBy('question_id')->values()->all();
+            $hash = hash('sha256', json_encode([$version, $canonical], JSON_THROW_ON_ERROR));
+            $previous = $key === null ? null : MbtiAttempt::where('user_id', $user->id)->where('request_key', $key)->first();
+            if ($previous) {
+                abort_unless(hash_equals($previous->request_hash, $hash), 409, 'mbti_request_key_conflict');
+                return $previous;
+            }
+            $attempt = MbtiAttempt::query()->create([
                 'user_id' => (int) $user->id,
+                'request_key' => $key,
+                'request_hash' => $hash,
                 'version_code' => $version,
                 'answers_json' => array_values($data['answers']),
                 'score_json' => $score,
@@ -228,14 +278,16 @@ class MbtiProfileController extends Controller
                 'public_mbti' => $result,
                 'public_personality' => $personality,
             ])->save();
+            return $attempt;
         });
 
         return response()->json([
             'ok' => true,
-            'result' => $result,
-            'letters' => $letters,
-            'scores' => $score,
-            'confidence' => $confidence,
-        ]);
+            'attempt_id' => $attempt->id,
+            'result' => $attempt->result_letters,
+            'letters' => array_combine(['EI', 'SN', 'TF', 'JP'], str_split($attempt->result_letters)),
+            'scores' => $attempt->score_json,
+            'confidence' => $attempt->confidence_json,
+        ])->header('Cache-Control', 'no-store, private');
     }
 }

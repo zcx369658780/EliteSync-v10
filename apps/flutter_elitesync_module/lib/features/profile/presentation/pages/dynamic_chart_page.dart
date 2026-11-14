@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
@@ -6,6 +7,8 @@ import 'package:flutter_elitesync_module/shared/providers/session_provider.dart'
 import '../providers/natal_restoration_provider.dart';
 import '../widgets/natal_restoration_charts.dart';
 import '../widgets/dynamic_chart_wheel.dart';
+import '../widgets/tool_revision_history.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 
 class DynamicChartPage extends ConsumerStatefulWidget {
   const DynamicChartPage({super.key});
@@ -89,6 +92,9 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
   };
   List<Map<String, dynamic>> _history = [];
   Map<String, dynamic>? _row;
+  Map<String, dynamic>? _pendingBody;
+  String? _pendingPath;
+  bool _denied = false;
   SessionState? _session;
   int _epoch = 0, _operation = 0, _revision = 0;
   dynamic _id;
@@ -130,6 +136,9 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
     _second.clear();
     _event.clear();
     _row = null;
+    _pendingBody = null;
+    _pendingPath = null;
+    _denied = false;
     _history = [];
     _nextHistoryId = null;
     _id = null;
@@ -144,7 +153,11 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
   Map<String, dynamic> _body(NetworkResult<Map<String, dynamic>> response) {
     if (response is NetworkFailure<Map<String, dynamic>>) {
       throw NatalRequestException(
-        response.statusCode == 409 ? '资料版本冲突，请重新读取后编辑。' : '请求失败，请检查输入、登录和网络。',
+        response.statusCode == 409
+            ? '资料版本冲突，请重新读取后编辑。'
+            : response.statusCode == 422
+            ? '输入未通过校验，请检查日期、时区和坐标。'
+            : '请求失败，请检查输入、登录和网络。',
         response.statusCode,
       );
     }
@@ -175,10 +188,11 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
         _history = natalList(data['charts']).map(natalMap).toList();
         _nextHistoryId = (data['next_before_id'] as num?)?.toInt();
         _conflict = false;
+        _denied = false;
       });
     } catch (e) {
       if (mounted && epoch == _epoch && op == _operation) {
-        setState(() => _error = '读取失败，未展示旧结果。');
+        _failure(e, fallback: '读取失败，输入已保留，可重新读取。');
       }
     } finally {
       if (mounted && epoch == _epoch && op == _operation) {
@@ -209,12 +223,9 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
         throw const NatalRequestException('记录身份无效');
       }
       _accept(row);
-    } catch (_) {
+    } catch (error) {
       if (_current(session, epoch, op)) {
-        setState(() {
-          _error = '读取失败，不能使用旧记录。';
-          _conflict = true;
-        });
+        _failure(error, fallback: '读取失败，当前输入已保留，可重试读取。');
       }
     } finally {
       if (_current(session, epoch, op)) setState(() => _busy = false);
@@ -247,9 +258,9 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
         );
         _nextHistoryId = (data['next_before_id'] as num?)?.toInt();
       });
-    } catch (_) {
+    } catch (error) {
       if (_current(session, epoch, op)) {
-        setState(() => _error = '更早历史读取失败，请重试。');
+        _failure(error, fallback: '更早历史读取失败，请重试。');
       }
     } finally {
       if (_current(session, epoch, op)) setState(() => _busy = false);
@@ -279,6 +290,7 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
       _row = row;
       _dirty = false;
       _conflict = false;
+      _denied = false;
     });
   }
 
@@ -306,9 +318,9 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
         target.source = 'own_natal';
         target.ownRevision = (profile['input_revision'] as num).toInt();
       });
-    } catch (_) {
+    } catch (error) {
       if (_current(session, epoch, op)) {
-        setState(() => _error = '本人本命快照不可用，请确认后重读或手填。');
+        _failure(error, fallback: '本人本命快照不可用，请确认后重读或手填。');
       }
     } finally {
       if (_current(session, epoch, op)) setState(() => _busy = false);
@@ -316,18 +328,27 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
   }
 
   Future<void> _save({int? eventIndex}) async {
-    if (_busy || _conflict || !_form.currentState!.validate()) return;
+    if (_busy ||
+        _conflict ||
+        (_pendingBody == null && !_form.currentState!.validate())) {
+      return;
+    }
     final session = _session, epoch = _epoch, op = ++_operation;
     if (session == null || !_current(session, epoch, op)) return;
-    final body = <String, dynamic>{
-      'chart_type': _type,
-      'first': _first.payload(),
-      if (_dual) 'second': _second.payload(),
-      if (!_dual) 'event': _event.input(solar: _type == 'solar_return'),
-      'settings': Map<String, String>.from(_settings),
-      'expected_revision': _revision,
-      'selected_event_index': eventIndex ?? _selected,
-    };
+    final body =
+        _pendingBody ??
+        <String, dynamic>{
+          'request_key': const Uuid().v4(),
+          'chart_type': _type,
+          'first': _first.payload(),
+          if (_dual) 'second': _second.payload(),
+          if (!_dual) 'event': _event.input(solar: _type == 'solar_return'),
+          'settings': Map<String, String>.from(_settings),
+          'expected_revision': _revision,
+          'selected_event_index': eventIndex ?? _selected,
+        };
+    _pendingBody = body;
+    _pendingPath ??= '/api/v1/profile/dynamic${_id == null ? '' : '/$_id'}';
     setState(() {
       _busy = true;
       _error = null;
@@ -336,7 +357,7 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
     try {
       final client = ref.read(apiClientProvider);
       final response = await client.post(
-        '/api/v1/profile/dynamic${_id == null ? '' : '/$_id'}',
+        _pendingPath!,
         body: body,
         options: natalSessionOptions(() => _current(session, epoch, op)),
       );
@@ -354,17 +375,106 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
           fresh['result_revision'] != written['result_revision']) {
         throw const NatalRequestException('持久重读版本发生变化', 409);
       }
+      _pendingBody = null;
+      _pendingPath = null;
       _accept(fresh);
       setState(() {
         _history.removeWhere((r) => r['id'] == fresh['id']);
         _history.insert(0, fresh);
       });
-    } catch (_) {
+    } catch (error) {
       if (_current(session, epoch, op)) {
-        setState(() {
-          _error = '保存或持久重读失败。请重新读取，未展示旧盘。';
-          _conflict = true;
-        });
+        _failure(error, fallback: '保存结果未确认。当前输入及原操作已保留，可按原操作重试。');
+      }
+    } finally {
+      if (_current(session, epoch, op)) setState(() => _busy = false);
+    }
+  }
+
+  void _failure(Object error, {required String fallback}) {
+    final status = error is NatalRequestException ? error.statusCode : null;
+    setState(() {
+      if ([401, 403, 404, 410].contains(status)) {
+        _row = null;
+        _history = [];
+        _nextHistoryId = null;
+        _id = null;
+        _pendingBody = null;
+        _pendingPath = null;
+        _denied = true;
+        _conflict = true;
+        _error = '当前排盘不可用，请检查登录和权限后重新读取。';
+      } else if (status == 409) {
+        _pendingBody = null;
+        _pendingPath = null;
+        _conflict = true;
+        _error = '资料版本冲突，当前输入已保留。请重新读取该盘后编辑。';
+      } else if (status == 422) {
+        _pendingBody = null;
+        _pendingPath = null;
+        _conflict = false;
+        _error = '输入未通过校验，请检查日期、时区、时间精度和坐标后重试。';
+      } else {
+        _error = fallback;
+      }
+    });
+  }
+
+  Future<void> _delete() async {
+    if (_busy || _id == null) return;
+    final session = _session, epoch = _epoch, op = ++_operation, id = _id;
+    if (session == null || !_current(session, epoch, op)) return;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('删除当前私有盘？'),
+        content: const Text('将删除此盘及它的历史版本。上方手填资料会保留在当前表单。'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('取消'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('确认删除'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !_current(session, epoch, op)) return;
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    try {
+      final response = await ref
+          .read(apiClientProvider)
+          .delete(
+            '/api/v1/profile/dynamic/$id',
+            options: natalSessionOptions(() => _current(session, epoch, op)),
+          );
+      if (!_current(session, epoch, op)) return;
+      final absent =
+          response is NetworkFailure<Map<String, dynamic>> &&
+          response.statusCode == 404;
+      if (!absent && _body(response)['deleted'] != true) {
+        throw const NatalRequestException('删除结果未确认。');
+      }
+      setState(() {
+        _history.removeWhere((row) => row['id'].toString() == id.toString());
+        _row = null;
+        _id = null;
+        _revision = 0;
+        _selected = null;
+        _pendingBody = null;
+        _pendingPath = null;
+        _conflict = false;
+        _dirty = true;
+        _error = '当前私有盘已删除。手填资料仍保留，可另建新盘。';
+      });
+    } catch (error) {
+      if (_current(session, epoch, op)) {
+        _failure(error, fallback: '删除结果未确认，原盘编号与输入已保留，可重试删除。');
       }
     } finally {
       if (_current(session, epoch, op)) setState(() => _busy = false);
@@ -384,7 +494,7 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
     items: options.entries
         .map((e) => DropdownMenuItem(value: e.key, child: Text(e.value)))
         .toList(),
-    onChanged: _busy
+    onChanged: _busy || _pendingBody != null
         ? null
         : (v) {
             if (v != null) {
@@ -402,7 +512,7 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
       child: TextFormField(
         key: ValueKey('$label.$key'),
         controller: input.fields[key],
-        enabled: !_busy,
+        enabled: !_busy && _pendingBody == null,
         decoration: InputDecoration(labelText: name),
         keyboardType: key == 'latitude' || key == 'longitude'
             ? const TextInputType.numberWithOptions(decimal: true, signed: true)
@@ -444,7 +554,9 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
               if (input.source == 'own_natal') ...[
                 Text('仅当前账号资料；已选择版本 ${input.ownRevision ?? '未读取'}'),
                 OutlinedButton(
-                  onPressed: _busy ? null : () => _own(input),
+                  onPressed: _busy || _pendingBody != null
+                      ? null
+                      : () => _own(input),
                   child: const Text('明确选择并读取本人快照'),
                 ),
                 FormField<int>(
@@ -507,6 +619,22 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
         Future.microtask(_reload);
       }
     });
+    ref.listen(relationshipAuthorityEpochProvider, (before, after) {
+      if (before != after) {
+        _epoch++;
+        _operation++;
+        setState(() {
+          _row = null;
+          _history = [];
+          _nextHistoryId = null;
+          _id = null;
+          _busy = false;
+          _conflict = true;
+          _denied = true;
+          _error = '当前权限已变化，请重新读取。输入与未确认操作已保留。';
+        });
+      }
+    });
     final session = ref.watch(sessionProvider).asData?.value;
     return Scaffold(
       appBar: AppBar(
@@ -554,7 +682,7 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
                             ),
                           )
                           .toList(),
-                      onChanged: _busy
+                      onChanged: _busy || _pendingBody != null
                           ? null
                           : (v) {
                               if (v != null) _open(v);
@@ -565,7 +693,7 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
                     child: const Text('加载更早历史'),
                   ),
                   OutlinedButton(
-                    onPressed: _busy
+                    onPressed: _busy || _pendingBody != null
                         ? null
                         : () => setState(() {
                             _id = null;
@@ -593,45 +721,71 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
                     _input('第二盘', _second)
                   else
                     _input('事件输入', _event, event: true),
-                  _choice(
-                    '黄道',
-                    _settings['zodiac_mode']!,
-                    {'tropical': '回归黄道', 'sidereal': '自定义 CRC1956（非官方 Lahiri）'},
-                    (v) => _settings['zodiac_mode'] = v,
+                  ExpansionTile(
+                    title: const Text('高级计算参数'),
+                    children: [
+                      _choice(
+                        '黄道',
+                        _settings['zodiac_mode']!,
+                        {
+                          'tropical': '回归黄道',
+                          'sidereal': '自定义 CRC1956（非官方 Lahiri）',
+                        },
+                        (v) => _settings['zodiac_mode'] = v,
+                      ),
+                      _choice(
+                        '宫制',
+                        _settings['house_system']!,
+                        {
+                          'placidus': 'Placidus',
+                          'whole': '整宫制',
+                          'alcabitius': 'Alcabitius',
+                        },
+                        (v) => _settings['house_system'] = v,
+                      ),
+                      _choice(
+                        '相位集合',
+                        _settings['aspect_mode']!,
+                        {
+                          'major': '主要相位',
+                          'standard': '标准相位',
+                          'extended': '扩展相位',
+                        },
+                        (v) => _settings['aspect_mode'] = v,
+                      ),
+                      _choice(
+                        '容许度',
+                        _settings['orb_preset']!,
+                        {'tight': '紧 3°', 'standard': '标准 6°', 'wide': '宽 8°'},
+                        (v) => _settings['orb_preset'] = v,
+                      ),
+                      _choice(
+                        '点集合',
+                        _settings['point_set']!,
+                        {'core': '核心十主体', 'extended': '扩展', 'full': '完整准入点'},
+                        (v) => _settings['point_set'] = v,
+                      ),
+                    ],
                   ),
-                  _choice(
-                    '宫制',
-                    _settings['house_system']!,
-                    {
-                      'placidus': 'Placidus',
-                      'whole': '整宫制',
-                      'alcabitius': 'Alcabitius',
-                    },
-                    (v) => _settings['house_system'] = v,
-                  ),
-                  _choice(
-                    '相位集合',
-                    _settings['aspect_mode']!,
-                    {'major': '主要相位', 'standard': '标准相位', 'extended': '扩展相位'},
-                    (v) => _settings['aspect_mode'] = v,
-                  ),
-                  _choice(
-                    '容许度',
-                    _settings['orb_preset']!,
-                    {'tight': '紧 3°', 'standard': '标准 6°', 'wide': '宽 8°'},
-                    (v) => _settings['orb_preset'] = v,
-                  ),
-                  _choice('点集合', _settings['point_set']!, {
-                    'core': '核心十主体',
-                    'extended': '扩展',
-                    'full': '完整准入点',
-                  }, (v) => _settings['point_set'] = v),
                   if (_dirty) const Text('输入／设置已变化，旧结果已隐藏。请保存重算。'),
+                  if (_pendingBody != null)
+                    const Text('未确认操作保留原编号与完整输入。确认结果前可按原操作重试。'),
                   FilledButton(
                     onPressed: _busy || _conflict ? null : () => _save(),
-                    child: const Text('保存、计算并持久重读'),
+                    child: Text(_pendingBody == null ? '保存、计算并持久重读' : '按原操作重试'),
                   ),
                   if (_row != null) _results(_row!),
+                  if (_id != null && !_denied) ...[
+                    OutlinedButton(
+                      onPressed: _busy || _pendingBody != null ? null : _delete,
+                      child: const Text('删除当前盘及历史'),
+                    ),
+                    ToolRevisionHistory(
+                      key: ValueKey('dynamic-revisions:$_id:$_revision'),
+                      endpoint: '/api/v1/profile/dynamic/$_id/history',
+                      detailKey: 'chart',
+                    ),
+                  ],
                 ],
               ),
             ),

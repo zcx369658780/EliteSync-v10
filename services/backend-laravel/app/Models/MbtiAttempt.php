@@ -16,6 +16,8 @@ class MbtiAttempt extends Model
         'tie_break_log_json',
         'result_letters',
         'submitted_at',
+        'request_key',
+        'request_hash',
     ];
 
     protected function casts(): array

@@ -13,6 +13,7 @@ class MbtiApiVersioningTest extends TestCase
 
     public function test_quiz_and_submit_are_disabled_when_feature_is_off(): void
     {
+        config(['features.mbti_enabled' => false]);
         $this->seed();
         $user = User::create([
             'phone' => '13800000931',

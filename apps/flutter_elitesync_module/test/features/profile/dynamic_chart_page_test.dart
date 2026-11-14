@@ -13,7 +13,7 @@ import 'package:flutter_elitesync_module/shared/providers/session_provider.dart'
 
 class _Session extends SessionNotifier {
   @override
-  Future<SessionState> build() async => const SessionState(
+  SessionState build() => const SessionState(
     status: AuthStatus.authenticated,
     user: UserSummary(id: 101, phone: 'fictional-A'),
     accessToken: 'fictional-A',

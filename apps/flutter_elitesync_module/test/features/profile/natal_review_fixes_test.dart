@@ -21,7 +21,7 @@ import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 
 class _Session extends SessionNotifier {
   @override
-  Future<SessionState> build() async => const SessionState(
+  SessionState build() => const SessionState(
     status: AuthStatus.authenticated,
     accessToken: 'fictional-A',
     user: UserSummary(id: 1, phone: 'fictional-A'),
