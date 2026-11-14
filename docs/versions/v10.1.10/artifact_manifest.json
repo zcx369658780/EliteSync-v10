@@ -157,6 +157,10 @@
       "candidate": 1011002,
       "data": "fictional only",
       "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "OWNER_PHONE_CHECK_20261114.md",
+      "canonical_LF_sha256": "2897991758c9f36eaa3405ec05403b90fc9d878d0d767eece2342e1a1393beaf"
     }
   ],
   "local_only": [
@@ -216,5 +220,22 @@
     "r1_required": false,
     "owner_acceptance": "PENDING",
     "next_version": "NOT_ISSUED"
+  },
+  "owner_phone_installation": {
+    "ended_at": "2026-11-14T17:12:13.746056+08:00",
+    "candidate": 1011002,
+    "package": "com.elitesync.v1015dev",
+    "app_source": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+    "apk_sha256": "304f7f17dfe3b12d74fb1a9d2c48ac65c44d1a627b4ffec30a43edd552709b64",
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+    "installed_apk_sha256": "304f7f17dfe3b12d74fb1a9d2c48ac65c44d1a627b4ffec30a43edd552709b64",
+    "preserved_data": true,
+    "app_foreground": true,
+    "manual_feature_checks": "OWNER_PENDING",
+    "authorization": "Owner requested phone installation and manual checklist after advisor acceptance",
+    "advisor_documents": "f8872d352fc55af2c0bb8d3cc67f2440019c51e9",
+    "checklist": "OWNER_PHONE_CHECK_20261114.md",
+    "development_transport": "USB API8021 WS8022",
+    "owner_acceptance": "PENDING"
   }
 }

@@ -6,7 +6,9 @@
 
 本人MBTI、三盘、Transit动态盘、手填Synastry/Comparison、历史和重算在约定范围接受。PHP21项/173断言、Widget62项、改动Dart分析及具名普通APP/API/MariaDB、重登/冷启/DB/API重启读回按报告记账。全仓分析NOT_RUN；太阳/月亮返照最终APP矩阵NOT_RUN；最终APP故障注入NOT_RUN。顾问核对源码、测试设计、交付身份和精选截图，未在Windows/设备复演。
 
-算法独立精度UNVERIFIED；真实Push仍REAL_PUSH_PROVIDER_PENDING；历史非注入SFU/RPC精确根因UNKNOWN；本版SFU媒体NOT_RUN，手机NOT_USED。服务资源为Codex`2026-11-14T16:36:33.594739+08:00`历史快照，不是顾问实时状态。原主库dirty/index保护、AVD数据和无关目录按Codex具名回执保留。
+算法独立精度UNVERIFIED；真实Push仍REAL_PUSH_PROVIDER_PENDING；历史非注入SFU/RPC精确根因UNKNOWN。本版原工程交付阶段SFU媒体NOT_RUN、手机NOT_USED按原时点保留。服务资源采用Codex`2026-11-14T16:36:33.594739+08:00`历史快照。原主库dirty/index保护、AVD数据和无关目录按Codex具名回执保留。
+
+Owner随后明确要求手机安装及手测清单，已按本次具体授权保留数据更新为1011002，安装后base.apk摘要与验收候选一致，APP前台启动、开发API连接及8021/8022 USB映射已核。顾问固定文档`f8872d352fc55af2c0bb8d3cc67f2440019c51e9`已安全快进同步。手机功能手测及Owner最终接受PENDING，清单与安装去敏记录见[手机手测](../versions/v10.1.10/OWNER_PHONE_CHECK_20261114.md)。专用5039用于已知手机，模拟器5038保持USB排除。
 
 当前停在Owner最终接受与下一步讨论；不合main、不发布、不自动下达v10.1.11。
 
