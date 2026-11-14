@@ -12,7 +12,8 @@ class PlatformEventsPage extends ConsumerStatefulWidget {
   ConsumerState<PlatformEventsPage> createState() => _PlatformEventsPageState();
 }
 
-class _PlatformEventsPageState extends SessionBoundPage<PlatformEventsPage> {
+class _PlatformEventsPageState extends SessionBoundPage<PlatformEventsPage>
+    with WidgetsBindingObserver {
   @override
   String get resource => '/platform-events';
 
@@ -23,12 +24,16 @@ class _PlatformEventsPageState extends SessionBoundPage<PlatformEventsPage> {
   String? _reportTarget;
   String _category = 'CONDUCT';
   int _localGeneration = 0;
+  String? _pendingPath;
+  Map<String, dynamic>? _pendingBody;
 
   void _clearPrivateForm() {
     _localGeneration++;
     _token.clear();
     _statement.clear();
     _commandKeys.clear();
+    _pendingPath = null;
+    _pendingBody = null;
     _reportEvent = null;
     _reportTarget = null;
     _category = 'CONDUCT';
@@ -40,7 +45,24 @@ class _PlatformEventsPageState extends SessionBoundPage<PlatformEventsPage> {
   void onAuthorityChanged() => _clearPrivateForm();
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      refresh();
+      return;
+    }
+    _localGeneration++;
+    invalidatePendingProjection();
+  }
+
+  @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _token.dispose();
     _statement.dispose();
     super.dispose();
@@ -49,23 +71,67 @@ class _PlatformEventsPageState extends SessionBoundPage<PlatformEventsPage> {
   String _key(String command) => _commandKeys.putIfAbsent(command, requestKey);
 
   Future<void> _write(String path, Map<String, dynamic> body) async {
+    if (_pendingPath != null &&
+        (_pendingPath != path || _pendingBody.toString() != body.toString())) {
+      return;
+    }
+    _pendingPath = path;
+    _pendingBody = Map<String, dynamic>.unmodifiable(body);
     final generation = _localGeneration;
     final result = await run(
       () => ref.read(relationshipApiProvider).call('POST', path, body),
     );
     if (!mounted || generation != _localGeneration) return;
-    _token.clear();
     if (result == null) {
       // A rejected or uncertain write must not leave an old permission card.
       setState(() {
         data = null;
-        _statement.clear();
-        _reportEvent = null;
-        _reportTarget = null;
+        error = '结果尚未确认，请同号重试或刷新服务器状态。${error ?? ''}';
       });
       return;
     }
+    _pendingPath = null;
+    _pendingBody = null;
+    _token.clear();
     ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+  }
+
+  @override
+  Future<void> refresh() async {
+    final generation = _localGeneration;
+    setState(() => data = null);
+    final result = await run(
+      () => ref.read(relationshipApiProvider).call('GET', resource),
+    );
+    if (!mounted || generation != _localGeneration || result == null) return;
+    setState(() => data = result);
+  }
+
+  Future<void> _loadMore() async {
+    final cursor = objectMap(data?['meta'])['next_cursor']?.toString();
+    if (cursor == null) return;
+    final previous = data;
+    final generation = _localGeneration;
+    final result = await run(
+      () => ref
+          .read(relationshipApiProvider)
+          .call(
+            'GET',
+            '/platform-events?limit=20&cursor=${Uri.encodeQueryComponent(cursor)}',
+          ),
+    );
+    if (!mounted || generation != _localGeneration || result == null) return;
+    setState(() {
+      data = {...result};
+      for (final field in [
+        'items',
+        'exit_tickets',
+        'report_contexts',
+        'history',
+      ]) {
+        data![field] = [...rows(previous?[field]), ...rows(result[field])];
+      }
+    });
   }
 
   Future<void> _redeem() async {
@@ -351,6 +417,7 @@ class _PlatformEventsPageState extends SessionBoundPage<PlatformEventsPage> {
   Widget build(BuildContext context) {
     final items = rows(data?['items']);
     final exitTickets = rows(data?['exit_tickets']).where(_validExitTicket);
+    final history = rows(data?['history']);
     final reportContexts = rows(data?['report_contexts']).where(
       (e) =>
           e['scope'] == 'REPORT_ONLY' &&
@@ -360,10 +427,31 @@ class _PlatformEventsPageState extends SessionBoundPage<PlatformEventsPage> {
     return frame('平台合成活动', [
       const Text('仅限受控开发邀请；没有真实招募、预订、费用支付或安全保障承诺。'),
       const Text('报名不建立好友、私信同意、搭子或正式恋爱关系。'),
+      if (_pendingPath != null && _pendingBody != null) ...[
+        const Text('上次提交结果待确认，重试将沿用原编号与内容。'),
+        FilledButton(
+          onPressed: busy ? null : () => _write(_pendingPath!, _pendingBody!),
+          child: const Text('同号重试上次提交'),
+        ),
+        TextButton(
+          onPressed: busy
+              ? null
+              : () async {
+                  await refresh();
+                  if (mounted && data != null) {
+                    setState(() {
+                      _pendingPath = null;
+                      _pendingBody = null;
+                    });
+                  }
+                },
+          child: const Text('读取服务器当前状态'),
+        ),
+      ],
       TextField(
         key: const Key('platform-invite-token'),
         controller: _token,
-        enabled: !busy,
+        enabled: !busy && _pendingPath == null,
         obscureText: true,
         autocorrect: false,
         enableSuggestions: false,
@@ -371,7 +459,7 @@ class _PlatformEventsPageState extends SessionBoundPage<PlatformEventsPage> {
       ),
       FilledButton(
         key: const Key('platform-redeem'),
-        onPressed: busy ? null : _redeem,
+        onPressed: busy || _pendingPath != null ? null : _redeem,
         child: const Text('主动兑换活动邀请'),
       ),
       if (data != null && items.isEmpty && exitTickets.isEmpty)
@@ -381,6 +469,21 @@ class _PlatformEventsPageState extends SessionBoundPage<PlatformEventsPage> {
       ...items.map(_eventCard),
       ...exitTickets.map(_exitTicketCard),
       ...reportContexts.map(_historyReportCard),
+      ...history.map(
+        (receipt) => Card(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              '${_eventLabel(receipt['state'])} · ${_registrationLabel(receipt['registration_state'])}',
+            ),
+          ),
+        ),
+      ),
+      if (objectMap(data?['meta'])['has_more'] == true)
+        OutlinedButton(
+          onPressed: busy ? null : _loadMore,
+          child: const Text('更多本人活动记录'),
+        ),
     ]);
   }
 }

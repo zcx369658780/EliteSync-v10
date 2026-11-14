@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../relationships_v1011/relationship_api.dart';
+import '../relationships_v1011/contact_picker_page.dart';
+import 'buddy_discovery_page.dart';
+import 'buddy_display.dart';
 import '../relationships_v1011/session_bound_page.dart';
 import '../slow_dating_v1012/journey_components.dart';
 
@@ -12,26 +15,22 @@ class BuddyPage extends ConsumerStatefulWidget {
   ConsumerState<BuddyPage> createState() => _BuddyPageState();
 }
 
-class _BuddyPageState extends SessionBoundPage<BuddyPage> {
+class _BuddyPageState extends SessionBoundPage<BuddyPage>
+    with WidgetsBindingObserver {
   @override
   String get resource => '/buddy';
 
   final _subject = TextEditingController();
   final _city = TextEditingController();
-  final _recipient = TextEditingController();
   final _redeem = TextEditingController();
-  final _start = TextEditingController(
-    text: DateTime.now()
-        .toUtc()
-        .add(const Duration(hours: 1))
-        .toIso8601String(),
-  );
-  final _end = TextEditingController(
-    text: DateTime.now()
-        .toUtc()
-        .add(const Duration(hours: 2))
-        .toIso8601String(),
-  );
+  final _publicLabel = TextEditingController();
+  DateTime _start = DateTime.now().add(const Duration(hours: 1));
+  DateTime _end = DateTime.now().add(const Duration(hours: 2));
+  String? _pendingMethod;
+  String? _pendingPath;
+  Map<String, dynamic>? _pendingBody;
+  bool _pendingExposesToken = false;
+  bool get _blocked => busy || _pendingBody != null;
   String _type = 'MEAL';
   String _place = 'ONLINE';
   String _budget = 'UNSPECIFIED';
@@ -40,22 +39,40 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
   String? _issuedActivityId;
   int _localGeneration = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      refresh();
+      return;
+    }
+    _localGeneration++;
+    _issuedToken = null;
+    _tokenExpiry = null;
+    _issuedActivityId = null;
+    invalidatePendingProjection();
+    Navigator.of(context).popUntil((route) => route is! PopupRoute);
+  }
+
   void _clearSensitive() {
     _localGeneration++;
-    for (final c in [_subject, _city, _recipient, _redeem]) {
+    for (final c in [_subject, _city, _redeem, _publicLabel]) {
       c.clear();
     }
     _issuedToken = null;
     _tokenExpiry = null;
     _issuedActivityId = null;
-    _start.text = DateTime.now()
-        .toUtc()
-        .add(const Duration(hours: 1))
-        .toIso8601String();
-    _end.text = DateTime.now()
-        .toUtc()
-        .add(const Duration(hours: 2))
-        .toIso8601String();
+    _start = DateTime.now().add(const Duration(hours: 1));
+    _end = DateTime.now().add(const Duration(hours: 2));
+    _pendingMethod = null;
+    _pendingPath = null;
+    _pendingBody = null;
+    _pendingExposesToken = false;
     _type = 'MEAL';
     _place = 'ONLINE';
     _budget = 'UNSPECIFIED';
@@ -68,7 +85,8 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
 
   @override
   void dispose() {
-    for (final c in [_subject, _city, _recipient, _redeem, _start, _end]) {
+    WidgetsBinding.instance.removeObserver(this);
+    for (final c in [_subject, _city, _redeem, _publicLabel]) {
       c.dispose();
     }
     super.dispose();
@@ -85,18 +103,47 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
     Map<String, dynamic> body, {
     bool exposesToken = false,
   }) async {
+    if (busy || _pendingBody != null) return;
+    _pendingMethod = method;
+    _pendingPath = path;
+    _pendingBody = Map<String, dynamic>.unmodifiable(body);
+    _pendingExposesToken = exposesToken;
+    await _retryPending();
+  }
+
+  @override
+  Future<void> refresh() async {
     final generation = _localGeneration;
     final result = await run(
-      () => ref.read(relationshipApiProvider).call(method, path, body),
+      () => ref.read(relationshipApiProvider).call('GET', resource),
+    );
+    if (!mounted || generation != _localGeneration) return;
+    setState(() => data = result);
+  }
+
+  Future<void> _retryPending() async {
+    if (busy || _pendingBody == null) return;
+    final generation = _localGeneration;
+    final exposesToken = _pendingExposesToken;
+    final result = await run(
+      () => ref
+          .read(relationshipApiProvider)
+          .call(_pendingMethod!, _pendingPath!, _pendingBody!),
     );
     if (!mounted || generation != _localGeneration) return;
     if (result == null) {
       setState(() {
-        data = null;
-        _clearSensitive();
+        data = {'preferences': <String, dynamic>{}, 'activities': <Object>[]};
+        _issuedToken = null;
+        _tokenExpiry = null;
+        _issuedActivityId = null;
       });
       return;
     }
+    _pendingMethod = null;
+    _pendingPath = null;
+    _pendingBody = null;
+    _pendingExposesToken = false;
     await refresh();
     if (!mounted || generation != _localGeneration || data == null) return;
     setState(() {
@@ -115,11 +162,10 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
   }
 
   Future<void> _create() async {
-    final start = DateTime.tryParse(_start.text.trim());
-    final end = DateTime.tryParse(_end.text.trim());
+    final start = _start;
+    final end = _end;
     if (_subject.text.trim().isEmpty ||
-        start == null ||
-        end == null ||
+        !start.isAfter(DateTime.now()) ||
         !end.isAfter(start)) {
       setState(() => error = '请填写主题及有效的起止时间，结束须晚于开始。');
       return;
@@ -156,20 +202,144 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
   }
 
   Future<void> _invite(Map<String, dynamic> activity) async {
-    final peer = int.tryParse(_recipient.text.trim());
-    if (peer == null || peer <= 0) {
-      setState(() => error = '请输入当前好友的用户编号。');
-      return;
-    }
+    final generation = _localGeneration;
+    final contact = await Navigator.of(context).push<Map<String, dynamic>>(
+      MaterialPageRoute(
+        builder: (_) => const ContactPickerPage(purpose: 'buddy_invite'),
+      ),
+    );
+    if (!mounted || generation != _localGeneration || contact == null) return;
+    final peer = contact['peer_id'];
+    if (peer is! int) return;
     final id = activity['id'];
     if (id is! String || activity['revision'] is! int) return;
-    if (!await confirm('定向邀请这位好友？', '对方须已开启搭子请求；仍需对方主动申请和你确认，不会自动加入。')) {
+    if (!await confirm(
+      '邀请${contact['label'] ?? '这位好友'}？',
+      '对方须已开启搭子请求；仍需对方主动申请和你确认，不会自动加入。',
+    )) {
       return;
     }
     await _send('POST', '/buddy/${Uri.encodeComponent(id)}/invites', {
       'recipient_id': peer,
       'revision': activity['revision'],
       'idempotency_key': requestKey(),
+    });
+  }
+
+  Future<void> _pickTime(bool start) async {
+    final generation = _localGeneration;
+    final current = start ? _start : _end;
+    final now = DateTime.now();
+    final date = await showDatePicker(
+      context: context,
+      initialDate: current.isBefore(now) ? now : current,
+      firstDate: now,
+      lastDate: now.add(const Duration(days: 30)),
+    );
+    if (!mounted || generation != _localGeneration || date == null) return;
+    final time = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(current),
+    );
+    if (!mounted || generation != _localGeneration || time == null) return;
+    setState(() {
+      final selected = DateTime(
+        date.year,
+        date.month,
+        date.day,
+        time.hour,
+        time.minute,
+      );
+      if (start) {
+        _start = selected;
+      } else {
+        _end = selected;
+      }
+    });
+  }
+
+  Future<void> _publish(Map<String, dynamic> activity, String action) async {
+    final generation = _localGeneration;
+    String? label;
+    if (action == 'publish') {
+      final controller = _publicLabel;
+      controller.clear();
+      label = await showDialog<String>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: const Text('预览并发布到发现'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${activity['type'] == 'STUDY' ? '学习' : '吃饭'} · ${activity['subject']}',
+                ),
+                Text(
+                  activity['place_kind'] == 'ONLINE'
+                      ? '线上'
+                      : '${activity['general_city']} · 公共空间',
+                ),
+                Text('预算：${_budgetLabel(activity['budget_band'])}'),
+                Text(
+                  '${buddyLocalTime(activity['start_at'])} 至 ${buddyLocalTime(activity['end_at'])}',
+                ),
+                const Text('公开至发布后48小时或活动开始，取较早时间。申请后须由你确认。'),
+                TextField(
+                  controller: controller,
+                  maxLength: 40,
+                  decoration: const InputDecoration(
+                    labelText: '本次公开称呼',
+                    helperText: '请勿填写联系方式或住址',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('取消'),
+            ),
+            FilledButton(
+              onPressed: () {
+                if (controller.text.trim().isNotEmpty) {
+                  Navigator.pop(dialogContext, controller.text.trim());
+                }
+              },
+              child: const Text('明确发布'),
+            ),
+          ],
+        ),
+      );
+      if (!mounted || generation != _localGeneration || label == null) return;
+    } else if (!await confirm('从发现撤下？', '关闭新申请，已经成立且仍合法的参与状态保留。')) {
+      return;
+    }
+    if (!mounted || generation != _localGeneration) return;
+    await _send(
+      'POST',
+      '/buddy/${Uri.encodeComponent(activity['id'] as String)}/discovery',
+      {
+        'action': action,
+        'revision': activity['revision'],
+        'idempotency_key': requestKey(),
+        'author_label': ?label,
+      },
+    );
+  }
+
+  Future<void> _resolvePending() async {
+    final generation = _localGeneration;
+    await refresh();
+    if (!mounted || generation != _localGeneration || data == null) return;
+    if (!await confirm('已重读服务器状态', '请核对当前活动。仅在已确认上次结果或决定放弃时结束本次待确认命令。')) return;
+    setState(() {
+      _pendingMethod = null;
+      _pendingPath = null;
+      _pendingBody = null;
+      _pendingExposesToken = false;
     });
   }
 
@@ -189,7 +359,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
           items: choices.entries
               .map((e) => DropdownMenuItem(value: e.key, child: Text(e.value)))
               .toList(),
-          onChanged: busy
+          onChanged: _blocked
               ? null
               : (next) {
                   if (next != null) change(next);
@@ -210,7 +380,11 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(activity['type'] == 'STUDY' ? '学习搭子' : '吃饭搭子'),
+            Text(switch (activity['type']) {
+              'STUDY' => '学习搭子',
+              'MEAL' => '吃饭搭子',
+              _ => '搭子活动',
+            }),
             Text('状态：${_stateLabel(activity['state'])}'),
             if (activity['subject'] is String)
               Text(activity['subject'] as String),
@@ -219,29 +393,35 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
             if (activity['place_kind'] != null)
               Text(activity['place_kind'] == 'ONLINE' ? '线上' : '公共空间（未指定具体地点）'),
             if (activity['start_at'] != null)
-              Text('开始（UTC）：${activity['start_at']}'),
+              Text('开始：${buddyLocalTime(activity['start_at'])}'),
             if (activity['end_at'] != null)
-              Text('结束（UTC）：${activity['end_at']}'),
+              Text('结束：${buddyLocalTime(activity['end_at'])}'),
             if (activity['budget_band'] != null)
               Text('预算档位：${_budgetLabel(activity['budget_band'])}'),
             if (writable && actions.contains('invite')) ...[
-              TextField(
-                key: ValueKey('buddy-recipient-$id'),
-                controller: _recipient,
-                enabled: !busy,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: '当前好友用户编号'),
-              ),
               OutlinedButton(
                 key: ValueKey('buddy-$id-invite'),
-                onPressed: busy ? null : () => _invite(activity),
+                onPressed: _blocked ? null : () => _invite(activity),
                 child: const Text('邀请当前好友'),
               ),
             ],
+            if (writable)
+              for (final action
+                  in (activity['discovery_actions'] is List
+                      ? (activity['discovery_actions'] as List)
+                            .whereType<String>()
+                      : <String>[]))
+                OutlinedButton(
+                  key: ValueKey('buddy-$id-discovery-$action'),
+                  onPressed: _blocked ? null : () => _publish(activity, action),
+                  child: Text(action == 'publish' ? '发布到搭子发现' : '从发现撤下'),
+                ),
+            if (activity['discovery'] is Map)
+              Text('发现发布状态：${objectMap(activity['discovery'])['state']}'),
             if (writable && actions.contains('token'))
               OutlinedButton(
                 key: ValueKey('buddy-$id-token'),
-                onPressed: busy
+                onPressed: _blocked
                     ? null
                     : () async {
                         if (!await confirm(
@@ -265,7 +445,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
             if (writable && actions.contains('revoke_token'))
               OutlinedButton(
                 key: ValueKey('buddy-$id-revoke-token'),
-                onPressed: busy
+                onPressed: _blocked
                     ? null
                     : () async {
                         if (!await confirm(
@@ -302,7 +482,9 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
                     if (actions.contains(action))
                       OutlinedButton(
                         key: ValueKey('buddy-$id-$action'),
-                        onPressed: busy ? null : () => _act(activity, action),
+                        onPressed: _blocked
+                            ? null
+                            : () => _act(activity, action),
                         child: Text(_actionLabel(action)),
                       ),
                 ],
@@ -317,7 +499,31 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
   Widget build(BuildContext context) {
     final pref = objectMap(data?['preferences']);
     final activities = rows(data?['activities']);
-    return frame('独立搭子', [
+    return frame('我的搭子', [
+      if (_pendingBody != null) ...[
+        const Text('上次操作结果尚未确认。草稿与原命令已保留。'),
+        FilledButton(
+          key: const Key('buddy-retry-pending'),
+          onPressed: busy ? null : _retryPending,
+          child: const Text('原编号重试'),
+        ),
+        TextButton(
+          onPressed: busy ? null : _resolvePending,
+          child: const Text('重读并核对上次结果'),
+        ),
+      ],
+      OutlinedButton(
+        key: const Key('buddy-open-discovery'),
+        onPressed: _blocked
+            ? null
+            : () async {
+                await Navigator.of(context).push<void>(
+                  MaterialPageRoute(builder: (_) => const BuddyDiscoveryPage()),
+                );
+                if (mounted) refresh();
+              },
+        child: const Text('搭子发现'),
+      ),
       const Text('吃饭或学习，两人自愿确认。无需参加婚恋匹配；不会自动建立好友、私信、通话或正式关系。'),
       if (data != null) ...[
         SwitchListTile(
@@ -325,7 +531,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
           title: const Text('接收搭子请求'),
           subtitle: const Text('关闭后不再接受新申请；服务器按当前许可处理旧邀请。'),
           value: pref['enabled'] == true,
-          onChanged: busy || pref['revision'] is! int
+          onChanged: _blocked || pref['revision'] is! int
               ? null
               : (value) => _send('PUT', '/buddy/preferences', {
                   'enabled': value,
@@ -349,7 +555,8 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
             )) ...[
           const Text('新邀请凭据（仅本次响应显示，切换账号或权限变化即清除）：'),
           SelectableText(_issuedToken!, key: const Key('buddy-issued-token')),
-          if (_tokenExpiry != null) Text('服务器到期时间：$_tokenExpiry'),
+          if (_tokenExpiry != null)
+            Text('服务器到期时间：${buddyLocalTime(_tokenExpiry)}'),
         ],
         const Divider(),
         ExpansionTile(
@@ -363,7 +570,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
             TextField(
               key: const Key('buddy-subject'),
               controller: _subject,
-              enabled: !busy,
+              enabled: !_blocked,
               maxLength: 100,
               decoration: const InputDecoration(
                 labelText: '简短主题',
@@ -373,7 +580,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
             TextField(
               key: const Key('buddy-city'),
               controller: _city,
-              enabled: !busy,
+              enabled: !_blocked,
               maxLength: 40,
               decoration: const InputDecoration(
                 labelText: '粗城市（可留空）',
@@ -390,25 +597,23 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
               'MID': '中',
               'HIGH': '高',
             }, (v) => setState(() => _budget = v)),
-            TextField(
+            ListTile(
               key: const Key('buddy-start'),
-              controller: _start,
-              enabled: !busy,
-              decoration: const InputDecoration(
-                labelText: '开始时间（UTC / ISO 8601）',
-              ),
+              title: const Text('开始时间'),
+              subtitle: Text(buddyLocalTime(_start.toUtc().toIso8601String())),
+              trailing: const Icon(Icons.calendar_month),
+              onTap: _blocked ? null : () => _pickTime(true),
             ),
-            TextField(
+            ListTile(
               key: const Key('buddy-end'),
-              controller: _end,
-              enabled: !busy,
-              decoration: const InputDecoration(
-                labelText: '结束时间（UTC / ISO 8601）',
-              ),
+              title: const Text('结束时间'),
+              subtitle: Text(buddyLocalTime(_end.toUtc().toIso8601String())),
+              trailing: const Icon(Icons.calendar_month),
+              onTap: _blocked ? null : () => _pickTime(false),
             ),
             FilledButton(
               key: const Key('buddy-create'),
-              onPressed: busy ? null : _create,
+              onPressed: _blocked ? null : _create,
               child: const Text('保存仅本人可见草稿'),
             ),
           ],
@@ -421,7 +626,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
             TextField(
               key: const Key('buddy-redeem-token'),
               controller: _redeem,
-              enabled: !busy,
+              enabled: !_blocked,
               maxLength: 256,
               obscureText: true,
               enableSuggestions: false,
@@ -430,7 +635,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage> {
             ),
             FilledButton(
               key: const Key('buddy-redeem'),
-              onPressed: busy
+              onPressed: _blocked
                   ? null
                   : () async {
                       final token = _redeem.text.trim();
