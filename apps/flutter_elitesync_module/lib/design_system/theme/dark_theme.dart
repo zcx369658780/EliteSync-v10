@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_component_theme.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/design_system/tokens/app_colors.dart';
 import 'package:flutter_elitesync_module/design_system/tokens/app_motion.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_elitesync_module/design_system/tokens/app_typography.dar
 ThemeData buildDarkTheme() {
   const colorScheme = ColorScheme.dark(
     primary: AppColors.brandPrimary,
+    onPrimary: AppColors.darkBg,
     secondary: AppColors.brandSecondary,
     surface: AppColors.darkSurface,
     error: AppColors.error,
@@ -64,26 +66,29 @@ ThemeData buildDarkTheme() {
     motionSlow: AppMotion.slow,
   );
 
-  return ThemeData(
-    useMaterial3: true,
-    colorScheme: colorScheme,
-    scaffoldBackgroundColor: AppColors.darkBg,
-    textTheme:
-        const TextTheme(
-          displayLarge: AppTypography.display32Bold,
-          displayMedium: AppTypography.display28Bold,
-          headlineLarge: AppTypography.headline24SemiBold,
-          headlineMedium: AppTypography.headline20SemiBold,
-          titleLarge: AppTypography.title18SemiBold,
-          titleMedium: AppTypography.title16SemiBold,
-          bodyLarge: AppTypography.body16Regular,
-          bodyMedium: AppTypography.body14Regular,
-          bodySmall: AppTypography.body12Regular,
-          labelSmall: AppTypography.label11Medium,
-        ).apply(
-          bodyColor: AppColors.textPrimaryDark,
-          displayColor: AppColors.textPrimaryDark,
-        ),
-    extensions: <ThemeExtension<dynamic>>[tokens],
+  return applyAppComponentTheme(
+    ThemeData(
+      useMaterial3: true,
+      fontFamily: AppTypography.fontFamily,
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: AppColors.darkBg,
+      textTheme:
+          const TextTheme(
+            displayLarge: AppTypography.display32Bold,
+            displayMedium: AppTypography.display28Bold,
+            headlineLarge: AppTypography.headline24SemiBold,
+            headlineMedium: AppTypography.headline20SemiBold,
+            titleLarge: AppTypography.title18SemiBold,
+            titleMedium: AppTypography.title16SemiBold,
+            bodyLarge: AppTypography.body16Regular,
+            bodyMedium: AppTypography.body14Regular,
+            bodySmall: AppTypography.body12Regular,
+            labelSmall: AppTypography.label11Medium,
+          ).apply(
+            bodyColor: AppColors.textPrimaryDark,
+            displayColor: AppColors.textPrimaryDark,
+          ),
+      extensions: <ThemeExtension<dynamic>>[tokens],
+    ),
   );
 }

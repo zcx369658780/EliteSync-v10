@@ -14,9 +14,11 @@ class FakeLocalStorageService extends LocalStorageService {
   }
 
   final Map<String, Object?> _values = {};
+  bool rejectWrite = false;
 
   @override
   Future<bool> setString(String key, String value) async {
+    if (rejectWrite) return false;
     _values[key] = value;
     return true;
   }
@@ -53,6 +55,19 @@ ProviderContainer _container({
 }
 
 void main() {
+  test('Rejected local theme write preserves the confirmed preference', () async {
+    final storage = FakeLocalStorageService()..rejectWrite = true;
+    final container = _container(
+      env: const AppEnv(flavor: AppFlavor.dev, appName: 'Synthetic theme',
+        apiBaseUrl: 'https://synthetic.invalid/', useMockData: true),
+      storage: storage,
+    );
+    addTearDown(container.dispose);
+    expect(container.read(themeModeProvider), AppThemeMode.dark);
+    await expectLater(container.read(themeModeProvider.notifier).setThemeMode(AppThemeMode.light), throwsStateError);
+    expect(container.read(themeModeProvider), AppThemeMode.dark);
+    expect(await storage.getString(CacheKeys.appThemeMode), isNull);
+  });
   test('dev defaults to dark and persists theme selection', () async {
     final storage = FakeLocalStorageService();
     final container = _container(

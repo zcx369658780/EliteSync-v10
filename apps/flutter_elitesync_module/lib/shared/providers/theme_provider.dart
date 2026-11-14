@@ -37,10 +37,11 @@ class ThemeModeNotifier extends Notifier<AppThemeMode> {
   }
 
   Future<void> setThemeMode(AppThemeMode mode) async {
-    state = mode;
-    await ref
+    final saved = await ref
         .read(localStorageProvider)
         .setString(CacheKeys.appThemeMode, mode.name);
+    if (!saved) throw StateError('Theme preference was not saved');
+    state = mode;
   }
 }
 

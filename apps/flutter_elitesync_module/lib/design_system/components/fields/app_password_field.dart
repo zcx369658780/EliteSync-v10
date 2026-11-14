@@ -39,6 +39,7 @@ class _AppPasswordFieldState extends State<AppPasswordField> {
       enabled: widget.enabled,
       onChanged: widget.onChanged,
       suffixIcon: IconButton(
+        tooltip: _obscure ? '显示密码' : '隐藏密码',
         icon: Icon(
           _obscure ? Icons.visibility_off_outlined : Icons.visibility_outlined,
         ),

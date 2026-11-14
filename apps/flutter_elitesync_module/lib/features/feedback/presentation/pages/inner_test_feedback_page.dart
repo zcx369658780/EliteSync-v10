@@ -317,6 +317,7 @@ class _InnerTestFeedbackPageState extends ConsumerState<InnerTestFeedbackPage> {
     return AppScaffold(
       appBar: const AppTopBar(title: '体验反馈', mode: AppTopBarMode.backTitle),
       body: ListView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         padding: EdgeInsets.only(top: t.spacing.sm, bottom: t.spacing.xl),
         children: [
           const SectionReveal(

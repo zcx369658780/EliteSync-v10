@@ -63,7 +63,7 @@ class _CurrentStateArea extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '当前状态 · Current state',
+            '当前状态',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: t.textPrimary,
               fontWeight: FontWeight.w800,
@@ -71,7 +71,7 @@ class _CurrentStateArea extends StatelessWidget {
           ),
           SizedBox(height: t.spacing.xxs),
           Text(
-            '首页只做摘要；访问这里不会改变任何生命周期状态。',
+            '查看本人状态与可选下一步，各项参与均由你确认。',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: t.textSecondary,
               height: 1.45,
@@ -141,7 +141,7 @@ class _NextDecisionArea extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '下一步 · Next decision',
+            '下一步',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: t.textPrimary,
               fontWeight: FontWeight.w700,
@@ -193,7 +193,7 @@ class _OptionalSupportArea extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '可选支持 · Optional support',
+            '工具与帮助',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: t.textPrimary,
               fontWeight: FontWeight.w700,

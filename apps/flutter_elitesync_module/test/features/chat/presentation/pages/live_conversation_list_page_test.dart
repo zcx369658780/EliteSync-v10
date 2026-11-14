@@ -104,7 +104,11 @@ class _Api extends ApiClient {
   }
 }
 
-Future<PrivateCacheService> _show(WidgetTester tester, _Api api) async {
+Future<PrivateCacheService> _show(
+  WidgetTester tester,
+  _Api api, {
+  double textScale = 1,
+}) async {
   final secure = await syntheticPrivateLogin();
   await tester.pumpWidget(
     ProviderScope(
@@ -113,7 +117,15 @@ Future<PrivateCacheService> _show(WidgetTester tester, _Api api) async {
         apiClientProvider.overrideWithValue(api),
         sessionProvider.overrideWith(_Session.new),
       ],
-      child: const MaterialApp(home: LiveConversationListPage()),
+      child: MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.linear(textScale)),
+          child: child!,
+        ),
+        home: const LiveConversationListPage(),
+      ),
     ),
   );
   await tester.pumpAndSettle();
@@ -121,6 +133,19 @@ Future<PrivateCacheService> _show(WidgetTester tester, _Api api) async {
 }
 
 void main() {
+  testWidgets(
+    'Large unread summary stays readable at 200 percent on a narrow screen',
+    (tester) async {
+      tester.view.physicalSize = const Size(320, 740);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      await _show(tester, _Api()..unread = 999999, textScale: 2);
+      expect(tester.takeException(), isNull);
+      expect(find.text('未读 999999'), findsOneWidget);
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
   testWidgets(
     'offline resume hides the old list until a current read succeeds',
     (tester) async {

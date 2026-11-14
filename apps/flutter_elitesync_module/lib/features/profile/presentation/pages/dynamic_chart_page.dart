@@ -652,6 +652,8 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
           : Form(
               key: _form,
               child: ListView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
                 key: const ValueKey('dynamic-chart-scroll'),
                 padding: const EdgeInsets.all(16),
                 children: [

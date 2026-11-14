@@ -43,6 +43,7 @@ class MessageInputBar extends StatelessWidget {
                     maxLines: 4,
                     textInputAction: TextInputAction.newline,
                     decoration: InputDecoration(
+                      labelText: '消息内容',
                       hintText: '写一句轻问候，确认后手动发送',
                       isDense: true,
                       filled: true,

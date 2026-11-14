@@ -8,6 +8,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -192,10 +193,11 @@ class _PresentedApi extends _MediaApi {
     Map<String, dynamic>? query,
     Options? options,
   }) async {
-    if (path.startsWith('/api/v1/connections/'))
+    if (path.startsWith('/api/v1/connections/')) {
       return const NetworkSuccess({
         'gates': {'live_read_allowed': true},
       });
+    }
     return NetworkSuccess({
       'items': [
         for (var id = 1; id <= newest; id++)
@@ -427,6 +429,7 @@ Future<void> _show(
   Dio? dio,
   SyntheticPrivateStore? secureStore,
   int peerId = 2,
+  double textScale = 1,
 }) async {
   final secure = secureStore ?? await syntheticPrivateLogin();
   final container = ProviderContainer(
@@ -444,7 +447,15 @@ Future<void> _show(
   await tester.pumpWidget(
     UncontrolledProviderScope(
       container: container,
-      child: MaterialApp(home: LiveChatPage(peerId: peerId)),
+      child: MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.linear(textScale)),
+          child: child!,
+        ),
+        home: LiveChatPage(peerId: peerId),
+      ),
     ),
   );
   await tester.pump();
@@ -452,6 +463,22 @@ Future<void> _show(
 }
 
 void main() {
+  testWidgets(
+    'Narrow large-text chat keeps title and all five actions reachable',
+    (tester) async {
+      tester.view.physicalSize = const Size(320, 740);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      await _show(tester, _MediaApi(), textScale: 2);
+      expect(tester.takeException(), isNull);
+      expect(tester.renderObject<RenderParagraph>(find.text('对话')).didExceedMaxLines, isFalse);
+      for (final action in ['搜索当前会话', '语音留言', '刷新对话', '语音通话', '视频通话']) {
+        expect(find.byTooltip(action), findsOneWidget);
+      }
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
   testWidgets('confirmed voice send closes panel even when following history read fails', (tester) async {
     // The native status and media upload are named fixtures. This verifies the
     // real LiveChatPage callback and persistence acknowledgement, not recording.

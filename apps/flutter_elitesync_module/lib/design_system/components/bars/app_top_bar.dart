@@ -38,6 +38,8 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: false,
       title: Text(
         title ?? '',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: Theme.of(context).textTheme.titleLarge?.copyWith(
           color: t.textPrimary,
           fontWeight: FontWeight.w700,
@@ -45,8 +47,9 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       leading: mode == AppTopBarMode.backTitle && canPop
           ? IconButton(
+              tooltip: '返回',
               icon: const Icon(Icons.arrow_back_ios_new_rounded),
-              onPressed: onBack ?? () => Navigator.of(context).pop(),
+              onPressed: onBack ?? () => Navigator.of(context).maybePop(),
             )
           : null,
       actions: actions,

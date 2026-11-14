@@ -1,5 +1,9 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:dio/dio.dart';
+import 'package:flutter_elitesync_module/core/network/api_client.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
+import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
@@ -52,6 +56,22 @@ NavigationSnapshot _snapshot({
 );
 
 final _guard = StateProvider<NavigationSnapshot>((ref) => _snapshot());
+
+class _ReadinessSession extends SessionNotifier {
+  @override
+  SessionState build() => const SessionState(status: AuthStatus.authenticated,
+    accessToken: 'synthetic-navigation-only', user: UserSummary(id: 990000101, phone: 'synthetic'));
+}
+
+class _ReadinessApi extends RelationshipApi {
+  _ReadinessApi() : super(ApiClient(dio: Dio()));
+  @override
+  Future<Map<String, dynamic>> call(String method, String path, [Map<String, dynamic>? body]) async {
+    if (method != 'GET' || path != '/journey') throw StateError('Read-only readiness fixture');
+    return {'participation': {'revision': 0, 'state': 'NOT_ENROLLED'},
+      'readiness': {'eligible': false, 'missing_answer_count': 20}};
+  }
+}
 final _match = StateProvider<Future<MatchRoundProjection>>(
   (ref) => Future.value(_round(MatchRoundBusinessState.revealed)),
 );
@@ -150,6 +170,8 @@ class _Harness {
         ),
         navigationGuardProvider.overrideWith((ref) => ref.watch(_guard)),
         authStatusProvider.overrideWith((ref) => ref.watch(_guard).authStatus),
+        sessionProvider.overrideWith(_ReadinessSession.new),
+        relationshipApiProvider.overrideWithValue(_ReadinessApi()),
         localStorageProvider.overrideWithValue(storage),
         secureStorageProvider.overrideWith((ref) => forbidden('secureStorage')),
         apiClientProvider.overrideWith((ref) => forbidden('apiClient')),

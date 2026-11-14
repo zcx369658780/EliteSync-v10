@@ -86,8 +86,17 @@ class _PrivacyState extends SessionBoundPage<RelationshipPrivacyPage> {
       }
     }
     return frame('正式关系字段分享', [
-      const Text(
-        '默认仅自己。选择分享只指定最大受众；实际可见还要求正式关系ACTIVE、双有效核验、双方确认且未Block。未提供的值不会生成。证件、精确出生时地、私聊和内部Safety始终不分享。',
+      const Text('默认仅自己。分享需有效正式关系、双方核验与确认。'),
+      const ExpansionTile(
+        title: Text('分享条件与保护范围'),
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Text(
+              '选择分享只指定最大受众；实际可见还要求正式关系ACTIVE、双有效核验、双方确认且未Block。未提供的值不会生成。证件、精确出生时地、私聊和内部Safety始终不分享。',
+            ),
+          ),
+        ],
       ),
       if (data != null) ...[
         TextField(

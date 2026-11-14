@@ -278,6 +278,23 @@ String _visibleText(WidgetTester tester) {
 }
 
 void main() {
+  testWidgets('System appearance selection persists as a local preference', (tester) async {
+    final storage = await _pumpSettingsPage(tester, flavor: AppFlavor.dev, phone: '19900111201');
+    await tester.tap(find.text('跟随系统外观'));
+    await tester.pumpAndSettle();
+    expect(await storage.getString(CacheKeys.appThemeMode), 'system');
+    expect(find.text('本机外观 · 当前跟随系统'), findsOneWidget);
+  });
+
+  testWidgets('Rejected appearance save reports failure and retains the current selection', (tester) async {
+    final storage = FakeLocalStorageService()..returnFalseOnWrite = true;
+    await _pumpSettingsPage(tester, flavor: AppFlavor.dev, phone: '19900111201', localStorage: storage);
+    await tester.tap(find.text('跟随系统外观'));
+    await tester.pumpAndSettle();
+    expect(await storage.getString(CacheKeys.appThemeMode), isNull);
+    expect(find.text('本机外观 · 当前手动选择'), findsOneWidget);
+    expect(find.text('外观保存未完成，请重试。'), findsOneWidget);
+  });
   testWidgets(
     'Settings opens current notification controls without requesting permission',
     (tester) async {
@@ -350,7 +367,7 @@ void main() {
 
       final orderedLabels = [
         '显示与外观',
-        '提醒与性能',
+        '通知与本机偏好',
         '资料与隐私',
         '账号与安全',
         '帮助与反馈',
@@ -489,7 +506,7 @@ void main() {
     expect(find.text('新手引导'), findsOneWidget);
     expect(find.text('随时重新查看使用说明'), findsOneWidget);
     expect(find.text('帮我们改进体验'), findsOneWidget);
-    expect(find.text('在本机整理可复制反馈，由你选择发送方式'), findsOneWidget);
+    expect(find.text('提交反馈并查看本人回执和处理状态'), findsOneWidget);
     expect(find.text('查看当前安装版本、手动检查更新和更新说明'), findsOneWidget);
     expect(find.text('支持与帮助信息'), findsNothing);
     expect(

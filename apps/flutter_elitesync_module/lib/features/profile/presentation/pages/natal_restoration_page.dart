@@ -327,6 +327,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
       appBar: AppBar(title: const Text('三盘本命排盘')),
       body: SafeArea(
         child: ListView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           padding: const EdgeInsets.all(16),
           children: [
             const Text(

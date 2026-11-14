@@ -63,6 +63,7 @@ class AppTextField extends StatelessWidget {
         (onClear != null
             ? IconButton(
                 icon: const Icon(Icons.close_rounded),
+                tooltip: '清空输入',
                 onPressed: enabled ? onClear : null,
               )
             : null);
@@ -83,50 +84,55 @@ class AppTextField extends StatelessWidget {
           ),
           SizedBox(height: t.spacing.xs),
         ],
-        TextField(
-          controller: controller,
-          focusNode: focusNode,
-          obscureText: obscureText,
-          minLines: resolvedMinLines,
-          maxLines: resolvedMaxLines,
-          readOnly: readOnly,
-          enabled: enabled,
-          maxLength: maxLength,
-          keyboardType: keyboardType,
-          textInputAction: textInputAction,
-          inputFormatters: inputFormatters,
-          onChanged: onChanged,
-          onSubmitted: onSubmitted,
-          style: Theme.of(
-            context,
-          ).textTheme.bodyLarge?.copyWith(color: t.textPrimary),
-          decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: Theme.of(
+        Semantics(
+          label: label,
+          child: TextField(
+            controller: controller,
+            focusNode: focusNode,
+            obscureText: obscureText,
+            minLines: resolvedMinLines,
+            maxLines: resolvedMaxLines,
+            readOnly: readOnly,
+            enabled: enabled,
+            maxLength: maxLength,
+            keyboardType: keyboardType,
+            textInputAction: textInputAction,
+            inputFormatters: inputFormatters,
+            onChanged: onChanged,
+            onSubmitted: onSubmitted,
+            style: Theme.of(
               context,
-            ).textTheme.bodyMedium?.copyWith(color: t.textTertiary),
-            helperText: helperText,
-            errorText: errorText,
-            counterText: '',
-            filled: true,
-            fillColor: t.surface,
-            prefixIcon: prefixIcon,
-            suffixIcon: trailing,
-            contentPadding: EdgeInsets.symmetric(
-              horizontal: t.spacing.md,
-              vertical: t.spacing.md,
+            ).textTheme.bodyLarge?.copyWith(color: t.textPrimary),
+            decoration: InputDecoration(
+              hintText: hint,
+              hintStyle: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: t.textTertiary),
+              helperText: helperText,
+              errorText: errorText,
+              errorMaxLines: 5,
+              helperMaxLines: 5,
+              counterText: '',
+              filled: true,
+              fillColor: t.surface,
+              prefixIcon: prefixIcon,
+              suffixIcon: trailing,
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: t.spacing.md,
+                vertical: t.spacing.md,
+              ),
+              border: border(t.overlay),
+              enabledBorder: border(t.overlay),
+              focusedBorder: border(t.brandPrimary),
+              errorBorder: border(t.error),
+              focusedErrorBorder: border(t.error),
+              helperStyle: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: t.textSecondary),
+              errorStyle: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: t.error),
             ),
-            border: border(t.overlay),
-            enabledBorder: border(t.overlay),
-            focusedBorder: border(t.brandPrimary),
-            errorBorder: border(t.error),
-            focusedErrorBorder: border(t.error),
-            helperStyle: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: t.textSecondary),
-            errorStyle: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: t.error),
           ),
         ),
         if (!hasError && helperText == null) SizedBox(height: t.spacing.xs),

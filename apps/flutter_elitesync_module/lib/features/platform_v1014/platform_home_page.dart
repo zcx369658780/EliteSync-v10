@@ -15,6 +15,8 @@ class PlatformHomePage extends StatelessWidget {
         Text('相约与交流', style: Theme.of(context).textTheme.headlineSmall),
         const SizedBox(height: 8),
         const Text('按自己的节奏参与活动、寻找搭子，或看看好友动态。'),
+        const SizedBox(height: 8),
+        Text('已报名与匹配状态可在“进展”查看。', style: Theme.of(context).textTheme.bodySmall),
         const SizedBox(height: 20),
         Card(
           child: ListTile(

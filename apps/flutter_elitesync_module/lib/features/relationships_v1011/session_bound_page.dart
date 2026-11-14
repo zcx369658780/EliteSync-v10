@@ -128,6 +128,7 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
       ],
     ),
     body: ListView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 112),
       children: [
         if (busy) const LinearProgressIndicator(),
@@ -139,7 +140,11 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
               key: const Key('server-error'),
             ),
           ),
-        if (_identity == null) const Text('请重新登录；旧账号资料已清除。') else ...children,
+        if (_identity == null)
+          const Text('请重新登录；旧账号资料已清除。')
+        else
+          for (final child in children)
+            Padding(padding: const EdgeInsets.only(bottom: 12), child: child),
       ],
     ),
   );

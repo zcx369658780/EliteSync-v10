@@ -76,45 +76,58 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
     ].contains(proposal['state']);
     final showcase = objectMap(proposal['showcase']);
     final explanation = objectMap(proposal['explanation']);
-    return frame('慢约会旅程', [
+    return frame('进展', [
+      Text('慢约会参与与连接', style: Theme.of(context).textTheme.titleLarge),
       const Text('准备 → 主动报名 → 等待揭晓 → 独立选择。匹配不会自动建立连接、消息同意或正式恋爱关系。'),
-      OutlinedButton(
-        key: const Key('journey-matching-inputs'),
-        onPressed: () async {
-          await Navigator.of(context).push(
-            MaterialPageRoute<void>(builder: (_) => const MatchingInputPage()),
-          );
-          if (mounted) await refresh();
-        },
-        child: const Text('我的匹配输入'),
-      ),
-      OutlinedButton(
-        onPressed: () async {
-          await Navigator.of(context).push(
-            MaterialPageRoute<void>(builder: (_) => const QuestionnairePage()),
-          );
-          if (mounted) await refresh();
-        },
-        child: const Text('填写或修改必要问卷'),
-      ),
-      OutlinedButton(
-        key: const Key('journey-matching-history'),
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(builder: (_) => const MatchingHistoryPage()),
-        ),
-        child: const Text('本人慢约历史'),
-      ),
-      OutlinedButton(
-        onPressed: () => Navigator.of(
-          context,
-        ).push(MaterialPageRoute<void>(builder: (_) => const BuddyPage())),
-        child: const Text('独立吃饭 / 学习搭子'),
-      ),
-      OutlinedButton(
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(builder: (_) => const StatusSquarePage()),
-        ),
-        child: const Text('好友可见社区'),
+      Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          OutlinedButton(
+            key: const Key('journey-matching-inputs'),
+            onPressed: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const MatchingInputPage(),
+                ),
+              );
+              if (mounted) await refresh();
+            },
+            child: const Text('我的匹配输入'),
+          ),
+          OutlinedButton(
+            onPressed: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const QuestionnairePage(),
+                ),
+              );
+              if (mounted) await refresh();
+            },
+            child: const Text('填写或修改必要问卷'),
+          ),
+          OutlinedButton(
+            key: const Key('journey-matching-history'),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const MatchingHistoryPage(),
+              ),
+            ),
+            child: const Text('本人慢约历史'),
+          ),
+          OutlinedButton(
+            onPressed: () => Navigator.of(
+              context,
+            ).push(MaterialPageRoute<void>(builder: (_) => const BuddyPage())),
+            child: const Text('独立吃饭 / 学习搭子'),
+          ),
+          OutlinedButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const StatusSquarePage()),
+            ),
+            child: const Text('好友可见社区'),
+          ),
+        ],
       ),
       if (data != null) ...[
         IdentityGateCard(identity: objectMap(data!['identity'])),

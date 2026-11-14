@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_elitesync_module/design_system/components/buttons/app_primary_button.dart';
 import 'package:flutter_elitesync_module/design_system/components/buttons/app_secondary_button.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 
@@ -44,6 +43,7 @@ class AppConfirmDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.appTokens;
     return AlertDialog(
+      scrollable: true,
       backgroundColor: t.surface,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(t.radius.lg),
@@ -52,29 +52,35 @@ class AppConfirmDialog extends StatelessWidget {
       title: Text(
         title,
         style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: t.textPrimary,
-              fontWeight: FontWeight.w800,
-            ),
+          color: t.textPrimary,
+          fontWeight: FontWeight.w800,
+        ),
       ),
       content: Text(
         message,
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: t.textSecondary,
-            ),
+        style: Theme.of(
+          context,
+        ).textTheme.bodyMedium?.copyWith(color: t.textSecondary),
       ),
       actions: [
-        SizedBox(
-          width: 88,
+        ConstrainedBox(
+          constraints: const BoxConstraints(minWidth: 88),
           child: AppSecondaryButton(
             label: cancelLabel,
             onPressed: () => Navigator.pop(context, false),
           ),
         ),
-        SizedBox(
-          width: 88,
-          child: AppPrimaryButton(
-            label: confirmLabel,
+        ConstrainedBox(
+          constraints: const BoxConstraints(minWidth: 88),
+          child: FilledButton(
+            style: destructive
+                ? FilledButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.error,
+                    foregroundColor: Theme.of(context).colorScheme.onError,
+                  )
+                : null,
             onPressed: () => Navigator.pop(context, true),
+            child: Text(confirmLabel),
           ),
         ),
       ],

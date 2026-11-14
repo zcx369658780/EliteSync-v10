@@ -1232,54 +1232,60 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            tooltip: '搜索当前会话',
-            icon: const Icon(Icons.search),
-            onPressed: _offline || _error != null
-                ? null
-                : () async {
-                    await Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        builder: (_) =>
-                            ConversationSearchPage(peerId: widget.peerId),
-                      ),
-                    );
-                    if (mounted) await _load();
-                  },
-          ),
-          IconButton(
-            tooltip: '语音留言',
-            icon: const Icon(Icons.mic_none),
-            onPressed:
-                _busy ||
-                    _draftBusy ||
-                    _offline ||
-                    _error != null ||
-                    _attempt != null
-                ? null
-                : _voiceMemo,
-          ),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(48),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                tooltip: '搜索当前会话',
+                icon: const Icon(Icons.search),
+                onPressed: _offline || _error != null
+                    ? null
+                    : () async {
+                        await Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) =>
+                                ConversationSearchPage(peerId: widget.peerId),
+                          ),
+                        );
+                        if (mounted) await _load();
+                      },
+              ),
+              IconButton(
+                tooltip: '语音留言',
+                icon: const Icon(Icons.mic_none),
+                onPressed:
+                    _busy ||
+                        _draftBusy ||
+                        _offline ||
+                        _error != null ||
+                        _attempt != null
+                    ? null
+                    : _voiceMemo,
+              ),
 
-          IconButton(
-            tooltip: '刷新对话',
-            onPressed: () {
-              setState(() => _avatarRefresh++);
-              unawaited(_load());
-            },
-            icon: const Icon(Icons.refresh),
+              IconButton(
+                tooltip: '刷新对话',
+                onPressed: () {
+                  setState(() => _avatarRefresh++);
+                  unawaited(_load());
+                },
+                icon: const Icon(Icons.refresh),
+              ),
+              IconButton(
+                onPressed: _busy || _draftBusy ? null : () => _call('voice'),
+                tooltip: '语音通话',
+                icon: const Icon(Icons.call_outlined),
+              ),
+              IconButton(
+                onPressed: _busy || _draftBusy ? null : () => _call('video'),
+                tooltip: '视频通话',
+                icon: const Icon(Icons.videocam_outlined),
+              ),
+            ],
           ),
-          IconButton(
-            onPressed: _busy || _draftBusy ? null : () => _call('voice'),
-            tooltip: '语音通话',
-            icon: const Icon(Icons.call_outlined),
-          ),
-          IconButton(
-            onPressed: _busy || _draftBusy ? null : () => _call('video'),
-            tooltip: '视频通话',
-            icon: const Icon(Icons.videocam_outlined),
-          ),
-        ],
+        ),
       ),
       body: Column(
         children: [
@@ -1288,7 +1294,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           if (_sendStatus != null)
             Padding(
               padding: const EdgeInsets.all(8),
-              child: Text(_sendStatus!),
+              child: Semantics(liveRegion: true, child: Text(_sendStatus!)),
             ),
           if (_attempt != null && !_offline)
             TextButton(
@@ -1574,6 +1580,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                       minLines: 1,
                       maxLines: 4,
                       decoration: const InputDecoration(
+                        labelText: '消息内容',
                         hintText: '输入消息',
                         isDense: true,
                         border: OutlineInputBorder(),

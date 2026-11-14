@@ -166,9 +166,9 @@ void main() {
     await tester.pumpWidget(_wrap(router));
     await tester.pumpAndSettle();
 
-    expect(find.text('当前状态 · Current state'), findsOneWidget);
-    expect(find.text('下一步 · Next decision'), findsOneWidget);
-    expect(find.text('可选支持 · Optional support'), findsOneWidget);
+    expect(find.text('当前状态'), findsOneWidget);
+    expect(find.text('下一步'), findsOneWidget);
+    expect(find.text('工具与帮助'), findsOneWidget);
     expect(
       find.byKey(const ValueKey('home-area-current-state')),
       findsOneWidget,
@@ -195,7 +195,7 @@ void main() {
     expect(find.byType(TextButton), findsOneWidget);
     expect(find.text('前往准备状态'), findsOneWidget);
     expect(find.text('隐私与数据设置'), findsOneWidget);
-    expect(find.textContaining('访问这里不会改变任何生命周期状态'), findsOneWidget);
+    expect(find.textContaining('各项参与均由你确认'), findsOneWidget);
     expect(find.textContaining('状态尚未建立不代表失败或不符合条件'), findsOneWidget);
     expect(find.textContaining('匹配不等于连接'), findsOneWidget);
     expect(find.textContaining('连接不等于对话'), findsOneWidget);
@@ -417,7 +417,7 @@ void main() {
     await tester.pumpWidget(_wrap(router));
     await tester.pumpAndSettle();
 
-    expect(find.text('当前状态 · Current state'), findsOneWidget);
+    expect(find.text('当前状态'), findsOneWidget);
     expect(find.text('前往准备状态'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });

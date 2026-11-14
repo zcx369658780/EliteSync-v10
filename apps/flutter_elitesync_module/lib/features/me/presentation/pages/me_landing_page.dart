@@ -115,7 +115,7 @@ class MeLandingPage extends StatelessWidget {
           ),
           if (restorationLocalBuild)
             const _MeGroup(
-              title: '兴趣与记录',
+              title: '动态记录',
               children: [
                 _MePurposeEntry(
                   icon: Icons.dynamic_feed_outlined,
@@ -124,6 +124,12 @@ class MeLandingPage extends StatelessWidget {
                   route: AppRouteNames.statusSquare,
                   push: true,
                 ),
+              ],
+            ),
+          if (restorationLocalBuild)
+            const _MeGroup(
+              title: '自我了解工具',
+              children: [
                 _MePurposeEntry(
                   icon: Icons.psychology_outlined,
                   title: '可选 MBTI 测评',

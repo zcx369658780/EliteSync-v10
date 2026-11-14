@@ -41,6 +41,7 @@ class SettingsPage extends ConsumerStatefulWidget {
 class _SettingsPageState extends ConsumerState<SettingsPage> {
   bool _localPrefsLoaded = false;
   bool _performanceLiteMode = false;
+  bool _themeSaving = false;
   bool _adminAccessAllowed = false;
   String _contentRankerMode = 'auto';
 
@@ -100,6 +101,18 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     if (!mounted) return;
     setState(() => _performanceLiteMode = value);
     AppFeedback.showInfo(context, value ? '已开启性能模式（动画降低）' : '已关闭性能模式');
+  }
+
+  Future<void> _setThemeMode(AppThemeMode mode) async {
+    if (_themeSaving) return;
+    setState(() => _themeSaving = true);
+    try {
+      await ref.read(themeModeProvider.notifier).setThemeMode(mode);
+    } catch (_) {
+      if (mounted) AppFeedback.showError(context, '外观保存未完成，请重试。');
+    } finally {
+      if (mounted) setState(() => _themeSaving = false);
+    }
   }
 
   Future<void> _handleLogout(BuildContext context, WidgetRef ref) async {
@@ -352,9 +365,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         themeMode == AppThemeMode.dark ||
         (themeMode == AppThemeMode.system &&
             Theme.of(context).brightness == Brightness.dark);
-    Future<void> setDark(bool value) => ref
-        .read(themeModeProvider.notifier)
-        .setThemeMode(value ? AppThemeMode.dark : AppThemeMode.light);
+    Future<void> setDark(bool value) =>
+        _setThemeMode(value ? AppThemeMode.dark : AppThemeMode.light);
     return AppScaffold(
       appBar: const AppTopBar(title: '设置', mode: AppTopBarMode.backTitle),
       body: ListView(
@@ -367,10 +379,24 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               children: [
                 SettingsItemTile(
                   title: '夜间模式',
-                  subtitle: '切换白天 / 黑夜配色',
+                  subtitle: _themeSaving
+                      ? '正在保存本机外观…'
+                      : themeMode == AppThemeMode.system
+                      ? '本机外观 · 当前跟随系统'
+                      : '本机外观 · 当前手动选择',
                   icon: Icons.dark_mode_outlined,
-                  trailing: AppSwitch(value: isDark, onChanged: setDark),
-                  onTap: () => setDark(!isDark),
+                  trailing: AppSwitch(
+                    value: isDark,
+                    onChanged: _themeSaving ? null : setDark,
+                  ),
+                  onTap: _themeSaving ? null : () => setDark(!isDark),
+                ),
+                TextButton.icon(
+                  onPressed: _themeSaving || themeMode == AppThemeMode.system
+                      ? null
+                      : () => _setThemeMode(AppThemeMode.system),
+                  icon: const Icon(Icons.brightness_auto_outlined),
+                  label: const Text('跟随系统外观'),
                 ),
                 Divider(height: 1, color: t.overlay.withValues(alpha: 0.35)),
                 SettingsItemTile(
@@ -386,7 +412,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           SectionReveal(
             delay: const Duration(milliseconds: 60),
             child: SettingsGroup(
-              title: '提醒与性能',
+              title: '通知与本机偏好',
               children: [
                 SettingsItemTile(
                   title: '通知设置',

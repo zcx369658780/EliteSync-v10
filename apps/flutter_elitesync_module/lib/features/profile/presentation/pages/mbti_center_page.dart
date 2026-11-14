@@ -304,12 +304,21 @@ class _MbtiCenterPageState extends ConsumerState<MbtiCenterPage> {
     return AppScaffold(
       appBar: const AppTopBar(title: '可选性格测评', mode: AppTopBarMode.backTitle),
       body: ListView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         padding: const EdgeInsets.all(20),
         children: [
           Text('可选 MBTI 测评', style: Theme.of(context).textTheme.headlineSmall),
           const SizedBox(height: 12),
           const Text('本测评仅供自我了解，不是心理诊断，不用于匹配排序。你可以自主选择是否答题。'),
-          const Text('当前为 lite3_v1 简版配置计分，与20题匹配问卷分开，不用于匹配硬筛选。'),
+          const ExpansionTile(
+            title: Text('测评配置与适用范围'),
+            children: [
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: Text('当前为 lite3_v1 简版配置计分，与20题匹配问卷分开，不用于匹配硬筛选。'),
+              ),
+            ],
+          ),
           const SizedBox(height: 20),
           if (_busy) const LinearProgressIndicator(),
           if (_error != null && (current || _session == null))

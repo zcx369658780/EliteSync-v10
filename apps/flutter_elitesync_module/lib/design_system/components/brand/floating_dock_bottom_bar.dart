@@ -26,12 +26,16 @@ class FloatingDockBottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.appTokens;
     final centerEnabled = (centerActionLabel ?? '').isNotEmpty;
+    final dockHeight = (MediaQuery.textScalerOf(context).scale(12) + 42).clamp(
+      72.0,
+      double.infinity,
+    );
     return SafeArea(
       top: false,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
         child: SizedBox(
-          height: centerEnabled ? 82 : 72,
+          height: centerEnabled ? dockHeight + 10 : dockHeight,
           child: Stack(
             clipBehavior: Clip.none,
             children: [
@@ -42,11 +46,17 @@ class FloatingDockBottomBar extends StatelessWidget {
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 5,
+                      ),
                       decoration: BoxDecoration(
-                        color: (browseMode ? t.browseNav : t.surface).withValues(alpha: 0.86),
+                        color: (browseMode ? t.browseNav : t.surface)
+                            .withValues(alpha: 0.86),
                         borderRadius: BorderRadius.circular(999),
-                        border: Border.all(color: t.browseBorder.withValues(alpha: 0.9)),
+                        border: Border.all(
+                          color: t.browseBorder.withValues(alpha: 0.9),
+                        ),
                       ),
                       child: Row(
                         children: [
@@ -73,7 +83,10 @@ class FloatingDockBottomBar extends StatelessWidget {
                     child: GestureDetector(
                       onTap: onCenterActionTap,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 8,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(999),
                           gradient: LinearGradient(
@@ -93,14 +106,19 @@ class FloatingDockBottomBar extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(Icons.auto_awesome_rounded, size: 16, color: Colors.white),
+                            const Icon(
+                              Icons.auto_awesome_rounded,
+                              size: 16,
+                              color: Colors.white,
+                            ),
                             const SizedBox(width: 6),
                             Text(
                               centerActionLabel!,
-                              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                              ),
+                              style: Theme.of(context).textTheme.labelMedium
+                                  ?.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                             ),
                           ],
                         ),
@@ -141,6 +159,7 @@ class _DockItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
         onTap: onTap,
         child: AnimatedContainer(
+          constraints: const BoxConstraints(minHeight: 48),
           duration: t.motionFast,
           curve: Curves.easeOutCubic,
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
@@ -176,7 +195,7 @@ class _DockItem extends StatelessWidget {
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: selected ? t.textPrimary : t.textSecondary,
                   fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                  fontSize: 10.5,
+                  fontSize: 12,
                   height: 1.0,
                 ),
               ),
