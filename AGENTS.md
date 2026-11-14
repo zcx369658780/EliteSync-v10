@@ -1,18 +1,18 @@
 # EliteSync-v10 工程约定
 
-生效：2026-11-14。当前任务依据[Owner接受v10.1.8、授权v10.1.9并交接顾问会话](docs/decisions/OWNER_V10_1_8_ACCEPTANCE_AND_V10_1_9_AUTHORIZATION_20261114.md)，方向延续[后端功能优先决定](docs/decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
+生效：2026-11-14。当前任务依据[Owner接受v10.1.9并授权v10.1.10](docs/decisions/OWNER_V10_1_9_ACCEPTANCE_AND_V10_1_10_AUTHORIZATION_20261114.md)，方向延续[后端功能优先决定](docs/decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
 ## 产品目标
 
 Owner已确认项目交接及选定旧版主要功能接续完成。当前完善可实际使用的EliteSync APP、真实后端、持久数据库及独立Web管理面板。先完成业务功能与最小可操作界面，必要安全封装随功能收口处理，最后集中打磨UI和文字。现有鉴权、私信权限与数据隔离保留。
 
-整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6 R1、v10.1.7及v10.1.8 R1均已按约定开发范围获顾问与Owner接受；当前已授权[v10.1.9任务](docs/versions/v10.1.9/task_order.md)。集中UI/文字版本为v10.1.12，前序界面须支持真实操作和清楚反馈。新破冰、约见、共同计划、纪念日仅留接口。
+整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6 R1、v10.1.7、v10.1.8 R1及v10.1.9均已按约定开发范围获顾问与Owner接受；当前已授权[v10.1.10任务](docs/versions/v10.1.10/task_order.md)。集中UI/文字版本为v10.1.12，前序界面须支持真实操作和清楚反馈。新破冰、约见、共同计划、纪念日仅留接口。
 
 ## 2026-11-14 当前执行范围
 
-依据[路线图](docs/architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)执行v10.1.9好友、社区搭子与活动整合，默认规则和六项AC见[计划](docs/versions/v10.1.9/plan.md)。复用真实好友/CN/MC、社区、Buddy、平台活动与通知；补联系人选择、作者动态、持久收藏、自愿最小城市/类型双人搭子发现及真实活动生命周期。现有独立同意和私有资料受众不扩大，普通成功链由真实APP/Web/API/数据库产生。
+依据[路线图](docs/architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)执行v10.1.10自我认识与特色工具产品化，默认规则和六项AC见[计划](docs/versions/v10.1.10/plan.md)。复用已有MBTI、本人本命西洋盘/八字/紫微三盘、手填动态盘和手填双人盘；补齐实际计算、输入、持久化、历史、重算及基础解释断点。MBTI不作诊断或匹配硬筛选，双人盘不读取其他账号出生资料，既有权限边界不扩大，普通成功链由真实APP/API/数据库产生。
 
-v10.1.8六项AC已获顾问与Owner范围接受，R1-01关闭，无需R2。旧非注入SFU根因、真实Push、未验硬件/自然期限分别保留，未变通信按具名范围继承。本轮只下达1.9；其工程交付在新顾问会话验收，具体交接见[会话记录](docs/workflow/SESSION_HANDOFF_20261114_V1019_TASK_ISSUED.md)。远端发布不表示Windows已同步；本地Codex先按[落盘说明](docs/workflow/LOCAL_DOCUMENT_SYNC_V1019_20261114.md)核对任务/Owner决定/交接文档，再连续实现。
+v10.1.9六项AC已获顾问与Owner按约定开发范围接受，V1019-R1-01 CLOSED，无需R2。真实Push、历史SFU/RPC精确根因、未验硬件/自然期限分别保留，未变通信及好友/搭子/活动链按具名范围继承。本轮只下达1.10；远端发布不表示Windows已同步，本地Codex按本版任务单核对Owner决定/计划/prompt并安全同步，再连续实现。
 
 11月12日已有功能验收阶段已结束，原报告与测试结论保留，见[v10.1.5收尾](docs/versions/v10.1.5/CLOSEOUT_20261113.md)。本版集中交付后停下供顾问验收；不自动开下一版、合main或发布。
 
@@ -44,4 +44,4 @@ Owner于2026-11-12具体授权验收说明、120张测试截图、画廊/控件�
 
 历史上Owner于2026-11-12要求保存并手动交接，该[交接记录](docs/workflow/V1015_ADVISOR_ACCEPTANCE_HANDOFF_20261112.md)保留。2026-11-13的新继续与版本授权已覆盖当时等待状态；当前按ACTIVE_STATE和v10.1.9任务执行，不再从旧交接递归恢复。
 
-2026-11-14本次Owner要求顾问在任务发布后保存并交接，新会话验收v10.1.9。上一轮call64手机/PC背景音为具名已结束测试授权，本版默认不操作手机。顾问文档发布不启动本地工程或资源；Codex本版集中交付后停下，不自动开始v10.1.10。
+2026-11-14 Owner已接受v10.1.9顾问范围结论并明确授权v10.1.10。任务分支为codex/v10.1.10-self-knowledge-specialty-tools-20261114，固定父基线8e74d1f7496f066a586afb1e5653ed563b64c46d；执行本版task_order/plan/CODEX_START_PROMPT。顾问文档发布不表示Windows本地已同步；Codex开工先核实际工程并安全同步。手机不操作；本版集中交付后停下供新顾问验收，不自动开始v10.1.11。

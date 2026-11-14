@@ -1,6 +1,6 @@
 # EliteSync-v10 当前工作流
 
-2026-11-14 更新。当前任务依据 [Owner接受v10.1.8、授权v10.1.9并交接](../decisions/OWNER_V10_1_8_ACCEPTANCE_AND_V10_1_9_AUTHORIZATION_20261114.md)，方向延续 [后端功能优先决定](../decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治沿用 [11月10日决定](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)，工程边界见 [AGENTS](../../AGENTS.md)。当前事实只维护 [ACTIVE_STATE](ACTIVE_STATE.md)，历史小步记录从 Git 历史查询。
+2026-11-14 更新。当前任务依据 [Owner接受v10.1.9并授权v10.1.10](../decisions/OWNER_V10_1_9_ACCEPTANCE_AND_V10_1_10_AUTHORIZATION_20261114.md)，方向延续 [后端功能优先决定](../decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治沿用 [11月10日决定](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)，工程边界见 [AGENTS](../../AGENTS.md)。当前事实只维护 [ACTIVE_STATE](ACTIVE_STATE.md)，历史小步记录从 Git 历史查询。
 
 ## 当前交付状态
 
@@ -10,11 +10,11 @@
 
 Owner已确认项目交接、v10.1.5收尾；v10.1.6 R1、v10.1.7及[v10.1.8 R1](../versions/v10.1.8/supplement-r1-20261114/ADVISOR_ACCEPTANCE.md)均按约定开发范围接受。v10.1.8六项AC接受、R1-01 CLOSED、本轮无R2；Owner最新同意已记录，不再停在Owner PENDING。
 
-当前下达[v10.1.9好友、社区搭子与活动整合](../versions/v10.1.9/task_order.md)，六项AC和默认值见[计划](../versions/v10.1.9/plan.md)。任务分支`codex/v10.1.9-social-buddy-activities-20261114`，父基线`be0112ac53fc0ab3d3bfaf360552b020bcca3476`；本地稳定根仍为`D:\EliteSync-v10-product-v1015-20261101`。本地Codex先保护实际工作区并接续分支，完成任务/Owner决定/交接文档落盘核对，再连续实现，集中交付后停下，由新顾问会话验收。
+当前已下达[v10.1.10自我认识与特色工具产品化](../versions/v10.1.10/task_order.md)，六项AC和边界见[计划](../versions/v10.1.10/plan.md)。任务分支`codex/v10.1.10-self-knowledge-specialty-tools-20261114`，父基线`8e74d1f7496f066a586afb1e5653ed563b64c46d`；本地稳定根仍为`D:\EliteSync-v10-product-v1015-20261101`。本地Codex先保护实际工作区、核分支/HEAD/dirty/index并安全同步任务/Owner决定/计划/prompt，再连续实现，集中交付后停下，由新顾问会话验收。
 
-本顾问会话在任务发布、回读和[完整交接](SESSION_HANDOFF_20261114_V1019_TASK_ISSUED.md)后结束。顾问已准备GitHub文档及可下载本地副本，Windows工程盘未直接核实，状态PENDING_LOCAL_SYNC，按[本地说明](LOCAL_DOCUMENT_SYNC_V1019_20261114.md)由Codex记录实际同步。远端任务发布不代表本机已切分支、开工或启动资源。下一顾问使用[接续prompt](ADVISOR_HANDOFF_PROMPT_20261114_V1019.txt)，不重新发同一任务。
+上一轮v10.1.9交接记录保留历史身份。本次v10.1.10任务/计划/prompt/Owner决定已发布GitHub；Windows工程盘未由顾问直接核实，当前PENDING_LOCAL_SYNC。远端任务发布不代表本机已切分支、开工或启动资源。
 
-[路线图V2](../architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)继续真实后端功能优先，v10.1.12集中UI/文字；相识后新增工具只留接口。历史停止/不启动下一版描述按原时点解释，不覆盖本次授权。手机call64与PC背景音是上一轮具名授权，本版默认不操作手机，双模拟器沿既有授权。
+[路线图V2](../architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)继续真实后端功能优先，v10.1.12集中UI/文字；相识后新增工具只留接口。历史停止/不启动下一版描述按原时点解释，不覆盖本次v10.1.10授权。手机call64与PC背景音是上一轮具名授权，本版默认不操作手机，双模拟器沿既有长期授权。
 
 远端任务分支与本地实际分支分别记录，不用旧main覆盖新成果。本轮只下达v10.1.9，不自动开启v10.1.10。
 
