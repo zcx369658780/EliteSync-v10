@@ -1,0 +1,38 @@
+接续 EliteSync-v10，执行已获Owner授权的 v10.1.13「全局集成与关键旅程可靠性收口」。
+
+## 任务身份
+
+仓库：zcx369658780/EliteSync-v10  
+分支：codex/v10.1.13-integration-reliability-20261115  
+唯一父基线：ffddf23dd07743538c43ef8f9a6dd7f1ff580467
+
+v10.1.12 R1关闭提交：ffddf23dd07743538c43ef8f9a6dd7f1ff580467  
+v10.1.12 R1 APP源码：3e0e75758acf81e1ea754f739c9687226fbfcaff  
+v10.1.12原APP基线：ac7fb5b28396394e58c72002e19cc9bbad805941  
+API源码：47e1b4fd8fad3dd8165d1be6dc9f059095290e75  
+Web视图源码：e2448e2c4d630fad31168e3c0b70d3831011215f
+
+## 首读和安全核验
+
+先核稳定工程根、origin、分支、HEAD、工作区/index、数据库、AVD、私有配置和原始证据。保护原主库dirty/index，不盲pull/reset/rebase/stash/clean/prune，不force push。只读AGENTS、ACTIVE_STATE当前入口、CURRENT_WORKFLOW、本版task_order/plan/prompt和直接相关源码。安全同步任务文档，逐份验证LOCAL_DOCS_SYNCED；GitHub发布不等于本地同步。
+
+## 版本目标
+
+本版不是新增业务或视觉重设计，而是把v10.1.12 R1源码纳入实际安装候选，并有限完成真实TalkBack、关键导航/深链、APP结果未知故障恢复、API/DB重启持久性及代表性联合回归。
+
+六项AC和边界以task_order.md为准，计划细节以plan.md为准。按A候选 → B TalkBack → C导航 → D受控故障 → E API/DB重启 → F联合回归顺序推进。可在授权范围内自主修复真实缺陷，不逐动作请求Owner批准。
+
+## 硬边界
+
+- 不新增大型业务、API合同、数据库模型或迁移。
+- 不改关系/隐私/认证/消息/媒体/RTC权限语义及匹配算法。
+- 不操作Owner手机，不用真实用户或生产数据。
+- 不接新供应商、真实Push/身份核验、付费SDK。
+- 不做RTC硬件矩阵、算法独立精度、全社交/排盘矩阵。
+- 不合main、不正式发布、不开展公司/内测/运营/收费。
+- 候选versionCode建议1011301，先核占用；沿用包名/签名/ABI/数据。
+- 真实链、Widget、TalkBack、受控故障、API/DB重启分别记账。
+
+## 停止点
+
+集中交付报告、manifest、去敏证据、最终源码/APK身份和资源快照；固定提交并远端回读后停止，等待独立顾问验收。不要自动开始下一版本。
