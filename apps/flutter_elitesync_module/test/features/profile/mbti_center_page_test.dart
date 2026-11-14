@@ -274,6 +274,51 @@ void main() {
       },
     );
   }
+  testWidgets(
+    'same-account403 preserves unanswered-result command and legal answers for recovery',
+    (tester) async {
+      tester.view.physicalSize = const Size(1000, 2000);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final api = _Api()
+        ..failSubmit = true
+        ..submitStatus = 503;
+      await _show(tester, api);
+      await tester.tap(find.text('开始测评'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('A：和朋友交流'));
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('提交测评'));
+      await tester.tap(find.text('提交测评'));
+      await tester.pumpAndSettle();
+      api.historyStatus = 403;
+      await tester.ensureVisible(find.text('读取测评历史'));
+      await tester.tap(find.text('读取测评历史'));
+      await tester.pumpAndSettle();
+      expect(find.text('题库版本：lite3_v1；已答 1/1'), findsOneWidget);
+      expect(find.textContaining('当前测评不可用'), findsOneWidget);
+      final retry = find.text('重试原提交并确认结果');
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, '重试原提交并确认结果'),
+            )
+            .onPressed,
+        isNull,
+      );
+      api.historyStatus = null;
+      api.failSubmit = false;
+      await tester.ensureVisible(find.text('刷新结果'));
+      await tester.tap(find.text('刷新结果'));
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(retry);
+      await tester.tap(retry);
+      await tester.pumpAndSettle();
+      expect(api.submittedBodies.length, 2);
+      expect(api.submittedBodies[0], api.submittedBodies[1]);
+    },
+  );
   for (final code in [401, 403, 410]) {
     testWidgets(
       'history $code after display clears old result history and actions',

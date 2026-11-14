@@ -251,7 +251,7 @@ class _MbtiCenterPageState extends ConsumerState<MbtiCenterPage> {
         if (error is _MbtiFailure) {
           final code = error.statusCode;
           if ([401, 403, 410].contains(code)) {
-            _clearPrivate(draft: true);
+            _clearPrivate();
             _blocked = true;
             _error = '当前测评不可用，请检查登录或功能许可。${error.message}（HTTP $code）';
           } else if ([404, 409, 422].contains(code)) {
