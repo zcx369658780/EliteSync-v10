@@ -1,0 +1,11 @@
+继续 EliteSync v10.1.8 R1。顾问已复核固定交付 35a415803f0034fff15450b129a68de762b3a3bb：AC18-01、02、03、05、06按约定开发范围接受，整版 CHANGES_REQUIRED / PARTIAL，仅R1-01通话音频待补。
+
+稳定根：D:\EliteSync-v10-product-v1015-20261101
+分支：codex/v10.1.8-communication-notifications-20261113
+先核实际Git、工作区/index与资源，保护本地成果和数据，接续同名分支；读取ACTIVE_STATE顶部、ADVISOR_ACCEPTANCE_20261114.md及supplement-r1-20261114/task_order.md。按已有普通工程授权连续完成，不逐动作申请，手机不使用。
+
+只处理16→17当前通话音频。先从call57/59/61原证对应同窗输入、发送端RTC PCM、出站媒体、接收能量和输出，复用已有观测；缺失字段不能当零能量。证据不足时先补一组具名短窗，以17→16为对照，再按新线索最小修复和定向复测。不要继续无变化地重启/重登，不用独立留言通过、RTP包数或安全退出代替通话有声。
+
+取得同一候选上的普通双向实际音频证据；恢复/撤权/资源释放按未变组件具名继承，相关逻辑改变时补最短受影响验证。已有call59尾窗从原证补原始端点及公式即可，不为文档重跑。历史非注入SFU超时另记UNKNOWN，真实Push保持PENDING。
+
+在本R1目录交付README.md及必要EVIDENCE_SUMMARY.json，更新manifest和ACTIVE_STATE。APP代码变化才必要重编并递增候选；原包名、签名和数据保留。结果按实际写PASS/PARTIAL/NOT_RUN/UNKNOWN，原报告和失败不改写；同步本版分支并回读固定提交，记录实际结束资源后停下，等待顾问复核，不自动进入v10.1.9。

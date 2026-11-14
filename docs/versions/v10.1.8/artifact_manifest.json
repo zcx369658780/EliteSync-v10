@@ -2,7 +2,7 @@
   "schema": "elitesync.v1018.artifact_manifest.v1",
   "version": "v10.1.8",
   "engineering_status": "PARTIAL",
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "CHANGES_REQUIRED",
   "owner_acceptance": "PENDING",
   "repository": "zcx369658780/EliteSync-v10",
   "branch": "codex/v10.1.8-communication-notifications-20261113",
@@ -138,13 +138,13 @@
     "real_push": "REAL_PUSH_PROVIDER_PENDING",
     "voice_human_listening": "NOT_RUN",
     "hardware": "UNVERIFIED",
-    "advisor_acceptance": "PENDING",
+    "advisor_acceptance": "CHANGES_REQUIRED",
     "owner_acceptance": "PENDING"
   },
   "remaining": [
     "16_to17_controlled_tone_not_detected_at_receiver_in_calls57_59_61. Sender16 memo input and preview passes. Exact capture/processing/transport/playback or probe boundary UNKNOWN."
   ],
-  "fixed_delivery_commit": "The commit containing this file, verified by remote fixed-commit readback in the final reply and local receipt",
+  "fixed_delivery_commit": "35a415803f0034fff15450b129a68de762b3a3bb",
   "local_evidence_root": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\v1018-current",
   "apk_local_path": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\v1018-current\\candidate-1010805.apk",
   "implementation_report_sha256": "0fd3166254b87b8dec17add460810c82fcff2125242ec02d32c72d01a61362fb",
@@ -152,5 +152,49 @@
     "status_unchanged": true,
     "index_unchanged": true,
     "diff_unchanged": true
+  },
+  "advisor_review_record": {
+    "date_china": "2026-11-14",
+    "reviewed_delivery_commit": "35a415803f0034fff15450b129a68de762b3a3bb",
+    "task_commit": "fda6d3db4e5fe25167bece23e2773ad46f68e5ab",
+    "decision": "CHANGES_REQUIRED / PARTIAL",
+    "report": "docs/versions/v10.1.8/ADVISOR_ACCEPTANCE_20261114.md",
+    "ac": {
+      "AC18-01": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "AC18-02": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "AC18-03": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "AC18-04": "PARTIAL",
+      "AC18-05": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE",
+      "AC18-06": "ACCEPTED_WITHIN_DECLARED_DEVELOPMENT_SCOPE"
+    },
+    "required_supplement_tasks": [
+      {
+        "id": "R1-01",
+        "status": "OPEN",
+        "scope": "AC18-04: 16_to17 actual RTC audio path, scoped repair and bidirectional media verification",
+        "task": "docs/versions/v10.1.8/supplement-r1-20261114/task_order.md"
+      }
+    ],
+    "independently_checked": [
+      "Fixed task standards, affected APP/Android/backend code and targeted test design",
+      "Implementation report and FINAL_EVIDENCE SHA256 equal manifest declarations",
+      "32 changed component and 2 RTC service Git file SHA256 and Blob IDs equal fixed tree",
+      "APP/backend/delivery commit relationships and named candidate evidence inheritance",
+      "27 PHP test cases expanded from source; test batches are not additive",
+      "call59 conservative stop bound 1.35925 seconds and margin 3.64075 seconds"
+    ],
+    "runtime_evidence": "Named Codex local tests, emulator operations, APK installation, deployment and persistence reports; advisor did not replay Owner runtime",
+    "tail_window_scope": "5.31275-second lower bound accepted as named Codex AppOps sampling report; final sample endpoints not published, so advisor did not independently recompute entire tail",
+    "retained_limits": [
+      "16_to17 RTC audio gap OPEN/UNKNOWN",
+      "Historical non-injected SFU timeout root cause UNKNOWN",
+      "REAL_PUSH_PROVIDER_PENDING",
+      "Human listening NOT_RUN",
+      "Hardware UNVERIFIED",
+      "Natural long-duration limits per inherited records"
+    ],
+    "owner_acceptance": "PENDING",
+    "next_version": "NOT_STARTED",
+    "local_r1_execution": "NOT_STARTED_BY_ADVISOR"
   }
 }

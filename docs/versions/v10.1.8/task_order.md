@@ -1,9 +1,9 @@
 # v10.1.8 GitHub 版本任务单
 
-**通信与通知功能完善已集中交付，工程自验 PARTIAL，顾问及Owner接受 PENDING。**
+**通信与通知功能完善已集中交付；顾问五项范围接受、AC18-04 PARTIAL，整版CHANGES_REQUIRED，Owner接受PENDING。**
 日期：2026-11-13（北京时间）。[Owner 本次授权](../../decisions/OWNER_V10_1_7_ACCEPTANCE_AND_V10_1_8_AUTHORIZATION_20261113.md)。
 
-2026-11-14已完成集中核验与保存，结果见[实施报告](IMPLEMENTATION_REPORT.md)及[manifest](artifact_manifest.json)。当前未通过项为16→17受控通话音频验证，完整工程自验仍待AC18-04达到下述标准。
+2026-11-14顾问复核完成，见[验收结论](ADVISOR_ACCEPTANCE_20261114.md)、[原实施报告](IMPLEMENTATION_REPORT.md)及[manifest](artifact_manifest.json)。当前唯一补修为[R1-01：16→17实际通话音频](supplement-r1-20261114/task_order.md)，完整版本仍待AC18-04达到下述标准；其余五项按未改变范围保留接受。
 
 ## 执行身份
 

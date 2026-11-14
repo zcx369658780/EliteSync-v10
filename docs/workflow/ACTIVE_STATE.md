@@ -1,4 +1,22 @@
-# 当前入口 2026-11-14 v10.1.8 集中交付，工程自验PARTIAL
+# 当前入口 2026-11-14 v10.1.8顾问部分接受，R1-01已下达
+
+固定交付`35a415803f0034fff15450b129a68de762b3a3bb`的顾问结论为 **CHANGES_REQUIRED / PARTIAL**。AC18-01、02、03、05、06按约定开发范围接受；AC18-04因16→17实际通话音频未检出保持PARTIAL。唯一补修为[R1-01](../versions/v10.1.8/supplement-r1-20261114/task_order.md)，[接续prompt](../versions/v10.1.8/supplement-r1-20261114/CODEX_START_PROMPT.txt)。详见[顾问验收](../versions/v10.1.8/ADVISOR_ACCEPTANCE_20261114.md)及[当前manifest](../versions/v10.1.8/artifact_manifest.json)。Owner最终接受PENDING，不开启v10.1.9。
+
+稳定根`D:\EliteSync-v10-product-v1015-20261101`，分支`codex/v10.1.8-communication-notifications-20261113`。当前候选仍为1010805，APP构建源码18491f2a、后端最近产品修改e22b0c95，APK SHA256 `2a65f9cf022c3d66cdb116662e3aca15f3dc9869130ca4365c14d017b70155ed`。本次顾问仅保存复核与补充任务文档，未启动Owner本地R1、服务或设备，原产品源码/候选和固定工程证据不变。
+
+顾问独立核对任务标准、受影响源码/测试设计、报告和摘要哈希、32个改动组件及2个RTC服务Git文件身份和候选继承。支持五项范围接受，无需重开全版验收。本机34项Flutter、27项PHP/420断言、普通链、部署/安装和持久化按具名Codex报告接受，未由顾问本机复演，旧统计不累加。
+
+R1先从call57/59/61原证对应同窗输入、发送端RTC PCM、出站媒体、接收能量与输出；缺证时才做一组具名短窗，以17→16为对照，依据新线索最小修复并验证双向实际媒体。已通过恢复/撤权按未变范围继承，相关逻辑改变再补受影响验证；历史非注入SFU超时另记UNKNOWN，不循环等待旧复现。
+
+call59停媒保守上界1.35925秒及3.64075秒余量可独立复算；完整尾窗5.31275秒按Codex具名AppOps采样报告限定接受，R1从既有原证补最后样本端点/公式，不为此单独复演。真实Push保持REAL_PUSH_PROVIDER_PENDING，人工听感NOT_RUN、实机硬件UNVERIFIED。
+
+最近资源仍为工程交付快照2026-11-14 08:13:57.502238北京时间：DB/API/WS/SFU运行，Room0，双APP与双模拟器已停止，用户11/12、AVD和数据库保留，手机NOT_RUN；不是顾问实时读取。Codex按已有普通工程授权在稳定根继续，保护数据及dirty/index，R1集中保存同步后停下复核，不合main、不发布。
+
+以下旧PENDING及停止节点按当时状态保留，当前入口与新补充任务优先。
+
+---
+
+## 历史节点｜2026-11-14 v10.1.8 集中交付，工程自验PARTIAL
 
 Owner已明确上一节点交接完成，本轮继续完成最新任务单。现已完成集中验证、报告、manifest及保存。工程结果为5项PASS、AC18-04 PARTIAL，顾问及Owner接受PENDING。完整工程自验须待16→17受控通话音频验证通过。[实施报告](../versions/v10.1.8/IMPLEMENTATION_REPORT.md) · [manifest](../versions/v10.1.8/artifact_manifest.json) · [最终证据](../versions/v10.1.8/FINAL_EVIDENCE_20261114.json)
 
