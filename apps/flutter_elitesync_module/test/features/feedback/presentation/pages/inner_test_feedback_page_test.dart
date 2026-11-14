@@ -1,7 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/features/feedback/presentation/pages/inner_test_feedback_page.dart';
+
+class _Guest extends SessionNotifier {
+  @override
+  SessionState build() =>
+      const SessionState(status: AuthStatus.unauthenticated);
+}
+
+Widget _feedbackApp({
+  ThemeData? theme,
+  ThemeData? darkTheme,
+  ThemeMode? themeMode,
+  required Widget home,
+}) => ProviderScope(
+  overrides: [sessionProvider.overrideWith(_Guest.new)],
+  child: MaterialApp(
+    theme: theme,
+    darkTheme: darkTheme,
+    themeMode: themeMode ?? ThemeMode.system,
+    home: home,
+  ),
+);
 
 String _visibleText(WidgetTester tester) {
   return tester
@@ -23,7 +47,7 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(
-      MaterialApp(
+      _feedbackApp(
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.light,
@@ -38,7 +62,7 @@ void main() {
 
     expect(find.text('体验反馈'), findsOneWidget);
     expect(find.text('帮我们改进体验'), findsOneWidget);
-    expect(find.text('把你遇到的问题或建议整理成一份可复制反馈'), findsOneWidget);
+    expect(find.text('提交反馈并查看本人回执和处理状态'), findsOneWidget);
     expect(find.text('从星盘进入'), findsOneWidget);
     expect(find.text('匹配推荐'), findsOneWidget);
     expect(find.text('搭子体验'), findsOneWidget);
@@ -49,7 +73,7 @@ void main() {
     expect(find.text('页面异常'), findsOneWidget);
     expect(find.text('其他建议'), findsOneWidget);
     expect(find.textContaining('不会自动改资料、星盘、匹配结果或推荐权重'), findsWidgets);
-    expect(find.textContaining('复制后发给支持人员'), findsOneWidget);
+    expect(find.textContaining('生成和复制草稿仅保存在本机'), findsOneWidget);
     expect(
       _visibleText(tester).indexOf('反馈类别'),
       lessThan(_visibleText(tester).indexOf('反馈内容')),
@@ -68,7 +92,7 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(
-      MaterialApp(
+      _feedbackApp(
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.light,
@@ -88,7 +112,7 @@ void main() {
 
   testWidgets('Feedback page generates local copyable draft', (tester) async {
     await tester.pumpWidget(
-      MaterialApp(
+      _feedbackApp(
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.light,
@@ -134,7 +158,7 @@ void main() {
     addTearDown(tester.view.resetDevicePixelRatio);
     var attempts = 0;
     await tester.pumpWidget(
-      MaterialApp(
+      _feedbackApp(
         theme: AppTheme.light,
         home: InnerTestFeedbackPage(
           clipboardWriter: (text) async {
@@ -168,7 +192,7 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
     await tester.pumpWidget(
-      MaterialApp(
+      _feedbackApp(
         theme: AppTheme.light,
         home: InnerTestFeedbackPage(
           clipboardWriter: (text) async => throw Exception('raw clipboard'),
@@ -199,7 +223,7 @@ void main() {
     addTearDown(tester.view.resetDevicePixelRatio);
 
     await tester.pumpWidget(
-      MaterialApp(
+      _feedbackApp(
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.light,

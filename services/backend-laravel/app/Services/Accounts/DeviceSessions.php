@@ -12,6 +12,19 @@ use Laravel\Sanctum\PersonalAccessToken;
 
 final class DeviceSessions
 {
+    /** Recheck bearer revocation after acquiring the account lock for a mutation. */
+    public function assertCurrentCredential(User $actor): void
+    {
+        $presented = $actor->currentAccessToken();
+        if (! $presented instanceof PersonalAccessToken) {
+            return;
+        }
+        $token = PersonalAccessToken::whereKey($presented->id)->lockForUpdate()->first();
+        abort_unless($token && (int) $token->tokenable_id === (int) $actor->id
+            && $token->tokenable_type === $actor->getMorphClass(), 401, 'SESSION_REVOKED');
+        abort_if($token->expires_at && $token->expires_at->lessThanOrEqualTo(now('UTC')), 401, 'ONLINE_LOGIN_EXPIRED');
+    }
+
     public function issue(User $user, string $label = 'Mobile', bool $successfulLogin = false, ?string $deviceId = null): array
     {
         return DB::transaction(function () use ($user, $label, $successfulLogin, $deviceId) {

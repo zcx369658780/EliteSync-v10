@@ -27,6 +27,7 @@ import 'package:flutter_elitesync_module/shared/providers/session_provider.dart'
 import 'package:flutter_elitesync_module/shared/providers/theme_provider.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_center_page.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/account_security_page.dart';
+import 'account_recovery_help_page.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/pending_logout_store.dart';
 
@@ -464,6 +465,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   icon: Icons.lock_outline_rounded,
                   onTap: () => context.push(AppRouteNames.changePassword),
                 ),
+                SettingsItemTile(
+                  title: '找回与账号帮助',
+                  subtitle: '查看当前可用的账号支持与恢复路径',
+                  icon: Icons.help_outline,
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const AccountRecoveryHelpPage(),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -482,7 +493,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 Divider(height: 1, color: t.overlay.withValues(alpha: 0.35)),
                 SettingsItemTile(
                   title: '帮我们改进体验',
-                  subtitle: '在本机整理可复制反馈，由你选择发送方式',
+                  subtitle: '提交反馈并查看本人回执和处理状态',
                   icon: Icons.rate_review_outlined,
                   onTap: () => context.push(
                     Uri(

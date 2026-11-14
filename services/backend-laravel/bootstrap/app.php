@@ -23,6 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->trimStrings(except: ['new_password', 'new_password_confirmation']);
         $middleware->append(RequestTraceMiddleware::class);
         $middleware->prependToGroup('api', \App\Http\Middleware\PrivateDynamicCharts::class);
         $middleware->appendToGroup('api', QuestionSnapshotLock::class);

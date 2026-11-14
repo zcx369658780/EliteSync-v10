@@ -23,6 +23,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/matching', [AdminMatchingWebController::class, 'index'])->name('matching');
         Route::post('/matching', [AdminMatchingWebController::class, 'action'])->middleware('matching.operation')->name('matching.action');
         Route::get('/account-security', AccountSecurityAuditController::class)->name('account-security');
+        $support = \App\Http\Controllers\Web\SupportFeedbackController::class;
+        Route::get('/support-feedback', [$support, 'index'])->name('support-feedback.index');
+        Route::get('/support-feedback/{id}', [$support, 'show'])->whereNumber('id')->name('support-feedback.show');
+        Route::post('/support-feedback/{id}', [$support, 'update'])->whereNumber('id')->name('support-feedback.update');
         Route::get('/audits', [AdminOperationsController::class, 'audits'])->name('audits');
         $showcase = \App\Http\Controllers\Web\AdminShowcaseController::class;
         Route::get('/showcase', [$showcase, 'index'])->name('showcase.index');

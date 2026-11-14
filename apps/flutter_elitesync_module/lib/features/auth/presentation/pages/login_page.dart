@@ -1,6 +1,7 @@
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/account_security_page.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/pages/account_recovery_help_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -186,6 +187,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         label: '还没有账号，去注册',
                         fullWidth: true,
                         onPressed: () => context.push(AppRouteNames.register),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => const AccountRecoveryHelpPage(),
+                          ),
+                        ),
+                        child: const Text('忘记密码与账号帮助'),
                       ),
                       TextButton(
                         onPressed: () => Navigator.of(context).push(

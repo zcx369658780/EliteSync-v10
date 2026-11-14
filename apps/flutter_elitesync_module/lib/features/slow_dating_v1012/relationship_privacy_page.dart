@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../relationships_v1011/relationship_api.dart';
 import '../relationships_v1011/session_bound_page.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import '../relationships_v1011/profile_projection_card.dart';
 import 'journey_components.dart';
 
@@ -21,6 +22,30 @@ class _PrivacyState extends SessionBoundPage<RelationshipPrivacyPage> {
   bool _resumeLoaded = false;
   Object? _revision;
   Map<String, dynamic>? _peer;
+
+  @override
+  Future<void> refresh() async {
+    final token = ref.read(sessionProvider).asData?.value.accessToken;
+    final authority = ref.read(relationshipAuthorityEpochProvider);
+    final result = await run(
+      () => ref.read(relationshipApiProvider).call('GET', resource),
+      onFailure: (failure) {
+        if (failure is RelationshipFailure &&
+            [401, 403, 404, 410].contains(failure.statusCode)) {
+          data = null;
+          _peer = null;
+          _revision = null;
+        }
+      },
+    );
+    if (result != null &&
+        mounted &&
+        token == ref.read(sessionProvider).asData?.value.accessToken &&
+        authority == ref.read(relationshipAuthorityEpochProvider)) {
+      setState(() => data = result);
+    }
+  }
+
   void _clear() {
     _fields.clear();
     _revision = null;

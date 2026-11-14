@@ -123,15 +123,11 @@ class AuthController extends Controller
             'device_id' => ['nullable', 'string', 'min:8', 'max:128'],
         ]);
 
-        $user = User::where('phone', $data['phone'])->first();
-        if (! $this->passwordMatches($user, $data['password'])) {
-            throw ValidationException::withMessages([
-                'phone' => ['手机号或密码错误。'],
-            ]);
-        }
-
-        return DB::transaction(function () use ($user, $data) {
-            $user = User::query()->lockForUpdate()->findOrFail($user->id);
+        return DB::transaction(function () use ($data) {
+            $user = User::where('phone', $data['phone'])->lockForUpdate()->first();
+            if (! $this->passwordMatches($user, $data['password'])) {
+                throw ValidationException::withMessages(['phone' => ['手机号或密码错误。']]);
+            }
             if ($user->disabled) {
                 return response()->json(['message' => '账号已被禁用。'], 403);
             }
@@ -176,19 +172,23 @@ class AuthController extends Controller
             'new_password' => ['required', 'string', 'different:current_password', Password::min(8)->letters()->numbers(), 'confirmed'],
         ]);
 
-        $user = $request->user();
-        if (! $this->passwordMatches($user, $data['current_password'])) {
-            throw ValidationException::withMessages([
-                'current_password' => ['当前密码不正确。'],
-            ]);
-        }
-
-        $user->password = Hash::make($data['new_password']);
-        $user->save();
+        DB::transaction(function () use ($request, $data) {
+            $user = User::whereKey($request->user()->id)->lockForUpdate()->firstOrFail();
+            abort_if($user->disabled, 403, 'ACCOUNT_UNAVAILABLE');
+            $sessions = app(DeviceSessions::class);
+            $sessions->assertCurrentCredential($request->user());
+            if (! $this->passwordMatches($user, $data['current_password'])) {
+                throw ValidationException::withMessages(['current_password' => ['当前密码不正确。']]);
+            }
+            $user->password = Hash::make($data['new_password']);
+            $user->save();
+            $sessions->revokeAll($user);
+        });
 
         return response()->json([
             'ok' => true,
-            'message' => '密码已更新',
+            'status' => 'PASSWORD_CHANGED_LOGIN_REQUIRED',
+            'message' => '密码已更新，请使用新密码重新登录。',
         ]);
     }
 

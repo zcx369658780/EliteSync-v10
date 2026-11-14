@@ -69,6 +69,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/account/closure-recovery', [AccountSecurityController::class, 'recover'])->middleware('throttle:10,1');
     Route::post('/account/closure-receipts/{requestId}', [AccountSecurityController::class, 'receipt'])->middleware('throttle:10,1');
     Route::prefix('auth')->group(function () {
+        Route::get('/support-capabilities', [\App\Http\Controllers\Api\V1\AccountSupportController::class, 'capabilities'])->middleware('throttle:60,1');
         Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:auth');
         Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:auth');
         Route::post('/session/verify', [AuthController::class, 'verifySession'])->middleware(['auth:sanctum', 'account.active']);
@@ -171,6 +172,10 @@ Route::prefix('v1')->group(function () {
         Route::get('/privacy/preview', [$privacy, 'preview']);
         Route::get('/profile-peers/{id}', [$privacy, 'peer'])->whereNumber('id');
         $account = AccountSecurityController::class;
+        $support = \App\Http\Controllers\Api\V1\SupportFeedbackController::class;
+        Route::get('/support/feedback', [$support, 'index']);
+        Route::get('/support/feedback/{id}', [$support, 'show'])->whereNumber('id');
+        Route::post('/support/feedback', [$support, 'store'])->middleware('throttle:10,1');
         Route::get('/account/sessions', [$account, 'sessions']);
         Route::delete('/account/sessions/{sessionId}', [$account, 'revoke']);
         Route::post('/conversations/{id}/visibility', function (Request $r, int $id) {

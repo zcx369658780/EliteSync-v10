@@ -7,6 +7,18 @@ import 'package:flutter_elitesync_module/features/profile/presentation/pages/cha
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
+import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
+import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
+
+class _Session extends SessionNotifier {
+  @override
+  SessionState build() => const SessionState(
+    status: AuthStatus.authenticated,
+    user: UserSummary(id: 101, phone: ''),
+    accessToken: 'fictional',
+  );
+}
 
 class _PasswordFailureApiClient extends ApiClient {
   _PasswordFailureApiClient() : super(dio: Dio());
@@ -30,6 +42,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          sessionProvider.overrideWith(_Session.new),
           apiClientProvider.overrideWithValue(_PasswordFailureApiClient()),
         ],
         child: MaterialApp(
@@ -47,7 +60,7 @@ void main() {
     await tester.tap(find.text('保存新密码'));
     await tester.pumpAndSettle();
 
-    expect(find.text('密码修改未完成，请稍后重试。'), findsOneWidget);
+    expect(find.textContaining('修改结果尚未确认'), findsOneWidget);
     expect(find.textContaining('raw remote password failure'), findsNothing);
     expect(find.text('密码修改成功'), findsNothing);
   });

@@ -30,8 +30,20 @@ final class PrivacyController extends Controller
         }
         $d = $r->validate($rules);
         DB::transaction(function () use ($r, $d) {
-            User::whereKey($r->user()->id)->lockForUpdate()->firstOrFail();
+            $owner = User::whereKey($r->user()->id)->lockForUpdate()->firstOrFail();
+            abort_if($owner->disabled, 403, 'ACCOUNT_UNAVAILABLE');
+            app(\App\Services\Accounts\DeviceSessions::class)->assertCurrentCredential($r->user());
             $p = DB::table('privacy_preferences')->where('user_id', $r->user()->id)->lockForUpdate()->first();
+            if ($p) {
+                $current = json_decode($p->fields, true);
+                $unchanged = true;
+                foreach (array_keys($this->fields()) as $field) {
+                    $unchanged = $unchanged && ($current[$field] ?? 'SELF') === $d['fields'][$field];
+                }
+                if ($unchanged) {
+                    return;
+                }
+            }
             abort_unless((int) ($p->revision ?? 0) === $d['expected_revision'], 409, 'stale privacy revision');
             DB::table('privacy_preferences')->updateOrInsert(['user_id' => $r->user()->id], ['fields' => json_encode($d['fields']), 'revision' => $d['expected_revision'] + 1, 'created_at' => $p->created_at ?? now(), 'updated_at' => now()]);
         });
