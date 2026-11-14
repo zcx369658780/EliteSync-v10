@@ -1,3 +1,17 @@
+# 当前入口 2026-11-14 v10.1.10任务已下达，等待本地Codex接续
+
+**V10110_TASK_ISSUED / IMPLEMENTATION_NOT_YET_REPORTED / ADVISOR_PENDING**。Owner已接受v10.1.9顾问范围结论并授权进入v10.1.10。新版本主题：**自我认识与特色工具产品化**。任务范围为已有MBTI、本人本命西洋盘/八字/紫微三盘、手填动态盘与手填双人盘的实际断点修复及产品化；真实计算、API、持久化、历史、重算和基础解释优先。冻结计划见[plan](../versions/v10.1.10/plan.md)，[任务单](../versions/v10.1.10/task_order.md)，[Codex开工prompt](../versions/v10.1.10/CODEX_START_PROMPT.txt)，授权依据见[Owner决定](../decisions/OWNER_V10_1_9_ACCEPTANCE_AND_V10_1_10_AUTHORIZATION_20261114.md)。
+
+任务分支：`codex/v10.1.10-self-knowledge-specialty-tools-20261114`；唯一父基线：`8e74d1f7496f066a586afb1e5653ed563b64c46d`。稳定本地根 `D:\EliteSync-v10-product-v1015-20261101`。APP源码基线 `000025dea4d6c13e01397fa8fb8b9ae833bc2812`，后端源码基线 `dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6`。建议候选 `10.1.10-dev / 1011001)，开工必须先核占用，已用则顺延。分支和任务文档已发布不代表Windows本地已同步；本地Codex安全同步并回报。当前尚未报告本地开工或任何产品改动。
+
+v10.1.9顾问接受：六项AC按约定开发范围接受，R1-01 CLOSED，无R2；Owner已于本次会话接受。原初验PARTIAL/CHANGES_REQUIRED、历史候选和失败仍保留。v10.1.9最终候选1010903、APP源码 `000025dea4d6c13e01397fa8fb8b9ae833bc2812`、后端 `dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6`。顾问报告固定提交 `8e74d1f7496f066a586afb1e5653ed563b64c46d`。
+
+本版保持MBTI与20题匹配问卷分离；MBTI不作诊断或匹配硬筛选；三盘沿用既有算法，不宣称独立精度已验证；动态/双人盘只使用本人明确手填或确认输入，不读取其他账号出生资料；Synastry/Comparison不改称Composite。v10.1.12集中UI/信息结构/文案不变。手机NOT_USED；真实Push仍PENDING，历史SFU/RPC精确原因UNKNOWN；v10.1.9 AC19-04/05/06及部署/持久化按未变范围继承。
+
+普通工程长期授权继续：本地Codex可自主规划、实现、必要开发库迁移、定向验证、Debug APK、开发服务、虚构数据、双模拟器和常规Git。保护dirty/index、配置、数据库、AVD、唯一私有原证及无关`%SystemDrive%/`；不盲pull/reset/rebase/stash/clean/prune，不force push。手机、真实用户/生产数据、付费供应商、系统提权、main集成、公司/内测/运营/发布仍须另行授权。集中交付后停下供新顾问会话验收；不自动开始v10.1.11。
+
+---
+
 # 当前入口 2026-11-14 v10.1.9 R1顾问关闭，六项范围接受
 
 **V1019_ADVISOR_SCOPE_ACCEPTED_OWNER_PENDING**。唯一补充项**V1019-R1-01 CLOSED**，无需R2；AC19-01/02/03的明确拒绝后页面投影清理通过本轮有界复核，AC19-04/05/06按已接受未变范围继承。六项均获顾问按约定开发范围接受，**Owner最终接受仍PENDING**。见[R1顾问验收](../versions/v10.1.9/supplement-r1-20261114/ADVISOR_ACCEPTANCE.md)及[manifest.current_state](../versions/v10.1.9/artifact_manifest.json)。
