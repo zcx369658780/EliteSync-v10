@@ -1,4 +1,18 @@
-# 当前入口 2026-11-14 v10.1.9集中工程交付
+# 当前入口 2026-11-14 v10.1.9顾问复核完成，限定R1已下达
+
+**ADVISOR_CHANGES_REQUIRED_R1_ISSUED**。被审工程交付6a9f28d9e60ff8abbad96494925ccea3b2dd46a4、最终源码dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6、候选1010902。原工程六项PASS保留；顾问对AC19-04/05/06按约定开发范围接受，AC19-01/02/03因同一个明确失权后页面投影清理缺口记PARTIAL。见[顾问验收](../versions/v10.1.9/ADVISOR_ACCEPTANCE_20261114.md)。
+
+唯一补充项**V1019-R1-01（P2，OPEN）**：联系人分页业务403、广场旧动态收藏404、搭子发现分页403后清除旧投影/旧动作并准确反馈。服务端仍拒绝操作，未发现授权旁路。按[R1任务](../versions/v10.1.9/supplement-r1-20261114/task_order.md)及[Codex prompt](../versions/v10.1.9/supplement-r1-20261114/CODEX_PROMPT.txt)执行；具体实现由Codex决定，其他已接受链按未变范围继承。
+
+稳定根D:\EliteSync-v10-product-v1015-20261101，分支codex/v10.1.9-social-buddy-activities-20261114。原任务文档LOCAL_DOCS_SYNCED为Codex2026-11-14T10:12:51.864247+08:00具名回执；**本次新增顾问/R1文档的Windows同步PENDING_LOCAL_SYNC**，Codex开工安全同步并回报。顾问未操作D盘、设备或服务。
+
+12项既有全库静态问题仍FAIL并保留，不纳入本次R1。最近资源仅为工程2026-11-14T12:09:08.960013+08:00历史快照；手机NOT_USED。真实Push PENDING、旧SFU/RPC精确根因UNKNOWN及v10.1.8已接受范围不变。
+
+本版Owner最终接受PENDING。Codex只完成本R1，保存/固定回读后停下供顾问复核；不自动进入v10.1.10、不合main、不发布。顾问本次仅保存审查及任务文档，产品源码未修改。
+
+---
+
+# 历史节点 2026-11-14 v10.1.9集中工程交付
 
 **ENGINEERING_DELIVERED_ADVISOR_PENDING**，六项AC工程结果均PASS。见[v10.1.9实施报告](../versions/v10.1.9/IMPLEMENTATION_REPORT.md)、[manifest](../versions/v10.1.9/artifact_manifest.json)和[证据摘要](../versions/v10.1.9/EVIDENCE_SUMMARY.json)。当前等待新GPT顾问会话验收，本版Owner最终接受PENDING。
 

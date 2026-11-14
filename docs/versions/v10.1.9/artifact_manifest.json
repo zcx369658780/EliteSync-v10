@@ -2,7 +2,7 @@
   "schema": "elitesync.v1019.artifact_manifest.v1",
   "version": "v10.1.9",
   "engineering_status": "ENGINEERING_DELIVERED_ADVISOR_PENDING",
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "CHANGES_REQUIRED",
   "owner_acceptance": "PENDING",
   "ac": {
     "AC19-01": "PASS",
@@ -350,5 +350,39 @@
     }
   ],
   "delivery_commit": "The final commit containing this manifest; remote fixed-object readback is reported in the delivery reply",
-  "private_materials": "Raw receipts, full images, SQL/database, credentials, private tools and APKs remain on Owner PC"
+  "private_materials": "Raw receipts, full images, SQL/database, credentials, private tools and APKs remain on Owner PC",
+  "advisor_review": {
+    "date_china": "2026-11-14",
+    "status": "CHANGES_REQUIRED_R1_ISSUED",
+    "engineering_delivery_commit": "6a9f28d9e60ff8abbad96494925ccea3b2dd46a4",
+    "reviewed_source_commit": "dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6",
+    "report": "ADVISOR_ACCEPTANCE_20261114.md",
+    "ac": {
+      "AC19-01": "PARTIAL_R1_01",
+      "AC19-02": "PARTIAL_R1_01",
+      "AC19-03": "PARTIAL_R1_01",
+      "AC19-04": "SCOPE_ACCEPTED",
+      "AC19-05": "SCOPE_ACCEPTED",
+      "AC19-06": "SCOPE_ACCEPTED"
+    },
+    "open_items": [
+      {
+        "id": "V1019-R1-01",
+        "priority": "P2",
+        "status": "OPEN",
+        "scope": [
+          "AC19-01",
+          "AC19-02",
+          "AC19-03"
+        ],
+        "task": "supplement-r1-20261114/task_order.md"
+      }
+    ],
+    "original_engineering_ac_preserved": true,
+    "basis": "Fixed-source and test-design review, Git/content identity verification, selected screenshots and named Codex execution reports",
+    "advisor_windows_device_test_execution": "NOT_RUN",
+    "original_task_local_docs_sync": "LOCAL_DOCS_SYNCED_CODEX_REPORTED",
+    "new_advisor_r1_windows_docs": "PENDING_LOCAL_SYNC",
+    "next_version_authorized": false
+  }
 }

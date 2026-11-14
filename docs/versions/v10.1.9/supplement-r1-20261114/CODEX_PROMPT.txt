@@ -1,0 +1,18 @@
+请接续EliteSync-v10的v10.1.9 R1补修。Owner为华霜魂；使用既有本地Codex工程会话和稳定根D:\EliteSync-v10-product-v1015-20261101，不新建产品实现。
+
+仓库zcx369658780/EliteSync-v10，分支codex/v10.1.9-social-buddy-activities-20261114。原工程交付6a9f28d9e60ff8abbad96494925ccea3b2dd46a4，最终源码dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6，候选1010902。本次R1文档以Owner转交的顾问固定发布提交为准。
+
+先保护并核实际branch/HEAD/dirty/index，按固定提交只读AGENTS、ACTIVE_STATE当前首块、docs/versions/v10.1.9/ADVISOR_ACCEPTANCE_20261114.md及docs/versions/v10.1.9/supplement-r1-20261114/task_order.md。安全同步本次顾问/R1文档并记录本地同步结果，不用旧main覆盖当前成果。
+
+顾问结论为CHANGES_REQUIRED：AC19-04/05/06按约定范围接受；AC19-01/02/03仅保留同一项V1019-R1-01（P2）。原六项工程PASS保留，不改写原证。唯一修补是以下三个入口收到明确失权响应后仍保留旧投影：
+A. 联系人“加载更多”收到业务403后旧联系人和可选项不清。
+B. 动态广场的旧FRIENDS卡片在作者改SELF/删除/失权后，点收藏收到404仍显示原正文/图片并误提示“未确认，可重试”。
+C. 搭子发现“加载更多”在另一端关闭Buddy后收到403，仍显示旧卡/申请按钮/游标。
+
+服务端仍拒绝操作，本项不是后端授权旁路。按任务单最小修复明确拒绝后的投影与动作清理，区分普通断网/超时/5xx；保护同账号合法输入及未确认命令原key/payload，拒绝旧账号/旧代际迟到结果。不要全局重写权限或扩展功能。
+
+补三条“先显示、再明确拒绝”的Widget反例及必要网络失败对照；做至少一条最短真实APP/API拒绝链，优先FRIENDS→SELF→旧卡收藏404后即时清内容。其余主链继承，不重跑整版或旧通信。必要APP候选建议1010903起，实际编号按占用顺延并核安装/源码/APK身份。
+
+普通修复、构建、虚构数据、定向测试、必要双模拟器及常规Git已有长期授权，连续完成，无需逐动作请示。保护dirty/index/配置/数据库/AVD及%SystemDrive%/，不盲pull/reset/rebase/stash/clean/prune、不强推、不合main。手机不使用，不处理无关12项既有静态问题，不自动开始v10.1.10。
+
+在supplement-r1-20261114提交精简README.md与必要去敏摘要，更新manifest和ACTIVE_STATE，明确实际运行/受控/继承/NOT_RUN/UNKNOWN、最终源码与候选。保存本地和本版分支，固定回读后停下，将固定交付提交交顾问复核。顾问R1关闭和Owner接受仍独立记账。
