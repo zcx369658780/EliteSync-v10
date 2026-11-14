@@ -1,7 +1,7 @@
 {
   "schema": "elitesync-v10110-artifact-manifest-v1",
   "version": "10.1.10",
-  "state": "ENGINEERING_PASS_ADVISOR_PENDING",
+  "state": "ADVISOR_SCOPE_ACCEPTED_OWNER_PENDING",
   "branch": "codex/v10.1.10-self-knowledge-specialty-tools-20261114",
   "task_parent": "8e74d1f7496f066a586afb1e5653ed563b64c46d",
   "task_documents": "ffbc2a3c2e03f7128e78a75eca108a114f9eb0c0",
@@ -91,8 +91,8 @@
     "apk_sha256": "d2ec27ff6fa6f65fcc18369a3f9b6fe95264d359fa9eb7890c698d51bdbca307",
     "status": "SUPERSEDED_RETAINED_LOCAL"
   },
-  "delivery_commit": "Resolve containing commit; final exact GitHub readback recorded in delivery reply and local receipt",
-  "sync": "FIXED_COMMIT_READBACK_REQUIRED; failure must be PENDING_SYNC",
+  "delivery_commit": "3b66faca876f2a4700a2c4a18f044a1ce9dd6560",
+  "sync": "DELIVERY_FIXED_COMMIT_READBACK_CONFIRMED",
   "public_artifacts": [
     {
       "path": "IMPLEMENTATION_REPORT.md",
@@ -167,5 +167,54 @@
     "database",
     "raw device logs"
   ],
-  "stop": "Await new advisor review; do not enter v10.1.11, merge main or release"
+  "stop": "Await new advisor review; do not enter v10.1.11, merge main or release",
+  "advisor_review": {
+    "date": "2026-11-14",
+    "status": "ADVISOR_SCOPE_ACCEPTED_OWNER_PENDING",
+    "delivery_commit": "3b66faca876f2a4700a2c4a18f044a1ce9dd6560",
+    "task_documents": "ffbc2a3c2e03f7128e78a75eca108a114f9eb0c0",
+    "backend_source": "b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd",
+    "app_source": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+    "candidate_version_code": 1011002,
+    "ac": {
+      "AC10-01": "SCOPE_ACCEPTED",
+      "AC10-02": "SCOPE_ACCEPTED",
+      "AC10-03": "SCOPE_ACCEPTED",
+      "AC10-04": "SCOPE_ACCEPTED",
+      "AC10-05": "SCOPE_ACCEPTED",
+      "AC10-06": "SCOPE_ACCEPTED"
+    },
+    "r1_required": false,
+    "evidence_basis": "Fixed Git ancestry and changed-file review; source review of APP/API/history/migration; selected final candidate screenshots; report/manifest/evidence summary and named Codex runtime reports",
+    "advisor_windows_device_reexecution": "NOT_RUN",
+    "full_repository_analysis": "NOT_RUN",
+    "dynamic_solar_lunar_final_app_matrix": "NOT_RUN_NONBLOCKING_CALCULATOR_UNCHANGED",
+    "independent_algorithm_precision": "UNVERIFIED",
+    "real_push": "REAL_PUSH_PROVIDER_PENDING",
+    "historical_noninjected_sfu_rpc_root_cause": "UNKNOWN",
+    "sfu_media_this_version": "NOT_RUN",
+    "phone": "NOT_USED",
+    "owner_acceptance": "PENDING",
+    "next_version_authorized": false
+  },
+  "current_state": {
+    "status": "V10110_ADVISOR_SCOPE_ACCEPTED_OWNER_PENDING",
+    "delivery_commit": "3b66faca876f2a4700a2c4a18f044a1ce9dd6560",
+    "app_source": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+    "backend_source": "b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd",
+    "candidate": {
+      "source_commit": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+      "version_code": 1011002,
+      "version_name": "10.1.10-dev",
+      "package": "com.elitesync.v1015dev",
+      "apk_sha256": "304f7f17dfe3b12d74fb1a9d2c48ac65c44d1a627b4ffec30a43edd552709b64",
+      "apk_bytes": 123898166,
+      "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42"
+    },
+    "advisor_report": "ADVISOR_ACCEPTANCE_20261114.md",
+    "advisor_acceptance": "SCOPE_ACCEPTED_ALL_SIX_AC",
+    "r1_required": false,
+    "owner_acceptance": "PENDING",
+    "next_version": "NOT_ISSUED"
+  }
 }
