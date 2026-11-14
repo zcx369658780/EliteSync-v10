@@ -6,7 +6,9 @@
 
 v10.1.10六项AC及手机实机普通功能链补证均获顾问按声明范围接受，无R1/R2；Owner整版最终接受仍PENDING。证据和候选身份见ACTIVE_STATE及v10.1.10报告。Owner本次明确授权v10.1.11，不追溯修改v10.1.10的Owner状态。
 
-v10.1.11「账号支持与功能质量收口」工程集中交付，等待新顾问验收。报告、最终候选1011101与限定恢复能力见[实施报告](../versions/v10.1.11/IMPLEMENTATION_REPORT.md)。任务分支`codex/v10.1.11-account-support-quality-20261114`，唯一父基线`96a2125370677d5d508710b590a808f44e50a119`。执行六项AC计划、task_order和CODEX_START_PROMPT。GitHub发布不代表Windows本地已同步；本地Codex先核实际工程、保护dirty/index，再安全同步并回报LOCAL_DOCS_SYNCED或PENDING_LOCAL_SYNC。
+v10.1.11「账号支持与功能质量收口」工程集中交付，等待新顾问验收。报告、最终候选1011101与限定恢复能力见[实施报告](../versions/v10.1.11/IMPLEMENTATION_REPORT.md)。任务分支`codex/v10.1.11-account-support-quality-20261114`，唯一父基线`96a2125370677d5d508710b590a808f44e50a119`，原工程固定提交`3888c6eb63ecfb6798a80387f4b27cd891a10457`。本地任务文档同步已完成，实际记录见ACTIVE_STATE的LOCAL_DOCS_SYNCED。
+
+R1-01仅修正AGENTS当前版本指令并核对三份入口文档一致性，验证范围为文档内容、链接、差异与Git身份。保存到原v10.1.11分支并固定回读后，停下供顾问文档差异与治理复核。v10.1.12仍未授权，不得自动启动。
 
 ## 工作顺序
 

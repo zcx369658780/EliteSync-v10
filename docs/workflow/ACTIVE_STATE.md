@@ -2,6 +2,8 @@
 
 **V10111_ENGINEERING_DELIVERED_WITH_DECLARED_LIMITS / LOCAL_DOCS_SYNCED**。报告见[IMPLEMENTATION_REPORT](../versions/v10.1.11/IMPLEMENTATION_REPORT.md)，身份与范围见[manifest](../versions/v10.1.11/artifact_manifest.json)及[去敏证据](../versions/v10.1.11/EVIDENCE_SUMMARY.json)。顾问验收与Owner接受均PENDING，main集成与正式发布NOT_RUN。
 
+R1-01文档修正已完成，待顾问文档差异与治理复核。AGENTS已更新为当前v10.1.11交付入口，ACTIVE_STATE与CURRENT_WORKFLOW已核对一致。原工程固定提交为`3888c6eb63ecfb6798a80387f4b27cd891a10457`，本次修正范围为三份入口文档。v10.1.12仍未授权，不得自动启动。
+
 实际稳定根`D:\EliteSync-v10-product-v1015-20261101`，origin为`git@github.com:zcx369658780/EliteSync-v10.git`，任务分支`codex/v10.1.11-account-support-quality-20261114`。唯一父基线`96a2125370677d5d508710b590a808f44e50a119`，任务文档固定提交`eb1ef7680d5327e5338695ecd2538264c9dacb8c`。七份文件Git Blob/规范文本匹配，LOCAL_DOCS_SYNCED实读`2026-11-14T18:28:55.425018+08:00`。
 
 APP/后端源码`47e1b4fd8fad3dd8165d1be6dc9f059095290e75`。最终候选`10.1.11-dev / 1011101 / com.elitesync.v1015dev`，APK SHA256 `df0e74e3a23becaa5d5e0511b1d62518425f9d4ca6e48538e050cc6229a259e4`，沿用签名与数据，模拟器安装哈希核验通过。文档集中交付以本块所在固定Git提交为准，完整远端固定回读在交付回复和本机回执提供。

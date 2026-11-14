@@ -1,20 +1,20 @@
 # EliteSync-v10 工程约定
 
-生效：2026-11-14。当前任务依据[Owner接受v10.1.9并授权v10.1.10](docs/decisions/OWNER_V10_1_9_ACCEPTANCE_AND_V10_1_10_AUTHORIZATION_20261114.md)，方向延续[后端功能优先决定](docs/decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
+生效：2026-11-14。当前版本依据[Owner授权v10.1.11](docs/decisions/OWNER_V10_1_10_ADVISOR_ACCEPTANCE_AND_V10_1_11_AUTHORIZATION_20261114.md)，方向延续[后端功能优先决定](docs/decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
 ## 产品目标
 
 Owner已确认项目交接及选定旧版主要功能接续完成。当前完善可实际使用的EliteSync APP、真实后端、持久数据库及独立Web管理面板。先完成业务功能与最小可操作界面，必要安全封装随功能收口处理，最后集中打磨UI和文字。现有鉴权、私信权限与数据隔离保留。
 
-整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6 R1、v10.1.7、v10.1.8 R1及v10.1.9均已按约定开发范围获顾问与Owner接受；当前已授权[v10.1.10任务](docs/versions/v10.1.10/task_order.md)。集中UI/文字版本为v10.1.12，前序界面须支持真实操作和清楚反馈。新破冰、约见、共同计划、纪念日仅留接口。
+整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6 R1、v10.1.7、v10.1.8 R1及v10.1.9均已按约定开发范围获顾问与Owner接受。v10.1.10六项AC及手机补证已获顾问范围接受，Owner整版最终接受沿原记录PENDING。当前v10.1.11已工程集中交付，等待顾问验收。集中UI/文字版本v10.1.12仍未授权，不得自动启动。新破冰、约见、共同计划、纪念日仅留接口。
 
 ## 2026-11-14 当前执行范围
 
-依据[路线图](docs/architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)执行v10.1.10自我认识与特色工具产品化，默认规则和六项AC见[计划](docs/versions/v10.1.10/plan.md)。复用已有MBTI、本人本命西洋盘/八字/紫微三盘、手填动态盘和手填双人盘；补齐实际计算、输入、持久化、历史、重算及基础解释断点。MBTI不作诊断或匹配硬筛选，双人盘不读取其他账号出生资料，既有权限边界不扩大，普通成功链由真实APP/API/数据库产生。
+v10.1.11「账号支持与功能质量收口」已工程集中交付，等待新顾问验收。原工程固定提交为`3888c6eb63ecfb6798a80387f4b27cd891a10457`，任务分支为`codex/v10.1.11-account-support-quality-20261114`。约定范围见[任务](docs/versions/v10.1.11/task_order.md)及[计划](docs/versions/v10.1.11/plan.md)，实际交付及限制见[实施报告](docs/versions/v10.1.11/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.11/artifact_manifest.json)。顾问验收、Owner接受、main集成与发布分别记录。
 
-v10.1.9六项AC已获顾问与Owner按约定开发范围接受，V1019-R1-01 CLOSED，无需R2。真实Push、历史SFU/RPC精确根因、未验硬件/自然期限分别保留，未变通信及好友/搭子/活动链按具名范围继承。本轮只下达1.10；远端发布不表示Windows已同步，本地Codex按本版任务单核对Owner决定/计划/prompt并安全同步，再连续实现。
+当前仅执行Owner转交的R1-01文档修正，更新本文件并核对ACTIVE_STATE与CURRENT_WORKFLOW的一致性，保存到原v10.1.11任务分支并完成远端固定回读，随后停下供顾问治理复核。验证范围为文档内容、链接、差异与Git身份。v10.1.12仍未授权，不得自动启动。
 
-11月12日已有功能验收阶段已结束，原报告与测试结论保留，见[v10.1.5收尾](docs/versions/v10.1.5/CLOSEOUT_20261113.md)。本版集中交付后停下供顾问验收；不自动开下一版、合main或发布。
+真实Push为REAL_PUSH_PROVIDER_PENDING，历史非注入SFU/RPC精确根因为UNKNOWN，未验硬件/自然期限及旧失败分别保留。已接受的通信、好友/搭子/活动与自我认识工具按具名范围继承。
 
 ## 入口与自主执行
 
@@ -42,6 +42,10 @@ Owner负责方向和保留决定；顾问提供路线；Codex负责工程拆解�
 
 Owner于2026-11-12具体授权验收说明、120张测试截图、画廊/控件元数据和29份去敏证据摘要上传独立验收分支，范围及发布清单见[验收入口](https://github.com/zcx369658780/EliteSync-v10/blob/85197adec124ef94bbef2994c0668dc990f9bed4/docs/versions/v10.1.5/advisor-acceptance-20261112/README.md)。完整原始回执、APK、素材、凭据、许可证、SQL/数据库与设备原始日志由Owner本机保管。有意义节点维护ACTIVE_STATE单一当前入口及必要进度，常规同步授权分支，失败记PENDING_SYNC。
 
-历史上Owner于2026-11-12要求保存并手动交接，该[交接记录](docs/workflow/V1015_ADVISOR_ACCEPTANCE_HANDOFF_20261112.md)保留。2026-11-13的新继续与版本授权已覆盖当时等待状态；当前按ACTIVE_STATE和v10.1.9任务执行，不再从旧交接递归恢复。
+## 历史决策
 
-2026-11-14 Owner已接受v10.1.9顾问范围结论并明确授权v10.1.10。任务分支为codex/v10.1.10-self-knowledge-specialty-tools-20261114，固定父基线8e74d1f7496f066a586afb1e5653ed563b64c46d；执行本版task_order/plan/CODEX_START_PROMPT。顾问文档发布不表示Windows本地已同步；Codex开工先核实际工程并安全同步。手机不操作；本版集中交付后停下供新顾问验收，不自动开始v10.1.11。
+11月12日已有功能验收阶段已结束，原报告与测试结论见[v10.1.5收尾](docs/versions/v10.1.5/CLOSEOUT_20261113.md)。Owner当日要求保存并手动交接的[历史记录](docs/workflow/V1015_ADVISOR_ACCEPTANCE_HANDOFF_20261112.md)保留，后续版本按各自明确授权接续。
+
+2026-11-14 [Owner接受v10.1.9并授权v10.1.10的决定](docs/decisions/OWNER_V10_1_9_ACCEPTANCE_AND_V10_1_10_AUTHORIZATION_20261114.md)作为历史依据保留。v10.1.9六项AC获顾问与Owner范围接受，V1019-R1-01 CLOSED，无需R2。v10.1.10任务分支为`codex/v10.1.10-self-knowledge-specialty-tools-20261114`，固定父基线为`8e74d1f7496f066a586afb1e5653ed563b64c46d`，其[实施报告](docs/versions/v10.1.10/IMPLEMENTATION_REPORT.md)记录实际交付。MBTI不作诊断或匹配硬筛选，双人盘使用本人已确认或明确手填输入，既有用途权限继续适用。
+
+此后[Owner单独授权v10.1.11](docs/decisions/OWNER_V10_1_10_ADVISOR_ACCEPTANCE_AND_V10_1_11_AUTHORIZATION_20261114.md)。v10.1.10的历史停止条件及开工指令按其当时范围保留在版本档案中，当前入口见本文件当前执行范围、ACTIVE_STATE和CURRENT_WORKFLOW。
