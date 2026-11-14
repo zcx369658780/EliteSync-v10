@@ -1,7 +1,7 @@
 {
   "schema": "elitesync-v10110-artifact-manifest-v1",
   "version": "10.1.10",
-  "state": "ADVISOR_SCOPE_ACCEPTED_OWNER_PENDING",
+  "state": "ADVISOR_SCOPE_AND_PHONE_SLICE_ACCEPTED_OWNER_PENDING",
   "branch": "codex/v10.1.10-self-knowledge-specialty-tools-20261114",
   "task_parent": "8e74d1f7496f066a586afb1e5653ed563b64c46d",
   "task_documents": "ffbc2a3c2e03f7128e78a75eca108a114f9eb0c0",
@@ -327,7 +327,7 @@
     "next_version_authorized": false
   },
   "current_state": {
-    "status": "V10110_ADVISOR_SCOPE_ACCEPTED_OWNER_PENDING",
+    "status": "V10110_ADVISOR_SCOPE_AND_PHONE_SLICE_ACCEPTED_OWNER_PENDING",
     "delivery_commit": "3b66faca876f2a4700a2c4a18f044a1ce9dd6560",
     "app_source": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
     "backend_source": "b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd",
@@ -346,7 +346,8 @@
     "owner_acceptance": "PENDING",
     "next_version": "NOT_ISSUED",
     "phone_supplement_report": "PHONE_TEST_REPORT_20261114.md",
-    "phone_supplement_review": "PHONE_SLICE_PASS_ADVISOR_REVIEW_PENDING"
+    "phone_supplement_review": "ADVISOR_PHONE_SLICE_ACCEPTED",
+    "phone_advisor_report": "PHONE_ADVISOR_ACCEPTANCE_20261114.md"
   },
   "owner_phone_installation": {
     "ended_at": "2026-11-14T17:12:13.746056+08:00",
@@ -463,7 +464,27 @@
         }
       ]
     },
-    "advisor_supplement_review": "PENDING",
-    "owner_acceptance": "PENDING"
+    "advisor_supplement_review": "ADVISOR_PHONE_SLICE_ACCEPTED",
+    "owner_acceptance": "PENDING",
+    "advisor_review_report": "PHONE_ADVISOR_ACCEPTANCE_20261114.md",
+    "review": {
+      "date": "2026-11-14",
+      "status": "ADVISOR_PHONE_SLICE_ACCEPTED",
+      "fixed_evidence_commit": "605985d5b6e4e18854da04b37ce1178b825fa27b",
+      "candidate_version_code": 1011002,
+      "app_source": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+      "backend_source": "b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd",
+      "physical_device": "REDMI K80 Ultra",
+      "fictional_account": 1,
+      "screenshots_count": 13,
+      "screenshots_visual_reviewed": 13,
+      "phone_failure_matrix": "NOT_RUN",
+      "independent_algorithm_precision": "UNVERIFIED",
+      "automation_short_tap_root_cause": "UNKNOWN_NONBLOCKING",
+      "comparison_screenshot_limitation": "Current screenshot shows second-plate input and initial result state; revision2/history and deletion are supported by HTTP/DB readback, not by that screenshot alone",
+      "cross_owner_scope": "Other-owner read of charts12/13 returned404; this supplement does not claim a new other-owner delete test",
+      "owner_acceptance": "PENDING",
+      "next_version_authorized": false
+    }
   }
 }

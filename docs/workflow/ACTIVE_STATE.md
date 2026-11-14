@@ -1,20 +1,14 @@
-# 当前入口 2026-11-14 v10.1.10顾问范围接受，手机补证完成待复核
+# 当前入口 2026-11-14 v10.1.10顾问范围与手机补证均已接受
 
-**V10110_ADVISOR_SCOPE_ACCEPTED_OWNER_PENDING**。AC10-01至AC10-06全部按约定开发范围接受，无需R1/R2；Owner最终接受仍PENDING。见[顾问验收报告](../versions/v10.1.10/ADVISOR_ACCEPTANCE_20261114.md)及[manifest](../versions/v10.1.10/artifact_manifest.json)。
+**V10110_ADVISOR_SCOPE_AND_PHONE_SLICE_ACCEPTED_OWNER_PENDING**。AC10-01至AC10-06按约定开发范围接受；新增手机实机普通功能链补证也按所列范围接受，无需R1/R2。Owner整版最终接受仍PENDING。
 
-**PHONE_SLICE_PASS / SUPPLEMENT_ADVISOR_REVIEW_PENDING**。Owner在安装后明确授权直接实机测试、必要截图及GitHub证据保存。1011002在既有手机/虚构账号1完成MBTI attempt7与历史2、本命id2版本2及历史1、Transit id12版本2、手填Synastry id13版本2及历史1、Comparison id14版本2和历史的确认删除。另一虚构账号16读id12/13为404，删除后原账号详情/历史404。手机密码重登及force-stop冷启读回通过，前后选定当前/历史API事实相等。13张已视觉检查的去敏截图及普通HTTP/DB摘要见[实机报告](../versions/v10.1.10/PHONE_TEST_REPORT_20261114.md)和[实机摘要](../versions/v10.1.10/PHONE_EVIDENCE_SUMMARY_20261114.json)。产品源码/构建/迁移本轮均0次改动。
+原工程固定交付`3b66faca876f2a4700a2c4a18f044a1ce9dd6560`；最终APP源码`0ffc8e4aaf942f50de7de77e046457e2b3ab6059`，后端源码`b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd`，候选1011002。此前顾问验收见[报告](../versions/v10.1.10/ADVISOR_ACCEPTANCE_20261114.md)。
 
-手机补证资源实读`2026-11-14T17:49:07.669436+08:00`，四服务running，双模拟器停止且数据保留。临时透明观察进程已停止，手机恢复API/WS的8021/8022 USB直连，APP可继续使用。5039限定已知手机，5038 USB排除。工具曾有短触及底部控件定位未触发请求，补滚动定位和150毫秒触控后最终链通过，精确触发原因UNKNOWN，详见实机报告。
+Owner授权的REDMI K80 Ultra实机补证固定提交`605985d5b6e4e18854da04b37ce1178b825fa27b`，普通手机链覆盖MBTI attempt7/历史2、本命id2 revision2/历史1、Transit id12 revision2/历史1、Synastry id13 revision2/历史1、Comparison id14 revision2后确认删除、密码重登和冷启动读回。13张去敏截图已由顾问全部视觉复核；9个业务写入由手机普通APP命令产生，DB查询只读。摘要记载跨账号16读取id12/id13为404，删除id14后原账号详情/历史404、数据库零行及两条最小墓碑。Comparison截图未单独证明revision2完整结果，相关结论由HTTP/DB回执支持。自动化短触问题经滚动定位和150ms触控后通过，精确原因UNKNOWN，作为非阻断过程观察保留。
 
-固定工程交付`3b66faca876f2a4700a2c4a18f044a1ce9dd6560`，唯一父提交为最终APP源码`0ffc8e4aaf942f50de7de77e046457e2b3ab6059`；后端源码`b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd`。任务文档父基线`8e74d1f7496f066a586afb1e5653ed563b64c46d`，任务文档提交`ffbc2a3c2e03f7128e78a75eca108a114f9eb0c0`。最终候选`10.1.10-dev / 1011002`，APK SHA256 `304f7f17dfe3b12d74fb1a9d2c48ac65c44d1a627b4ffec30a43edd552709b64`，原包名/签名沿用。原工程固定身份见具名回执，本次手机补证固定号见交付回复。
+手机报告与摘要见[PHONE_TEST_REPORT](../versions/v10.1.10/PHONE_TEST_REPORT_20261114.md)和[PHONE_EVIDENCE_SUMMARY](../versions/v10.1.10/PHONE_EVIDENCE_SUMMARY_20261114.json)，顾问补证结论见[PHONE_ADVISOR_ACCEPTANCE](../versions/v10.1.10/PHONE_ADVISOR_ACCEPTANCE_20261114.md)。手机依赖电脑开发服务及USB；资源状态仅为Codex`2026-11-14T17:49:07.669436+08:00`历史快照。手机故障注入NOT_RUN，算法独立精度UNVERIFIED，真实Push REAL_PUSH_PROVIDER_PENDING，历史非注入SFU/RPC精确根因UNKNOWN。
 
-本人MBTI、三盘、Transit动态盘、手填Synastry/Comparison、历史和重算在约定范围接受。PHP21项/173断言、Widget62项、改动Dart分析及具名普通APP/API/MariaDB、重登/冷启/DB/API重启读回按报告记账。全仓分析NOT_RUN；太阳/月亮返照最终APP矩阵NOT_RUN；最终APP故障注入NOT_RUN。顾问核对源码、测试设计、交付身份和精选截图，未在Windows/设备复演。
-
-算法独立精度UNVERIFIED；真实Push仍REAL_PUSH_PROVIDER_PENDING；历史非注入SFU/RPC精确根因UNKNOWN。本版原工程交付阶段SFU媒体NOT_RUN、手机NOT_USED按原时点保留。服务资源采用Codex`2026-11-14T16:36:33.594739+08:00`历史快照。原主库dirty/index保护、AVD数据和无关目录按Codex具名回执保留。
-
-Owner随后明确要求手机安装及手测清单，已按本次具体授权保留数据更新为1011002，安装后base.apk摘要与验收候选一致。顾问固定文档`f8872d352fc55af2c0bb8d3cc67f2440019c51e9`已安全快进同步。安装记录见[手机手测](../versions/v10.1.10/OWNER_PHONE_CHECK_20261114.md)，后续实机结果采用顶部新增补证。Owner最终接受PENDING。
-
-当前停在Owner最终接受与下一步讨论；不合main、不发布、不自动下达v10.1.11。
+当前仍停在Owner整版最终接受与下一步讨论；不合main、不发布、不自动授权v10.1.11。
 
 ---
 

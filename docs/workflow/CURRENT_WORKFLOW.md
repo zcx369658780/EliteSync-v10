@@ -4,7 +4,7 @@
 
 ## 当前交付状态
 
-v10.1.10已于2026-11-14集中工程交付并经顾问复核：AC10-01至AC10-06按约定开发范围全部接受，无R1/R2。最终候选1011002、APP源码0ffc8e4a、后端源码b4ffe9df及实际证据见ACTIVE_STATE、[实施报告](../versions/v10.1.10/IMPLEMENTATION_REPORT.md)和[顾问验收](../versions/v10.1.10/ADVISOR_ACCEPTANCE_20261114.md)。Owner最终接受PENDING；不自动开始v10.1.11。
+v10.1.10已于2026-11-14集中工程交付并经顾问复核：AC10-01至AC10-06按约定开发范围全部接受；随后Owner授权的手机普通功能链补证也已顾问接受，无R1/R2。最终候选1011002及全部证据见ACTIVE_STATE、[实施报告](../versions/v10.1.10/IMPLEMENTATION_REPORT.md)、[顾问验收](../versions/v10.1.10/ADVISOR_ACCEPTANCE_20261114.md)和[手机补证验收](../versions/v10.1.10/PHONE_ADVISOR_ACCEPTANCE_20261114.md)。Owner最终接受PENDING；不自动开始v10.1.11。
 
 ## 2026-11-14 任务发布时的版本与交接安排
 
