@@ -1,10 +1,10 @@
 # v10.1.8 计划：通信与通知功能完善
 
-日期为2026-11-13，北京时间。2026-11-14完成R1复核，六项AC顾问范围接受 `ACCEPTED_SCOPED_V10_1_8`，Owner本版接受 `PENDING`。
+日期为2026-11-13，北京时间。2026-11-14完成R1复核，六项AC顾问及Owner范围接受 `ACCEPTED_SCOPED_V10_1_8`，见[最新Owner决定](../../decisions/OWNER_V10_1_8_ACCEPTANCE_AND_V10_1_9_AUTHORIZATION_20261114.md)。
 授权：[Owner 接受 v10.1.7 并进入 v10.1.8](../../decisions/OWNER_V10_1_7_ACCEPTANCE_AND_V10_1_8_AUTHORIZATION_20261113.md)。  
 执行入口：[任务单](task_order.md) · [Codex 接续 prompt](CODEX_START_PROMPT.txt) · [当前工作流](../../workflow/CURRENT_WORKFLOW.md)。
 
-最新结果见[R1顾问验收](supplement-r1-20261114/ADVISOR_ACCEPTANCE.md)及[manifest](artifact_manifest.json)。AC18-04已补齐当前双向媒体并接受，R1-01关闭；其余五项沿原范围接受。[原实施报告](IMPLEMENTATION_REPORT.md)和[原顾问结论](ADVISOR_ACCEPTANCE_20261114.md)保留历史身份。本页六项完成标准未降低，当前停止供Owner接受及后续规划。
+最新结果见[R1顾问验收](supplement-r1-20261114/ADVISOR_ACCEPTANCE.md)及[manifest](artifact_manifest.json)。AC18-04已补齐当前双向媒体并接受，R1-01关闭；其余五项沿原范围接受。[原实施报告](IMPLEMENTATION_REPORT.md)和[原顾问结论](ADVISOR_ACCEPTANCE_20261114.md)保留历史身份。本页六项完成标准未降低；以下为已完成版本合同。Owner已授权[v10.1.9任务](../v10.1.9/task_order.md)，当前按新任务和ACTIVE_STATE接续，不以旧停止点阻断新授权。
 
 ## 一、目标、基线与边界
 

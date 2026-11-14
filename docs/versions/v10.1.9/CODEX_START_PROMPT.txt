@@ -1,0 +1,33 @@
+请接续 EliteSync v10.1.9「好友、社区搭子与活动整合」，按已下达的 GitHub 任务连续完成后端、持久化、必要 APP/Web 和定向验证，集中交付后停下，由新的 GPT 顾问会话验收。
+
+仓库：zcx369658780/EliteSync-v10
+任务分支：codex/v10.1.9-social-buddy-activities-20261114
+已接受基线：be0112ac53fc0ab3d3bfaf360552b020bcca3476
+上一版 R1 工程交付：1074c210ee7fa6641799fa6e19d29fc46ef6b2bc
+稳定本地根：D:\EliteSync-v10-product-v1015-20261101
+任务：docs/versions/v10.1.9/task_order.md
+冻结规则及六项 AC：docs/versions/v10.1.9/plan.md
+
+Owner 已接受 v10.1.8 的约定开发范围并明确授权本版。v10.1.8 六项 AC 范围接受、R1-01 CLOSED，本轮无需 R2；不要被历史 CHANGES_REQUIRED/Owner PENDING 或“不自动进入 v10.1.9”覆盖当前指令。原失败、未知原因和未验范围仍保留。
+
+先核实际 Git 根、remote、分支、HEAD、dirty/index，定向接续上述任务分支。先读 AGENTS.md、docs/workflow/ACTIVE_STATE.md 首块、CURRENT_WORKFLOW.md、docs/workflow/LOCAL_DOCUMENT_SYNC_V1019_20261114.md，再读本版任务和计划。顾问无法直接写 Owner Windows 工程盘，因此你的第一步是安全将本轮任务、Owner 决定、工作流和会话交接同步落盘，核对与顾问转交的固定任务提交一致，在 ACTIVE_STATE 简记 LOCAL_DOCS_SYNCED 及实际身份，随后连续实现。不要只回复可以，也不要为已有授权的常规同步重新请示。
+
+本版六项工作：
+AC19-01：用途受限的好友/联系人选择、请求处理、现有合法聊天衔接。
+AC19-02：作者动态与 Showcase 分权；真实收藏/取消/本人列表与失效占位，保留原点赞评论。
+AC19-03：显式发布的最小城市/类型双人搭子发现；48 小时或开始取早，旧活动默认私有，有限分页和当前权限。
+AC19-04：MEAL/STUDY 发现申请、作者确认、双方重读、完结/退出及好友选择邀请；独立来源、三槽/唯一 guest、幂等和安全终态通知。
+AC19-05：平台邀请、真实报名/候补、Web 确认和按序转正、取消与状态回流；不新增平台公开目录。
+AC19-06：同一最终候选真实 APP/Web/API/MariaDB 链、重登/必要重启持久化、源码部署候选证据对应和固定回读。
+
+实现默认以 plan.md 为准。好友、收藏、发现、活动参与不自动授予 CN/MC、Showcase 或通话权限；公开发布到期只关闭新申请，不误撤仍合法的已申请/确认参与。平台沿用 2–8 席，APPLIED+CONFIRMED 占位、候补按序人工提升。继续现有真实 Laravel/MariaDB/WS/SFU 开发服务，Docker 不是模拟成功的理由，不重建环境。
+
+沿用包名 com.elitesync.v1015dev、签名和数据，候选从 10.1.9-dev / 1010901 起，若已用则顺延并如实记录。普通实现、开发库迁移、必要构建/定向测试、虚构数据、双模拟器、已有许可的免费官方依赖及 Git 同步均已长期授权。范围内普通错误自主修复，不逐动作问许可。保护原库 dirty/index、配置/数据、AVD 和 %SystemDrive%/；不盲 pull/reset/rebase/stash/clean/prune，不 force push、不合 main。
+
+手机本版不使用。call64 及 PC 背景声音/手机麦克风是上一轮具体授权，不扩为未来许可。未变通信继承具名证据；只有当前相关源码变化或具体故障才做受影响检查，不重开旧 RTC 全验收、25 分钟观察或完整硬件矩阵。真实 Push 保持 REAL_PUSH_PROVIDER_PENDING，旧非注入 SFU 根因 UNKNOWN。受控时间/夹具与普通成功链分别记录，不用直接改库或受控响应代替产品成功链，不追改 v10.1.5 冻结结论或 call51。
+
+先完成功能与必要可操作界面，集中 UI/文字仍为 v10.1.12；相识后新工具仅接口；整个 v10 不开展公司、内测、运营、真实线下活动、付款或发布。
+
+完成后提交本目录 IMPLEMENTATION_REPORT.md、artifact_manifest.json、必要去敏证据及 ACTIVE_STATE 当前入口。明确六项 AC 的 PASS/PARTIAL/NOT_RUN/UNKNOWN、原失败和沿用证据、最终 APP/后端源码与 APK/签名、部署/迁移/实际资源快照，测试有重叠不累加。保存至本版分支，远端固定提交回读；失败记 PENDING_SYNC。完整原证、APK、私有工具、数据库和凭据留本机。
+
+集中交付并报告固定提交后停下，交给新的顾问会话验收。不要自动进入 v10.1.10、合 main 或发布。

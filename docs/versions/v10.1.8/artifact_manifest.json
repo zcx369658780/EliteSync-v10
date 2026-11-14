@@ -3,7 +3,7 @@
   "version": "v10.1.8",
   "engineering_status": "PASS_SOFTWARE_EMULATOR_SCOPE",
   "advisor_acceptance": "ACCEPTED_SCOPED_V10_1_8",
-  "owner_acceptance": "PENDING",
+  "owner_acceptance": "ACCEPTED_SCOPED_V10_1_8",
   "repository": "zcx369658780/EliteSync-v10",
   "branch": "codex/v10.1.8-communication-notifications-20261113",
   "app_source_commit": "18491f2a65717c52300897ff6ffebfdf010c91dc",
@@ -151,7 +151,7 @@
     "voice_human_listening": "NOT_RUN",
     "hardware": "SCOPED_PHONE_VOICE_RTC_PASS_OTHER_HARDWARE_UNVERIFIED",
     "advisor_acceptance": "ACCEPTED_SCOPED_V10_1_8",
-    "owner_acceptance": "PENDING",
+    "owner_acceptance": "ACCEPTED_SCOPED_V10_1_8",
     "rtc_phone_human_listening": "OWNER_CONFIRMED_AUDIBLE_CLEAR_GENERALLY_NORMAL_THIS_PHONE_CALL64"
   },
   "remaining": [],
@@ -215,7 +215,7 @@
     "engineering_status": "COMPLETE",
     "result": "PASS_SOFTWARE_DUAL_EMULATOR_SCOPE",
     "advisor_review_status": "ACCEPTED_SCOPED_R1_01",
-    "owner_acceptance": "PENDING",
+    "owner_acceptance": "ACCEPTED_SCOPED_V10_1_8",
     "report": {
       "path": "supplement-r1-20261114/README.md",
       "sha256": "5b1bbcc7b309785d228504944062e5c2ba6ed481bf13cb70d1b70bdd7e3a9ddb"
@@ -246,7 +246,7 @@
       ],
       "reverse_phone_mic_control": "PASS_PCM_NONZERO_ZERO_NONZERO",
       "advisor_review": "ACCEPTED_SCOPED_THIS_PHONE_VOICE_RTC",
-      "owner_version_acceptance": "PENDING",
+      "owner_version_acceptance": "ACCEPTED_SCOPED_V10_1_8",
       "full_hardware_matrix": "UNVERIFIED",
       "voice_memo_human_listening": "NOT_RUN"
     },
@@ -296,5 +296,19 @@
     ],
     "owner_version_acceptance": "PENDING",
     "next_stage": "Remain stopped for Owner version acceptance and subsequent version scope discussion; no automatic v10.1.9"
+  },
+  "owner_acceptance_record": {
+    "date_china": "2026-11-14",
+    "decision": "ACCEPTED_SCOPED_V10_1_8",
+    "source": "Owner latest explicit agreement to scoped acceptance and instruction to enter v10.1.9, issue task and hand off advisor session",
+    "owner_quote": "可以我同意，请进入v10.1.9版本。请下达任务单，下达后请准备交接当前会话，在github端文档、本地文档中保存当前会话的任务进度、Owner决策、工作流修改等关键信息，然后给我当前会话的交接prompt。最新任务单将在新会话继续验收",
+    "decision_document": "docs/decisions/OWNER_V10_1_8_ACCEPTANCE_AND_V10_1_9_AUTHORIZATION_20261114.md",
+    "accepted_advisor_commit": "be0112ac53fc0ab3d3bfaf360552b020bcca3476",
+    "accepted_engineering_commit": "1074c210ee7fa6641799fa6e19d29fc46ef6b2bc",
+    "historical_advisor_records_retained": true,
+    "next_version_authorized": "v10.1.9",
+    "next_task": "docs/versions/v10.1.9/task_order.md",
+    "new_runtime_verification": "NONE_BY_THIS_ADVISOR_DOCUMENT_UPDATE",
+    "release_authorized": false
   }
 }

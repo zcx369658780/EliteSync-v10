@@ -1,4 +1,22 @@
-# 当前入口 2026-11-14 v10.1.8顾问验收通过，R1-01关闭
+# 当前入口 2026-11-14 v10.1.9任务已下达，顾问会话交接
+
+Owner已同意v10.1.8约定开发范围接受并进入v10.1.9。**v10.1.8六项AC顾问/Owner范围接受，R1-01 CLOSED，无R2；v10.1.9状态TASK_ISSUED，工程实现尚未回报、顾问验收PENDING。** 执行[本版任务](../versions/v10.1.9/task_order.md)、[计划与六项AC](../versions/v10.1.9/plan.md)，使用[Codex开工prompt](../versions/v10.1.9/CODEX_START_PROMPT.txt)。
+
+任务分支：`codex/v10.1.9-social-buddy-activities-20261114`；接受父基线：`be0112ac53fc0ab3d3bfaf360552b020bcca3476`；上一版R1工程交付：`1074c210ee7fa6641799fa6e19d29fc46ef6b2bc`。稳定本地根`D:\EliteSync-v10-product-v1015-20261101`，本地最近报告仍为1.8分支，实际分支/HEAD待Codex开工核对。候选计划`10.1.9-dev / 1010901`，当前尚无本版实际候选；最近已验为1010805。
+
+本版补用途联系人、社区作者动态和真实收藏、自愿最小城市/类型双人搭子发现及参与闭环、平台报名候补取消与必要Web；默认和边界以计划为准。真实后端先行，v10.1.12集中UI/文字，相识后新工具仅接口，v10不开展公司/内测/运营/发布。
+
+按Owner要求，本顾问完成任务发布及[会话交接](SESSION_HANDOFF_20261114_V1019_TASK_ISSUED.md)后停止；[新顾问prompt](ADVISOR_HANDOFF_PROMPT_20261114_V1019.txt)用于下一会话验收。GitHub文档与可下载本地副本由本轮保存；**Windows工程盘尚未直接核实，PENDING_LOCAL_SYNC**。本地Codex先按[落盘说明](LOCAL_DOCUMENT_SYNC_V1019_20261114.md)安全同步并记录实际结果，再连续实现。远端发布不等于本机已开工。
+
+v10.1.8 call63双向音频及call64指定手机语音范围接受；旧非注入SFU根因/RPC精确机制UNKNOWN、真实Push PENDING、完整硬件/自然期限未验分别保留，未变通信按具名范围继承，不重开旧G2/执行器。最近资源仅为2026-11-14 09:30:42.122441北京时间工程快照：四服务running、Room0、双模拟器停止且host mic关闭；手机1010805/数据保留、采集inactive、具名5039保留。顾问本轮未操作或实时读取资源，1.9默认不使用手机。
+
+普通工程长期授权与dirty/index/配置/数据库/AVD保护继续。Codex本版集中交付并固定回读后停下，在新会话验收；不自动开始v10.1.10、不合main、不发布。[Owner本次决定](../decisions/OWNER_V10_1_8_ACCEPTANCE_AND_V10_1_9_AUTHORIZATION_20261114.md)。
+
+以下保留历史节点；旧Owner PENDING/停止/不进入1.9仅为当时状态，不覆盖本入口。
+
+---
+
+## 历史节点｜2026-11-14 v10.1.8顾问验收通过，R1-01关闭
 
 固定R1交付`1074c210ee7fa6641799fa6e19d29fc46ef6b2bc`已复核通过，**R1-01 CLOSED，六项AC顾问按约定开发范围接受，状态ACCEPTED_SCOPED_V10_1_8，本轮无需R2。** 详见[R1顾问验收](../versions/v10.1.8/supplement-r1-20261114/ADVISOR_ACCEPTANCE.md)及[当前manifest](../versions/v10.1.8/artifact_manifest.json)。Owner整版接受PENDING；Codex保持交付后停止，下一步讨论后续版本，不自动启动v10.1.9。
 

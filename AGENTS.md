@@ -1,16 +1,18 @@
 # EliteSync-v10 工程约定
 
-生效：2026-11-13。当前任务依据[Owner接受v10.1.7并授权v10.1.8](docs/decisions/OWNER_V10_1_7_ACCEPTANCE_AND_V10_1_8_AUTHORIZATION_20261113.md)，方向延续[后端功能优先决定](docs/decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
+生效：2026-11-14。当前任务依据[Owner接受v10.1.8、授权v10.1.9并交接顾问会话](docs/decisions/OWNER_V10_1_8_ACCEPTANCE_AND_V10_1_9_AUTHORIZATION_20261114.md)，方向延续[后端功能优先决定](docs/decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
 ## 产品目标
 
 Owner已确认项目交接及选定旧版主要功能接续完成。当前完善可实际使用的EliteSync APP、真实后端、持久数据库及独立Web管理面板。先完成业务功能与最小可操作界面，必要安全封装随功能收口处理，最后集中打磨UI和文字。现有鉴权、私信权限与数据隔离保留。
 
-整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6 R1及v10.1.7已按约定开发范围接受；当前已授权[v10.1.8任务](docs/versions/v10.1.8/task_order.md)。集中UI/文字版本为v10.1.12，前序界面须支持真实操作和清楚反馈。新破冰、约见、共同计划、纪念日仅留接口。
+整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6 R1、v10.1.7及v10.1.8 R1均已按约定开发范围获顾问与Owner接受；当前已授权[v10.1.9任务](docs/versions/v10.1.9/task_order.md)。集中UI/文字版本为v10.1.12，前序界面须支持真实操作和清楚反馈。新破冰、约见、共同计划、纪念日仅留接口。
 
-## 2026-11-13 当前执行范围
+## 2026-11-14 当前执行范围
 
-依据[路线图](docs/architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)执行v10.1.8通信与通知功能完善，具体范围、默认规则和六项AC见[计划](docs/versions/v10.1.8/plan.md)。沿真实会话、私密媒体、RTC与通知服务完善聊天、已读、搜索、引用、语音留言和业务通知。正常APP/API/DB及必要Web路径完成业务，测试替身不代替产品成功链；Docker可承载真实开发服务，不为此迁移环境。SFU当前通话与有限恢复属于本版；历史非注入超时精确根因可继续UNKNOWN，当前不可用须将对应AC记PARTIAL，其余工作继续。真实Push保持供应商未接入边界。
+依据[路线图](docs/architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md)执行v10.1.9好友、社区搭子与活动整合，默认规则和六项AC见[计划](docs/versions/v10.1.9/plan.md)。复用真实好友/CN/MC、社区、Buddy、平台活动与通知；补联系人选择、作者动态、持久收藏、自愿最小城市/类型双人搭子发现及真实活动生命周期。现有独立同意和私有资料受众不扩大，普通成功链由真实APP/Web/API/数据库产生。
+
+v10.1.8六项AC已获顾问与Owner范围接受，R1-01关闭，无需R2。旧非注入SFU根因、真实Push、未验硬件/自然期限分别保留，未变通信按具名范围继承。本轮只下达1.9；其工程交付在新顾问会话验收，具体交接见[会话记录](docs/workflow/SESSION_HANDOFF_20261114_V1019_TASK_ISSUED.md)。远端发布不表示Windows已同步；本地Codex先按[落盘说明](docs/workflow/LOCAL_DOCUMENT_SYNC_V1019_20261114.md)核对任务/Owner决定/交接文档，再连续实现。
 
 11月12日已有功能验收阶段已结束，原报告与测试结论保留，见[v10.1.5收尾](docs/versions/v10.1.5/CLOSEOUT_20261113.md)。本版集中交付后停下供顾问验收；不自动开下一版、合main或发布。
 
@@ -40,4 +42,6 @@ Owner负责方向和保留决定；顾问提供路线；Codex负责工程拆解�
 
 Owner于2026-11-12具体授权验收说明、120张测试截图、画廊/控件元数据和29份去敏证据摘要上传独立验收分支，范围及发布清单见[验收入口](https://github.com/zcx369658780/EliteSync-v10/blob/85197adec124ef94bbef2994c0668dc990f9bed4/docs/versions/v10.1.5/advisor-acceptance-20261112/README.md)。完整原始回执、APK、素材、凭据、许可证、SQL/数据库与设备原始日志由Owner本机保管。有意义节点维护ACTIVE_STATE单一当前入口及必要进度，常规同步授权分支，失败记PENDING_SYNC。
 
-历史上Owner于2026-11-12要求保存并手动交接，该[交接记录](docs/workflow/V1015_ADVISOR_ACCEPTANCE_HANDOFF_20261112.md)保留。2026-11-13的新继续与版本授权已覆盖当时等待状态；当前按ACTIVE_STATE和v10.1.8任务执行，不再从旧交接递归恢复。
+历史上Owner于2026-11-12要求保存并手动交接，该[交接记录](docs/workflow/V1015_ADVISOR_ACCEPTANCE_HANDOFF_20261112.md)保留。2026-11-13的新继续与版本授权已覆盖当时等待状态；当前按ACTIVE_STATE和v10.1.9任务执行，不再从旧交接递归恢复。
+
+2026-11-14本次Owner要求顾问在任务发布后保存并交接，新会话验收v10.1.9。上一轮call64手机/PC背景音为具名已结束测试授权，本版默认不操作手机。顾问文档发布不启动本地工程或资源；Codex本版集中交付后停下，不自动开始v10.1.10。

@@ -1,9 +1,9 @@
 # v10.1.8 GitHub 版本任务单
 
-**通信与通知功能完善六项AC已获顾问范围接受，R1-01关闭；Owner整版接受PENDING。**
+**通信与通知六项AC已获顾问及Owner范围接受，R1-01关闭；本版已收尾，v10.1.9另行授权下达。**
 日期：2026-11-13（北京时间）。[Owner 本次授权](../../decisions/OWNER_V10_1_7_ACCEPTANCE_AND_V10_1_8_AUTHORIZATION_20261113.md)。
 
-2026-11-14固定R1交付1074c210复核通过，见[最新顾问验收](supplement-r1-20261114/ADVISOR_ACCEPTANCE.md)及[manifest](artifact_manifest.json)。R1-01关闭，本轮无需R2；[原验收结论](ADVISOR_ACCEPTANCE_20261114.md)与[原实施报告](IMPLEMENTATION_REPORT.md)保留。下方为已完成版本合同，Codex保持停止，下一版另行讨论下达。
+2026-11-14固定R1交付1074c210复核通过，见[最新顾问验收](supplement-r1-20261114/ADVISOR_ACCEPTANCE.md)及[manifest](artifact_manifest.json)。R1-01关闭，本轮无需R2；[原验收结论](ADVISOR_ACCEPTANCE_20261114.md)与[原实施报告](IMPLEMENTATION_REPORT.md)保留。下方为已完成版本合同；Owner最新接受及接续见[本次决定](../../decisions/OWNER_V10_1_8_ACCEPTANCE_AND_V10_1_9_AUTHORIZATION_20261114.md)，当前执行[v10.1.9任务](../v10.1.9/task_order.md)，原合同停止点不覆盖新授权。
 
 ## 执行身份
 
