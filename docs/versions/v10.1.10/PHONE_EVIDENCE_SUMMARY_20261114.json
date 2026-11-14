@@ -1,0 +1,574 @@
+{
+  "schema": "elitesync-v10110-phone-evidence-v1",
+  "status": "PHONE_SLICE_PASS_SUPPLEMENT_ADVISOR_REVIEW_PENDING",
+  "authorization": "Owner explicitly requested direct physical-phone testing, screenshots and GitHub evidence publication",
+  "started_at": "2026-11-14T17:18:00.534822+08:00",
+  "ended_at": "2026-11-14T17:49:07.669436+08:00",
+  "model": "REDMI K80 Ultra",
+  "android_user": 0,
+  "fictional_account": 1,
+  "candidate": {
+    "source_commit": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+    "version_code": 1011002,
+    "version_name": "10.1.10-dev",
+    "package": "com.elitesync.v1015dev",
+    "apk_sha256": "304f7f17dfe3b12d74fb1a9d2c48ac65c44d1a627b4ffec30a43edd552709b64",
+    "apk_bytes": 123898166,
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42"
+  },
+  "app_source": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+  "backend_source": "b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd",
+  "advisor_documents": "f8872d352fc55af2c0bb8d3cc67f2440019c51e9",
+  "installation_record_commit": "f254b8a66a0dad27ff613425c213c9143a7ff3c2",
+  "method": {
+    "UI": "ADB-operated physical phone normal application controls",
+    "HTTP": "transparent localhost passthrough, response bytes unmodified",
+    "business_writes": "9 normal phone APP commands",
+    "database_queries": "READ_ONLY",
+    "product_source_changes": 0,
+    "builds": 0,
+    "migrations_executed": 0
+  },
+  "checks": {
+    "AC10-01": {
+      "status": "PASS",
+      "new_attempt": 7,
+      "result": "INFP",
+      "historical_attempt": 2,
+      "historical_result": "ENFP"
+    },
+    "AC10-02": {
+      "status": "PASS",
+      "natal_id": 2,
+      "input_revision": 2,
+      "result_revision": 2,
+      "time_change": [
+        "10:30",
+        "10:32"
+      ],
+      "western_bazi_ziwei_phone_display": "PASS",
+      "historical_revision": 1
+    },
+    "AC10-03": {
+      "status": "PASS",
+      "transit_id": 12,
+      "revision": 2,
+      "event_time_change": [
+        "15:30",
+        "15:31"
+      ],
+      "first_source": "explicitly_selected_own_natal_revision2",
+      "historical_revision": 1
+    },
+    "AC10-04": {
+      "status": "PASS",
+      "synastry_id": 13,
+      "revision": 2,
+      "second_source": "manual",
+      "second_time_change": [
+        "13:00",
+        "13:02"
+      ],
+      "historical_revision": 1,
+      "comparison_id": 14,
+      "comparison_revision_before_delete": 2,
+      "history_before_delete": 1,
+      "deleted_detail_history_http": 404,
+      "deleted_current_and_history_DB_rows": 0,
+      "minimal_command_tombstones": 2
+    },
+    "AC10-05": {
+      "status": "PASS",
+      "same_account_password_relogin": "PASS",
+      "coldstart_online_verify": "PASS",
+      "current_history_API_facts_equal": true
+    },
+    "AC10-06": {
+      "status": "PASS_FOR_ORDINARY_PHONE_PATHS",
+      "advanced_parameters_expand_collapse": "PASS",
+      "source_revision_status_uncertainty_display": "PASS",
+      "phone_failure_matrix": "NOT_RUN"
+    }
+  },
+  "independent_API_permission_delete_checks": {
+    "owner_deleted_detail_history": {
+      "/profile/dynamic/14": 404,
+      "/profile/dynamic/14/history": 404
+    },
+    "other_owner16_read_charts12_13": 404
+  },
+  "database_readback": {
+    "mbti": [
+      {
+        "id": 7,
+        "user_id": 1,
+        "version_code": "lite3_v1"
+      }
+    ],
+    "natal": [
+      {
+        "id": 2,
+        "input_revision": 2,
+        "result_revision": 2,
+        "status": "COMPUTED_UNVERIFIED"
+      }
+    ],
+    "charts": [
+      {
+        "id": 12,
+        "user_id": 1,
+        "chart_type": "transit",
+        "input_revision": 2,
+        "result_revision": 2,
+        "status": "COMPUTED_UNVERIFIED"
+      },
+      {
+        "id": 13,
+        "user_id": 1,
+        "chart_type": "synastry",
+        "input_revision": 2,
+        "result_revision": 2,
+        "status": "COMPUTED_UNVERIFIED"
+      }
+    ],
+    "history": [
+      {
+        "id": 7,
+        "tool": "dynamic",
+        "record_id": 12,
+        "input_revision": 1
+      },
+      {
+        "id": 8,
+        "tool": "dynamic",
+        "record_id": 13,
+        "input_revision": 1
+      },
+      {
+        "id": 6,
+        "tool": "natal",
+        "record_id": 2,
+        "input_revision": 1
+      }
+    ],
+    "deleted14": 0,
+    "deleted14history": 0,
+    "deleted14command_tombstones": 2
+  },
+  "persistence": {
+    "at": "2026-11-14T17:46:24.128837+08:00",
+    "status": "PASS",
+    "candidate": 1011002,
+    "fictional_account": 1,
+    "normal_password_relogin": "PASS",
+    "coldstart": "PASS",
+    "current_and_history_API_facts_equal": true
+  },
+  "ordinary_phone_HTTP_events": [
+    {
+      "at": "2026-11-14T17:18:54.085299+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/mbti/result",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:19:29.967134+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/mbti/quiz?version=lite3_v1",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:20:34.703357+08:00",
+      "method": "POST",
+      "path": "/api/v1/profile/mbti/submit",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:20:34.739881+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/mbti/history/7",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:20:40.479692+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/mbti/history",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:21:24.985207+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/mbti/history/2",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:21:33.435216+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/natal",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:22:31.785484+08:00",
+      "method": "POST",
+      "path": "/api/v1/profile/natal",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:22:32.530497+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/natal",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:23:11.563106+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/natal/history",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:23:14.275507+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/natal/history/6",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:24:02.248559+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:24:35.319520+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/natal",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:27:37.750260+08:00",
+      "method": "POST",
+      "path": "/api/v1/profile/dynamic",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:27:39.056963+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/12",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:28:30.733177+08:00",
+      "method": "POST",
+      "path": "/api/v1/profile/dynamic/12",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:28:32.191279+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/12",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:28:40.301388+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/12/history",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:30:33.813646+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/12/history/7",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:32:44.569692+08:00",
+      "method": "POST",
+      "path": "/api/v1/profile/dynamic",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:32:45.902819+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/13",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:33:17.127391+08:00",
+      "method": "POST",
+      "path": "/api/v1/profile/dynamic/13",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:33:18.598125+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/13",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:34:40.498962+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/13/history",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:37:13.034542+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/13/history/8",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:38:18.767699+08:00",
+      "method": "POST",
+      "path": "/api/v1/profile/dynamic",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:38:20.184731+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/14",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:38:49.404180+08:00",
+      "method": "POST",
+      "path": "/api/v1/profile/dynamic/14",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:38:50.800924+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/14",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:39:07.606679+08:00",
+      "method": "DELETE",
+      "path": "/api/v1/profile/dynamic/14",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:41:09.726476+08:00",
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:41:32.559810+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/mbti/result",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:42:33.234205+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/mbti/history",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:42:44.473330+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/natal",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:43:47.737445+08:00",
+      "method": "POST",
+      "path": "/api/v1/auth/session/verify",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:44:07.879701+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:44:13.526780+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/13",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:45:59.078288+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/13/history",
+      "status": 200
+    },
+    {
+      "at": "2026-11-14T17:46:08.446180+08:00",
+      "method": "GET",
+      "path": "/api/v1/profile/dynamic/13/history/8",
+      "status": 200
+    }
+  ],
+  "private_evidence_integrity": {
+    "actions-private.jsonl": "42ce47b46dd8ef0f63c2989ee07aba3e56bfe04ad97bed52a374cca7b3a6947e",
+    "before-phone-normal-private.json": "43ff6b412fd2b9ba17ae02e65095a69a5cf9d9047f8ef7f6ff2c9183fea16a70",
+    "before-relogin-coldstart-private.json": "19ac7ec0c858363199040bfed8c227e637cd699cc0511823062778a0d6e5ddb0",
+    "after-relogin-coldstart-private.json": "19ac7ec0c858363199040bfed8c227e637cd699cc0511823062778a0d6e5ddb0",
+    "database-final-private.json": "2013a95c1a390d08ca1a84b86bb10dd6ecd3df9d013e575c63c9f2752e491173"
+  },
+  "intermediate_observations": [
+    "Input helper initially used an incomplete field hint, corrected before submission",
+    "Some short taps or bottom-control targeting emitted no request; existing 150ms touch and viewport checks completed the path; precise trigger UNKNOWN",
+    "History screenshot expectations preceded explicit history loading, corrected through normal UI reads"
+  ],
+  "screenshots": [
+    {
+      "path": "phone-evidence-20261114/phone-mbti-history.png",
+      "sha256": "df28ecac679ce572d69d95108b16506bfb0aed8bc6b757ae03fec220c960bec1",
+      "bytes": 353647,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-natal-current.png",
+      "sha256": "bd01cd9f3f0a183ec9b8b910fe14ce8532d7468ee2a8d071d89afd5a8e6bd740",
+      "bytes": 319089,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-natal-history.png",
+      "sha256": "a2ba7ac38d5711079724a77a1a7a3a5970f13b25b48fca0e570224ff21198b33",
+      "bytes": 402958,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-natal-ziwei.png",
+      "sha256": "b02aedff5bf5b85d929a15a8389b0566ee457b6974ccdd91f573b9ecf513f341",
+      "bytes": 309357,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-natal-western.png",
+      "sha256": "c32e9256240bd46529f1795a8ea3299c3ab97e44cea3de923cbc0967df000932",
+      "bytes": 318853,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-transit-current.png",
+      "sha256": "d2bcb54fc2d42b55bd10b2842ccd40ea393e1e53ccf1a7e9ca8689223335c587",
+      "bytes": 355246,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-transit-history.png",
+      "sha256": "9cf394208b0bdb12c90d998362e193ab1b741a59113091a606e300fd4770fc41",
+      "bytes": 569751,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-synastry-current.png",
+      "sha256": "329439fa5d0745a18f5b2a093d5380bbbb0a4803206253604c0b1c59cbb18dff",
+      "bytes": 370483,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-synastry-history.png",
+      "sha256": "d2c8c2407df507ba94ef7a2c84307c53bb006bd9d9188788633ebcbc24616aa8",
+      "bytes": 570939,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-comparison-current.png",
+      "sha256": "f1369a0dfe93e8b360764bfe4d9b2b5b638cb8b44edaf759ec5adb671c4fe044",
+      "bytes": 278782,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-comparison-confirm-delete.png",
+      "sha256": "3d8bc685d2aa368114ecb4bfe4047f8ff760581ccc68ab4c5e3c321c1b4ca988",
+      "bytes": 333868,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-coldstart-history.png",
+      "sha256": "e0aa9702eaeb530c4ddfd71d33d76cfbba61c058141a6df150b24de52e063cc8",
+      "bytes": 571499,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-advanced-parameters.png",
+      "sha256": "ebf37ac2425ef216ffaae511191fd7538daf356598732c49dd2fab67abe8772b",
+      "bytes": 253191,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    }
+  ],
+  "resources": {
+    "at": "2026-11-14T17:49:07.669436+08:00",
+    "phone": "APP_RUNNING_OWNER_AVAILABLE",
+    "phone_account_id": 1,
+    "candidate": 1011002,
+    "API_WS_transport": "DIRECT_USB_8021_8022",
+    "transparent_observer": "STOPPED_ROUTE_RESTORED",
+    "emulators": "BOTH_STOPPED_DATA_RETAINED",
+    "adb5038_USB_excluded": true,
+    "phone5039_filter_verified": true,
+    "containers": [
+      {
+        "name": "/v1015-current-dev-db",
+        "status": "running"
+      },
+      {
+        "name": "/v1015-current-dev-api",
+        "status": "running"
+      },
+      {
+        "name": "/v1015-current-dev-ws",
+        "status": "running"
+      },
+      {
+        "name": "/v1015-current-dev-sfu",
+        "status": "running"
+      }
+    ]
+  },
+  "limits": {
+    "independent_algorithm_accuracy": "UNVERIFIED",
+    "solar_lunar_phone_full_matrix": "NOT_RUN",
+    "phone_fault_injection": "NOT_RUN",
+    "whole_repo_analysis_this_supplement": "NOT_RUN",
+    "RTC_this_supplement": "NOT_RUN_INHERITED_CALL63_CALL64_ACCEPTED_SCOPE",
+    "real_push": "REAL_PUSH_PROVIDER_PENDING",
+    "historical_SFU_RPC_exact_root_cause": "UNKNOWN",
+    "advisor_phone_supplement_review": "PENDING",
+    "owner_version_acceptance": "PENDING"
+  }
+}

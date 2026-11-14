@@ -160,7 +160,132 @@
     },
     {
       "path": "OWNER_PHONE_CHECK_20261114.md",
-      "canonical_LF_sha256": "2897991758c9f36eaa3405ec05403b90fc9d878d0d767eece2342e1a1393beaf"
+      "canonical_LF_sha256": "292c5a60599c07dc82855c6d491b4994a57462c1b0b15f1ccb2e949e6d43b41b"
+    },
+    {
+      "path": "PHONE_TEST_REPORT_20261114.md",
+      "canonical_LF_sha256": "76d14c29069ccf47edd7ce595dcca4f1ef1eecbfa059de6fe8d62df544ae994d"
+    },
+    {
+      "path": "PHONE_EVIDENCE_SUMMARY_20261114.json",
+      "canonical_LF_sha256": "608c144fccf1ea78b70e16b984150035a8ddef6c388fb2ccb61541fd201b17c2"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-mbti-history.png",
+      "sha256": "df28ecac679ce572d69d95108b16506bfb0aed8bc6b757ae03fec220c960bec1",
+      "bytes": 353647,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-natal-current.png",
+      "sha256": "bd01cd9f3f0a183ec9b8b910fe14ce8532d7468ee2a8d071d89afd5a8e6bd740",
+      "bytes": 319089,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-natal-history.png",
+      "sha256": "a2ba7ac38d5711079724a77a1a7a3a5970f13b25b48fca0e570224ff21198b33",
+      "bytes": 402958,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-natal-ziwei.png",
+      "sha256": "b02aedff5bf5b85d929a15a8389b0566ee457b6974ccdd91f573b9ecf513f341",
+      "bytes": 309357,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-natal-western.png",
+      "sha256": "c32e9256240bd46529f1795a8ea3299c3ab97e44cea3de923cbc0967df000932",
+      "bytes": 318853,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-transit-current.png",
+      "sha256": "d2bcb54fc2d42b55bd10b2842ccd40ea393e1e53ccf1a7e9ca8689223335c587",
+      "bytes": 355246,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-transit-history.png",
+      "sha256": "9cf394208b0bdb12c90d998362e193ab1b741a59113091a606e300fd4770fc41",
+      "bytes": 569751,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-synastry-current.png",
+      "sha256": "329439fa5d0745a18f5b2a093d5380bbbb0a4803206253604c0b1c59cbb18dff",
+      "bytes": 370483,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-synastry-history.png",
+      "sha256": "d2c8c2407df507ba94ef7a2c84307c53bb006bd9d9188788633ebcbc24616aa8",
+      "bytes": 570939,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-comparison-current.png",
+      "sha256": "f1369a0dfe93e8b360764bfe4d9b2b5b638cb8b44edaf759ec5adb671c4fe044",
+      "bytes": 278782,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-comparison-confirm-delete.png",
+      "sha256": "3d8bc685d2aa368114ecb4bfe4047f8ff760581ccc68ab4c5e3c321c1b4ca988",
+      "bytes": 333868,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-coldstart-history.png",
+      "sha256": "e0aa9702eaeb530c4ddfd71d33d76cfbba61c058141a6df150b24de52e063cc8",
+      "bytes": 571499,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "phone-evidence-20261114/phone-advanced-parameters.png",
+      "sha256": "ebf37ac2425ef216ffaae511191fd7538daf356598732c49dd2fab67abe8772b",
+      "bytes": 253191,
+      "kind": "physical_phone_normal_APP",
+      "candidate": 1011002,
+      "fictional_account": 1,
+      "visual_privacy_check": "PASS"
     }
   ],
   "local_only": [
@@ -219,7 +344,9 @@
     "advisor_acceptance": "SCOPE_ACCEPTED_ALL_SIX_AC",
     "r1_required": false,
     "owner_acceptance": "PENDING",
-    "next_version": "NOT_ISSUED"
+    "next_version": "NOT_ISSUED",
+    "phone_supplement_report": "PHONE_TEST_REPORT_20261114.md",
+    "phone_supplement_review": "PHONE_SLICE_PASS_ADVISOR_REVIEW_PENDING"
   },
   "owner_phone_installation": {
     "ended_at": "2026-11-14T17:12:13.746056+08:00",
@@ -231,11 +358,112 @@
     "installed_apk_sha256": "304f7f17dfe3b12d74fb1a9d2c48ac65c44d1a627b4ffec30a43edd552709b64",
     "preserved_data": true,
     "app_foreground": true,
-    "manual_feature_checks": "OWNER_PENDING",
+    "manual_feature_checks": "AUTOMATED_REAL_PHONE_SLICE_PASS_OWNER_FEEDBACK_PENDING",
     "authorization": "Owner requested phone installation and manual checklist after advisor acceptance",
     "advisor_documents": "f8872d352fc55af2c0bb8d3cc67f2440019c51e9",
     "checklist": "OWNER_PHONE_CHECK_20261114.md",
     "development_transport": "USB API8021 WS8022",
+    "owner_acceptance": "PENDING"
+  },
+  "phone_runtime_supplement": {
+    "status": "PHONE_SLICE_PASS_SUPPLEMENT_ADVISOR_REVIEW_PENDING",
+    "report": "PHONE_TEST_REPORT_20261114.md",
+    "summary": "PHONE_EVIDENCE_SUMMARY_20261114.json",
+    "candidate": 1011002,
+    "fictional_account": 1,
+    "app_source": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+    "backend_source": "b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd",
+    "checks": {
+      "AC10-01": {
+        "status": "PASS",
+        "new_attempt": 7,
+        "result": "INFP",
+        "historical_attempt": 2,
+        "historical_result": "ENFP"
+      },
+      "AC10-02": {
+        "status": "PASS",
+        "natal_id": 2,
+        "input_revision": 2,
+        "result_revision": 2,
+        "time_change": [
+          "10:30",
+          "10:32"
+        ],
+        "western_bazi_ziwei_phone_display": "PASS",
+        "historical_revision": 1
+      },
+      "AC10-03": {
+        "status": "PASS",
+        "transit_id": 12,
+        "revision": 2,
+        "event_time_change": [
+          "15:30",
+          "15:31"
+        ],
+        "first_source": "explicitly_selected_own_natal_revision2",
+        "historical_revision": 1
+      },
+      "AC10-04": {
+        "status": "PASS",
+        "synastry_id": 13,
+        "revision": 2,
+        "second_source": "manual",
+        "second_time_change": [
+          "13:00",
+          "13:02"
+        ],
+        "historical_revision": 1,
+        "comparison_id": 14,
+        "comparison_revision_before_delete": 2,
+        "history_before_delete": 1,
+        "deleted_detail_history_http": 404,
+        "deleted_current_and_history_DB_rows": 0,
+        "minimal_command_tombstones": 2
+      },
+      "AC10-05": {
+        "status": "PASS",
+        "same_account_password_relogin": "PASS",
+        "coldstart_online_verify": "PASS",
+        "current_history_API_facts_equal": true
+      },
+      "AC10-06": {
+        "status": "PASS_FOR_ORDINARY_PHONE_PATHS",
+        "advanced_parameters_expand_collapse": "PASS",
+        "source_revision_status_uncertainty_display": "PASS",
+        "phone_failure_matrix": "NOT_RUN"
+      }
+    },
+    "resources": {
+      "at": "2026-11-14T17:49:07.669436+08:00",
+      "phone": "APP_RUNNING_OWNER_AVAILABLE",
+      "phone_account_id": 1,
+      "candidate": 1011002,
+      "API_WS_transport": "DIRECT_USB_8021_8022",
+      "transparent_observer": "STOPPED_ROUTE_RESTORED",
+      "emulators": "BOTH_STOPPED_DATA_RETAINED",
+      "adb5038_USB_excluded": true,
+      "phone5039_filter_verified": true,
+      "containers": [
+        {
+          "name": "/v1015-current-dev-db",
+          "status": "running"
+        },
+        {
+          "name": "/v1015-current-dev-api",
+          "status": "running"
+        },
+        {
+          "name": "/v1015-current-dev-ws",
+          "status": "running"
+        },
+        {
+          "name": "/v1015-current-dev-sfu",
+          "status": "running"
+        }
+      ]
+    },
+    "advisor_supplement_review": "PENDING",
     "owner_acceptance": "PENDING"
   }
 }

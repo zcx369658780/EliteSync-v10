@@ -27,3 +27,5 @@ APP已启动并确认前台，开发API可连接，未认证请求返回401。US
 如有余力，可补充v10.1.9好友申请/收藏、搭子申请与确认、平台活动报名/候补等手机操作体验。现有工程及顾问验收按具名范围保留。语音通话已有call63/call64接受证据，本次手测重点为上述特色工具。
 
 算法独立精度UNVERIFIED，真实Push REAL_PUSH_PROVIDER_PENDING。当前阶段记录手机反馈，Owner最终接受仍PENDING。
+
+Owner随后授权Codex直接实机测试及截图，所列特色工具普通链已完成定向补证，结果为PHONE_SLICE_PASS。后续读回、观察和截图以[实机报告](PHONE_TEST_REPORT_20261114.md)及[实机摘要](PHONE_EVIDENCE_SUMMARY_20261114.json)为当前记录。本补证等待顾问复核，Owner最终接受PENDING。
