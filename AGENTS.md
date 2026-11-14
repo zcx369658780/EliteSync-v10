@@ -8,11 +8,11 @@ Owner已确认项目交接及选定旧版主要功能接续完成。当前完善
 
 整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6—v10.1.9按各自已接受范围保留。v10.1.10六项AC及手机补证获顾问范围接受，Owner整版最终接受沿原记录PENDING。v10.1.11六项AC声明工程范围已获顾问与Owner接受，AC11-02为限定能力接受，R1-01 CLOSED；原NOT_RUN/UNKNOWN继续保留。当前授权版本为v10.1.12「集中UI、信息结构与文案完善」。新破冰、约见、共同计划、纪念日仅留接口。
 
-## 2026-11-14 当前交付状态
+## 2026-11-15 当前交付状态
 
-v10.1.12「集中UI、信息结构与文案完善」已集中工程交付，等待新顾问验收。六项AC按代表性旅程和受影响范围工程自验PASS，顾问验收与Owner整版接受均为PENDING。实施范围与限制见[实施报告](docs/versions/v10.1.12/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.12/artifact_manifest.json)。五阶段为我的/设置、消息/聊天、首页/进展、匹配/社交/特色工具、必要Web页面。
+v10.1.12已集中工程交付，R1-01用户文案与Web证据一致性修正已完成，等待顾问复核关闭。六项AC保留基线代表性范围工程自验，顾问验收与Owner整版接受均为PENDING。当前入口见[R1报告](docs/versions/v10.1.12/supplement-r1-20261115/README.md)、[实施报告](docs/versions/v10.1.12/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.12/artifact_manifest.json)。
 
-任务分支`codex/v10.1.12-ui-information-architecture-20261114`，唯一父基线`2f3058d39a936063768ffb895f577d97a088e04c`。最终APP源码`ac7fb5b28396394e58c72002e19cc9bbad805941`，候选10.1.12-dev / 1011204。当前停在顾问验收点。后续版本等待Owner新授权，main集成与正式发布分别等待对应决定。
+任务分支`codex/v10.1.12-ui-information-architecture-20261114`，唯一父基线`2f3058d39a936063768ffb895f577d97a088e04c`。R1固定交付基线`1e5b6fd104cdee44b0d50c8da72c11a8c0f7b684`，R1源码`3e0e75758acf81e1ea754f739c9687226fbfcaff`，定向Widget27项及4文件分析PASS。R1 APK构建/设备验证NOT_RUN。已保存候选10.1.12-dev / 1011204绑定基线源码`ac7fb5b28396394e58c72002e19cc9bbad805941`。当前停在顾问复核点。后续版本等待Owner新授权，main集成与正式发布分别等待对应决定。
 
 真实Push为REAL_PUSH_PROVIDER_PENDING，历史非注入SFU/RPC精确根因为UNKNOWN，未验硬件/自然期限及旧失败分别保留。已接受的通信、好友/搭子/活动与自我认识工具按具名范围继承。
 

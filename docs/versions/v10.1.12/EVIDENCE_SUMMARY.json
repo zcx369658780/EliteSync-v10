@@ -1,10 +1,10 @@
 {
   "schema": "elitesync-v10112-evidence-v1",
-  "generated_at": "2026-11-14T22:30:33.406557+08:00",
-  "engineering_status": "PASS_BOUNDED_ENGINEERING_SELF_CHECK",
+  "generated_at": "2026-11-15T07:15:38.587905+08:00",
+  "engineering_status": "R1_SOURCE_VERIFIED_ADVISOR_REVIEW_PENDING",
   "advisor_acceptance": "PENDING",
   "owner_acceptance": "PENDING",
-  "source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941",
+  "source_commit": "3e0e75758acf81e1ea754f739c9687226fbfcaff",
   "candidate": 1011204,
   "local_documents": {
     "status": "LOCAL_DOCS_SYNCED",
@@ -280,7 +280,8 @@
       }
     ],
     "migration": "NONE",
-    "readback_at": "2026-11-14T22:27:52.084501+08:00"
+    "readback_at": "2026-11-14T22:27:52.084501+08:00",
+    "scope": "BASELINE_20261114_WEB_API_RUNTIME_READBACK"
   },
   "installation": {
     "at": "2026-11-14T14:01:14.289303+00:00",
@@ -319,7 +320,9 @@
     },
     "native_confirmation_required": true,
     "runtime_exceptions": [],
-    "scope": "Support feedback list/detail and base styles, ordinary virtual data"
+    "scope": "Support feedback list/detail and base styles, ordinary virtual data",
+    "run_mode": "READ_ONLY_BROWSER_REVIEW",
+    "write_receipt_reference": "web_form_evidence.write_runs"
   },
   "resource_snapshot": {
     "at": "2026-11-14T22:28:15.674719+08:00",
@@ -583,5 +586,142 @@
     "API_DB_restart": "NOT_RUN",
     "main_integration": "NOT_RUN",
     "release": "NOT_RUN"
-  }
+  },
+  "baseline_delivery_commit": "1e5b6fd104cdee44b0d50c8da72c11a8c0f7b684",
+  "baseline_source_commit": "ac7fb5b28396394e58c72002e19cc9bbad805941",
+  "candidate_scope": "BASELINE_1011204_R1_BUILD_NOT_RUN",
+  "web_form_evidence": {
+    "verification": "PASS_EXISTING_PRIVATE_RECEIPTS_NO_NEW_WEB_WRITES",
+    "write_runs": [
+      {
+        "feedback_id": 3,
+        "status": "PASS",
+        "client": "Existing Edge / normal CSRF form requestSubmit",
+        "normal_csrf_form_write": true,
+        "run_finished_utc": "2026-11-14T13:10:44.743Z",
+        "before_revision": 1,
+        "after_revision": 2,
+        "saved_notice_seen_in_original_screenshot": true,
+        "receipt": {
+          "private_name": "web-browser-evidence-private.json",
+          "sha256": "962db2a215e4d65b24d38d38fa9e75f4d13ef0cb9717e2891f6566af3892bf83"
+        },
+        "ordinary_API_readback_utc": "2026-11-14T13:11:30.987212+00:00",
+        "ordinary_API_status": "RESOLVED",
+        "other_owner_http": 404,
+        "screenshots": [
+          "evidence/web-feedback3-before.png",
+          "evidence/web-feedback3-after.png"
+        ]
+      },
+      {
+        "feedback_id": 4,
+        "status": "PASS",
+        "client": "Normal Web CSRF form HTTP session client, followed by APP/API readback",
+        "normal_csrf_form_write": true,
+        "Web_receipt_utc": "2026-11-14T14:08:17.106727+00:00",
+        "APP_readback_utc": "2026-11-14T14:08:29.304453+00:00",
+        "before_revision": 1,
+        "after_revision": 2,
+        "final_status": "RESOLVED",
+        "receipt": {
+          "private_name": "app-feedback-4-web-private.html",
+          "sha256": "e6596f3aba2b4d85d911db5340ae64feee0ef89c98c27398339e11813704195d"
+        },
+        "sanitized_HTML_checks": {
+          "route": "/admin/support-feedback/4",
+          "form_method": "POST",
+          "csrf_field_present": true,
+          "request_key_present": true,
+          "confirmation_control_present": true,
+          "saved_notice_present": true,
+          "displayed_revision": 2
+        },
+        "event_log": {
+          "private_name": "normal-business-http-private.jsonl",
+          "sha256": "6f864018aa5f819616fb7084892ef46fbb21ecdd4050f2f71e3cebcacc22b4cd",
+          "review_channel": "normal_Web_APP_feedback_review",
+          "APP_channel": "normal_APP_Web_API_feedback"
+        }
+      }
+    ],
+    "readonly_run": {
+      "feedback_id": 3,
+      "run_finished_utc": "2026-11-14T13:13:55.109Z",
+      "normal_csrf_form_write": false,
+      "run_mode": "READ_ONLY_BROWSER_REVIEW",
+      "scope": "Desktop/list/320px/200percent/focus after earlier write",
+      "receipt": {
+        "private_name": "web-browser-readonly-evidence-private.json",
+        "sha256": "6ff5d159ec7431aec128137461c3495d7bb7af2162e430d3898b82406d1b7510"
+      }
+    },
+    "original_summary_error": "The baseline summary used the later readonly receipt as its sole web_browser object while describing the earlier write. The false flag is preserved and both runs are now linked.",
+    "scripts": "Read only to explain collection flow. Execution claims rely on original runtime receipts, images, HTML and ordinary readback.",
+    "private_credentials_and_HTML": "LOCAL_ONLY",
+    "evidence_repository_directory": "docs/versions/v10.1.12/supplement-r1-20261115"
+  },
+  "supplement_r1": {
+    "id": "V10112-R1-01",
+    "status": "ENGINEERING_COMPLETE_ADVISOR_REVIEW_PENDING",
+    "source_commit": "3e0e75758acf81e1ea754f739c9687226fbfcaff",
+    "report": "supplement-r1-20261115/README.md",
+    "evidence_summary": "supplement-r1-20261115/EVIDENCE_SUMMARY.json",
+    "tests": {
+      "status": "PASS",
+      "Widget_selected_cases": 27,
+      "new_regression_cases": 8,
+      "files": [
+        "test/features/profile/mbti_center_page_test.dart",
+        "test/features/profile/v10111_support_quality_test.dart"
+      ],
+      "Widget_log": {
+        "private_name": "widget-directed-private.log",
+        "sha256": "e969879a718dfc6189e8ef2cec7628abbe7eca93fec11cfcf06c10211171d9d8"
+      },
+      "Dart_analysis": {
+        "status": "PASS",
+        "changed_files": 4,
+        "private_name": "dart-analyze-private.log",
+        "sha256": "2534a9a41ece09332b6dfc4356ba1387f828984c17e57dc66ae92e8fa02fef81"
+      },
+      "original_red": {
+        "cases_failed": 8,
+        "private_name": "widget-red-private.log",
+        "sha256": "efd4e3169daa4b96fb242d4007c3641f3ea49610677d147f8bce06af2b6d7ba9"
+      },
+      "fixture_recovery": "Null timestamp fixture initially inferred non-null nested map. Corrected fixture to Map<String,dynamic>; product fallback then passed.",
+      "baseline_247_cases": "INHERITED_NOT_RERUN_NOT_ADDED_TO_27",
+      "PHP": "NOT_RUN",
+      "APK_build": "NOT_RUN",
+      "APP_device_run": "NOT_RUN",
+      "phone": "NOT_RUN",
+      "new_API_DB_or_Web_writes": "NOT_RUN"
+    },
+    "screenshots": [
+      {
+        "path": "evidence/web-feedback3-before.png",
+        "sha256": "fb8dbf48fee048abf76d78605e0e38b5935378f65a96e9c0c2be0703bfe67340",
+        "bytes": 41157,
+        "original_private_name": "web-support-desktop.png",
+        "scope": "EXISTING_20261114_ORDINARY_BROWSER_RUN_FICTIONAL_DATA",
+        "feedback_id": 3,
+        "state": "OPEN / revision1 / blank public reply",
+        "web_view_source": "e2448e2c4d630fad31168e3c0b70d3831011215f"
+      },
+      {
+        "path": "evidence/web-feedback3-after.png",
+        "sha256": "04fa85b2bf7133a097dab9d5fe45a1720e55b69f9f294640939af6b6843822b3",
+        "bytes": 45430,
+        "original_private_name": "web-support-resolved.png",
+        "scope": "EXISTING_20261114_ORDINARY_BROWSER_RUN_FICTIONAL_DATA",
+        "feedback_id": 3,
+        "state": "Saved notice / RESOLVED / revision2 / public reply",
+        "web_view_source": "e2448e2c4d630fad31168e3c0b70d3831011215f"
+      }
+    ],
+    "APK_build": "NOT_RUN",
+    "advisor_closeout": "PENDING"
+  },
+  "baseline_generated_at": "2026-11-14T22:30:33.406557+08:00"
 }

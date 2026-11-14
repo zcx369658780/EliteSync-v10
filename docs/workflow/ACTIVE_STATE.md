@@ -1,28 +1,26 @@
-# 当前入口 2026-11-14 v10.1.12已交付，等待顾问验收
+# 当前入口 2026-11-15 v10.1.12 R1-01已修正，等待顾问复核
 
-**V10112_ENGINEERING_DELIVERED / ADVISOR_PENDING / LOCAL_DOCS_SYNCED**。五阶段已集中交付，六项AC按具名代表性旅程和受影响范围工程自验PASS。顾问验收与Owner整版接受均为PENDING。入口为[实施报告](../versions/v10.1.12/IMPLEMENTATION_REPORT.md)、[manifest](../versions/v10.1.12/artifact_manifest.json)及[去敏证据摘要](../versions/v10.1.12/EVIDENCE_SUMMARY.json)。当前停在顾问验收点。
+**V10112_R1_ENGINEERING_COMPLETE / ADVISOR_REVIEW_PENDING**。当前范围为Owner下达的R1-01用户文案与Web证据一致性修正，工程完成，等待顾问复核关闭。入口为[R1报告](../versions/v10.1.12/supplement-r1-20261115/README.md)、[R1证据摘要](../versions/v10.1.12/supplement-r1-20261115/EVIDENCE_SUMMARY.json)及[manifest](../versions/v10.1.12/artifact_manifest.json)。
 
 ## 固定身份
 
-稳定根`D:\EliteSync-v10-product-v1015-20261101`，origin为`git@github.com:zcx369658780/EliteSync-v10.git`。任务分支`codex/v10.1.12-ui-information-architecture-20261114`，唯一父基线`2f3058d39a936063768ffb895f577d97a088e04c`。本版任务文档固定提交`a7bd6305c35a7317c365a1abb73ae20b00bea1a9`，八份任务/Owner决定/工作流文件在开工时逐一核对Git Blob及规范文本，LOCAL_DOCS_SYNCED。
+稳定根`D:\EliteSync-v10-product-v1015-20261101`，origin为`git@github.com:zcx369658780/EliteSync-v10.git`，任务分支`codex/v10.1.12-ui-information-architecture-20261114`。R1固定基线`1e5b6fd104cdee44b0d50c8da72c11a8c0f7b684`，R1源码`3e0e75758acf81e1ea754f739c9687226fbfcaff`。工作区/index已核，受保护`%SystemDrive%/`保留，原主库dirty/index保护指纹留本机。本轮Owner任务及决定已记录在R1报告，原a7bd6305任务文档LOCAL_DOCS_SYNCED回执保留。
 
-最终APP源码`ac7fb5b28396394e58c72002e19cc9bbad805941`，候选10.1.12-dev / 1011204。包名`com.elitesync.v1015dev`，原签名、arm64-v8a与用户数据保留。APK SHA256为`34d5ba051250c0516d937bb1d6c5773463f379f1c295231f9e37f1172d9938be`。安装后哈希匹配。API源码沿`47e1b4fd8fad3dd8165d1be6dc9f059095290e75`，Web视图源码`e2448e2c4d630fad31168e3c0b70d3831011215f`，四份部署文件实际字节匹配。迁移NONE。源码提交与包含本入口的交付文档提交分别记录，远端固定回读结果由最终交付消息及本机回执给出。
+## R1实际结果
 
-## 本轮证据
+MBTI说明、作答、结果、历史列表及历史详情改为简版测评名称，内部版本数据沿原合同。反馈历史与详情处理时间使用设备本地时区、中文日期及24小时分钟。8条新增Widget反例先失败，修正后选定27项PASS，4个改动Dart文件分析PASS。原247项及PHP测试本轮NOT_RUN，计数沿基线且不累加。
 
-共享主题/控件、我的与设置、聊天标题操作行、本人进展优先层级、工具说明分层、支持反馈Web页面完成收口。实际走查补修主题保存失败反馈、恢复构建进展层级、共用详情标题及会话404提示。中间候选1011201/02/03和原失败保留。
+Web反馈#3原回执为13:10:44.743Z、CSRF写入true，原截图显示版本1→2及保存提示。13:13:55.109Z的false来自后续只读复核，原值保留。反馈#4由既有Web表单HTML、14:08:17.106727Z处理日志及14:08:29.304453Z APP读回支持。报告、manifest和摘要已补全关联，本轮Web/API/DB新写入为NOT_RUN。
 
-去重Widget247项/23文件PASS，受影响PHP4项/45断言PASS，37个改动Dart文件增量分析PASS。真实APP反馈#4→Web处理→APP版本2、聊天消息#133由接收端API及MariaDB读回、APP MBTI#8及历史API读回。四入口、未就绪匹配、三盘输入校验/高级参数、动态盘空历史、真实键盘返回保留、200%文字、重登与冷启动完成代表性走查。Web桌面/320宽200%及焦点通过。受控Widget/SQLite与普通真实链分别记账，重叠测试计数取并集。
+## APK与运行证据范围
 
-## 资源与保护
+R1 APK构建、安装及设备页面验证NOT_RUN。已保存10.1.12-dev / 1011204绑定原源码`ac7fb5b28396394e58c72002e19cc9bbad805941`，APK SHA256为`34d5ba051250c0516d937bb1d6c5773463f379f1c295231f9e37f1172d9938be`。原APP截图与普通业务链继续绑定该基线。本轮源码修正由Widget页面验证，后端API、Web视图及迁移差异NONE。
 
-资源实读`2026-11-14T22:28:15.674719+08:00`。DB/API/WS/SFU均running。模拟器5580及本包进程停止，5582本版未启动，AVD及用户11/12数据保留。ADB5038保持USB排除，模拟器反向路由已移除，font_scale恢复1.0。原主库HEAD、status、diff、cached diff及index指纹与开工一致，稳定根受保护`%SystemDrive%/`保留。完整原证、APK、凭据、私有工具与数据库留本机。
+2026-11-14资源快照为历史基线，见manifest。本轮服务/模拟器启动、手机、构建及数据库写入均NOT_RUN。私有原件和旧失败保留，新增反例、夹具失败及通过日志留本机。固定提交及远端回读由最终交付消息和本机回执提供。
 
-## 沿用接受与限制
+## 接受与后续边界
 
-v10.1.11顾问与Owner已接受声明工程范围，AC11-02限定能力接受，R1-01 CLOSED。v10.1.10工具、v10.1.9社交和v10.1.8通信按报告具名证据继承。原失败、NOT_RUN及UNKNOWN保留。
-
-本版手机、实际TalkBack、最终APP网络故障注入、全社交/排盘/深链矩阵、RTC硬件/媒体重验、API/DB重启和全库分析为NOT_RUN。算法独立精度UNVERIFIED，真实Push为REAL_PUSH_PROVIDER_PENDING，历史SFU/RPC精确根因UNKNOWN。顾问验收、Owner接受、main集成及正式发布分别记录。后续版本等待Owner新授权。
+顾问关闭R1为PENDING，Owner整版接受沿原记录PENDING。v10.1.11及此前具名接受、NOT_RUN、UNVERIFIED和UNKNOWN保留。真实Push为REAL_PUSH_PROVIDER_PENDING，历史SFU/RPC精确根因UNKNOWN。当前停在顾问复核点，后续版本等待Owner新授权。
 
 ---
 
