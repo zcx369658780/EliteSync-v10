@@ -38,6 +38,12 @@ class _MbtiCenterPageState extends ConsumerState<MbtiCenterPage> {
   bool _busy = false;
   bool _blocked = false;
 
+  String _assessmentName(Object? version) => switch (version) {
+    'lite3_v1' => '简版测评（3题）',
+    'lite5_v1' => '简版测评（5题）',
+    _ => '简版测评',
+  };
+
   @override
   void initState() {
     super.initState();
@@ -315,7 +321,7 @@ class _MbtiCenterPageState extends ConsumerState<MbtiCenterPage> {
             children: [
               Padding(
                 padding: EdgeInsets.all(16),
-                child: Text('当前为 lite3_v1 简版配置计分，与20题匹配问卷分开，不用于匹配硬筛选。'),
+                child: Text('简版测评与20题匹配问卷分开，仅供自我了解，不用于匹配硬筛选。'),
               ),
             ],
           ),
@@ -330,7 +336,7 @@ class _MbtiCenterPageState extends ConsumerState<MbtiCenterPage> {
           if (result != null)
             Text(
               result['exists'] == true
-                  ? '服务端结果已确认：${result['result']}\n版本：${result['version_code'] ?? "历史来源未提供"}\n更新时间：${result['updated_at'] ?? "未提供"}'
+                  ? '服务端结果已确认：${result['result']}\n测评类型：${_assessmentName(result['version_code'])}\n更新时间：${result['updated_at'] ?? "未提供"}'
                   : '暂无服务端测评结果',
             ),
           const SizedBox(height: 12),
@@ -343,7 +349,9 @@ class _MbtiCenterPageState extends ConsumerState<MbtiCenterPage> {
             child: Text(items.isEmpty ? '开始测评' : '重新开始测评'),
           ),
           if (items.isNotEmpty) ...[
-            Text('题库版本：$_version；已答 ${_answers.length}/${items.length}'),
+            Text(
+              '${_assessmentName(_version)} · 已答 ${_answers.length}/${items.length}',
+            ),
             for (final item in items) ...[
               const SizedBox(height: 20),
               Text(item['content'] as String),
@@ -394,7 +402,7 @@ class _MbtiCenterPageState extends ConsumerState<MbtiCenterPage> {
             for (final row in _history)
               ListTile(
                 title: Text(
-                  '历史 #${row['id']} · ${row['result']} · ${row['version_code']}',
+                  '历史 #${row['id']} · ${row['result']} · ${_assessmentName(row['version_code'])}',
                 ),
                 subtitle: Text('${row['submitted_at'] ?? "时间未提供"}'),
                 onTap: _busy || _blocked
@@ -410,7 +418,7 @@ class _MbtiCenterPageState extends ConsumerState<MbtiCenterPage> {
               ),
             if (_selectedAttempt != null) ...[
               Text(
-                '历史测评 #${_selectedAttempt!['id']}\n结果：${_selectedAttempt!['result']}\n版本：${_selectedAttempt!['version_code']}\n时间：${_selectedAttempt!['submitted_at']}',
+                '历史测评 #${_selectedAttempt!['id']}\n结果：${_selectedAttempt!['result']}\n测评类型：${_assessmentName(_selectedAttempt!['version_code'])}\n时间：${_selectedAttempt!['submitted_at']}',
               ),
               Text('简版配置计分 · 四维得分 ${_selectedAttempt!['scores'] ?? "未记录"}'),
               Text('已保存作答 ${_selectedAttempt!['answers'] ?? "未记录"}'),

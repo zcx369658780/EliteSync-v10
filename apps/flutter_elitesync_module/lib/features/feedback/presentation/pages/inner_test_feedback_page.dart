@@ -251,6 +251,28 @@ class _InnerTestFeedbackPageState extends ConsumerState<InnerTestFeedbackPage> {
     }
   }
 
+  String _localDateTime(Object? value) {
+    final parsed = DateTime.tryParse(value?.toString() ?? '');
+    if (parsed == null) return '时间未提供';
+    // Legacy feedback update rows contain UTC database times without an offset.
+    final instant = parsed.isUtc
+        ? parsed
+        : DateTime.utc(
+            parsed.year,
+            parsed.month,
+            parsed.day,
+            parsed.hour,
+            parsed.minute,
+            parsed.second,
+            parsed.millisecond,
+            parsed.microsecond,
+          );
+    final local = instant.toLocal();
+    final hour = local.hour.toString().padLeft(2, '0');
+    final minute = local.minute.toString().padLeft(2, '0');
+    return '${local.year}年${local.month}月${local.day}日 $hour:$minute（本地时间）';
+  }
+
   String _statusLabel(Object? value) => switch (value) {
     'OPEN' => '已接收',
     'IN_REVIEW' => '处理中',
@@ -396,7 +418,7 @@ class _InnerTestFeedbackPageState extends ConsumerState<InnerTestFeedbackPage> {
                           ? null
                           : () => _readHistory(id: (item['id'] as num).toInt()),
                       child: Text(
-                        '反馈 #${item['id']} · ${_statusLabel(item['status'])} · ${item['updated_at'] ?? ''}',
+                        '反馈 #${item['id']} · ${_statusLabel(item['status'])} · ${_localDateTime(item['updated_at'])}',
                       ),
                     ),
                   if (_next != null)
@@ -413,7 +435,7 @@ class _InnerTestFeedbackPageState extends ConsumerState<InnerTestFeedbackPage> {
                       SelectableText('支持回复 ${_detail!['public_reply']}'),
                     for (final update in rows(_detail!['updates']))
                       Text(
-                        '${update['created_at']} · ${_statusLabel(update['status'])}${update['public_reply'] == null ? '' : '\n${update['public_reply']}'}',
+                        '${_localDateTime(update['created_at'])} · ${_statusLabel(update['status'])}${update['public_reply'] == null ? '' : '\n${update['public_reply']}'}',
                       ),
                   ],
                   const Divider(),

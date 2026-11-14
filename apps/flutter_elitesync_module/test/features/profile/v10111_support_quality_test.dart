@@ -88,7 +88,11 @@ class _Api extends ApiClient {
 
 Map<String, dynamic> _list(int id, {int? cursor}) => {
   'items': [
-    {'id': id, 'status': 'OPEN', 'updated_at': 'fictional-time'},
+    <String, dynamic>{
+      'id': id,
+      'status': 'OPEN',
+      'updated_at': 'fictional-time',
+    },
   ],
   'next_before_id': cursor,
 };
@@ -151,6 +155,75 @@ Future<void> _click(WidgetTester tester, Finder finder) async {
 }
 
 void main() {
+  for (final timestamp in [
+    '2026-11-14T23:05:17.123456Z',
+    '2026-11-15T01:05:17.123456+02:00',
+    '2026-11-14 23:05:17',
+  ]) {
+    testWidgets(
+      'R1 feedback list and detail use local minute time for $timestamp',
+      (tester) async {
+        final detail = _detail(12, 'fictional feedback');
+        (detail['feedback'] as Map)['updates'] = [
+          {
+            'created_at': timestamp,
+            'status': 'RESOLVED',
+            'public_reply': 'fictional public reply',
+          },
+        ];
+        final api = _Relationship((method, path, body) async {
+          if (path.endsWith('/12')) return detail;
+          final list = _list(12);
+          (list['items'] as List).single['updated_at'] = timestamp;
+          return list;
+        });
+        await _show(tester, const InnerTestFeedbackPage(), relationship: api);
+        final local = DateTime.utc(2026, 11, 14, 23, 5, 17).toLocal();
+        final expected =
+            '${local.year}年${local.month}月${local.day}日 '
+            '${local.hour.toString().padLeft(2, '0')}:${local.minute.toString().padLeft(2, '0')}（本地时间）';
+        final item = find.text('反馈 #12 · 已接收 · $expected');
+        expect(item, findsOneWidget);
+        await _click(tester, item);
+        await tester.ensureVisible(
+          find.textContaining('fictional public reply'),
+        );
+        expect(
+          find.text('$expected · 已解决\nfictional public reply'),
+          findsOneWidget,
+        );
+        final text = tester
+            .widgetList<Text>(find.byType(Text))
+            .map((t) => t.data ?? '')
+            .join('\n');
+        expect(text, isNot(contains(timestamp)));
+        expect(text, isNot(contains('123456')));
+      },
+    );
+  }
+
+  testWidgets('R1 missing or invalid feedback dates use readable fallback', (
+    tester,
+  ) async {
+    final detail = _detail(12, 'fictional feedback');
+    (detail['feedback'] as Map)['updates'] = [
+      {'created_at': 'invalid-private-time', 'status': 'OPEN'},
+    ];
+    final api = _Relationship((method, path, body) async {
+      if (path.endsWith('/12')) return detail;
+      final list = _list(12);
+      (list['items'] as List).single['updated_at'] = null;
+      return list;
+    });
+    await _show(tester, const InnerTestFeedbackPage(), relationship: api);
+    final item = find.text('反馈 #12 · 已接收 · 时间未提供');
+    expect(item, findsOneWidget);
+    await _click(tester, item);
+    expect(find.text('时间未提供 · 已接收'), findsOneWidget);
+    expect(find.textContaining('invalid-private-time'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets(
     'feedback unknown result retries immutable command and preserves subsequent editing',
     (tester) async {

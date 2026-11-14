@@ -30,6 +30,7 @@ class _Api extends ApiClient {
   int? historyStatus;
   int? nextHistoryId;
   String resultLetters = 'INTJ';
+  String? resultVersion = 'lite3_v1';
   Completer<NetworkResult<Map<String, dynamic>>>? delayedResult;
   Object? submittedBody;
   final List<Map<String, dynamic>> submittedBodies = [];
@@ -38,7 +39,7 @@ class _Api extends ApiClient {
   Map<String, dynamic> get attempt => {
     'id': 1,
     'result': resultLetters,
-    'version_code': 'lite3_v1',
+    'version_code': resultVersion,
     'submitted_at': '2026-11-14T08:00:00Z',
     'scores': {'I': 2},
     'answers': [
@@ -100,7 +101,7 @@ class _Api extends ApiClient {
       'exists': submitted,
       'result': submitted ? resultLetters : null,
       'attempt_id': submitted ? 1 : null,
-      'version_code': submitted ? 'lite3_v1' : null,
+      'version_code': submitted ? resultVersion : null,
     });
   }
 
@@ -148,6 +149,47 @@ Future<void> _show(WidgetTester tester, _Api api, {ThemeData? theme}) async {
 }
 
 void main() {
+  for (final entry in <String?, String>{
+    'lite3_v1': '简版测评（3题）',
+    'lite5_v1': '简版测评（5题）',
+    'legacy_v0': '简版测评',
+    null: '简版测评',
+  }.entries) {
+    testWidgets('R1 user-facing result and history name for ${entry.key}', (
+      tester,
+    ) async {
+      tester.view.physicalSize = const Size(1000, 2400);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      await _show(
+        tester,
+        _Api()
+          ..submitted = true
+          ..resultVersion = entry.key,
+      );
+      expect(find.textContaining('测评类型：${entry.value}'), findsOneWidget);
+      await tester.tap(find.text('测评配置与适用范围'));
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('读取测评历史'));
+      await tester.tap(find.text('读取测评历史'));
+      await tester.pumpAndSettle();
+      final history = find.text('历史 #1 · INTJ · ${entry.value}');
+      await tester.ensureVisible(history);
+      await tester.tap(history);
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.textContaining('历史测评 #1'));
+      final text = tester
+          .widgetList<Text>(find.byType(Text))
+          .map((t) => t.data ?? '')
+          .join('\n');
+      expect(text, contains('测评类型：${entry.value}'));
+      expect(text, isNot(contains('lite3_v1')));
+      expect(text, isNot(contains('lite5_v1')));
+      expect(text, isNot(contains('legacy_v0')));
+    });
+  }
+
   for (final theme in [AppTheme.light, AppTheme.dark]) {
     testWidgets('selected options use paired colors in ${theme.brightness}', (
       tester,
@@ -169,7 +211,7 @@ void main() {
           button.style?.backgroundColor?.resolve({}),
           theme.colorScheme.primaryContainer,
         );
-        expect(find.text('题库版本：lite3_v1；已答 1/1'), findsOneWidget);
+        expect(find.text('简版测评（3题） · 已答 1/1'), findsOneWidget);
         final other = tester.widget<OutlinedButton>(
           find.byKey(ValueKey('mbti-1-${option == 'A' ? 'B' : 'A'}')),
         );
@@ -222,7 +264,7 @@ void main() {
     await tester.ensureVisible(find.text('读取测评历史'));
     await tester.tap(find.text('读取测评历史'));
     await tester.pumpAndSettle();
-    final item = find.text('历史 #1 · INTJ · lite3_v1');
+    final item = find.text('历史 #1 · INTJ · 简版测评（3题）');
     await tester.ensureVisible(item);
     await tester.tap(item);
     await tester.pumpAndSettle();
@@ -254,7 +296,7 @@ void main() {
         await tester.ensureVisible(find.text('提交测评'));
         await tester.tap(find.text('提交测评'));
         await tester.pumpAndSettle();
-        expect(find.text('题库版本：lite3_v1；已答 1/1'), findsOneWidget);
+        expect(find.text('简版测评（3题） · 已答 1/1'), findsOneWidget);
         expect(find.textContaining('结果未确认'), findsOneWidget);
         expect(
           tester
@@ -296,7 +338,7 @@ void main() {
       await tester.ensureVisible(find.text('读取测评历史'));
       await tester.tap(find.text('读取测评历史'));
       await tester.pumpAndSettle();
-      expect(find.text('题库版本：lite3_v1；已答 1/1'), findsOneWidget);
+      expect(find.text('简版测评（3题） · 已答 1/1'), findsOneWidget);
       expect(find.textContaining('当前测评不可用'), findsOneWidget);
       final retry = find.text('重试原提交并确认结果');
       expect(
@@ -328,7 +370,7 @@ void main() {
         await tester.ensureVisible(find.text('读取测评历史'));
         await tester.tap(find.text('读取测评历史'));
         await tester.pumpAndSettle();
-        expect(find.text('历史 #1 · INTJ · lite3_v1'), findsOneWidget);
+        expect(find.text('历史 #1 · INTJ · 简版测评（3题）'), findsOneWidget);
         api.historyStatus = code;
         await tester.ensureVisible(find.text('读取测评历史'));
         await tester.tap(find.text('读取测评历史'));
@@ -357,7 +399,7 @@ void main() {
     await tester.tap(find.text('读取测评历史'));
     await tester.pumpAndSettle();
     expect(find.textContaining('服务端结果已确认：INTJ'), findsOneWidget);
-    expect(find.text('历史 #1 · INTJ · lite3_v1'), findsOneWidget);
+    expect(find.text('历史 #1 · INTJ · 简版测评（3题）'), findsOneWidget);
     expect(find.textContaining('结果未确认'), findsOneWidget);
   });
   testWidgets(
