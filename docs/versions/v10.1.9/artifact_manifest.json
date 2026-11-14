@@ -1,0 +1,354 @@
+{
+  "schema": "elitesync.v1019.artifact_manifest.v1",
+  "version": "v10.1.9",
+  "engineering_status": "ENGINEERING_DELIVERED_ADVISOR_PENDING",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "ac": {
+    "AC19-01": "PASS",
+    "AC19-02": "PASS",
+    "AC19-03": "PASS",
+    "AC19-04": "PASS",
+    "AC19-05": "PASS",
+    "AC19-06": "PASS"
+  },
+  "repository": "zcx369658780/EliteSync-v10",
+  "branch": "codex/v10.1.9-social-buddy-activities-20261114",
+  "task_commit": "b429f5a56cb3878aad285405b9d5c3928da166ac",
+  "accepted_baseline": "be0112ac53fc0ab3d3bfaf360552b020bcca3476",
+  "app_source_commit": "dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6",
+  "backend_source_commit": "dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6",
+  "apk": {
+    "version_name": "10.1.9-dev",
+    "version_code": 1010902,
+    "package": "com.elitesync.v1015dev",
+    "variant": "source Debug",
+    "abi": "arm64-v8a",
+    "bytes": 123865430,
+    "sha256": "d275dacce4ade375bb209756f2b6c8c316de59ec80efea738f5dcbefc5968cd0",
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+    "local_only_locator": "%USERPROFILE%/EliteSyncDev/v1015-current-dev/v1019-current/candidate-1010902-private.apk",
+    "dual_installations": [
+      {
+        "index": 0,
+        "android_user": 11,
+        "apk_sha256": "d275dacce4ade375bb209756f2b6c8c316de59ec80efea738f5dcbefc5968cd0",
+        "version_code": 1010902
+      },
+      {
+        "index": 1,
+        "android_user": 12,
+        "apk_sha256": "d275dacce4ade375bb209756f2b6c8c316de59ec80efea738f5dcbefc5968cd0",
+        "version_code": 1010902
+      }
+    ]
+  },
+  "local_deployment": {
+    "stable_root": "D:\\EliteSync-v10-product-v1015-20261101",
+    "api_origin": "http://127.0.0.1:8021",
+    "ws_origin": "http://127.0.0.1:8022",
+    "database_engine": "MariaDB 10.11.19",
+    "migration_names": [
+      "2026_11_14_110000_create_status_post_favorites",
+      "2026_11_14_120000_add_buddy_discovery_publications"
+    ],
+    "source_readback_at_utc": "2026-11-14T04:04:55.310763+00:00",
+    "files": [
+      {
+        "path": "services/backend-laravel/app/Services/ContactService.php",
+        "sha256": "dbe338417a503a6161190e0db7c2aded6d485843844963d1f8f534ce86453161",
+        "git_blob": "4928bbe0d4924fc1743486cd0f22689059cbf7d7",
+        "runtime_sha256": "dbe338417a503a6161190e0db7c2aded6d485843844963d1f8f534ce86453161"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/StatusPostController.php",
+        "sha256": "e4b15552edab3af4da92d187485f1b69c1c8f147619403d9c3b611dc396a53ab",
+        "git_blob": "d75125a1ef3adb7b03486ba8679b6cea024f051d",
+        "runtime_sha256": "e4b15552edab3af4da92d187485f1b69c1c8f147619403d9c3b611dc396a53ab"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/BuddyService.php",
+        "sha256": "f692c5cce05347bb07079d8b8a33f708b2dfb91e6fe241f1d2149663035a1ad3",
+        "git_blob": "4719189055183892875f2a1eead6edbf28cc8df3",
+        "runtime_sha256": "f692c5cce05347bb07079d8b8a33f708b2dfb91e6fe241f1d2149663035a1ad3"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/PlatformEventService.php",
+        "sha256": "79176ee445d67f2c1bb4e0df33e6fdd01991a7c142df84d0a171fe63b64c60e4",
+        "git_blob": "3aead73fcd2805e34c6f0732349368c2c18561ef",
+        "runtime_sha256": "79176ee445d67f2c1bb4e0df33e6fdd01991a7c142df84d0a171fe63b64c60e4"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/NotificationService.php",
+        "sha256": "7916b2e82519cafbd9354365776756f0758db24e54426de90be5084753126916",
+        "git_blob": "f14f823c1a7846bb8cc0eabde071ac262cf3ee90",
+        "runtime_sha256": "7916b2e82519cafbd9354365776756f0758db24e54426de90be5084753126916"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/BuddyDiscoveryController.php",
+        "sha256": "dede9a966cc27b65cb51a47155ce5883451d8e0f05001819a731a08d1c0208f9",
+        "git_blob": "7227a45aa09156c9755649e2749684fc77e68fe6",
+        "runtime_sha256": "dede9a966cc27b65cb51a47155ce5883451d8e0f05001819a731a08d1c0208f9"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/PlatformController.php",
+        "sha256": "661c15b1a33c169616f16492984eb645baf4a0749e85c1d85a2683a0df3bcb62",
+        "git_blob": "e15fff56dd69a598df64d4b547dedb07bb3ea9a8",
+        "runtime_sha256": "661c15b1a33c169616f16492984eb645baf4a0749e85c1d85a2683a0df3bcb62"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Web/PlatformController.php",
+        "sha256": "07b3bcb884967fc6caf4b9c156702c259aee381f5df4235c6a41ec97acc1e87a",
+        "git_blob": "937d70e9f59040c852ba3b7d0ee0a4cdee1ef8a7",
+        "runtime_sha256": "07b3bcb884967fc6caf4b9c156702c259aee381f5df4235c6a41ec97acc1e87a"
+      },
+      {
+        "path": "services/backend-laravel/routes/api.php",
+        "sha256": "4513b0aa33ec018b631853d895d3b25656705a8aad6183c8a92aa6d9eaf5a772",
+        "git_blob": "fd26858e335316cec7ea0081ce4a82f02fd4fc93",
+        "runtime_sha256": "4513b0aa33ec018b631853d895d3b25656705a8aad6183c8a92aa6d9eaf5a772"
+      },
+      {
+        "path": "services/backend-laravel/routes/web.php",
+        "sha256": "b46ed60cf9965722edf1f1a60fc029e57e0ca4675f42d4e23398952b25a9cca3",
+        "git_blob": "212cd0937090b50188444926886f07e9b75ee217",
+        "runtime_sha256": "b46ed60cf9965722edf1f1a60fc029e57e0ca4675f42d4e23398952b25a9cca3"
+      },
+      {
+        "path": "services/backend-laravel/database/migrations/2026_11_14_110000_create_status_post_favorites.php",
+        "sha256": "9d217b72e9506f11d1ed350a6ce9c3610409a804ddc3608a173e70eba269f085",
+        "git_blob": "0df4f55b515a6c783227f56a0ed952eb698fc82f",
+        "runtime_sha256": "9d217b72e9506f11d1ed350a6ce9c3610409a804ddc3608a173e70eba269f085"
+      },
+      {
+        "path": "services/backend-laravel/database/migrations/2026_11_14_120000_add_buddy_discovery_publications.php",
+        "sha256": "228868d6939b5fe303e3e5ed328119802ae42c063df1174bf4307890973ac6d4",
+        "git_blob": "08a8fb45080382211566468e327d8c0af0d11d68",
+        "runtime_sha256": "228868d6939b5fe303e3e5ed328119802ae42c063df1174bf4307890973ac6d4"
+      }
+    ]
+  },
+  "resources": {
+    "observed_at_china": "2026-11-14T12:09:08.960013+08:00",
+    "containers": [
+      {
+        "name": "v1015-current-dev-db",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:12.271074943Z"
+      },
+      {
+        "name": "v1015-current-dev-api",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:14.686258003Z"
+      },
+      {
+        "name": "v1015-current-dev-ws",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:15.905342048Z"
+      },
+      {
+        "name": "v1015-current-dev-sfu",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:12.326838226Z"
+      }
+    ],
+    "sfu_rooms": [],
+    "emulators": [
+      {
+        "index": 0,
+        "serial": "emulator-5580",
+        "android_user": 11,
+        "status": "STOPPED_DATA_RETAINED"
+      },
+      {
+        "index": 1,
+        "serial": "emulator-5582",
+        "android_user": 12,
+        "status": "STOPPED_DATA_RETAINED"
+      }
+    ],
+    "adb_5038_usb_excluded": true,
+    "phone": "NOT_USED",
+    "candidate": 1010902,
+    "apk_sha256": "d275dacce4ade375bb209756f2b6c8c316de59ec80efea738f5dcbefc5968cd0",
+    "final_apk_local_path": "%USERPROFILE%/EliteSyncDev/v1015-current-dev/v1019-current/candidate-1010902-private.apk"
+  },
+  "checks": {
+    "backend": {
+      "tests": 41,
+      "assertions": 1250,
+      "result": "PASS",
+      "batch": "final-backend-v3"
+    },
+    "flutter_widgets": {
+      "tests": 74,
+      "result": "PASS",
+      "batch": "final-ui-directed-v3"
+    },
+    "changed_dart_analysis": {
+      "files": 15,
+      "result": "PASS"
+    },
+    "full_widget_suite": "NOT_RUN",
+    "repository_wide_analysis": {
+      "result": "FAIL",
+      "errors": 9,
+      "info": 3,
+      "unchanged_from_task_baseline": true,
+      "issues": [
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/buddy_v1013/buddy_pages_test.dart",
+          "line": 31,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/buddy_v1013/v1013_root_entry_test.dart",
+          "line": 23,
+          "code": "invalid_override"
+        },
+        {
+          "level": "info",
+          "path": "apps/flutter_elitesync_module/test/features/chat/presentation/conversation_detail_live_test.dart",
+          "line": 65,
+          "code": "library_private_types_in_public_api"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/conversation_private_cache_test.dart",
+          "line": 35,
+          "code": "invalid_override"
+        },
+        {
+          "level": "info",
+          "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_chat_page_test.dart",
+          "line": 196,
+          "code": "curly_braces_in_flow_control_structures"
+        },
+        {
+          "level": "info",
+          "path": "apps/flutter_elitesync_module/test/features/chat/private_audio_player_test.dart",
+          "line": 1,
+          "code": "unnecessary_import"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+          "line": 28,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/profile/dynamic_chart_page_test.dart",
+          "line": 16,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/profile/natal_restoration_session_guard_test.dart",
+          "line": 21,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/profile/natal_review_fixes_test.dart",
+          "line": 24,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/relationships_v1011/relationship_pages_test.dart",
+          "line": 23,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/status/presentation/pages/community_pagination_test.dart",
+          "line": 28,
+          "code": "invalid_override"
+        }
+      ]
+    }
+  },
+  "intermediate_candidates": [
+    {
+      "version_code": 1010901,
+      "app_source": "f27b0e37fcea76e8e079458718fd17371eec78bb",
+      "apk_sha256": "eadadcdfd53ad3d3853806f5ff8eca63eeaa02e4e1ac6de50366fbd3b58cdfd1",
+      "retained_locally": true
+    }
+  ],
+  "inherited": {
+    "v1018_acceptance_baseline": "be0112ac53fc0ab3d3bfaf360552b020bcca3476",
+    "R1_delivery": "1074c210ee7fa6641799fa6e19d29fc46ef6b2bc",
+    "communication_evidence": [
+      "call63",
+      "call64 scoped accepted evidence"
+    ],
+    "source": "docs/versions/v10.1.8/supplement-r1-20261114/ADVISOR_ACCEPTANCE.md",
+    "real_push": "REAL_PUSH_PROVIDER_PENDING",
+    "old_non_injected_SFU_exact_cause": "UNKNOWN",
+    "phone_v1019": "NOT_USED"
+  },
+  "public_artifacts": [
+    {
+      "path": "IMPLEMENTATION_REPORT.md",
+      "sha256": "d57946225740c7f55a5b5b3c3ada5a82489b46418258bbb12f464035b8e72c9d"
+    },
+    {
+      "path": "EVIDENCE_SUMMARY.json",
+      "sha256": "00a232b2dd866d4f6b18d51c9fa609f4a05cb1044618458f21073f9c42cb0f8e"
+    },
+    {
+      "path": "evidence/ac01-accepted.png",
+      "sha256": "c8b33a756628a05976d3ae3d39dee47856a93190b0ab6756211488f08f38d29c",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac02-author-independent.png",
+      "sha256": "694d82e8d97ca6f96d0e795bb3e5f0e18f2ef0dff2cba4df16239373b99905e6",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac02-unavailable-placeholder.png",
+      "sha256": "15e73951cb6e6172f642b4aa6369131837810d6712e0098258f441584aee9ec4",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac04-confirmed-after-restart.png",
+      "sha256": "6066cc0f2ffd8fe098f1e2d67714f3ea5bab4ecce02f0a256e53aa822cc05407",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac04-terminal-notification.png",
+      "sha256": "06ee12471937c6799b24ee2fb16b88e1efbd60e1793ce3dc2cf907c5d057f6ec",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac05-completed-confirmed.png",
+      "sha256": "453ed8d107d52b125df5d31b1d6196961f37c13443db756534e122fc381f2e48",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac05-terminal-notification.png",
+      "sha256": "d2836ae153d94fc95bba9faed5c671191bd9f7f7f0a73752e1f77317d8d64032",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac06-favorites-after-restart.png",
+      "sha256": "ca3eca83b6089141f0fef4ce208e1ec3aacbc926180ff72a07e37b44b744cc0e",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    }
+  ],
+  "delivery_commit": "The final commit containing this manifest; remote fixed-object readback is reported in the delivery reply",
+  "private_materials": "Raw receipts, full images, SQL/database, credentials, private tools and APKs remain on Owner PC"
+}

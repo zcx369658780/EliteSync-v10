@@ -2,7 +2,11 @@
 
 2026-11-14 更新。当前任务依据 [Owner接受v10.1.8、授权v10.1.9并交接](../decisions/OWNER_V10_1_8_ACCEPTANCE_AND_V10_1_9_AUTHORIZATION_20261114.md)，方向延续 [后端功能优先决定](../decisions/OWNER_V10_1_5_CLOSEOUT_AND_BACKEND_FIRST_20261113.md)；普通工程自治沿用 [11月10日决定](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)，工程边界见 [AGENTS](../../AGENTS.md)。当前事实只维护 [ACTIVE_STATE](ACTIVE_STATE.md)，历史小步记录从 Git 历史查询。
 
-## 2026-11-14 当前版本与会话交接安排
+## 当前交付状态
+
+本版已于2026-11-14集中工程交付，六项AC工程结果、最终候选和固定源码统一见ACTIVE_STATE及本版实施报告。当前进入新顾问会话验收，Owner出门期间的模拟器继续指令已执行。
+
+## 2026-11-14 任务发布时的版本与交接安排
 
 Owner已确认项目交接、v10.1.5收尾；v10.1.6 R1、v10.1.7及[v10.1.8 R1](../versions/v10.1.8/supplement-r1-20261114/ADVISOR_ACCEPTANCE.md)均按约定开发范围接受。v10.1.8六项AC接受、R1-01 CLOSED、本轮无R2；Owner最新同意已记录，不再停在Owner PENDING。
 

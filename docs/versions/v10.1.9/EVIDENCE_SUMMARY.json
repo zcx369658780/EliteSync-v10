@@ -1,0 +1,443 @@
+{
+  "schema": "elitesync.v1019.evidence_summary.v1",
+  "observed_at_china": "2026-11-14T12:12:28.060774+08:00",
+  "engineering_ac": {
+    "AC19-01": "PASS",
+    "AC19-02": "PASS",
+    "AC19-03": "PASS",
+    "AC19-04": "PASS",
+    "AC19-05": "PASS",
+    "AC19-06": "PASS"
+  },
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance_v1019": "PENDING",
+  "final_candidate": {
+    "version_code": 1010902,
+    "app_source": "dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6",
+    "backend_source": "dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6",
+    "apk_sha256": "d275dacce4ade375bb209756f2b6c8c316de59ec80efea738f5dcbefc5968cd0"
+  },
+  "normal_product_chains": {
+    "AC19-01": {
+      "actors": [
+        16,
+        17
+      ],
+      "request_id": 7,
+      "state": "ACCEPTED",
+      "friendship_id": 4,
+      "revision": 3,
+      "entry": "APP invitation, request, accept, current peer page and existing lawful chat",
+      "withdraw_request_id": 6,
+      "stale_buddy_contact_submit_http": 404,
+      "independent_CN_MC_before_after_equal": true
+    },
+    "AC19-02": {
+      "author": 16,
+      "viewer": 17,
+      "author_posts_http": 200,
+      "unpublished_showcase_http": 404,
+      "invalidated_post_id": 5,
+      "media_id": 26,
+      "detail_media_comments_after_SELF_http": [
+        404,
+        404,
+        404
+      ],
+      "persisted_post_id": 6,
+      "available_favorites": [
+        [
+          5,
+          false
+        ],
+        [
+          6,
+          true
+        ]
+      ],
+      "real_likes": 1,
+      "real_comments": 1,
+      "entry": "Normal media/post API setup, APP author/favorite/comment/cancel, APP account switch and reread",
+      "favorite_does_not_notify_author": true,
+      "account_C_favorites_empty": true
+    },
+    "AC19-03": {
+      "activity_id": "4ebf8339-5f5e-4029-a91f-6094fb9b5c90",
+      "publication_id": 4,
+      "generation": 1,
+      "state": "CONSUMED",
+      "expires_at_UTC": "2026-11-14 04:29:17",
+      "entry": "Final APP create, explicit publication preview, city/type discovery by other APP account",
+      "publication_defaults_private": true,
+      "admin_removed_publication_id": 3,
+      "old_admin_removed_apply_http": 409
+    },
+    "AC19-04": {
+      "discovery_activity_id": "4ebf8339-5f5e-4029-a91f-6094fb9b5c90",
+      "discovery_source": "DISCOVERY",
+      "discovery_state": "COMPLETED",
+      "friend_activity_id": "52409fb1-ef25-44dd-a594-881efb516281",
+      "friend_source": "FRIEND",
+      "friend_state": "COMPLETED",
+      "entry": "APP apply, author confirm, both reread, complete, friend picker invitation and terminal notification",
+      "slots_for_actors_16_17_18_at_end": 0,
+      "terminal_replay_minimal": true,
+      "C_new_CN_count": 0,
+      "C_new_MC_count": 0
+    },
+    "AC19-05": {
+      "event_id": "e8cc6d1a-3d1a-4500-8dc2-a6249ee10189",
+      "capacity": 2,
+      "actors": [
+        16,
+        17,
+        18
+      ],
+      "sequence": [
+        "Web create and zero-cost budget review/approval/open/invite",
+        "APP 16 APPLIED",
+        "APP 17 APPLIED",
+        "Web confirm 16/17",
+        "APP 18 WAITLISTED, wait_order 1",
+        "Web full-capacity promote 409",
+        "APP 16 cancel",
+        "Web promote 18",
+        "APP 18 CONFIRMED",
+        "Web close and complete",
+        "APP 18 reread and cancel",
+        "APP terminal notification opens own minimal history"
+      ],
+      "final_event_state": "COMPLETED",
+      "final_registrations": [
+        {
+          "user_id": 18,
+          "state": "CANCELLED_BY_USER"
+        },
+        {
+          "user_id": 17,
+          "state": "CONFIRMED"
+        },
+        {
+          "user_id": 16,
+          "state": "CANCELLED_BY_USER"
+        }
+      ],
+      "real_booking": "NOT_RUN",
+      "payments": "NOT_RUN"
+    },
+    "AC19-06": {
+      "relogin": "B to C to B through normal APP login/logout",
+      "cold_start_profiles": [
+        11,
+        12
+      ],
+      "DB_API_WS_explicit_restart_batches": [
+        {
+          "names": [
+            "v1015-current-dev-db"
+          ],
+          "exit_code": 0,
+          "utc": "2026-11-14T03:58:14.511408+00:00"
+        },
+        {
+          "names": [
+            "v1015-current-dev-api",
+            "v1015-current-dev-ws"
+          ],
+          "exit_code": 0,
+          "utc": "2026-11-14T03:58:16.102832+00:00"
+        }
+      ],
+      "exact_API_fact_equality_before_after_restart": true,
+      "APP_after_restart": [
+        "favorite 5 unavailable placeholder",
+        "favorite 6 current visible",
+        "friend Buddy CONFIRMED",
+        "platform COMPLETED / B CONFIRMED"
+      ],
+      "deployment_source_files_matching": 12,
+      "dual_installations": [
+        {
+          "index": 0,
+          "android_user": 11,
+          "apk_sha256": "d275dacce4ade375bb209756f2b6c8c316de59ec80efea738f5dcbefc5968cd0",
+          "version_code": 1010902
+        },
+        {
+          "index": 1,
+          "android_user": 12,
+          "apk_sha256": "d275dacce4ade375bb209756f2b6c8c316de59ec80efea738f5dcbefc5968cd0",
+          "version_code": 1010902
+        }
+      ]
+    }
+  },
+  "directed_actual_MariaDB": {
+    "buddy_competing_guests": {
+      "kind": "directed_actual_MariaDB",
+      "activity_id": "cdb9d5eb-bea6-41cb-902e-ddb138b0c39f",
+      "publication_id": 1,
+      "concurrent_statuses": [
+        200,
+        409
+      ],
+      "accepted_commands": 1,
+      "same_key_single_notification": true,
+      "conflict": 409,
+      "final_state": "WITHDRAWN",
+      "ordinary_APP_success_chain": false
+    },
+    "platform_concurrent_same_command": {
+      "kind": "directed_actual_MariaDB",
+      "event_id": "e8cc6d1a-3d1a-4500-8dc2-a6249ee10189",
+      "concurrent_same_command_statuses": [
+        200,
+        200
+      ],
+      "registrations_unchanged": true,
+      "revision_unchanged": true
+    },
+    "duplicate_recipient_source_event_keys": 0
+  },
+  "isolated_controlled_checks": {
+    "database": "testing/sqlite/:memory:",
+    "cases": [
+      "3 unfinished slots including REQUESTED",
+      "5 successful discovery applications per 10 minutes, replay does not recharge",
+      "old source epochs and FRIEND/TOKEN/DISCOVERY separation",
+      "49-hour controlled time with established participation preserved",
+      "start earlier than 48h",
+      "200 permission-filtered candidates with subsequent actual cursor",
+      "platform out-of-order and ineligible waitlist",
+      "terminal result and late account/authority notification responses"
+    ],
+    "natural_48h_or_7d_observation": "NOT_RUN"
+  },
+  "checks": {
+    "backend": {
+      "tests": 41,
+      "assertions": 1250,
+      "result": "PASS",
+      "batch": "final-backend-v3"
+    },
+    "flutter_widgets": {
+      "tests": 74,
+      "result": "PASS",
+      "batch": "final-ui-directed-v3"
+    },
+    "changed_dart_analysis": {
+      "files": 15,
+      "result": "PASS"
+    },
+    "full_widget_suite": "NOT_RUN",
+    "repository_wide_analysis": {
+      "result": "FAIL",
+      "errors": 9,
+      "info": 3,
+      "unchanged_from_task_baseline": true,
+      "issues": [
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/buddy_v1013/buddy_pages_test.dart",
+          "line": 31,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/buddy_v1013/v1013_root_entry_test.dart",
+          "line": 23,
+          "code": "invalid_override"
+        },
+        {
+          "level": "info",
+          "path": "apps/flutter_elitesync_module/test/features/chat/presentation/conversation_detail_live_test.dart",
+          "line": 65,
+          "code": "library_private_types_in_public_api"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/conversation_private_cache_test.dart",
+          "line": 35,
+          "code": "invalid_override"
+        },
+        {
+          "level": "info",
+          "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_chat_page_test.dart",
+          "line": 196,
+          "code": "curly_braces_in_flow_control_structures"
+        },
+        {
+          "level": "info",
+          "path": "apps/flutter_elitesync_module/test/features/chat/private_audio_player_test.dart",
+          "line": 1,
+          "code": "unnecessary_import"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/notification/presentation/pages/platform_notification_navigation_test.dart",
+          "line": 28,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/profile/dynamic_chart_page_test.dart",
+          "line": 16,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/profile/natal_restoration_session_guard_test.dart",
+          "line": 21,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/profile/natal_review_fixes_test.dart",
+          "line": 24,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/relationships_v1011/relationship_pages_test.dart",
+          "line": 23,
+          "code": "invalid_override"
+        },
+        {
+          "level": "error",
+          "path": "apps/flutter_elitesync_module/test/features/status/presentation/pages/community_pagination_test.dart",
+          "line": 28,
+          "code": "invalid_override"
+        }
+      ]
+    }
+  },
+  "intermediate_candidates": [
+    {
+      "version_code": 1010901,
+      "app_source": "f27b0e37fcea76e8e079458718fd17371eec78bb",
+      "apk_sha256": "eadadcdfd53ad3d3853806f5ff8eca63eeaa02e4e1ac6de50366fbd3b58cdfd1",
+      "retained_locally": true
+    }
+  ],
+  "failures_and_repairs": [
+    "Initial PHPUnit fixtures lacked phone, repaired and retained original logs",
+    "Initial Web test used the Sanctum guard, corrected to the Web guard",
+    "Initial platform invite rejected unmarked fictional accounts with 404, added audited local Web classification",
+    "Terminal notification APP navigation rejected minimal results, repaired in candidate1010902",
+    "Early screenshot/locator reads preceded asynchronous settlement, raw originals retained and public images recaptured after stable reads",
+    "Automation viewport, keyboard and test-path errors retained in private action/test receipts"
+  ],
+  "owner_engineering_decisions": [
+    "Owner authorized continued simulator work while away",
+    "Added current-admin, CSRF-protected, audited fictional-account classification in the known local development DB; marked known fictional 16/17/18 through Web",
+    "Selected eight manually inspected settled fictional screenshots for public evidence"
+  ],
+  "inherited": {
+    "v1018_acceptance_baseline": "be0112ac53fc0ab3d3bfaf360552b020bcca3476",
+    "R1_delivery": "1074c210ee7fa6641799fa6e19d29fc46ef6b2bc",
+    "communication_evidence": [
+      "call63",
+      "call64 scoped accepted evidence"
+    ],
+    "source": "docs/versions/v10.1.8/supplement-r1-20261114/ADVISOR_ACCEPTANCE.md",
+    "real_push": "REAL_PUSH_PROVIDER_PENDING",
+    "old_non_injected_SFU_exact_cause": "UNKNOWN",
+    "phone_v1019": "NOT_USED"
+  },
+  "resources": {
+    "observed_at_china": "2026-11-14T12:09:08.960013+08:00",
+    "containers": [
+      {
+        "name": "v1015-current-dev-db",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:12.271074943Z"
+      },
+      {
+        "name": "v1015-current-dev-api",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:14.686258003Z"
+      },
+      {
+        "name": "v1015-current-dev-ws",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:15.905342048Z"
+      },
+      {
+        "name": "v1015-current-dev-sfu",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:12.326838226Z"
+      }
+    ],
+    "sfu_rooms": [],
+    "emulators": [
+      {
+        "index": 0,
+        "serial": "emulator-5580",
+        "android_user": 11,
+        "status": "STOPPED_DATA_RETAINED"
+      },
+      {
+        "index": 1,
+        "serial": "emulator-5582",
+        "android_user": 12,
+        "status": "STOPPED_DATA_RETAINED"
+      }
+    ],
+    "adb_5038_usb_excluded": true,
+    "phone": "NOT_USED",
+    "candidate": 1010902,
+    "apk_sha256": "d275dacce4ade375bb209756f2b6c8c316de59ec80efea738f5dcbefc5968cd0",
+    "final_apk_local_path": "%USERPROFILE%/EliteSyncDev/v1015-current-dev/v1019-current/candidate-1010902-private.apk"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/ac01-accepted.png",
+      "sha256": "c8b33a756628a05976d3ae3d39dee47856a93190b0ab6756211488f08f38d29c",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac02-author-independent.png",
+      "sha256": "694d82e8d97ca6f96d0e795bb3e5f0e18f2ef0dff2cba4df16239373b99905e6",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac02-unavailable-placeholder.png",
+      "sha256": "15e73951cb6e6172f642b4aa6369131837810d6712e0098258f441584aee9ec4",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac04-confirmed-after-restart.png",
+      "sha256": "6066cc0f2ffd8fe098f1e2d67714f3ea5bab4ecce02f0a256e53aa822cc05407",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac04-terminal-notification.png",
+      "sha256": "06ee12471937c6799b24ee2fb16b88e1efbd60e1793ce3dc2cf907c5d057f6ec",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac05-completed-confirmed.png",
+      "sha256": "453ed8d107d52b125df5d31b1d6196961f37c13443db756534e122fc381f2e48",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac05-terminal-notification.png",
+      "sha256": "d2836ae153d94fc95bba9faed5c671191bd9f7f7f0a73752e1f77317d8d64032",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    },
+    {
+      "path": "evidence/ac06-favorites-after-restart.png",
+      "sha256": "ca3eca83b6089141f0fef4ce208e1ec3aacbc926180ff72a07e37b44b744cc0e",
+      "candidate": 1010902,
+      "content": "Manually inspected fictional development UI, settled before capture"
+    }
+  ],
+  "private_evidence_policy": "Full HTTP/UI/DB read receipts, raw images, APKs, credentials, databases and private tools stay on Owner PC"
+}

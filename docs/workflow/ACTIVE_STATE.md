@@ -1,10 +1,14 @@
-# 当前入口 2026-11-14 v10.1.9实现进行中
+# 当前入口 2026-11-14 v10.1.9集中工程交付
 
-**LOCAL_DOCS_SYNCED**，北京时间`2026-11-14T10:12:51.864247+08:00`。稳定根`D:\EliteSync-v10-product-v1015-20261101`，分支`codex/v10.1.9-social-buddy-activities-20261114`，开工HEAD及远端固定任务提交`b429f5a56cb3878aad285405b9d5c3928da166ac`，已接受基线`be0112ac53fc0ab3d3bfaf360552b020bcca3476`。指定10份任务、Owner决定、工作流及会话交接文档已逐一核对本地Git Blob与固定提交相等。
+**ENGINEERING_DELIVERED_ADVISOR_PENDING**，六项AC工程结果均PASS。见[v10.1.9实施报告](../versions/v10.1.9/IMPLEMENTATION_REPORT.md)、[manifest](../versions/v10.1.9/artifact_manifest.json)和[证据摘要](../versions/v10.1.9/EVIDENCE_SUMMARY.json)。当前等待新GPT顾问会话验收，本版Owner最终接受PENDING。
 
-开始时index为空，工作区仅受保护`%SystemDrive%/`未跟踪目录。原主库dirty/index/diff已记录保护基线，私有配置、数据库和AVD保留。按[任务](../versions/v10.1.9/task_order.md)及[冻结计划](../versions/v10.1.9/plan.md)连续实现，工程自验IN_PROGRESS，六项AC尚待本版实际验证。当前候选仍为1010805，本版1010901尚未构建。
+稳定根`D:\EliteSync-v10-product-v1015-20261101`，分支`codex/v10.1.9-social-buddy-activities-20261114`。最终APP/后端源码`dfcef55a9801e2b2a4e80c59013f35c2f0d82ef6`，候选`10.1.9-dev / 1010902`，APK SHA256 `d275dacce4ade375bb209756f2b6c8c316de59ec80efea738f5dcbefc5968cd0`，既有包名、签名和安卓用户11/12数据沿用。最终交付以包含本入口及报告的固定提交为准，回读结果见交付回复。
 
-v10.1.8已获顾问及Owner范围接受、R1-01 CLOSED。当前先接通用途联系人、作者动态及真实收藏，再推进Buddy发现/参与与平台链。必要服务实读DB/API/WS/SFU均running，双模拟器暂沿上一节点停止状态，启动前按需重核。手机本版不使用。集中交付、固定回读后停下供新顾问验收。
+好友/请求与合法聊天、作者动态/Showcase分权、真实收藏与失效占位、显式搭子发现及双来源闭环、两席三账号平台候补/转正/取消、终态通知、重登/冷启和DB/API/WS统一重启读回已完成。最终PHP 41项/1250断言、Flutter 74项、15份改动Dart分析通过。全仓analyze仍有12项基线既有测试/提示问题，详见报告。
+
+开工`LOCAL_DOCS_SYNCED`回执时间`2026-11-14T10:12:51.864247+08:00`，固定任务`b429f5a56cb3878aad285405b9d5c3928da166ac`的10份文档已核对。原主库dirty/index/diff保护基线匹配，受保护`%SystemDrive%/`保留。Owner出门期间已明确要求继续模拟器开发，本版实际使用双模拟器。
+
+资源实读`2026-11-14T12:09:08.960013+08:00`，DB/API/WS/SFU running，Room0，双APP和AVD已停止且数据保留，ADB5038 USB排除通过。私有原证、APK及工具在Owner本机v1019-current目录。真实Push `REAL_PUSH_PROVIDER_PENDING`，旧非注入SFU精确根因`UNKNOWN`，手机`NOT_USED`。本版集中交付后停下供顾问验收。
 
 ---
 
