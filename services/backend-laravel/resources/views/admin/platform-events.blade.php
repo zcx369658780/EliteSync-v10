@@ -86,7 +86,12 @@
         <form method="post" action="/admin/platform-events/{{ $eventId }}/actions">
             @csrf
             <input type="hidden" name="action" value="invite"><input type="hidden" name="revision" value="{{ $event['revision'] }}"><input type="hidden" name="idempotency_key" value="{{ (string) \Illuminate\Support\Str::uuid() }}">
-            <div class="field"><label>明确受邀合成用户ID<input name="recipient_id" type="number" min="1" required></label></div>
+            <div class="field"><label>选择当前可邀请的开发参与者<select name="recipient_id" required>
+                <option value="">请选择</option>
+                @foreach ($recipients['items'] as $recipient)<option value="{{ $recipient['id'] }}">{{ $recipient['label'] }} · ID {{ $recipient['id'] }}</option>@endforeach
+            </select></label></div>
+            @if ($recipients['has_more'])<p><a href="{{ request()->fullUrlWithQuery(['recipient_cursor'=>$recipients['next_cursor']]) }}">下一页可邀请参与者</a></p>@endif
+            @if (request()->has('recipient_cursor'))<p><a href="/admin/platform-events">返回首批可邀请参与者</a></p>@endif
             <div class="field"><label>邀请理由<input name="reason" minlength="5" maxlength="500" required></label></div>
             <label class="confirmation"><input name="confirm" type="checkbox" value="1" required>确认仅邀请明确指定的开发合成用户；由用户自主报名。</label>
             <button type="submit">发出定向邀请</button>
@@ -140,6 +145,9 @@
 @empty
 <p class="panel">尚无平台合成活动，请先保存草稿。</p>
 @endforelse
+
+@if ($eventMeta['has_more'])<p><a href="{{ request()->fullUrlWithQuery(['event_cursor'=>$eventMeta['next_cursor']]) }}">更早的平台活动</a></p>@endif
+@if (request()->has('event_cursor'))<p><a href="{{ request()->fullUrlWithQuery(['event_cursor'=>null]) }}">返回最近平台活动</a></p>@endif
 
 <section class="panel" style="margin-top:2rem">
     <h2>内部Safety复核队列（最多30项）</h2>

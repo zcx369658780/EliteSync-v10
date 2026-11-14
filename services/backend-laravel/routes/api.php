@@ -124,6 +124,10 @@ Route::prefix('v1')->group(function () {
         });
         $buddy = \App\Http\Controllers\Api\V1\BuddyController::class;
         Route::middleware([\App\Http\Middleware\JourneyPrivateResponse::class, 'throttle:30,1'])->group(function () use ($buddy) {
+            $discovery = \App\Http\Controllers\Api\V1\BuddyDiscoveryController::class;
+            Route::get('/buddy/discovery', [$discovery, 'index']);
+            Route::post('/buddy/discovery/{publication}/apply', [$discovery, 'apply'])->whereNumber('publication');
+            Route::post('/buddy/{id}/discovery', [$discovery, 'publish'])->whereUuid('id');
             Route::get('/buddy', [$buddy, 'index']);
             Route::put('/buddy/preferences', [$buddy, 'preferences']);
             Route::post('/buddy/activities', [$buddy, 'store']);

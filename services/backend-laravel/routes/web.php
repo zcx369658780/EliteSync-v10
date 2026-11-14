@@ -39,6 +39,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/safety-cases/{id}/decisions', [$platform, 'decide'])->whereUuid('id');
         Route::post('/safety-cases/{id}/reviews', [$platform, 'review'])->whereUuid('id');
         Route::get('/buddy-community', [\App\Http\Controllers\Web\BuddyCommunityController::class, 'index'])->name('buddy-community');
+        Route::post('/buddy-community/discovery/{publication}/withdraw', [\App\Http\Controllers\Web\BuddyCommunityController::class, 'withdrawDiscovery'])->whereNumber('publication')->name('buddy-community.discovery.withdraw');
         Route::post('/buddy-community/comments/{reportId}/hide', [\App\Http\Controllers\Web\BuddyCommunityController::class, 'hide'])->whereNumber('reportId')->name('buddy-community.hide');
         Route::get('/questions', [AdminQuestionController::class, 'index'])->name('questions');
         Route::post('/questions/preview', [AdminQuestionController::class, 'preview'])->name('questions.preview');

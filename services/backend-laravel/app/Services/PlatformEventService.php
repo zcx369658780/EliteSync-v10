@@ -97,11 +97,13 @@ final class PlatformEventService
 
     private function terminate(object $event,string $state,?int $actor): void
     {
+        $recipients=DB::table('platform_event_registrations')->where('event_id',$event->id)->whereIn('state',self::ACTIVE)->pluck('user_id');
         $event->state=$state;
         DB::table('platform_event_grants')->where('event_id',$event->id)->whereIn('state',['PENDING','CONSUMED'])->update(['state'=>'REVOKED','updated_at'=>now()]);
         DB::table('platform_event_registrations')->where('event_id',$event->id)->whereIn('state',self::ACTIVE)
             ->update(['state'=>$state==='EXPIRED'?'EXPIRED':'CANCELLED_BY_ORGANIZER','revision'=>DB::raw('revision+1'),'updated_at'=>now()]);
         $this->touch($event,$actor,$state);
+        foreach($recipients as $recipient)$this->notify($event,(int)$recipient);
     }
 
     private function command(int $actor,object $event,array $data,callable $work,bool $admin=false): array
@@ -124,29 +126,77 @@ final class PlatformEventService
     private function notify(object $event,int $to): void
     {
         app(NotificationService::class)->createForUser($to,'platform_event','活动状态已更新','请查看当前有权状态',
-            ['platform_event_id'=>$event->id,'revision'=>$event->revision]);
+            ['platform_event_id'=>$event->id,'revision'=>$event->revision],
+            sourceEventKey: 'platform_event:'.$event->id.':'.$event->revision);
     }
 
-    public function listing(int $actor): array
+    public function listing(int $actor, int $limit = 20, ?string $cursor = null): array
     {
         DB::transaction(function()use($actor){app(PlatformAccess::class)->users([$actor]);abort_unless(app(PlatformAccess::class)->available($actor,true),403);});
-        $ids=DB::table('platform_event_registrations')->where('user_id',$actor)->orderByDesc('created_at')->limit(30)->pluck('event_id');
-        $items=[];$tickets=[];$reportContexts=[];
-        foreach($ids as $id){
+        $position=$cursor?DB::table('platform_event_registrations')->where('user_id',$actor)->where('id',$cursor)->first(['id','created_at']):null;
+        abort_if($cursor&&!$position,422,'invalid cursor');
+        $registrations=DB::table('platform_event_registrations')->where('user_id',$actor)
+            ->when($position,fn($q)=>$q->where(fn($q)=>$q->where('created_at','<',$position->created_at)
+                ->orWhere(fn($q)=>$q->where('created_at',$position->created_at)->where('id','<',$position->id))))
+            ->orderByDesc('created_at')->orderByDesc('id')->limit($limit+1)->get(['id','event_id']);
+        $page=$registrations->take($limit);
+        $items=[];$tickets=[];$reportContexts=[];$history=[];
+        foreach($page as $registration){
+            $id=$registration->event_id;
             $context=$this->run($actor,$id,fn($event)=>app(SafetyParticipation::class)->context($event,$actor),false,[],true);
             if($context)$reportContexts[]=$context;
+            try{$items[]=$this->show($actor,$id);}catch(HttpException $e){
+                if($e->getStatusCode()!==404)throw $e;
+                $receipt=$this->minimalResult($actor,$id);
+                if(!$receipt)continue;
+                if(in_array('cancel',$receipt['allowed_actions'],true))$tickets[]=$receipt;
+                else $history[]=$receipt;
+            }
         }
-        foreach($ids as $id){try{$items[]=$this->show($actor,$id);}catch(HttpException $e){
+        $more=$registrations->count()>$limit;
+        return ['items'=>$items,'exit_tickets'=>$tickets,'report_contexts'=>$reportContexts,'history'=>$history,
+            'meta'=>['has_more'=>$more,'next_cursor'=>$more?$page->last()->id:null],
+            'notice'=>'DEV_SYNTHETIC_EVENT / NOT_REAL_BOOKING；无真实费用与出席认定'];
+    }
+
+    private function minimalResult(int $actor, string $id): ?array
+    {
+        return $this->run($actor,$id,function($event)use($actor){
+            $registration=$this->registration($event,$actor);
+            if(!app(PlatformAccess::class)->available($actor,true)||!$registration)return null;
+            $canExit=in_array($registration->state,self::ACTIVE,true)&&in_array($event->state,['OPEN','CLOSED','COMPLETED'],true);
+            return ['id'=>$event->id,'revision'=>(int)$event->revision,'state'=>$event->state,
+                'registration_state'=>$registration->state,'allowed_actions'=>$canExit?['cancel']:[]];
+        },false,[],true);
+    }
+
+    public function notificationTarget(int $actor, string $id): array
+    {
+        try{return $this->show($actor,$id);}catch(HttpException $e){
             if($e->getStatusCode()!==404)throw $e;
-            $ticket=$this->run($actor,$id,function($event)use($actor){
-                $a=app(PlatformAccess::class);$r=$this->registration($event,$actor);
-                if(!$a->available($actor,true)||!$r||!in_array($r->state,self::ACTIVE,true)
-                    ||!in_array($event->state,['OPEN','CLOSED','COMPLETED'],true))return null;
-                return ['id'=>$event->id,'revision'=>(int)$event->revision,'registration_state'=>$r->state,'allowed_actions'=>['cancel']];
-            });
-            if($ticket)$tickets[]=$ticket;
-        }}
-        return ['items'=>$items,'exit_tickets'=>$tickets,'report_contexts'=>$reportContexts,'notice'=>'DEV_SYNTHETIC_EVENT / NOT_REAL_BOOKING；无真实费用与出席认定'];
+            $receipt=$this->minimalResult($actor,$id);
+            abort_unless($receipt&&$receipt['allowed_actions']===[],404,'unavailable');
+            return $receipt;
+        }
+    }
+
+    public function inviteCandidates(int $actor, ?int $cursor = null): array
+    {
+        $users=User::query()->where('is_synthetic',true)->where('disabled',false)->where('account_status','active')
+                ->where('moderation_status','normal')->where('id','<>',$actor)
+                ->when($cursor,fn($q)=>$q->where('id','>',$cursor))->orderBy('id')->limit(201)->get(['id']);
+        return DB::transaction(function()use($actor,$cursor,$users){
+            app(PlatformAccess::class)->users(array_merge([$actor],$users->take(200)->pluck('id')->all()));
+            app(PlatformAccess::class)->admin($actor);
+            $items=[];$last=$cursor;$scanned=0;
+            foreach($users->take(200) as $user){
+                $last=(int)$user->id;$scanned++;
+                if(app(PlatformAccess::class)->available((int)$user->id)&&app(SocialPolicy::class)->pairAllowed($actor,(int)$user->id))$items[]=['id'=>(int)$user->id,'label'=>'开发参与者 ES-'.$user->id];
+                if(count($items)===20)break;
+            }
+            $more=$users->count()>$scanned;
+            return ['items'=>$items,'has_more'=>$more,'next_cursor'=>$more?$last:null];
+        });
     }
 
     public function show(int $actor,string $id): array
@@ -170,14 +220,20 @@ final class PlatformEventService
         });
     }
 
-    public function adminListing(int $actor): array
+    public function adminListing(int $actor, ?string $cursor = null): array
     {
         DB::transaction(function()use($actor){app(PlatformAccess::class)->users([$actor]);app(PlatformAccess::class)->admin($actor);});
+        $position=$cursor?DB::table('platform_events')->where('id',$cursor)->first(['id','created_at']):null;
+        abort_if($cursor&&!$position,422,'invalid event cursor');
+        $candidates=DB::table('platform_events')->when($position,fn($q)=>$q->where(fn($q)=>$q->where('created_at','<',$position->created_at)
+            ->orWhere(fn($q)=>$q->where('created_at',$position->created_at)->where('id','<',$position->id))))
+            ->orderByDesc('created_at')->orderByDesc('id')->limit(21)->get(['id']);
         $items=[];
-        foreach(DB::table('platform_events')->orderByDesc('created_at')->limit(30)->pluck('id') as $id){
-            $items[]=$this->run($actor,$id,fn($e)=>$this->shape($e,$actor,true),true);
+        foreach($candidates->take(20) as $candidate){
+            $items[]=$this->run($actor,$candidate->id,fn($e)=>$this->shape($e,$actor,true),true);
         }
-        return $items;
+        $more=$candidates->count()>20;
+        return ['items'=>$items,'meta'=>['has_more'=>$more,'next_cursor'=>$more?$candidates[19]->id:null]];
     }
 
     public function adminAction(int $actor,string $id,array $d): array
@@ -189,8 +245,17 @@ final class PlatformEventService
             $candidate=DB::table('platform_event_registrations')->where('id',$d['registration_id'])->where('event_id',$id)->first(['user_id']);
             abort_unless($candidate,404);$extra[]=(int)$candidate->user_id;
         }
-        return $this->run($actor,$id,function($event)use($actor,$d,$candidate){
-            return $this->command($actor,$event,$d,function()use($actor,$event,$d,$candidate){
+        if(($d['action']??'')==='revoke'){
+            $grantRecipient=DB::table('platform_event_grants')->where('id',$d['grant_id'])->where('event_id',$id)->value('recipient_id');
+            if($grantRecipient)$extra[]=(int)$grantRecipient;
+        }
+        $waiterUsers=[];
+        if(($d['action']??'')==='promote'){
+            $waiterUsers=DB::table('platform_event_registrations')->where('event_id',$id)->where('state','WAITLISTED')->pluck('user_id')->map(fn($id)=>(int)$id)->all();
+            $extra=array_merge($extra,$waiterUsers);
+        }
+        return $this->run($actor,$id,function($event)use($actor,$d,$candidate,$waiterUsers){
+            return $this->command($actor,$event,$d,function()use($actor,$event,$d,$candidate,$waiterUsers){
                 $before=['state'=>$event->state,'revision'=>$event->revision];$action=$d['action'];$token=null;
                 $budget=DB::table('platform_event_budgets')->where('event_id',$event->id)->lockForUpdate()->first();
                 if($action==='budget')$before['budget']=array_intersect_key((array)$budget,array_flip(['currency_code','venue_cost','materials_cost','travel_cost','total','state','revision']));
@@ -229,7 +294,10 @@ final class PlatformEventService
                     $reserved=DB::table('platform_event_registrations')->where('event_id',$event->id)->whereIn('state',['APPLIED','CONFIRMED'])->lockForUpdate()->get();
                     if($action==='promote'){
                         abort_if($reserved->count()>=(int)$event->capacity,409,'no capacity');
-                        $first=DB::table('platform_event_registrations')->where('event_id',$event->id)->where('state','WAITLISTED')->orderBy('wait_order')->orderBy('id')->lockForUpdate()->first();
+                        $waiters=DB::table('platform_event_registrations')->where('event_id',$event->id)->where('state','WAITLISTED')->orderBy('wait_order')->orderBy('id')->lockForUpdate()->get();
+                        // The locator snapshot never authorizes locking a newly arrived user after the event lock.
+                        abort_if($waiters->contains(fn($waiter)=>!in_array((int)$waiter->user_id,$waiterUsers,true)),409,'waitlist changed; reread');
+                        $first=$waiters->first(fn($waiter)=>$this->readable($event,(int)$waiter->user_id));
                         abort_unless($first&&$first->id===$r->id,409,'oldest waitlisted participant first');
                     }
                     abort_if($reserved->where('state','CONFIRMED')->count()>=(int)$event->capacity,409,'no capacity');
@@ -241,6 +309,10 @@ final class PlatformEventService
                 OperationAudit::record($actor,'platform_event.'.$action,'platform_event',$event->id,$d['reason'],(int)$d['revision'],$before,$after);
                 if(isset($to)&&$to)$this->notify($event,$to);
                 if(isset($r))$this->notify($event,(int)$r->user_id);
+                if(in_array($action,['close','complete'],true)){
+                    foreach(DB::table('platform_event_registrations')->where('event_id',$event->id)->whereIn('state',self::ACTIVE)->pluck('user_id') as $recipient)$this->notify($event,(int)$recipient);
+                }
+                if($action==='revoke'&&$grant->recipient_id)$this->notify($event,(int)$grant->recipient_id);
                 $result=$this->shape($event,$actor,true);
                 if($token)$result['issued_token']=$token;
                 return $result;
@@ -276,7 +348,7 @@ final class PlatformEventService
                 $order=$state==='WAITLISTED'?((int)DB::table('platform_event_registrations')->where('event_id',$event->id)->max('wait_order')+1):$r->wait_order;
                 DB::table('platform_event_registrations')->where('id',$r->id)->update(['state'=>$state,'wait_order'=>$order,'revision'=>$r->revision+1,'updated_at'=>now()]);
                 $this->touch($event,$actor,$d['action'],['registration_id'=>$r->id,'registration_state'=>$state]);
-                if($cancel)return ['id'=>$event->id,'revision'=>$event->revision,'state'=>$state];
+                if($cancel){$this->notify($event,$actor);return ['id'=>$event->id,'revision'=>$event->revision,'state'=>$state];}
                 $this->notify($event,$actor);
                 return $this->shape($event,$actor);
             });
@@ -314,7 +386,11 @@ final class PlatformEventService
             DB::table('platform_event_grants')->where('event_id',$id)->whereIn('recipient_id',[$a,$b])->update(['state'=>'REVOKED','updated_at'=>now()]);
             DB::table('platform_event_registrations')->where('event_id',$id)->whereIn('user_id',[$a,$b])->whereIn('state',self::ACTIVE)
                 ->update(['state'=>'CANCELLED_BY_ORGANIZER','revision'=>DB::raw('revision+1'),'updated_at'=>now()]);
-            $this->touch($event,null,'SOURCE_REVOKED',['affected_registration_ids'=>$shared->whereIn('state',self::ACTIVE)->pluck('id')->all()]);
+            $affected=$shared->whereIn('state',self::ACTIVE);
+            if($affected->isNotEmpty()){
+                $this->touch($event,null,'SOURCE_REVOKED',['affected_registration_ids'=>$affected->pluck('id')->all()]);
+                foreach($affected as $registration)$this->notify($event,(int)$registration->user_id);
+            }
         }
     }
 
@@ -324,8 +400,14 @@ final class PlatformEventService
         foreach(DB::table('platform_events')->where('organizer_id',$id)->orderBy('id')->lockForUpdate()->get() as $e){
             if(in_array($e->state,['DRAFT','OPEN','CLOSED'],true))$this->terminate($e,'CANCELLED',null);
         }
-        DB::table('platform_event_grants')->where('recipient_id',$id)->update(['state'=>'REVOKED','updated_at'=>now()]);
-        DB::table('platform_event_registrations')->where('user_id',$id)->whereIn('state',self::ACTIVE)
-            ->update(['state'=>'CANCELLED_BY_ORGANIZER','revision'=>DB::raw('revision+1'),'updated_at'=>now()]);
+        foreach(DB::table('platform_event_registrations')->where('user_id',$id)->whereIn('state',self::ACTIVE)->orderBy('event_id')->get(['id','event_id']) as $candidate){
+            $event=DB::table('platform_events')->where('id',$candidate->event_id)->lockForUpdate()->first();
+            $registration=DB::table('platform_event_registrations')->where('id',$candidate->id)->whereIn('state',self::ACTIVE)->lockForUpdate()->first();
+            if(!$registration)continue;
+            DB::table('platform_event_grants')->where('id',$registration->grant_id)->update(['state'=>'REVOKED','updated_at'=>now()]);
+            DB::table('platform_event_registrations')->where('id',$registration->id)->update(['state'=>'CANCELLED_BY_ORGANIZER','revision'=>$registration->revision+1,'updated_at'=>now()]);
+            $this->touch($event,null,'ACCOUNT_REVOKED',['affected_registration_ids'=>[$registration->id]]);
+            $this->notify($event,$id);
+        }
     }
 }

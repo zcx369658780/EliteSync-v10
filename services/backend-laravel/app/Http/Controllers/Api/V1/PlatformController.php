@@ -10,7 +10,10 @@ use Illuminate\Http\Request;
 
 final class PlatformController extends Controller
 {
-    public function index(Request $r,PlatformEventService $s){return response()->json($s->listing((int)$r->user()->id));}
+    public function index(Request $r,PlatformEventService $s){
+        $d=$r->validate(['limit'=>'sometimes|integer|min:1|max:20','cursor'=>'nullable|uuid']);
+        return response()->json($s->listing((int)$r->user()->id,(int)($d['limit']??20),$d['cursor']??null));
+    }
     public function show(Request $r,string $id,PlatformEventService $s){return response()->json($s->show((int)$r->user()->id,$id));}
     public function redeem(Request $r,PlatformEventService $s,PlatformInput $input){
         $d=$input->validate($r,$input->key()+['token'=>'required|string|size:64|regex:/^[a-f0-9]+$/']);

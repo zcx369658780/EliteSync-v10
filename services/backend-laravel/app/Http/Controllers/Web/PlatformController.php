@@ -12,7 +12,9 @@ use Illuminate\Support\Carbon;
 final class PlatformController extends Controller
 {
     public function index(Request $r,PlatformEventService $events,SafetyCaseService $cases){
-        return view('admin.platform-events',['events'=>$events->adminListing((int)$r->user()->id),'cases'=>$cases->adminListing((int)$r->user()->id)]);
+        $d=$r->validate(['recipient_cursor'=>'nullable|integer|min:1','event_cursor'=>'nullable|uuid']);
+        $eventPage=$events->adminListing((int)$r->user()->id,$d['event_cursor']??null);
+        return view('admin.platform-events',['eventMeta'=>$eventPage['meta'],'recipients'=>$events->inviteCandidates((int)$r->user()->id,isset($d['recipient_cursor'])?(int)$d['recipient_cursor']:null),'events'=>$eventPage['items'],'cases'=>$cases->adminListing((int)$r->user()->id)]);
     }
     public function store(Request $r,PlatformEventService $s,PlatformInput $input){
         $s->create((int)$r->user()->id,$input->create($r));return redirect('/admin/platform-events')->with('status','合成活动草稿已保存，无真实预订或付款。');
