@@ -6,6 +6,14 @@
     <strong>DEV_SYNTHETIC_EVENT · NOT_REAL_BOOKING</strong>
     <p>仅供虚构开发演练：没有真实招募、场地预订、支付或线下到场认定。预算只在管理端模拟；报名不建立好友、私信或恋爱关系。</p>
 </div>
+<section class="panel"><h2>开发虚构账号设置</h2><p>仅用于本机虚构开发资料。管理员明确确认后才标记为开发参与者，报名仍由账号本人决定。</p>
+<form method="post" action="/admin/platform-events/development-participants">@csrf
+<label>选择虚构开发账号<select name="user_id" required><option value="">请选择</option>
+@foreach($developmentParticipants->take(20) as $participant)<option value="{{ $participant->id }}">待标记账号 ES-{{ $participant->id }}</option>@endforeach
+</select></label><label>具名理由<input name="reason" minlength="5" maxlength="500" required></label>
+<label><input name="confirm" type="checkbox" value="1" required>确认所选为虚构开发账号</label><button>标记为开发参与者</button></form>
+@if($developmentParticipants->count()>20)<a href="{{ request()->fullUrlWithQuery(['development_cursor'=>$developmentParticipants[19]->id]) }}">下一批待标记账号</a>@endif
+@if(request()->has('development_cursor'))<a href="{{ request()->fullUrlWithQuery(['development_cursor'=>null]) }}">返回首批待标记账号</a>@endif</section>
 @if (session('issued_token'))
 <section class="panel" aria-label="本次活动邀请凭据">
     <h2>本次新邀请凭据（仅显示一次）</h2>
@@ -32,7 +40,7 @@
     </form>
 </section>
 
-<h2>受控活动（最多30项）</h2>
+<h2>受控活动</h2>
 @forelse ($events as $event)
 @php
     $budget = $event['budget'];

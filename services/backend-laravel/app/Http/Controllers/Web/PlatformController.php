@@ -8,13 +8,38 @@ use App\Services\PlatformInput;
 use App\Services\SafetyCaseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 final class PlatformController extends Controller
 {
+    public function developmentParticipant(Request $request, \App\Services\PlatformAccess $access)
+    {
+        $data = $request->validate(['user_id' => 'required|integer|min:1', 'reason' => 'required|string|min:5|max:500',
+            'confirm' => 'required|accepted']);
+        $access->gate();
+        abort_unless(app()->environment(['local', 'testing']), 404);
+        DB::transaction(function () use ($request, $access, $data) {
+            $actor = (int) $request->user()->id;
+            $access->users([$actor, (int) $data['user_id']]);
+            $access->admin($actor);
+            $user = \App\Models\User::whereKey($data['user_id'])->lockForUpdate()->firstOrFail();
+            abort_unless($user->id !== $actor && !$user->disabled && $user->account_status === 'active'
+                && $user->moderation_status === 'normal' && $user->role === 'user', 409);
+            $before = (bool) $user->is_synthetic;
+            $user->is_synthetic = true;
+            $user->save();
+            \App\Services\Admin\OperationAudit::record($actor, 'platform_event.development_participant', 'user', $user->id,
+                trim($data['reason']), null, ['is_synthetic' => $before], ['is_synthetic' => true]);
+        });
+        return redirect('/admin/platform-events');
+    }
     public function index(Request $r,PlatformEventService $events,SafetyCaseService $cases){
-        $d=$r->validate(['recipient_cursor'=>'nullable|integer|min:1','event_cursor'=>'nullable|uuid']);
+        $d=$r->validate(['recipient_cursor'=>'nullable|integer|min:1','event_cursor'=>'nullable|uuid','development_cursor'=>'nullable|integer|min:1']);
         $eventPage=$events->adminListing((int)$r->user()->id,$d['event_cursor']??null);
-        return view('admin.platform-events',['eventMeta'=>$eventPage['meta'],'recipients'=>$events->inviteCandidates((int)$r->user()->id,isset($d['recipient_cursor'])?(int)$d['recipient_cursor']:null),'events'=>$eventPage['items'],'cases'=>$cases->adminListing((int)$r->user()->id)]);
+        $developmentParticipants = \App\Models\User::where('is_synthetic', false)->where('role', 'user')
+            ->where('disabled', false)->where('account_status', 'active')->where('moderation_status', 'normal')
+            ->where('id', '>', $d['development_cursor'] ?? 0)->orderBy('id')->limit(21)->get(['id']);
+        return view('admin.platform-events',['developmentParticipants'=>$developmentParticipants,'eventMeta'=>$eventPage['meta'],'recipients'=>$events->inviteCandidates((int)$r->user()->id,isset($d['recipient_cursor'])?(int)$d['recipient_cursor']:null),'events'=>$eventPage['items'],'cases'=>$cases->adminListing((int)$r->user()->id)]);
     }
     public function store(Request $r,PlatformEventService $s,PlatformInput $input){
         $s->create((int)$r->user()->id,$input->create($r));return redirect('/admin/platform-events')->with('status','合成活动草稿已保存，无真实预订或付款。');

@@ -179,5 +179,31 @@ final class V1019BuddyDiscoveryTest extends TestCase
         $this->actingAs($admin, 'web')->post('/admin/buddy-community/discovery/'.$activity['discovery']['publication_id'].'/withdraw', $form)->assertRedirect();
         $this->actingAs($guest, 'sanctum')->getJson('/api/v1/buddy/'.$activity['id'])->assertOk()->assertJsonPath('state', 'REQUESTED');
     }
+
+    public function test_early_start_limits_publication_and_filtered_scan_keeps_actual_cursor(): void
+    {
+        $owner = $this->person(); $guest = $this->person();
+        $activity = $this->activity($owner);
+        // Isolated clock/scan fixtures, never ordinary product success evidence.
+        $start = now()->addHour()->startOfSecond();
+        DB::table('buddy_activities')->where('id', $activity['id'])->update(['start_at' => $start]);
+        $activity = $this->publish($owner, $activity);
+        $this->assertSame($start->format('Y-m-d H:i:s'), $activity['discovery']['expires_at']);
+        $template = (array) DB::table('buddy_activities')->where('id', $activity['id'])->first();
+        for ($i = 0; $i < 200; $i++) {
+            $id = (string) \Illuminate\Support\Str::uuid();
+            DB::table('buddy_activities')->insert(array_replace($template, ['id' => $id]));
+            DB::table('buddy_discovery_publications')->insert(['activity_id' => $id, 'generation' => 1,
+                'owner_epoch' => 0, 'author_label' => 'stale permission fixture', 'state' => 'PUBLISHED',
+                'published_at' => now(), 'expires_at' => $start, 'created_at' => now(), 'updated_at' => now()]);
+        }
+        $page = $this->actingAs($guest, 'sanctum')->getJson('/api/v1/buddy/discovery?city=线上&type=STUDY')->assertOk();
+        $page->assertJsonCount(0, 'items')->assertJsonPath('has_more', true);
+        $cursor = $page->json('next_cursor');
+        $this->getJson('/api/v1/buddy/discovery?city=线上&type=STUDY&cursor='.$cursor)->assertOk()
+            ->assertJsonCount(1, 'items')->assertJsonPath('has_more', false);
+        $this->travel(61)->minutes();
+        $this->getJson('/api/v1/buddy/discovery?city=线上&type=STUDY')->assertOk()->assertJsonCount(0, 'items');
+    }
 }
 

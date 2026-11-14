@@ -59,6 +59,22 @@ final class V1019PlatformEventsTest extends TestCase
         return $this->events->action($user->id,$id,['action'=>$action,'revision'=>$this->revision($id),'idempotency_key'=>(string)Str::uuid()]);
     }
 
+    public function test_development_classification_requires_current_admin_and_does_not_create_participation(): void
+    {
+        $user = $this->person('19900001998', ['is_synthetic' => false]);
+        $form = ['user_id' => $user->id, 'reason' => 'Known fictional development account', 'confirm' => 1];
+        $this->actingAs($user, 'web')->post('/admin/platform-events/development-participants', $form)->assertForbidden();
+        \Illuminate\Support\Facades\Auth::guard('web')->logout();
+        $this->admin->update(['password' => \Illuminate\Support\Facades\Hash::make('development-test-password')]);
+        $this->post('/admin/login', ['phone' => $this->admin->phone, 'password' => 'development-test-password'])->assertRedirect();
+        $this->withCookie(config('session.cookie'), session()->getId())->withCredentials();
+        $this->post('/admin/platform-events/development-participants', $form)->assertRedirect('/admin/platform-events');
+        $this->assertDatabaseHas('users', ['id' => $user->id, 'is_synthetic' => true]);
+        $this->assertDatabaseHas('admin_operation_audits', ['action' => 'platform_event.development_participant', 'target_id' => (string) $user->id]);
+        $this->assertDatabaseCount('platform_event_registrations', 0);
+        $this->assertDatabaseCount('friendships', 0);
+    }
+
     public function test_bounded_pages_keep_terminal_history_and_notifications_safe(): void
     {
         $user=$this->person('19900001991');

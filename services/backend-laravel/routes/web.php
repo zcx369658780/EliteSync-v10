@@ -32,6 +32,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         $platform = \App\Http\Controllers\Web\PlatformController::class;
         Route::get('/platform-events', [$platform, 'index'])->name('platform-events');
         Route::post('/platform-events', [$platform, 'store']);
+        Route::post('/platform-events/development-participants', [$platform, 'developmentParticipant']);
         Route::post('/platform-events/{id}/actions', [$platform, 'action'])->whereUuid('id');
         Route::get('/safety-cases/{id}', [$platform, 'detail'])->whereUuid('id');
         Route::get('/safety-cases/{id}/evidence', [$platform, 'evidence'])->whereUuid('id');
