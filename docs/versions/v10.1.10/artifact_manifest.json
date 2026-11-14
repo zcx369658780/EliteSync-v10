@@ -1,0 +1,171 @@
+{
+  "schema": "elitesync-v10110-artifact-manifest-v1",
+  "version": "10.1.10",
+  "state": "ENGINEERING_PASS_ADVISOR_PENDING",
+  "branch": "codex/v10.1.10-self-knowledge-specialty-tools-20261114",
+  "task_parent": "8e74d1f7496f066a586afb1e5653ed563b64c46d",
+  "task_documents": "ffbc2a3c2e03f7128e78a75eca108a114f9eb0c0",
+  "local_docs_synced_at": "2026-11-14T15:15:32.264946+08:00",
+  "app_source": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+  "backend_source": "b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd",
+  "candidate": {
+    "source_commit": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+    "version_code": 1011002,
+    "version_name": "10.1.10-dev",
+    "package": "com.elitesync.v1015dev",
+    "apk_sha256": "304f7f17dfe3b12d74fb1a9d2c48ac65c44d1a627b4ffec30a43edd552709b64",
+    "apk_bytes": 123898166,
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42"
+  },
+  "changed_source_paths": [
+    "apps/android/app/build.gradle.kts",
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/dynamic_chart_page.dart",
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/mbti_center_page.dart",
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/pages/natal_restoration_page.dart",
+    "apps/flutter_elitesync_module/lib/features/profile/presentation/widgets/tool_revision_history.dart",
+    "apps/flutter_elitesync_module/test/features/profile/dynamic_chart_page_test.dart",
+    "apps/flutter_elitesync_module/test/features/profile/mbti_center_page_test.dart",
+    "apps/flutter_elitesync_module/test/features/profile/natal_restoration_session_guard_test.dart",
+    "apps/flutter_elitesync_module/test/features/profile/natal_review_fixes_test.dart",
+    "apps/flutter_elitesync_module/test/features/profile/v10110_tool_history_test.dart",
+    "services/backend-laravel/app/Http/Controllers/Api/V1/DynamicChartController.php",
+    "services/backend-laravel/app/Http/Controllers/Api/V1/MbtiProfileController.php",
+    "services/backend-laravel/app/Http/Controllers/Api/V1/NatalProfileController.php",
+    "services/backend-laravel/app/Http/Controllers/Api/V1/ToolRevisionController.php",
+    "services/backend-laravel/app/Models/MbtiAttempt.php",
+    "services/backend-laravel/app/Models/UserToolRevision.php",
+    "services/backend-laravel/app/Services/DynamicChartService.php",
+    "services/backend-laravel/app/Services/ToolRevisionHistory.php",
+    "services/backend-laravel/database/migrations/2026_11_14_150000_add_private_tool_history.php",
+    "services/backend-laravel/routes/api.php",
+    "services/backend-laravel/tests/Feature/MbtiApiVersioningTest.php",
+    "services/backend-laravel/tests/Feature/V10110ToolHistoryTest.php"
+  ],
+  "acceptance": {
+    "AC10-01": "PASS",
+    "AC10-02": "PASS",
+    "AC10-03": "PASS",
+    "AC10-04": "PASS",
+    "AC10-05": "PASS",
+    "AC10-06": "PASS"
+  },
+  "migration": {
+    "id": 83,
+    "migration": "2026_11_14_150000_add_private_tool_history",
+    "batch": 9
+  },
+  "resources": {
+    "at": "2026-11-14T16:36:33.594739+08:00",
+    "containers": [
+      {
+        "name": "/v1015-current-dev-db",
+        "status": "running",
+        "started_at": "2026-11-14T08:26:19.573161264Z"
+      },
+      {
+        "name": "/v1015-current-dev-api",
+        "status": "running",
+        "started_at": "2026-11-14T08:26:23.230410806Z"
+      },
+      {
+        "name": "/v1015-current-dev-ws",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:15.905342048Z"
+      },
+      {
+        "name": "/v1015-current-dev-sfu",
+        "status": "running",
+        "started_at": "2026-11-14T08:26:19.650397521Z"
+      }
+    ],
+    "emulator_A": "STOPPED_DATA_RETAINED",
+    "emulator_B": "NOT_STARTED_THIS_VERSION_DATA_RETAINED",
+    "phone": "NOT_USED",
+    "adb5038_USB_excluded": true,
+    "forwarding": "EMULATOR_A_REVERSES_REMOVED",
+    "independent_precision": "UNVERIFIED"
+  },
+  "intermediate_candidate": {
+    "version_code": 1011001,
+    "source": "b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd",
+    "apk_sha256": "d2ec27ff6fa6f65fcc18369a3f9b6fe95264d359fa9eb7890c698d51bdbca307",
+    "status": "SUPERSEDED_RETAINED_LOCAL"
+  },
+  "delivery_commit": "Resolve containing commit; final exact GitHub readback recorded in delivery reply and local receipt",
+  "sync": "FIXED_COMMIT_READBACK_REQUIRED; failure must be PENDING_SYNC",
+  "public_artifacts": [
+    {
+      "path": "IMPLEMENTATION_REPORT.md",
+      "canonical_LF_sha256": "446a7c5c795f349a68058b8adf6e598ffa68d6a81f72acf7387036fa53866551"
+    },
+    {
+      "path": "EVIDENCE_SUMMARY.json",
+      "canonical_LF_sha256": "aef4a3b4e4fc6243854eb27e2089063b03e390faa270c71ce57104a7563986ca"
+    },
+    {
+      "path": "evidence/final-ac01-mbti-current.png",
+      "sha256": "8cd54e7bd1e72bb27a6ff60812bcb7c51b65d00208be378fad64cc0ae3a832b6",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac01-mbti-history.png",
+      "sha256": "083179f132a33bd69a901c4f27dfe352f54033effe6b1b0b0726858dd785710c",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac02-natal-current.png",
+      "sha256": "174f4ca8af86c2d2049421ce921d515c786e132704a0e2930cab80a6249d172b",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac05-natal-history.png",
+      "sha256": "def887020b443a36933e4ac77235b1ff4336403fd518492a233ffcf08a71b1bc",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac03-transit-current.png",
+      "sha256": "0e6ea621d86a2ed9ee16d9e4a3884678db4135c4518d6f112eed3a84c604e0c4",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac04-comparison-current.png",
+      "sha256": "7f4ea460221085faa139d5678836596192ddfa40ae4f6ad755c66e0a81592bea",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac04-synastry-history.png",
+      "sha256": "9506f8f3f768495814cd6948b51d159c25c2c0ed1df96c03cf9af9779b4259e6",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac05-coldstart-pair.png",
+      "sha256": "d88b3c248d6be3f16f50529d58ce3194abc4288d0bb59c051a00cb99e3e7a4a5",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    }
+  ],
+  "local_only": [
+    "full raw evidence",
+    "APK",
+    "private helper tools",
+    "credentials",
+    "database",
+    "raw device logs"
+  ],
+  "stop": "Await new advisor review; do not enter v10.1.11, merge main or release"
+}

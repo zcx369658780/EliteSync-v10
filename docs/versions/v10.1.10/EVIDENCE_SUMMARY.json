@@ -1,0 +1,433 @@
+{
+  "schema": "elitesync-v10110-evidence-summary-v1",
+  "date": "2026-11-14",
+  "timezone": "Asia/Shanghai",
+  "status": "ENGINEERING_PASS_ADVISOR_PENDING",
+  "app_source": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+  "backend_source": "b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd",
+  "candidate": {
+    "source_commit": "0ffc8e4aaf942f50de7de77e046457e2b3ab6059",
+    "version_code": 1011002,
+    "version_name": "10.1.10-dev",
+    "package": "com.elitesync.v1015dev",
+    "apk_sha256": "304f7f17dfe3b12d74fb1a9d2c48ac65c44d1a627b4ffec30a43edd552709b64",
+    "apk_bytes": 123898166,
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42"
+  },
+  "ordinary_chain": {
+    "kind": "real_APP_API_MariaDB_local_calculators",
+    "fictional_accounts": [
+      16,
+      17,
+      18
+    ],
+    "direct_business_SQL_writes": false,
+    "controlled_success_response": false,
+    "final_candidate": 1011002
+  },
+  "acceptance": {
+    "AC10-01": {
+      "engineering": "PASS",
+      "ordinary": "final APP submit attempt6/INFP, read historical3; API idempotent attempts3/4; relogin6",
+      "controlled": "explicit denial versus 503, immutable retry, account/authority delayed responses",
+      "limitation": "lite3_v1 only, not diagnosis, no matching effect"
+    },
+    "AC10-02": {
+      "engineering": "PASS",
+      "ordinary": "API unknown-time/missing-location partial then real 3-engine computation; final APP correct12:00 to12:02, natal3/rev3, read priorrev2",
+      "controlled": "invalid input, timezone gap, computation failure, superseded results",
+      "independent_precision": "UNVERIFIED"
+    },
+    "AC10-03": {
+      "engineering": "PASS",
+      "ordinary": "final APP transit8 revision2 to3, explicit event15:01 to15:02, historicalrev2",
+      "controlled": "immutable new/update retry, failures, history permission generations",
+      "final_APP_solar_lunar_matrix": "NOT_RUN"
+    },
+    "AC10-04": {
+      "engineering": "PASS",
+      "ordinary": "final APP manual Synastry9 revision1 to2, history1; manual Comparison11 calculate then confirmed delete; detail/history404 and no DB rows",
+      "API": "Comparison10 deleted-key replay410; other owner read/delete Synastry9 return404",
+      "composite": "NOT_IMPLEMENTED_NOT_CLAIMED"
+    },
+    "AC10-05": {
+      "engineering": "PASS",
+      "ordinary": "DB/API restart exact current/history readback; APP current-session revoke and password relogin, coldstart and history readback",
+      "database_rows": {
+        "mbti_latest_attempt": 6,
+        "natal_id": 3,
+        "natal_revision": 3,
+        "transit_id": 8,
+        "transit_revision": 3,
+        "synastry_id": 9,
+        "synastry_revision": 2,
+        "archives": 5,
+        "deleted_comparison_id": 11
+      }
+    },
+    "AC10-06": {
+      "engineering": "PASS",
+      "ordinary": "version/source/UNVERIFIED shown on final APP; advanced section collapsed; unknown-time API partial",
+      "controlled": "loading/empty/reject/offline503/stale/invalid-input recovery and late-generation guards",
+      "final_APP_fault_injection": "NOT_RUN"
+    }
+  },
+  "tests": {
+    "PHP": {
+      "status": "PASS",
+      "kind": "directed_feature_tests_with_controlled_calculator_doubles",
+      "tests": 21,
+      "assertions": 173,
+      "private_log": "backend-final-v5-php-private.log",
+      "private_log_sha256": {
+        "backend-final-v5-php-private.log": "7e4ce2df02542b1f5ed601fb74f4ec40a2d976c9d427e8431c317d04ad6efcb2"
+      }
+    },
+    "Flutter": {
+      "status": "PASS",
+      "kind": "controlled_Widget_tests",
+      "tests": 62,
+      "private_log": "final-widget-v4-private.log",
+      "private_log_sha256": {
+        "final-widget-v4-private.log": "d5c11a8117f1a18a2f587db3005b921308abf9323289f502fdf7185060b11192"
+      }
+    },
+    "Dart_analysis": {
+      "status": "PASS",
+      "scope": "9 changed files; final MBTI 2 rechecked, other 7 unchanged",
+      "private_logs": [
+        "final-analyze-v1-private.log",
+        "final-analyze-v2-private.log"
+      ],
+      "private_log_sha256": {
+        "final-analyze-v1-private.log": "2c064f2824e25144bebc2e6bb7df5fe9e7e8d85378a14e5b75283ae176acb7b5",
+        "final-analyze-v2-private.log": "30c10960f93dafc04b056223a57e5440cdeb378f399af0f0814f33d0b5ec1e96"
+      }
+    },
+    "whole_repository_analysis": {
+      "status": "NOT_RUN",
+      "historical": "v1019 original 12 findings retained; 3 directly affected test signatures adapted; current total not asserted"
+    }
+  },
+  "migration": {
+    "id": 83,
+    "migration": "2026_11_14_150000_add_private_tool_history",
+    "batch": 9
+  },
+  "database_engine": "10.11.19-MariaDB-ubu2204",
+  "database_final_rows": {
+    "mbti": [
+      {
+        "id": 6,
+        "user_id": 16,
+        "version_code": "lite3_v1",
+        "created_at": "2026-11-14 07:55:01"
+      },
+      {
+        "id": 5,
+        "user_id": 16,
+        "version_code": "lite3_v1",
+        "created_at": "2026-11-14 07:44:09"
+      },
+      {
+        "id": 4,
+        "user_id": 16,
+        "version_code": "lite3_v1",
+        "created_at": "2026-11-14 07:30:42"
+      },
+      {
+        "id": 3,
+        "user_id": 16,
+        "version_code": "lite3_v1",
+        "created_at": "2026-11-14 07:30:42"
+      }
+    ],
+    "natal": [
+      {
+        "id": 3,
+        "user_id": 16,
+        "input_revision": 3,
+        "result_revision": 3,
+        "status": "COMPUTED_UNVERIFIED"
+      }
+    ],
+    "charts": [
+      {
+        "id": 8,
+        "user_id": 16,
+        "chart_type": "transit",
+        "input_revision": 3,
+        "result_revision": 3,
+        "status": "COMPUTED_UNVERIFIED"
+      },
+      {
+        "id": 9,
+        "user_id": 16,
+        "chart_type": "synastry",
+        "input_revision": 2,
+        "result_revision": 2,
+        "status": "COMPUTED_UNVERIFIED"
+      }
+    ],
+    "history": [
+      {
+        "id": 2,
+        "user_id": 16,
+        "tool": "dynamic",
+        "record_id": 8,
+        "input_revision": 1
+      },
+      {
+        "id": 4,
+        "user_id": 16,
+        "tool": "dynamic",
+        "record_id": 8,
+        "input_revision": 2
+      },
+      {
+        "id": 5,
+        "user_id": 16,
+        "tool": "dynamic",
+        "record_id": 9,
+        "input_revision": 1
+      },
+      {
+        "id": 1,
+        "user_id": 16,
+        "tool": "natal",
+        "record_id": 3,
+        "input_revision": 1
+      },
+      {
+        "id": 3,
+        "user_id": 16,
+        "tool": "natal",
+        "record_id": 3,
+        "input_revision": 2
+      }
+    ],
+    "deleted11": 0,
+    "deleted11history": 0
+  },
+  "deployment": {
+    "backend_source": "b4ffe9df247f46f2f556e0394567bb1f2fc8e0cd",
+    "bind_mount": "stable product root",
+    "verified_files": [
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/DynamicChartController.php",
+        "runtime_and_local_raw_sha256": "4d3b8a4c188e2332c28e9dddfd2d678f51aea9dfe13dd7834790f452f68d1690",
+        "git_blob": "b89a51b2bfc8e5aa81b8159de55c87066abbf4ec",
+        "canonical_LF_sha256": "4d3b8a4c188e2332c28e9dddfd2d678f51aea9dfe13dd7834790f452f68d1690"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/MbtiProfileController.php",
+        "runtime_and_local_raw_sha256": "788b553551be41be5ca3f9ed96666c2bc9a9e1be9be40b5700bb0253bbb810ae",
+        "git_blob": "1fa298669ee274f9ba03045c8b5ad507d4e5a324",
+        "canonical_LF_sha256": "788b553551be41be5ca3f9ed96666c2bc9a9e1be9be40b5700bb0253bbb810ae"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/NatalProfileController.php",
+        "runtime_and_local_raw_sha256": "06f2be5e274e3ce3a8dff59833f7e6186ed771a3e0a3399c9fc148a9befbe114",
+        "git_blob": "fd7777a96b458265234173ab3bae4830bf21daea",
+        "canonical_LF_sha256": "06f2be5e274e3ce3a8dff59833f7e6186ed771a3e0a3399c9fc148a9befbe114"
+      },
+      {
+        "path": "services/backend-laravel/app/Models/MbtiAttempt.php",
+        "runtime_and_local_raw_sha256": "014bce25db6cd73dcb7879c415da30235207ada0d4b92890c89e88fb382f6568",
+        "git_blob": "634291b2c4bbc57d4c37e96878591f8bb780a81e",
+        "canonical_LF_sha256": "014bce25db6cd73dcb7879c415da30235207ada0d4b92890c89e88fb382f6568"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/DynamicChartService.php",
+        "runtime_and_local_raw_sha256": "2b32fa664b05a780ee4885507f084e482fc9ccf5dff81adff2b4b23daeef68a7",
+        "git_blob": "5031b6ce68f6aa482cecde165f759f01527ac02a",
+        "canonical_LF_sha256": "2b32fa664b05a780ee4885507f084e482fc9ccf5dff81adff2b4b23daeef68a7"
+      },
+      {
+        "path": "services/backend-laravel/routes/api.php",
+        "runtime_and_local_raw_sha256": "092a428db260786273cc66ad005763235594ffd91dd20bd47c5e7bd73b265958",
+        "git_blob": "0759d1eb4bb3832dab32fa5b8d92b75c6eda205f",
+        "canonical_LF_sha256": "092a428db260786273cc66ad005763235594ffd91dd20bd47c5e7bd73b265958"
+      },
+      {
+        "path": "services/backend-laravel/app/Http/Controllers/Api/V1/ToolRevisionController.php",
+        "runtime_and_local_raw_sha256": "3331c682f7a029365a350daf0026ced213c6725f2b01abba0c45eb792083d6ec",
+        "git_blob": "30a67136be78f7b7888dc19039ac69afcbd7d123",
+        "canonical_LF_sha256": "3331c682f7a029365a350daf0026ced213c6725f2b01abba0c45eb792083d6ec"
+      },
+      {
+        "path": "services/backend-laravel/app/Models/UserToolRevision.php",
+        "runtime_and_local_raw_sha256": "761631636413390bccb0f488d41217553368bb27381192d29a42dfdbb352a489",
+        "git_blob": "5695eeca5912192fc07cc59c654a98748c67109e",
+        "canonical_LF_sha256": "761631636413390bccb0f488d41217553368bb27381192d29a42dfdbb352a489"
+      },
+      {
+        "path": "services/backend-laravel/app/Services/ToolRevisionHistory.php",
+        "runtime_and_local_raw_sha256": "4c52a5b570c4fcf2e1c9e3ca5efe2e667e7e246b76edfc31a307b267086d6242",
+        "git_blob": "f2e34beaa93981ad0800db6e62d094dad549e08a",
+        "canonical_LF_sha256": "4c52a5b570c4fcf2e1c9e3ca5efe2e667e7e246b76edfc31a307b267086d6242"
+      },
+      {
+        "path": "services/backend-laravel/database/migrations/2026_11_14_150000_add_private_tool_history.php",
+        "runtime_and_local_raw_sha256": "66ede53de74fdd6d8989567c291277ba006fe894a361b844f5114c92b14371d0",
+        "git_blob": "9085fad797766757e8b58885d854fad86a3ca99d",
+        "canonical_LF_sha256": "66ede53de74fdd6d8989567c291277ba006fe894a361b844f5114c92b14371d0"
+      }
+    ],
+    "mbti_matching_weight": 0
+  },
+  "persistence": {
+    "DB_API_restart": {
+      "started_at": "2026-11-14T16:26:17.341089+08:00",
+      "containers": [
+        {
+          "name": "v1015-current-dev-db",
+          "exit_code": 0,
+          "at": "2026-11-14T16:26:22.925393+08:00"
+        },
+        {
+          "name": "v1015-current-dev-api",
+          "exit_code": 0,
+          "at": "2026-11-14T16:26:23.272205+08:00"
+        }
+      ],
+      "readiness_failures": [
+        {
+          "attempt": 1,
+          "type": "ConnectionResetError"
+        }
+      ],
+      "equal": true,
+      "ended_at": "2026-11-14T16:26:27.637967+08:00",
+      "ws": "UNCHANGED_NOT_RESTARTED"
+    },
+    "APP": {
+      "at": "2026-11-14T16:35:36.336172+08:00",
+      "candidate": 1011002,
+      "relogin": "normal APP revoke current session, password login, MBTI6 and natal3 readback PASS",
+      "coldstart": "force-stop and start existing installation, pair9 revision2 and history1 readback PASS",
+      "API_facts_after_relogin_and_coldstart_equal": true,
+      "phone": "NOT_USED"
+    }
+  },
+  "resources": {
+    "at": "2026-11-14T16:36:33.594739+08:00",
+    "containers": [
+      {
+        "name": "/v1015-current-dev-db",
+        "status": "running",
+        "started_at": "2026-11-14T08:26:19.573161264Z"
+      },
+      {
+        "name": "/v1015-current-dev-api",
+        "status": "running",
+        "started_at": "2026-11-14T08:26:23.230410806Z"
+      },
+      {
+        "name": "/v1015-current-dev-ws",
+        "status": "running",
+        "started_at": "2026-11-14T03:58:15.905342048Z"
+      },
+      {
+        "name": "/v1015-current-dev-sfu",
+        "status": "running",
+        "started_at": "2026-11-14T08:26:19.650397521Z"
+      }
+    ],
+    "emulator_A": "STOPPED_DATA_RETAINED",
+    "emulator_B": "NOT_STARTED_THIS_VERSION_DATA_RETAINED",
+    "phone": "NOT_USED",
+    "adb5038_USB_excluded": true,
+    "forwarding": "EMULATOR_A_REVERSES_REMOVED",
+    "independent_precision": "UNVERIFIED"
+  },
+  "preserved_intermediate_failures": [
+    "PHP v1 missing existing question_bank seed; exposed existing directory, reran",
+    "PHP v2/v3 feature-off tests affected by dev feature environment; explicit test config false, assertions retained",
+    "MBTI new Widget fixture pump/viewport failure corrected; final tests pass",
+    "same-account MBTI draft denial bug fixed; candidate1011001 superseded by1011002",
+    "Activity resolution/start wait transient; actual UI later ready; precise cause UNKNOWN",
+    "UI helper control visibility/keyboard timing/secondary natal entry; actual UI verified after helper correction",
+    "private helper list items key versus charts, screenshot expectations and text decode errors corrected; no extra product mutation",
+    "one connection reset during restart readiness; subsequent exact fact readback pass"
+  ],
+  "inherited": {
+    "v1019": "8e74d1f7496f066a586afb1e5653ed563b64c46d; R1 a62b746f2ea64a6f5f3b2283971211001e8d4adf; unchanged social/activity/notifications only",
+    "v1018": "1074c210ee7fa6641799fa6e19d29fc46ef6b2bc and accepted call63/call64 unchanged scope"
+  },
+  "limitations": {
+    "independent_algorithm_accuracy": "UNVERIFIED",
+    "real_push": "REAL_PUSH_PROVIDER_PENDING",
+    "historical_noninjected_SFU_RPC_root_cause": "UNKNOWN",
+    "SFU_current_media": "NOT_RUN",
+    "SFU_start_time_change_trigger": "UNKNOWN_NOT_DIAGNOSED_THIS_SCOPE",
+    "phone": "NOT_USED",
+    "advisor_acceptance": "PENDING",
+    "owner_version_acceptance": "PENDING",
+    "main_merge_release": "NOT_RUN"
+  },
+  "protection": {
+    "original_main_HEAD_status_diff_index_match_startup": true,
+    "AVD_user_data": "RETAINED",
+    "unrelated_SystemDrive_directory": "RETAINED",
+    "private_artifacts": "LOCAL_ONLY"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/final-ac01-mbti-current.png",
+      "sha256": "8cd54e7bd1e72bb27a6ff60812bcb7c51b65d00208be378fad64cc0ae3a832b6",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac01-mbti-history.png",
+      "sha256": "083179f132a33bd69a901c4f27dfe352f54033effe6b1b0b0726858dd785710c",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac02-natal-current.png",
+      "sha256": "174f4ca8af86c2d2049421ce921d515c786e132704a0e2930cab80a6249d172b",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac05-natal-history.png",
+      "sha256": "def887020b443a36933e4ac77235b1ff4336403fd518492a233ffcf08a71b1bc",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac03-transit-current.png",
+      "sha256": "0e6ea621d86a2ed9ee16d9e4a3884678db4135c4518d6f112eed3a84c604e0c4",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac04-comparison-current.png",
+      "sha256": "7f4ea460221085faa139d5678836596192ddfa40ae4f6ad755c66e0a81592bea",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac04-synastry-history.png",
+      "sha256": "9506f8f3f768495814cd6948b51d159c25c2c0ed1df96c03cf9af9779b4259e6",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    },
+    {
+      "path": "evidence/final-ac05-coldstart-pair.png",
+      "sha256": "d88b3c248d6be3f16f50529d58ce3194abc4288d0bb59c051a00cb99e3e7a4a5",
+      "candidate": 1011002,
+      "data": "fictional only",
+      "visual_privacy_check": "PASS"
+    }
+  ]
+}
