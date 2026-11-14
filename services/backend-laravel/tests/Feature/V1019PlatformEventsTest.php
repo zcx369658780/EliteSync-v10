@@ -94,6 +94,8 @@ final class V1019PlatformEventsTest extends TestCase
         $this->assertArrayNotHasKey('title',$receipt);
         $this->assertArrayNotHasKey('participants',$receipt);
         $this->assertSame([],$receipt['allowed_actions']);
+        $this->actingAs($user, 'sanctum')->getJson('/api/v1/platform-events/'.$ids[0].'/result')->assertOk()
+            ->assertJsonPath('registration_state', 'CANCELLED_BY_USER')->assertJsonMissingPath('title')->assertJsonPath('allowed_actions', []);
     }
 
     public function test_close_complete_cancel_and_revoke_notify_once_per_recipient_event(): void

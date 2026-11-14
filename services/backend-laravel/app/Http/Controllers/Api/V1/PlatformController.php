@@ -15,6 +15,7 @@ final class PlatformController extends Controller
         return response()->json($s->listing((int)$r->user()->id,(int)($d['limit']??20),$d['cursor']??null));
     }
     public function show(Request $r,string $id,PlatformEventService $s){return response()->json($s->show((int)$r->user()->id,$id));}
+    public function result(Request $r,string $id,PlatformEventService $s){return response()->json($s->notificationTarget((int)$r->user()->id,$id));}
     public function redeem(Request $r,PlatformEventService $s,PlatformInput $input){
         $d=$input->validate($r,$input->key()+['token'=>'required|string|size:64|regex:/^[a-f0-9]+$/']);
         return response()->json($s->redeem((int)$r->user()->id,$d['token'],$d['idempotency_key']));

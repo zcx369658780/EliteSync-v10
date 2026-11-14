@@ -35,6 +35,80 @@ class _CurrentSession extends SessionNotifier {
   ));
 }
 
+class _ControlledNotificationApi extends RelationshipApi {
+  _ControlledNotificationApi(this.handler) : super(ApiClient(dio: Dio()));
+  final Future<Map<String, dynamic>> Function(String) handler;
+
+  @override
+  Future<Map<String, dynamic>> call(
+    String method,
+    String path, [
+    Map<String, dynamic>? body,
+  ]) => handler(path);
+}
+
+const _controlledId = '11111111-1111-4111-8111-111111111111';
+
+Future<void> _mountControlledNotification(
+  WidgetTester tester,
+  String kind,
+  _ControlledNotificationApi api,
+) async {
+  tester.view.physicalSize = const Size(1000, 1800);
+  tester.view.devicePixelRatio = 1;
+  addTearDown(tester.view.resetPhysicalSize);
+  addTearDown(tester.view.resetDevicePixelRatio);
+  final item = NotificationItemEntity(
+    id: 990,
+    kind: kind,
+    title: 'old private title',
+    body: 'old private body',
+    payload: {
+      kind == 'buddy' ? 'buddy_activity_id' : 'platform_event_id':
+          _controlledId,
+    },
+    routeName: '',
+    routeArgs: const {},
+    isRead: false,
+    createdAt: '2026-11-14T00:00:00Z',
+  );
+  final notifications = FakeNotificationRemoteDataSource()
+    ..lookup = (_) async => item;
+  final router = GoRouter(
+    routes: [
+      GoRoute(path: '/', builder: (_, state) => const NotificationCenterPage()),
+      GoRoute(
+        path: '/buddy-v1013',
+        builder: (_, state) =>
+            const Scaffold(body: Text('CURRENT_BUDDY_RESULT')),
+      ),
+    ],
+  );
+  addTearDown(router.dispose);
+  await tester.pumpWidget(
+    ProviderScope(
+      overrides: [
+        sessionProvider.overrideWith(_CurrentSession.new),
+        relationshipApiProvider.overrideWithValue(api),
+        frontendTelemetryProvider.overrideWithValue(
+          FrontendTelemetry(telemetry: FakeAppTelemetryService()),
+        ),
+        notificationRemoteDataSourceProvider.overrideWithValue(notifications),
+        notificationListProvider.overrideWith((ref) async => [item]),
+        notificationUnreadCountProvider.overrideWith((ref) async => 1),
+      ],
+      child: _SessionHarness(
+        child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
+      ),
+    ),
+  );
+  await tester.pumpAndSettle();
+  await tester.ensureVisible(find.widgetWithText(OutlinedButton, '打开所属页面'));
+  await tester.pumpAndSettle();
+  await tester.tap(find.widgetWithText(OutlinedButton, '打开所属页面'));
+  await tester.pumpAndSettle();
+}
+
 /// The real notification providers watch sessionProvider. List mocks replace
 /// that dependency, so initialize and retain the explicit session fixture here.
 class _SessionHarness extends ConsumerWidget {
@@ -227,6 +301,168 @@ void _expectNoD7CForbiddenVisibleCopy() {
 }
 
 void main() {
+  testWidgets('Platform account change blocks late 404 result fallback', (
+    tester,
+  ) async {
+    final pending = Completer<Map<String, dynamic>>();
+    final paths = <String>[];
+    final api = _ControlledNotificationApi((path) {
+      paths.add(path);
+      return pending.future;
+    });
+    await _mountControlledNotification(tester, 'platform_event', api);
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(NotificationCenterPage)),
+    );
+    (container.read(sessionProvider.notifier) as _CurrentSession)
+        .changeAccount();
+    pending.completeError(
+      const RelationshipFailure('unavailable', statusCode: 404),
+    );
+    await tester.pumpAndSettle();
+    expect(paths, ['/platform-events/$_controlledId']);
+    expect(find.text('平台合成活动'), findsNothing);
+  });
+
+  testWidgets('Buddy authority change blocks late terminal projection', (
+    tester,
+  ) async {
+    final pending = Completer<Map<String, dynamic>>();
+    final api = _ControlledNotificationApi((path) => pending.future);
+    await _mountControlledNotification(tester, 'buddy', api);
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(NotificationCenterPage)),
+    );
+    container.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+    pending.complete({
+      'id': _controlledId,
+      'state': 'COMPLETED',
+      'allowed_actions': [],
+    });
+    await tester.pumpAndSettle();
+    expect(find.text('CURRENT_BUDDY_RESULT'), findsNothing);
+  });
+
+  for (final state in [
+    'COMPLETED',
+    'CANCELLED',
+    'DECLINED',
+    'WITHDRAWN',
+    'EXPIRED',
+  ]) {
+    testWidgets(
+      'Buddy $state notification opens currently authorized minimal result',
+      (tester) async {
+        final api = _ControlledNotificationApi(
+          (path) async => {
+            'id': _controlledId,
+            'state': state,
+            'allowed_actions': [],
+          },
+        );
+        await _mountControlledNotification(tester, 'buddy', api);
+        expect(find.text('CURRENT_BUDDY_RESULT'), findsOneWidget);
+        expect(find.textContaining('old private'), findsNothing);
+      },
+    );
+  }
+
+  testWidgets(
+    'Buddy terminal response with operations cannot reopen activity',
+    (tester) async {
+      final api = _ControlledNotificationApi(
+        (path) async => {
+          'id': _controlledId,
+          'state': 'CANCELLED',
+          'allowed_actions': ['request'],
+        },
+      );
+      await _mountControlledNotification(tester, 'buddy', api);
+      expect(find.text('CURRENT_BUDDY_RESULT'), findsNothing);
+    },
+  );
+
+  for (final state in [
+    'CANCELLED_BY_USER',
+    'CANCELLED_BY_ORGANIZER',
+    'EXPIRED',
+  ]) {
+    testWidgets(
+      'Platform $state notification reads safe result after 404 and reloads history',
+      (tester) async {
+        final paths = <String>[];
+        final api = _ControlledNotificationApi((path) async {
+          paths.add(path);
+          if (path == '/platform-events/$_controlledId') {
+            throw const RelationshipFailure('unavailable', statusCode: 404);
+          }
+          if (path.endsWith('/result')) {
+            return {
+              'id': _controlledId,
+              'registration_state': state,
+              'allowed_actions': [],
+            };
+          }
+          return {
+            'events': [],
+            'history': [],
+            'exit_tickets': [],
+            'report_contexts': [],
+            'has_more': false,
+          };
+        });
+        await _mountControlledNotification(tester, 'platform_event', api);
+        expect(paths, [
+          '/platform-events/$_controlledId',
+          '/platform-events/$_controlledId/result',
+          '/platform-events',
+        ]);
+        expect(find.text('平台合成活动'), findsOneWidget);
+        expect(find.textContaining('old private'), findsNothing);
+      },
+    );
+  }
+
+  testWidgets('Platform non-404 failure never falls back to result', (
+    tester,
+  ) async {
+    final paths = <String>[];
+    final api = _ControlledNotificationApi((path) async {
+      paths.add(path);
+      throw const RelationshipFailure('Forbidden', statusCode: 403);
+    });
+    await _mountControlledNotification(tester, 'platform_event', api);
+    expect(paths, ['/platform-events/$_controlledId']);
+    expect(find.text('平台合成活动'), findsNothing);
+  });
+
+  for (final result in [
+    {
+      'id': _controlledId,
+      'registration_state': 'APPLIED',
+      'allowed_actions': [],
+    },
+    {
+      'id': _controlledId,
+      'registration_state': 'EXPIRED',
+      'allowed_actions': ['apply'],
+    },
+    {'id': 'wrong-id', 'registration_state': 'EXPIRED', 'allowed_actions': []},
+  ]) {
+    testWidgets('Platform result rejects unauthorized projection $result', (
+      tester,
+    ) async {
+      final api = _ControlledNotificationApi((path) async {
+        if (!path.endsWith('/result')) {
+          throw const RelationshipFailure('unavailable', statusCode: 404);
+        }
+        return result;
+      });
+      await _mountControlledNotification(tester, 'platform_event', api);
+      expect(find.text('平台合成活动'), findsNothing);
+    });
+  }
+
   testWidgets('manual notification refresh fails once and waits for explicit retry', (tester) async {
     final api = _PagingApi();
     await tester.pumpWidget(_pagingApp(api));

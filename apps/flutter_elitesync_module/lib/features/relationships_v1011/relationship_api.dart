@@ -64,7 +64,11 @@ class RelationshipApi {
       _ => client.get('/api/v1$path', options: options),
     };
     if (result is NetworkFailure<Map<String, dynamic>>) {
-      throw RelationshipFailure(result.message, code: result.code);
+      throw RelationshipFailure(
+        result.message,
+        code: result.code,
+        statusCode: result.statusCode,
+      );
     }
     final data = (result as NetworkSuccess<Map<String, dynamic>>).data;
     if (data['ok'] == false) {
@@ -77,9 +81,10 @@ class RelationshipApi {
 }
 
 class RelationshipFailure implements Exception {
-  const RelationshipFailure(this.message, {this.code});
+  const RelationshipFailure(this.message, {this.code, this.statusCode});
   final String message;
   final String? code;
+  final int? statusCode;
   @override
   String toString() => message;
 }

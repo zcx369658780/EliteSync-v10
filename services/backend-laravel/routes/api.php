@@ -117,6 +117,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/platform-events', [$platform, 'index']);
             Route::post('/platform-events/redeem', [$platform, 'redeem']);
             Route::get('/platform-events/{id}', [$platform, 'show'])->whereUuid('id');
+            Route::get('/platform-events/{id}/result', [$platform, 'result'])->whereUuid('id');
             Route::post('/platform-events/{id}/actions', [$platform, 'action'])->whereUuid('id');
             Route::post('/platform-events/{id}/reports', [$platform, 'report'])->whereUuid('id');
             Route::get('/safety/own', [$platform, 'own']);

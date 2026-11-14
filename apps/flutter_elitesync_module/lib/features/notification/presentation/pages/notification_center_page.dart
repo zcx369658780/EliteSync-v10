@@ -283,18 +283,39 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
         'safety_case' => '/safety/own/${Uri.encodeComponent(id)}',
         _ => '/status/posts/$id',
       };
-      final result = await ref.read(relationshipApiProvider).call('GET', path);
+      Map<String, dynamic> result;
+      var terminalPlatformResult = false;
+      try {
+        result = await ref.read(relationshipApiProvider).call('GET', path);
+      } on RelationshipFailure catch (failure) {
+        if (item.kind != 'platform_event' || failure.statusCode != 404) {
+          rethrow;
+        }
+        if (!_currentControlledIntent(identity, epoch)) return false;
+        result = await ref
+            .read(relationshipApiProvider)
+            .call('GET', '$path/result');
+        terminalPlatformResult = true;
+      }
       if (!mounted || !_currentControlledIntent(identity, epoch)) return false;
       if (NotificationPrivacyContract.isPlatformControlledKind(item.kind)) {
         final valid = item.kind == 'platform_event'
             ? result['id'] == id &&
-                  result['title'] is String &&
-                  result['marker'] == 'DEV_SYNTHETIC_EVENT' &&
-                  const [
-                    'OPEN',
-                    'CLOSED',
-                    'COMPLETED',
-                  ].contains(result['state'])
+                  (terminalPlatformResult
+                      ? const [
+                              'CANCELLED_BY_USER',
+                              'CANCELLED_BY_ORGANIZER',
+                              'EXPIRED',
+                            ].contains(result['registration_state']) &&
+                            result['allowed_actions'] is List &&
+                            (result['allowed_actions'] as List).isEmpty
+                      : result['title'] is String &&
+                            result['marker'] == 'DEV_SYNTHETIC_EVENT' &&
+                            const [
+                              'OPEN',
+                              'CLOSED',
+                              'COMPLETED',
+                            ].contains(result['state']))
             : result['id'] == id &&
                   const ['reporter', 'subject'].contains(result['role']) &&
                   const [
@@ -323,13 +344,25 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
           ),
         );
       } else if (item.kind == 'buddy') {
-        if (result['id'] != id ||
-            result['subject'] is! String ||
-            !const [
+        final active =
+            result['subject'] is String &&
+            const [
+              'DRAFT',
               'OPEN',
               'REQUESTED',
               'CONFIRMED',
-            ].contains(result['state'])) {
+            ].contains(result['state']);
+        final terminal =
+            const [
+              'COMPLETED',
+              'CANCELLED',
+              'DECLINED',
+              'WITHDRAWN',
+              'EXPIRED',
+            ].contains(result['state']) &&
+            result['allowed_actions'] is List &&
+            (result['allowed_actions'] as List).isEmpty;
+        if (result['id'] != id || (!active && !terminal)) {
           AppFeedback.showInfo(context, '本次活动已不可访问，请刷新当前状态');
           return false;
         }
