@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'relationship_api.dart';
 import 'session_bound_page.dart';
@@ -130,6 +131,15 @@ class _PeerState extends SessionBoundPage<PeerRelationshipPage> {
       if (data?['gates'] is Map)
         Text(
           '当前聊天记录：${data!['gates']['live_read_allowed'] == true ? '可读取' : '不可读取'}；发送消息：${data!['gates']['live_send_allowed'] == true ? '已获授权' : '未获授权'}',
+        ),
+      if (data?['gates']?['live_read_allowed'] == true)
+        FilledButton(
+          onPressed: busy
+              ? null
+              : () => context.push('/live-chat/${widget.peerId}'),
+          child: Text(
+            data?['gates']?['live_send_allowed'] == true ? '进入聊天' : '查看聊天（只读）',
+          ),
         ),
       const Text('拉黑可在既有会话安全入口执行；拉黑会撤销相关授权，解黑不会恢复。'),
     ]);

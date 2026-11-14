@@ -6,6 +6,7 @@ import 'package:uuid/uuid.dart';
 import 'relationship_api.dart';
 import 'session_bound_page.dart';
 import 'peer_relationship_page.dart';
+import 'contact_picker_page.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 
 class RelationshipCenterPage extends ConsumerStatefulWidget {
@@ -22,6 +23,7 @@ class _RelationshipCenterState
   String? _issuedToken;
   String? _requestKey;
   String? _requestPayload;
+  Map<String, dynamic>? _selectedContact;
   @override
   String get resource => '/social';
   @override
@@ -30,26 +32,69 @@ class _RelationshipCenterState
     _issuedToken = null;
     _requestKey = null;
     _requestPayload = null;
+    _selectedContact = null;
+  }
+
+  @override
+  void onAuthorityChanged() {
+    _selectedContact = null;
+    _issuedToken = null;
+  }
+
+  Future<void> _pickContact() async {
+    final token = ref.read(sessionProvider).asData?.value.accessToken;
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
+    final result = await Navigator.of(context).push<Map<String, dynamic>>(
+      MaterialPageRoute(
+        builder: (_) => const ContactPickerPage(purpose: 'friend_request'),
+      ),
+    );
+    if (!mounted ||
+        result == null ||
+        token != ref.read(sessionProvider).asData?.value.accessToken ||
+        epoch != ref.read(relationshipAuthorityEpochProvider)) {
+      return;
+    }
+    setState(() {
+      _selectedContact = result;
+      _invitation.clear();
+    });
   }
 
   Future<void> _send() async {
     final token = _invitation.text.trim();
-    if (token.isEmpty) return;
-    final payload = '$token:$_purpose';
+    final peer = token.isEmpty ? (_selectedContact?['peer_id']) : null;
+    if (token.isEmpty && peer == null) return;
+    if (peer != null &&
+        !(_selectedContact?['allowed_actions'] as List? ?? const []).contains(
+          _purpose == 'friendship' ? 'friend_request' : 'message_request',
+        )) {
+      setState(() => error = '所选联系人当前不适用于这一请求用途，请重新选择。');
+      return;
+    }
+    final payload = '$token:$peer:$_purpose';
     if (_requestPayload != payload) {
       _requestPayload = payload;
       _requestKey = const Uuid().v4();
     }
+    final body = <String, dynamic>{
+      'purpose': _purpose,
+      'idempotency_key': _requestKey,
+    };
+    if (token.isNotEmpty) {
+      body['invitation_token'] = token;
+    } else {
+      body['peer_id'] = peer;
+    }
     final result = await run(
-      () => ref.read(relationshipApiProvider).call('POST', '/social/requests', {
-        'invitation_token': token,
-        'purpose': _purpose,
-        'idempotency_key': _requestKey,
-      }),
+      () => ref
+          .read(relationshipApiProvider)
+          .call('POST', '/social/requests', body),
     );
     if (result != null) {
       _invitation.clear();
       _requestKey = null;
+      _selectedContact = null;
       await refresh();
     }
   }
@@ -131,6 +176,15 @@ class _RelationshipCenterState
         controller: _invitation,
         decoration: const InputDecoration(labelText: '对方交给你的邀请凭据'),
         maxLines: 2,
+      ),
+      TextButton.icon(
+        onPressed: busy ? null : _pickContact,
+        icon: const Icon(Icons.person_search_outlined),
+        label: Text(
+          _selectedContact == null
+              ? '从已有关系选择联系人'
+              : '已选择 ${_selectedContact!['label']}',
+        ),
       ),
       FilledButton(onPressed: busy ? null : _send, child: const Text('提交请求')),
       const Text('24小时最多向5位账号发起请求；未决7天到期。被拒绝后须等接收方主动发出新邀请。'),

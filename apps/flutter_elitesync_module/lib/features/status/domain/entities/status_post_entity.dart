@@ -19,6 +19,7 @@ class StatusPostEntity {
     required this.canDelete,
     required this.likesCount,
     required this.likedByViewer,
+    this.favoritedByViewer = false,
     required this.coverMediaAssetId,
     required this.coverMediaUrl,
     required this.createdAt,
@@ -44,6 +45,7 @@ class StatusPostEntity {
   final bool canDelete;
   final int likesCount;
   final bool likedByViewer;
+  final bool favoritedByViewer;
   final int? coverMediaAssetId;
   final String? coverMediaUrl;
   final DateTime createdAt;
@@ -119,6 +121,7 @@ class StatusPostEntity {
       canDelete: parseBool(json['can_delete']),
       likesCount: parseInt(json['likes_count']),
       likedByViewer: parseBool(json['liked_by_viewer']),
+      favoritedByViewer: parseBool(json['favorited_by_viewer']),
       coverMediaAssetId:
           (json['cover_media_asset_id'] as num?)?.toInt() ??
           (json['cover_media'] is Map<String, dynamic>
@@ -177,6 +180,7 @@ class StatusPostEntity {
       'can_delete': canDelete,
       'likes_count': likesCount,
       'liked_by_viewer': likedByViewer,
+      'favorited_by_viewer': favoritedByViewer,
       'cover_media_asset_id': coverMediaAssetId,
       'cover_media': coverMediaUrl == null
           ? null

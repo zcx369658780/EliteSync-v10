@@ -194,8 +194,12 @@ class StatusPostCard extends ConsumerWidget {
                         if (onSaveForLater != null)
                           OutlinedButton.icon(
                             onPressed: onSaveForLater,
-                            icon: const Icon(Icons.bookmark_border_rounded),
-                            label: const Text('稍后再聊'),
+                            icon: Icon(
+                              post.favoritedByViewer
+                                  ? Icons.bookmark_rounded
+                                  : Icons.bookmark_border_rounded,
+                            ),
+                            label: Text(post.favoritedByViewer ? '取消收藏' : '收藏'),
                           ),
                         if (onLowPressureChat != null)
                           OutlinedButton.icon(

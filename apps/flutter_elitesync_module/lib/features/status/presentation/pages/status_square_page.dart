@@ -28,6 +28,7 @@ import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
+import 'status_favorites_page.dart';
 
 enum _CoverUploadStage { idle, uploading, processing, ready, failed }
 
@@ -249,13 +250,49 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     );
   }
 
-  void _savePostForLater(StatusPostEntity post) {
-    AppFeedback.showSuccess(context, '已作为稍后再聊提示保留在本页，不写入服务端队列');
+  Future<void> _savePostForLater(StatusPostEntity post) async {
+    final token = ref.read(sessionProvider).asData?.value.accessToken;
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
+    bool current() =>
+        mounted &&
+        token == ref.read(sessionProvider).asData?.value.accessToken &&
+        epoch == ref.read(relationshipAuthorityEpochProvider);
+    try {
+      await ref.read(relationshipApiProvider).call(
+        'PUT',
+        '/status/posts/${post.id}/favorite',
+        {'favorited': !post.favoritedByViewer},
+      );
+      if (current()) _refreshPosts();
+    } catch (error) {
+      if (mounted && current()) {
+        AppFeedback.showError(context, '收藏状态未确认，可按原操作重试：$error');
+      }
+    }
   }
 
   Future<void> _openLowPressureChatPath(StatusPostEntity post) async {
-    AppFeedback.showInfo(context, '资料与聊天权限独立；好友或评论不会自动授予消息同意。');
-    await _openAuthor(post);
+    final token = ref.read(sessionProvider).asData?.value.accessToken;
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
+    bool current() =>
+        mounted &&
+        token == ref.read(sessionProvider).asData?.value.accessToken &&
+        epoch == ref.read(relationshipAuthorityEpochProvider);
+    try {
+      final result = await ref
+          .read(relationshipApiProvider)
+          .call('GET', '/connections/${post.authorId}');
+      if (!mounted || !current()) return;
+      await context.push(
+        result['gates']?['live_read_allowed'] == true
+            ? '/live-chat/${post.authorId}'
+            : '/social/friends/${post.authorId}',
+      );
+    } catch (error) {
+      if (mounted && current()) {
+        AppFeedback.showError(context, '当前联系入口不可用：$error');
+      }
+    }
   }
 
   Future<void> _pickAndUploadCoverImage() async {
@@ -517,6 +554,18 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
         title: '好友可见社区',
         mode: AppTopBarMode.backTitle,
         actions: [
+          IconButton(
+            tooltip: '我的收藏',
+            icon: const Icon(Icons.bookmarks_outlined),
+            onPressed: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const StatusFavoritesPage(),
+                ),
+              );
+              if (mounted) _refreshPosts();
+            },
+          ),
           IconButton(
             onPressed: () => _refreshPosts(firstPage: true),
             icon: const Icon(Icons.refresh_rounded),

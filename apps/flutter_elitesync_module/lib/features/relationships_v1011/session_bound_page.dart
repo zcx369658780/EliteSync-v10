@@ -58,6 +58,16 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
     return result;
   }, replace: true);
 
+  /// Drop pending reads when a private page leaves the foreground.
+  void invalidatePendingProjection() {
+    _generation++;
+    setState(() {
+      data = null;
+      error = null;
+      busy = false;
+    });
+  }
+
   Future<Map<String, dynamic>?> run(
     Future<Map<String, dynamic>> Function() work, {
     bool replace = false,
@@ -123,9 +133,7 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(
-              error == 'Forbidden'
-                  ? '当前账号没有此项访问权限。'
-                  : '未完成：$error',
+              error == 'Forbidden' ? '当前账号没有此项访问权限。' : '未完成：$error',
               key: const Key('server-error'),
             ),
           ),
