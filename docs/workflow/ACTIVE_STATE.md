@@ -1,12 +1,14 @@
-# 当前入口 2026-11-14 v10.1.8 R1工程补证完成，待顾问复核
+# 当前入口 2026-11-14 v10.1.8 R1及手机音频补证完成，待顾问复核
 
 R1-01工程自验通过，AC18-04已取得普通APP双向实际音频和视频证据。Owner授权开启模拟器麦克风及使用当前PC视频语音，call63的16→17、17→16各采集23.970秒接收端输出，发送端静音时输出全零，恢复开麦后重新有声。正常挂断后双方原生采集停止、Room0。见[R1结果](../versions/v10.1.8/supplement-r1-20261114/README.md)、[R1证据](../versions/v10.1.8/supplement-r1-20261114/EVIDENCE_SUMMARY.json)及[manifest](../versions/v10.1.8/artifact_manifest.json)。
+
+Owner随后连接手机并授权实机音频。保留数据更新同一1010805后，手机用户1与模拟器用户2普通语音call64接通，Owner确认“手机能听到”“能听清，基本正常”。反向物理手机麦克风经RTC到模拟器纯输出，在手机APP静音/恢复对照中呈非零、全零、非零。本次该手机语音范围通过，顾问R1复核及Owner整版接受仍PENDING。
 
 稳定根`D:\EliteSync-v10-product-v1015-20261101`，分支`codex/v10.1.8-communication-notifications-20261113`。已接入顾问任务提交`b84928181f86af7724bee9357db55c074ea2194e`。继续使用1010805、APP源码`18491f2a65717c52300897ff6ffebfdf010c91dc`、后端最近产品修改`e22b0c95c2358672a8f81a9b6d6d0dd07f36830d`，本次改动为本机输入配置、诊断工具和文档。
 
 原固定交付35a41580的实施报告、FINAL_EVIDENCE及顾问五项范围接受保持原身份。R1工程判断与顾问复核分列，当前顾问既有结论CHANGES_REQUIRED，R1复核PENDING、Owner接受PENDING。恢复58→59及59撤权按未变组件继承，本次补列原始尾窗最后区间`[174452.156,174452.187]`及下界公式`174452.156−174446.812−0.03125=5.31275秒`。原57/59/61音调失败及旧精确原因UNKNOWN保留。
 
-结束资源实读2026-11-14 08:57:01.251827北京时间，DB/API/WS/SFU运行、Room0，双APP和双模拟器已停止，host microphone已关闭，用户11/12、AVD和数据库保留。ADB5038的USB排除已核，手机NOT_RUN。原主库dirty/index/diff哈希与开始基线相等，受保护`%SystemDrive%/`保留。真实Push保持REAL_PUSH_PROVIDER_PENDING，人工听感NOT_RUN、实机硬件UNVERIFIED。
+结束资源实读2026-11-14 09:30:42.122441北京时间，call64正常ended、双方原生采集停止、Room0。DB/API/WS/SFU运行，双模拟器停止，模拟器host microphone关闭，用户0/11/12、AVD和数据库保留。手机保留1010805与本包通话结束结果页、账户数据，独立5039及本机服务反向路由保持限定该手机，5038继续USB排除。原主库dirty/index/diff哈希与开始基线相等，受保护`%SystemDrive%/`保留。真实Push保持REAL_PUSH_PROVIDER_PENDING，语音留言人工试听NOT_RUN、完整硬件矩阵UNVERIFIED。
 
 按R1任务保存同步并回读固定提交，完成后停下供顾问复核。下方保留任务发布与历史节点。
 

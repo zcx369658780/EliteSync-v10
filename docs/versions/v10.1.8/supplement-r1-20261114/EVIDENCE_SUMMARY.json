@@ -205,7 +205,8 @@
     "cumulative_stats_are_window_proof": false,
     "exact_host_guest_log_window_alignment": "UNKNOWN_CLOCK_DRIFT",
     "human_listening": "NOT_RUN",
-    "real_hardware": "UNVERIFIED"
+    "real_hardware": "UNVERIFIED",
+    "human_listening_scope": "Original call63 dual-emulator evidence. New call64 Owner-assisted physical-phone feedback is recorded separately in physical_phone_validation."
   },
   "local_diagnostic_dependency": "PyAudioWPatch0.2.12.9 isolated private tools folder for an initial WASAPI sample; project dependencies unchanged",
   "raw_audio_and_logs": "LOCAL_ONLY",
@@ -860,5 +861,343 @@
     "call61_reverse_probe": "NOT_RUN",
     "old_clock_offsets": "UNKNOWN. New call63 clock bracket applies only to63.",
     "warmup_repeat_call57": "Separate warmup5 attempt10.3s injection/15s capture, outputRMS0, both tones absent; retained original diagnostic, no new success claim"
+  },
+  "physical_phone_validation": {
+    "result": "PASS_SCOPED_THIS_PHONE_VOICE_RTC",
+    "preceding_r1_software_delivery": "58ba1728a38f38f739ab759cb7d6bbd9b59856f5",
+    "owner_authorization": "2026-11-14 connected phone, continue test, PC background video/game sound permitted, Owner supplies playback feedback",
+    "candidate": {
+      "source": "18491f2a65717c52300897ff6ffebfdf010c91dc",
+      "version_code": 1010805,
+      "bytes": 123802554,
+      "sha256": "2a65f9cf022c3d66cdb116662e3aca15f3dc9869130ca4365c14d017b70155ed",
+      "installed_sha256": "2a65f9cf022c3d66cdb116662e3aca15f3dc9869130ca4365c14d017b70155ed",
+      "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+      "data_preserving_update": true
+    },
+    "phone": "One Owner-authorized Android physical phone; identifying serial LOCAL_ONLY",
+    "call": {
+      "id": 64,
+      "mode": "voice",
+      "status": "ended",
+      "initiator_user_id": 1,
+      "peer_user_id": 2,
+      "accepted_by_user_id": 2,
+      "ended_by_user_id": 1,
+      "started_at": "2026-11-14T01:22:31.000000Z",
+      "ended_at": "2026-11-14T01:30:27.000000Z"
+    },
+    "phone_fictional_user": 1,
+    "emulator_fictional_user": 2,
+    "android_user_both_endpoints": 0,
+    "source_emulator_to_phone": "Live Owner-authorized PC video/game sound via emulator host microphone",
+    "phone_playback_human_feedback": [
+      {
+        "text": "手机能听到",
+        "scope": "Phone physical playback"
+      },
+      {
+        "text": "能听清，基本正常",
+        "scope": "Current phone PC-audio playback quality"
+      }
+    ],
+    "source_phone_to_emulator": "Physical phone microphone and existing RTC track, receiver emulator PCM capture",
+    "reverse_initial_capture": {
+      "Seconds": 30,
+      "Bytes": 2876158,
+      "Packets": 2828,
+      "Rms": 0.03199722555095377,
+      "Peak": 0.197113037109375,
+      "DeadlineReached": true
+    },
+    "reverse_phone_app_mute_unmute_control": {
+      "capture_exit_code": 0,
+      "actual_output_seconds": 27.959979166666667,
+      "windows": [
+        {
+          "state": "before_mute",
+          "start_seconds": 1,
+          "end_seconds": 5,
+          "rms": 0.022487427987607483,
+          "peak": 0.150909423828125,
+          "all_zero": false
+        },
+        {
+          "state": "muted",
+          "start_seconds": 11,
+          "end_seconds": 14,
+          "rms": 0.0,
+          "peak": 0.0,
+          "all_zero": true
+        },
+        {
+          "state": "after_unmute",
+          "start_seconds": 23,
+          "end_seconds": 26,
+          "rms": 0.027755567108223408,
+          "peak": 0.187225341796875,
+          "all_zero": false
+        }
+      ],
+      "emulator_host_input_disabled_during_control": true,
+      "events": [
+        {
+          "action": "emulator_host_input_off_for_phone_microphone_control",
+          "utc": "2026-11-14T01:26:35.441972+00:00",
+          "monotonic": 180584.578
+        },
+        {
+          "action": "emulator_output_capture_started",
+          "utc": "2026-11-14T01:26:36.554089+00:00",
+          "monotonic": 180585.687
+        },
+        {
+          "action": "phone_muted_by_APP_control",
+          "utc": "2026-11-14T01:26:45.413573+00:00",
+          "monotonic": 180594.546
+        },
+        {
+          "action": "phone_unmuted_by_APP_control",
+          "utc": "2026-11-14T01:26:53.768251+00:00",
+          "monotonic": 180602.906
+        },
+        {
+          "action": "capture_finished",
+          "utc": "2026-11-14T01:27:04.657195+00:00",
+          "monotonic": 180613.796
+        },
+        {
+          "action": "emulator_host_input_restored",
+          "utc": "2026-11-14T01:27:04.686277+00:00",
+          "monotonic": 180613.828
+        }
+      ]
+    },
+    "rtc_endpoint_observations": [
+      {
+        "endpoint": "phone",
+        "call_id": 64,
+        "local_frame_count": 404,
+        "max_local_abs_avg": 0.0948,
+        "max_local_peak": 0.2146,
+        "remote_first_last": [
+          {
+            "bytesReceived": 16257.0,
+            "packetsReceived": 133.0,
+            "totalAudioEnergy": 0.4949814864915961,
+            "totalSamplesDuration": 3.989999999999959
+          },
+          {
+            "bytesReceived": 382535.0,
+            "packetsReceived": 3474.0,
+            "totalAudioEnergy": 12.183629916670426,
+            "totalSamplesDuration": 71.97999999999992
+          }
+        ],
+        "remote_track_ids": [
+          "TR_AMZa9ha3KZXsCQ"
+        ],
+        "remote_last_enabled_muted_active": {
+          "enabled": "true",
+          "muted": "false",
+          "active": "true"
+        },
+        "native_active": {
+          "CAMERA": false,
+          "RECORD_AUDIO": true
+        }
+      },
+      {
+        "endpoint": "emulator",
+        "call_id": 64,
+        "local_frame_count": 184,
+        "max_local_abs_avg": 0.2503,
+        "max_local_peak": 0.5057,
+        "remote_first_last": [
+          {
+            "bytesReceived": 3777.0,
+            "packetsReceived": 31.0,
+            "totalAudioEnergy": 0.02340733158353282,
+            "totalSamplesDuration": 0.6800000000000004
+          },
+          {
+            "bytesReceived": 1025724.0,
+            "packetsReceived": 9073.0,
+            "totalAudioEnergy": 21.833309608153346,
+            "totalSamplesDuration": 196.51999999996625
+          }
+        ],
+        "remote_track_ids": [
+          "TR_AMRSYzBqUasPXm"
+        ],
+        "remote_last_enabled_muted_active": {
+          "enabled": "true",
+          "muted": "false",
+          "active": "true"
+        },
+        "native_active": {
+          "CAMERA": false,
+          "RECORD_AUDIO": true
+        }
+      }
+    ],
+    "normal_end": {
+      "status": "ended",
+      "ended_by_fictional_user": 1,
+      "native_after_end": [
+        {
+          "endpoint": "phone",
+          "query_start": 180817.718,
+          "observed": 180817.796,
+          "active": {
+            "CAMERA": false,
+            "RECORD_AUDIO": false
+          }
+        },
+        {
+          "endpoint": "emulator",
+          "query_start": 180817.718,
+          "observed": 180817.765,
+          "active": {
+            "CAMERA": false,
+            "RECORD_AUDIO": false
+          }
+        }
+      ],
+      "rooms_after_end": []
+    },
+    "scope_limits": {
+      "human_listening_direction": "PC/emulator to phone only; Owner reports audible and clear/generally normal",
+      "reverse_phrase_content_human_validation": "NOT_RUN",
+      "quantitative_latency": "NOT_RUN",
+      "quantitative_echo_metrics": "NOT_RUN",
+      "voice_memo_human_listening": "NOT_RUN",
+      "full_hardware_matrix": "UNVERIFIED",
+      "real_push": "REAL_PUSH_PROVIDER_PENDING",
+      "advisor_r1_review": "PENDING",
+      "owner_version_acceptance": "PENDING"
+    },
+    "runtime_notes": [
+      "Existing emulator Android user0 initial loading caused a temporary UI dump null-root, followed by normal ready UI. Saved startup log and screenshots.",
+      "Phone hangup semantics grouped inside call-operations card, so exact-label helper found no separate button. Observed onscreen button center was tapped, then backend ended and native stop verified."
+    ],
+    "resources": {
+      "observed_at_china": "2026-11-14T09:30:42.122441+08:00",
+      "containers": {
+        "db": {
+          "id": "61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+          "image": "sha256:7db29378d4fdab73f8123bbc2b48905c90d1a4b00cf848b028f1e81e623257f2",
+          "status": "running"
+        },
+        "api": {
+          "id": "56a29d27e5219d9b1ce69a7230766c592535339988b84eb2bbc866b458d7a54b",
+          "image": "sha256:fac4d1a092d669227aa7f018d849ec659996cb1ac616927efe7821e45424d70b",
+          "status": "running"
+        },
+        "ws": {
+          "id": "04e4b97a55addf4978c877960d9235602c999436e5845a8808f197b44dc69644",
+          "image": "sha256:893014a9e551183fa7e9c36503f8ed61e98641e3999081db86d9b02e34f37b3d",
+          "status": "running"
+        },
+        "sfu": {
+          "id": "bd15c12a986c03043eacadf35449d2ec83b78194aa15362a821de56b9d08d6ab",
+          "image": "sha256:954f0e1bd94cbab763dfcca219d730446d064c5c832c179ce31d8225852cbb95",
+          "status": "running"
+        }
+      },
+      "rooms": [],
+      "emulators": "BOTH_STOPPED_DATA_RETAINED",
+      "emulator_host_microphone": "OFF",
+      "phone_after_test": {
+        "app": "Own test app ended-call result screen",
+        "data_retained": true,
+        "native_capture_inactive": true,
+        "version_code": 1010805,
+        "reverse_routes": "Retained for this locally connected test app"
+      },
+      "adb": {
+        "emulator5038_usb_excluded": true,
+        "phone5039_known_device_only": true,
+        "phone5039_retained": true
+      }
+    },
+    "product_source_changed": false,
+    "protected_original_worktree": {
+      "status_unchanged": true,
+      "diff_unchanged": true,
+      "index_unchanged": true
+    },
+    "private_receipt_identities": [
+      {
+        "file": "phone-owner-assisted-20261114-private.json",
+        "bytes": 623,
+        "sha256": "7bce3b2ae02e73489f4656f33bfb76e77834c7bf72b9345de15f7f1bff1b1953"
+      },
+      {
+        "file": "phone-candidate-1010805-installed-20261114-private.json",
+        "bytes": 555,
+        "sha256": "79c3b8dfae9818dac994bcec077fabe7b2ed09235e2795bd8f533906f3f4bdf7"
+      },
+      {
+        "file": "phone-first-call-20261114-private.json",
+        "bytes": 819,
+        "sha256": "2cb86490ad06c861b018b9ca5c91ce3b25df8a1f784c65ed179a0aa8967e9876"
+      },
+      {
+        "file": "phone-reverse-audio-20261114-private.json",
+        "bytes": 935,
+        "sha256": "588de8dbd72ff023e62a67396b2adf296917a6b64c364ce81872603b321cf1bf"
+      },
+      {
+        "file": "phone-reverse-audio-20261114-capture-private.json",
+        "bytes": 373,
+        "sha256": "cb977f3c9801e16caa3b6a4411850f8d56e50bdab0067a7a61379e8f74fdf294"
+      },
+      {
+        "file": "phone-reverse-audio-20261114-output-private.pcm",
+        "bytes": 2876158,
+        "sha256": "290ed1d3e81bb4687ad18416a56e5f1f6f82cd09d443cfa70279c79ef8f46974"
+      },
+      {
+        "file": "phone-mic-control-20261114-private.json",
+        "bytes": 1787,
+        "sha256": "01c3ed4db2dabe1d40a71db1f9eee113ecf06e6a262d6c6e681913f6f12040f5"
+      },
+      {
+        "file": "phone-mic-control-20261114-capture-private.json",
+        "bytes": 372,
+        "sha256": "f8f181589fe1d96f55037d94c869b7e9e5989c4b1badb3d68fda476c1558b0ee"
+      },
+      {
+        "file": "phone-mic-control-20261114-output-private.pcm",
+        "bytes": 2684158,
+        "sha256": "2d9806f3f1197d0c66754a12689432646464b237adabc7e8b22e7b2d1fa4b534"
+      },
+      {
+        "file": "phone-audio-snapshot-20261114-private.json",
+        "bytes": 2477,
+        "sha256": "51af4c710bdad0a08948b4e824829898ebe197b7f1529179ea25536034ee520d"
+      },
+      {
+        "file": "phone-end-resources-20261114-private.json",
+        "bytes": 2912,
+        "sha256": "f05d048200bc406e73d876155ceb36e85ea788b0ba0beee2ac2ec6dfd779806f"
+      },
+      {
+        "file": "phone-call64-ended-phone-20261114-private.log",
+        "bytes": 465279,
+        "sha256": "d6d7a6539df38374db5d70f3ee4797e3b47f34303b06e06df333302a57b092d1"
+      },
+      {
+        "file": "phone-call64-ended-emulator-20261114-private.log",
+        "bytes": 782557,
+        "sha256": "d7d8f9b3729f25f4982ed6ae0bdbc47a7905ba13ce2db45ebde8e8a2f3eb68b2"
+      },
+      {
+        "file": "phone-call64-ended-20261114-private.png",
+        "bytes": 247884,
+        "sha256": "85d7d16c62034cf10a80843c5d9da039736904d350785bd5d560a0194354a711"
+      }
+    ]
   }
 }
