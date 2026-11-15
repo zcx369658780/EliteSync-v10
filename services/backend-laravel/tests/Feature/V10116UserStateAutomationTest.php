@@ -135,10 +135,10 @@ final class V10116UserStateAutomationTest extends TestCase
         $this->assertDatabaseCount('matching_participations', 0);
         app(MatchingRoundService::class)->prepare('default', 'b2-controlled-fixture', now(), now()->addHour(), 'test', null);
         $service->tick('b2-worker', 10);
-        $this->assertDatabaseHas('matching_participations', ['user_id' => $user->id, 'state' => 'ACTIVE', 'revision' => 1]);
+        $this->assertDatabaseHas('matching_participations', ['user_id' => $user->id, 'state' => 'ACTIVE', 'revision' => 2]);
         $this->assertDatabaseCount('automation_effects', 1);
         $service->tick('b2-worker', 10);
-        $this->assertSame(1, DB::table('matching_participations')->where('user_id', $user->id)->value('revision'));
+        $this->assertSame(2, DB::table('matching_participations')->where('user_id', $user->id)->value('revision'));
         $this->assertDatabaseCount('automation_effects', 1);
         foreach (['matching_runs', 'match_proposals', 'product_connections', 'messaging_consents', 'formal_relationships'] as $table) {
             $this->assertDatabaseCount($table, 0);
@@ -176,7 +176,7 @@ final class V10116UserStateAutomationTest extends TestCase
         $this->travel(2)->minutes();
         $service->tick('recovery-worker', 10);
         $this->assertDatabaseHas('automation_tasks', ['state' => 'SUCCEEDED', 'result_code' => 'RECONCILED_EFFECT']);
-        $this->assertSame(1, DB::table('matching_participations')->where('user_id', $user->id)->value('revision'));
+        $this->assertSame(2, DB::table('matching_participations')->where('user_id', $user->id)->value('revision'));
         $service->complete($claim);
         $this->assertDatabaseCount('automation_effects', 1);
     }
@@ -194,7 +194,7 @@ final class V10116UserStateAutomationTest extends TestCase
         app(AutomationService::class)->tick('worker', 10);
         $this->assertDatabaseHas('matching_participations', ['user_id' => $user->id, 'state' => 'PAUSED']);
         $this->putJson(self::URL, $this->command('grant', 2))->assertOk();
-        app(\App\Services\SlowDatingService::class)->participate($user->id, 'pause', 2, '');
+        app(\App\Services\SlowDatingService::class)->participate($user->id, 'pause', 3, '');
         $this->getJson('/api/v1/automations')->assertJsonPath('code', 'PAUSED');
     }
 
@@ -204,7 +204,7 @@ final class V10116UserStateAutomationTest extends TestCase
         $this->putJson(self::URL, $this->command('grant', 0, ['expires_at' => now()->addMinute()->toISOString()]))->assertOk();
         app(MatchingRoundService::class)->prepare('default', 'draft-binding', now(), now()->addHour(), 'test', null);
         app(AutomationService::class)->tick('worker', 10);
-        app(\App\Services\SlowDatingService::class)->participate($user->id, 'draft', 1, 'Private intent');
+        app(\App\Services\SlowDatingService::class)->participate($user->id, 'draft', 2, 'Private intent');
         $this->assertNotNull(DB::table('matching_participations')->where('user_id', $user->id)->value('automation_authorization_id'));
         $this->travel(2)->minutes();
         $this->assertFalse(app(\App\Services\SlowDatingService::class)->enrolled($user->id));
@@ -225,12 +225,12 @@ final class V10116UserStateAutomationTest extends TestCase
         $this->putJson(self::URL, $this->command('resume', 2))->assertOk();
         $service->tick('resumed-worker', 10);
         $service->complete($claim);
-        $this->assertDatabaseHas('matching_participations', ['user_id' => $user->id, 'state' => 'ACTIVE', 'generation' => 2, 'revision' => 3]);
+        $this->assertDatabaseHas('matching_participations', ['user_id' => $user->id, 'state' => 'ACTIVE', 'generation' => 2, 'revision' => 5]);
         $this->assertDatabaseCount('automation_tasks', 1);
         $this->assertDatabaseCount('automation_effects', 1);
         $this->assertSame(3, DB::table('automation_effects')->value('authorization_revision'));
         $service->tick('repeat-worker', 10);
-        $this->assertSame(3, DB::table('matching_participations')->where('user_id', $user->id)->value('revision'));
+        $this->assertSame(5, DB::table('matching_participations')->where('user_id', $user->id)->value('revision'));
     }
 
     public static function acknowledgements(): array { return [[true], [false]]; }
@@ -370,5 +370,148 @@ final class V10116UserStateAutomationTest extends TestCase
         app(AutomationService::class)->tick('revoked-worker', 10);
         $this->assertDatabaseCount('automation_tasks', 0);
         $this->assertEquals($before, DB::table('match_proposals')->where('id', $proposal)->first());
+    }
+
+    #[\PHPUnit\Framework\Attributes\DataProvider('r1StopActions')]
+    public function test_r1_unbound_manual_participation_survives_authorization_stop(string $action): void
+    {
+        $user = $this->ready();
+        $this->putJson('/api/v1/journey/participation', [
+            'action' => 'opt_in', 'revision' => 0, 'intent' => 'R1 independent manual intent',
+        ])->assertOk();
+        $before = DB::table('matching_participations')->where('user_id', $user->id)->first();
+        $extra = $action === 'expiry' ? ['expires_at' => now()->addMinute()->toISOString()] : [];
+        $this->putJson(self::URL, $this->command('grant', 0, $extra))->assertOk();
+        $this->travel(2)->minutes();
+        if (in_array($action, ['pause', 'revoke'], true)) {
+            $this->putJson(self::URL, $this->command($action, 1))->assertOk();
+        } else {
+            if ($action === 'policy') { config(['user_automation.policy_version' => 'weekly_participation_v2']); }
+            app(AutomationService::class)->tick('r1-manual-expiry', 10);
+            $this->getJson('/api/v1/automations')->assertJsonPath('code', 'EXPIRED');
+        }
+        $this->assertEquals($before, DB::table('matching_participations')->where('user_id', $user->id)->first());
+        $this->assertDatabaseCount('automation_effects', 0);
+        $this->getJson('/api/v1/user-state')->assertOk()
+            ->assertJsonPath('domains.participation.code', 'ACTIVE')
+            ->assertJsonPath('domains.participation.delegated', false)
+            ->assertJsonPath('domains.participation.source_revision', $before->revision);
+    }
+
+    #[\PHPUnit\Framework\Attributes\DataProvider('r1StopActions')]
+    public function test_r1_bound_participation_stops_but_preserves_proposal(string $action): void
+    {
+        $user = $this->ready();
+        $extra = $action === 'expiry' ? ['expires_at' => now()->addMinute()->toISOString()] : [];
+        $this->putJson(self::URL, $this->command('grant', 0, $extra))->assertOk();
+        $round = app(MatchingRoundService::class)->prepare('default', 'r1-delegated-stop', now(), now()->addHour(), 'test', null);
+        $service = app(AutomationService::class);
+        $service->tick('r1-bound-worker', 10);
+        $before = DB::table('matching_participations')->where('user_id', $user->id)->first();
+        $this->assertNotNull($before->automation_authorization_id);
+        $proposal = $this->proposalFixture($user, $round, now()->addHour());
+        $peer = User::findOrFail(DB::table('match_proposals')->where('id', $proposal)->value('user_b'));
+        $peer->update(['verify_status' => 'approved']);
+        app(\App\Services\MatchingInputService::class)->save($peer->id, [
+            'revision' => 0, 'confirm' => true, 'birthday' => '1995-01-02', 'gender' => 'female',
+            'city_key' => '上海', 'relationship_goal' => 'marriage', 'age_mode' => 'adult_any',
+            'age_min' => null, 'age_max' => null, 'region_mode' => 'same_city',
+        ]);
+        $question = \App\Models\QuestionnaireQuestion::where('question_key', 'b2-fixture')->firstOrFail();
+        \App\Models\QuestionnaireAnswer::create(['user_id' => $peer->id, 'questionnaire_question_id' => $question->id,
+            'answer_payload' => ['selected_answer' => ['A']], 'version' => 1]);
+        $this->completeLifestyleFixture($peer->id);
+        DB::table('matching_participations')->insert(['user_id' => $peer->id, 'state' => 'ACTIVE',
+            'generation' => 1, 'revision' => 1, 'intent' => 'R1 peer fixture', 'created_at' => now(), 'updated_at' => now()]);
+        DB::table('match_proposals')->where('id', $proposal)->update(['generation_b' => 1]);
+        DB::table('match_proposal_slots')->insert(['user_id' => $peer->id, 'proposal_id' => $proposal]);
+        $proposalBefore = DB::table('match_proposals')->where('id', $proposal)->first();
+        $slotBefore = DB::table('match_proposal_slots')->where('user_id', $user->id)->first();
+        $this->travel(2)->minutes();
+        if (in_array($action, ['pause', 'revoke'], true)) {
+            $this->putJson(self::URL, $this->command($action, 1))->assertOk();
+        } else {
+            if ($action === 'policy') { config(['user_automation.policy_version' => 'weekly_participation_v2']); }
+            $service->tick('r1-bound-expiry', 10);
+        }
+        $after = DB::table('matching_participations')->where('user_id', $user->id)->first();
+        $this->assertSame('PAUSED', $after->state);
+        $this->assertSame($before->revision + 1, $after->revision);
+        $this->assertSame($before->generation, $after->generation);
+        $this->assertEquals($proposalBefore, DB::table('match_proposals')->where('id', $proposal)->first());
+        $this->assertEquals($slotBefore, DB::table('match_proposal_slots')->where('user_id', $user->id)->first());
+        $service->tick('r1-stopped-repeat', 10);
+        $this->assertEquals($after, DB::table('matching_participations')->where('user_id', $user->id)->first());
+        $this->assertDatabaseCount('automation_tasks', 1);
+        $this->assertDatabaseCount('automation_effects', 1);
+        $this->postJson('/api/v1/journey/proposals/'.$proposal.'/decision', [
+            'action' => 'accept', 'revision' => 1, 'idempotency_key' => 'r1-paused-accept',
+        ])->assertConflict();
+        $this->postJson('/api/v1/journey/proposals/'.$proposal.'/decision', [
+            'action' => 'withdraw', 'revision' => 1, 'idempotency_key' => 'r1-explicit-withdraw',
+        ])->assertOk()->assertJsonPath('state', 'WITHDRAWN');
+    }
+
+    public static function r1StopActions(): array
+    {
+        return [['pause'], ['revoke'], ['expiry'], ['policy']];
+    }
+
+    public function test_r1_manual_opt_in_clears_binding_and_survives_later_revoke(): void
+    {
+        $user = $this->ready();
+        $this->putJson(self::URL, $this->command('grant', 0))->assertOk();
+        app(MatchingRoundService::class)->prepare('default', 'r1-manual-takeover', now(), now()->addHour(), 'test', null);
+        app(AutomationService::class)->tick('r1-worker', 10);
+        $bound = DB::table('matching_participations')->where('user_id', $user->id)->first();
+        $this->travel(5)->seconds();
+        $this->putJson('/api/v1/journey/participation', [
+            'action' => 'opt_in', 'revision' => $bound->revision, 'intent' => 'R1 new independent intent',
+        ])->assertOk()->assertJsonPath('revision', $bound->revision + 1);
+        $manual = DB::table('matching_participations')->where('user_id', $user->id)->first();
+        $this->assertNull($manual->automation_authorization_id);
+        $this->assertGreaterThan($bound->updated_at, $manual->updated_at);
+        $this->putJson(self::URL, $this->command('revoke', 1))->assertOk();
+        $this->assertEquals($manual, DB::table('matching_participations')->where('user_id', $user->id)->first());
+    }
+
+    public function test_r1_binding_changes_advance_source_revision_and_final_effect_receipt(): void
+    {
+        $user = $this->ready();
+        $this->putJson('/api/v1/journey/participation', [
+            'action' => 'opt_in', 'revision' => 0, 'intent' => 'R1 retained manual intent',
+        ])->assertOk();
+        $manual = DB::table('matching_participations')->where('user_id', $user->id)->first();
+        $this->putJson(self::URL, $this->command('grant', 0))->assertOk();
+        $old = app(MatchingRoundService::class)->prepare('default', 'r1-binding-first', now(), now()->addHour(), 'test', null);
+        $this->travel(5)->seconds();
+        $service = app(AutomationService::class);
+        $service->tick('r1-first-binding', 10);
+        $bound = DB::table('matching_participations')->where('user_id', $user->id)->first();
+        $this->assertSame($manual->revision + 1, $bound->revision);
+        $this->assertSame($manual->generation, $bound->generation);
+        $this->assertSame($manual->intent, $bound->intent);
+        $this->assertGreaterThan($manual->updated_at, $bound->updated_at);
+        $this->assertSame($bound->revision, DB::table('automation_effects')->value('participation_revision'));
+        $this->getJson('/api/v1/user-state')->assertOk()
+            ->assertJsonPath('domains.participation.delegated', true)
+            ->assertJsonPath('domains.participation.source_revision', $bound->revision)
+            ->assertJsonPath('domains.participation.source_updated_at', $bound->updated_at);
+        $this->travel(5)->seconds();
+        $service->tick('r1-repeat-binding', 10);
+        $this->assertEquals($bound, DB::table('matching_participations')->where('user_id', $user->id)->first());
+        // A new existing round is a controlled fixture, never a worker-created round.
+        DB::table('dating_rounds')->where('id', $old->id)->update(['state' => 'closed']);
+        DB::table('dating_round_channels')->where('channel_key', 'default')->update(['active_round_id' => null]);
+        $next = app(MatchingRoundService::class)->prepare('default', 'r1-binding-next', now(), now()->addHour(), 'test', null);
+        $service->tick('r1-new-round-binding', 10);
+        $rebound = DB::table('matching_participations')->where('user_id', $user->id)->first();
+        $this->assertSame($bound->revision + 1, $rebound->revision);
+        $this->assertSame($bound->generation, $rebound->generation);
+        $this->assertSame($next->id, $rebound->automation_round_id);
+        $this->assertGreaterThan($bound->updated_at, $rebound->updated_at);
+        $task = DB::table('automation_tasks')->where('round_id', $next->id)->first();
+        $this->assertSame($rebound->revision, DB::table('automation_effects')->where('task_id', $task->id)->value('participation_revision'));
+        $this->assertDatabaseCount('matching_runs', 0);
     }
 }

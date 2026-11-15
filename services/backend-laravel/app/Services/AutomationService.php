@@ -53,7 +53,7 @@ final class AutomationService
                         'state' => 'EXPIRED', 'revision' => $grant->revision + 1, 'updated_at' => now(),
                     ]);
                     $auth->cancelTasks((int) $userId, 'EXPIRED');
-                    $auth->pauseParticipation((int) $userId);
+                    $auth->pauseParticipation((int) $userId, (int) $grant->id);
                     $auth->audit((int) $userId, null, 'AUTHORIZATION_EXPIRED');
                     return;
                 }
@@ -210,10 +210,16 @@ final class AutomationService
             if ($participation['state'] !== 'ACTIVE') {
                 $participation = app(SlowDatingService::class)->participate((int) $user->id, 'opt_in', $participation['revision'], $participation['intent']);
             }
-            DB::table('matching_participations')->where('user_id', $user->id)->update([
-                'automation_authorization_id' => $grant->id, 'automation_authorization_revision' => $grant->revision,
-                'automation_round_id' => $round->id,
-            ]);
+            $bound = DB::table('matching_participations')->where('user_id', $user->id)->lockForUpdate()->first();
+            if ((int) $bound->automation_authorization_id !== (int) $grant->id
+                || (int) $bound->automation_authorization_revision !== (int) $grant->revision
+                || (int) $bound->automation_round_id !== (int) $round->id) {
+                $participation['revision']++;
+                DB::table('matching_participations')->where('user_id', $user->id)->update([
+                    'automation_authorization_id' => $grant->id, 'automation_authorization_revision' => $grant->revision,
+                    'automation_round_id' => $round->id, 'revision' => $participation['revision'], 'updated_at' => now(),
+                ]);
+            }
             DB::table('automation_effects')->updateOrInsert(['task_id' => $task->id], ['user_id' => $user->id,
                 'authorization_revision' => $task->authorization_revision,
                 'participation_revision' => $participation['revision'], 'participation_generation' => $participation['generation'], 'created_at' => now()]);

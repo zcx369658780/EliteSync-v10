@@ -105,7 +105,7 @@ final class AutomationAuthorizationService
                 'created_at' => $row->created_at ?? now(), 'updated_at' => now(),
             ]);
             $this->cancelTasks((int) $user->id, $state === 'EXPIRED' ? 'EXPIRED' : 'CANCELLED');
-            if (in_array($state, ['PAUSED', 'REVOKED'], true)) { $this->pauseParticipation((int) $user->id); }
+            if (in_array($state, ['PAUSED', 'REVOKED'], true)) { $this->pauseParticipation((int) $user->id, (int) $row->id); }
             DB::table('automation_commands')->insert(['user_id' => $user->id, 'request_key' => $data['request_key'],
                 'request_hash' => $hash, 'action' => $action, 'applied_revision' => $revision + 1, 'created_at' => now()]);
             $this->audit((int) $user->id, null, 'AUTHORIZATION_'.strtoupper($action));
@@ -120,11 +120,13 @@ final class AutomationAuthorizationService
                 'fencing_token' => DB::raw('fencing_token + 1'), 'finished_at' => now(), 'updated_at' => now()]);
     }
 
-    public function pauseParticipation(int $userId): void
+    public function pauseParticipation(int $userId, int $authorizationId): void
     {
-        $participation = app(SlowDatingService::class)->participation($userId);
-        if ($participation['state'] === 'ACTIVE') {
-            app(SlowDatingService::class)->participate($userId, 'pause', $participation['revision'], $participation['intent']);
+        // The authorization revision may already have advanced during expiry.
+        $participation = DB::table('matching_participations')->where('user_id', $userId)
+            ->where('automation_authorization_id', $authorizationId)->where('state', 'ACTIVE')->lockForUpdate()->first();
+        if ($participation) {
+            app(SlowDatingService::class)->participate($userId, 'pause', (int) $participation->revision, $participation->intent ?? '');
         }
     }
 
