@@ -133,8 +133,8 @@
     {
       "id": "OWNER",
       "channel": "local review package preparation",
-      "result": "OWNER_ACTION_PENDING",
-      "scope": "APK/hash/manual checklist/local QA credentials prepared. All phone actions remain Owner pending."
+      "result": "INITIAL_OWNER_ACTION_PENDING_AT_ORIGINAL_DELIVERY",
+      "scope": "Historical initial state at ca54f4b7. Current authorized phone result is in physical_phone_supplement; Owner acceptance remains PENDING."
     },
     {
       "id": "ASSETS",
@@ -149,10 +149,18 @@
   ],
   "limitations": [
     "All video samples silent; human audio NOT_RUN",
-    "Owner phone checks OWNER_ACTION_PENDING",
+    "Earphone, human acoustic, dual physical phone and public-network matrices NOT_RUN; completed phone+emulator scope is in the physical supplement",
     "Post-upload delayed callback after account switch lacks new explicit test; unchanged token guards reviewed",
     "Zero native buffered playback tail UNVERIFIED",
     "Real Push/identity, algorithm accuracy and RTC hardware matrix retain prior states",
     "v13 DB first-probe receipts missing, auxiliary log append, original status-history cause and notification exact ID retain original UNKNOWN/NOT_RUN"
-  ]
+  ],
+  "physical_phone_supplement": {
+    "report": "PHONE_TEST_REPORT_20261115.md",
+    "evidence": "PHONE_EVIDENCE_SUMMARY_20261115.json",
+    "authorization": "Owner current explicit instruction",
+    "status": "COMPLETE_NAMED_SCOPE",
+    "prior_OWNER_ACTION_PENDING": "Historical initial state at previous fixed delivery"
+  },
+  "original_evidence_epoch": "Original fixed delivery ca54f4b7c401c9bf5729a855a1bad34993d3d817; physical_phone_supplement records later Owner-authorized work"
 }

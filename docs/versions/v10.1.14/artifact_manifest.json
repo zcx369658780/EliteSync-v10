@@ -37,7 +37,10 @@
     "created_with_1011401": 4,
     "created_with_1011402": 21,
     "index": "QA_CONTENT_INDEX.md",
-    "license_list": "MATERIAL_LICENSES.json"
+    "license_list": "MATERIAL_LICENSES.json",
+    "additional_phone_images": 1,
+    "additional_phone_videos": 1,
+    "scope": "Original curated20 images+5 videos, plus separately counted1 image+1 video physical-phone QA supplement"
   },
   "tests": {
     "unique_dart": 15,
@@ -71,7 +74,7 @@
     "restore_containers": "STOPPED_VOLUMES_RETAINED",
     "B_input_setting": "RESTORED_null"
   },
-  "owner_phone": "NOT_USED_OWNER_ACTION_PENDING",
+  "owner_phone": "TESTED_OWNER_AUTHORIZED_NAMED_SCOPE",
   "owner_review_local_directory": "EliteSyncDev/v1015-current-dev/v10114-current/OWNER_REVIEW_1011402",
   "original_repository_fingerprints_equal_to_start": {
     "head": true,
@@ -100,10 +103,10 @@
   "delivery_identity": {
     "source_commit": "88540f7f4d5a64500996b67eb04bfd9aba7c0af3",
     "document_commit_binding": "The fixed Git commit containing this manifest; SHA is provided in the final same-origin readback receipt and final Owner reply",
-    "local_readback_receipt": "v10114-current/final-origin-readback-private.json",
+    "local_readback_receipt": "v10114-current/phone-20261115/final-origin-readback-private.json",
     "reason": "A Git commit SHA cannot be embedded into its own committed content",
-    "public_document_payload_commit": "f836f8ae6a1b1cdf338688ac55e41716493cd777",
-    "final_manifest_commit_binding": "Final branch commit updates only this manifest hash accounting; fixed full SHA is in the final same-origin readback receipt."
+    "final_manifest_commit_binding": "Containing fixed Git commit; final same-origin readback receipt identifies the current supplement delivery.",
+    "previous_document_payload_commit": "f836f8ae6a1b1cdf338688ac55e41716493cd777"
   },
   "public_artifacts": {
     "CODEX_START_PROMPT.txt": {
@@ -113,10 +116,10 @@
       "local_windows_sha256": "c26943bb069094a1cc961fb212b894c4dd4e0f4633ad04c9854b5e761d73cb79"
     },
     "CORE_JOURNEY_MATRIX.md": {
-      "bytes": 7619,
-      "sha256": "284e8d3e8326f8a7e7fbb6e4e8238c385ee8c893b5d7bbf626d4ff74388ab454",
-      "local_windows_bytes": 7677,
-      "local_windows_sha256": "09f9e4cd1a41fd024b026ef109263fc99ff24d2b7ec3cdd4afd2727f8629fcfe"
+      "bytes": 8299,
+      "sha256": "c63900b33ac4ab54131e6de79ee2150b6285486081c7b06ef39b2198475534aa",
+      "local_windows_bytes": 8363,
+      "local_windows_sha256": "682b2c378b17c9e082f6884cfa9ec942f51709a7b355c1576548e6287c6f13e8"
     },
     "DEVELOPMENT_ALIGNMENT.md": {
       "bytes": 4881,
@@ -125,22 +128,22 @@
       "local_windows_sha256": "ea06970883b289d886dcc0e4f84ef275278e338aa479eebb7230caf902240422"
     },
     "EVIDENCE_SUMMARY_20261115.json": {
-      "bytes": 7778,
-      "sha256": "2a76cb39daa38f9b2ec2e8c560cd35d5d36adb007ec93ef095099e9684d6a0d0",
-      "local_windows_bytes": 7936,
-      "local_windows_sha256": "2da14aa6ccfd380e782f7fc8526478c0da121bb76414ce7c2c3147314699b69a"
+      "bytes": 8437,
+      "sha256": "fb1f272602c27a12f65eb932d24064de00658a73397e8826c0973a3b7654df65",
+      "local_windows_bytes": 8603,
+      "local_windows_sha256": "d08ad4010695530ef427b206e7b848b2e4c6a6ef869a5264872bdd7cbbcd3ef1"
     },
     "FEATURE_CATALOG.md": {
-      "bytes": 4261,
-      "sha256": "723ceded4fca71d6efb334f36a4a4427af55931c01f8ab24ba405a8e95f25447",
-      "local_windows_bytes": 4291,
-      "local_windows_sha256": "6487556efc9597741dfb0b01b65a93b387e944e7eedd3d2e5edfc58fa0689c64"
+      "bytes": 4580,
+      "sha256": "4f865a1585c81ae4849bc4138c034cedd1d5de5528d176c257754cc377751cbc",
+      "local_windows_bytes": 4612,
+      "local_windows_sha256": "8143cd55a5498bc6eac5591150abea244a0e3bb18e1ac7016f26ea998bf45d8b"
     },
     "IMPLEMENTATION_REPORT.md": {
-      "bytes": 9353,
-      "sha256": "7337ada82891ec5aaace11f56b3449a8c382986f288ede2b551d1fb3e50356ec",
-      "local_windows_bytes": 9431,
-      "local_windows_sha256": "46536736b175a1c8b8e4d05f21e3f20ffb6e6d8ddf7458c2e65c5f269da33bff"
+      "bytes": 10160,
+      "sha256": "48fa08f31c821424ca47137630a7efedd5f62cd2c5476ee72e3b1983d438528d",
+      "local_windows_bytes": 10242,
+      "local_windows_sha256": "51b06978fcaeb1286cc01d3938c972311dab6ee012182bd78338d640b5dd2513"
     },
     "LOCAL_DOCS_SYNC_RECEIPT.json": {
       "bytes": 2660,
@@ -149,10 +152,10 @@
       "local_windows_sha256": "44f5f9979dcdfc6dbaf1015f3abae052f83bfdba87655bd5dc7d7b99c40302d4"
     },
     "LOCAL_SERVICE_RECOVERY.md": {
-      "bytes": 7041,
-      "sha256": "f51b537bd090df02839899d6aa3478ff1719b1c50a69339ed1c0b43c35bbf8f1",
-      "local_windows_bytes": 7142,
-      "local_windows_sha256": "f32b1deb6dd4182fe2e84c8cce1591fa3469fbb8812ef60f387fa6999480ff46"
+      "bytes": 8131,
+      "sha256": "b52781823639b9c7bc01a3338fe792b4a794503661bf4c0d3a2b419a32c04333",
+      "local_windows_bytes": 8245,
+      "local_windows_sha256": "e6e2bc75a872f297089669ecf7f55dde7dd6f3602c9e108f0b051f314db79dc4"
     },
     "MATERIAL_LICENSES.json": {
       "bytes": 28782,
@@ -161,22 +164,28 @@
       "local_windows_sha256": "5e957c06412f1e4f2414b73059b718c0a78492ef7abcd189f9036d72234c4ff0"
     },
     "OWNER_DEVICE_CHECKLIST.md": {
-      "bytes": 4699,
-      "sha256": "efe82f8e19ec12894d3acc3d453c86fa472e5e042711e5f3702a6045d3ebacce",
-      "local_windows_bytes": 4738,
-      "local_windows_sha256": "f88a36b60d3e560d376e282ddf2d5ee7897a813097e3ec1d93ac5dd0f706b322"
+      "bytes": 3143,
+      "sha256": "bc3d44cecf7ad9744e44f9718448796127294668123c393da50c3e940a4cfac8",
+      "local_windows_bytes": 3167,
+      "local_windows_sha256": "36f6512c716964e4fac9ee3887d27c84cbc74143a4bc714a32e4e2563f0cc52c"
     },
-    "plan.md": {
-      "bytes": 5383,
-      "sha256": "50a5fe36a5a99533030b9c459f7a062e4d5370f1a72b86e4f532697e4ce0bb3f",
-      "local_windows_bytes": 5465,
-      "local_windows_sha256": "8bc26e74517b2bce4127e1fca170ed71ff32ad5a5a2aa19a68584ef294055208"
+    "PHONE_EVIDENCE_SUMMARY_20261115.json": {
+      "bytes": 11534,
+      "sha256": "03aadb0ecf5c34a38e53872ea5ad85f4e8549a525c55a662ada7ad5bc62ee1ff",
+      "local_windows_bytes": 11921,
+      "local_windows_sha256": "19f7ee4d0dc69cd1efccbe8862d8b66b6368dff58aa4e3b1690159e6798a4d4b"
+    },
+    "PHONE_TEST_REPORT_20261115.md": {
+      "bytes": 7937,
+      "sha256": "7c0d73dd6d9bf6651f53a43a5a6bb3f417af90dd16726430f97eb09ad1d914a4",
+      "local_windows_bytes": 8015,
+      "local_windows_sha256": "c2f7f42a77daeeab6d3ac9eb1f7a1bef035222d167ce14b843cd113262db2145"
     },
     "QA_CONTENT_INDEX.md": {
-      "bytes": 3006,
-      "sha256": "b53760f8d960e5a8618fea8c4d9c8915ad1e642817118ed45eebd2ebae1b7077",
-      "local_windows_bytes": 3043,
-      "local_windows_sha256": "1215c77c4eba8c95412ab17fca2779275569f975e60eda76cef79e916ac0c93b"
+      "bytes": 3621,
+      "sha256": "ce5da1575594ef66edda13108f89e036d1941a192c19637a284080fbe9921fda",
+      "local_windows_bytes": 3667,
+      "local_windows_sha256": "f378691f393c4bb6152c41eef42e965e63d8de08f48555164f0393b74b647797"
     },
     "ROADMAP_ALIGNMENT_ACK.md": {
       "bytes": 2405,
@@ -184,17 +193,95 @@
       "local_windows_bytes": 2424,
       "local_windows_sha256": "dda4053d2fbf29fb5a7599a2f4c4fd4ce17a2b21e1122632a9b63383d1721a5b"
     },
-    "task_order.md": {
-      "bytes": 11102,
-      "sha256": "0538d0b91f567cb45cd00e516034dc8ebe345a80c26325f56d4e78406015759a",
-      "local_windows_bytes": 11255,
-      "local_windows_sha256": "1d38dd7f392bca1f94f4207547b3de806307f9493e232d8cfd0af2d74eb32785"
-    },
     "evidence/SCREENSHOTS.json": {
       "bytes": 4741,
       "sha256": "b6810dbdd4df27842fbfcf42ae77610cb1bd1a60600dee91c3d71c6fc90c27b2",
       "local_windows_bytes": 4848,
       "local_windows_sha256": "8e847fa7de8393138001237ba6d07bf21d8c3f5100dd6595eda4520c5fa523d2"
+    },
+    "evidence/phone/01-phone-nav-home.png": {
+      "bytes": 374689,
+      "sha256": "025e19362b65b691bbd089e796aa6d06debe018f3f612e36f796efbea824ddbf",
+      "local_windows_bytes": 374689,
+      "local_windows_sha256": "025e19362b65b691bbd089e796aa6d06debe018f3f612e36f796efbea824ddbf"
+    },
+    "evidence/phone/02-phone-privacy-saved.png": {
+      "bytes": 286555,
+      "sha256": "0270ccbaaf2af9cae63ece2a0750f6a816d0e286ecd2d0907abcec2a8ab3a08c",
+      "local_windows_bytes": 286555,
+      "local_windows_sha256": "0270ccbaaf2af9cae63ece2a0750f6a816d0e286ecd2d0907abcec2a8ab3a08c"
+    },
+    "evidence/phone/03-phone-image-published.png": {
+      "bytes": 346050,
+      "sha256": "37d943c76c9eae65cacac985c6e2bcf3097c2f548f2d9ab636fda410fafb1bf4",
+      "local_windows_bytes": 346050,
+      "local_windows_sha256": "37d943c76c9eae65cacac985c6e2bcf3097c2f548f2d9ab636fda410fafb1bf4"
+    },
+    "evidence/phone/04-phone-video-paused.png": {
+      "bytes": 1438535,
+      "sha256": "d154d9a4c55e966b346cd9d564bf414dc8c6836f7e29c83e474f0408eb56d860",
+      "local_windows_bytes": 1438535,
+      "local_windows_sha256": "d154d9a4c55e966b346cd9d564bf414dc8c6836f7e29c83e474f0408eb56d860"
+    },
+    "evidence/phone/05-phone-message-received.png": {
+      "bytes": 240611,
+      "sha256": "a09ba2fdcc3e6ac2896e761bda460a205e03cc27f71c66c6771bbc981e8ec180",
+      "local_windows_bytes": 240611,
+      "local_windows_sha256": "a09ba2fdcc3e6ac2896e761bda460a205e03cc27f71c66c6771bbc981e8ec180"
+    },
+    "evidence/phone/06-phone-voice-connected.png": {
+      "bytes": 198056,
+      "sha256": "5b6368c9846f99908247035b5e7b4639af07c65b1cd0040378068a60183da4d2",
+      "local_windows_bytes": 198056,
+      "local_windows_sha256": "5b6368c9846f99908247035b5e7b4639af07c65b1cd0040378068a60183da4d2"
+    },
+    "evidence/phone/07-phone-voice-earpiece.png": {
+      "bytes": 197646,
+      "sha256": "7fbcac11d2d76865d5a17d3d2b3a3f36437974816bc58a8cab0a31d7a9f14dc6",
+      "local_windows_bytes": 197646,
+      "local_windows_sha256": "7fbcac11d2d76865d5a17d3d2b3a3f36437974816bc58a8cab0a31d7a9f14dc6"
+    },
+    "evidence/phone/08-phone-voice-background-paused.png": {
+      "bytes": 201826,
+      "sha256": "d3dd9a2bdba8f8542203ecc22d4927664c12003cf51674393faad8f17194545a",
+      "local_windows_bytes": 201826,
+      "local_windows_sha256": "d3dd9a2bdba8f8542203ecc22d4927664c12003cf51674393faad8f17194545a"
+    },
+    "evidence/phone/09-phone-buddy-terminal-history.png": {
+      "bytes": 303767,
+      "sha256": "931bf1bf383b8d72d3bf9803aa0ebd1ca2a4789dbe89914791d54a040de9501d",
+      "local_windows_bytes": 303767,
+      "local_windows_sha256": "931bf1bf383b8d72d3bf9803aa0ebd1ca2a4789dbe89914791d54a040de9501d"
+    },
+    "evidence/phone/10-phone-notification-center.png": {
+      "bytes": 363969,
+      "sha256": "d1075ef9ac1e049eb4c522e89e76bf4989038ea4e9dd5849ef8a05ed18764b7d",
+      "local_windows_bytes": 363969,
+      "local_windows_sha256": "d1075ef9ac1e049eb4c522e89e76bf4989038ea4e9dd5849ef8a05ed18764b7d"
+    },
+    "evidence/phone/11-phone-outsider-empty-community.png": {
+      "bytes": 284333,
+      "sha256": "721bf39f03a4663c55376704e1efad8d10be30c054cb64204a0c3c3c038602a7",
+      "local_windows_bytes": 284333,
+      "local_windows_sha256": "721bf39f03a4663c55376704e1efad8d10be30c054cb64204a0c3c3c038602a7"
+    },
+    "evidence/phone/12-phone-coldstart-history8.png": {
+      "bytes": 208365,
+      "sha256": "80ea53cc387f7a64f398afeae09d489b6ad77d0f11b4caf66a3d7c1cee4a1e5d",
+      "local_windows_bytes": 208365,
+      "local_windows_sha256": "80ea53cc387f7a64f398afeae09d489b6ad77d0f11b4caf66a3d7c1cee4a1e5d"
+    },
+    "evidence/phone/13-phone-coldstart-own-video38-loaded.png": {
+      "bytes": 1398794,
+      "sha256": "0f0dd0721aae7d8e32fe5cd1ffa589a652fc30c70510e6c1a0abbccffb064b42",
+      "local_windows_bytes": 1398794,
+      "local_windows_sha256": "0f0dd0721aae7d8e32fe5cd1ffa589a652fc30c70510e6c1a0abbccffb064b42"
+    },
+    "evidence/phone/SCREENSHOTS.json": {
+      "bytes": 3450,
+      "sha256": "065378eccf1086ab7f052361a17e2375221cc992302f9f978dad83cf4515fcec",
+      "local_windows_bytes": 3534,
+      "local_windows_sha256": "5d326982cf1669f484379adf7edc5d34c70e990dfb3dd67157fb88298621ceb9"
     },
     "evidence/screenshots/01-owner-community-cold-readback-1011402.png": {
       "bytes": 117163,
@@ -297,6 +384,18 @@
       "sha256": "1d82d2a8f61ed1f8c7e4d1feb76c83b103422e7f2b1c1f2e7869725cd6dc5754",
       "local_windows_bytes": 121658,
       "local_windows_sha256": "1d82d2a8f61ed1f8c7e4d1feb76c83b103422e7f2b1c1f2e7869725cd6dc5754"
+    },
+    "plan.md": {
+      "bytes": 5383,
+      "sha256": "50a5fe36a5a99533030b9c459f7a062e4d5370f1a72b86e4f532697e4ce0bb3f",
+      "local_windows_bytes": 5465,
+      "local_windows_sha256": "8bc26e74517b2bce4127e1fca170ed71ff32ad5a5a2aa19a68584ef294055208"
+    },
+    "task_order.md": {
+      "bytes": 11102,
+      "sha256": "0538d0b91f567cb45cd00e516034dc8ebe345a80c26325f56d4e78406015759a",
+      "local_windows_bytes": 11255,
+      "local_windows_sha256": "1d38dd7f392bca1f94f4207547b3de806307f9493e232d8cfd0af2d74eb32785"
     }
   },
   "resource_snapshot": {
@@ -307,5 +406,36 @@
     "B_test_memory_mib": 2048,
     "emulator_ports_5580_5582_closed": true
   },
-  "public_artifacts_hash_basis": "bytes and sha256 refer to committed Git blob bytes. local_windows fields retain the working-file bytes before Git line-ending normalization."
+  "public_artifacts_hash_basis": "bytes and sha256 refer to staged/committed Git blob bytes; local_windows fields retain working-file bytes.",
+  "previous_delivery_commit": "ca54f4b7c401c9bf5729a855a1bad34993d3d817",
+  "physical_phone_supplement": {
+    "candidate": 1011402,
+    "source_commit": "88540f7f4d5a64500996b67eb04bfd9aba7c0af3",
+    "report": "PHONE_TEST_REPORT_20261115.md",
+    "evidence": "PHONE_EVIDENCE_SUMMARY_20261115.json",
+    "device_alias": "Owner-phone-01",
+    "model": "25060RK16C",
+    "android": 16,
+    "voice_call": 67,
+    "video_call": 69,
+    "phone_QA_posts": [
+      37,
+      38
+    ],
+    "earphone": "NOT_RUN",
+    "human_acoustic": "NOT_RUN",
+    "dual_physical_phones": "NOT_RUN",
+    "source_changes": false
+  },
+  "phone_resources": {
+    "device_alias": "Owner-phone-01",
+    "state": "ES16_HOME",
+    "camera_permission": "RESTORED_INITIAL_DENIED",
+    "local_reverse_ports": [
+      8021,
+      8022,
+      7880,
+      7881
+    ]
+  }
 }

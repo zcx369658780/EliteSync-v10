@@ -2,6 +2,9 @@
 
 生效：2026-11-15。当前版本依据[Owner接受v10.1.13并授权v10.1.14阶段A](docs/decisions/OWNER_V10_1_13_ACCEPTANCE_AND_V10_1_14_PHASE_A_AUTHORIZATION_20261115.md)，当前路线权威为[产品路线图V3.0](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)，普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
+
+2026-11-15实机补充授权生效。Owner已明确授权Codex操纵当前接入手机完成v10.1.14测试并重新报告。本轮手机操作、候选升级、虚构QA账号和必要权限验证沿此授权执行。原始候选和历史实机待操作状态按当时记录保留，实际补证结果另记。
+
 ## 产品目标
 
 Owner已确认项目交接及选定旧版主要功能接续完成。当前完善可实际使用的EliteSync APP、真实后端、持久数据库及独立Web管理面板。先完成业务功能与最小可操作界面，必要安全封装随功能收口处理，最后集中打磨UI和文字。现有鉴权、私信权限与数据隔离保留。
@@ -14,9 +17,9 @@ v10.1.13已获独立顾问验收及Owner接受，六项AC按具名代表性范�
 
 v10.1.14阶段A六项AC已按具名代表范围完成工程自验，顾问独立验收和Owner接受均PENDING。分支为`codex/v10.1.14-product-readiness-core-journeys-20261115`，唯一父基线`5dd0c9e6625699947f8dd0755ff568a3edfe0b04`，任务文档固定提交`866ccb269603ab451f84e948fa23d7361362f33f`。编码前九份文档逐Blob核对并生成路线ACK，完整记录见[同步回执](docs/versions/v10.1.14/LOCAL_DOCS_SYNC_RECEIPT.json)。
 
-最终APP源码`88540f7f4d5a64500996b67eb04bfd9aba7c0af3`，候选`10.1.14-dev / 1011402`。社区单视频、20图文+5视频本机语料、P1草稿修复、核心旅程代表验证、独立备份恢复及Owner手动评估包已交付，范围见[实施报告](docs/versions/v10.1.14/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.14/artifact_manifest.json)。低内存进程回收后草稿丢失保留P2，手机全部OWNER_ACTION_PENDING。集中提交并同源远端回读后停止供顾问验收。
+最终APP源码`88540f7f4d5a64500996b67eb04bfd9aba7c0af3`，候选`10.1.14-dev / 1011402`。社区单视频、20图文+5视频本机语料、P1草稿修复、核心旅程代表验证、独立备份恢复及Owner手动评估包已交付，范围见[实施报告](docs/versions/v10.1.14/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.14/artifact_manifest.json)。低内存进程回收后草稿丢失保留P2。Owner随后授权实机补证，1011402在Xiaomi/Android16完成具名范围，语音67和视频69为手机+模拟器验证，耳机、人耳听感、双实机及跨公网矩阵NOT_RUN。实际结果见[实机报告](docs/versions/v10.1.14/PHONE_TEST_REPORT_20261115.md)。顾问与Owner接受PENDING，集中提交与同源回读后停止供验收。
 
-当前范围为V3.0阶段A，视觉方向继续冻结。阶段B的Lifestyle Discovery、全局低操作成本重构、自动化和AI辅助，以及阶段C身份/信用/Push/支付等保留Owner后续授权。Owner手机由Owner自行操作。
+当前范围为V3.0阶段A，视觉方向继续冻结。阶段B的Lifestyle Discovery、全局低操作成本重构、自动化和AI辅助，以及阶段C身份/信用/Push/支付等保留Owner后续授权。本轮手机测试遵循2026-11-15的Owner具体授权，后续设备动作由Owner决定。
 
 ## 入口与自主执行
 
@@ -40,7 +43,7 @@ Owner负责方向和保留决定；顾问提供路线；Codex负责工程拆解�
 
 保护原 D:\EliteSync-v10 的未提交成果和 index、当前开发目录及无关 %SystemDrive%/。不盲 pull/reset/rebase/stash/clean/prune，不 force push，不夹带无关内容。远端历史归档不是 main 合并或功能接受。
 
-设备、真实用户/生产数据、外部服务、费用、重大架构/版本和发布仍由 Owner 决定。旧 STOP、已耗次数和余额不追溯修改，不因规则简化自动恢复任何运行。历史测试脚本只作参考，退役路径不能作为现行可执行合同。资产清理阶段已结束。Owner 已授权继续 APP 功能开发；实际联测可等功能完成后进行，届时允许同时使用两个模拟器。手机由 Owner 使用，不连接或操作手机，不要求 Owner 保持手机就位。Owner 已长期授权普通功能工程、定向验证与必要APK构建、本机独立开发服务及虚构数据库、必要双模拟器联测、已有许可的免费官方依赖和常规Git。优先源码功能，不为普通重编/启动/安装反复申请；旧执行器/已耗记录不复活。Owner 要求停下时及时保存并手动交接，长期授权本身继续有效。
+设备、真实用户/生产数据、外部服务、费用、重大架构/版本和发布仍由 Owner 决定。旧 STOP、已耗次数和余额不追溯修改，不因规则简化自动恢复任何运行。历史测试脚本只作参考，退役路径不能作为现行可执行合同。资产清理阶段已结束。Owner 已授权继续 APP 功能开发；实际联测可等功能完成后进行，届时允许同时使用两个模拟器。本轮手机操作按Owner于2026-11-15的明确授权完成实机补证，结果单独记录。Owner 已长期授权普通功能工程、定向验证与必要APK构建、本机独立开发服务及虚构数据库、必要双模拟器联测、已有许可的免费官方依赖和常规Git。优先源码功能，不为普通重编/启动/安装反复申请；旧执行器/已耗记录不复活。Owner 要求停下时及时保存并手动交接，长期授权本身继续有效。
 
 Owner于2026-11-12具体授权验收说明、120张测试截图、画廊/控件元数据和29份去敏证据摘要上传独立验收分支，范围及发布清单见[验收入口](https://github.com/zcx369658780/EliteSync-v10/blob/85197adec124ef94bbef2994c0668dc990f9bed4/docs/versions/v10.1.5/advisor-acceptance-20261112/README.md)。完整原始回执、APK、素材、凭据、许可证、SQL/数据库与设备原始日志由Owner本机保管。有意义节点维护ACTIVE_STATE单一当前入口及必要进度，常规同步授权分支，失败记PENDING_SYNC。
 

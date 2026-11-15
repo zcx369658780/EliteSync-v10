@@ -1,5 +1,7 @@
 # v10.1.14阶段A实施报告
 
+2026-11-15实机补充更新。Owner已授权Codex操作接入手机，1011402同包实机验证完成具名范围。新增[实机报告](PHONE_TEST_REPORT_20261115.md)和[实机摘要](PHONE_EVIDENCE_SUMMARY_20261115.json)记录本轮结果。以下前次集中交付的手机NOT_USED和OWNER_ACTION_PENDING属于当时状态。顾问与Owner接受均PENDING。
+
 2026-11-15。工程自验六项AC按下列具名代表范围PASS，顾问独立验收和Owner接受均PENDING。交付分支为 `codex/v10.1.14-product-readiness-core-journeys-20261115`。集中交付后的下一动作是顾问独立验收。
 
 ## 代码与候选身份
@@ -39,9 +41,9 @@
 | AC14-03 | PASS | 普通APP保留20图文+5视频，3个虚构账号核边界、分页、作者页、互动、删除、切号、重登和冷启动。[内容索引](QA_CONTENT_INDEX.md)及[25份许可清单](MATERIAL_LICENSES.json)。 |
 | AC14-04 | PASS | 登录切号、资料隐私、资格拒绝、独立CN/MC、两模拟器消息136、社区、好友/Buddy和工具历史具名代表验证，P1修复通过。 |
 | AC14-05 | PASS | [服务恢复手册](LOCAL_SERVICE_RECOVERY.md)，原服务有序重启、就绪探测和持久读回；独立卷104表全行与59媒体哈希恢复一致。 |
-| AC14-06 | PASS | 最终1011402候选及本机Owner评估包已准备，签名/安装哈希/资源状态具名记录。[功能目录](FEATURE_CATALOG.md)及[实机检查表](OWNER_DEVICE_CHECKLIST.md)，手机动作均OWNER_ACTION_PENDING。 |
+| AC14-06 | PASS | 最终1011402候选及本机Owner评估包已准备，签名/安装哈希/资源状态具名记录。[功能目录](FEATURE_CATALOG.md)及[实机检查表](OWNER_DEVICE_CHECKLIST.md)，本轮实机动作见更新检查表，Owner接受PENDING。 |
 
-当前软件检查范围与Owner手机操作分别记账。六项工程PASS限本表和[证据摘要](EVIDENCE_SUMMARY_20261115.json)中的实际通道及条件。
+当前软件检查范围、实机补证和Owner接受分别记账。六项工程PASS限本表和[证据摘要](EVIDENCE_SUMMARY_20261115.json)中的实际通道及条件。
 
 ## 测试与运行证据
 
@@ -61,13 +63,15 @@ Buddy和平台活动的当前终态由API记录确认，APP确认入口可达。
 
 开工备份恢复104张表行数与20个媒体哈希一致。最终备份数据库3235863字节、整个storage/app归档18237440字节。独立新卷、network none恢复后，104表全部canonical行值一致，59个媒体文件哈希一致。两恢复容器均停止，卷及原证保留。
 
-原WS/API/DB有序停止启动，SQL及HTTP/TCP逐次探测回执保留，容器ID、挂载和网络模式一致，25条内容、消息136和CN/MC重新读回。API登录页200，WS TCP可达。SFU本版短暂启动，内部健康200，主机根403对应已有鉴权网关，随后停止。最终DB/API/WS运行，SFU exited。双模拟器停止，AVD和数据保留，adbd恢复普通shell，B临时输入设置恢复null。手机NOT_USED，PC指针与键盘未接管。
+原WS/API/DB有序停止启动，SQL及HTTP/TCP逐次探测回执保留，容器ID、挂载和网络模式一致，25条内容、消息136和CN/MC重新读回。API登录页200，WS TCP可达。SFU本版短暂启动，内部健康200，主机根403对应已有鉴权网关，随后停止。最终DB/API/WS运行，SFU exited。双模拟器停止，AVD和数据保留，adbd恢复普通shell，B临时输入设置恢复null。前次固定交付时手机NOT_USED，本轮Owner授权后的实机结果另记；PC指针与键盘继续由Owner使用。
 
 原D:\EliteSync-v10的HEAD、分支、porcelain-v2 status、index字节、跟踪diff及cached diff与本版开工完全匹配。最初比较用了不同porcelain格式及untracked展开参数，纠正为开工v2后匹配。稳定根原有%SystemDrive%/保留。私有配置、数据库、媒体、SDK、AVD和历史失败保留。
 
 ## 评估包和保留事项
 
-本机评估目录为 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev\v10114-current\OWNER_REVIEW_1011402`。含APK与SHA256、说明、QA账号本机凭据、功能目录、旅程矩阵、素材许可、恢复手册和Owner检查表。Owner自行操作手机，安装/升级、系统权限、键盘、通知、后台恢复、音频外设和双设备RTC均OWNER_ACTION_PENDING。
+本轮实机新增P2-02为视频挂断控制首屏下缘裁切，滚动后可操作；P2-03为视频结果仍显示“视频预留”旧文案。具体复现和媒体计数见[实机报告](PHONE_TEST_REPORT_20261115.md)。原25条语料之外新增37/58图文与38/59视频两条SELF实机QA记录。
+
+本机评估目录为 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev\v10114-current\OWNER_REVIEW_1011402`。含APK与SHA256、说明、QA账号本机凭据、功能目录、旅程矩阵、素材许可、恢复手册和Owner检查表。Owner本轮授权Codex完成手机具名补证，当前逐项结果见更新检查表。耳机、人耳听感、双实机和跨公网矩阵NOT_RUN，Owner整版接受PENDING。
 
 - P2 `V10114-P2-01`，2GiB模拟器在文件选择期间LOW_MEMORY回收，未发布内存草稿丢失，重启后可重填发布。最终A使用同一AVD/数据和3GiB内存，B2GiB。OS回收后的草稿与lost picker data恢复留后续。
 - 视频样本全部静音，人耳听感NOT_RUN。真实Push、真实身份核验、算法独立精度和RTC硬件矩阵沿原范围。

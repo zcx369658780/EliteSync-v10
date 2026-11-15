@@ -6,7 +6,7 @@
 
 | 资源 | 入口或持久位置 |
 | --- | --- |
-| APP | `com.elitesync.v1015dev`，模拟器5580的Android用户11 |
+| APP | `com.elitesync.v1015dev`，模拟器5580用户11、5582用户12及Owner授权的手机用户0 |
 | API与Web | `http://127.0.0.1:8021`，容器 `v1015-current-dev-api` |
 | WS | `127.0.0.1:8022`，容器 `v1015-current-dev-ws` |
 | MariaDB | 10.11.19，容器 `v1015-current-dev-db`，卷 `v1015-current-dev-db-data` |
@@ -99,3 +99,16 @@ docker stop v1015-current-dev-db
 原服务按WS、API、DB停止，再SQL确认DB就绪、启动原API及WS。每次探测记录在本机 `service-restart-rehearsal-private.json`。容器ID、挂载卷和网络模式与演练前一致，25条内容、消息136及CN/MC状态读回一致。API登录页200和WS TCP可达。重启后的WS帧投递本版NOT_RUN。
 
 最终DB/API/WS运行，SFU停止。两个模拟器停止，AVD和数据保留，临时输入设置已恢复。Owner评审素材及凭据继续本机保管。
+
+## 实机RTC本机端口
+
+本轮实机66的媒体连接因缺少RTC端口转发失败。现有SFU配置的node_ip为127.0.0.1，TCP媒体入口7881，信令鉴权入口由主机7880提供。API/WS的8021/8022就绪后，实机和模拟器均需额外映射这两个TCP端口。Owner自行连接手机时可在确认设备序列号后执行。
+
+```powershell
+adb -s <确认的设备序列号> reverse tcp:7880 tcp:7880
+adb -s <确认的设备序列号> reverse tcp:7881 tcp:7881
+```
+
+本轮补齐后语音67和视频69完成两个媒体参与端及双向RTP验证。后台返回按APP提示明确开启采集。手机相机运行时授权在测试后恢复为原未授权，后续视频操作将再次按系统流程申请。
+
+新增实机数据补充备份位于Owner本机v10114-current/phone-20261115/backup-phone-supplement。数据库及整个storage/app归档的字节与SHA256见实机摘要，恢复演练沿原104表/59媒体证据，新增补充备份的恢复NOT_RERUN。最终SFU停止、DB/API/WS运行，模拟器停止且AVD数据保留。

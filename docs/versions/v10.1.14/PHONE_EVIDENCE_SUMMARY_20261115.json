@@ -1,0 +1,387 @@
+{
+  "version": "v10.1.14",
+  "supplement_date": "2026-11-15",
+  "authorization": "Owner explicitly authorized controlling the connected physical phone and requested an updated report",
+  "previous_delivery_commit": "ca54f4b7c401c9bf5729a855a1bad34993d3d817",
+  "app_source_commit": "88540f7f4d5a64500996b67eb04bfd9aba7c0af3",
+  "candidate": 1011402,
+  "apk_sha256": "b5cc7e9bbca910a0e4da3af0a64e56d99eb82bb848743786c62244bb59c8e2b1",
+  "device": {
+    "alias": "Owner-phone-01",
+    "manufacturer": "Xiaomi",
+    "model": "25060RK16C",
+    "android": 16,
+    "api": 36,
+    "abi": "arm64-v8a",
+    "resolution": "1280x2772"
+  },
+  "engineering_supplement": "COMPLETE_NAMED_SCOPE",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "checks": [
+    {
+      "number": 1,
+      "item": "安装或升级",
+      "result": "PASS",
+      "scope": "保留数据从1011002升级1011402，安装后SHA256匹配。"
+    },
+    {
+      "number": 2,
+      "item": "登录、退出与切号",
+      "result": "PASS_NAMED_SCOPE",
+      "scope": "实机16退出、21登录及本人隔离，返回16；新注册和改密本轮NOT_RUN。"
+    },
+    {
+      "number": 3,
+      "item": "四入口导航",
+      "result": "PASS",
+      "scope": "首页、进展、消息、我的实际打开。"
+    },
+    {
+      "number": 4,
+      "item": "匹配旅程",
+      "result": "PASS_NAMED_SCOPE",
+      "scope": "当前未符合资格的反馈及既有状态读回，新轮次生成NOT_RUN。"
+    },
+    {
+      "number": 5,
+      "item": "Connection与Messaging Consent",
+      "result": "PASS_NAMED_SCOPE",
+      "scope": "CN3、MC45/46状态与revision在通话前后保持；21非好友社区拒绝与既有消息门禁证据分别记账。"
+    },
+    {
+      "number": 6,
+      "item": "文字消息",
+      "result": "PASS",
+      "scope": "手机16发送137，对端17接收；对端发送138，手机实际接收。"
+    },
+    {
+      "number": 7,
+      "item": "社区图文",
+      "result": "PASS_NAMED_SCOPE",
+      "scope": "手机普通APP发布帖子37/媒体58，SELF，上传图像与许可素材I20对应；好友/非好友详情及完整/Range404。"
+    },
+    {
+      "number": 8,
+      "item": "社区视频",
+      "result": "PASS_NAMED_SCOPE",
+      "scope": "手机普通APP发布38/59，SELF，文件哈希与V05相同；原V05播放暂停，冷启动后38播放器实际加载。"
+    },
+    {
+      "number": 9,
+      "item": "系统选择器",
+      "result": "PASS_NAMED_SCOPE",
+      "scope": "系统照片/视频选择器选择已导入QA素材，取消后继续填写并发布；素材内容核对通过。"
+    },
+    {
+      "number": 10,
+      "item": "站内通知",
+      "result": "PASS_NAMED_SCOPE",
+      "scope": "通知377从未读改为已读，回流通话69终态；真实Push保持PENDING。"
+    },
+    {
+      "number": 11,
+      "item": "键盘和表单",
+      "result": "PASS_NAMED_SCOPE",
+      "scope": "软件键盘实际唤起，资料/隐私/动态/消息输入成功。多输入法与横屏矩阵NOT_RUN。"
+    },
+    {
+      "number": 12,
+      "item": "后台与冷启动",
+      "result": "PASS_NAMED_SCOPE",
+      "scope": "21历史8与16帖子38冷启读回；通话67后台采集暂停，前台明确开启麦克风后恢复。OS低内存草稿恢复继续列P2。"
+    },
+    {
+      "number": 13,
+      "item": "麦克风与语音",
+      "result": "PASS_NAMED_SCOPE",
+      "scope": "既有麦克风授权复用，67双向音频RTP增长，静音/开启状态与SFU轨道一致；人耳听感NOT_RUN。"
+    },
+    {
+      "number": 14,
+      "item": "摄像头与视频",
+      "result": "PASS_NAMED_SCOPE",
+      "scope": "实际系统授权弹窗，69双向视频编码/解码、关闭/开启及切换摄像头；测试后相机权限恢复初始拒绝状态。"
+    },
+    {
+      "number": 15,
+      "item": "耳机、听筒与扬声器",
+      "result": "PARTIAL",
+      "scope": "听筒/扬声器切换及系统路由记录通过。Owner确认暂无耳机，要求继续其他检查；耳机及人耳听感NOT_RUN。"
+    },
+    {
+      "number": 16,
+      "item": "双设备RTC",
+      "result": "PASS_PHONE_PLUS_EMULATOR_SCOPE",
+      "scope": "手机与生成画面的模拟器语音67及视频69通过；双实机、跨公网和完整硬件矩阵NOT_RUN。"
+    }
+  ],
+  "call_history": [
+    {
+      "id": 69,
+      "mode": "video",
+      "status": "ended",
+      "failure_code": null,
+      "created_at": "2026-11-15T08:10:49.000000Z",
+      "accepted_at": "2026-11-15T08:10:53.000000Z",
+      "started_at": "2026-11-15T08:10:54.000000Z",
+      "ended_at": "2026-11-15T08:15:22.000000Z"
+    },
+    {
+      "id": 68,
+      "mode": "video",
+      "status": "missed",
+      "failure_code": "timeout",
+      "created_at": "2026-11-15T08:08:24.000000Z",
+      "accepted_at": null,
+      "started_at": null,
+      "ended_at": "2026-11-15T08:08:54.000000Z"
+    },
+    {
+      "id": 67,
+      "mode": "voice",
+      "status": "ended",
+      "failure_code": null,
+      "created_at": "2026-11-15T07:56:51.000000Z",
+      "accepted_at": "2026-11-15T07:56:58.000000Z",
+      "started_at": "2026-11-15T07:56:58.000000Z",
+      "ended_at": "2026-11-15T08:02:31.000000Z"
+    },
+    {
+      "id": 66,
+      "mode": "voice",
+      "status": "ended",
+      "failure_code": "peer_disconnected",
+      "created_at": "2026-11-15T07:52:50.000000Z",
+      "accepted_at": "2026-11-15T07:52:57.000000Z",
+      "started_at": "2026-11-15T07:52:57.000000Z",
+      "ended_at": "2026-11-15T07:53:27.000000Z"
+    },
+    {
+      "id": 65,
+      "mode": "voice",
+      "status": "missed",
+      "failure_code": "timeout",
+      "created_at": "2026-11-15T07:50:26.000000Z",
+      "accepted_at": null,
+      "started_at": null,
+      "ended_at": "2026-11-15T07:50:56.000000Z"
+    }
+  ],
+  "rtp_samples": [
+    {
+      "call_id": 67,
+      "side": "phone",
+      "direction": "outbound",
+      "kind": "audio",
+      "bytes_max": 90065,
+      "packets_max": 887,
+      "frames_encoded_max": 0,
+      "frames_decoded_max": 0,
+      "samples": 5
+    },
+    {
+      "call_id": 67,
+      "side": "phone",
+      "direction": "inbound",
+      "kind": "audio",
+      "bytes_max": 112670,
+      "packets_max": 981,
+      "frames_encoded_max": 0,
+      "frames_decoded_max": 0,
+      "samples": 5
+    },
+    {
+      "call_id": 67,
+      "side": "peer",
+      "direction": "outbound",
+      "kind": "audio",
+      "bytes_max": 105889,
+      "packets_max": 918,
+      "frames_encoded_max": 0,
+      "frames_decoded_max": 0,
+      "samples": 5
+    },
+    {
+      "call_id": 67,
+      "side": "peer",
+      "direction": "inbound",
+      "kind": "audio",
+      "bytes_max": 73952,
+      "packets_max": 744,
+      "frames_encoded_max": 0,
+      "frames_decoded_max": 0,
+      "samples": 5
+    },
+    {
+      "call_id": 69,
+      "side": "phone",
+      "direction": "outbound",
+      "kind": "audio",
+      "bytes_max": 422816,
+      "packets_max": 4368,
+      "frames_encoded_max": 0,
+      "frames_decoded_max": 0,
+      "samples": 31
+    },
+    {
+      "call_id": 69,
+      "side": "phone",
+      "direction": "outbound",
+      "kind": "video",
+      "bytes_max": 24216597,
+      "packets_max": 22646,
+      "frames_encoded_max": 3377,
+      "frames_decoded_max": 0,
+      "samples": 99
+    },
+    {
+      "call_id": 69,
+      "side": "phone",
+      "direction": "inbound",
+      "kind": "audio",
+      "bytes_max": 667038,
+      "packets_max": 5531,
+      "frames_encoded_max": 0,
+      "frames_decoded_max": 0,
+      "samples": 28
+    },
+    {
+      "call_id": 69,
+      "side": "phone",
+      "direction": "inbound",
+      "kind": "video",
+      "bytes_max": 6332081,
+      "packets_max": 6691,
+      "frames_encoded_max": 0,
+      "frames_decoded_max": 886,
+      "samples": 27
+    },
+    {
+      "call_id": 69,
+      "side": "peer",
+      "direction": "inbound",
+      "kind": "audio",
+      "bytes_max": 416180,
+      "packets_max": 4288,
+      "frames_encoded_max": 0,
+      "frames_decoded_max": 0,
+      "samples": 29
+    },
+    {
+      "call_id": 69,
+      "side": "peer",
+      "direction": "inbound",
+      "kind": "video",
+      "bytes_max": 22670431,
+      "packets_max": 21169,
+      "frames_encoded_max": 0,
+      "frames_decoded_max": 3078,
+      "samples": 29
+    },
+    {
+      "call_id": 69,
+      "side": "peer",
+      "direction": "outbound",
+      "kind": "audio",
+      "bytes_max": 673585,
+      "packets_max": 5585,
+      "frames_encoded_max": 0,
+      "frames_decoded_max": 0,
+      "samples": 28
+    },
+    {
+      "call_id": 69,
+      "side": "peer",
+      "direction": "outbound",
+      "kind": "video",
+      "bytes_max": 11144468,
+      "packets_max": 10512,
+      "frames_encoded_max": 1184,
+      "frames_decoded_max": 0,
+      "samples": 81
+    }
+  ],
+  "rtp_interpretation": "Maxima of client getStats observations, including video simulcast streams; independent full-stream recomputation NOT_RUN; negotiated codec binding UNKNOWN",
+  "track_controls": {
+    "voice67_mute_then_unmute_sfu_verified": true,
+    "voice67_background_local_track_removed": true,
+    "voice67_explicit_foreground_resume_verified": true,
+    "video69_camera_mute_then_unmute_sfu_verified": true,
+    "video69_camera_switch_invoked": true,
+    "room_empty_after_end": true
+  },
+  "runtime_repair": {
+    "call66": "Client socket exception; missing TCP7880 and7881 reverse mappings on both endpoints",
+    "correction": "Added existing local SFU signaling/media TCP mappings;67/69 verified afterwards",
+    "product_source_change": false
+  },
+  "additional_QA_content": [
+    {
+      "post_id": 37,
+      "media_id": 58,
+      "material_id": "I20",
+      "media_type": "image",
+      "audience": "SELF",
+      "retained": true
+    },
+    {
+      "post_id": 38,
+      "media_id": 59,
+      "material_id": "V05",
+      "media_type": "video",
+      "audience": "SELF",
+      "retained": true
+    }
+  ],
+  "notification": {
+    "id": 377,
+    "call_id": 69,
+    "read_state_verified": true,
+    "result_route_verified": true
+  },
+  "permissions": {
+    "microphone": "Pre-existing grant reused",
+    "camera": "System while-using grant tested, restored to initial denied",
+    "headset": "NOT_RUN_OWNER_NO_HEADSET",
+    "human_acoustic": "NOT_RUN_OWNER_REQUESTED_OTHER_CHECKS"
+  },
+  "P2": [
+    "V10114-P2-01 low-memory unpublished draft loss retained",
+    "V10114-P2-02 video hangup control initially clipped near navigation edge; scroll-to-visible operation worked",
+    "V10114-P2-03 video result still displays legacy video-reserved label"
+  ],
+  "backup": {
+    "at": "2026-11-15T08:27:17.525913+00:00",
+    "files": {
+      "database.sql": {
+        "bytes": 3316561,
+        "sha256": "e3cecc0e57e186fa9c1d7e2f5ff064c0dd531f2753f8ecd604e8fd15e34c25a6"
+      },
+      "private-media.tar": {
+        "bytes": 19599360,
+        "sha256": "89745dd7aeb7035094077c5f837952441ca5dfd73953dd29ecd0b93912f53836"
+      }
+    },
+    "restoration": "NOT_RERUN; original104-table full-row/59-media restore evidence retained; schema unchanged"
+  },
+  "resources": {
+    "phone": "QA_ES16_HOME_CAMERA_PERMISSION_RESTORED",
+    "peer": "STOPPED_AVD_DATA_RETAINED",
+    "peer_input_setting": "RESTORED_null",
+    "peer_adbd": "RESTORED_uid2000",
+    "services": {
+      "DB": "RUNNING",
+      "API": "RUNNING",
+      "WS": "RUNNING",
+      "SFU": "EXITED"
+    },
+    "phone_reverse_ports": [
+      8021,
+      8022,
+      7880,
+      7881
+    ]
+  },
+  "screenshots": "evidence/phone/SCREENSHOTS.json"
+}
