@@ -1,0 +1,39 @@
+接续 EliteSync-v10，执行已获Owner授权的 v10.1.15「生活方式探索与渐进式偏好」（V3.0阶段B1）。
+
+仓库：zcx369658780/EliteSync-v10
+分支：codex/v10.1.15-lifestyle-discovery-progressive-preferences-20261115
+唯一父基线：98b06629eec122bf97bbcfe20adaf950041ecfee
+v10.1.14 Owner接受及B1授权记录：docs/versions/v10.1.14/OWNER_ACCEPTANCE_20261115.md
+路线图：docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md
+路线补充：docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115.md
+
+## 第一步：同步最新路线和开发思路，禁止直接编码
+1. 核本地稳定根、origin、branch、HEAD、status、index、数据库、AVD、私有资产。
+2. 先读AGENTS.md、ACTIVE_STATE.md当前首块、CURRENT_WORKFLOW.md。
+3. 同步V3.0、V3.0补充决定、v10.1.14 Owner接受/顾问验收、v10.1.15 task_order、plan、DEVELOPMENT_ALIGNMENT、CODEX_START_PROMPT及更新入口文档。
+4. 逐份比Git Blob SHA和本地内容，记录LOCAL_DOCS_SYNCED或PENDING_LOCAL_SYNC；保护dirty/index，不盲pull/reset/rebase/stash/clean/prune/force push。
+5. 编码前创建ROADMAP_ALIGNMENT_ACK.md，明确本版只做B1，B2/B3/B4/C未授权。
+6. 完成同步和ACK前不得修改产品源码。
+
+## 第二步：实施六项AC
+AC15-01 设计4—6个生活场景、每场景2—3个选择，形成题库V1和可解释映射；
+AC15-02 Astra艺术指导 + 最新在线GPT Image生成素材，GitHub固定路径和完整manifest；
+AC15-03 注册后默认欢迎，可跳过，自动保存、返回修改、冷启动续做；
+AC15-04 保存原始答案与可追溯偏好映射，支持纠正/重做；
+AC15-05 服务端强制每周慢约会匹配完成门禁，普通社区/Buddy/好友不受影响；
+AC15-06 定向集成验证、候选、报告和证据。
+
+## 关键边界
+- Lifestyle Discovery是轻量生活方式偏好探索，不是正式MBTI或心理诊断。
+- 不把完成探索设为注册、社区、Buddy、好友或普通聊天门槛；仅每周慢约会匹配必须完成。
+- 不收集真实姓名、证件、精确出生时地、征信、芝麻信用或蚂蚁积分。
+- 不接运行时AI/LLM，不向外部模型发送用户答案。
+- Astra用于美术指导；GPT Image用于静态素材生成，不在APP运行时调用。
+- 视觉风格已冻结：低分辨率质感、几何色块、低刺激、二次元卡通/构成主义。
+- 素材记录实际模型名/版本、日期、提示词、尺寸、用途、SHA256和权利/条款依据；GitHub固定存储，Codex引用固定路径。
+- 不提前做B2通用自动化、B3全局重构、B4运行时AI或阶段C。
+- 不改既有匹配算法和Match/Connection/Messaging Consent/Conversation/Relationship语义。
+- 不合main、不正式发布、不开展真实内测或运营。
+
+## 最终交付
+集中交付题库、映射配置、Astra风格指导、GPT Image素材、asset manifest、APP/API/DB实现、测试报告、manifest、证据摘要和候选APK。固定提交及远端回读后停止，等待顾问验收；不得自动进入B2或v10.1.16。

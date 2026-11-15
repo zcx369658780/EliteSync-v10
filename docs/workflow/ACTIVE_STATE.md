@@ -1,15 +1,21 @@
-# 当前入口 2026-11-15 v10.1.14顾问具名范围验收通过，等待Owner接受
+# 当前入口 2026-11-15 v10.1.14 Owner接受，v10.1.15 B1已授权
 
-**V10114_ADVISOR_ACCEPTED_IN_NAMED_SCOPE / NO_R1 / NO_R2 / OWNER_PENDING**。Owner本轮明确授权Codex操纵接入手机完成测试，实际范围见[实机报告](../versions/v10.1.14/PHONE_TEST_REPORT_20261115.md)、[实机摘要](../versions/v10.1.14/PHONE_EVIDENCE_SUMMARY_20261115.json)和[更新检查表](../versions/v10.1.14/OWNER_DEVICE_CHECKLIST.md)。原工程范围见[实施报告](../versions/v10.1.14/IMPLEMENTATION_REPORT.md)。
+**V10114_OWNER_ACCEPTED_IN_NAMED_SCOPE / V10115_PHASE_B1_AUTHORIZED**。
 
-稳定根`D:\EliteSync-v10-product-v1015-20261101`，origin为`git@github.com:zcx369658780/EliteSync-v10.git`，分支`codex/v10.1.14-product-readiness-core-journeys-20261115`，唯一父基线`5dd0c9e6625699947f8dd0755ff568a3edfe0b04`。原集中交付`ca54f4b7c401c9bf5729a855a1bad34993d3d817`，本次补证交付由包含本入口的固定提交与同源回读绑定。
+v10.1.14顾问及Owner均按具名代表性范围接受；顾问`ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2`。三项P2、耳机/人耳听感/双实机/跨公网RTC及新增手机备份恢复等NOT_RUN/NOT_RERUN边界保留。Owner记录：[v10.1.14 Owner接受](../versions/v10.1.14/OWNER_ACCEPTANCE_20261115.md)；顾问报告：[ADVISOR_ACCEPTANCE_20261115](../versions/v10.1.14/ADVISOR_ACCEPTANCE_20261115.md)。
 
-APP源码`88540f7f4d5a64500996b67eb04bfd9aba7c0af3`，候选`10.1.14-dev / 1011402`，APK SHA256为`b5cc7e9bbca910a0e4da3af0a64e56d99eb82bb848743786c62244bb59c8e2b1`。本轮产品源码变更0。实机从1011002保留数据升级，安装后哈希一致。API最近改动提交`d9c49dd8d6f5721c56f5cfc87b2cbaf721819883`，Web沿用`e2448e2c4d630fad31168e3c0b70d3831011215f`。
+## 当前授权任务
 
-实机为Xiaomi 25060RK16C、Android16。四入口、资料/隐私、系统素材选择及37/38发布、原35视频播放、消息137/138、切号21隔离、历史8冷启、通知377→69及Buddy终态具名通过。语音67和视频69为手机+模拟器实际双向RTP验证，采集后台暂停、明确恢复、静音、听筒/扬声器及摄像头关闭/开启/切换已执行。首次缺RTC端口转发的66失败保留，补齐7880/7881后复测通过。
+**v10.1.15：Lifestyle Discovery与渐进式偏好（V3.0阶段B1）**。任务：[task_order](../versions/v10.1.15/task_order.md)；[plan](../versions/v10.1.15/plan.md)；[DEVELOPMENT_ALIGNMENT](../versions/v10.1.15/DEVELOPMENT_ALIGNMENT.md)；[CODEX_START_PROMPT](../versions/v10.1.15/CODEX_START_PROMPT.txt)。路线权威：[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)及[2026-11-15补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115.md)。
 
-原20图文+5视频和许可原证保留，实机新增图文37/58及视频38/59均SELF并保留。摄像头授权在测试后恢复初始未授权，手机停在虚构QA作者ES-16首页。耳机、人耳听感、双实机和跨公网矩阵NOT_RUN。新增P2为视频挂断控件首屏下缘裁切及结果“视频预留”旧文案，低内存草稿P2沿原记录。
+任务分支：`codex/v10.1.15-lifestyle-discovery-progressive-preferences-20261115`；唯一父基线：`98b06629eec122bf97bbcfe20adaf950041ecfee`。必须先同步全部路线/授权/任务文档、逐Blob核验并创建ROADMAP_ALIGNMENT_ACK，再开始编码。
 
-DB/API/WS运行，SFU exited。双模拟器停止，AVD/数据保留，临时输入设置及adbd已恢复。原104表全行/59媒体恢复证据保留，实机补充数据库/媒体备份在本机，补充备份恢复NOT_RERUN。原库dirty/index、私有资产和`%SystemDrive%/`继续保护。完整原证在`EliteSyncDev/v1015-current-dev/v10114-current/phone-20261115`，Owner评估包在同级`OWNER_REVIEW_1011402`。
+## 本版目标
 
-顾问已接受v10.1.14六项AC及手机补证的具名代表性范围，NO_R1/NO_R2。三项P2和所有NOT_RUN/UNKNOWN边界继续保留。Owner整版接受PENDING。main集成与正式发布NOT_RUN；阶段B/C及下一版本仍等待Owner决定。详见[独立顾问验收报告](../versions/v10.1.14/ADVISOR_ACCEPTANCE_20261115.md)。
+注册后默认展示生活方式探索，可跳过且不影响注册、匿名社区、好友或Buddy；未来每周慢约会匹配必须完成。题库4—6场景，每场景2—3选项；支持自动保存、返回修改、正反向动画、冷启动续做；原始答案与可解释偏好映射分开保存。
+
+Astra负责艺术指导，最新在线GPT Image生成静态美术素材；资产和manifest放GitHub固定目录供Codex调用。运行时不接AI，不上传用户偏好。视觉方向保持Owner已确认的低分辨率质感、几何色块、低刺激、二次元卡通/构成主义。
+
+## 未授权范围
+
+B2通用后台自动化、B3全局低操作成本重构、B4运行时AI、阶段C身份/信用/Push/支付等未授权。不得将探索设为注册或社区门槛，不收集实名/出生时地/信用资料，不改变匹配算法和关系状态机。main集成与正式发布仍NOT_RUN。
