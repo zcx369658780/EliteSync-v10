@@ -1,6 +1,6 @@
 # EliteSync-v10 当前工作流
 
-2026-11-15更新。v10.1.15已获Owner具名范围接受，AC15-02仍PARTIAL，R1-01 CLOSED、NO_R2。当前[v10.1.16阶段B2](../versions/v10.1.16/task_order.md)已完成具名工程交付，顾问条件接受，R1-01 OPEN，路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)和[B2补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md)。
+2026-11-16更新。v10.1.15已获Owner具名范围接受，AC15-02仍PARTIAL，R1-01 CLOSED、NO_R2。当前[v10.1.16阶段B2](../versions/v10.1.16/task_order.md)已完成R1-01工程关闭，等待第二轮顾问复核，路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)和[B2补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md)。
 
 ## 当前Owner决定
 
@@ -10,7 +10,7 @@ Owner授权v10.1.16「统一用户状态与后台自动化中心」。只授权B
 
 ## v10.1.16同步与交付状态
 
-十四份文档逐Blob核验及编码前ACK已完成。产品源码 `00cec7843911bb3341304c004059de0a91e12f16`，候选 `10.1.16-dev / 1011601`，具名验证、旧失败与NOT_RUN范围见[实施报告](../versions/v10.1.16/IMPLEMENTATION_REPORT.md)。顾问结论为条件接受，R1-01 OPEN；Owner接受仍PENDING。当前等待Codex完成R1修正。
+十四份文档逐Blob核验及编码前ACK已完成。产品源码 `00cec7843911bb3341304c004059de0a91e12f16`，候选 `10.1.16-dev / 1011601`，具名验证、旧失败与NOT_RUN范围见[实施报告](../versions/v10.1.16/IMPLEMENTATION_REPORT.md)。首轮顾问结论为条件接受，当前R1-01工程CLOSED，第二轮顾问复核及Owner接受PENDING。R1后端源码 `4bfa9245f06548197532ecec2d5da0397ba8d33d`，APP沿原源码及1011601候选。
 
 Codex先核本地根、remote、branch、HEAD、dirty/index和私有资产，再同步V3.0、B2补充决定、v10.1.15接受记录、本版task_order/plan/DEVELOPMENT_ALIGNMENT/B2合同/prompt及入口文档。逐Blob核验并记录LOCAL_DOCS_SYNCED或PENDING_LOCAL_SYNC，创建ROADMAP_ALIGNMENT_ACK后才编码。
 
@@ -31,4 +31,4 @@ Owner将在B1+B2+B3全部完成后进行整体实机验收。中间版本由Code
 
 ## v10.1.16顾问验收（2026-11-15）
 
-B2七项AC完成具名工程交付，但GPT顾问结论为`CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2`。R1-01要求修正：自动化暂停/撤销/到期不得暂停未绑定自动化的独立手动ACTIVE参与；委托绑定变化须推进参与source revision/freshness。见[顾问验收报告](../versions/v10.1.16/ADVISOR_ACCEPTANCE_20261115.md)与[R1-01任务](../versions/v10.1.16/R1_01_AUTOMATION_REVOCATION_SCOPE.md)。R1关闭后请求第二轮复核；不需要重复全部已通过测试，不要求Owner中间版本实机验收。
+B2七项AC完成具名工程交付，但GPT顾问结论为`CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2`。R1-01要求修正：自动化暂停/撤销/到期不得暂停未绑定自动化的独立手动ACTIVE参与；委托绑定变化须推进参与source revision/freshness。见[顾问验收报告](../versions/v10.1.16/ADVISOR_ACCEPTANCE_20261115.md)与[R1-01任务](../versions/v10.1.16/R1_01_AUTOMATION_REVOCATION_SCOPE.md)。2026-11-16 R1已按任务工程关闭，定向27项/267断言、隔离MariaDB十场景/36次HTTP及四项进程可靠性检查通过，等待GPT顾问第二轮独立复核。

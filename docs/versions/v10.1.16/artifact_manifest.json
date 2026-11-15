@@ -6,9 +6,9 @@
   "fixed_task_commit": "89ce556ab67c6ea759d3a2ffea7016edf11b892e",
   "docs_sync_commit": "c793eefcad2f5cff0c613b79b2b1d1cba32e6fa5",
   "docs_sync_status": "LOCAL_DOCS_SYNCED_BEFORE_PRODUCT_EDITS",
-  "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+  "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
   "final_document_identity": "Git commit containing this manifest; same-origin fixed readback receipt retained privately and final reply lists exact commit",
-  "engineering_result": "DELIVERED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+  "engineering_result": "R1_01_CLOSED_PENDING_ADVISOR_SECOND_REVIEW",
   "advisor_acceptance": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
   "owner_acceptance": "PENDING",
   "ac_status": {
@@ -31,27 +31,26 @@
     "signing_certificate_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
     "private_apk_name": "candidate-1011601-private.apk",
     "identity_signature_installation": "PASS",
-    "phone": "NOT_USED"
+    "phone": "NOT_USED",
+    "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "r1_apk_rebuilt": false,
+    "r1_existing_file_sha256_recheck": "PASS"
   },
   "runtime_identity": {
-    "api_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
-    "api_runtime_files_compared": 14,
-    "api_runtime_equality": "PASS",
-    "web_repository_identity": "00cec7843911bb3341304c004059de0a91e12f16",
-    "web_frontend_changes": "NONE",
-    "web_ui_specific_validation": "NOT_RUN",
-    "scheduler": "named Laravel user-automation event",
-    "scheduler_sample_success_count": 31,
-    "scheduler_sample_failure_count": 0,
-    "queue_default": "sync",
-    "protected_matching_consumer": "NOT_RUNNING"
+    "api_source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+    "verification_environment": "NEW_ISOLATED_R1_RUNTIME",
+    "source_files_compared": 4,
+    "runtime_source_equality": "PASS",
+    "primary_db_api_ws": "KEPT_STOPPED",
+    "primary_r1_deployment_validation": "NOT_RUN",
+    "app_source_commit": "00cec7843911bb3341304c004059de0a91e12f16"
   },
   "source_remote_readback": {
-    "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
     "origin": "git@github.com:zcx369658780/EliteSync-v10.git",
     "remote_branch": "codex/v10.1.16-user-state-automation-center-20261115",
-    "fetch_head": "00cec7843911bb3341304c004059de0a91e12f16",
-    "ls_remote": "00cec7843911bb3341304c004059de0a91e12f16",
+    "fetch_head": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+    "ls_remote": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
     "result": "PASS"
   },
   "source_files": [
@@ -117,15 +116,15 @@
     },
     {
       "path": "services/backend-laravel/app/Services/AutomationAuthorizationService.php",
-      "git_blob_sha": "4fff411b1defc124502c69973e65e0cb414e4e4d",
-      "git_canonical_bytes": 9286,
-      "git_canonical_sha256": "5e0bbbc9516d869e9503d5e873dac449c80e8a95bb533cedb3e85831dcb1f78a"
+      "git_blob_sha": "ab04be483c4daf55356316338176bf5d0292ec0a",
+      "git_canonical_bytes": 9520,
+      "git_canonical_sha256": "0784f7b178c32e07f32a622e394f80366e4e297c3ed78a902846e4d929eb18c1"
     },
     {
       "path": "services/backend-laravel/app/Services/AutomationService.php",
-      "git_blob_sha": "a36996740005a67a3b6648802bec496cb58d0498",
-      "git_canonical_bytes": 14890,
-      "git_canonical_sha256": "9f129d5be21dcbd3295209713dfa7eb77bb7435aa3894bb06c399cdda19651c7"
+      "git_blob_sha": "2620527973d322b16f1187b356394427b2d9b0b7",
+      "git_canonical_bytes": 15413,
+      "git_canonical_sha256": "0bfe39b8e057e3e68e3fe07a25815cd147933b6f2666b7542273149ee2a470bf"
     },
     {
       "path": "services/backend-laravel/app/Services/MatchRoundProjectionService.php",
@@ -177,15 +176,21 @@
     },
     {
       "path": "services/backend-laravel/tests/Feature/V10116UserStateAutomationTest.php",
-      "git_blob_sha": "eaa3a2de041b732253ae8eacf1d414a894f4deef",
-      "git_canonical_bytes": 22398,
-      "git_canonical_sha256": "c75302e84e185161991be88b1743d04602428b6f955f694bb8d8b568a58fa4d4"
+      "git_blob_sha": "bf6849e216267ce6c332fed933cbcdd13f46d9bd",
+      "git_canonical_bytes": 32133,
+      "git_canonical_sha256": "c7f3b8d3ba9edb03156b46fa5708de9d704196d01e9faf81d444bda05ebfcc78"
     },
     {
       "path": "services/backend-laravel/tests/Integration/v10116_worker_reliability.php",
       "git_blob_sha": "b18ad386b8dcef27cdd2c0a5b75db9af52a7684b",
       "git_canonical_bytes": 5644,
       "git_canonical_sha256": "7b1c59a98e56cb5ff847ce4992c927ab4d0e82b4d357dc3ae677636ab9eae573"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/v10116_r1_revocation_scope.php",
+      "git_blob_sha": "c223c5610634cec3f41aa617dc8c9500ab4b932b",
+      "git_canonical_bytes": 4246,
+      "git_canonical_sha256": "d839e0a6425500bcdb37b578257066aed6470917f6a7b6b2a9a387577409704f"
     }
   ],
   "document_files": [
@@ -206,23 +211,23 @@
     },
     {
       "path": "docs/versions/v10.1.16/IMPLEMENTED_STATE_AUTOMATION_CONTRACT_V1.md",
-      "git_blob_sha": "28d8da2f37dba339dcb77e2db11d55074b1ba45f",
-      "git_canonical_sha256": "d0a260d97806345ce76c4a0008130a9c6b6025d942c3e9a5c4d5d356f16d1fce"
+      "git_blob_sha": "b602a34a796f78aa749f73def808daacc19cd202",
+      "git_canonical_sha256": "01e5826a6000c94ec6fb5e6c2d63ab1d8aaf33744c5a067017587fd0d8f11685"
     },
     {
       "path": "docs/versions/v10.1.16/LOCAL_AUTOMATION_OPERATIONS.md",
-      "git_blob_sha": "feb8f86982ca472e3acbe20dcd053944ac14df45",
-      "git_canonical_sha256": "e0c8dca0007a28a0f726dcf8161e75867232522cd048434870e3ac99d82164f4"
+      "git_blob_sha": "fd17e8d9acba1927def024d8e6af88135a0c1b7a",
+      "git_canonical_sha256": "101da311ae332373b0925413d85a4c79130cb849f553500e9492173b53c6a043"
     },
     {
       "path": "docs/versions/v10.1.16/IMPLEMENTATION_REPORT.md",
-      "git_blob_sha": "75b5c028d5a7f9313cbf628b2fec144442ca6046",
-      "git_canonical_sha256": "e3e20b563c6d2b9a221941388524ef6aaf5abefeb2f128ac23194bad99ebd4a5"
+      "git_blob_sha": "d1ca22dfd7675c85be064ef0514b558ea2b7e91f",
+      "git_canonical_sha256": "407bf34fa0c88732255e4fd25052ed31ce846b8b80636e76aecee58bb4c65689"
     },
     {
       "path": "docs/versions/v10.1.16/EVIDENCE_SUMMARY_20261115.json",
-      "git_blob_sha": "d5057c0293694b28574c9ccd6b0386776e3adfe4",
-      "git_canonical_sha256": "61cfe5ab183b0f1bad06e3ce4fcc384fccaa3124cb52b93f68a2e6e7faca4ada"
+      "git_blob_sha": "53b25c32bb6c2fb0817b0e79f4eedee94c2af0ea",
+      "git_canonical_sha256": "3ec13a4f513aa1bc1349421c7d21b0fb85cefa783ec14e3f61ca512d5f1fd1e9"
     },
     {
       "path": "docs/versions/v10.1.16/evidence/README.md",
@@ -231,13 +236,23 @@
     },
     {
       "path": "docs/workflow/ACTIVE_STATE.md",
-      "git_blob_sha": "6b2de46a47ef45aaa50e859ccf12f986547a2098",
-      "git_canonical_sha256": "e61d5ae0eb02d170eb6f30a56c4899ac61202e5f2a41f714265bd6b4d10033d5"
+      "git_blob_sha": "dea307d1e0b3cb00f6982711351bbe118d3295cf",
+      "git_canonical_sha256": "d5df47ae2f43b1dbddf53989031146568c95bf996c694c8c5907a6d03ec98d25"
     },
     {
       "path": "docs/workflow/CURRENT_WORKFLOW.md",
-      "git_blob_sha": "dc13ba04d2aaecd8e47ef2bba4565f6b6cac4886",
-      "git_canonical_sha256": "6885bc8b19063e93266392ea94ce7ac8bf9b8b123127d4894144d9a3c9d5e7b8"
+      "git_blob_sha": "6073d2283eae911eb3b05619919e41f30a870161",
+      "git_canonical_sha256": "4451a14e5c1de5440b12b70f8b4e161b92e36443b8c0baae9be3531c266be449"
+    },
+    {
+      "path": "docs/versions/v10.1.16/ADVISOR_ACCEPTANCE_20261115.md",
+      "git_blob_sha": "9a0174fa089ed23fb9b3e07f54c11611a0bfb81f",
+      "git_canonical_sha256": "7dcac5590f82bd5176fe87927d14722bce6ae2373c670d5c5b73905ca66a0a23"
+    },
+    {
+      "path": "docs/versions/v10.1.16/R1_01_AUTOMATION_REVOCATION_SCOPE.md",
+      "git_blob_sha": "053245e0c496b096e5f6b385cd3688ab8b377d9a",
+      "git_canonical_sha256": "ef96d09cf6f7a35a5991fd26c66599af5ab870ead5998d6f1a241f1509e1492c"
     }
   ],
   "screenshots": [
@@ -350,7 +365,9 @@
       "files": 16,
       "result": "PASS"
     },
-    "full_regression": "NOT_RUN"
+    "full_regression": "NOT_RUN",
+    "record_scope": "INITIAL_DELIVERY_NOT_REPEATED_FOR_R1",
+    "source_commit": "00cec7843911bb3341304c004059de0a91e12f16"
   },
   "backups": {
     "pre_migration": {
@@ -468,9 +485,170 @@
       "bytes": 714,
       "sha256": "1fafb2bfe3fc88fd07255d39962175d179b46a7ebe5afa12233f68aa0f2ba719",
       "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/r1-input-sync-private.json",
+      "bytes": 1553,
+      "sha256": "aada624ca81441bc387e606250b0bbb14f8f0882d63afc31800a59c82b34b47e",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/red-01-php-private.log",
+      "bytes": 6461,
+      "sha256": "18850c90c3ae9d678a3de33abd740b5c160e430eb718b497297503192b7f89eb",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/red-02-php-private.log",
+      "bytes": 7793,
+      "sha256": "7d09189ed1631fe964637b6de7897a2bfb695719913100d00c60503686619666",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/red-03-php-private.log",
+      "bytes": 4299,
+      "sha256": "ef67a21703b824fd86719c1b1c81323d6449e1acc0b0d0bc5aa54df5e90e547e",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/green-01-php-private.log",
+      "bytes": 288,
+      "sha256": "d666005dcea86ca6aefc7d786c0f1da9fdd705d26f03be225feeeb21319d30a2",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/green-02-php-private.log",
+      "bytes": 288,
+      "sha256": "9bd15c1db183b2bab2e82f148d5fd54b93b1a65281683df4a6efd223195ed796",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/http-mariadb-summary-private.json",
+      "bytes": 7171,
+      "sha256": "7850a4591a3df0f414c826be00fe6d2f2341963e116b8ff1f4ea956d0e75c0b5",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/reliability-summary-private.json",
+      "bytes": 2585,
+      "sha256": "ef5045d581f02c7c8843643236486fb790a47f36eea13f476f0869c60f917e79",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/fixed-source-runtime-private.json",
+      "bytes": 1035,
+      "sha256": "e4e096bc75910da110308f3f322e6597bb7d16b530b238885cdfa68750be1821",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/php-syntax-private.json",
+      "bytes": 563,
+      "sha256": "7ecb8db3fe5cd4f733b6da5230363e595c7367306694467e11bb25b8be99971c",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/final-runtime-private.json",
+      "bytes": 570,
+      "sha256": "0339c0495b5b735779da1dea3070efd456df9af2f47eef51d23ad01376221894",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/original-protection-final-private.json",
+      "bytes": 115,
+      "sha256": "70cb06e525a112a8263d215e599bc5c36ce836993b5e0053ba7647276a898b99",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/apk-reuse-private.json",
+      "bytes": 253,
+      "sha256": "b470289f420d4e7cf02a8483c61139e1f14e3062b826a0e7a2eb0a9593dbe681",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "r1-01-20261116/source-remote-readback-private.json",
+      "bytes": 347,
+      "sha256": "0cd374f93b946af8c87192816abd9374fcd348b03c74cc075a12f24e3c667513",
+      "storage": "OWNER_LOCAL_ONLY"
     }
   ],
   "final_runtime": {
+    "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+    "services": {
+      "/v1015-current-dev-db": "exited",
+      "/v1015-current-dev-api": "exited",
+      "/v1015-current-dev-ws": "exited",
+      "/v1015-current-dev-sfu": "exited",
+      "/v10116-r1-php-2f45e6575a7b": "exited",
+      "/v10116-r1-db-2f45e6575a7b": "exited"
+    },
+    "legacy_main_db_api_ws": "KEPT_STOPPED",
+    "isolated_data_volume": "RETAINED",
+    "legacy_sfu": "AUTO_RESTARTED_ON_DOCKER_BOOT_THEN_RETURNED_TO_STOPPED",
+    "devices": "NOT_USED",
+    "unrelated_database_queries": "NOT_RUN"
+  },
+  "original_worktree_protection": {
+    "head": true,
+    "branch": true,
+    "tracked": true,
+    "cached": true,
+    "index": true,
+    "status": true
+  },
+  "limits": [
+    "main dev APP enrollment into newly open round NOT_RUN",
+    "real cross-week calendar wait NOT_RUN",
+    "Owner phone and overall device acceptance NOT_RUN",
+    "final backup independent restore NOT_RUN",
+    "long-duration production load NOT_RUN",
+    "main merge, release and live operations NOT_RUN",
+    "new automation table erasure integration NOT_RUN",
+    "primary R1 deployment validation NOT_RUN"
+  ],
+  "boundaries": {
+    "B3": "NOT_RUN",
+    "B4": "NOT_RUN",
+    "phase_C": "NOT_RUN",
+    "main_merge": "NOT_RUN",
+    "release": "NOT_RUN",
+    "real_users_and_production_data": "NOT_USED",
+    "owner_overall_device_acceptance": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE"
+  },
+  "advisor_review": {
+    "status": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE",
+    "reviewed_delivery_commit": "c635dcadbbeec93e9b4287aaab9ae187742e226a",
+    "reviewed_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "report": "ADVISOR_ACCEPTANCE_20261115.md",
+    "r1": {
+      "id": "R1-01",
+      "status": "CLOSED",
+      "severity": "P1",
+      "title": "Automation pause/revoke/expiry must not pause independent manual participation; delegation binding must advance source freshness",
+      "first_review_status": "OPEN",
+      "closure_authority": "CODEX_ENGINEERING",
+      "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+      "advisor_second_review": "PENDING"
+    },
+    "r2": "NOT_REQUIRED",
+    "owner_acceptance": "PENDING"
+  },
+  "initial_delivery_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+  "app_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+  "advisor_acceptance_record_scope": "FIRST_REVIEW_DECISION_PRESERVED",
+  "initial_runtime_identity": {
+    "api_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "api_runtime_files_compared": 14,
+    "api_runtime_equality": "PASS",
+    "web_repository_identity": "00cec7843911bb3341304c004059de0a91e12f16",
+    "web_frontend_changes": "NONE",
+    "web_ui_specific_validation": "NOT_RUN",
+    "scheduler": "named Laravel user-automation event",
+    "scheduler_sample_success_count": 31,
+    "scheduler_sample_failure_count": 0,
+    "queue_default": "sync",
+    "protected_matching_consumer": "NOT_RUNNING"
+  },
+  "initial_runtime_snapshot": {
     "services": {
       "v1015-current-dev-db": {
         "status": "running",
@@ -505,33 +683,15 @@
     "phone": "NOT_USED",
     "private_assets": "RETAINED"
   },
-  "original_worktree_protection": {
-    "head": true,
-    "branch": true,
-    "tracked": true,
-    "cached": true,
-    "index": true,
-    "status": true
+  "initial_source_remote_readback": {
+    "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "origin": "git@github.com:zcx369658780/EliteSync-v10.git",
+    "remote_branch": "codex/v10.1.16-user-state-automation-center-20261115",
+    "fetch_head": "00cec7843911bb3341304c004059de0a91e12f16",
+    "ls_remote": "00cec7843911bb3341304c004059de0a91e12f16",
+    "result": "PASS"
   },
-  "limits": [
-    "main dev APP enrollment into newly open round NOT_RUN",
-    "real cross-week calendar wait NOT_RUN",
-    "Owner phone and overall device acceptance NOT_RUN",
-    "final backup independent restore NOT_RUN",
-    "long-duration production load NOT_RUN",
-    "main merge, release and live operations NOT_RUN",
-    "new automation table erasure integration NOT_RUN"
-  ],
-  "boundaries": {
-    "B3": "NOT_RUN",
-    "B4": "NOT_RUN",
-    "phase_C": "NOT_RUN",
-    "main_merge": "NOT_RUN",
-    "release": "NOT_RUN",
-    "real_users_and_production_data": "NOT_USED",
-    "owner_overall_device_acceptance": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE"
-  },
-  "advisor_review": {
+  "first_advisor_review": {
     "status": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE",
     "reviewed_delivery_commit": "c635dcadbbeec93e9b4287aaab9ae187742e226a",
     "reviewed_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
@@ -544,5 +704,75 @@
     },
     "r2": "NOT_REQUIRED",
     "owner_acceptance": "PENDING"
+  },
+  "r1_01": {
+    "id": "R1-01",
+    "status": "CLOSED",
+    "closure_date": "2026-11-16",
+    "closure_authority": "CODEX_ENGINEERING",
+    "severity_at_first_review": "P1",
+    "advisor_second_review": "PENDING",
+    "owner_acceptance": "PENDING",
+    "fixed_review_commit": "82b7946d2399200a099499f2fcb2a2b44fdb048a",
+    "synced_workflow_commit": "e292ac4dbf063ba88354c5845bba555314cb0e6f",
+    "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+    "app_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "apk_rebuilt": false,
+    "historical_unknown_probe_summary": "UNKNOWN_UNMODIFIED",
+    "primary_runtime_deployment_validation": "NOT_RUN",
+    "original_protection": {
+      "head": true,
+      "branch": true,
+      "tracked": true,
+      "cached": true,
+      "status": true,
+      "index": true
+    },
+    "stop": "WAIT_FOR_GPT_ADVISOR_SECOND_REVIEW",
+    "input_sync_status": "LOCAL_DOCS_SYNCED",
+    "input_sync_files": [
+      {
+        "path": "docs/workflow/ACTIVE_STATE.md",
+        "git_blob_sha": "37cf3361a65dd01d29dcd8c566925678a0fb1212",
+        "local_blob_sha": "37cf3361a65dd01d29dcd8c566925678a0fb1212"
+      },
+      {
+        "path": "docs/workflow/CURRENT_WORKFLOW.md",
+        "git_blob_sha": "32c97e73af54b3dc0c0524c7c6ec7da1f964c092",
+        "local_blob_sha": "32c97e73af54b3dc0c0524c7c6ec7da1f964c092"
+      },
+      {
+        "path": "docs/versions/v10.1.16/artifact_manifest.json",
+        "git_blob_sha": "24668d1770fa5f326706331dd3ad934b3b5cb2c5",
+        "local_blob_sha": "24668d1770fa5f326706331dd3ad934b3b5cb2c5"
+      },
+      {
+        "path": "docs/versions/v10.1.16/EVIDENCE_SUMMARY_20261115.json",
+        "git_blob_sha": "fb4e81b666b3e1a29cdba7cfe1d06b57740612c7",
+        "local_blob_sha": "fb4e81b666b3e1a29cdba7cfe1d06b57740612c7"
+      },
+      {
+        "path": "docs/versions/v10.1.16/ADVISOR_ACCEPTANCE_20261115.md",
+        "git_blob_sha": "9a0174fa089ed23fb9b3e07f54c11611a0bfb81f",
+        "local_blob_sha": "9a0174fa089ed23fb9b3e07f54c11611a0bfb81f"
+      },
+      {
+        "path": "docs/versions/v10.1.16/R1_01_AUTOMATION_REVOCATION_SCOPE.md",
+        "git_blob_sha": "d94a0c04b88a699fe15b49d57c0c666641aebbf3",
+        "local_blob_sha": "d94a0c04b88a699fe15b49d57c0c666641aebbf3"
+      }
+    ],
+    "verification": {
+      "php_api_tests": 27,
+      "php_api_assertions": 267,
+      "new_r1_cases": 10,
+      "mariadb_http_cases": 10,
+      "http_requests": 36,
+      "worker_reliability_cases": 4,
+      "php_syntax_files": 4,
+      "result": "PASS",
+      "evidence_summary": "EVIDENCE_SUMMARY_20261115.json#r1_01",
+      "private_evidence_subdirectory": "r1-01-20261116"
+    }
   }
 }

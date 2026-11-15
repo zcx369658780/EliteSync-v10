@@ -1,6 +1,6 @@
 # v10.1.16 状态与自动化已实现合同 V1
 
-依据原 B2 合同与提交 `00cec7843911bb3341304c004059de0a91e12f16` 的源码。本文固定实现形态，运行结论按[实施报告](IMPLEMENTATION_REPORT.md)和[证据摘要](EVIDENCE_SUMMARY_20261115.json)分别记录。
+依据原 B2 合同与 R1 修正提交 `4bfa9245f06548197532ecec2d5da0397ba8d33d` 的源码。初次实现身份为 `00cec7843911bb3341304c004059de0a91e12f16`。本文固定实现形态，运行结论按[实施报告](IMPLEMENTATION_REPORT.md)和[证据摘要](EVIDENCE_SUMMARY_20261115.json)分别记录。
 
 ## API 契约
 
@@ -22,8 +22,8 @@
 - 授权 scope 目前只有 `weekly_slow_dating_participation`，代码与数据库按每用户每 scope 唯一。
 - `grant` 和 `resume` 都重新检查 Lifestyle Discovery 已完成以及 `ProfileReadinessService` 资格。`grant` 仅能从 `OFF`、`REVOKED`、`EXPIRED` 创建或重授，`resume` 只接受 `PAUSED`。
 - 无明确期限时 `expires_at=null`，有效期显示为持续到用户暂停/撤销或策略版本变化。grant 可提交未来 expires_at。过期时间到达、policy version 或 consent version 与当前配置不匹配时，ACTIVE/PAUSED 的有效状态计算为 `EXPIRED`。
-- `effectiveState()` 计算出过期不等同于持久化状态已更新。每分钟 scheduler 检查后才把授权状态写成 `EXPIRED`、取消待执行任务、暂停业务参与并记审计。
-- `pause`、`revoke` 会取消用户尚未终结的 QUEUED、RUNNING、UNKNOWN 任务并增加 fencing token。若业务参与当前为 ACTIVE，授权服务还会经现有慢约命令将其置为 PAUSED。这个动作不自动接受、拒绝或撤回 proposal。
+- `effectiveState()` 计算出过期不等同于持久化状态已更新。每分钟 scheduler 检查后才把授权状态写成 `EXPIRED`、取消待执行任务、暂停绑定到该授权记录的 ACTIVE 参与并记审计。
+- `pause`、`revoke` 会取消用户尚未终结的 QUEUED、RUNNING、UNKNOWN 任务并增加 fencing token。授权服务仅对 automation_authorization_id 与本 scope 授权记录 ID 一致的 ACTIVE 参与，经现有慢约命令置为 PAUSED。到期检查允许参与仍绑定该记录的旧授权 revision。独立手动报名或手动 opt_in 清除绑定后的参与保留其原 state、generation、revision、intent 和时间。当前 proposal 保留原规则。
 - 人工慢约 `pause` 会将授权置为 PAUSED，人工 `exit` 会将授权置为 REVOKED 并取消任务。人工重新 `opt_in` 清除业务参与上的自动化授权绑定，授权记录本身不由这条路径自动重新激活。
 
 授权状态包括 `OFF`、`ACTIVE`、`PAUSED`、`REVOKED`、`EXPIRED`。授权记录保存 `revision`、policy/consent version、grant/pause/revoke/expiry 时间及 scheduler 的 `last_checked_at`。配置版本为 `weekly_participation_v1` 和 `weekly_consent_v1`。
@@ -50,7 +50,7 @@
 
 ## Effect、UNKNOWN 与有限重试
 
-慢约参与更新与 `automation_effects` 收据写入同一数据库事务。重试前先按 task id 和 authorization revision 检查收据。找到收据就依据当前 participation generation 做效果核对并完成为 SUCCEEDED，不重复执行参与命令。
+慢约参与更新与 `automation_effects` 收据写入同一数据库事务。授权 ID、授权 revision 或 round ID 绑定字段发生实际变化时，参与 revision 递增且 updated_at 写入当前时间，generation 维持既有报名规则。相同绑定的重复处理保持参与版本。effect 收据记录绑定完成后的最终参与 revision。重试前先按 task id 和 authorization revision 检查收据。找到收据就依据当前 participation generation 做效果核对并完成为 SUCCEEDED，不重复执行参与命令。
 
 没有收据时，UNKNOWN 先核对授权有效状态及 revision，再把原子事务收据缺失记录为 NO_EFFECT_CONFIRMED 并安排有限重试。重新执行副作用前仍须核对账号、当前轮次、Lifestyle Discovery、ProfileReadiness 和 proposal slot。尝试上限为 3，配置退避间隔 `[30, 120]` 秒。最多两次确认无 effect 后重试，达到上限转 FAILED，result code 为 `RETRY_EXHAUSTED`。不能在未核对业务事实时盲目重放。
 

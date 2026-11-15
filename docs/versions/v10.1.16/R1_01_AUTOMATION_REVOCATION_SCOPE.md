@@ -1,8 +1,9 @@
 # v10.1.16 R1-01：自动化授权不得暂停独立手动报名
 
-状态：`OPEN`  
-严重程度：`P1`  
-范围：`SOURCE + TARGETED TESTS`  
+状态为 `CLOSED`。
+
+严重程度为 `P1`，范围为 `SOURCE + TARGETED TESTS`。
+
 顾问报告：[ADVISOR_ACCEPTANCE_20261115.md](ADVISOR_ACCEPTANCE_20261115.md)
 
 ## 固定对象
@@ -12,7 +13,7 @@
 - 产品源码：`00cec7843911bb3341304c004059de0a91e12f16`
 - 唯一父基线：`b981796e68ca512beeed2a18b40aeb8b09e26bc2`
 
-## 发现
+## 首轮发现（对应原产品源码）
 
 `AutomationAuthorizationService::command()`在pause/revoke后无条件调用`pauseParticipation()`；该方法只检查慢约参与状态是否ACTIVE，没有检查`matching_participations.automation_authorization_id`是否绑定到该自动化授权。
 
@@ -51,3 +52,19 @@
 ## 明确不做
 
 不修改匹配算法、候选排序、管理员轮次控制、matching run consumer、Connection、Messaging Consent、Conversation或Relationship状态机；不合main、不发布、不启动B3/B4/阶段C。
+
+## 2026-11-16 工程关闭回执
+
+R1-01已按原修正要求完成，状态为 CLOSED。关闭主体为 Codex 工程执行，GPT 顾问第二轮复核 PENDING，Owner 接受 PENDING，NO_R2 沿首轮记录。
+
+修正源码 `4bfa9245f06548197532ecec2d5da0397ba8d33d`。暂停/撤销/到期按授权记录 ID 选择真正委托的 ACTIVE 参与，独立手动参与及手动清除绑定后的参与保留完整行。实际绑定字段变化推进参与 revision/updated_at，effect 收据记录最终 revision。相同绑定重复执行保持版本。
+
+- PHP/API定向27项、267断言通过，其中新增十个R1参数化case。
+- 新隔离MariaDB的十个场景、36次真实回环HTTP请求通过。
+- 隔离MariaDB中两种SIGKILL窗口、双worker并发、撤销竞态四项通过，旧锁序、UNKNOWN核对及有限重试由本轮定向组覆盖。
+- 四个受影响PHP文件语法和固定源码运行身份核对通过。
+- 已委托参与停止后proposal/slot原值保留，接受门禁及用户withdraw权限验证通过。
+
+APP源码沿初次提交，1011601原APK SHA256核对一致。原始误连探测逐表摘要继续UNKNOWN。原数据库保持停止，验证数据仅写入本轮新建隔离库。
+
+完整结果见[实施报告](IMPLEMENTATION_REPORT.md)、[manifest](artifact_manifest.json)及[证据摘要](EVIDENCE_SUMMARY_20261115.json)。本关闭记录由其所在最终文档提交固定，推送和同源远端回读结果列于交付回复。完成后等待GPT顾问第二轮独立复核。

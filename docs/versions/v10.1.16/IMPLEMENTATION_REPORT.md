@@ -1,5 +1,48 @@
 # v10.1.16 实施报告
 
+## 2026-11-16 R1-01 当前工程关闭记录
+
+R1-01 为 CLOSED，GPT 顾问第二轮独立复核 PENDING，Owner 接受 PENDING。首轮顾问结论 `CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2` 按[原报告](ADVISOR_ACCEPTANCE_20261115.md)保留。修正对象与回归要求见[R1任务](R1_01_AUTOMATION_REVOCATION_SCOPE.md)。
+
+固定审阅提交为 `82b7946d2399200a099499f2fcb2a2b44fdb048a`。同步时远端另有 `e292ac4dbf063ba88354c5845bba555314cb0e6f` 的工作流文字修正，两份顾问/R1文件 Blob 与指定审阅提交一致。六份入口文档均已逐Blob核对，LOCAL_DOCS_SYNCED。
+
+R1 后端及测试源码提交为 `4bfa9245f06548197532ecec2d5da0397ba8d33d`。本轮修改两个生产服务文件、一份既有定向测试及一份隔离 HTTP fixture。APP 源码仍为 `00cec7843911bb3341304c004059de0a91e12f16`，沿用 `10.1.16-dev / 1011601` 原 APK，现存文件 SHA256 回读一致。
+
+### 修正行为
+
+授权暂停、撤销及到期仅选择绑定到本 scope 授权记录 ID 的 ACTIVE 参与。授权 revision 在到期时已经递增，仍可按记录 ID 识别旧 revision 的真实委托。未产生委托 effect 的手动 ACTIVE，以及用户手动 opt_in 清除绑定后的 ACTIVE，保留完整参与行。
+
+实际改变授权 ID、授权 revision 或 round ID 绑定时，参与 revision 增加，updated_at 写入当前时间，effect 收据使用绑定后的最终 revision。重复相同绑定和 UNKNOWN 已提交结果核对保持一次业务效果。原锁序、CAS/幂等、lease/fencing、UNKNOWN 及有限退避合同由定向测试继续覆盖。
+
+### 本轮验证
+
+| 验证 | 结果与具名范围 |
+|---|---|
+| 复现 | 新增十个参数化 case，fixture校正后修正前六个断言失败，覆盖四种停止条件、手动接管及绑定版本 |
+| PHP/API 定向 | B2原十七个case与R1新增十个，共27项、267断言通过，包含SQLite内真实控制器路径 |
+| 隔离 MariaDB + HTTP | 新建无外部网络的独立MariaDB/PHP环境，十个场景、36次真实回环HTTP请求通过，private/no-store核对通过 |
+| 提案合同 | 已委托参与暂停/撤销/到期/策略失效后proposal与slot原值保留，接受门禁拒绝，用户明确withdraw仍可执行 |
+| 版本与收据 | 手动参与1→绑定2；同周期暂停/恢复后最终5，generation沿原报名规则；新既有轮次绑定推进版本；重复绑定保持原值，receipt与最终版本一致 |
+| 进程可靠性 | 提交前SIGKILL、提交后回执前SIGKILL、双worker并发、claim后撤销四项通过，两次进程退出137，已提交效果均恰一份且最终参与revision为2 |
+| 代码与身份 | 四个受影响PHP文件语法通过，隔离运行的两服务与两测试文件逐字节规范内容匹配固定源码 |
+| 工程复核 | 只读Sol/high助手未确认新增缺陷，主代理完成修复及工程裁决 |
+
+MariaDB场景只使用新建虚构账号与新隔离数据库。测试环境网络仅回环，实际SQL `SELECT DATABASE()`、driver及环境在迁移前验证。MariaDB的matching_runs和proposals均为0，受保护匹配消费者未启动。测试fixture的已有轮次由具名测试准备步骤创建。
+
+修正前首两轮定向测试暴露了测试peer准备不完整，已将双方资格、参与和slot按现有fixture合同补齐，随后只剩六项预期缺陷复现。首次HTTP探针未启用docker stdin透传而读到空请求，启用透传后完成全部场景。原失败记录均保留私有目录。
+
+### 当前环境和边界
+
+原 DB/API/WS 在 Docker 引擎恢复后保持停止。R1 新建隔离 DB/PHP 容器在验证结束后停止，专属测试卷与原证保留。旧 SFU 随引擎启动自动重试，已恢复停止。主开发 API/后台调度的 R1 部署验证为 NOT_RUN。原库 HEAD、分支、tracked/cached diff、相同选项status及index原字节与本次启动快照一致，稳定根原 `%SystemDrive%/` 保留。
+
+本轮APP源码差异为空，APK构建、Flutter/Widget、Dart分析、设备操作和104项全套重复为 NOT_RUN。主开发库及其他既有数据库为本轮测试范围外，首次误连探测前后逐表摘要继续 UNKNOWN。旧十二项失败、原备份及其恢复限制保留原身份。
+
+本轮证据保存在 `C:\Users\zcxve\EliteSyncDev\v1015-current-dev\v10116-current\r1-01-20261116`。R1关闭为Codex工程结论，最终文档提交和同源回读身份列入交付回复，第二轮顾问结论等待独立记录。R1完成后停止等待第二轮复核。
+
+## 2026-11-15 初次交付历史记录
+
+以下保留首轮交付事实、当时源码、运行状态与测试结果。当前后端修正和运行验证范围以上方R1记录为准。
+
 ## 交付身份与工程结果
 
 本版执行 V3.0 阶段 B2。任务分支为 `codex/v10.1.16-user-state-automation-center-20261115`，唯一父基线 `b981796e68ca512beeed2a18b40aeb8b09e26bc2`，任务文档固定提交 `89ce556ab67c6ea759d3a2ffea7016edf11b892e`。

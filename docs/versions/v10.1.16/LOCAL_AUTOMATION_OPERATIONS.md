@@ -44,7 +44,7 @@ docker exec v1015-current-dev-api tail -n 10 /tmp/v10116-user-automation.log
 
 ## 暂停、撤销与异常恢复
 
-用户级停止通过 APP 的“状态与自动化”执行暂停或撤销。授权命令递增 revision 并取消待执行/运行中任务，worker 在副作用前再次检查当前授权与 fence。当前 proposal 保留原业务处理规则。
+用户级停止通过 APP 的“状态与自动化”执行暂停或撤销。授权命令递增 revision 并取消待执行/运行中任务，worker 在副作用前再次检查当前授权与 fence。暂停仅作用于绑定到该 scope 授权记录的 ACTIVE 参与。独立手动报名及手动 opt_in 清除绑定后的参与保留原值。到期处理按授权记录 ID 识别旧 revision 的委托绑定。当前 proposal 保留原业务处理规则。
 
 需要停止整个本机 B2 调度时，先使用上面的只读核对定位具名 PID，再对该 PID 发送 TERM。PID 属于当次运行，使用前重新读取并核对完整命令。恢复时重新启动具名 B2 启动器。
 
@@ -72,4 +72,4 @@ docker exec v1015-current-dev-api tail -n 10 /tmp/v10116-user-automation.log
 
 ## 本版退出状态
 
-最终 DB/API/WS 与 B2 专用调度运行，SFU 保留 exited 状态。模拟器验证结束后停止模拟器，AVD 与数据保留。Owner 手机本版为 NOT_RUN。完整最终状态与验证范围以本版 manifest 为准。
+2026-11-15 初次交付时 DB/API/WS 与 B2 专用调度运行，SFU exited，模拟器停止且数据保留。2026-11-16 R1 开始时 Docker 引擎已停止，恢复引擎后原 DB/API/WS 保持 exited。R1 使用新建独立 DB/PHP 容器和回环 HTTP，结束后两个测试容器均停止，测试卷与原证保留。旧 SFU 在引擎启动时自动重试，随后恢复停止。R1 当前主开发 API 与后台调度部署验证为 NOT_RUN。完整状态以本版 manifest 为准。

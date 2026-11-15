@@ -1,12 +1,15 @@
 {
   "version": "v10.1.16",
   "phase": "V3.0_B2",
-  "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
-  "engineering_result": "PASS_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+  "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+  "engineering_result": "R1_01_CLOSED_PENDING_ADVISOR_SECOND_REVIEW",
   "acceptance": {
     "advisor": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
     "owner": "PENDING",
-    "owner_overall_device_evaluation": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE"
+    "owner_overall_device_evaluation": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE",
+    "advisor_record_scope": "FIRST_REVIEW_DECISION_PRESERVED",
+    "current_engineering": "R1_01_CLOSED",
+    "advisor_second_review": "PENDING"
   },
   "tests": {
     "php": {
@@ -46,7 +49,9 @@
       "files": 16,
       "result": "PASS"
     },
-    "full_regression": "NOT_RUN"
+    "full_regression": "NOT_RUN",
+    "record_scope": "INITIAL_DELIVERY_NOT_REPEATED_FOR_R1",
+    "source_commit": "00cec7843911bb3341304c004059de0a91e12f16"
   },
   "real_database_reliability": {
     "database": "new isolated MariaDB schema",
@@ -379,6 +384,77 @@
     "failed_assets": "RETAINED_PRIVATELY"
   },
   "final_runtime": {
+    "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+    "services": {
+      "/v1015-current-dev-db": "exited",
+      "/v1015-current-dev-api": "exited",
+      "/v1015-current-dev-ws": "exited",
+      "/v1015-current-dev-sfu": "exited",
+      "/v10116-r1-php-2f45e6575a7b": "exited",
+      "/v10116-r1-db-2f45e6575a7b": "exited"
+    },
+    "legacy_main_db_api_ws": "KEPT_STOPPED",
+    "isolated_data_volume": "RETAINED",
+    "legacy_sfu": "AUTO_RESTARTED_ON_DOCKER_BOOT_THEN_RETURNED_TO_STOPPED",
+    "devices": "NOT_USED",
+    "unrelated_database_queries": "NOT_RUN"
+  },
+  "asset_protection": {
+    "head": true,
+    "branch": true,
+    "tracked": true,
+    "cached": true,
+    "index": true,
+    "status": true
+  },
+  "limits": [
+    "main dev APP enrollment into newly open round NOT_RUN",
+    "real cross-week calendar wait NOT_RUN",
+    "Owner phone and overall device acceptance NOT_RUN",
+    "final backup independent restore NOT_RUN",
+    "long-duration production load NOT_RUN",
+    "main merge, release and live operations NOT_RUN",
+    "new automation table erasure integration NOT_RUN"
+  ],
+  "source_remote_readback": {
+    "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+    "origin": "git@github.com:zcx369658780/EliteSync-v10.git",
+    "remote_branch": "codex/v10.1.16-user-state-automation-center-20261115",
+    "fetch_head": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+    "ls_remote": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+    "result": "PASS"
+  },
+  "advisor_review": {
+    "status": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE",
+    "reviewed_delivery_commit": "c635dcadbbeec93e9b4287aaab9ae187742e226a",
+    "reviewed_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "r1": {
+      "id": "R1-01",
+      "status": "CLOSED",
+      "severity": "P1",
+      "first_review_status": "OPEN",
+      "closure_authority": "CODEX_ENGINEERING",
+      "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+      "advisor_second_review": "PENDING"
+    },
+    "r2": "NOT_REQUIRED",
+    "owner_acceptance": "PENDING"
+  },
+  "initial_delivery_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+  "historical_evidence_scope": {
+    "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "fields": [
+      "tests",
+      "real_database_reliability",
+      "http",
+      "app",
+      "migration",
+      "review",
+      "preserved_failures"
+    ],
+    "note": "Initial delivery records retained; R1 verification is separately recorded in r1_01"
+  },
+  "initial_runtime_snapshot": {
     "services": {
       "v1015-current-dev-db": {
         "status": "running",
@@ -413,24 +489,7 @@
     "phone": "NOT_USED",
     "private_assets": "RETAINED"
   },
-  "asset_protection": {
-    "head": true,
-    "branch": true,
-    "tracked": true,
-    "cached": true,
-    "index": true,
-    "status": true
-  },
-  "limits": [
-    "main dev APP enrollment into newly open round NOT_RUN",
-    "real cross-week calendar wait NOT_RUN",
-    "Owner phone and overall device acceptance NOT_RUN",
-    "final backup independent restore NOT_RUN",
-    "long-duration production load NOT_RUN",
-    "main merge, release and live operations NOT_RUN",
-    "new automation table erasure integration NOT_RUN"
-  ],
-  "source_remote_readback": {
+  "initial_source_remote_readback": {
     "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
     "origin": "git@github.com:zcx369658780/EliteSync-v10.git",
     "remote_branch": "codex/v10.1.16-user-state-automation-center-20261115",
@@ -438,7 +497,7 @@
     "ls_remote": "00cec7843911bb3341304c004059de0a91e12f16",
     "result": "PASS"
   },
-  "advisor_review": {
+  "first_advisor_review": {
     "status": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE",
     "reviewed_delivery_commit": "c635dcadbbeec93e9b4287aaab9ae187742e226a",
     "reviewed_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
@@ -449,5 +508,326 @@
     },
     "r2": "NOT_REQUIRED",
     "owner_acceptance": "PENDING"
+  },
+  "r1_01": {
+    "id": "R1-01",
+    "status": "CLOSED",
+    "closure_date": "2026-11-16",
+    "closure_authority": "CODEX_ENGINEERING",
+    "severity_at_first_review": "P1",
+    "advisor_second_review": "PENDING",
+    "owner_acceptance": "PENDING",
+    "fixed_review_commit": "82b7946d2399200a099499f2fcb2a2b44fdb048a",
+    "synced_workflow_commit": "e292ac4dbf063ba88354c5845bba555314cb0e6f",
+    "input_sync": {
+      "status": "LOCAL_DOCS_SYNCED",
+      "fixed_review_commit": "82b7946d2399200a099499f2fcb2a2b44fdb048a",
+      "synced_head": "e292ac4dbf063ba88354c5845bba555314cb0e6f",
+      "later_remote_change": "workflow wording only, advisor/R1 blobs identical",
+      "files": [
+        {
+          "path": "docs/workflow/ACTIVE_STATE.md",
+          "git_blob_sha": "37cf3361a65dd01d29dcd8c566925678a0fb1212",
+          "local_blob_sha": "37cf3361a65dd01d29dcd8c566925678a0fb1212"
+        },
+        {
+          "path": "docs/workflow/CURRENT_WORKFLOW.md",
+          "git_blob_sha": "32c97e73af54b3dc0c0524c7c6ec7da1f964c092",
+          "local_blob_sha": "32c97e73af54b3dc0c0524c7c6ec7da1f964c092"
+        },
+        {
+          "path": "docs/versions/v10.1.16/artifact_manifest.json",
+          "git_blob_sha": "24668d1770fa5f326706331dd3ad934b3b5cb2c5",
+          "local_blob_sha": "24668d1770fa5f326706331dd3ad934b3b5cb2c5"
+        },
+        {
+          "path": "docs/versions/v10.1.16/EVIDENCE_SUMMARY_20261115.json",
+          "git_blob_sha": "fb4e81b666b3e1a29cdba7cfe1d06b57740612c7",
+          "local_blob_sha": "fb4e81b666b3e1a29cdba7cfe1d06b57740612c7"
+        },
+        {
+          "path": "docs/versions/v10.1.16/ADVISOR_ACCEPTANCE_20261115.md",
+          "git_blob_sha": "9a0174fa089ed23fb9b3e07f54c11611a0bfb81f",
+          "local_blob_sha": "9a0174fa089ed23fb9b3e07f54c11611a0bfb81f"
+        },
+        {
+          "path": "docs/versions/v10.1.16/R1_01_AUTOMATION_REVOCATION_SCOPE.md",
+          "git_blob_sha": "d94a0c04b88a699fe15b49d57c0c666641aebbf3",
+          "local_blob_sha": "d94a0c04b88a699fe15b49d57c0c666641aebbf3"
+        }
+      ]
+    },
+    "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+    "app_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "apk_rebuilt": false,
+    "apk_reuse": {
+      "version_code": 1011601,
+      "app_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+      "rebuilt": false,
+      "bytes": 124048353,
+      "sha256": "ac86f8df05d1e39abfead445ba5d6e23bcb457b6c73030c02fa38d2d2cedb055",
+      "reuse_identity": "PASS"
+    },
+    "changes": [
+      "authorization stop selects matching participation authorization record id",
+      "expired grants still identify their previous-revision delegated participation",
+      "actual binding field changes increment participation revision and update timestamp",
+      "effect receipt stores final bound participation revision"
+    ],
+    "verification": {
+      "php_api": {
+        "tests": 27,
+        "assertions": 267,
+        "new_r1_cases": 10,
+        "result": "PASS",
+        "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+        "log": "r1-01-20261116/green-02-php-private.log"
+      },
+      "red_reproduction": {
+        "tests": 10,
+        "confirmed_bug_failures": 6,
+        "other_cases_passed": 4,
+        "log": "r1-01-20261116/red-03-php-private.log"
+      },
+      "isolated_mariadb_http": {
+        "cases": 10,
+        "requests": 36,
+        "checks": [
+          {
+            "case": "unbound-manual-pause",
+            "unchanged_entire_participation": true,
+            "before_sha256": "1403d90ee6d399612dbd78ea83739efb718f720b7c50405ab09c5a4d3fe910b6",
+            "after_sha256": "1403d90ee6d399612dbd78ea83739efb718f720b7c50405ab09c5a4d3fe910b6",
+            "result": "PASS"
+          },
+          {
+            "case": "unbound-manual-revoke",
+            "unchanged_entire_participation": true,
+            "before_sha256": "03b548d8114252ac3913d9cacab7fd52579654f8a0611f7538e4e4434595a649",
+            "after_sha256": "03b548d8114252ac3913d9cacab7fd52579654f8a0611f7538e4e4434595a649",
+            "result": "PASS"
+          },
+          {
+            "case": "unbound-manual-expire",
+            "unchanged_entire_participation": true,
+            "before_sha256": "ffa3b501fca6361ff0b1a693197cea32fa75e84d4a5bb91a30dfb4eba5901236",
+            "after_sha256": "ffa3b501fca6361ff0b1a693197cea32fa75e84d4a5bb91a30dfb4eba5901236",
+            "result": "PASS"
+          },
+          {
+            "case": "unbound-manual-policy",
+            "unchanged_entire_participation": true,
+            "before_sha256": "94844d005dc605097cd6ede0c51fbeb4b6771757c82172a6c3c6cc8023b8b78f",
+            "after_sha256": "94844d005dc605097cd6ede0c51fbeb4b6771757c82172a6c3c6cc8023b8b78f",
+            "result": "PASS"
+          },
+          {
+            "case": "bound-pause",
+            "same_authorization_id_old_binding_revision": true,
+            "before_revision": 2,
+            "after_revision": 3,
+            "result": "PASS"
+          },
+          {
+            "case": "bound-revoke",
+            "same_authorization_id_old_binding_revision": true,
+            "before_revision": 2,
+            "after_revision": 3,
+            "result": "PASS"
+          },
+          {
+            "case": "bound-expire",
+            "same_authorization_id_old_binding_revision": true,
+            "before_revision": 2,
+            "after_revision": 3,
+            "result": "PASS"
+          },
+          {
+            "case": "bound-policy",
+            "same_authorization_id_old_binding_revision": true,
+            "before_revision": 2,
+            "after_revision": 3,
+            "result": "PASS"
+          },
+          {
+            "case": "manual-takeover-then-revoke",
+            "participation_preserved": true,
+            "revision": 3,
+            "result": "PASS"
+          },
+          {
+            "case": "binding-and-authorization-revision-update",
+            "initial_manual_revision": 1,
+            "first_bound_revision": 2,
+            "resumed_final_revision": 5,
+            "source_freshness_advanced": true,
+            "same_binding_repeat_unchanged": true,
+            "effect_matches_final_revision": true,
+            "result": "PASS"
+          }
+        ],
+        "private_no_store": "PASS",
+        "matching_runs": 0,
+        "proposals": 0,
+        "guard": "actual SELECT DATABASE, mysql, testing, expected isolated name verified",
+        "network": "none, loopback only",
+        "result": "PASS"
+      },
+      "worker_reliability": {
+        "cases": 4,
+        "checks": [
+          {
+            "case": "kill-before-commit",
+            "killed_exit": 137,
+            "before": {
+              "state": "RUNNING",
+              "result_code": null,
+              "attempts": 1,
+              "reconciliation": "NONE",
+              "effects": 0,
+              "participation_revision": 0,
+              "participation_state": "NOT_ENROLLED",
+              "matching_runs": 0,
+              "proposals": 0
+            },
+            "after": {
+              "state": "SUCCEEDED",
+              "result_code": "PARTICIPATION_COORDINATED",
+              "attempts": 2,
+              "reconciliation": "CONFIRMED",
+              "effects": 1,
+              "participation_revision": 2,
+              "participation_state": "ACTIVE",
+              "matching_runs": 0,
+              "proposals": 0
+            },
+            "status": "PASS"
+          },
+          {
+            "case": "kill-after-commit",
+            "killed_exit": 137,
+            "before": {
+              "state": "RUNNING",
+              "result_code": null,
+              "attempts": 1,
+              "reconciliation": "NONE",
+              "effects": 1,
+              "participation_revision": 2,
+              "participation_state": "ACTIVE",
+              "matching_runs": 0,
+              "proposals": 0
+            },
+            "after": {
+              "state": "SUCCEEDED",
+              "result_code": "RECONCILED_EFFECT",
+              "attempts": 1,
+              "reconciliation": "CONFIRMED",
+              "effects": 1,
+              "participation_revision": 2,
+              "participation_state": "ACTIVE",
+              "matching_runs": 0,
+              "proposals": 0
+            },
+            "status": "PASS"
+          },
+          {
+            "case": "two-concurrent-workers",
+            "claims": [
+              9,
+              null
+            ],
+            "after": {
+              "state": "SUCCEEDED",
+              "result_code": "PARTICIPATION_COORDINATED",
+              "attempts": 1,
+              "reconciliation": "CONFIRMED",
+              "effects": 1,
+              "participation_revision": 2,
+              "participation_state": "ACTIVE",
+              "matching_runs": 0,
+              "proposals": 0
+            },
+            "status": "PASS"
+          },
+          {
+            "case": "revoke-between-claim-and-effect",
+            "after": {
+              "state": "CANCELLED",
+              "result_code": "AUTHORIZATION_CHANGED",
+              "attempts": 1,
+              "reconciliation": "NONE",
+              "effects": 0,
+              "participation_revision": 0,
+              "participation_state": "NOT_ENROLLED",
+              "matching_runs": 0,
+              "proposals": 0
+            },
+            "status": "PASS"
+          }
+        ],
+        "named_laravel_event": "PASS",
+        "result": "PASS"
+      },
+      "php_syntax": {
+        "files": 4,
+        "result": "PASS"
+      },
+      "fixed_runtime_source": {
+        "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+        "files": [
+          {
+            "path": "services/backend-laravel/app/Services/AutomationAuthorizationService.php",
+            "sha256": "0784f7b178c32e07f32a622e394f80366e4e297c3ed78a902846e4d929eb18c1",
+            "runtime_matches_fixed_source": true
+          },
+          {
+            "path": "services/backend-laravel/app/Services/AutomationService.php",
+            "sha256": "0bfe39b8e057e3e68e3fe07a25815cd147933b6f2666b7542273149ee2a470bf",
+            "runtime_matches_fixed_source": true
+          },
+          {
+            "path": "services/backend-laravel/tests/Feature/V10116UserStateAutomationTest.php",
+            "sha256": "c7f3b8d3ba9edb03156b46fa5708de9d704196d01e9faf81d444bda05ebfcc78",
+            "runtime_matches_fixed_source": true
+          },
+          {
+            "path": "services/backend-laravel/tests/Integration/v10116_r1_revocation_scope.php",
+            "sha256": "d839e0a6425500bcdb37b578257066aed6470917f6a7b6b2a9a387577409704f",
+            "runtime_matches_fixed_source": true
+          }
+        ],
+        "result": "PASS"
+      },
+      "engineering_static_review": "NO_NEW_CONFIRMED_DEFECTS",
+      "proposal_and_slot_preservation": "PASS_WITH_EXPLICIT_WITHDRAW_AND_ACCEPT_GATE"
+    },
+    "historical_unknown_probe_summary": "UNKNOWN_UNMODIFIED",
+    "primary_runtime_deployment_validation": "NOT_RUN",
+    "original_protection": {
+      "head": true,
+      "branch": true,
+      "tracked": true,
+      "cached": true,
+      "status": true,
+      "index": true
+    },
+    "final_runtime": {
+      "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+      "services": {
+        "/v1015-current-dev-db": "exited",
+        "/v1015-current-dev-api": "exited",
+        "/v1015-current-dev-ws": "exited",
+        "/v1015-current-dev-sfu": "exited",
+        "/v10116-r1-php-2f45e6575a7b": "exited",
+        "/v10116-r1-db-2f45e6575a7b": "exited"
+      },
+      "legacy_main_db_api_ws": "KEPT_STOPPED",
+      "isolated_data_volume": "RETAINED",
+      "legacy_sfu": "AUTO_RESTARTED_ON_DOCKER_BOOT_THEN_RETURNED_TO_STOPPED",
+      "devices": "NOT_USED",
+      "unrelated_database_queries": "NOT_RUN"
+    },
+    "apk_device_or_full_suite_execution": "NOT_RUN_THIS_R1",
+    "stop": "WAIT_FOR_GPT_ADVISOR_SECOND_REVIEW"
   }
 }
