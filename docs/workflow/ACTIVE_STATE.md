@@ -1,20 +1,19 @@
-# 当前入口 2026-11-15 v10.1.15 Owner已接受，v10.1.16阶段B2已授权
+# 当前入口 2026-11-15 v10.1.16阶段B2已授权，等待Codex同步路线并开工
 
-**V10115_OWNER_ACCEPTED_IN_NAMED_SCOPE_WITH_AC15_02_PARTIAL / R1_01_CLOSED_DOCS_ONLY / NO_R2 / V10116_B2_AUTHORIZED**。
+**V10115_OWNER_ACCEPTED_IN_NAMED_SCOPE_WITH_AC15_02_PARTIAL / V10116_B2_AUTHORIZED**。
 
-当前固定APP/API/题库及美术源码为 `2123496a4d347220e17b84eeec4df9d9f9455399`，候选 `10.1.15-dev / 1011501`，Debug、arm64。任务分支为 `codex/v10.1.15-lifestyle-discovery-progressive-preferences-20261115`，唯一父基线 `98b06629eec122bf97bbcfe20adaf950041ecfee`，固定任务文档 `f40415fc23260556c95ae0c4615e811d847d08b0`。十一份文档在编码前逐Blob核验并提交路线ACK。
+v10.1.15 Owner已接受：AC15-01/03/04/05/06具名范围接受；AC15-02因实际在线图像模型名称/版本UNKNOWN继续PARTIAL；R1-01 CLOSED、NO_R2。记录：[Owner接受](../versions/v10.1.15/OWNER_ACCEPTANCE_20261115.md)、[顾问验收](../versions/v10.1.15/ADVISOR_ACCEPTANCE_20261115.md)、[R1复核](../versions/v10.1.15/R1_01_REREVIEW_20261115.md)。
 
-五场景十五选项、注册欢迎和跳过、逐题加密待同步、恢复/改选/重做、可解释私有映射及每周慢约会服务端门禁已交付。Astra艺术指导和五幅在线生成素材已提交。图像工具未暴露实际模型精确身份，AC15-02保留PARTIAL。AC15-01/03/04/05/06已获顾问具名范围接受；AC15-02因图像模型精确标识UNKNOWN保持PARTIAL。R1-01文档修正已完成并经GPT顾问第二轮独立复核PASS，正式CLOSED，无R2。AC15-02因实际图像模型精确身份UNKNOWN继续PARTIAL；Owner已接受具名范围；AC15-02仍PARTIAL。
+## 当前授权任务
 
-入口材料为[实施报告](../versions/v10.1.15/IMPLEMENTATION_REPORT.md)、[manifest](../versions/v10.1.15/artifact_manifest.json)、[证据摘要](../versions/v10.1.15/EVIDENCE_SUMMARY_20261115.json)、[题库](../versions/v10.1.15/LIFESTYLE_DISCOVERY_QUESTION_BANK_V1.md)和[Owner评审说明](../versions/v10.1.15/OWNER_REVIEW.md)。路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)及[11月15日补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115.md)。
+**v10.1.16：统一用户状态与后台自动化中心（V3.0阶段B2）**。任务：[task_order](../versions/v10.1.16/task_order.md)；[plan](../versions/v10.1.16/plan.md)；[DEVELOPMENT_ALIGNMENT](../versions/v10.1.16/DEVELOPMENT_ALIGNMENT.md)；[B2合同](../versions/v10.1.16/B2_USER_STATE_AND_AUTOMATION_CONTRACT.md)；[Codex启动Prompt](../versions/v10.1.16/CODEX_START_PROMPT.txt)。路线权威：[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)和[B2补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md)。
 
-定向PHP46项/447断言、Flutter106项、18个Dart文件分析及真实APP/API/MariaDB具名流程通过。扩大旧套件诊断保留PHP16个和Flutter11个失败，固定任务权威源码对照复现同名失败。完整固定基线全量回归NOT_RUN。
+任务分支：`codex/v10.1.16-user-state-automation-center-20261115`；唯一父基线：`b981796e68ca512beeed2a18b40aeb8b09e26bc2`。必须先同步全部路线/授权/任务文档，逐Blob核验并创建ROADMAP_ALIGNMENT_ACK后才编码。
 
-原D:\EliteSync-v10的HEAD、分支、tracked/cached diff、相同选项status和index原字节与本轮启动一致，稳定根 `%SystemDrive%/` 保留。私有原证位于Owner本机 `v10115-current`。DB/API/WS运行，SFU exited，模拟器停止，AVD/数据保留。本版手机NOT_RUN。最终数据库备份独立恢复NOT_RUN。
+## 本版目标
 
-v10.1.14的[Owner接受](../versions/v10.1.14/OWNER_ACCEPTANCE_20261115.md)与[顾问验收](../versions/v10.1.14/ADVISOR_ACCEPTANCE_20261115.md)及原P2、NOT_RUN/UNKNOWN边界保留。
+聚合现有权威数据源为账号私有、只读的统一用户状态；建立用户明确授权、默认关闭的自动化生命周期和有限任务执行；首个试点优先复用每周慢约持续参与合同，避免重复状态。任务必须支持幂等、有限重试、未知结果核对、暂停、撤销、到期和审计。
 
-顾问首轮报告：[ADVISOR_ACCEPTANCE_20261115.md](../versions/v10.1.15/ADVISOR_ACCEPTANCE_20261115.md)。R1任务及关闭记录：[R1_01_ART_DIRECTION_STATUS_CONSISTENCY.md](../versions/v10.1.15/R1_01_ART_DIRECTION_STATUS_CONSISTENCY.md)。[第二轮独立复核报告](../versions/v10.1.15/R1_01_REREVIEW_20261115.md)。R1-01已CLOSED，R2不需要；Owner已接受具名范围。当前已授权v10.1.16 B2；B3、B4、阶段C、main集成、正式发布及真实运营仍未授权/NOT_RUN。Owner整体实机验收安排在B1+B2+B3完成后。
+## 关键边界
 
-
-Owner接受：[OWNER_ACCEPTANCE_20261115.md](../versions/v10.1.15/OWNER_ACCEPTANCE_20261115.md)。v10.1.16阶段B2授权及任务见[Owner决定](../decisions/OWNER_V10_1_15_ACCEPTANCE_AND_V10_1_16_B2_AUTHORIZATION_20261115.md)及当前v10.1.16任务入口。
+不得重复建立ProfileReadiness/LifestyleDiscovery/SlowDating/Round真相；不得自动创建/执行匹配轮次；不得自动接受候选、建立Connection、消息同意或Relationship。B3全局减法重构、B4运行时AI、阶段C身份/信用/Push/支付未授权。Owner整体实机验收安排在B1+B2+B3完成后；本版不操作Owner手机。main集成和正式发布NOT_RUN。

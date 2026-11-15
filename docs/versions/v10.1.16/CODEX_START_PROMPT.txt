@@ -1,0 +1,65 @@
+接续 EliteSync-v10，执行已获Owner授权的 v10.1.16「统一用户状态与后台自动化中心」（V3.0阶段B2）。
+
+仓库：zcx369658780/EliteSync-v10
+分支：codex/v10.1.16-user-state-automation-center-20261115
+唯一父基线：b981796e68ca512beeed2a18b40aeb8b09e26bc2
+Owner接受v10.1.15并授权B2的决定：
+docs/decisions/OWNER_V10_1_15_ACCEPTANCE_AND_V10_1_16_B2_AUTHORIZATION_20261115.md
+V3.0路线图：
+docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md
+B2补充决定：
+docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md
+
+## 第一优先级：同步路线与开发思路，禁止直接编码
+
+1. 核本地稳定工程根、origin、branch、HEAD、status、index、数据库、AVD、私有配置和原始证据。
+2. 只读本地AGENTS.md、ACTIVE_STATE.md当前首块、CURRENT_WORKFLOW.md。
+3. 从本任务分支同步并逐Blob核验：
+   - V3.0路线图和B2补充决定；
+   - v10.1.15 Owner接受、顾问验收及R1复核；
+   - v10.1.16 task_order、plan、DEVELOPMENT_ALIGNMENT、B2_USER_STATE_AND_AUTOMATION_CONTRACT、CODEX_START_PROMPT；
+   - 更新后的AGENTS、ACTIVE_STATE、CURRENT_WORKFLOW。
+4. 保护dirty/index、数据库、AVD、凭据和原始证据；不盲pull/reset/rebase/stash/clean/prune/force push。
+5. 逐份记录LOCAL_DOCS_SYNCED或PENDING_LOCAL_SYNC。
+6. 编码前创建ROADMAP_ALIGNMENT_ACK.md，确认理解B2范围、source-of-truth原则、授权默认OFF、现有慢约参与语义、admin matching执行边界、B3/B4/C未授权和Owner实机验收延后。完成前不得修改产品源码。
+
+## 第二优先级：先审计再实现
+
+必须先检查：
+- users/ProfileReadinessService；
+- LifestyleDiscoveryService及lifestyle_discoveries；
+- matching_participations/SlowDatingService；
+- dating_rounds、matching_runs、proposal状态；
+- 通知偏好；
+- Laravel scheduler、Jobs、DB queue；
+- 现有 Me/Progress/慢约页面。
+
+输出USER_STATE_SOURCE_MAP_V1.md，标记权威来源、只读投影、隐私级别和revision。避免重复建立已有事实。
+
+## 第三优先级：实施七项AC
+
+AC16-01 权威状态来源盘点和合同；
+AC16-02 统一用户状态只读API；
+AC16-03 自动化授权生命周期；
+AC16-04 有限、可靠、可审计的任务执行；
+AC16-05 每周慢约持续参与自动化试点；
+AC16-06 现有页面最小状态/自动化入口；
+AC16-07 定向集成验证和交付。
+
+## 绝对边界
+
+- 状态中心聚合现有权威服务，不维护重复用户真相。
+- 自动化每个scope独立授权、默认OFF；不得静默迁移旧用户。
+- 一次授权后可在明确范围内持续执行，但用户可暂停/撤销/到期。
+- 任务有幂等、有限重试、UNKNOWN核对、审计和用户可理解状态。
+- 复用现有慢约参与合同；如果ACTIVE不明确代表未来持续参与，必须新增单独授权，旧用户不自动启用。
+- 不创建dating_rounds，不触发admin matching run，不自动冻结/揭晓/运行算法。
+- 不自动接受匹配，不建立Connection，不授予Messaging Consent，不发消息，不确立Relationship。
+- 不改匹配算法和关系状态机。
+- 不做B3全局UI重构，不做B4运行时AI，不接阶段C身份/信用/Push/支付。
+- 不操作Owner手机；整体Owner实机验收延后到B1+B2+B3完成。
+- 不使用真实用户/生产数据，不合main、不发布、不开展真实内测/运营。
+
+## 最终交付
+
+集中交付状态来源图、state API合同、自动化授权/任务合同、实施报告、manifest、去敏证据、运行/恢复说明和候选APK。候选建议1011601，先核占用。固定提交并同源远端回读后停止，等待GPT顾问验收，不自动启动B3。

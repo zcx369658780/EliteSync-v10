@@ -1,35 +1,27 @@
 # EliteSync-v10 当前工作流
 
-2026-11-15更新。v10.1.14已获顾问及Owner具名范围接受；当前授权任务为[v10.1.15阶段B1](../versions/v10.1.15/task_order.md)。路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)及[Owner补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115.md)。
+2026-11-15更新。v10.1.15已获Owner具名范围接受，AC15-02仍PARTIAL，R1-01 CLOSED、NO_R2。当前授权任务为[v10.1.16阶段B2](../versions/v10.1.16/task_order.md)，路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)和[B2补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md)。
 
-## 最近Owner决定
+## 当前Owner决定
 
-v10.1.14：`OWNER_ACCEPTED_IN_NAMED_SCOPE`，顾问NO_R1/NO_R2；三项P2和所有未运行边界保留。见[Owner接受](../versions/v10.1.14/OWNER_ACCEPTANCE_20261115.md)和[顾问验收](../versions/v10.1.14/ADVISOR_ACCEPTANCE_20261115.md)。
+v10.1.15 Owner接受记录：[OWNER_ACCEPTANCE](../versions/v10.1.15/OWNER_ACCEPTANCE_20261115.md)。AC15-02精确图像模型身份UNKNOWN，继续PARTIAL。Owner整体实机验收安排在B1+B2+B3低操作成本主线完成后。
 
-Owner要求继续，现授权V3.0阶段B1 / v10.1.15「生活方式探索与渐进式偏好」。只授权B1；B2/B3/B4和阶段C未授权。
+Owner授权v10.1.16「统一用户状态与后台自动化中心」。只授权B2；B3全局重构、B4运行时AI和阶段C外部服务未授权。
 
-## v10.1.15开工同步
+## v10.1.16开工同步
 
-Codex先核本地根、remote、branch、HEAD、dirty/index和私有资产，再同步V3.0、补充决定、v10.1.14接受记录、v10.1.15 task_order/plan/DEVELOPMENT_ALIGNMENT/prompt及入口文档。逐Blob核验并记录LOCAL_DOCS_SYNCED或PENDING_LOCAL_SYNC，创建ROADMAP_ALIGNMENT_ACK后才编码。
+Codex先核本地根、remote、branch、HEAD、dirty/index和私有资产，再同步V3.0、B2补充决定、v10.1.15接受记录、本版task_order/plan/DEVELOPMENT_ALIGNMENT/B2合同/prompt及入口文档。逐Blob核验并记录LOCAL_DOCS_SYNCED或PENDING_LOCAL_SYNC，创建ROADMAP_ALIGNMENT_ACK后才编码。
 
-## B1产品合同
+## B2产品合同
 
-注册后默认欢迎Lifestyle Discovery，可跳过；跳过不影响注册或匿名社区；每周慢约会匹配必须完成。4—6个场景，每个2—3选项；支持返回、修改、正反向动画、自动保存和续做。原始答案与可解释偏好分开保存，允许纠正；不做MBTI诊断，不接运行时AI。
+统一用户状态是只读聚合投影，不重复建立Profile、LifestyleDiscovery、ProfileReadiness、SlowDating、Round等权威真相。自动化scope默认OFF、独立授权、可暂停/撤销/到期。任务具备幂等、有限重试、UNKNOWN核对、审计和可解释状态。
 
-## 美术资产工作流
+首个试点是每周慢约持续参与协调；复用现有matching_participations和资格合同。不得创建或执行管理员匹配轮次，不自动接受匹配/连接/消息同意/正式关系。
 
-Astra艺术指导与提示词；最新在线GPT Image生成正式静态素材；精确记录模型版本/日期/提示词/用途/尺寸/SHA256；放GitHub固定资产目录供Codex引用。不得把用户资料放进提示词。素材生成不可用则记录ASSET_GENERATION_PENDING，不擅自替换模型。
+## Owner实机验收安排
+
+Owner将在B1+B2+B3全部完成后进行整体实机验收。中间版本由Codex在授权范围内使用模拟器和虚构账号完成工程验证，不操作Owner手机。B4为独立阶段，不自动成为实机验收前置。
 
 ## 边界
 
-不接实名/出生时地/信用/身份供应商/Push/支付；不改匹配算法或关系状态机；不把探索设为社区/Buddy/好友门槛；不提前实现B2/B3/B4/C；不合main、不发布、不运营。v10.1.15交付后停下供顾问验收。
-
-
-## v10.1.15顾问验收（2026-11-15）
-
-顾问已按具名范围接受AC15-01/03/04/05/06；AC15-02保持PARTIAL，实际在线图像模型精确标识UNKNOWN。R1-01文档修正已完成并经第二轮独立复核PASS，正式CLOSED，R2不需要。详见[首轮顾问验收报告](../versions/v10.1.15/ADVISOR_ACCEPTANCE_20261115.md)、[R1-01任务及关闭记录](../versions/v10.1.15/R1_01_ART_DIRECTION_STATUS_CONSISTENCY.md)和[第二轮独立复核报告](../versions/v10.1.15/R1_01_REREVIEW_20261115.md)。Owner接受仍PENDING。
-
-
-## v10.1.15 Owner接受与后续授权（2026-11-15）
-
-Owner已接受v10.1.15具名范围，AC15-02仍PARTIAL，R1-01 CLOSED、NO_R2。Owner授权v10.1.16阶段B2「统一用户状态与后台自动化中心」。整体Owner实机验收安排在B1+B2+B3低操作成本主线完成后；B4为独立阶段。决定见[Owner接受与B2授权](../decisions/OWNER_V10_1_15_ACCEPTANCE_AND_V10_1_16_B2_AUTHORIZATION_20261115.md)。
+不做B3全局UI重构、不做B4运行时AI、不接身份/征信/芝麻信用/蚂蚁积分/真实Push/支付或新供应商；不使用真实用户/生产数据；不合main、不发布、不运营。v10.1.16交付后停下供顾问验收。
