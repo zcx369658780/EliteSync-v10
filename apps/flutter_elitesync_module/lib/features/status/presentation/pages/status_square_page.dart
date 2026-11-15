@@ -311,11 +311,8 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
   Future<void> _pickAndUploadCoverImage({bool video = false}) async {
     if (_submitting || _coverStage == _CoverUploadStage.uploading) return;
     final token = ref.read(sessionProvider).asData?.value.accessToken;
-    final epoch = ref.read(relationshipAuthorityEpochProvider);
     bool current() =>
-        mounted &&
-        token == ref.read(sessionProvider).asData?.value.accessToken &&
-        epoch == ref.read(relationshipAuthorityEpochProvider);
+        mounted && token == ref.read(sessionProvider).asData?.value.accessToken;
     ref
         .read(frontendTelemetryProvider)
         .statusImagePickerOpened(sourcePage: 'status_square');
@@ -569,7 +566,9 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
       _clearLocalAuthority();
     });
     ref.listen(relationshipAuthorityEpochProvider, (previous, next) {
-      if (previous != next) _clearLocalAuthority();
+      // Peer authority refresh clears/reloads the feed through its providers.
+      // An unpublished, owner-only draft and upload keep their session guard.
+      if (previous != next) setState(() => _feedUnavailable = false);
     });
     final t = context.appTokens;
     final postsAsync = ref.watch(statusPostPageProvider);
