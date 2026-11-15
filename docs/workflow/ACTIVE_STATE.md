@@ -1,17 +1,19 @@
-# 当前入口 2026-11-15 v10.1.13 Owner接受，下一阶段路线讨论中
+# 当前入口 2026-11-15 v10.1.14已授权，等待本地Codex同步V3.0路线并开工
 
-**V10113_OWNER_ACCEPTED_IN_NAMED_SCOPE / NO_R1 / NO_R2**。Owner已接受顾问对v10.1.13六项AC具名代表性工程范围的验收结论。无R1、无R2。v10.1.14及后续版本尚未授权；main集成及正式发布NOT_RUN。
+**V10114_TASK_ISSUED — PHASE_A_PRODUCT_READINESS**。Owner已接受v10.1.13顾问验收，状态`OWNER_ACCEPTED_IN_NAMED_SCOPE`，无R1/无R2。Owner授权v10.1.14「产品评审准备与核心旅程收口」。当前唯一下一阶段权威为[V3.0路线图](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)。
 
-Owner决定：[OWNER_ACCEPTANCE_20261115.md](../versions/v10.1.13/OWNER_ACCEPTANCE_20261115.md)。顾问验收报告：[ADVISOR_ACCEPTANCE_20261115.md](../versions/v10.1.13/ADVISOR_ACCEPTANCE_20261115.md)。工程报告：[IMPLEMENTATION_REPORT.md](../versions/v10.1.13/IMPLEMENTATION_REPORT.md)；manifest：[artifact_manifest.json](../versions/v10.1.13/artifact_manifest.json)；结构化证据：[EVIDENCE_SUMMARY_20261115.json](../versions/v10.1.13/EVIDENCE_SUMMARY_20261115.json)。
+任务：[task_order](../versions/v10.1.14/task_order.md)；[plan](../versions/v10.1.14/plan.md)；[DEVELOPMENT_ALIGNMENT](../versions/v10.1.14/DEVELOPMENT_ALIGNMENT.md)；[CODEX_START_PROMPT](../versions/v10.1.14/CODEX_START_PROMPT.txt)；Owner决定：[decision](../decisions/OWNER_V10_1_13_ACCEPTANCE_AND_V10_1_14_PHASE_A_AUTHORIZATION_20261115.md)。
 
-固定工程交付`79ad05be0e32aa9117b53d63c005b64a0a360c09`，顾问验收记录`3b030c4be88dec4e0d616052a28496c3acce5247`，Owner接受记录见本目录。分支`codex/v10.1.13-integration-reliability-20261115`，候选1011303，APP源码`2b4fdcc9f342b972a37b35de74fbf099827a7c2e`，包含v10.1.12 R1源码`3e0e75758acf81e1ea754f739c9687226fbfcaff`。APK SHA256`bf7e3b05f9e2ee5b7cb281b85339516a5f588435846638a6a56aae2828b98432`。
+任务分支：`codex/v10.1.14-product-readiness-core-journeys-20261115`；唯一父基线：`5dd0c9e6625699947f8dd0755ff568a3edfe0b04`。v10.1.13 APP源码`2b4fdcc9f342b972a37b35de74fbf099827a7c2e`，API源码`47e1b4fd8fad3dd8165d1be6dc9f059095290e75`，Web视图`e2448e2c4d630fad31168e3c0b70d3831011215f`。
 
-## 接受范围与限制
+## 本版目标
 
-TalkBack人工声学听感NOT_RUN；精确聊天通知ID UNKNOWN；OS map_pick回调NOT_RUN；真实Push REAL_PUSH_PROVIDER_PENDING；消息最终APP显式403与自然故障矩阵NOT_RUN。DB重启后重启原API/WS重新加入共享网络命名空间，恢复后持久化读回PASS；自动透明恢复NOT_RUN。原主库status指纹变化原因UNKNOWN，untracked保留。历史非注入SFU/RPC根因UNKNOWN，算法独立精度UNVERIFIED，手机/RTC硬件矩阵NOT_RUN。完整边界见顾问验收与Owner接受报告。
+阶段A：核心旅程盘点与P0/P1修复；社区20图文+5视频本机QA语料；最小社区视频动态；开发服务与隔离备份/恢复；新候选与Owner手动实机评估包。
 
-v10.1.10、v10.1.12各自Owner整版接受状态按原记录保留，不由v10.1.13接受追溯改变。
+当前社区动态仅图像封面；本版允许单视频动态，复用现有私有媒体管线和PrivateVideoValidator约束，不建设短视频平台。测试素材逐项核许可、作者、来源、日期和SHA256；二进制仅本机忽略目录，不推GitHub。
 
-## 下一步
+## 重要边界
 
-当前正在讨论v10.1.13之后的产品目标和路线。尚未形成下一版冻结任务，不自动授权v10.1.14。main集成、正式发布、真实内测、外部供应商和费用仍须分别决定。
+先同步V3.0路线和DEVELOPMENT_ALIGNMENT并生成ROADMAP_ALIGNMENT_ACK，完成前不得编码。阶段B（Lifestyle Discovery、自动化中心、全局减法重构、AI辅助）未在本版实施；阶段C身份/信用/Push/支付等未授权。视觉方向已冻结等待下次会议。Owner手机由Owner操作，Codex只提供候选和手动检查表。
+
+不使用真实用户/生产数据，不接外部付费服务，不合main、不正式发布、不开展内测/运营。集中交付后停止供顾问验收，不自动进入v10.1.15。

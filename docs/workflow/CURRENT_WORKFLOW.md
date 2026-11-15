@@ -1,19 +1,21 @@
 # EliteSync-v10 当前工作流
 
-2026-11-15更新。v10.1.13顾问验收与Owner具名范围接受均已完成。下一阶段产品目标和路线正在讨论，尚未下达新版本任务。规则见[AGENTS](../../AGENTS.md)及[Owner普通工程长期授权](../decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)，当前事实维护在[ACTIVE_STATE](ACTIVE_STATE.md)。
+2026-11-15更新。当前授权任务为[v10.1.14阶段A](../versions/v10.1.14/task_order.md)，路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)。Owner已接受v10.1.13顾问范围验收；v10.1.14是产品评审准备与核心旅程收口。阶段B/C未授权。
 
-## 最近验收状态
+## 当前基线
 
-v10.1.12六项AC具名代表性范围获顾问接受，R1-01 CLOSED；Owner整版接受仍单独记录PENDING。
+v10.1.13工程交付`79ad05be0e32aa9117b53d63c005b64a0a360c09`，顾问验收`3b030c4be88dec4e0d616052a28496c3acce5247`，Owner接受`5dd0c9e6625699947f8dd0755ff568a3edfe0b04`。APP源码`2b4fdcc9f342b972a37b35de74fbf099827a7c2e`，API源码`47e1b4fd8fad3dd8165d1be6dc9f059095290e75`，Web视图`e2448e2c4d630fad31168e3c0b70d3831011215f`。
 
-v10.1.13六项AC具名代表性范围获顾问接受，R1/R2均不需要；Owner已接受该顾问结论。固定工程交付`79ad05be0e32aa9117b53d63c005b64a0a360c09`，顾问验收记录`3b030c4be88dec4e0d616052a28496c3acce5247`，候选1011303，APP源码`2b4fdcc9f342b972a37b35de74fbf099827a7c2e`包含R1。Owner决定见[OWNER_ACCEPTANCE_20261115](../versions/v10.1.13/OWNER_ACCEPTANCE_20261115.md)。
+## v10.1.14同步要求
 
-## 保留状态
+Codex必须先核本地根、remote、branch、HEAD、dirty/index和私有资产，再同步V3.0路线、Owner决定、本版task_order/plan/DEVELOPMENT_ALIGNMENT/prompt和入口文档。逐份核Blob SHA与本地内容，记录LOCAL_DOCS_SYNCED或PENDING_LOCAL_SYNC。创建ROADMAP_ALIGNMENT_ACK后才开始编码。
 
-TalkBack人工声学听感NOT_RUN；精确聊天通知ID UNKNOWN；OS map_pick回调NOT_RUN；真实Push REAL_PUSH_PROVIDER_PENDING；消息最终APP显式403与自然故障矩阵NOT_RUN。DB重启后重启原API/WS重新加入共享网络命名空间，恢复后持久化读回PASS；自动透明恢复NOT_RUN。原主库status指纹变化原因UNKNOWN，untracked保留。历史非注入SFU/RPC根因UNKNOWN，算法独立精度UNVERIFIED，手机/RTC硬件矩阵NOT_RUN。
+## 本版范围
 
-## 治理状态
+核心旅程P0/P1盘点和修复；社区最小单视频动态；3个虚构QA账号发布20图文+5视频；免费素材逐项许可记录；开发服务启动/备份/隔离恢复；候选APK和Owner手动实机包。
 
-v10.1.13：OWNER_ACCEPTED_IN_NAMED_SCOPE。v10.1.10与v10.1.12的Owner整版接受状态按各自记录保留。main集成及正式发布NOT_RUN；v10.1.14及后续版本授权NOT_GRANTED。当前与Owner讨论下一阶段产品目标，不将讨论或路线建议视为开发授权。
+测试语料仅本机开发环境，媒体二进制不推GitHub。Owner手机由Owner操作。阶段B生活方式探索、自动化中心、全局UI减法重构、AI解释均不在本版。
 
-普通工程长期授权和保护本地资产规则继续有效，但不扩大当前版本范围。
+## 保留治理边界
+
+不使用真实用户/生产数据，不接新供应商/付费服务，不合main、不正式发布、不开展公司/内测/运营。真实Push、身份核验、算法精度、RTC硬件等历史状态继续按原记录。集中交付后停下供顾问验收，不自动进入下一版。

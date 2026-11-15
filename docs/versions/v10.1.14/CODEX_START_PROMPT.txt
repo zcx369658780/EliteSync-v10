@@ -1,0 +1,40 @@
+接续 EliteSync-v10，执行已获Owner授权的 v10.1.14「产品评审准备与核心旅程收口」。
+
+## 固定身份
+仓库：zcx369658780/EliteSync-v10
+任务分支：codex/v10.1.14-product-readiness-core-journeys-20261115
+唯一父基线：5dd0c9e6625699947f8dd0755ff568a3edfe0b04
+v10.1.13 APP源码：2b4fdcc9f342b972a37b35de74fbf099827a7c2e
+API源码：47e1b4fd8fad3dd8165d1be6dc9f059095290e75
+Web视图源码：e2448e2c4d630fad31168e3c0b70d3831011215f
+当前路线图：docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md
+
+## 第一步：先同步最新路线图和开发思路，禁止直接编码
+1. 核对实际稳定工程根、origin、分支、HEAD、status、index、数据库、AVD、私有配置和原始证据。
+2. 只读本地AGENTS.md、ACTIVE_STATE.md当前首块、CURRENT_WORKFLOW.md。
+3. 从本版任务分支读取并安全同步V3.0路线图、Owner决定、task_order、plan、DEVELOPMENT_ALIGNMENT、CODEX_START_PROMPT及更新后的AGENTS/ACTIVE_STATE/CURRENT_WORKFLOW。
+4. 保护dirty/index；不盲pull/reset/rebase/stash/clean/prune，不force push。只同步本版授权文档；逐份核Git Blob SHA和本地内容。
+5. 同步结果记录LOCAL_DOCS_SYNCED或PENDING_LOCAL_SYNC，不得虚报。
+6. 编码前创建ROADMAP_ALIGNMENT_ACK.md，逐项确认本版阶段A、阶段B/C边界、视觉风格冻结、身份/信用不接、Owner手机由Owner操作、测试语料本机QA、单视频动态边界。未完成此文件不得修改产品源码。
+
+## 第二步：按本版六项AC连续实施
+AC14-01 核心旅程矩阵与P0/P1分级；
+AC14-02 最小社区视频动态能力，复用现有PrivateVideoValidator/MediaAsset私有管线，MP4/H.264/可选AAC、25MiB、30秒，不转码；
+AC14-03 用至少3个虚构QA账号通过普通APP流程发布20图文+5视频，逐项核实免费素材许可并记录SHA256；
+AC14-04 只修复有证据的核心旅程P0/P1；
+AC14-05 本机开发服务运行/备份/隔离恢复手册；
+AC14-06 构建1011401或核占用后顺延的候选，准备Owner手动实机包和产品评审资料。
+
+## 重要约束
+- 20图文+5视频是本机测试语料，不是公开运营；媒体文件留在Git忽略目录，不推送二进制到GitHub。
+- 不得直接SQL插入帖子冒充正常用户操作；内容发布使用真实APP/API路径。
+- 视频单条、图片/视频二选一，不做短视频平台、直播、剪辑、推荐或多媒体相册。
+- Owner手机只能由Owner自行操作；Codex不接管手机。
+- 不做Lifestyle Discovery、不接AI模型、不做全局UI重构。
+- 不接身份核验、征信、芝麻信用、蚂蚁积分、真实Push、支付或付费供应商。
+- 不用真实用户/生产数据，不合main、不发布、不开展真实内测/运营。
+- 不改变Match/Connection/Messaging Consent/Conversation/Relationship、隐私受众和RTC权限语义。
+- 只对本版改动与P0/P1风险定向验证，不重跑全部历史AC。
+
+## 停止点
+集中交付IMPLEMENTATION_REPORT、artifact_manifest、去敏证据、核心旅程矩阵、素材许可清单、备份恢复手册、候选APK身份及Owner手动检查表；固定提交并远端回读后停止，等待独立顾问验收。不得自动进入阶段B或v10.1.15。
