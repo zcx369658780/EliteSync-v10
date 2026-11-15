@@ -101,136 +101,202 @@
     "source_commit": "88540f7f4d5a64500996b67eb04bfd9aba7c0af3",
     "document_commit_binding": "The fixed Git commit containing this manifest; SHA is provided in the final same-origin readback receipt and final Owner reply",
     "local_readback_receipt": "v10114-current/final-origin-readback-private.json",
-    "reason": "A Git commit SHA cannot be embedded into its own committed content"
+    "reason": "A Git commit SHA cannot be embedded into its own committed content",
+    "public_document_payload_commit": "f836f8ae6a1b1cdf338688ac55e41716493cd777",
+    "final_manifest_commit_binding": "Final branch commit updates only this manifest hash accounting; fixed full SHA is in the final same-origin readback receipt."
   },
   "public_artifacts": {
     "CODEX_START_PROMPT.txt": {
-      "bytes": 3293,
-      "sha256": "c26943bb069094a1cc961fb212b894c4dd4e0f4633ad04c9854b5e761d73cb79"
+      "bytes": 3253,
+      "sha256": "d80400bd8cbb2721d45a30685e2844ae8bec934e6ae3671c4a0e7c7e2ba1084a",
+      "local_windows_bytes": 3293,
+      "local_windows_sha256": "c26943bb069094a1cc961fb212b894c4dd4e0f4633ad04c9854b5e761d73cb79"
     },
     "CORE_JOURNEY_MATRIX.md": {
-      "bytes": 7677,
-      "sha256": "09f9e4cd1a41fd024b026ef109263fc99ff24d2b7ec3cdd4afd2727f8629fcfe"
+      "bytes": 7619,
+      "sha256": "284e8d3e8326f8a7e7fbb6e4e8238c385ee8c893b5d7bbf626d4ff74388ab454",
+      "local_windows_bytes": 7677,
+      "local_windows_sha256": "09f9e4cd1a41fd024b026ef109263fc99ff24d2b7ec3cdd4afd2727f8629fcfe"
     },
     "DEVELOPMENT_ALIGNMENT.md": {
-      "bytes": 4948,
-      "sha256": "ea06970883b289d886dcc0e4f84ef275278e338aa479eebb7230caf902240422"
+      "bytes": 4881,
+      "sha256": "a1dc8bbd5a2554aeb26cd071582600be5fc5cafd3cf695762057235ed4bc91ca",
+      "local_windows_bytes": 4948,
+      "local_windows_sha256": "ea06970883b289d886dcc0e4f84ef275278e338aa479eebb7230caf902240422"
     },
     "EVIDENCE_SUMMARY_20261115.json": {
-      "bytes": 7936,
-      "sha256": "2da14aa6ccfd380e782f7fc8526478c0da121bb76414ce7c2c3147314699b69a"
+      "bytes": 7778,
+      "sha256": "2a76cb39daa38f9b2ec2e8c560cd35d5d36adb007ec93ef095099e9684d6a0d0",
+      "local_windows_bytes": 7936,
+      "local_windows_sha256": "2da14aa6ccfd380e782f7fc8526478c0da121bb76414ce7c2c3147314699b69a"
     },
     "FEATURE_CATALOG.md": {
-      "bytes": 4291,
-      "sha256": "6487556efc9597741dfb0b01b65a93b387e944e7eedd3d2e5edfc58fa0689c64"
+      "bytes": 4261,
+      "sha256": "723ceded4fca71d6efb334f36a4a4427af55931c01f8ab24ba405a8e95f25447",
+      "local_windows_bytes": 4291,
+      "local_windows_sha256": "6487556efc9597741dfb0b01b65a93b387e944e7eedd3d2e5edfc58fa0689c64"
     },
     "IMPLEMENTATION_REPORT.md": {
-      "bytes": 9431,
-      "sha256": "46536736b175a1c8b8e4d05f21e3f20ffb6e6d8ddf7458c2e65c5f269da33bff"
+      "bytes": 9353,
+      "sha256": "7337ada82891ec5aaace11f56b3449a8c382986f288ede2b551d1fb3e50356ec",
+      "local_windows_bytes": 9431,
+      "local_windows_sha256": "46536736b175a1c8b8e4d05f21e3f20ffb6e6d8ddf7458c2e65c5f269da33bff"
     },
     "LOCAL_DOCS_SYNC_RECEIPT.json": {
-      "bytes": 2729,
-      "sha256": "44f5f9979dcdfc6dbaf1015f3abae052f83bfdba87655bd5dc7d7b99c40302d4"
+      "bytes": 2660,
+      "sha256": "0377760263a56e00ea447f1424196ace568b1608aa80cde6d7ba138b6bfa5563",
+      "local_windows_bytes": 2729,
+      "local_windows_sha256": "44f5f9979dcdfc6dbaf1015f3abae052f83bfdba87655bd5dc7d7b99c40302d4"
     },
     "LOCAL_SERVICE_RECOVERY.md": {
-      "bytes": 7142,
-      "sha256": "f32b1deb6dd4182fe2e84c8cce1591fa3469fbb8812ef60f387fa6999480ff46"
+      "bytes": 7041,
+      "sha256": "f51b537bd090df02839899d6aa3478ff1719b1c50a69339ed1c0b43c35bbf8f1",
+      "local_windows_bytes": 7142,
+      "local_windows_sha256": "f32b1deb6dd4182fe2e84c8cce1591fa3469fbb8812ef60f387fa6999480ff46"
     },
     "MATERIAL_LICENSES.json": {
-      "bytes": 29233,
-      "sha256": "5e957c06412f1e4f2414b73059b718c0a78492ef7abcd189f9036d72234c4ff0"
+      "bytes": 28782,
+      "sha256": "cfcb2929884127eccae9c7b17ad7cebb5c128a96253f019bde08501ba3255acf",
+      "local_windows_bytes": 29233,
+      "local_windows_sha256": "5e957c06412f1e4f2414b73059b718c0a78492ef7abcd189f9036d72234c4ff0"
     },
     "OWNER_DEVICE_CHECKLIST.md": {
-      "bytes": 4738,
-      "sha256": "f88a36b60d3e560d376e282ddf2d5ee7897a813097e3ec1d93ac5dd0f706b322"
+      "bytes": 4699,
+      "sha256": "efe82f8e19ec12894d3acc3d453c86fa472e5e042711e5f3702a6045d3ebacce",
+      "local_windows_bytes": 4738,
+      "local_windows_sha256": "f88a36b60d3e560d376e282ddf2d5ee7897a813097e3ec1d93ac5dd0f706b322"
     },
     "plan.md": {
-      "bytes": 5465,
-      "sha256": "8bc26e74517b2bce4127e1fca170ed71ff32ad5a5a2aa19a68584ef294055208"
+      "bytes": 5383,
+      "sha256": "50a5fe36a5a99533030b9c459f7a062e4d5370f1a72b86e4f532697e4ce0bb3f",
+      "local_windows_bytes": 5465,
+      "local_windows_sha256": "8bc26e74517b2bce4127e1fca170ed71ff32ad5a5a2aa19a68584ef294055208"
     },
     "QA_CONTENT_INDEX.md": {
-      "bytes": 3043,
-      "sha256": "1215c77c4eba8c95412ab17fca2779275569f975e60eda76cef79e916ac0c93b"
+      "bytes": 3006,
+      "sha256": "b53760f8d960e5a8618fea8c4d9c8915ad1e642817118ed45eebd2ebae1b7077",
+      "local_windows_bytes": 3043,
+      "local_windows_sha256": "1215c77c4eba8c95412ab17fca2779275569f975e60eda76cef79e916ac0c93b"
     },
     "ROADMAP_ALIGNMENT_ACK.md": {
-      "bytes": 2424,
-      "sha256": "dda4053d2fbf29fb5a7599a2f4c4fd4ce17a2b21e1122632a9b63383d1721a5b"
+      "bytes": 2405,
+      "sha256": "d820c4f83eb652e8b6c2ee229c6792e06a13b50b85467119e2f096bfabdf28fd",
+      "local_windows_bytes": 2424,
+      "local_windows_sha256": "dda4053d2fbf29fb5a7599a2f4c4fd4ce17a2b21e1122632a9b63383d1721a5b"
     },
     "task_order.md": {
-      "bytes": 11255,
-      "sha256": "1d38dd7f392bca1f94f4207547b3de806307f9493e232d8cfd0af2d74eb32785"
+      "bytes": 11102,
+      "sha256": "0538d0b91f567cb45cd00e516034dc8ebe345a80c26325f56d4e78406015759a",
+      "local_windows_bytes": 11255,
+      "local_windows_sha256": "1d38dd7f392bca1f94f4207547b3de806307f9493e232d8cfd0af2d74eb32785"
     },
     "evidence/SCREENSHOTS.json": {
-      "bytes": 4848,
-      "sha256": "8e847fa7de8393138001237ba6d07bf21d8c3f5100dd6595eda4520c5fa523d2"
+      "bytes": 4741,
+      "sha256": "b6810dbdd4df27842fbfcf42ae77610cb1bd1a60600dee91c3d71c6fc90c27b2",
+      "local_windows_bytes": 4848,
+      "local_windows_sha256": "8e847fa7de8393138001237ba6d07bf21d8c3f5100dd6595eda4520c5fa523d2"
     },
     "evidence/screenshots/01-owner-community-cold-readback-1011402.png": {
       "bytes": 117163,
-      "sha256": "d9316ac25ebf39ecf1bdada1018d5e677843daded5bd8da36e53e9ef4ace3405"
+      "sha256": "d9316ac25ebf39ecf1bdada1018d5e677843daded5bd8da36e53e9ef4ace3405",
+      "local_windows_bytes": 117163,
+      "local_windows_sha256": "d9316ac25ebf39ecf1bdada1018d5e677843daded5bd8da36e53e9ef4ace3405"
     },
     "evidence/screenshots/02-published-I20.png": {
       "bytes": 243132,
-      "sha256": "19258262bd0a904d7f56d86eece06562503ccab1ac6fe04ebe485156cfdc031c"
+      "sha256": "19258262bd0a904d7f56d86eece06562503ccab1ac6fe04ebe485156cfdc031c",
+      "local_windows_bytes": 243132,
+      "local_windows_sha256": "19258262bd0a904d7f56d86eece06562503ccab1ac6fe04ebe485156cfdc031c"
     },
     "evidence/screenshots/03-video-owner-loaded-1011402.png": {
       "bytes": 405335,
-      "sha256": "85302b1c63fdb4041dd23be9ac9be0976a59b6c3f156027a0eeefc86ed2247d0"
+      "sha256": "85302b1c63fdb4041dd23be9ac9be0976a59b6c3f156027a0eeefc86ed2247d0",
+      "local_windows_bytes": 405335,
+      "local_windows_sha256": "85302b1c63fdb4041dd23be9ac9be0976a59b6c3f156027a0eeefc86ed2247d0"
     },
     "evidence/screenshots/04-video-owner-playing-native-1011402.png": {
       "bytes": 404157,
-      "sha256": "787a7d927b955099b162b502713a7721a588133b2a84f7c0bea0bc92b5764467"
+      "sha256": "787a7d927b955099b162b502713a7721a588133b2a84f7c0bea0bc92b5764467",
+      "local_windows_bytes": 404157,
+      "local_windows_sha256": "787a7d927b955099b162b502713a7721a588133b2a84f7c0bea0bc92b5764467"
     },
     "evidence/screenshots/05-video-owner-paused-1011402.png": {
       "bytes": 410575,
-      "sha256": "77375b087bab675f16e83b0f452d35f33a0e5ec273c2dd07185a5b88c233595c"
+      "sha256": "77375b087bab675f16e83b0f452d35f33a0e5ec273c2dd07185a5b88c233595c",
+      "local_windows_bytes": 410575,
+      "local_windows_sha256": "77375b087bab675f16e83b0f452d35f33a0e5ec273c2dd07185a5b88c233595c"
     },
     "evidence/screenshots/06-friend-video-loaded-1011402.png": {
       "bytes": 41294,
-      "sha256": "fb91c60c819e9cf498e42d0e8af2a38a4ac094eba907e0666b25568e5d28ca0e"
+      "sha256": "fb91c60c819e9cf498e42d0e8af2a38a4ac094eba907e0666b25568e5d28ca0e",
+      "local_windows_bytes": 41294,
+      "local_windows_sha256": "fb91c60c819e9cf498e42d0e8af2a38a4ac094eba907e0666b25568e5d28ca0e"
     },
     "evidence/screenshots/07-friend-video-revoked-1011402.png": {
       "bytes": 27989,
-      "sha256": "5463dca49356817ac9021dd0357eb6ac97621eafaea46145703213c53b4613f4"
+      "sha256": "5463dca49356817ac9021dd0357eb6ac97621eafaea46145703213c53b4613f4",
+      "local_windows_bytes": 27989,
+      "local_windows_sha256": "5463dca49356817ac9021dd0357eb6ac97621eafaea46145703213c53b4613f4"
     },
     "evidence/screenshots/08-friend-comment-1011402.png": {
       "bytes": 70582,
-      "sha256": "375c4fa194d77651aa0a2447bf556b544f65b7a2111d8a8ec9718350719985fb"
+      "sha256": "375c4fa194d77651aa0a2447bf556b544f65b7a2111d8a8ec9718350719985fb",
+      "local_windows_bytes": 70582,
+      "local_windows_sha256": "375c4fa194d77651aa0a2447bf556b544f65b7a2111d8a8ec9718350719985fb"
     },
     "evidence/screenshots/09-paired-message-sender-1011402.png": {
       "bytes": 101138,
-      "sha256": "2b8befbc35d98c14f5fef4fb5974d3978d6d147115ac05000220a80db4e177f6"
+      "sha256": "2b8befbc35d98c14f5fef4fb5974d3978d6d147115ac05000220a80db4e177f6",
+      "local_windows_bytes": 101138,
+      "local_windows_sha256": "2b8befbc35d98c14f5fef4fb5974d3978d6d147115ac05000220a80db4e177f6"
     },
     "evidence/screenshots/10-paired-message-receiver-1011402.png": {
       "bytes": 82856,
-      "sha256": "b886d17a263a6e92f72bad0c4deb40f1dc5f2795fd68ae6eae868e216ddb8354"
+      "sha256": "b886d17a263a6e92f72bad0c4deb40f1dc5f2795fd68ae6eae868e216ddb8354",
+      "local_windows_bytes": 82856,
+      "local_windows_sha256": "b886d17a263a6e92f72bad0c4deb40f1dc5f2795fd68ae6eae868e216ddb8354"
     },
     "evidence/screenshots/11-matching-eligibility-boundary-1011402.png": {
       "bytes": 221948,
-      "sha256": "9f914912dedb15022728af4a410ab1f3333c04942155d16926d7d24e45d74c53"
+      "sha256": "9f914912dedb15022728af4a410ab1f3333c04942155d16926d7d24e45d74c53",
+      "local_windows_bytes": 221948,
+      "local_windows_sha256": "9f914912dedb15022728af4a410ab1f3333c04942155d16926d7d24e45d74c53"
     },
     "evidence/screenshots/12-buddy-existing-terminal-1011402.png": {
       "bytes": 58531,
-      "sha256": "e0aa693ebf8435d557f9378641760096206a46a653ae1dff68929d58b0bab93b"
+      "sha256": "e0aa693ebf8435d557f9378641760096206a46a653ae1dff68929d58b0bab93b",
+      "local_windows_bytes": 58531,
+      "local_windows_sha256": "e0aa693ebf8435d557f9378641760096206a46a653ae1dff68929d58b0bab93b"
     },
     "evidence/screenshots/13-platform-existing-history-1011402.png": {
       "bytes": 78483,
-      "sha256": "ff82ec98e0dca1540a007d2ba814da46c38b9438611a5912868a587dc61cb1dc"
+      "sha256": "ff82ec98e0dca1540a007d2ba814da46c38b9438611a5912868a587dc61cb1dc",
+      "local_windows_bytes": 78483,
+      "local_windows_sha256": "ff82ec98e0dca1540a007d2ba814da46c38b9438611a5912868a587dc61cb1dc"
     },
     "evidence/screenshots/14-formal-identity-unconfigured-1011402.png": {
       "bytes": 214768,
-      "sha256": "32084b5db354187de5c950c00f974082734910e590643193c441ff9d8f6a1ab5"
+      "sha256": "32084b5db354187de5c950c00f974082734910e590643193c441ff9d8f6a1ab5",
+      "local_windows_bytes": 214768,
+      "local_windows_sha256": "32084b5db354187de5c950c00f974082734910e590643193c441ff9d8f6a1ab5"
     },
     "evidence/screenshots/15-outsider-mbti-history8-1011402.png": {
       "bytes": 89950,
-      "sha256": "8f0af4de11ed57cec39be62b7d86faeeb94f1e92cae10d2a11cff4d754afc5f5"
+      "sha256": "8f0af4de11ed57cec39be62b7d86faeeb94f1e92cae10d2a11cff4d754afc5f5",
+      "local_windows_bytes": 89950,
+      "local_windows_sha256": "8f0af4de11ed57cec39be62b7d86faeeb94f1e92cae10d2a11cff4d754afc5f5"
     },
     "evidence/screenshots/16-outsider-feedback7-resolved-1011402.png": {
       "bytes": 130191,
-      "sha256": "edf755301a2968466facba90917beb78d5cc3a10571c0750b5926ad7054f97b4"
+      "sha256": "edf755301a2968466facba90917beb78d5cc3a10571c0750b5926ad7054f97b4",
+      "local_windows_bytes": 130191,
+      "local_windows_sha256": "edf755301a2968466facba90917beb78d5cc3a10571c0750b5926ad7054f97b4"
     },
     "evidence/screenshots/17-outsider-empty-feed-final-1011402.png": {
       "bytes": 121658,
-      "sha256": "1d82d2a8f61ed1f8c7e4d1feb76c83b103422e7f2b1c1f2e7869725cd6dc5754"
+      "sha256": "1d82d2a8f61ed1f8c7e4d1feb76c83b103422e7f2b1c1f2e7869725cd6dc5754",
+      "local_windows_bytes": 121658,
+      "local_windows_sha256": "1d82d2a8f61ed1f8c7e4d1feb76c83b103422e7f2b1c1f2e7869725cd6dc5754"
     }
   },
   "resource_snapshot": {
@@ -240,5 +306,6 @@
     "A_test_memory_mib": 3072,
     "B_test_memory_mib": 2048,
     "emulator_ports_5580_5582_closed": true
-  }
+  },
+  "public_artifacts_hash_basis": "bytes and sha256 refer to committed Git blob bytes. local_windows fields retain the working-file bytes before Git line-ending normalization."
 }
