@@ -48,7 +48,7 @@ Future<GoRouter> _show(
   final router = GoRouter(
     initialLocation: '/splash',
     routes: [
-      GoRoute(path: '/splash', builder: (_, __) => const SplashPage()),
+      GoRoute(path: '/splash', builder: (_, _) => const SplashPage()),
       for (final path in [
         '/discover',
         '/profile',
@@ -59,7 +59,7 @@ Future<GoRouter> _show(
       ])
         GoRoute(
           path: path,
-          builder: (_, __) => Scaffold(body: Text(path)),
+          builder: (_, _) => Scaffold(body: Text(path)),
         ),
     ],
   );

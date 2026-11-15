@@ -1,0 +1,459 @@
+{
+  "version": "v10.1.13",
+  "status": "ENGINEERING_DELIVERED_AWAITING_ADVISOR",
+  "AC": {
+    "AC13-01": "PASS",
+    "AC13-02": "PASS",
+    "AC13-03": "PASS",
+    "AC13-04": "PASS",
+    "AC13-05": "PASS",
+    "AC13-06": "PASS"
+  },
+  "advisor_acceptance": "PENDING",
+  "Owner_acceptance": "PENDING",
+  "identity": {
+    "parent": "ffddf23dd07743538c43ef8f9a6dd7f1ff580467",
+    "task": "af3fa09c8c8eacecf31a968ebcfce6f745a89dce",
+    "branch": "codex/v10.1.13-integration-reliability-20261115",
+    "APP_source": "2b4fdcc9f342b972a37b35de74fbf099827a7c2e",
+    "API_source": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+    "Web_source": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+    "candidate": 1011303,
+    "package": "com.elitesync.v1015dev",
+    "APK_sha256": "bf7e3b05f9e2ee5b7cb281b85339516a5f588435846638a6a56aae2828b98432",
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42"
+  },
+  "APK": {
+    "version_name": "10.1.13-dev",
+    "version_code": 1011303,
+    "package": "com.elitesync.v1015dev",
+    "apk_sha256": "bf7e3b05f9e2ee5b7cb281b85339516a5f588435846638a6a56aae2828b98432",
+    "apk_bytes": 123924726,
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+    "build_mode": "source-debug-arm64",
+    "elapsed_seconds": 54.086393799999996
+  },
+  "installed_hash_verified": true,
+  "candidate_history": [
+    {
+      "code": 1011301,
+      "APP_source": "bbd739998d00a055017c4843c3523686c32a7cb3",
+      "status": "INTERMEDIATE"
+    },
+    {
+      "code": 1011302,
+      "APP_source": "43c5752d36bb3c486ba798338b6c4b119173cc0c",
+      "status": "INTERMEDIATE"
+    },
+    {
+      "code": 1011303,
+      "APP_source": "2b4fdcc9f342b972a37b35de74fbf099827a7c2e",
+      "status": "FINAL"
+    }
+  ],
+  "local_docs_sync": "LOCAL_DOCS_SYNCED",
+  "evidence_summary": "EVIDENCE_SUMMARY_20261115.json",
+  "report": "IMPLEMENTATION_REPORT.md",
+  "screenshots": [
+    {
+      "path": "evidence/final3-mbti-result-1011303.png",
+      "description": "最终候选MBTI名称",
+      "candidate": 1011303,
+      "sha256": "9d14fb46fc010f023e17d1b64aaee56726f1773e94001025bc334ca3d0a43a43",
+      "bytes": 77599
+    },
+    {
+      "path": "evidence/final-talkback-mbti-history-1011303.png",
+      "description": "实际TalkBack历史焦点",
+      "candidate": 1011303,
+      "sha256": "c3b77cb0c1e158dfbc4c5b6056cb76c05fa269043cdaeafc7c020249b9a33931",
+      "bytes": 149213
+    },
+    {
+      "path": "evidence/final-talkback-settings-labelled-switches-1011303.png",
+      "description": "实际TalkBack开关名称与状态",
+      "candidate": 1011303,
+      "sha256": "06818768757dd391a022eb8775bde377d18f892d7e44c31b5ec57a4e403b2080",
+      "bytes": 117589
+    },
+    {
+      "path": "evidence/final-talkback-feedback-live-validation-1011303.png",
+      "description": "反馈独立实时校验提示",
+      "candidate": 1011303,
+      "sha256": "c58b8092b0ac9dcc6733120fab9ac81045b0e21e9c2544684cfde2293ff8a151",
+      "bytes": 147610
+    },
+    {
+      "path": "evidence/final-talkback-200percent-feedback-action-1011303.png",
+      "description": "200%文字下反馈草稿按钮",
+      "candidate": 1011303,
+      "sha256": "3fb8ee559a1b8042652b6bc93e5ecbe5db9dc80d8f9d0a850c1af82126dcc02a",
+      "bytes": 157848
+    },
+    {
+      "path": "evidence/final3-TalkBack-chat-send-confirmed-1011303.png",
+      "description": "实际TalkBack发送与持久化提示",
+      "candidate": 1011303,
+      "sha256": "28c26df3b84b583d66f873ae101261e386563e2a05219541b931a1287549cd62",
+      "bytes": 108164
+    },
+    {
+      "path": "evidence/feedback-loss-final3-unknown-1011303.png",
+      "description": "反馈真实提交后受控丢响应",
+      "candidate": 1011303,
+      "sha256": "6b9298f530ac6f59beef9f36da9cbb8dbe62763001236c5dd568560ec0ed058a",
+      "bytes": 136602
+    },
+    {
+      "path": "evidence/feedback-denied-final3-explicit-rejection-1011303.png",
+      "description": "反馈受控403对照",
+      "candidate": 1011303,
+      "sha256": "de6f5a853c985f22c4258ae69032d491cc063e85592a436b144c1e3756947bad",
+      "bytes": 130107
+    },
+    {
+      "path": "evidence/message-loss-final3-pending-restored-1011303.png",
+      "description": "消息未知结果原命令恢复",
+      "candidate": 1011303,
+      "sha256": "5d49bf5e614368e94dd1e736c3cd6ade41c6196a52b0e21d89c4c6cb4f31d160",
+      "bytes": 126218
+    },
+    {
+      "path": "evidence/message-loss-final3-confirmed-1011303.png",
+      "description": "同编号消息重试确认",
+      "candidate": 1011303,
+      "sha256": "5beec64d5ae2086a75e6a54a27c6e66238087dfc70e04b52dd3f2e7a5294011d",
+      "bytes": 106683
+    },
+    {
+      "path": "evidence/final3-post-restart-feedback-detail-1011303.png",
+      "description": "API/DB重启和重登后反馈7",
+      "candidate": 1011303,
+      "sha256": "d72a30e71c287f71ab0b76910998576dc82d296906a4c07d6702214bc94c09ce",
+      "bytes": 167008
+    },
+    {
+      "path": "evidence/final3-account22-isolated-1011303.png",
+      "description": "切号后本人反馈与草稿隔离",
+      "candidate": 1011303,
+      "sha256": "9fd408a5317b96c88f8372a2e6d36f16575f9942a09196855d94c9aea790a11b",
+      "bytes": 130788
+    },
+    {
+      "path": "evidence/final3-notification-current-target-1011303.png",
+      "description": "既有站内通知回到当前CN/MC状态",
+      "candidate": 1011303,
+      "sha256": "ba012e69becce8eb9f6019158ee806874248efdd69c5231987e7b6f1dd406b46",
+      "bytes": 87481
+    },
+    {
+      "path": "evidence/final3-unavailable-route-1011303.png",
+      "description": "目标不可用的恢复入口",
+      "candidate": 1011303,
+      "sha256": "8d916d998ca5647b88585c00bfdff874931bfd4d65985c0bd9074d6b17d4a7d3",
+      "bytes": 39055
+    }
+  ],
+  "tests": {
+    "unique_Widget_tests": 65,
+    "count_rule": "42 settings/support plus23 navigation. Repeated8 new navigation tests and red/green runs overlap and are counted once.",
+    "changed_Dart_analysis_files": 6,
+    "analysis": "PASS",
+    "PHP": "NOT_RUN, backend unchanged",
+    "full_Widget": "NOT_RUN"
+  },
+  "restart_scope": "API independent PASS; DB persistence PASS after documented same-container API/WS namespace rejoin",
+  "resources": {
+    "at": "2026-11-15T02:39:22.819188+00:00",
+    "reader_settings_restore_verified_before_shutdown": true,
+    "reader_settings": {
+      "enabled_accessibility_services": "null",
+      "accessibility_enabled": "0",
+      "touch_exploration_enabled": "0",
+      "tts_default_synth": "null",
+      "accessibility_shortcut_target_service": ""
+    },
+    "font_scale_restore_command_succeeded": true,
+    "stylus_restore_command_succeeded": true,
+    "routes_restore_verified_before_shutdown": true,
+    "emulator5580": "STOPPED_DATA_RETAINED",
+    "emulator5582": "NOT_STARTED",
+    "phone": "NOT_USED",
+    "services": [
+      {
+        "service": "db",
+        "id": "61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+        "state": "running",
+        "started_at": "2026-11-15T02:30:38.499148326Z",
+        "image": "mariadb:10.11.19-jammy",
+        "network_mode": "5d0caa8753d7fc91ca0646ef7129324dac7a27296a93ca2aac3f6248f6cc4228",
+        "volumes": [
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-db-data",
+            "destination": "/var/lib/mysql"
+          }
+        ]
+      },
+      {
+        "service": "api",
+        "id": "56a29d27e5219d9b1ce69a7230766c592535339988b84eb2bbc866b458d7a54b",
+        "state": "running",
+        "started_at": "2026-11-15T02:33:00.297971048Z",
+        "image": "sha256:fac4d1a092d669227aa7f018d849ec659996cb1ac616927efe7821e45424d70b",
+        "network_mode": "container:61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+        "volumes": [
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/ffmpeg"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/natal-data"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/runtime"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/.env"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/app"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/artisan"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/bootstrap"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/composer.json"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/composer.lock"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/config"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/database"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/public"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/resources"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/routes"
+          },
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-storage",
+            "destination": "/app/storage"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/tools"
+          },
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-vendor-cache",
+            "destination": "/app/vendor"
+          },
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-cache",
+            "destination": "/app/bootstrap/cache"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/tools/ziwei/iztro-runner/node_modules"
+          }
+        ]
+      },
+      {
+        "service": "ws",
+        "id": "04e4b97a55addf4978c877960d9235602c999436e5845a8808f197b44dc69644",
+        "state": "running",
+        "started_at": "2026-11-15T02:33:01.176105759Z",
+        "image": "elitesync/v1015-nov01-pcntl:local",
+        "network_mode": "container:61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+        "volumes": [
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/ffmpeg"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/runtime"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/.env"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/app"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/artisan"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/bootstrap"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/composer.json"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/composer.lock"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/config"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/database"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/public"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/resources"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/routes"
+          },
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-storage",
+            "destination": "/app/storage"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/vendor"
+          },
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-cache",
+            "destination": "/app/bootstrap/cache"
+          }
+        ]
+      },
+      {
+        "service": "sfu",
+        "id": "bd15c12a986c03043eacadf35449d2ec83b78194aa15362a821de56b9d08d6ab",
+        "state": "exited",
+        "started_at": "2026-11-14T11:22:41.848908924Z",
+        "image": "sha256:954f0e1bd94cbab763dfcca219d730446d064c5c832c179ce31d8225852cbb95",
+        "network_mode": "v1015-current-dev-front",
+        "volumes": [
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/private/livekit-config-private.yaml"
+          }
+        ]
+      }
+    ],
+    "original_main": {
+      "HEAD_branch_index_and_tracked_diffs": "MATCH",
+      "status_hash": "DIFFERS",
+      "cause": "UNKNOWN",
+      "before": "299d354b30c463eca2eecf20c819e1811898590c245c18c2267f11cf24e1f9a0",
+      "after": "efa24dfda26d9c7a5444e668943cbab347c47a81cc0d1a83ff8659faeb1b2682",
+      "current_untracked_preserved": true
+    },
+    "metadata_save_recovery": "closeout assertion expected every fingerprint equal. Status differed, metadata save resumed with precise field-level result. Device re-start not required.",
+    "protected_untracked_directory_preserved": true
+  },
+  "not_run": [
+    "Owner phone",
+    "RTC/SFU media and hardware matrix",
+    "TalkBack human acoustic listening/recording",
+    "real Push provider delivery",
+    "actual APP message explicit-403 comparison",
+    "natural timeout/outage matrix",
+    "OS elitesync://map_pick callback",
+    "automatic transparent recovery after DB network-namespace change",
+    "full historical Widget/PHP suite and whole-repository analysis"
+  ],
+  "unknown": {
+    "clicked_chat_notification_id": "UNKNOWN; existing277/273 share the validated target",
+    "original_main_status_drift": "UNKNOWN",
+    "historical_noninjected_SFU_RPC_root": "UNKNOWN"
+  },
+  "pending": [
+    "REAL_PUSH_PROVIDER_PENDING"
+  ],
+  "unverified": [
+    "independent chart algorithm precision"
+  ],
+  "migration": "NONE",
+  "complete_raw_evidence": "LOCAL_ONLY",
+  "APK_publication": "LOCAL_ONLY",
+  "main_integration": "NOT_RUN",
+  "formal_release": "NOT_RUN",
+  "next_version_authorization": "NOT_GRANTED",
+  "git_sync": "Final containing commit and same-origin readback are recorded after save in the local receipt and final response",
+  "documents": [
+    {
+      "path": "IMPLEMENTATION_REPORT.md",
+      "sha256": "6f15d68fcfef115b23f5c3c824f48f7bfe32844615c08417fa22977ee83b3b23"
+    },
+    {
+      "path": "EVIDENCE_SUMMARY_20261115.json",
+      "sha256": "38b42f08981dee4b83c1e77b5f01c071688ed3a14a88ce3bb3bf7ca279be19a0"
+    }
+  ]
+}

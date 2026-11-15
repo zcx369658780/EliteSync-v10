@@ -8,11 +8,13 @@ v10.1.11顾问接受六项AC的声明工程范围，AC11-02按未接入验证供
 
 v10.1.12五阶段基线已交付，六项AC具名代表性范围获顾问接受，R1-01 CLOSED。Owner整版接受仍单独记录PENDING。R1源码`3e0e75758acf81e1ea754f739c9687226fbfcaff`，27项定向Widget、4文件分析PASS；R1 APK构建和设备验证NOT_RUN。原候选1011204绑定旧源码`ac7fb5b28396394e58c72002e19cc9bbad805941`。Web原证已明确关联#3/#4写入与#3随后只读复核，false原值保留。实际验证、基线资源与限制见[manifest](../versions/v10.1.12/artifact_manifest.json)。
 
-v10.1.13「全局集成与关键旅程可靠性收口」已授权。分支`codex/v10.1.13-integration-reliability-20261115`，唯一父基线`ffddf23dd07743538c43ef8f9a6dd7f1ff580467`。按任务书与计划执行：R1源码进入新候选、模拟器真实TalkBack、已实现导航/深链、APP受控故障恢复、虚构开发环境API/DB重启持久性及有限联合回归。
+v10.1.13「全局集成与关键旅程可靠性收口」已完成集中工程交付，六项AC按具名范围自验PASS，顾问及Owner接受均PENDING。分支`codex/v10.1.13-integration-reliability-20261115`，唯一父基线`ffddf23dd07743538c43ef8f9a6dd7f1ff580467`。最终APP源码`2b4fdcc9f342b972a37b35de74fbf099827a7c2e`，候选1011303，包含R1。八份开工文档逐份LOCAL_DOCS_SYNCED。
 
-## 已完成的实施顺序
+## 本版完成范围
 
-我的/设置 → 消息/聊天 → 首页/进展 → 匹配/社交/特色工具 → 必要Web页面。本轮先建立代表页面和共享组件规则，再扩展到关键页面，保留真实功能、权限与后端合同。
+新候选 → 真实TalkBack → 现有导航/站内通知 → APP受控结果未知恢复 → API/DB重启持久化 → 有限联合回归。详细范围、固定源码、APK及原失败见[实施报告](../versions/v10.1.13/IMPLEMENTATION_REPORT.md)和[manifest](../versions/v10.1.13/artifact_manifest.json)。
+
+API独立重启读回PASS。DB重启后发生共享网络命名空间依赖故障，通过重启原API/WS容器恢复，原记录读回一致。自动透明恢复为NOT_RUN。原主库HEAD/index/跟踪差异指纹匹配，status指纹差异原因为UNKNOWN。模拟器已停止、数据保留，DB/API/WS运行，SFU exited。当前等待顾问验收，后续版本授权NOT_GRANTED。
 
 ## 验证、记录与授权
 

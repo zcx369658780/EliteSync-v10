@@ -10,11 +10,13 @@ Owner已确认项目交接及选定旧版主要功能接续完成。当前完善
 
 ## 2026-11-15 当前交付状态
 
-v10.1.12六项AC具名代表性范围获顾问接受，R1-01已关闭，无R2。Owner整版接受仍单独记录PENDING。范围与证据见[R1报告](docs/versions/v10.1.12/supplement-r1-20261115/README.md)、[实施报告](docs/versions/v10.1.12/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.12/artifact_manifest.json)。
+v10.1.13已集中工程交付，六项AC按具名范围自验PASS，等待独立顾问验收及Owner接受。实际范围、原失败和限制见[实施报告](docs/versions/v10.1.13/IMPLEMENTATION_REPORT.md)、[manifest](docs/versions/v10.1.13/artifact_manifest.json)及[证据摘要](docs/versions/v10.1.13/EVIDENCE_SUMMARY_20261115.json)。
 
-v10.1.12任务分支`codex/v10.1.12-ui-information-architecture-20261114`，R1固定提交`ffddf23dd07743538c43ef8f9a6dd7f1ff580467`，R1源码`3e0e75758acf81e1ea754f739c9687226fbfcaff`，27项定向Widget及4文件分析PASS。R1 APK构建/设备验证NOT_RUN；原候选1011204仅绑定基线源码`ac7fb5b28396394e58c72002e19cc9bbad805941`。当前任务分支`codex/v10.1.13-integration-reliability-20261115`，唯一父基线`ffddf23dd07743538c43ef8f9a6dd7f1ff580467`。
+当前分支为`codex/v10.1.13-integration-reliability-20261115`，唯一父基线`ffddf23dd07743538c43ef8f9a6dd7f1ff580467`，开工任务固定文档`af3fa09c8c8eacecf31a968ebcfce6f745a89dce`逐份LOCAL_DOCS_SYNCED。最终候选10.1.13-dev/1011303，APP源码`2b4fdcc9f342b972a37b35de74fbf099827a7c2e`，包含v10.1.12 R1源码`3e0e75758acf81e1ea754f739c9687226fbfcaff`。原1011204及中间1011301/1011302按原身份保留。
 
-真实Push为REAL_PUSH_PROVIDER_PENDING，历史非注入SFU/RPC精确根因为UNKNOWN，未验硬件/自然期限及旧失败分别保留。已接受的通信、好友/搭子/活动与自我认识工具按具名范围继承。
+真实TalkBack、普通APP/API/MariaDB/Web链、受控丢响应和重启持久化分别记账。MariaDB重启后通过重启原API/WS容器恢复共享网络命名空间，再确认原记录一致，自动透明恢复为NOT_RUN。原主库HEAD/index/跟踪差异指纹相同，status指纹变化原因为UNKNOWN。DB/API/WS运行，SFU exited，模拟器停止且数据保留。
+
+真实Push为REAL_PUSH_PROVIDER_PENDING，历史非注入SFU/RPC精确根因为UNKNOWN，算法独立精度为UNVERIFIED，未验范围沿原报告保留。当前停下等待顾问验收。v10.1.14及后续版本授权为NOT_GRANTED，main集成及正式发布为NOT_RUN。
 
 ## 入口与自主执行
 

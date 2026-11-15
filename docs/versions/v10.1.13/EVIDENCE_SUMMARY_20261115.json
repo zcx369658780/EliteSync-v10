@@ -1,0 +1,687 @@
+{
+  "version": "v10.1.13",
+  "engineering_status": "PASS_IN_NAMED_SCOPE",
+  "advisor_acceptance": "PENDING",
+  "Owner_acceptance": "PENDING",
+  "AC": {
+    "AC13-01": "PASS",
+    "AC13-02": "PASS",
+    "AC13-03": "PASS",
+    "AC13-04": "PASS",
+    "AC13-05": "PASS",
+    "AC13-06": "PASS"
+  },
+  "identity": {
+    "parent": "ffddf23dd07743538c43ef8f9a6dd7f1ff580467",
+    "task": "af3fa09c8c8eacecf31a968ebcfce6f745a89dce",
+    "branch": "codex/v10.1.13-integration-reliability-20261115",
+    "APP_source": "2b4fdcc9f342b972a37b35de74fbf099827a7c2e",
+    "API_source": "47e1b4fd8fad3dd8165d1be6dc9f059095290e75",
+    "Web_source": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+    "candidate": 1011303,
+    "package": "com.elitesync.v1015dev",
+    "APK_sha256": "bf7e3b05f9e2ee5b7cb281b85339516a5f588435846638a6a56aae2828b98432",
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42"
+  },
+  "local_docs_sync": {
+    "status": "LOCAL_DOCS_SYNCED",
+    "at": "2026-11-15T08:30:53.853729+08:00",
+    "task_commit": "af3fa09c8c8eacecf31a968ebcfce6f745a89dce",
+    "branch": "codex/v10.1.13-integration-reliability-20261115",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "git_blob": "946d5f5743987b866efc8e5012093ab239e96f84",
+        "canonical_LF_sha256": "de9a060a99cfdaa22b8d8fdb65badf2c52f9ba561d4e56b769fd33f98c6be474"
+      },
+      {
+        "path": "docs/architecture/ELITESYNC_V10_FUNCTION_BACKEND_UI_ROADMAP_20261113_V2_0.md",
+        "git_blob": "948144d68408fb76b5f90cf1be5596f493cc1224",
+        "canonical_LF_sha256": "f0dca39f433bd7780e6718e953a97b9655be2f56f95564d908fafc1ac5140150"
+      },
+      {
+        "path": "docs/decisions/OWNER_V10_1_12_ADVISOR_ACCEPTANCE_AND_V10_1_13_AUTHORIZATION_20261115.md",
+        "git_blob": "81d6b208124199dfc22c09ba8dccd02e8c7ef1d9",
+        "canonical_LF_sha256": "cee0862783c176f619ed24c75d256d786fd6356a26228d47a718dd9ad59887a1"
+      },
+      {
+        "path": "docs/versions/v10.1.13/CODEX_START_PROMPT.txt",
+        "git_blob": "58addd150f2d9603d40e38338e3a83d20440393f",
+        "canonical_LF_sha256": "1a36d7f2d6fa6d753971e6a15e1e36a6e85631b28d7e88f2ef5f17539619ce8f"
+      },
+      {
+        "path": "docs/versions/v10.1.13/plan.md",
+        "git_blob": "3957225ac4a9cea2e235b95fc763f12761ebe723",
+        "canonical_LF_sha256": "8d565e4b7824443d75ac4ad0d6537067e859e8250f8d8d0b2efddaafc440f23b"
+      },
+      {
+        "path": "docs/versions/v10.1.13/task_order.md",
+        "git_blob": "7ffff62df1a634abe1ebd2c1668a414043a33064",
+        "canonical_LF_sha256": "e1a23dccd25660a2220dbadf39c8c0bf51f81e4693e1905ca2f6123c94025d1c"
+      },
+      {
+        "path": "docs/workflow/ACTIVE_STATE.md",
+        "git_blob": "8a9c60dca41e0ad82290fb5f371f69ee2f1d1eef",
+        "canonical_LF_sha256": "0b5986fb6a8c9f04849acc8a2cd4eef4583caba7c5395a58774f82564def430c"
+      },
+      {
+        "path": "docs/workflow/CURRENT_WORKFLOW.md",
+        "git_blob": "90a63f3094e644a5aa12a0d60f072d974502eedb",
+        "canonical_LF_sha256": "760fbcc44317f47999b1b6427d3125a51742e6cdcfa5eb9238066b8be4fa346e"
+      }
+    ]
+  },
+  "actual_TalkBack": {
+    "component": "com.google.android.marvin.talkback/.TalkBackService",
+    "version": "16.0.0.777931756",
+    "android_user": 11,
+    "emulator": "emulator-5580",
+    "AVD": "v1015_current_a",
+    "input": "Authenticated loopback Android Emulator sendTouch plus emulator-only ADB keyboard",
+    "observation": "UiAutomation DONT_SUPPRESS_ACCESSIBILITY_SERVICES and actual accessibility focus/click events",
+    "paths": [
+      "four bottom entries and reselection",
+      "named settings switches",
+      "feedback field and live validation",
+      "ordinary chat input/send and persisted status",
+      "MBTI result/history8",
+      "match not ready",
+      "200 percent feedback draft action"
+    ],
+    "font_scale": 2.0,
+    "human_listening": "NOT_RUN"
+  },
+  "ordinary_business": {
+    "feedback": {
+      "id": 7,
+      "owner": 21,
+      "final_status": "RESOLVED",
+      "revision": 2,
+      "normal_csrf_form_write": true,
+      "APP_return_and_post_restart_reread": true
+    },
+    "message": {
+      "candidate": 1011303,
+      "id": 134,
+      "sender": 16,
+      "receiver": 17,
+      "content": "TEST_ONLY V10113 ordinary APP final3 TalkBack message",
+      "ordinary_APP_send": true,
+      "actual_TalkBack": true,
+      "recipient_API_readback": true,
+      "singleton_MariaDB_via_model_decryption": true,
+      "notification_id": 353,
+      "initial_controller_assertion": "Direct plaintext prefix query omitted encrypted chat rows. Read-only model decryption verifies the existing row, no additional send."
+    },
+    "MBTI": {
+      "attempt_id": 8,
+      "owner": 21,
+      "result": "ENFP",
+      "result_and_history_name": "简版测评（3题）",
+      "post_restart_relogin_read": true
+    },
+    "isolation": {
+      "candidate": 1011303,
+      "from": 21,
+      "to": 22,
+      "APP_old_feedback_and_draft_absent": true,
+      "other_owner_feedback_HTTP": 404,
+      "other_owner_MBTI_HTTP": 404
+    },
+    "social_entry": "/status/square",
+    "device_timezone": "GMT"
+  },
+  "controlled_cases": [
+    {
+      "case": "feedback-loss",
+      "candidate": 1011303,
+      "upstream_real_commit": true,
+      "controlled_response_loss": true,
+      "same_key": "88254d4d-f5bd-45ca-9683-3c08194cde11",
+      "same_serialized_payload_sha256": "343addc8ae8008d528a7c04421da01dd7310215f7d1f1cc390bbb6feb700b286",
+      "single_id": 6,
+      "singleton_MariaDB": true,
+      "APP_confirmed": true,
+      "normal_external_failure": false
+    },
+    {
+      "candidate": 1011303,
+      "case": "message-loss",
+      "upstream_real_commit": true,
+      "controlled_response_loss": true,
+      "same_key": "b4942afb-42d5-4923-b1c4-8f459ba3757f",
+      "same_payload_sha256": "1601f83b93ed1b2c17edc3ae4bc0d39d985a80ef90bd3cfb63fb52d0df08724b",
+      "single_id": 135,
+      "singleton_MariaDB_via_model_decryption": true,
+      "notification_id": 354,
+      "notification_count": 1,
+      "APP_confirmed": true,
+      "pending_input_and_original_command_restored": true,
+      "initial_controller_capture": "Unknown wording transitioned to restored-pending wording during normal background reread. Existing command resumed without a second injection."
+    },
+    {
+      "case": "feedback-denied",
+      "candidate": 1011303,
+      "controlled_403": true,
+      "upstream_called": false,
+      "APP_explicit_refusal": true,
+      "input_preserved": true,
+      "MariaDB_writes": 0,
+      "real_business_permission_rejection": false
+    }
+  ],
+  "navigation": {
+    "candidate": 1011303,
+    "normal_existing_notification_UI": true,
+    "chat_conversation_id": 3,
+    "chat_peer_user_id": 17,
+    "warm_open_back_open_back": true,
+    "current_state_target_opened": true,
+    "source_inventory": "final3-notification-inventory-private.json",
+    "exact_clicked_chat_notification_id": "UNKNOWN; existing277/273 share the validated target",
+    "real_Push": "REAL_PUSH_PROVIDER_PENDING"
+  },
+  "restarts": [
+    {
+      "service": "api",
+      "container_id": "56a29d27e5219d9b1ce69a7230766c592535339988b84eb2bbc866b458d7a54b",
+      "volumes": [
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/ffmpeg"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/natal-data"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/runtime"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/.env"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/app"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/artisan"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/bootstrap"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/composer.json"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/composer.lock"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/config"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/database"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/public"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/resources"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/routes"
+        },
+        {
+          "type": "volume",
+          "name": "v1015-current-dev-storage",
+          "destination": "/app/storage"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/tools"
+        },
+        {
+          "type": "volume",
+          "name": "v1015-current-dev-vendor-cache",
+          "destination": "/app/vendor"
+        },
+        {
+          "type": "volume",
+          "name": "v1015-current-dev-cache",
+          "destination": "/app/bootstrap/cache"
+        },
+        {
+          "type": "bind",
+          "name": null,
+          "destination": "/app/tools/ziwei/iztro-runner/node_modules"
+        }
+      ],
+      "started_at": "2026-11-15T02:30:35.901758357Z",
+      "elapsed_seconds": 1.96,
+      "readiness": [
+        {
+          "attempt": 1,
+          "error": "RemoteDisconnected"
+        },
+        {
+          "attempt": 2,
+          "status": 200
+        }
+      ],
+      "startup_business_errors": [],
+      "unchanged_rows": true,
+      "unchanged_API_with_existing_tokens": true,
+      "recreated": false,
+      "migrated": false
+    },
+    {
+      "service": "db",
+      "container_id": "61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+      "started_at": "2026-11-15T02:30:38.499148326Z",
+      "unchanged_rows": true,
+      "unchanged_API_with_existing_tokens": true,
+      "same_containers_and_volumes": true,
+      "readiness_failure_preserved": true,
+      "dependent_API_WS_restart_required": true,
+      "network_namespace_rejoined": true,
+      "automatic_transparent_recovery": "NOT_RUN",
+      "business_readback_after_recovery_errors": [],
+      "original_per_poll_error_receipts": "NOT_SAVED"
+    }
+  ],
+  "post_restart_APP": {
+    "candidate": 1011303,
+    "normal_logout_relogin_and_cold_start": true,
+    "anonymous_discover_requires_login": true,
+    "MBTI_attempt": 8,
+    "history_reread": true,
+    "feedback": 7,
+    "revision": 2,
+    "status": "RESOLVED",
+    "public_reply_and_local_time": true,
+    "social_entry": "/status/square",
+    "phone": "NOT_USED"
+  },
+  "deployed_source_files": [
+    {
+      "path": "app/Http/Controllers/Api/V1/SupportFeedbackController.php",
+      "sha256": "e037ac47c2f81b048aaa5825f5d1bda2e209a065bef6f655d7f59ac29a4f2612",
+      "deployed_match": true
+    },
+    {
+      "path": "app/Services/SupportFeedbackService.php",
+      "sha256": "8c7e65cedaffc2115c007b0d65244743a799895f53f21f09b77a7951bbfa048f",
+      "deployed_match": true
+    },
+    {
+      "path": "app/Http/Controllers/Api/V1/MbtiProfileController.php",
+      "sha256": "788b553551be41be5ca3f9ed96666c2bc9a9e1be9be40b5700bb0253bbb810ae",
+      "deployed_match": true
+    },
+    {
+      "path": "app/Http/Controllers/Api/V1/MessageController.php",
+      "sha256": "6e1c5cd72041803e4a7c777840d71386e2a82e7c94ad3a7f198908964cd5a659",
+      "deployed_match": true
+    },
+    {
+      "path": "resources/views/admin/support-feedback.blade.php",
+      "sha256": "a52deaa06cb9412470a5dd1d93466946afb1b959b56fc9e5452e3e13984854d9",
+      "deployed_match": true
+    }
+  ],
+  "resources": {
+    "at": "2026-11-15T02:39:22.819188+00:00",
+    "reader_settings_restore_verified_before_shutdown": true,
+    "reader_settings": {
+      "enabled_accessibility_services": "null",
+      "accessibility_enabled": "0",
+      "touch_exploration_enabled": "0",
+      "tts_default_synth": "null",
+      "accessibility_shortcut_target_service": ""
+    },
+    "font_scale_restore_command_succeeded": true,
+    "stylus_restore_command_succeeded": true,
+    "routes_restore_verified_before_shutdown": true,
+    "emulator5580": "STOPPED_DATA_RETAINED",
+    "emulator5582": "NOT_STARTED",
+    "phone": "NOT_USED",
+    "services": [
+      {
+        "service": "db",
+        "id": "61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+        "state": "running",
+        "started_at": "2026-11-15T02:30:38.499148326Z",
+        "image": "mariadb:10.11.19-jammy",
+        "network_mode": "5d0caa8753d7fc91ca0646ef7129324dac7a27296a93ca2aac3f6248f6cc4228",
+        "volumes": [
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-db-data",
+            "destination": "/var/lib/mysql"
+          }
+        ]
+      },
+      {
+        "service": "api",
+        "id": "56a29d27e5219d9b1ce69a7230766c592535339988b84eb2bbc866b458d7a54b",
+        "state": "running",
+        "started_at": "2026-11-15T02:33:00.297971048Z",
+        "image": "sha256:fac4d1a092d669227aa7f018d849ec659996cb1ac616927efe7821e45424d70b",
+        "network_mode": "container:61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+        "volumes": [
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/ffmpeg"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/natal-data"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/runtime"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/.env"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/app"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/artisan"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/bootstrap"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/composer.json"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/composer.lock"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/config"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/database"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/public"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/resources"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/routes"
+          },
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-storage",
+            "destination": "/app/storage"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/tools"
+          },
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-vendor-cache",
+            "destination": "/app/vendor"
+          },
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-cache",
+            "destination": "/app/bootstrap/cache"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/tools/ziwei/iztro-runner/node_modules"
+          }
+        ]
+      },
+      {
+        "service": "ws",
+        "id": "04e4b97a55addf4978c877960d9235602c999436e5845a8808f197b44dc69644",
+        "state": "running",
+        "started_at": "2026-11-15T02:33:01.176105759Z",
+        "image": "elitesync/v1015-nov01-pcntl:local",
+        "network_mode": "container:61c1f3b713896718e11cf8674b636127a1f312ee7a0d05d3f3a8c7fa96641eea",
+        "volumes": [
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/ffmpeg"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/runtime"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/.env"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/app"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/artisan"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/bootstrap"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/composer.json"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/composer.lock"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/config"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/database"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/public"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/resources"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/routes"
+          },
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-storage",
+            "destination": "/app/storage"
+          },
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/app/vendor"
+          },
+          {
+            "type": "volume",
+            "name": "v1015-current-dev-cache",
+            "destination": "/app/bootstrap/cache"
+          }
+        ]
+      },
+      {
+        "service": "sfu",
+        "id": "bd15c12a986c03043eacadf35449d2ec83b78194aa15362a821de56b9d08d6ab",
+        "state": "exited",
+        "started_at": "2026-11-14T11:22:41.848908924Z",
+        "image": "sha256:954f0e1bd94cbab763dfcca219d730446d064c5c832c179ce31d8225852cbb95",
+        "network_mode": "v1015-current-dev-front",
+        "volumes": [
+          {
+            "type": "bind",
+            "name": null,
+            "destination": "/private/livekit-config-private.yaml"
+          }
+        ]
+      }
+    ],
+    "original_main": {
+      "HEAD_branch_index_and_tracked_diffs": "MATCH",
+      "status_hash": "DIFFERS",
+      "cause": "UNKNOWN",
+      "before": "299d354b30c463eca2eecf20c819e1811898590c245c18c2267f11cf24e1f9a0",
+      "after": "efa24dfda26d9c7a5444e668943cbab347c47a81cc0d1a83ff8659faeb1b2682",
+      "current_untracked_preserved": true
+    },
+    "metadata_save_recovery": "closeout assertion expected every fingerprint equal. Status differed, metadata save resumed with precise field-level result. Device re-start not required.",
+    "protected_untracked_directory_preserved": true
+  },
+  "tests": {
+    "unique_Widget_tests": 65,
+    "count_rule": "42 settings/support plus23 navigation. Repeated8 new navigation tests and red/green runs overlap and are counted once.",
+    "changed_Dart_analysis_files": 6,
+    "analysis": "PASS",
+    "PHP": "NOT_RUN, backend unchanged",
+    "full_Widget": "NOT_RUN"
+  },
+  "not_run": [
+    "Owner phone",
+    "RTC/SFU media and hardware matrix",
+    "TalkBack human acoustic listening/recording",
+    "real Push provider delivery",
+    "actual APP message explicit-403 comparison",
+    "natural timeout/outage matrix",
+    "OS elitesync://map_pick callback",
+    "automatic transparent recovery after DB network-namespace change",
+    "full historical Widget/PHP suite and whole-repository analysis"
+  ],
+  "unknown": {
+    "clicked_chat_notification_id": "UNKNOWN; existing277/273 share the validated target",
+    "original_main_status_drift": "UNKNOWN",
+    "historical_noninjected_SFU_RPC_root": "UNKNOWN"
+  },
+  "unverified": [
+    "independent chart algorithm precision"
+  ],
+  "pending": [
+    "REAL_PUSH_PROVIDER_PENDING"
+  ],
+  "failures_and_resolutions": [
+    {
+      "case": "initial development engine",
+      "original": "Docker LinuxEngine absent",
+      "resolution": "Started existing engine and original DB/API/WS containers"
+    },
+    {
+      "case": "native TalkBack observation tools",
+      "original": "Looper/deadline/disconnect, touch coordinates, IME focus and offscreen selectors failed during preparation",
+      "resolution": "Final real bound-service focus/click sessions saved with native emulator input"
+    },
+    {
+      "case": "1011302 cold /discover",
+      "original": "Host bootstrap received /discover but Splash selected readiness",
+      "resolution": "Fixed explicit target resumption in 2b4fdcc9 and verified /discover /profile /match on1011303"
+    },
+    {
+      "case": "helper mutable context",
+      "original": "Some1011302 auxiliary events appended to historical v1019 private log; one owner-list assertion used the wrong helper account context",
+      "resolution": "Historical lines retained. Version-bound request/log wrappers installed and existing APP receipts re-read through correct account. Final1011303 logs isolated."
+    },
+    {
+      "case": "read-only message verification",
+      "original": "A plaintext prefix query omitted encrypted chat rows",
+      "resolution": "Read existing MariaDB rows through ChatMessage decryption and verify IDs/UUIDs, without another send"
+    },
+    {
+      "case": "message135 capture",
+      "original": "Unknown-response copy changed into restored-pending copy during background reread",
+      "resolution": "Captured retained original input/command, resumed the same command with one ordinary forwarded retry. One fault injection total."
+    },
+    {
+      "case": "DB restart",
+      "original": "First bounded readiness loop failed. Individual original poll receipts were not saved. API/WS remained in the old shared network namespace",
+      "resolution": "Recorded namespace mismatch, restarted same API/WS containers, then compared original rows and API projections with existing tokens"
+    },
+    {
+      "case": "original main final status",
+      "original": "status hash differs from startup. Reason UNKNOWN",
+      "resolution": "HEAD, branch, exact index bytes, tracked diff and cached diff match. Current untracked files retained."
+    }
+  ],
+  "migration": "NONE",
+  "raw_evidence": "LOCAL_ONLY",
+  "phone": "NOT_USED"
+}
