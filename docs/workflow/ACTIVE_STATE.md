@@ -6,7 +6,7 @@
 
 任务分支 `codex/v10.1.16-user-state-automation-center-20261115`，唯一父基线 `b981796e68ca512beeed2a18b40aeb8b09e26bc2`，任务文档固定提交 `89ce556ab67c6ea759d3a2ffea7016edf11b892e`。十四份路线与任务文档逐Blob核对，LOCAL_DOCS_SYNCED，编码前ACK提交 `c793eefcad2f5cff0c613b79b2b1d1cba32e6fa5`。
 
-产品源码 `00cec7843911bb3341304c004059de0a91e12f16` 已推送并完成同源fetch/ls-remote回读。候选 `10.1.16-dev / 1011601`，签名和模拟器安装SHA256核对通过。七项AC按具名范围工程交付，顾问及Owner接受均PENDING。
+产品源码 `00cec7843911bb3341304c004059de0a91e12f16` 已推送并完成同源fetch/ls-remote回读。候选 `10.1.16-dev / 1011601`，签名和模拟器安装SHA256核对通过。七项AC已完成具名工程交付；顾问条件接受，R1-01 OPEN（P1），Owner接受PENDING。
 
 交付入口为[实施报告](../versions/v10.1.16/IMPLEMENTATION_REPORT.md)、[manifest](../versions/v10.1.16/artifact_manifest.json)、[证据摘要](../versions/v10.1.16/EVIDENCE_SUMMARY_20261115.json)、[状态来源图](../versions/v10.1.16/USER_STATE_SOURCE_MAP_V1.md)、[实现合同](../versions/v10.1.16/IMPLEMENTED_STATE_AUTOMATION_CONTRACT_V1.md)及[运行恢复说明](../versions/v10.1.16/LOCAL_AUTOMATION_OPERATIONS.md)。最终文档身份以包含本块的交付提交为准，最终远端回读回执保存在Owner本机并列于交付回复。
 
@@ -28,7 +28,7 @@ DB/API/WS及B2专用具名调度运行，SFU exited。模拟器已停止，AVD�
 
 路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)及[B2补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md)，上版事实沿[v10.1.15 Owner接受记录](../versions/v10.1.15/OWNER_ACCEPTANCE_20261115.md)保留，AC15-02仍PARTIAL。
 
-本版交付后停止等待GPT顾问独立验收。B3、B4、阶段C、main集成、正式发布及真实运营NOT_RUN。Owner整体实机验收安排在B1+B2+B3完成后。
+本版当前处于顾问条件接受状态，Codex按R1-01任务修正后等待第二轮顾问复核。B3、B4、阶段C、main集成、正式发布及真实运营NOT_RUN。Owner整体实机验收安排在B1+B2+B3完成后。
 
 
 ## 顾问独立验收
