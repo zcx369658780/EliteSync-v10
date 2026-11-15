@@ -1,3 +1,4 @@
+import '../lifestyle_discovery/lifestyle_page.dart';
 import '../relationships_v1011/relationship_api.dart';
 import 'matching_input_page.dart';
 import 'matching_history_page.dart';
@@ -129,6 +130,29 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
         ],
       ),
       if (data != null) ...[
+        if (objectMap(data!['lifestyle_discovery'])['completed'] == false)
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('参加每周慢约会前，请完成生活方式探索。社区和搭子可继续使用。'),
+                  TextButton(
+                    onPressed: () async {
+                      await Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => const LifestyleDiscoveryPage(),
+                        ),
+                      );
+                      if (mounted) await refresh();
+                    },
+                    child: const Text('继续生活方式探索'),
+                  ),
+                ],
+              ),
+            ),
+          ),
         IdentityGateCard(identity: objectMap(data!['identity'])),
         Text(
           '参与状态：${journeyStateLabel(participation['state'])} · 代际 ${participation['generation'] ?? '—'}',

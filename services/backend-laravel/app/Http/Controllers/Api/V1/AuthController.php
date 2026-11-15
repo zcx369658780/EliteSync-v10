@@ -92,27 +92,30 @@ class AuthController extends Controller
     {
         $data = $request->validate([
             'phone' => ['required', 'string', 'max:32', 'unique:users,phone'],
+            'device_id' => ['nullable', 'string', 'min:8', 'max:128'],
             'password' => ['required', 'string', Password::min(8)->letters()->numbers()],
             'name' => ['nullable', 'string', 'max:255'],
             'birthday' => ['nullable', 'date_format:Y-m-d'],
             'realname_verified' => ['sometimes', 'boolean'],
         ]);
 
-        $user = User::create([
-            'phone' => $data['phone'],
-            'name' => $data['name'] ?? null,
-            'birthday' => $data['birthday'] ?? null,
-            'zodiac_animal' => $zodiacService->fromBirthdayString($data['birthday'] ?? null),
-            'realname_verified' => false,
-            'password' => Hash::make($data['password']),
-        ]);
+        return DB::transaction(function () use ($data, $zodiacService) {
+            $user = User::create([
+                'phone' => $data['phone'],
+                'name' => $data['name'] ?? null,
+                'birthday' => $data['birthday'] ?? null,
+                'zodiac_animal' => $zodiacService->fromBirthdayString($data['birthday'] ?? null),
+                'realname_verified' => false,
+                'password' => Hash::make($data['password']),
+            ]);
 
-        $tokens = app(DeviceSessions::class)->issue($user);
+            $tokens = app(DeviceSessions::class)->issue($user, 'Mobile', true, $data['device_id'] ?? null);
 
-        return response()->json([
-            'user' => $this->userPayload($user),
-            ...$tokens,
-        ], 201);
+            return response()->json([
+                'user' => $this->userPayload($user),
+                ...$tokens,
+            ], 201);
+        });
     }
 
     public function login(Request $request): JsonResponse

@@ -6,6 +6,18 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
+    /** Explicit preparation for tests whose subject is an enrolled weekly participant. */
+    protected function completeLifestyleFixture(int $userId): void
+    {
+        $service = app(\App\Services\LifestyleDiscoveryService::class);
+        $revision = $service->read($userId)['revision'];
+        foreach ($service->bank()['scenes'] as $scene) {
+            $service->command($userId, ['action' => 'answer', 'expected_revision' => $revision++,
+                'questionnaire_version' => 'lifestyle_v1', 'request_key' => (string) \Illuminate\Support\Str::uuid(),
+                'scene_id' => $scene['id'], 'option_id' => $scene['options'][0]['id']]);
+        }
+    }
+
     public function createApplication()
     {
         $app = parent::createApplication();

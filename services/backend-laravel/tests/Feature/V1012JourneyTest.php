@@ -43,6 +43,7 @@ class V1012JourneyTest extends TestCase
             'content' => 'Synthetic preference', 'question_type' => 'single_choice',
             'options' => [['option_id' => 'A']], 'sort_order' => 0, 'enabled' => true, 'version' => 1]);
         foreach ($users as $user) {
+            $this->completeLifestyleFixture((int) $user->id);
             QuestionnaireAnswer::create(['user_id' => $user->id, 'questionnaire_question_id' => $q->id,
                 'answer_payload' => ['selected_answer' => ['A']], 'version' => 1]);
         }

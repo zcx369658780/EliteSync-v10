@@ -146,6 +146,9 @@ class MatchingRunService
             }
             foreach ($currentUsers as $user) {
                 $id = (int) $user->id;
+                if (! app(LifestyleDiscoveryService::class)->completed($id, true)) {
+                    throw new \DomainException('lifestyle_discovery_incomplete');
+                }
                 [$eligibilityVersion, $profileVersion] = $this->sourceVersions($id, $user->updated_at);
                 MatchingRunCandidate::query()->updateOrCreate(['matching_run_id' => $locked->id, 'user_id' => $id], ['eligibility_version_at' => $eligibilityVersion, 'profile_version_at' => $profileVersion, 'participation_generation' => app(SlowDatingService::class)->participation($id)['generation'], 'matching_input_digest' => app(MatchingInputService::class)->sourceDigest($user)]);
             }
@@ -190,7 +193,8 @@ class MatchingRunService
             $readiness = app(ProfileReadinessService::class);
             foreach ($candidateUserIds as $userId) {
                 $currentUser = $currentUsers->get((int) $userId);
-                if (! $currentUser || ! $readiness->forUser($currentUser)['matching_eligibility']['eligible'] || ! app(SlowDatingService::class)->enrolled((int) $userId, (int) ($frozen->get((int) $userId)?->participation_generation ?? -1))) {
+                if (! $currentUser || ! $readiness->forUser($currentUser)['matching_eligibility']['eligible']
+                    || ! app(LifestyleDiscoveryService::class)->completed((int) $currentUser->id, true) || ! app(SlowDatingService::class)->enrolled((int) $userId, (int) ($frozen->get((int) $userId)?->participation_generation ?? -1))) {
                     throw new \DomainException('eligibility_changed');
                 }
                 $candidate = $frozen->get((int) $userId);
@@ -290,7 +294,7 @@ class MatchingRunService
         }
         foreach (MatchingRunCandidate::where('matching_run_id', $run->id)->get() as $candidate) {
             $user = $users->get((int) $candidate->user_id);
-            if (! $user || ! hash_equals((string) $candidate->matching_input_digest, app(MatchingInputService::class)->sourceDigest($user))
+            if (! $user || ! app(LifestyleDiscoveryService::class)->completed((int) $user->id, true) || ! hash_equals((string) $candidate->matching_input_digest, app(MatchingInputService::class)->sourceDigest($user))
                 || ! app(SlowDatingService::class)->enrolled((int) $user->id, (int) $candidate->participation_generation)) {
                 return false;
             }

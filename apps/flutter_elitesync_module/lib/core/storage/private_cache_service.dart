@@ -192,7 +192,8 @@ class PrivateCacheService {
           objects = await _manifest(namespace: oldNamespace);
           if (!current()) return false;
           for (final object in objects) {
-            if (!RegExp(r'^live-chat-draft:[1-9][0-9]*$').hasMatch(object)) {
+            if (object != 'lifestyle-discovery-draft:v1' &&
+                !RegExp(r'^live-chat-draft:[1-9][0-9]*$').hasMatch(object)) {
               continue;
             }
             final raw = await _secure.read(

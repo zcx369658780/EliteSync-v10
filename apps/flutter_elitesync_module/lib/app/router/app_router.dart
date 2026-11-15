@@ -1,3 +1,5 @@
+import '../../features/lifestyle_discovery/lifestyle_page.dart';
+import '../../features/auth/presentation/providers/register_form_provider.dart';
 import 'package:flutter_elitesync_module/features/buddy_v1013/buddy_page.dart';
 import 'package:flutter_elitesync_module/features/slow_dating_v1012/slow_dating_journey_page.dart';
 import 'package:flutter_elitesync_module/features/slow_dating_v1012/formal_relationship_page.dart';
@@ -93,7 +95,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       }
 
       if (nav.isLoggedIn && isAuthPage) {
-        return AppRouteNames.home;
+        return ref.read(registrationWelcomeProvider)
+            ? '/lifestyle-discovery'
+            : AppRouteNames.home;
       }
 
       final isMatchEntry =
@@ -115,6 +119,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
+      GoRoute(
+        path: '/lifestyle-discovery',
+        builder: (context, state) => const LifestyleDiscoveryPage(),
+      ),
       GoRoute(
         path: '/buddy-v1013',
         builder: (context, state) => const BuddyPage(),

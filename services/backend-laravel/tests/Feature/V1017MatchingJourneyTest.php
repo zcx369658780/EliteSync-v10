@@ -60,6 +60,7 @@ class V1017MatchingJourneyTest extends TestCase
     private function enroll(User ...$users): void
     {
         foreach ($users as $user) {
+$this->completeLifestyleFixture((int) $user->id);
             app(SlowDatingService::class)->participate($user->id, 'opt_in', 0, 'Fixture explicit participation');
         }
     }
@@ -90,6 +91,24 @@ class V1017MatchingJourneyTest extends TestCase
         app(MatchingRoundService::class)->transition($round, RoundState::Revealed, $round->state_version,
             'test', null, OperationAction::Reveal, 'v1017-reveal');
         if ($round->fresh()->state === RoundState::Revealed) { $this->assertDatabaseCount('match_proposals', 1); }
+    }
+
+    public function test_lifestyle_reset_after_reveal_preserves_existing_proposal_and_consents(): void
+    {
+        $a = $this->subject('male'); $b = $this->subject('female');
+        [$round, $run] = $this->generate($a, $b);
+        $this->reveal($round);
+        $proposal = app(SlowDatingService::class)->proposal($a->id);
+        $this->assertSame('PENDING', $proposal['state']);
+        $discovery = app(\App\Services\LifestyleDiscoveryService::class);
+        $discovery->command($a->id, ['action' => 'reset', 'expected_revision' => 5,
+            'questionnaire_version' => 'lifestyle_v1', 'request_key' => (string) \Illuminate\Support\Str::uuid()]);
+        $after = app(SlowDatingService::class)->proposal($a->id);
+        $this->assertSame($proposal['id'], $after['id']);
+        $this->assertSame('PENDING', $after['state']);
+        $this->assertSame($proposal['revision'], $after['revision']);
+        $this->assertDatabaseCount('product_connections', 0);
+        $this->assertDatabaseCount('messaging_consents', 0);
     }
 
     public function test_input_save_clear_read_and_revision_are_private_and_do_not_enroll(): void

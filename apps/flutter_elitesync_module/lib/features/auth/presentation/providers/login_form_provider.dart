@@ -1,3 +1,4 @@
+import 'register_form_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/features/auth/presentation/providers/auth_guard_provider.dart';
 import 'package:flutter_elitesync_module/features/auth/presentation/state/login_form_state.dart';
@@ -29,6 +30,7 @@ class LoginFormNotifier extends Notifier<LoginFormState> {
 
     state = state.copyWith(isSubmitting: true, clearError: true);
 
+    ref.read(registrationWelcomeProvider.notifier).set(false);
     final sessionNotifier = ref.read(sessionProvider.notifier);
     final authenticationIntent = sessionNotifier.beginAuthentication();
     try {
@@ -60,7 +62,9 @@ class LoginFormNotifier extends Notifier<LoginFormState> {
             ),
           );
 
-      if (!sessionNotifier.isCurrentAuthentication(authenticationIntent)) return false;
+      if (!sessionNotifier.isCurrentAuthentication(authenticationIntent)) {
+        return false;
+      }
       ref.invalidate(profileProvider);
       ref.invalidate(editProfileProvider);
       try {
@@ -69,7 +73,9 @@ class LoginFormNotifier extends Notifier<LoginFormState> {
         // 资料刷新失败不应阻塞登录结果，页面会继续按 provider 的 error 状态兜底。
       }
 
-      if (!sessionNotifier.isCurrentAuthentication(authenticationIntent)) return false;
+      if (!sessionNotifier.isCurrentAuthentication(authenticationIntent)) {
+        return false;
+      }
       state = state.copyWith(isSubmitting: false, clearError: true);
       return true;
     } catch (e) {

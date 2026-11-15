@@ -53,6 +53,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/config/
+    - assets/lifestyle_discovery/
   module:
     androidX: true
     androidPackage: com.elitesync.flutter_elitesync_module

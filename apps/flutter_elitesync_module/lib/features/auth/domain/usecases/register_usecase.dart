@@ -1,3 +1,4 @@
+import '../entities/auth_session.dart';
 import 'package:flutter_elitesync_module/features/auth/domain/repository/auth_repository.dart';
 
 class RegisterUseCase {
@@ -5,7 +6,7 @@ class RegisterUseCase {
 
   final AuthRepository _repository;
 
-  Future<void> call({
+  Future<AuthSession> call({
     required String phone,
     required String password,
     String? nickname,

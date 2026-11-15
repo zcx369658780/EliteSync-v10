@@ -325,6 +325,7 @@ class V1012R1BoundaryTest extends TestCase
 
     private function qualify(User $u): void
     {
+        $this->completeLifestyleFixture((int) $u->id);
         $q = QuestionnaireQuestion::create(['question_key' => 'default', 'category' => 'test',
             'content' => 'Synthetic preference', 'question_type' => 'single_choice',
             'options' => [['option_id' => 'A']], 'sort_order' => 0, 'enabled' => true, 'version' => 1]);

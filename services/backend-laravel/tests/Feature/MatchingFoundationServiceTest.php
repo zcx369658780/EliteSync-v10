@@ -32,7 +32,8 @@ class MatchingFoundationServiceTest extends TestCase
     private function qualify(User ...$users): void {
         config(['questionnaire.required_answer_count'=>1]);
         $q=QuestionnaireQuestion::firstOrCreate(['question_key'=>'foundation-qualification'],['category'=>'test','content'=>'Foundation valid answer fixture','question_type'=>'single_choice','options'=>[['option_id'=>'A']],'sort_order'=>0,'enabled'=>true,'version'=>1]);
-        foreach($users as $u){$u->verify_status='approved';$u->save();\App\Models\QuestionnaireAnswer::updateOrCreate(['user_id'=>$u->id,'questionnaire_question_id'=>$q->id],['answer_payload'=>['value'=>'A','selected_answer'=>['A']],'version'=>1]);app(\App\Services\SlowDatingService::class)->participate((int)$u->id,'opt_in',0,'fixture opt-in');}
+        foreach($users as $u){$u->verify_status='approved';$u->save();\App\Models\QuestionnaireAnswer::updateOrCreate(['user_id'=>$u->id,'questionnaire_question_id'=>$q->id],['answer_payload'=>['value'=>'A','selected_answer'=>['A']],'version'=>1]);$this->completeLifestyleFixture((int) $u->id);
+app(\App\Services\SlowDatingService::class)->participate((int)$u->id,'opt_in',0,'fixture opt-in');}
     }
 
     public function test_additive_schema_and_legacy_match_coexist(): void

@@ -1,3 +1,4 @@
+import '../dto/login_response_dto.dart';
 import 'package:flutter_elitesync_module/core/error/app_exception.dart';
 import 'package:flutter_elitesync_module/features/auth/data/datasource/auth_local_data_source.dart';
 import 'package:flutter_elitesync_module/features/auth/data/datasource/auth_remote_data_source.dart';
@@ -25,6 +26,16 @@ class AuthRepositoryImpl implements AuthRepository {
     required String phone,
     required String password,
   }) async {
+    return _authenticate(
+      (deviceId) => _remote.login(
+        LoginRequestDto(phone: phone, password: password, deviceId: deviceId),
+      ),
+    );
+  }
+
+  Future<AuthSession> _authenticate(
+    Future<LoginResponseDto> Function(String) request,
+  ) async {
     final loginEpoch = _local.beginLoginAttempt();
     await _local.prepareLoginAttempt(loginEpoch);
     final deviceId = await _local.getOrCreateDeviceId();
@@ -34,9 +45,7 @@ class AuthRepositoryImpl implements AuthRepository {
         code: 'AUTH_STALE_RESPONSE',
       );
     }
-    final response = await _remote.login(
-      LoginRequestDto(phone: phone, password: password, deviceId: deviceId),
-    );
+    final response = await request(deviceId);
     if (!_local.isCurrentAttempt(loginEpoch)) {
       throw const ValidationException(
         '登录已变化，请重新操作。',
@@ -72,18 +81,21 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> register({
+  Future<AuthSession> register({
     required String phone,
     required String password,
     String? nickname,
   }) {
-    return _remote.register(
-      RegisterRequestDto(
-        phone: phone,
-        password: password,
-        passwordConfirmation: password,
-        realnameVerified: true,
-        nickname: nickname,
+    return _authenticate(
+      (deviceId) => _remote.register(
+        RegisterRequestDto(
+          phone: phone,
+          password: password,
+          passwordConfirmation: password,
+          realnameVerified: false,
+          deviceId: deviceId,
+          nickname: nickname,
+        ),
       ),
     );
   }

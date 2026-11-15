@@ -1,3 +1,5 @@
+import '../../../../shared/providers/session_provider.dart';
+import '../../../../shared/models/user_summary.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/features/auth/presentation/providers/auth_guard_provider.dart';
 import 'package:flutter_elitesync_module/features/auth/presentation/state/register_form_state.dart';
@@ -50,8 +52,10 @@ class RegisterFormNotifier extends Notifier<RegisterFormState> {
       clearSuccess: true,
     );
 
+    final sessionNotifier = ref.read(sessionProvider.notifier);
+    final intent = sessionNotifier.beginAuthentication();
     try {
-      await ref
+      final session = await ref
           .read(registerUseCaseProvider)
           .call(
             phone: state.phone,
@@ -59,7 +63,21 @@ class RegisterFormNotifier extends Notifier<RegisterFormState> {
             nickname: state.nickname.isEmpty ? null : state.nickname,
           );
 
-      state = state.copyWith(isSubmitting: false, successMessage: '注册成功，请返回登录');
+      if (!sessionNotifier.isCurrentAuthentication(intent)) return false;
+      ref.read(registrationWelcomeProvider.notifier).set(true);
+      await sessionNotifier.setAuthenticated(
+        expectedIntent: intent,
+        accessToken: session.accessToken,
+        refreshToken: session.refreshToken,
+        user: UserSummary(
+          id: session.user.id,
+          phone: session.user.phone,
+          nickname: session.user.nickname,
+          role: session.user.role,
+        ),
+      );
+      if (!sessionNotifier.isCurrentAuthentication(intent)) return false;
+      state = state.copyWith(isSubmitting: false, successMessage: '注册成功');
       return true;
     } catch (e) {
       final msg = ref.read(authErrorMapperProvider).mapToUserMessage(e);
@@ -73,3 +91,13 @@ final registerFormProvider =
     NotifierProvider<RegisterFormNotifier, RegisterFormState>(
       RegisterFormNotifier.new,
     );
+
+class RegistrationWelcome extends Notifier<bool> {
+  @override
+  bool build() => false;
+  void set(bool value) => state = value;
+}
+
+final registrationWelcomeProvider = NotifierProvider<RegistrationWelcome, bool>(
+  RegistrationWelcome.new,
+);

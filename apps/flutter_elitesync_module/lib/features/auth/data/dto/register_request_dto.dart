@@ -5,6 +5,7 @@ class RegisterRequestDto {
     required this.passwordConfirmation,
     required this.realnameVerified,
     this.nickname,
+    this.deviceId,
   });
 
   final String phone;
@@ -12,6 +13,7 @@ class RegisterRequestDto {
   final String passwordConfirmation;
   final bool realnameVerified;
   final String? nickname;
+  final String? deviceId;
 
   Map<String, dynamic> toJson() {
     return {
@@ -21,7 +23,7 @@ class RegisterRequestDto {
       // Backend current key is `name`; keep nickname as fallback compatibility.
       'name': nickname,
       'nickname': nickname,
-      'realname_verified': realnameVerified,
+      if (deviceId != null) 'device_id': deviceId,
     };
   }
 }

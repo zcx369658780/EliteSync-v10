@@ -21,7 +21,8 @@ class ProfileReadinessService
             if (($user->is_synthetic && ! app(TrustedIdentityService::class)->registered((int) $user->id))
                 || app(CurrentQuestionnaire::class)->validCount((int) $user->id) < $required
                 || app(MatchingInputService::class)->readinessReason($user) !== null
-                || ! app(SlowDatingService::class)->enrolled((int) $user->id)) {
+                || ! app(SlowDatingService::class)->enrolled((int) $user->id)
+                || ! app(LifestyleDiscoveryService::class)->completed((int) $user->id)) {
                 return false;
             }
             // Reading the current proposal reconciles expiry/withdrawal before excluding its slot.

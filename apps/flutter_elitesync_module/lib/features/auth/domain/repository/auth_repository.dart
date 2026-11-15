@@ -3,7 +3,7 @@ import 'package:flutter_elitesync_module/features/auth/domain/entities/auth_sess
 abstract class AuthRepository {
   Future<AuthSession> login({required String phone, required String password});
 
-  Future<void> register({
+  Future<AuthSession> register({
     required String phone,
     required String password,
     String? nickname,

@@ -1,0 +1,156 @@
+{
+  "questionnaire_version": "lifestyle_v1",
+  "preference_projection_version": "lifestyle_rules_v1",
+  "scenes": [
+    {
+      "id": "home_atmosphere",
+      "title": "在家放松时，你更喜欢哪种氛围？",
+      "dimension": "home_atmosphere",
+      "dimension_label": "居所声音氛围",
+      "asset": "assets/lifestyle_discovery/home_atmosphere.webp",
+      "options": [
+        {
+          "id": "quiet",
+          "label": "安静一点",
+          "value": "quiet",
+          "rule_id": "lifestyle_rules_v1.home_atmosphere.quiet",
+          "explanation": "你在“居所声音氛围”这一题选择了“安静一点”。可随时修改。"
+        },
+        {
+          "id": "background_sound",
+          "label": "有些背景声音",
+          "value": "background_sound",
+          "rule_id": "lifestyle_rules_v1.home_atmosphere.background_sound",
+          "explanation": "你在“居所声音氛围”这一题选择了“有些背景声音”。可随时修改。"
+        },
+        {
+          "id": "situational",
+          "label": "看当天状态切换",
+          "value": "situational",
+          "rule_id": "lifestyle_rules_v1.home_atmosphere.situational",
+          "explanation": "你在“居所声音氛围”这一题选择了“看当天状态切换”。可随时修改。"
+        }
+      ]
+    },
+    {
+      "id": "travel_structure",
+      "title": "去一个新地方走走，你喜欢怎样安排？",
+      "dimension": "travel_structure",
+      "dimension_label": "旅行安排方式",
+      "asset": "assets/lifestyle_discovery/travel_structure.webp",
+      "options": [
+        {
+          "id": "planned",
+          "label": "提前排好主要行程",
+          "value": "planned",
+          "rule_id": "lifestyle_rules_v1.travel_structure.planned",
+          "explanation": "你在“旅行安排方式”这一题选择了“提前排好主要行程”。可随时修改。"
+        },
+        {
+          "id": "open",
+          "label": "到了再随兴探索",
+          "value": "open",
+          "rule_id": "lifestyle_rules_v1.travel_structure.open",
+          "explanation": "你在“旅行安排方式”这一题选择了“到了再随兴探索”。可随时修改。"
+        },
+        {
+          "id": "mixed",
+          "label": "定几个去处，其余留白",
+          "value": "mixed",
+          "rule_id": "lifestyle_rules_v1.travel_structure.mixed",
+          "explanation": "你在“旅行安排方式”这一题选择了“定几个去处，其余留白”。可随时修改。"
+        }
+      ]
+    },
+    {
+      "id": "weekend_activity",
+      "title": "空出半天时，你通常更想做什么？",
+      "dimension": "weekend_activity",
+      "dimension_label": "空闲活动偏好",
+      "asset": "assets/lifestyle_discovery/weekend_activity.webp",
+      "options": [
+        {
+          "id": "rest",
+          "label": "放空休息",
+          "value": "rest",
+          "rule_id": "lifestyle_rules_v1.weekend_activity.rest",
+          "explanation": "你在“空闲活动偏好”这一题选择了“放空休息”。可随时修改。"
+        },
+        {
+          "id": "movement",
+          "label": "出门走走活动一下",
+          "value": "movement",
+          "rule_id": "lifestyle_rules_v1.weekend_activity.movement",
+          "explanation": "你在“空闲活动偏好”这一题选择了“出门走走活动一下”。可随时修改。"
+        },
+        {
+          "id": "making",
+          "label": "做点手作或创作",
+          "value": "making",
+          "rule_id": "lifestyle_rules_v1.weekend_activity.making",
+          "explanation": "你在“空闲活动偏好”这一题选择了“做点手作或创作”。可随时修改。"
+        }
+      ]
+    },
+    {
+      "id": "meal_company",
+      "title": "有空好好吃一顿时，你更想怎样度过？",
+      "dimension": "meal_company",
+      "dimension_label": "共餐人数偏好",
+      "asset": "assets/lifestyle_discovery/meal_company.webp",
+      "options": [
+        {
+          "id": "one_to_one",
+          "label": "和一个人慢慢聊",
+          "value": "one_to_one",
+          "rule_id": "lifestyle_rules_v1.meal_company.one_to_one",
+          "explanation": "你在“共餐人数偏好”这一题选择了“和一个人慢慢聊”。可随时修改。"
+        },
+        {
+          "id": "small_group",
+          "label": "三五个人一起吃",
+          "value": "small_group",
+          "rule_id": "lifestyle_rules_v1.meal_company.small_group",
+          "explanation": "你在“共餐人数偏好”这一题选择了“三五个人一起吃”。可随时修改。"
+        },
+        {
+          "id": "solo",
+          "label": "自己自在地吃",
+          "value": "solo",
+          "rule_id": "lifestyle_rules_v1.meal_company.solo",
+          "explanation": "你在“共餐人数偏好”这一题选择了“自己自在地吃”。可随时修改。"
+        }
+      ]
+    },
+    {
+      "id": "shared_time",
+      "title": "长期相处中，你更喜欢怎样安排相聚时间？",
+      "dimension": "shared_time",
+      "dimension_label": "相聚时间安排方式",
+      "asset": "assets/lifestyle_discovery/shared_time.webp",
+      "options": [
+        {
+          "id": "regular",
+          "label": "留出固定的相聚时间",
+          "value": "regular",
+          "rule_id": "lifestyle_rules_v1.shared_time.regular",
+          "explanation": "你在“相聚时间安排方式”这一题选择了“留出固定的相聚时间”。可随时修改。"
+        },
+        {
+          "id": "spontaneous",
+          "label": "有空时再约",
+          "value": "spontaneous",
+          "rule_id": "lifestyle_rules_v1.shared_time.spontaneous",
+          "explanation": "你在“相聚时间安排方式”这一题选择了“有空时再约”。可随时修改。"
+        },
+        {
+          "id": "flexible_plan",
+          "label": "提前商量，也留出调整空间",
+          "value": "flexible_plan",
+          "rule_id": "lifestyle_rules_v1.shared_time.flexible_plan",
+          "explanation": "你在“相聚时间安排方式”这一题选择了“提前商量，也留出调整空间”。可随时修改。"
+        }
+      ]
+    }
+  ]
+}

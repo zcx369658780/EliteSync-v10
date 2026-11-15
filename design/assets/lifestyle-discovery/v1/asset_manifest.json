@@ -1,0 +1,130 @@
+{
+  "version": "lifestyle_art_v1",
+  "art_direction_model": "GPT-6 Astra",
+  "art_direction_snapshot": "exact server snapshot not exposed",
+  "generation_date": "2026-11-15",
+  "tool": "image_gen.imagegen",
+  "requested_model": "latest available online GPT Image through built-in image_gen",
+  "actual_model_identifier": "UNKNOWN",
+  "model_metadata_status": "MODEL_IDENTIFIER_UNVERIFIED",
+  "model_evidence": "Tool results exposed image_url and output_hint only. The first original PNG metadata was empty.",
+  "rights_basis": {
+    "terms_url": "https://openai.com/policies/terms-of-use/",
+    "basis": "Original project prompts, OpenAI service-generated output under the applicable account terms",
+    "reference_inputs": []
+  },
+  "items": [
+    {
+      "scene_id": "home_atmosphere",
+      "prompt": "Create one horizontal 16:10 editorial illustration for the upper part of a mobile lifestyle discovery screen. A calm low-resolution-inspired 2D cartoon with constructivist composition, large cut-paper geometric color blocks, a few deliberate stepped edges and very subtle grain. Crisp recognizable silhouettes at small display size. No photorealism, no 3D rendering, no glossy materials, no cinematic lighting, no detailed textures, no neon.\n\nUse a consistent slightly elevated stage-like view, simple rounded geometric furniture, paper-cut plants and diffuse quiet daylight. Use pale gray #E7EBF2, mist blue #A7C3DE, muted lavender #B8B0D0 and muted mint #AACFC5 for most areas. Reserve tiny accents for #5AA8FF, #8B7CFF and #5FE1C8. Very limited deep navy #08101F outlines and off-white #F6F8FC breathing space. Low contrast within the illustration, clear large shapes, no dark or bright spotlight on any choice cue.\n\nCompose one coherent everyday setting, not three separate panels or a comparison chart. Keep all three described cues equally visible and similarly weighted. Do not imply a preferred or superior choice. Put essential content within the central 76 percent of the width and between 18 and 84 percent of the height. Keep the outer 8 percent safe to crop and leave the upper area visually quiet. Prefer an unoccupied scene. No luxury objects, brands, status symbols, romantic stereotypes or identity cues. No text, letters, numbers, labels, interface controls, selection marks, logos, signatures or watermarks. The app will render every question, option and selection indicator separately.\n\nShow a modest comfortable living room as one continuous space. A window, a low rounded table, a small plain speaker without a screen, cushions and one paper-cut plant. Arrange three equally weighted cues across the lower middle of the image. On the left, a comfortable quiet window cushion. Near the middle, the small speaker on the low table. On the right, two matching movable cushions arranged casually. Keep the room equally welcoming throughout, with no person and no symbols for silence or music. Do not visually rate the cues. No headphones, sound waves, musical notes or readable controls. This is an ordinary place to unwind, not a property advertisement.",
+      "original_file": "design/assets/lifestyle-discovery/v1/originals/home_atmosphere.png",
+      "app_file": "design/assets/lifestyle-discovery/v1/app/home_atmosphere.webp",
+      "flutter_asset": "apps/flutter_elitesync_module/assets/lifestyle_discovery/home_atmosphere.webp",
+      "original_dimensions": [
+        1586,
+        992
+      ],
+      "app_dimensions": [
+        960,
+        600
+      ],
+      "original_bytes": 1912234,
+      "original_sha256": "473519a8ccd81f4c7d8277baadbf230b92c2b2aa468ddd950792327be3db7789",
+      "optimized_bytes": 12442,
+      "optimized_sha256": "10d8da3f264891651d644556a43ba2c7afeaba2cb65beed10bc8a30067fd0499",
+      "optimization": "Pillow fit960x600 Lanczos, WebP quality82 method6; crop less than0.2 percent to16:10",
+      "generation_status": "GENERATED",
+      "model_identifier": "UNKNOWN"
+    },
+    {
+      "scene_id": "travel_structure",
+      "prompt": "Create one horizontal 16:10 editorial illustration for the upper part of a mobile lifestyle discovery screen. A calm low-resolution-inspired 2D cartoon with constructivist composition, large cut-paper geometric color blocks, a few deliberate stepped edges and very subtle grain. Crisp recognizable silhouettes at small display size. No photorealism, no 3D rendering, no glossy materials, no cinematic lighting, no detailed textures, no neon.\n\nUse a consistent slightly elevated stage-like view, simple rounded geometric furniture, paper-cut plants and diffuse quiet daylight. Use pale gray #E7EBF2, mist blue #A7C3DE, muted lavender #B8B0D0 and muted mint #AACFC5 for most areas. Reserve tiny accents for #5AA8FF, #8B7CFF and #5FE1C8. Very limited deep navy #08101F outlines and off-white #F6F8FC breathing space. Low contrast within the illustration, clear large shapes, no dark or bright spotlight on any choice cue.\n\nCompose one coherent everyday setting, not three separate panels or a comparison chart. Keep all three described cues equally visible and similarly weighted. Do not imply a preferred or superior choice. Put essential content within the central 76 percent of the width and between 18 and 84 percent of the height. Keep the outer 8 percent safe to crop and leave the upper area visually quiet. Prefer an unoccupied scene. No luxury objects, brands, status symbols, romantic stereotypes or identity cues. No text, letters, numbers, labels, interface controls, selection marks, logos, signatures or watermarks. The app will render every question, option and selection indicator separately.\n\nShow a public park entrance and a gentle winding walking path in one continuous everyday landscape. Put a blank folded paper map on a simple foreground bench with a few small smooth stones. Three restrained geometric arrangements near the lower middle suggest a short orderly path on the left, loosely scattered stepping dots in the middle, and a short path followed by open space on the right. These arrangements must have equal scale and visual emphasis, without arrows, checkmarks or labels. Keep the real park path soft and welcoming. No airport, hotel, car, luggage brand, tourist landmark or expensive equipment. The image evokes ways to explore a new place, not distance traveled or spending power.",
+      "original_file": "design/assets/lifestyle-discovery/v1/originals/travel_structure.png",
+      "app_file": "design/assets/lifestyle-discovery/v1/app/travel_structure.webp",
+      "flutter_asset": "apps/flutter_elitesync_module/assets/lifestyle_discovery/travel_structure.webp",
+      "original_dimensions": [
+        1586,
+        992
+      ],
+      "app_dimensions": [
+        960,
+        600
+      ],
+      "original_bytes": 1832275,
+      "original_sha256": "12b1e1347675241a5856c390615bdaa378695f1a459c0cbffae0b282e498de51",
+      "optimized_bytes": 19364,
+      "optimized_sha256": "e2cd30c17da821eaaa1694cc3d6c5bfaac27950a8b18cfbcae7266746f4d5b95",
+      "optimization": "Pillow fit960x600 Lanczos, WebP quality82 method6; crop less than0.2 percent to16:10",
+      "generation_status": "GENERATED",
+      "model_identifier": "UNKNOWN"
+    },
+    {
+      "scene_id": "weekend_activity",
+      "prompt": "Create one horizontal 16:10 editorial illustration for the upper part of a mobile lifestyle discovery screen. A calm low-resolution-inspired 2D cartoon with constructivist composition, large cut-paper geometric color blocks, a few deliberate stepped edges and very subtle grain. Crisp recognizable silhouettes at small display size. No photorealism, no 3D rendering, no glossy materials, no cinematic lighting, no detailed textures, no neon.\n\nUse a consistent slightly elevated stage-like view, simple rounded geometric furniture, paper-cut plants and diffuse quiet daylight. Use pale gray #E7EBF2, mist blue #A7C3DE, muted lavender #B8B0D0 and muted mint #AACFC5 for most areas. Reserve tiny accents for #5AA8FF, #8B7CFF and #5FE1C8. Very limited deep navy #08101F outlines and off-white #F6F8FC breathing space. Low contrast within the illustration, clear large shapes, no dark or bright spotlight on any choice cue.\n\nCompose one coherent everyday setting, not three separate panels or a comparison chart. Keep all three described cues equally visible and similarly weighted. Do not imply a preferred or superior choice. Put essential content within the central 76 percent of the width and between 18 and 84 percent of the height. Keep the outer 8 percent safe to crop and leave the upper area visually quiet. Prefer an unoccupied scene. No luxury objects, brands, status symbols, romantic stereotypes or identity cues. No text, letters, numbers, labels, interface controls, selection marks, logos, signatures or watermarks. The app will render every question, option and selection indicator separately.\n\nShow a quiet public leisure corner beside a small park, as one connected setting. Across the lower middle, give equal visual weight to a simple cushioned seat on the left, an easy flat walking path in the middle, and a small plain table with blank paper and a few colorful geometric craft blocks on the right. Use the same modest scale and pleasant daylight for all three cues. No athletic performance, fitness body, finished masterpiece, trophies, productivity symbols or equipment brands. Resting, moving and making should all feel equally available and worthwhile. No people are needed.",
+      "original_file": "design/assets/lifestyle-discovery/v1/originals/weekend_activity.png",
+      "app_file": "design/assets/lifestyle-discovery/v1/app/weekend_activity.webp",
+      "flutter_asset": "apps/flutter_elitesync_module/assets/lifestyle_discovery/weekend_activity.webp",
+      "original_dimensions": [
+        1586,
+        992
+      ],
+      "app_dimensions": [
+        960,
+        600
+      ],
+      "original_bytes": 1991491,
+      "original_sha256": "80587d18ed862e5c5a53a5c0f43ea35e3209af0316f8aac2539d02a8f7ac85a1",
+      "optimized_bytes": 17802,
+      "optimized_sha256": "fd6919efba5fb1f18682592e77991ea4d6d9a6f4bb59d7350f6720c4d785a325",
+      "optimization": "Pillow fit960x600 Lanczos, WebP quality82 method6; crop less than0.2 percent to16:10",
+      "generation_status": "GENERATED",
+      "model_identifier": "UNKNOWN"
+    },
+    {
+      "scene_id": "meal_company",
+      "prompt": "Create one horizontal 16:10 editorial illustration for the upper part of a mobile lifestyle discovery screen. A calm low-resolution-inspired 2D cartoon with constructivist composition, large cut-paper geometric color blocks, a few deliberate stepped edges and very subtle grain. Crisp recognizable silhouettes at small display size. No photorealism, no 3D rendering, no glossy materials, no cinematic lighting, no detailed textures, no neon.\n\nUse a consistent slightly elevated stage-like view, simple rounded geometric furniture, paper-cut plants and diffuse quiet daylight. Use pale gray #E7EBF2, mist blue #A7C3DE, muted lavender #B8B0D0 and muted mint #AACFC5 for most areas. Reserve tiny accents for #5AA8FF, #8B7CFF and #5FE1C8. Very limited deep navy #08101F outlines and off-white #F6F8FC breathing space. Low contrast within the illustration, clear large shapes, no dark or bright spotlight on any choice cue.\n\nCompose one coherent everyday setting, not three separate panels or a comparison chart. Keep all three described cues equally visible and similarly weighted. Do not imply a preferred or superior choice. Put essential content within the central 76 percent of the width and between 18 and 84 percent of the height. Keep the outer 8 percent safe to crop and leave the upper area visually quiet. Prefer an unoccupied scene. No luxury objects, brands, status symbols, romantic stereotypes or identity cues. No text, letters, numbers, labels, interface controls, selection marks, logos, signatures or watermarks. The app will render every question, option and selection indicator separately.\n\nShow one modest shared dining space with three equally sized plain round tables in a continuous room, not separate panels. Keep the tables and surrounding floor areas equally weighted. The left table has two simple matching seats, the middle table has four matching seats, and the right table has one matching seat. Use the same understated bowls, cloth colors and visual quality across the tables. Do not make the single seat lonely or the group table more festive. No people, romance symbols, alcohol emphasis, restaurant branding, fine dining cues or lavish food. The number of seats is the only meaningful difference.",
+      "original_file": "design/assets/lifestyle-discovery/v1/originals/meal_company.png",
+      "app_file": "design/assets/lifestyle-discovery/v1/app/meal_company.webp",
+      "flutter_asset": "apps/flutter_elitesync_module/assets/lifestyle_discovery/meal_company.webp",
+      "original_dimensions": [
+        1586,
+        992
+      ],
+      "app_dimensions": [
+        960,
+        600
+      ],
+      "original_bytes": 1775717,
+      "original_sha256": "bee5eb4001119e89977b3cb26a65c9056a6ea5646926ee120fec8ac3b8e19907",
+      "optimized_bytes": 12688,
+      "optimized_sha256": "1c6e34c17dd9bfecd4c2615227d3b0bbab6195c0c8976a05d3fa6724b5622166",
+      "optimization": "Pillow fit960x600 Lanczos, WebP quality82 method6; crop less than0.2 percent to16:10",
+      "generation_status": "GENERATED",
+      "model_identifier": "UNKNOWN"
+    },
+    {
+      "scene_id": "shared_time",
+      "prompt": "Create one horizontal 16:10 editorial illustration for the upper part of a mobile lifestyle discovery screen. A calm low-resolution-inspired 2D cartoon with constructivist composition, large cut-paper geometric color blocks, a few deliberate stepped edges and very subtle grain. Crisp recognizable silhouettes at small display size. No photorealism, no 3D rendering, no glossy materials, no cinematic lighting, no detailed textures, no neon.\n\nUse a consistent slightly elevated stage-like view, simple rounded geometric furniture, paper-cut plants and diffuse quiet daylight. Use pale gray #E7EBF2, mist blue #A7C3DE, muted lavender #B8B0D0 and muted mint #AACFC5 for most areas. Reserve tiny accents for #5AA8FF, #8B7CFF and #5FE1C8. Very limited deep navy #08101F outlines and off-white #F6F8FC breathing space. Low contrast within the illustration, clear large shapes, no dark or bright spotlight on any choice cue.\n\nCompose one coherent everyday setting, not three separate panels or a comparison chart. Keep all three described cues equally visible and similarly weighted. Do not imply a preferred or superior choice. Put essential content within the central 76 percent of the width and between 18 and 84 percent of the height. Keep the outer 8 percent safe to crop and leave the upper area visually quiet. Prefer an unoccupied scene. No luxury objects, brands, status symbols, romantic stereotypes or identity cues. No text, letters, numbers, labels, interface controls, selection marks, logos, signatures or watermarks. The app will render every question, option and selection indicator separately.\n\nShow a simple shared activity room with a broad window, an empty cork board and a low foreground shelf. Across the lower middle, arrange three groups of identical soft geometric discs and short line pieces as subtle abstract still-life objects. The left group uses evenly spaced discs, the middle group places discs freely, and the right group uses two ordered discs plus one loose disc with room around it. All groups must use equal object size and equal color emphasis. The objects gently evoke regular, spontaneous and adjustable ways of spending time together. No calendar text, numbers, clocks, wedding imagery, family roles, children, money, home ownership or permanence symbols. Do not imply that one arrangement is more responsible or loving.",
+      "original_file": "design/assets/lifestyle-discovery/v1/originals/shared_time.png",
+      "app_file": "design/assets/lifestyle-discovery/v1/app/shared_time.webp",
+      "flutter_asset": "apps/flutter_elitesync_module/assets/lifestyle_discovery/shared_time.webp",
+      "original_dimensions": [
+        1586,
+        992
+      ],
+      "app_dimensions": [
+        960,
+        600
+      ],
+      "original_bytes": 1807396,
+      "original_sha256": "f5f57beb0743967404d859100ac915fc67e20577afdaffa03a6f7affd77ae1cb",
+      "optimized_bytes": 15700,
+      "optimized_sha256": "3ed59babaf9a807f9613ee1487fb6b75cb035f79de21878f8ce3ee91d775ef98",
+      "optimization": "Pillow fit960x600 Lanczos, WebP quality82 method6; crop less than0.2 percent to16:10",
+      "generation_status": "GENERATED",
+      "model_identifier": "UNKNOWN"
+    }
+  ],
+  "generation_status": "GENERATED_ALL_FIVE",
+  "ac15_02_status": "PARTIAL_EXACT_MODEL_IDENTIFIER_UNAVAILABLE"
+}

@@ -78,6 +78,9 @@ Route::prefix('v1')->group(function () {
         Route::delete('/account', [AuthController::class, 'deleteSelf'])->middleware(['auth:sanctum', 'account.active']);
     });
 
+    Route::get('/profile/lifestyle-discovery', [\App\Http\Controllers\Api\V1\LifestyleDiscoveryController::class, 'show'])->middleware(['auth:sanctum', 'account.active', \App\Http\Middleware\JourneyPrivateResponse::class]);
+    Route::put('/profile/lifestyle-discovery', [\App\Http\Controllers\Api\V1\LifestyleDiscoveryController::class, 'update'])->middleware(['auth:sanctum', 'account.active', \App\Http\Middleware\JourneyPrivateResponse::class]);
+
     Route::prefix('questionnaire')->middleware(['auth:sanctum', 'account.active'])->group(function () {
         Route::get('/questions', [QuestionnaireController::class, 'questions']);
         Route::post('/questions/replace', [QuestionnaireController::class, 'replaceQuestion']);

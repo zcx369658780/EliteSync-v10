@@ -62,6 +62,13 @@ class MeLandingPage extends StatelessWidget {
                 route: AppRouteNames.meMatchingInputs,
               ),
               _MePurposeEntry(
+                icon: Icons.landscape_outlined,
+                title: '生活方式探索',
+                subtitle: '继续探索、查看偏好或返回修改。',
+                route: '/lifestyle-discovery',
+                push: true,
+              ),
+              _MePurposeEntry(
                 key: readinessKey,
                 icon: Icons.fact_check_outlined,
                 title: '准备状态',

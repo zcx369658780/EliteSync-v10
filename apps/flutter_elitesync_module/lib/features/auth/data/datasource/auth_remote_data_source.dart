@@ -50,12 +50,12 @@ class AuthRemoteDataSource {
     throw ValidationException(failure.message, code: failure.code);
   }
 
-  Future<void> register(RegisterRequestDto request) async {
+  Future<LoginResponseDto> register(RegisterRequestDto request) async {
     if (_useMockAuth) {
       if (request.phone == '13800000022') {
         throw const ValidationException('手机号已注册', code: 'AUTH_PHONE_EXISTS');
       }
-      return;
+      return LoginResponseDto.fromJson(AuthMock.loginHappy);
     }
 
     final result = await _apiClient.post(
@@ -63,7 +63,7 @@ class AuthRemoteDataSource {
       body: request.toJson(),
     );
     if (result is NetworkSuccess<Map<String, dynamic>>) {
-      return;
+      return LoginResponseDto.fromJson(result.data);
     }
 
     final failure = result as NetworkFailure<Map<String, dynamic>>;

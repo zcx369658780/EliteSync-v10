@@ -31,6 +31,7 @@ final class SlowDatingService
             abort_unless((int) ($p->revision ?? 0) === $revision, 409, 'stale participation revision');
             $state = $p->state ?? 'NOT_ENROLLED'; $generation = (int) ($p->generation ?? 0);
             if ($action === 'opt_in') {
+                abort_unless(app(LifestyleDiscoveryService::class)->completed($id, true), 422, 'lifestyle_discovery_incomplete');
                 abort_unless(app(ProfileReadinessService::class)->forUser(User::findOrFail($id))['matching_eligibility']['eligible'], 422, 'preparation incomplete');
                 if ($state !== 'ACTIVE') {
                     foreach ($this->pendingFor($id) as $old) {
@@ -254,6 +255,6 @@ final class SlowDatingService
     public function journey(int $actor): array
     {
         $readiness = app(ProfileReadinessService::class)->forUser(User::findOrFail($actor));
-        return ['readiness' => $readiness + $readiness['matching_eligibility'], 'participation' => $this->participation($actor), 'round' => app(MatchRoundProjectionService::class)->currentForUser($actor)['data'], 'proposal' => $this->proposal($actor), 'identity' => app(TrustedIdentityService::class)->status($actor), 'cadence_source' => 'dating_round_channels / dating_rounds.cadence_key', 'consent' => 'Match、CN、MC、正式Relationship、逐字段分享分别同意'];
+        return ['lifestyle_discovery' => ['completed' => app(LifestyleDiscoveryService::class)->completed($actor), 'next_action' => 'lifestyle_discovery'], 'readiness' => $readiness + $readiness['matching_eligibility'], 'participation' => $this->participation($actor), 'round' => app(MatchRoundProjectionService::class)->currentForUser($actor)['data'], 'proposal' => $this->proposal($actor), 'identity' => app(TrustedIdentityService::class)->status($actor), 'cadence_source' => 'dating_round_channels / dating_rounds.cadence_key', 'consent' => 'Match、CN、MC、正式Relationship、逐字段分享分别同意'];
     }
 }
