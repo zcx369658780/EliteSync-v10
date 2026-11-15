@@ -384,7 +384,7 @@
   "formal_release": "NOT_RUN",
   "B2_B3_B4_C": "NOT_RUN",
   "advisor_acceptance": "ADVISOR_ACCEPTED_IN_NAMED_SCOPE_WITH_AC15_02_PARTIAL — R1_CLOSED — NO_R2",
-  "owner_acceptance": "PENDING",
+  "owner_acceptance": "OWNER_ACCEPTED_IN_NAMED_SCOPE_WITH_AC15_02_PARTIAL",
   "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md",
   "r1": {
     "id": "R1-01",
@@ -441,5 +441,24 @@
     "scope": "Documentation only",
     "AC15_02": "PARTIAL_EXACT_MODEL_IDENTIFIER_UNAVAILABLE",
     "owner_acceptance": "PENDING"
+  },
+  "owner_acceptance_report": "OWNER_ACCEPTANCE_20261115.md",
+  "owner_acceptance_date": "2026-11-15",
+  "next": "V10_1_16_PHASE_B2_AUTHORIZED",
+  "owner_decision": {
+    "status": "OWNER_ACCEPTED_IN_NAMED_SCOPE_WITH_AC15_02_PARTIAL",
+    "accepted_ac": [
+      "AC15-01",
+      "AC15-03",
+      "AC15-04",
+      "AC15-05",
+      "AC15-06"
+    ],
+    "retained_partial": [
+      "AC15-02"
+    ],
+    "r1": "CLOSED",
+    "r2": "NOT_REQUIRED",
+    "physical_device_acceptance": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE"
   }
 }

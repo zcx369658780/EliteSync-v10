@@ -20,7 +20,7 @@
   },
   "engineering_result": "DELIVERED_WITH_AC15_02_METADATA_GAP",
   "advisor_acceptance": "ADVISOR_ACCEPTED_IN_NAMED_SCOPE_WITH_AC15_02_PARTIAL — R1_CLOSED — NO_R2",
-  "owner_acceptance": "PENDING",
+  "owner_acceptance": "OWNER_ACCEPTED_IN_NAMED_SCOPE_WITH_AC15_02_PARTIAL",
   "ac_status": {
     "AC15-01": "PASS",
     "AC15-02": "PARTIAL_EXACT_MODEL_IDENTIFIER_UNAVAILABLE",
@@ -528,7 +528,7 @@
   "advisor_acceptance_scope": "AC15-01/03/04/05/06 accepted in named scope; AC15-02 remains PARTIAL because the exact online image model identifier/version is UNKNOWN. R1-01 documentation-only status inconsistency has been independently re-reviewed and CLOSED. Owner acceptance remains pending.",
   "r1_status": "R1_01_CLOSED_DOCS_ONLY",
   "r2_status": "NOT_REQUIRED",
-  "next": "WAIT_FOR_OWNER_ACCEPTANCE",
+  "next": "V10_1_16_PHASE_B2_AUTHORIZED",
   "advisor_acceptance_basis_commit": "f4c48d14f6875b59eefad0f49cafeec38b977066",
   "advisor_rereview_status": "PASS_R1_01_CLOSED",
   "r1_closeout": {
@@ -581,5 +581,14 @@
     ],
     "result": "R1-01 CLOSED; NO R2",
     "owner_acceptance": "PENDING"
+  },
+  "owner_acceptance_date": "2026-11-15",
+  "owner_acceptance_report": "OWNER_ACCEPTANCE_20261115.md",
+  "owner_acceptance_scope": "Owner accepts AC15-01/03/04/05/06 in the advisor-accepted named scope; AC15-02 remains PARTIAL because exact online image model identifier/version is UNKNOWN. R1-01 is CLOSED, NO_R2. Comprehensive Owner real-device acceptance of the low-operation roadmap is deferred until B1+B2+B3 are complete.",
+  "phase_b2_authorization": {
+    "version": "v10.1.16",
+    "scope": "Unified user state and background automation center",
+    "status": "OWNER_AUTHORIZED",
+    "decision": "docs/decisions/OWNER_V10_1_15_ACCEPTANCE_AND_V10_1_16_B2_AUTHORIZATION_20261115.md"
   }
 }

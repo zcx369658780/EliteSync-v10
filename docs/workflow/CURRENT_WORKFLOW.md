@@ -28,3 +28,8 @@ Astra艺术指导与提示词；最新在线GPT Image生成正式静态素材；
 ## v10.1.15顾问验收（2026-11-15）
 
 顾问已按具名范围接受AC15-01/03/04/05/06；AC15-02保持PARTIAL，实际在线图像模型精确标识UNKNOWN。R1-01文档修正已完成并经第二轮独立复核PASS，正式CLOSED，R2不需要。详见[首轮顾问验收报告](../versions/v10.1.15/ADVISOR_ACCEPTANCE_20261115.md)、[R1-01任务及关闭记录](../versions/v10.1.15/R1_01_ART_DIRECTION_STATUS_CONSISTENCY.md)和[第二轮独立复核报告](../versions/v10.1.15/R1_01_REREVIEW_20261115.md)。Owner接受仍PENDING。
+
+
+## v10.1.15 Owner接受与后续授权（2026-11-15）
+
+Owner已接受v10.1.15具名范围，AC15-02仍PARTIAL，R1-01 CLOSED、NO_R2。Owner授权v10.1.16阶段B2「统一用户状态与后台自动化中心」。整体Owner实机验收安排在B1+B2+B3低操作成本主线完成后；B4为独立阶段。决定见[Owner接受与B2授权](../decisions/OWNER_V10_1_15_ACCEPTANCE_AND_V10_1_16_B2_AUTHORIZATION_20261115.md)。
