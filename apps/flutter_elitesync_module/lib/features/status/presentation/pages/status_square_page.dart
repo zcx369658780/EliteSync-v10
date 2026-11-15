@@ -328,16 +328,19 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
               imageQuality: 88,
             );
     } catch (_) {
-      if (current()) AppFeedback.showError(context, '无法打开媒体选择器，请重试');
+      if (mounted && current()) {
+        AppFeedback.showError(context, '无法打开媒体选择器，请重试');
+      }
       return;
     }
-    if (picked == null || !current()) return;
+    final selected = picked;
+    if (selected == null || !current()) return;
 
     setState(() {
       _coverMediaType = video ? 'video' : 'image';
-      _coverImagePath = picked.path;
-      _coverImageName = picked.name.isNotEmpty
-          ? picked.name
+      _coverImagePath = selected.path;
+      _coverImageName = selected.name.isNotEmpty
+          ? selected.name
           : (video ? 'status.mp4' : 'status.jpg');
       _coverStage = _CoverUploadStage.uploading;
       _coverUploadError = null;
@@ -352,7 +355,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
         'media_type': _coverMediaType,
         'original_name': _coverImageName,
         'file': await MultipartFile.fromFile(
-          picked.path,
+          selected.path,
           filename: _coverImageName,
         ),
         'metadata': {'source_page': 'status_square'},
