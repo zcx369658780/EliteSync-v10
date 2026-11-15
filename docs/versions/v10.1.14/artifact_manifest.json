@@ -9,7 +9,7 @@
   "web_source_commit": "e2448e2c4d630fad31168e3c0b70d3831011215f",
   "engineering_status": "PASS_NAMED_REPRESENTATIVE_SCOPE",
   "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2",
-  "owner_acceptance": "PENDING",
+  "owner_acceptance": "OWNER_ACCEPTED_IN_NAMED_SCOPE",
   "apk": {
     "version_name": "10.1.14-dev",
     "version_code": 1011402,
@@ -99,7 +99,7 @@
   },
   "main_integration": "NOT_RUN",
   "release": "NOT_RUN",
-  "next": "WAIT_FOR_OWNER_ACCEPTANCE_AND_PHASE_B_DECISION",
+  "next": "V10_1_15_PHASE_B1_AUTHORIZED",
   "delivery_identity": {
     "source_commit": "88540f7f4d5a64500996b67eb04bfd9aba7c0af3",
     "document_commit_binding": "The fixed Git commit containing this manifest; SHA is provided in the final same-origin readback receipt and final Owner reply",
@@ -444,5 +444,8 @@
   },
   "advisor_acceptance_date": "2026-11-15",
   "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md",
-  "advisor_acceptance_scope": "All six AC14 items and Owner-authorized Xiaomi Android 16 physical-phone supplement accepted only in named representative scope; P2 and NOT_RUN/UNKNOWN boundaries retained."
+  "advisor_acceptance_scope": "All six AC14 items and Owner-authorized Xiaomi Android 16 physical-phone supplement accepted only in named representative scope; P2 and NOT_RUN/UNKNOWN boundaries retained.",
+  "owner_acceptance_date": "2026-11-15",
+  "owner_acceptance_report": "OWNER_ACCEPTANCE_20261115.md",
+  "owner_acceptance_scope": "Owner accepts all six AC14 items and the authorized Xiaomi Android 16 physical-phone supplement only in the named representative scope; three P2 and all NOT_RUN/UNKNOWN/UNVERIFIED boundaries remain."
 }
