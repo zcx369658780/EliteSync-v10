@@ -19,7 +19,7 @@
     "identity_signature_installation": "PASS"
   },
   "engineering_result": "DELIVERED_WITH_AC15_02_METADATA_GAP",
-  "advisor_acceptance": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
+  "advisor_acceptance": "ADVISOR_ACCEPTED_IN_NAMED_SCOPE_WITH_AC15_02_PARTIAL — R1_CLOSED — NO_R2",
   "owner_acceptance": "PENDING",
   "ac_status": {
     "AC15-01": "PASS",
@@ -525,12 +525,12 @@
   "B2_B3_B4_C": "NOT_RUN",
   "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md",
   "advisor_acceptance_date": "2026-11-15",
-  "advisor_acceptance_scope": "AC15-01/03/04/05/06 accepted in named scope; AC15-02 accepted only for generated/reviewed art direction and asset integration with exact image model identifier remaining UNKNOWN/PARTIAL. The dated advisor verdict applies to the original delivery. Codex completed documentation-only R1-01 to reconcile pre-generation and later art/runtime evidence. Advisor re-review is pending.",
+  "advisor_acceptance_scope": "AC15-01/03/04/05/06 accepted in named scope; AC15-02 remains PARTIAL because the exact online image model identifier/version is UNKNOWN. R1-01 documentation-only status inconsistency has been independently re-reviewed and CLOSED. Owner acceptance remains pending.",
   "r1_status": "R1_01_CLOSED_DOCS_ONLY",
   "r2_status": "NOT_REQUIRED",
-  "next": "WAIT_FOR_GPT_ADVISOR_R1_01_REREVIEW",
+  "next": "WAIT_FOR_OWNER_ACCEPTANCE",
   "advisor_acceptance_basis_commit": "f4c48d14f6875b59eefad0f49cafeec38b977066",
-  "advisor_rereview_status": "PENDING",
+  "advisor_rereview_status": "PASS_R1_01_CLOSED",
   "r1_closeout": {
     "status": "CLOSED",
     "scope": "DOCS_ONLY",
@@ -561,6 +561,25 @@
       "Original text and prompt blocks preserved"
     ],
     "advisor_rereview": "PENDING",
+    "owner_acceptance": "PENDING"
+  },
+  "initial_advisor_review_status": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
+  "advisor_rereview_report": "R1_01_REREVIEW_20261115.md",
+  "r1_rereview": {
+    "status": "PASS_CLOSED",
+    "scope": "DOCS_ONLY",
+    "reviewed_commit": "0db7f5731fea642b5facc7fa1a6e92f785ac549a",
+    "corrected_document": "docs/versions/v10.1.15/ASTRA_ART_DIRECTION_V1.md",
+    "corrected_document_git_blob_sha": "b6e24fbfcee3794fd6d21160eb68aa12a770286f",
+    "checks": [
+      "Current art-state summary matches the asset manifest and evidence summary.",
+      "Five generated images and REVIEWED_WITH_NOTES static review are explicit.",
+      "Pre-generation and static-review-time historical statements remain preserved and are clearly superseded.",
+      "APP display, animations, reduced-motion widget, device-level reduced motion, offline assets, and phone verification are separately scoped.",
+      "Image model name/version remain UNKNOWN; AC15-02 remains PARTIAL.",
+      "R1 closeout is limited to documentation; no product source, images, prompt pack, APK, database, or tests changed."
+    ],
+    "result": "R1-01 CLOSED; NO R2",
     "owner_acceptance": "PENDING"
   }
 }

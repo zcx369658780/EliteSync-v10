@@ -2,7 +2,7 @@
 
 当前状态为 `CLOSED — DOCS ONLY`。
 
-顾问重新复核为 `PENDING`。
+顾问重新复核为 `PASS — R1-01 CLOSED`。
 
 顾问验收提交：`f4c48d14f6875b59eefad0f49cafeec38b977066`
 
@@ -53,3 +53,20 @@
 文档核对覆盖Markdown内容及链接、JSON解析和既有证据一致性、Git变更范围、历史原文与prompt保留。交付记录同步更新至CLOSED，顾问重新复核为PENDING，Owner接受为PENDING。原顾问验收报告按其对固定交付提交的历史结论保留。
 
 修正文档见[艺术指导](ASTRA_ART_DIRECTION_V1.md)，依据为[资产manifest](../../../design/assets/lifestyle-discovery/v1/asset_manifest.json)、[实施报告](IMPLEMENTATION_REPORT.md)和[证据摘要](EVIDENCE_SUMMARY_20261115.json)。最终修正由包含本回执的Git提交固定，同源远端回读记录保存在Owner本机本轮回执目录。
+
+
+## 2026-11-15 GPT顾问第二轮独立复核
+
+复核提交：`0db7f5731fea642b5facc7fa1a6e92f785ac549a`
+
+复核结论：`PASS — R1-01 CLOSED — NO R2`。
+
+顾问独立检查修订后的艺术指导文档，确认：
+- 文首当前状态摘要与资产manifest、实施报告及证据摘要一致；
+- 五幅图片已生成，静态视觉审阅为`REVIEWED_WITH_NOTES`；
+- 生成前原文、完整prompt和静态审阅时点的历史状态均保留，并明确标记为历史；
+- APP呈现、动画、Widget减少动态效果、系统级减少动态效果、离线素材及手机验证分项记录，没有扩大PASS范围；
+- 实际图像模型名称与版本继续为`UNKNOWN`，AC15-02继续为`PARTIAL_EXACT_MODEL_IDENTIFIER_UNAVAILABLE`；
+- 本轮修正仅涉及五份文档，没有产品源码、图片、prompt、APK、数据库或测试变更。
+
+R1-01正式关闭，不要求R2。AC15-01/03/04/05/06保持原具名范围接受；AC15-02保持PARTIAL。Owner接受仍为`PENDING`，main集成、正式发布和B2均未授权。

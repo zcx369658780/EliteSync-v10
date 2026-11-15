@@ -222,7 +222,7 @@
         "resolution": "disabled navigation; delayed-response widget red then green"
       }
     ],
-    "advisor_acceptance": "PENDING",
+    "advisor_acceptance": "ADVISOR_ACCEPTED_IN_NAMED_SCOPE_WITH_AC15_02_PARTIAL — R1_CLOSED — NO_R2",
     "owner_acceptance": "PENDING"
   },
   "art_model": {
@@ -383,7 +383,7 @@
   "main_integration": "NOT_RUN",
   "formal_release": "NOT_RUN",
   "B2_B3_B4_C": "NOT_RUN",
-  "advisor_acceptance": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
+  "advisor_acceptance": "ADVISOR_ACCEPTED_IN_NAMED_SCOPE_WITH_AC15_02_PARTIAL — R1_CLOSED — NO_R2",
   "owner_acceptance": "PENDING",
   "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md",
   "r1": {
@@ -424,11 +424,22 @@
         "Git diff limited to five closeout documents",
         "Original text and prompt blocks preserved"
       ],
-      "advisor_rereview": "PENDING",
-      "owner_acceptance": "PENDING"
+      "advisor_rereview": "PASS_CLOSED",
+      "owner_acceptance": "PENDING",
+      "rereview_commit": "0db7f5731fea642b5facc7fa1a6e92f785ac549a"
     }
   },
   "r2": "NOT_REQUIRED",
   "advisor_acceptance_basis_commit": "f4c48d14f6875b59eefad0f49cafeec38b977066",
-  "advisor_rereview_status": "PENDING"
+  "advisor_rereview_status": "PASS_R1_01_CLOSED",
+  "initial_advisor_review_status": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
+  "advisor_rereview_report": "R1_01_REREVIEW_20261115.md",
+  "advisor_rereview": {
+    "status": "PASS_R1_01_CLOSED",
+    "reviewed_commit": "0db7f5731fea642b5facc7fa1a6e92f785ac549a",
+    "report": "R1_01_REREVIEW_20261115.md",
+    "scope": "Documentation only",
+    "AC15_02": "PARTIAL_EXACT_MODEL_IDENTIFIER_UNAVAILABLE",
+    "owner_acceptance": "PENDING"
+  }
 }
