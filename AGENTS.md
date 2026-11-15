@@ -1,29 +1,56 @@
 # EliteSync-v10 工程约定
 
-生效：2026-11-15。当前路线权威为[V3.0](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)及[Owner补充决定](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115.md)。普通工程自治沿用[Owner长期授权](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。
+生效：2026-11-15。当前版本依据[v10.1.14 Owner接受记录](docs/versions/v10.1.14/OWNER_ACCEPTANCE_20261115.md)及[V3.0阶段B1补充决定](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115.md)，当前路线权威为[产品路线图V3.0](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)，普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
-## 当前接受与授权
 
-v10.1.14六项AC及Xiaomi Android16实机补证已获顾问与Owner具名代表性范围接受，NO_R1/NO_R2；三项P2和NOT_RUN/UNKNOWN/UNVERIFIED边界继续保留。Owner记录见[OWNER_ACCEPTANCE](docs/versions/v10.1.14/OWNER_ACCEPTANCE_20261115.md)。
+2026-11-15实机补充授权生效。Owner已明确授权Codex操纵当前接入手机完成v10.1.14测试并重新报告。本轮手机操作、候选升级、虚构QA账号和必要权限验证沿此授权执行。原始候选和历史实机待操作状态按当时记录保留，实际补证结果另记。
 
-当前授权版本为v10.1.15「生活方式探索与渐进式偏好」（V3.0阶段B1）。任务见[task_order](docs/versions/v10.1.15/task_order.md)、[plan](docs/versions/v10.1.15/plan.md)、[DEVELOPMENT_ALIGNMENT](docs/versions/v10.1.15/DEVELOPMENT_ALIGNMENT.md)。
+## 产品目标
 
-## 产品原则
+Owner已确认项目交接及选定旧版主要功能接续完成。当前完善可实际使用的EliteSync APP、真实后端、持久数据库及独立Web管理面板。先完成业务功能与最小可操作界面，必要安全封装随功能收口处理，最后集中打磨UI和文字。现有鉴权、私信权限与数据隔离保留。
 
-EliteSync是低频、高意图、低操作成本的Relationship Decision Support System，不以DAU、停留时长、无限Feed或频繁互动为目标。用户表达意愿，系统完成已授权准备；隐私、分享、身份、消息同意、关系承诺和不可逆动作仍由用户明确控制。
+整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6—v10.1.9按各自已接受范围保留。v10.1.10六项AC及手机补证获顾问范围接受，Owner整版最终接受沿原记录PENDING。v10.1.11六项AC声明工程范围已获顾问与Owner接受，AC11-02为限定能力接受，R1-01 CLOSED；原NOT_RUN/UNKNOWN继续保留。v10.1.12六项AC具名代表性范围已获顾问接受，R1-01 CLOSED；Owner整版接受仍单独记PENDING。v10.1.13六项AC具名代表性范围已获顾问与Owner接受，NO_R1/NO_R2；原NOT_RUN/UNKNOWN/UNVERIFIED继续保留。v10.1.14六项AC和1011402实机补证已获顾问及Owner具名代表性范围接受，NO_R1/NO_R2，三项P2及NOT_RUN边界保留。当前授权版本为v10.1.15「生活方式探索与渐进式偏好」（V3.0阶段B1）。新破冰、约见、共同计划、纪念日仅留接口。
 
-## v10.1.15范围
+## 2026-11-15 当前交付状态
 
-注册后默认展示Lifestyle Discovery，但可跳过；跳过不影响注册、匿名社区、好友或Buddy；未来每周慢约会匹配必须完成。4—6个场景、每场景2—3选项；自动保存、返回修改、正反向动画；原始答案和可解释映射分开保存，用户可纠正。
+v10.1.13已获独立顾问验收及Owner接受，六项AC按具名代表性范围接受，NO_R1/NO_R2。实际范围、原失败和限制见[顾问验收](docs/versions/v10.1.13/ADVISOR_ACCEPTANCE_20261115.md)、[Owner接受](docs/versions/v10.1.13/OWNER_ACCEPTANCE_20261115.md)、[实施报告](docs/versions/v10.1.13/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.13/artifact_manifest.json)。
 
-Astra用于艺术指导；最新在线GPT Image用于静态美术素材；资产放GitHub固定路径并有精确模型版本/日期/提示词/SHA256 manifest。运行时不接AI，不上传用户偏好。视觉风格冻结，等待后续会议再调整。
+v10.1.14阶段A六项AC及1011402手机补证已获顾问和Owner具名代表性范围接受（ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2）。三项P2和NOT_RUN/UNKNOWN/UNVERIFIED继续保留。分支为`codex/v10.1.14-product-readiness-core-journeys-20261115`，唯一父基线`5dd0c9e6625699947f8dd0755ff568a3edfe0b04`，任务文档固定提交`866ccb269603ab451f84e948fa23d7361362f33f`。编码前九份文档逐Blob核对并生成路线ACK，完整记录见[同步回执](docs/versions/v10.1.14/LOCAL_DOCS_SYNC_RECEIPT.json)。
 
-## 未授权边界
+最终APP源码`88540f7f4d5a64500996b67eb04bfd9aba7c0af3`，候选`10.1.14-dev / 1011402`。社区单视频、20图文+5视频本机语料、P1草稿修复、核心旅程代表验证、独立备份恢复及Owner手动评估包已交付，范围见[实施报告](docs/versions/v10.1.14/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.14/artifact_manifest.json)。低内存进程回收后草稿丢失保留P2。Owner随后授权实机补证，1011402在Xiaomi/Android16完成具名范围，语音67和视频69为手机+模拟器验证，耳机、人耳听感、双实机及跨公网矩阵NOT_RUN。实际结果见[实机报告](docs/versions/v10.1.14/PHONE_TEST_REPORT_20261115.md)。顾问与Owner均已接受具名代表性范围（NO_R1/NO_R2）；详见[Owner接受](docs/versions/v10.1.14/OWNER_ACCEPTANCE_20261115.md)。
 
-B2通用状态与自动化中心、B3全局低操作成本重构、B4运行时AI、阶段C外部身份/信用/Push/支付均未授权。不得收集实名、出生时地或信用数据；不得改变匹配算法和关系状态机；不得将探索设为社区/Buddy/好友门槛。
+当前执行范围为V3.0阶段B1 / v10.1.15，具体见[task_order](docs/versions/v10.1.15/task_order.md)、[plan](docs/versions/v10.1.15/plan.md)和[DEVELOPMENT_ALIGNMENT](docs/versions/v10.1.15/DEVELOPMENT_ALIGNMENT.md)。B2通用自动化中心、B3全局低操作成本重构、B4运行时AI及阶段C身份/信用/Push/支付等仍未授权。视觉方向已冻结，按Owner新偏好优先使用Astra艺术指导与最新在线GPT Image制作素材并提交GitHub资产库。本轮手机测试遵循2026-11-15的Owner具体授权，后续设备动作由Owner决定。
 
-## 自主执行与验证
+## 入口与自主执行
 
-Owner负责方向和重大不可逆决策；Codex负责授权范围内拆解、实现、调试、定向验证和常规Git，不逐动作请示。先同步本版路线/授权/任务文件并创建ROADMAP_ALIGNMENT_ACK再编码。只做本版必要测试，不重跑所有历史AC。NOT_RUN/UNKNOWN如实记录。
+先核实际仓库根、remote、分支、HEAD 和工作区/index；只读 [ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md) 短入口及当前目标必要源码，规则见 [CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)。不再递归阅读旧交接、全部 Sources、SDK 清单或测试档案。
 
-保护本地dirty/index、数据库、AVD、私有配置、素材和原始证据；不盲pull/reset/rebase/stash/clean/prune，不force push。真实用户/生产数据、Owner手机、外部付费服务、main集成、正式发布和运营不在本版授权内。集中交付后停止等待顾问验收。
+Owner负责方向和保留决定；顾问提供路线；Codex负责工程拆解、实现、调试、必要测试、审查、工程验收及常规 Git。在已授权目标内连续完成一项功能，可以跨 APP、后端、数据库和管理面板，不逐动作请求许可，不把普通实现修复变成新的任务审批。
+
+普通可恢复错误自行修复，正常页面变化、导航、短暂等待和有限重读不自动导致整段 STOP。遇错设备/账号、真实数据、不可逆操作、明确额度/时间边界或 Owner 停止时，只停止受影响动作，其余授权工作可继续。
+
+## 精简验证
+
+默认仅做受影响代码的检查与定向测试；有必要时做一次最短功能验证。无代码变化、失败或具体未解决风险，不重复全量回归、全资产哈希或已通过的检查。文档整理只检查内容、链接、差异和 Git 状态，不构建 APK、不启动设备或服务。
+
+不为普通小修强制多模型审批、新建冻结 case、复制 SDK/AVD/源码快照、生成多份同义报告。检查应直接证明功能或关键缺陷；不以测试数量、控制器通过或文档完成代替产品进展。只有具体高风险变更或既有明确要求才需要独立审查。
+
+最终功能标准保留；开发中未完成事项明确列出，不因简化测试改成 PASS。自测、工程审查、外部独立验收、Owner 接受及发布分别记录；NOT_RUN/UNKNOWN 如实使用。
+
+## 资产与权限
+
+此前资产清理阶段已结束，既有版本摘要和恢复说明保留；当前以保护稳定工程及独有本地资料、完成本版功能为目标。GitHub 不覆盖未提交代码、私有配置、APK、素材、许可证、SQL/数据库及私有工具；这些仅保留必要的一份，不冒充已有远端备份。不为清理再复制整套工程。
+
+保护原 D:\EliteSync-v10 的未提交成果和 index、当前开发目录及无关 %SystemDrive%/。不盲 pull/reset/rebase/stash/clean/prune，不 force push，不夹带无关内容。远端历史归档不是 main 合并或功能接受。
+
+设备、真实用户/生产数据、外部服务、费用、重大架构/版本和发布仍由 Owner 决定。旧 STOP、已耗次数和余额不追溯修改，不因规则简化自动恢复任何运行。历史测试脚本只作参考，退役路径不能作为现行可执行合同。资产清理阶段已结束。Owner 已授权继续 APP 功能开发；实际联测可等功能完成后进行，届时允许同时使用两个模拟器。本轮手机操作按Owner于2026-11-15的明确授权完成实机补证，结果单独记录。Owner 已长期授权普通功能工程、定向验证与必要APK构建、本机独立开发服务及虚构数据库、必要双模拟器联测、已有许可的免费官方依赖和常规Git。优先源码功能，不为普通重编/启动/安装反复申请；旧执行器/已耗记录不复活。Owner 要求停下时及时保存并手动交接，长期授权本身继续有效。
+
+Owner于2026-11-12具体授权验收说明、120张测试截图、画廊/控件元数据和29份去敏证据摘要上传独立验收分支，范围及发布清单见[验收入口](https://github.com/zcx369658780/EliteSync-v10/blob/85197adec124ef94bbef2994c0668dc990f9bed4/docs/versions/v10.1.5/advisor-acceptance-20261112/README.md)。完整原始回执、APK、素材、凭据、许可证、SQL/数据库与设备原始日志由Owner本机保管。有意义节点维护ACTIVE_STATE单一当前入口及必要进度，常规同步授权分支，失败记PENDING_SYNC。
+
+## 历史决策
+
+11月12日已有功能验收阶段已结束，原报告与测试结论见[v10.1.5收尾](docs/versions/v10.1.5/CLOSEOUT_20261113.md)。Owner当日要求保存并手动交接的[历史记录](docs/workflow/V1015_ADVISOR_ACCEPTANCE_HANDOFF_20261112.md)保留，后续版本按各自明确授权接续。
+
+2026-11-14 [Owner接受v10.1.9并授权v10.1.10的决定](docs/decisions/OWNER_V10_1_9_ACCEPTANCE_AND_V10_1_10_AUTHORIZATION_20261114.md)作为历史依据保留。v10.1.9六项AC获顾问与Owner范围接受，V1019-R1-01 CLOSED，无需R2。v10.1.10任务分支为`codex/v10.1.10-self-knowledge-specialty-tools-20261114`，固定父基线为`8e74d1f7496f066a586afb1e5653ed563b64c46d`，其[实施报告](docs/versions/v10.1.10/IMPLEMENTATION_REPORT.md)记录实际交付。MBTI不作诊断或匹配硬筛选，双人盘使用本人已确认或明确手填输入，既有用途权限继续适用。
+
+此后[Owner单独授权v10.1.11](docs/decisions/OWNER_V10_1_10_ADVISOR_ACCEPTANCE_AND_V10_1_11_AUTHORIZATION_20261114.md)。v10.1.10的历史停止条件及开工指令按其当时范围保留在版本档案中，当前入口见本文件当前交付状态、ACTIVE_STATE和CURRENT_WORKFLOW。
