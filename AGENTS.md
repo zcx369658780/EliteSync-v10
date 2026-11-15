@@ -15,9 +15,9 @@ Owner已确认项目交接及选定旧版主要功能接续完成。当前完善
 
 v10.1.13已获独立顾问验收及Owner接受，六项AC按具名代表性范围接受，NO_R1/NO_R2。实际范围、原失败和限制见[顾问验收](docs/versions/v10.1.13/ADVISOR_ACCEPTANCE_20261115.md)、[Owner接受](docs/versions/v10.1.13/OWNER_ACCEPTANCE_20261115.md)、[实施报告](docs/versions/v10.1.13/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.13/artifact_manifest.json)。
 
-v10.1.14阶段A六项AC已按具名代表范围完成工程自验，顾问独立验收和Owner接受均PENDING。分支为`codex/v10.1.14-product-readiness-core-journeys-20261115`，唯一父基线`5dd0c9e6625699947f8dd0755ff568a3edfe0b04`，任务文档固定提交`866ccb269603ab451f84e948fa23d7361362f33f`。编码前九份文档逐Blob核对并生成路线ACK，完整记录见[同步回执](docs/versions/v10.1.14/LOCAL_DOCS_SYNC_RECEIPT.json)。
+v10.1.14阶段A六项AC已按具名代表范围完成工程自验，顾问已接受六项AC及手机补证的具名代表性范围（ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2）；Owner整版接受PENDING。分支为`codex/v10.1.14-product-readiness-core-journeys-20261115`，唯一父基线`5dd0c9e6625699947f8dd0755ff568a3edfe0b04`，任务文档固定提交`866ccb269603ab451f84e948fa23d7361362f33f`。编码前九份文档逐Blob核对并生成路线ACK，完整记录见[同步回执](docs/versions/v10.1.14/LOCAL_DOCS_SYNC_RECEIPT.json)。
 
-最终APP源码`88540f7f4d5a64500996b67eb04bfd9aba7c0af3`，候选`10.1.14-dev / 1011402`。社区单视频、20图文+5视频本机语料、P1草稿修复、核心旅程代表验证、独立备份恢复及Owner手动评估包已交付，范围见[实施报告](docs/versions/v10.1.14/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.14/artifact_manifest.json)。低内存进程回收后草稿丢失保留P2。Owner随后授权实机补证，1011402在Xiaomi/Android16完成具名范围，语音67和视频69为手机+模拟器验证，耳机、人耳听感、双实机及跨公网矩阵NOT_RUN。实际结果见[实机报告](docs/versions/v10.1.14/PHONE_TEST_REPORT_20261115.md)。顾问与Owner接受PENDING，集中提交与同源回读后停止供验收。
+最终APP源码`88540f7f4d5a64500996b67eb04bfd9aba7c0af3`，候选`10.1.14-dev / 1011402`。社区单视频、20图文+5视频本机语料、P1草稿修复、核心旅程代表验证、独立备份恢复及Owner手动评估包已交付，范围见[实施报告](docs/versions/v10.1.14/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.14/artifact_manifest.json)。低内存进程回收后草稿丢失保留P2。Owner随后授权实机补证，1011402在Xiaomi/Android16完成具名范围，语音67和视频69为手机+模拟器验证，耳机、人耳听感、双实机及跨公网矩阵NOT_RUN。实际结果见[实机报告](docs/versions/v10.1.14/PHONE_TEST_REPORT_20261115.md)。顾问已接受具名代表性范围（NO_R1/NO_R2），Owner整版接受PENDING；集中交付已完成，等待Owner决定后续阶段。
 
 当前范围为V3.0阶段A，视觉方向继续冻结。阶段B的Lifestyle Discovery、全局低操作成本重构、自动化和AI辅助，以及阶段C身份/信用/Push/支付等保留Owner后续授权。本轮手机测试遵循2026-11-15的Owner具体授权，后续设备动作由Owner决定。
 

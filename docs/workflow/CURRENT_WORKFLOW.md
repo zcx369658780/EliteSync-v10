@@ -4,11 +4,11 @@
 
 ## 实机补充授权
 
-Owner于2026-11-15明确授权Codex操纵当前接入手机完成v10.1.14实机测试并重新报告。该授权下的1011402具名实机验证已完成，详见[实机报告](../versions/v10.1.14/PHONE_TEST_REPORT_20261115.md)。语音67/视频69为手机+模拟器，耳机、人耳听感、双实机和跨公网矩阵NOT_RUN，顾问与Owner接受PENDING。
+Owner于2026-11-15明确授权Codex操纵当前接入手机完成v10.1.14实机测试并重新报告。该授权下的1011402具名实机验证已完成，详见[实机报告](../versions/v10.1.14/PHONE_TEST_REPORT_20261115.md)。语音67/视频69为手机+模拟器，耳机、人耳听感、双实机和跨公网矩阵NOT_RUN，顾问已接受六项AC及手机补证的具名代表性范围（NO_R1/NO_R2）；Owner整版接受仍PENDING。
 
 ## 当前工程交付
 
-v10.1.14阶段A六项AC按具名代表范围工程自验PASS，顾问与Owner接受PENDING。[实施报告](../versions/v10.1.14/IMPLEMENTATION_REPORT.md)固定实际范围、P2与未覆盖事项。APP源码`88540f7f4d5a64500996b67eb04bfd9aba7c0af3`，最终候选`10.1.14-dev / 1011402`。九份任务文档同步回执与路线ACK在代码前完成。Owner评估包位于本机，本轮实机动作已按补证报告具名完成，后续Owner体验和接受意见另记。集中提交并完成同源远端回读后停止，等待独立顾问验收。
+v10.1.14阶段A六项AC按具名代表范围工程自验PASS，顾问与Owner接受PENDING。[实施报告](../versions/v10.1.14/IMPLEMENTATION_REPORT.md)固定实际范围、P2与未覆盖事项。APP源码`88540f7f4d5a64500996b67eb04bfd9aba7c0af3`，最终候选`10.1.14-dev / 1011402`。九份任务文档同步回执与路线ACK在代码前完成。Owner评估包位于本机，本轮实机动作已按补证报告具名完成，后续Owner体验和接受意见另记。集中提交并完成同源远端回读后，顾问验收已完成；当前等待Owner整版接受及后续阶段决定。
 
 ## 当前基线
 
@@ -27,3 +27,8 @@ Codex必须先核本地根、remote、branch、HEAD、dirty/index和私有资产
 ## 保留治理边界
 
 不使用真实用户/生产数据，不接新供应商/付费服务，不合main、不正式发布、不开展公司/内测/运营。真实Push、身份核验、算法精度、RTC硬件等历史状态继续按原记录。集中交付后停下供顾问验收，不自动进入下一版。
+
+
+## 顾问验收状态（2026-11-15）
+
+v10.1.14六项AC与1011402 Xiaomi/Android16实机补证：`ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2`。三项P2保留；耳机、人耳听感、双实机、跨公网、补充备份恢复等NOT_RUN边界不升级。Owner接受PENDING，main集成和正式发布NOT_RUN。验收报告：[ADVISOR_ACCEPTANCE_20261115.md](../versions/v10.1.14/ADVISOR_ACCEPTANCE_20261115.md)。

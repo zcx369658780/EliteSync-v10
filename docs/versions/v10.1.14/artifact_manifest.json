@@ -8,7 +8,7 @@
   "api_last_change_commit": "d9c49dd8d6f5721c56f5cfc87b2cbaf721819883",
   "web_source_commit": "e2448e2c4d630fad31168e3c0b70d3831011215f",
   "engineering_status": "PASS_NAMED_REPRESENTATIVE_SCOPE",
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2",
   "owner_acceptance": "PENDING",
   "apk": {
     "version_name": "10.1.14-dev",
@@ -99,7 +99,7 @@
   },
   "main_integration": "NOT_RUN",
   "release": "NOT_RUN",
-  "next": "STOP_FOR_ADVISOR_INDEPENDENT_ACCEPTANCE",
+  "next": "WAIT_FOR_OWNER_ACCEPTANCE_AND_PHASE_B_DECISION",
   "delivery_identity": {
     "source_commit": "88540f7f4d5a64500996b67eb04bfd9aba7c0af3",
     "document_commit_binding": "The fixed Git commit containing this manifest; SHA is provided in the final same-origin readback receipt and final Owner reply",
@@ -425,7 +425,11 @@
     "earphone": "NOT_RUN",
     "human_acoustic": "NOT_RUN",
     "dual_physical_phones": "NOT_RUN",
-    "source_changes": false
+    "source_changes": false,
+    "status": "ACCEPTED_IN_NAMED_SCOPE",
+    "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2",
+    "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md",
+    "owner_acceptance": "PENDING"
   },
   "phone_resources": {
     "device_alias": "Owner-phone-01",
@@ -437,5 +441,8 @@
       7880,
       7881
     ]
-  }
+  },
+  "advisor_acceptance_date": "2026-11-15",
+  "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md",
+  "advisor_acceptance_scope": "All six AC14 items and Owner-authorized Xiaomi Android 16 physical-phone supplement accepted only in named representative scope; P2 and NOT_RUN/UNKNOWN boundaries retained."
 }

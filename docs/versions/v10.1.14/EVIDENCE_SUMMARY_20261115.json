@@ -6,7 +6,7 @@
   "app_source_commit": "88540f7f4d5a64500996b67eb04bfd9aba7c0af3",
   "candidate": 1011402,
   "engineering_acceptance": "PASS_NAMED_REPRESENTATIVE_SCOPE",
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2",
   "owner_acceptance": "PENDING",
   "unique_dart_tests": 15,
   "php_tests": 9,
@@ -159,8 +159,27 @@
     "report": "PHONE_TEST_REPORT_20261115.md",
     "evidence": "PHONE_EVIDENCE_SUMMARY_20261115.json",
     "authorization": "Owner current explicit instruction",
-    "status": "COMPLETE_NAMED_SCOPE",
-    "prior_OWNER_ACTION_PENDING": "Historical initial state at previous fixed delivery"
+    "status": "ACCEPTED_IN_NAMED_SCOPE",
+    "prior_OWNER_ACTION_PENDING": "Historical initial state at previous fixed delivery",
+    "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2",
+    "owner_acceptance": "PENDING"
   },
-  "original_evidence_epoch": "Original fixed delivery ca54f4b7c401c9bf5729a855a1bad34993d3d817; physical_phone_supplement records later Owner-authorized work"
+  "original_evidence_epoch": "Original fixed delivery ca54f4b7c401c9bf5729a855a1bad34993d3d817; physical_phone_supplement records later Owner-authorized work",
+  "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md",
+  "advisor_review": {
+    "date": "2026-11-15",
+    "scope": "Six AC14 items and Owner-authorized Xiaomi Android 16 physical-phone supplement; named representative scope only",
+    "result": "ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2",
+    "retained_p2": [
+      "V10114-P2-01 low-memory process reclamation loses unpublished draft",
+      "V10114-P2-02 video hangup control requires scrolling into view",
+      "V10114-P2-03 legacy video-reserved result label"
+    ],
+    "limitations": [
+      "Headset and human acoustic listening NOT_RUN",
+      "Dual physical phones and public-network RTC NOT_RUN",
+      "Phone supplement backup restore NOT_RERUN",
+      "Screenshot files and SHA index verified; PNG pixel-level visual review not independently performed in this review"
+    ]
+  }
 }

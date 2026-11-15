@@ -22,3 +22,8 @@
 | 16 | 双设备RTC | PASS_PHONE_PLUS_EMULATOR_SCOPE | 手机与生成画面的模拟器语音67及视频69通过；双实机、跨公网和完整硬件矩阵NOT_RUN。 |
 
 本轮设备为Xiaomi 25060RK16C、Android16/API36。详细来源、失败、恢复和P2见[实机报告](PHONE_TEST_REPORT_20261115.md)。Owner本轮确认暂无耳机并要求继续其他检查，人耳听感也保留NOT_RUN。后续Owner实际体验及接受意见另行记录。
+
+
+## 2026-11-15 独立顾问复核更新
+
+顾问已接受v10.1.14六项AC及本实机补证的具名代表性范围：`ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2`。三项P2（低内存草稿丢失、视频挂断控件需滚动、视频结果旧文案）继续保留，不要求本轮R1/R2。耳机、人耳听感、双实机、跨公网及完整RTC硬件矩阵继续NOT_RUN。Owner整版接受仍PENDING。详见[独立顾问验收报告](ADVISOR_ACCEPTANCE_20261115.md)。

@@ -16,7 +16,7 @@
     "resolution": "1280x2772"
   },
   "engineering_supplement": "COMPLETE_NAMED_SCOPE",
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2",
   "owner_acceptance": "PENDING",
   "checks": [
     {
@@ -383,5 +383,6 @@
       7881
     ]
   },
-  "screenshots": "evidence/phone/SCREENSHOTS.json"
+  "screenshots": "evidence/phone/SCREENSHOTS.json",
+  "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md"
 }
