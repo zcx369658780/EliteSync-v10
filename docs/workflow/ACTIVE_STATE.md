@@ -1,6 +1,6 @@
-# 当前入口 2026-11-15 v10.1.16 B2具名工程交付，等待GPT顾问独立验收
+# 当前入口 2026-11-15 v10.1.16 B2顾问条件接受，R1-01 OPEN
 
-**V10116_B2_ENGINEERING_DELIVERED_IN_NAMED_SCOPE / ADVISOR_PENDING / OWNER_PENDING**。
+**V10116_B2_CONDITIONAL_ADVISOR_ACCEPTANCE / R1_01_OPEN_P1 / NO_R2 / OWNER_PENDING**。
 
 ## 当前交付
 
@@ -29,3 +29,8 @@ DB/API/WS及B2专用具名调度运行，SFU exited。模拟器已停止，AVD�
 路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)及[B2补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md)，上版事实沿[v10.1.15 Owner接受记录](../versions/v10.1.15/OWNER_ACCEPTANCE_20261115.md)保留，AC15-02仍PARTIAL。
 
 本版交付后停止等待GPT顾问独立验收。B3、B4、阶段C、main集成、正式发布及真实运营NOT_RUN。Owner整体实机验收安排在B1+B2+B3完成后。
+
+
+## 顾问独立验收
+
+顾问结论：`CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2`。AC16-03/05存在自动化pause/revoke/expiry误暂停未绑定的独立手动ACTIVE参与问题；同一委托绑定更新未推进参与source revision/freshness。详见[顾问验收报告](../versions/v10.1.16/ADVISOR_ACCEPTANCE_20261115.md)及[R1-01任务](../versions/v10.1.16/R1_01_AUTOMATION_REVOCATION_SCOPE.md)。修正后等待第二轮复核。其他NOT_RUN/UNKNOWN及十二项基线旧失败继续保留。

@@ -9,7 +9,7 @@
   "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
   "final_document_identity": "Git commit containing this manifest; same-origin fixed readback receipt retained privately and final reply lists exact commit",
   "engineering_result": "DELIVERED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
   "owner_acceptance": "PENDING",
   "ac_status": {
     "AC16-01": "PASS",
@@ -530,5 +530,19 @@
     "release": "NOT_RUN",
     "real_users_and_production_data": "NOT_USED",
     "owner_overall_device_acceptance": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE"
+  },
+  "advisor_review": {
+    "status": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE",
+    "reviewed_delivery_commit": "c635dcadbbeec93e9b4287aaab9ae187742e226a",
+    "reviewed_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "report": "ADVISOR_ACCEPTANCE_20261115.md",
+    "r1": {
+      "id": "R1-01",
+      "status": "OPEN",
+      "severity": "P1",
+      "title": "Automation pause/revoke/expiry must not pause independent manual participation; delegation binding must advance source freshness"
+    },
+    "r2": "NOT_REQUIRED",
+    "owner_acceptance": "PENDING"
   }
 }

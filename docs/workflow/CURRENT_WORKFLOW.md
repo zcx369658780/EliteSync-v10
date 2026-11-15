@@ -27,3 +27,8 @@ Owner将在B1+B2+B3全部完成后进行整体实机验收。中间版本由Code
 ## 边界
 
 不做B3全局UI重构、不做B4运行时AI、不接身份/征信/芝麻信用/蚂蚁积分/真实Push/支付或新供应商；不使用真实用户/生产数据；不合main、不发布、不运营。v10.1.16交付后停下供顾问验收。
+
+
+## v10.1.16顾问验收（2026-11-15）
+
+B2七项AC完成具名工程交付，但GPT顾问结论为`CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2`。R1-01要求修正：自动化暂停/撤销/到期不得暂停未绑定自动化的独立手动ACTIVE参与；委托绑定变化须推进参与source revision/freshness。见[顾问验收报告](../versions/v10.1.16/ADVISOR_ACCEPTANCE_20261115.md)与[R1-01任务](../versions/v10.1.16/R1_01_AUTOMATION_REVOCATION_SCOPE.md)。R1关闭后请求第二轮复核；不需要重复全部已通过测试，不要求Owner中间版本实机验收。

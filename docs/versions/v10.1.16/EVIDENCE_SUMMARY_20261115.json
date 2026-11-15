@@ -4,7 +4,7 @@
   "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
   "engineering_result": "PASS_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
   "acceptance": {
-    "advisor": "PENDING",
+    "advisor": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
     "owner": "PENDING",
     "owner_overall_device_evaluation": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE"
   },
@@ -437,5 +437,17 @@
     "fetch_head": "00cec7843911bb3341304c004059de0a91e12f16",
     "ls_remote": "00cec7843911bb3341304c004059de0a91e12f16",
     "result": "PASS"
+  },
+  "advisor_review": {
+    "status": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE",
+    "reviewed_delivery_commit": "c635dcadbbeec93e9b4287aaab9ae187742e226a",
+    "reviewed_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "r1": {
+      "id": "R1-01",
+      "status": "OPEN",
+      "severity": "P1"
+    },
+    "r2": "NOT_REQUIRED",
+    "owner_acceptance": "PENDING"
   }
 }
