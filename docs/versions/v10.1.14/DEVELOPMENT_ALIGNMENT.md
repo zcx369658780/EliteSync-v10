@@ -49,3 +49,19 @@ EliteSync帮助用户用尽可能少的时间获得高质量关系机会。不�
 - 不把社区测试内容数量解释为用户增长目标。
 - 不以视觉统一为由在本版重构全APP UI。
 - 不因测试数据需要而公开真实位置、出生资料、身份或私聊。
+
+
+## 7. 当前源码核验锚点
+
+本版计划中的“社区当前仅支持图片”来自v10.1.13固定源码，不是对旧截图的推测：
+
+| 文件 | 源码提交 | Git Blob SHA | 核对结论 |
+|---|---|---|---|
+| `apps/flutter_elitesync_module/lib/features/status/presentation/pages/status_square_page.dart` | `2b4fdcc9f342b972a37b35de74fbf099827a7c2e` | `f3463af95d0ad799bf47f9eaf1d1498698b0b7f0` | 动态创建使用ImagePicker和封面图片上传 |
+| `services/backend-laravel/app/Http/Controllers/Api/V1/StatusPostController.php` | `47e1b4fd8fad3dd8165d1be6dc9f059095290e75` | `d75125a1ef3adb7b03486ba8679b6cea024f051d` | `cover_media_asset_id`必须属于作者且media_type为image |
+| `services/backend-laravel/app/Models/StatusPost.php` | 同上 | `d8bc516b040cab6c50652ec614bf6dbcfb1592ba` | 现有媒体关联为coverMediaAsset |
+| `apps/flutter_elitesync_module/lib/features/status/presentation/widgets/status_post_card.dart` | `2b4fdcc9f342b972a37b35de74fbf099827a7c2e` | `9f6e1db8ecd6295c78b9384f91675d5973e3b9bf` | 当前动态卡片只渲染认证图片 |
+| `services/backend-laravel/app/Http/Controllers/Api/V1/MediaController.php` | `47e1b4fd8fad3dd8165d1be6dc9f059095290e75` | `f4e24d408911dc6b9520a1ac5889f2339ceda942` | 已有私有媒体上传、内容读取和当前权限检查基础 |
+| `services/backend-laravel/app/Services/PrivateVideoValidator.php` | 同上 | `b56c5e5c01bbebce2f2b0c3654fa817cdc5e8be4` | 已有MP4/H.264/可选AAC、25MiB、30秒、不转码验证器 |
+
+Codex开工时必须重新确认这些路径和Blob仍与本地候选一致。若本地工程存在后续改动，按本地实际源码重新核实，不盲目用上述历史文件覆盖。
