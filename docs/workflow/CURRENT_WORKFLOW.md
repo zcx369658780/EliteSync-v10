@@ -1,6 +1,6 @@
 # EliteSync-v10 当前工作流
 
-2026-11-15更新。v10.1.15已获Owner具名范围接受，AC15-02仍PARTIAL，R1-01 CLOSED、NO_R2。当前授权任务为[v10.1.16阶段B2](../versions/v10.1.16/task_order.md)，路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)和[B2补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md)。
+2026-11-15更新。v10.1.15已获Owner具名范围接受，AC15-02仍PARTIAL，R1-01 CLOSED、NO_R2。当前[v10.1.16阶段B2](../versions/v10.1.16/task_order.md)已完成具名工程交付，等待GPT顾问独立验收，路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)和[B2补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md)。
 
 ## 当前Owner决定
 
@@ -8,7 +8,9 @@ v10.1.15 Owner接受记录：[OWNER_ACCEPTANCE](../versions/v10.1.15/OWNER_ACCEP
 
 Owner授权v10.1.16「统一用户状态与后台自动化中心」。只授权B2；B3全局重构、B4运行时AI和阶段C外部服务未授权。
 
-## v10.1.16开工同步
+## v10.1.16同步与交付状态
+
+十四份文档逐Blob核验及编码前ACK已完成。产品源码 `00cec7843911bb3341304c004059de0a91e12f16`，候选 `10.1.16-dev / 1011601`，具名验证、旧失败与NOT_RUN范围见[实施报告](../versions/v10.1.16/IMPLEMENTATION_REPORT.md)。顾问和Owner接受均PENDING，当前进入交付后等待状态。
 
 Codex先核本地根、remote、branch、HEAD、dirty/index和私有资产，再同步V3.0、B2补充决定、v10.1.15接受记录、本版task_order/plan/DEVELOPMENT_ALIGNMENT/B2合同/prompt及入口文档。逐Blob核验并记录LOCAL_DOCS_SYNCED或PENDING_LOCAL_SYNC，创建ROADMAP_ALIGNMENT_ACK后才编码。
 

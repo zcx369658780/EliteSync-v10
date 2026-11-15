@@ -1,0 +1,534 @@
+{
+  "version": "v10.1.16",
+  "phase": "V3.0_B2",
+  "branch": "codex/v10.1.16-user-state-automation-center-20261115",
+  "fixed_parent": "b981796e68ca512beeed2a18b40aeb8b09e26bc2",
+  "fixed_task_commit": "89ce556ab67c6ea759d3a2ffea7016edf11b892e",
+  "docs_sync_commit": "c793eefcad2f5cff0c613b79b2b1d1cba32e6fa5",
+  "docs_sync_status": "LOCAL_DOCS_SYNCED_BEFORE_PRODUCT_EDITS",
+  "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+  "final_document_identity": "Git commit containing this manifest; same-origin fixed readback receipt retained privately and final reply lists exact commit",
+  "engineering_result": "DELIVERED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "ac_status": {
+    "AC16-01": "PASS",
+    "AC16-02": "PASS_IN_NAMED_SCOPE",
+    "AC16-03": "PASS_IN_NAMED_SCOPE",
+    "AC16-04": "PASS_IN_NAMED_SCOPE",
+    "AC16-05": "PASS_IN_NAMED_SCOPE",
+    "AC16-06": "PASS_IN_NAMED_SCOPE",
+    "AC16-07": "PASS_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS"
+  },
+  "candidate": {
+    "version_name": "10.1.16-dev",
+    "version_code": 1011601,
+    "package": "com.elitesync.v1015dev",
+    "build_type": "debug",
+    "abi": "arm64-v8a",
+    "apk_bytes": 124048353,
+    "apk_sha256": "ac86f8df05d1e39abfead445ba5d6e23bcb457b6c73030c02fa38d2d2cedb055",
+    "signing_certificate_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+    "private_apk_name": "candidate-1011601-private.apk",
+    "identity_signature_installation": "PASS",
+    "phone": "NOT_USED"
+  },
+  "runtime_identity": {
+    "api_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "api_runtime_files_compared": 14,
+    "api_runtime_equality": "PASS",
+    "web_repository_identity": "00cec7843911bb3341304c004059de0a91e12f16",
+    "web_frontend_changes": "NONE",
+    "web_ui_specific_validation": "NOT_RUN",
+    "scheduler": "named Laravel user-automation event",
+    "scheduler_sample_success_count": 31,
+    "scheduler_sample_failure_count": 0,
+    "queue_default": "sync",
+    "protected_matching_consumer": "NOT_RUNNING"
+  },
+  "source_remote_readback": {
+    "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "origin": "git@github.com:zcx369658780/EliteSync-v10.git",
+    "remote_branch": "codex/v10.1.16-user-state-automation-center-20261115",
+    "fetch_head": "00cec7843911bb3341304c004059de0a91e12f16",
+    "ls_remote": "00cec7843911bb3341304c004059de0a91e12f16",
+    "result": "PASS"
+  },
+  "source_files": [
+    {
+      "path": "apps/android/app/build.gradle.kts",
+      "git_blob_sha": "8f569dc8ddf2ba2fb7341a7002fbf5fa9c6d4c16",
+      "git_canonical_bytes": 13608,
+      "git_canonical_sha256": "2858cdad0a818d4d9e4a08e6cb35b79cd5f9e87363bc19cd568e96fbafe4a5ab"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/router/app_router.dart",
+      "git_blob_sha": "5f4a7740758e6c48dffce0806176fbdb04d339d1",
+      "git_canonical_bytes": 29303,
+      "git_canonical_sha256": "1ab052805bdb1013dd4df5d80a803244063c4b95ebab5144970563dad40c87f4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_landing_page.dart",
+      "git_blob_sha": "a82ac287b96cb08ae4aa4df251cd2c3832a509ac",
+      "git_canonical_bytes": 8740,
+      "git_canonical_sha256": "cffe775ccfa345a2cf24f48f8619d28f1d398770dddaae91a6b9fc02e44d5629"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/slow_dating_v1012/slow_dating_journey_page.dart",
+      "git_blob_sha": "90b006be50641e5a2bc7ff8bc8d7b4733a101669",
+      "git_canonical_bytes": 14370,
+      "git_canonical_sha256": "0289c85b90f501179b39450888a69fd722a7803d8738409681c305b08b5b1203"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/user_automation/user_state_page.dart",
+      "git_blob_sha": "2914633c1b473fbe28905c76120273b938370552",
+      "git_canonical_bytes": 9560,
+      "git_canonical_sha256": "10d589db623a8b9ecfcc505ad44d822da43191ddf758a40aa2bfcf9c01883bb0"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/user_automation/user_state_page_test.dart",
+      "git_blob_sha": "bd49350336bb469a0d0c1595efd26fd69aa3e47e",
+      "git_canonical_bytes": 5664,
+      "git_canonical_sha256": "2e1d23927aa8d6329686e3a235d832e25fc44b7cd212a9376c15fb8300d99fc6"
+    },
+    {
+      "path": "services/backend-laravel/app/Console/Commands/WorkUserAutomation.php",
+      "git_blob_sha": "67186f742220bebeae7c8ebaa0c02ebdb1392f9b",
+      "git_canonical_bytes": 1218,
+      "git_canonical_sha256": "0eab59feda4d1a9512c995a5ea86ef28eed31f3feb3f04ff912dee0a25e985a2"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/UserAutomationController.php",
+      "git_blob_sha": "008f82e572638e02115b54fb3c9ea89dbf03c4fb",
+      "git_canonical_bytes": 1515,
+      "git_canonical_sha256": "e5e553c80c3e04d12b3e92eafbb5d34eefebc478272dbacb2fa3b1ae85b0da71"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Middleware/JourneyPrivateResponse.php",
+      "git_blob_sha": "71f5fc88f86c57185b7ed3bcced8407b13ba11d6",
+      "git_canonical_bytes": 513,
+      "git_canonical_sha256": "42871895b1609dd1ab11ac0f3425c232fe74b0a8e0e45df16a658317981cdfd0"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/Accounts/AccountClosure.php",
+      "git_blob_sha": "81e86797027c98cc3d3912be2a2b8aa977ef379c",
+      "git_canonical_bytes": 14210,
+      "git_canonical_sha256": "06da398967d4d6f297d02ae66a3ed40b5e4159ebde5c8f4b6b44541d982c88d0"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/AutomationAuthorizationService.php",
+      "git_blob_sha": "4fff411b1defc124502c69973e65e0cb414e4e4d",
+      "git_canonical_bytes": 9286,
+      "git_canonical_sha256": "5e0bbbc9516d869e9503d5e873dac449c80e8a95bb533cedb3e85831dcb1f78a"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/AutomationService.php",
+      "git_blob_sha": "a36996740005a67a3b6648802bec496cb58d0498",
+      "git_canonical_bytes": 14890,
+      "git_canonical_sha256": "9f129d5be21dcbd3295209713dfa7eb77bb7435aa3894bb06c399cdda19651c7"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/MatchRoundProjectionService.php",
+      "git_blob_sha": "a8bbe203458c47c19af015d0e7f673ffa566ba79",
+      "git_canonical_bytes": 7925,
+      "git_canonical_sha256": "c4a044b4ae575a0dffcb5671dfe0ff47508f02432dd68f018947a52b8a45dbb8"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/MatchingRunService.php",
+      "git_blob_sha": "c3064d5d2b36bcf584a595c2e68cb11c00839738",
+      "git_canonical_bytes": 25061,
+      "git_canonical_sha256": "fb1c4325eb0e6b00458ace5b8c62afb04e349643e849b82ee98d6c2bed0adfb4"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/SlowDatingService.php",
+      "git_blob_sha": "17096419551c58f5c6c9bd557bf9a85ef230364c",
+      "git_canonical_bytes": 19369,
+      "git_canonical_sha256": "8f5e02866ee6eb147d4ff2cdc68d7d494d1f0ca686e895f9883a4764c591686f"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/UserStateService.php",
+      "git_blob_sha": "698d0a8a6172a8841bf819f02988c5d9f659fc6c",
+      "git_canonical_bytes": 5716,
+      "git_canonical_sha256": "d39978d41458d8aa39bbb708033eaa3a729560d91d413f75c11ecc1f5f8634f8"
+    },
+    {
+      "path": "services/backend-laravel/config/user_automation.php",
+      "git_blob_sha": "47dd3c61c1746a7d260e3836cef16411b78b74d4",
+      "git_canonical_bytes": 202,
+      "git_canonical_sha256": "32e4d13c941c3b67f2facf20efd5efc2e79e924267374a45911a676032b81f8b"
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_11_15_220000_create_user_automation.php",
+      "git_blob_sha": "9f94c17451aeffeeab48d5bfe3e5f36b44a3ec79",
+      "git_canonical_bytes": 4636,
+      "git_canonical_sha256": "f2861e2503a4fbe0d52e914f8dbdb2948a07f62ed84bf435fd9822e554432b0d"
+    },
+    {
+      "path": "services/backend-laravel/routes/api.php",
+      "git_blob_sha": "37f6ae46994eae14d5475d65be352ed0fd0bac53",
+      "git_canonical_bytes": 30444,
+      "git_canonical_sha256": "9965efb6ec7d4ef12306fe89859bfa26291c52941b56bfd25ed7a7a84b8408d5"
+    },
+    {
+      "path": "services/backend-laravel/routes/console.php",
+      "git_blob_sha": "847b3d2103f443d7219c0e415331dad8e7a73a62",
+      "git_canonical_bytes": 2591,
+      "git_canonical_sha256": "aa9b6edbb0cb9589ca64974bd3d0dc46032f5c6471eb55ee09f524d4b8ec8d84"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V10116UserStateAutomationTest.php",
+      "git_blob_sha": "eaa3a2de041b732253ae8eacf1d414a894f4deef",
+      "git_canonical_bytes": 22398,
+      "git_canonical_sha256": "c75302e84e185161991be88b1743d04602428b6f955f694bb8d8b568a58fa4d4"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/v10116_worker_reliability.php",
+      "git_blob_sha": "b18ad386b8dcef27cdd2c0a5b75db9af52a7684b",
+      "git_canonical_bytes": 5644,
+      "git_canonical_sha256": "7b1c59a98e56cb5ff847ce4992c927ab4d0e82b4d357dc3ae677636ab9eae573"
+    }
+  ],
+  "document_files": [
+    {
+      "path": "docs/versions/v10.1.16/LOCAL_DOCS_SYNC_RECEIPT.json",
+      "git_blob_sha": "5c9b59653f7ae6d87ec8411d5859f58e97051904",
+      "git_canonical_sha256": "c8faca287c60d98eed24c4b619ece78302a7fe3c2107037def5cd7122f1c9030"
+    },
+    {
+      "path": "docs/versions/v10.1.16/ROADMAP_ALIGNMENT_ACK.md",
+      "git_blob_sha": "fc0298591c8ebf2389922124edbdb5f8ebd5a0e4",
+      "git_canonical_sha256": "07a92c5b9ba47bf08360a9954c64ff95161d63f8d16faa93844469ca1c4a9a4e"
+    },
+    {
+      "path": "docs/versions/v10.1.16/USER_STATE_SOURCE_MAP_V1.md",
+      "git_blob_sha": "48ac2e54aadf1de9cb9b39ef6f50b988f460bb26",
+      "git_canonical_sha256": "83a1fa5c60915dcd674a34aa350c9837b6a7bce5848ef0935ef93f81b261a3ed"
+    },
+    {
+      "path": "docs/versions/v10.1.16/IMPLEMENTED_STATE_AUTOMATION_CONTRACT_V1.md",
+      "git_blob_sha": "28d8da2f37dba339dcb77e2db11d55074b1ba45f",
+      "git_canonical_sha256": "d0a260d97806345ce76c4a0008130a9c6b6025d942c3e9a5c4d5d356f16d1fce"
+    },
+    {
+      "path": "docs/versions/v10.1.16/LOCAL_AUTOMATION_OPERATIONS.md",
+      "git_blob_sha": "feb8f86982ca472e3acbe20dcd053944ac14df45",
+      "git_canonical_sha256": "e0c8dca0007a28a0f726dcf8161e75867232522cd048434870e3ac99d82164f4"
+    },
+    {
+      "path": "docs/versions/v10.1.16/IMPLEMENTATION_REPORT.md",
+      "git_blob_sha": "75b5c028d5a7f9313cbf628b2fec144442ca6046",
+      "git_canonical_sha256": "e3e20b563c6d2b9a221941388524ef6aaf5abefeb2f128ac23194bad99ebd4a5"
+    },
+    {
+      "path": "docs/versions/v10.1.16/EVIDENCE_SUMMARY_20261115.json",
+      "git_blob_sha": "d5057c0293694b28574c9ccd6b0386776e3adfe4",
+      "git_canonical_sha256": "61cfe5ab183b0f1bad06e3ce4fcc384fccaa3124cb52b93f68a2e6e7faca4ada"
+    },
+    {
+      "path": "docs/versions/v10.1.16/evidence/README.md",
+      "git_blob_sha": "6ec850a02ea2ab6f281484a05e6b546d6bbaa5b9",
+      "git_canonical_sha256": "3c5d36032a451e23862f2932807066606e1c51dcb705486fd4a0e25b1e5080fc"
+    },
+    {
+      "path": "docs/workflow/ACTIVE_STATE.md",
+      "git_blob_sha": "6b2de46a47ef45aaa50e859ccf12f986547a2098",
+      "git_canonical_sha256": "e61d5ae0eb02d170eb6f30a56c4899ac61202e5f2a41f714265bd6b4d10033d5"
+    },
+    {
+      "path": "docs/workflow/CURRENT_WORKFLOW.md",
+      "git_blob_sha": "dc13ba04d2aaecd8e47ef2bba4565f6b6cac4886",
+      "git_canonical_sha256": "6885bc8b19063e93266392ea94ce7ac8bf9b8b123127d4894144d9a3c9d5e7b8"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/versions/v10.1.16/evidence/legacy-default-off.png",
+      "caption": "旧虚构账号保持默认关闭，资格不足时授权按钮禁用",
+      "sha256": "29e732ff2f3a222374dc1b7a539f16cecf6c4bd0eaf233af64f9709ea7d09a9c",
+      "bytes": 179248,
+      "candidate": 1011601
+    },
+    {
+      "path": "docs/versions/v10.1.16/evidence/ready-before-grant.png",
+      "caption": "已完成准备的 QA A，授权前状态",
+      "sha256": "ebc43f8c72da0b8e430d05ce4595a318b98adcda3202d9bc9b56f729d3f3c0cb",
+      "bytes": 172175,
+      "candidate": 1011601
+    },
+    {
+      "path": "docs/versions/v10.1.16/evidence/explicit-consent.png",
+      "caption": "持续参与的独立授权确认",
+      "sha256": "86472d5c462b33e3b6bddaac29c2ccaf849120376784df0c99ea9e160fefb034",
+      "bytes": 206713,
+      "candidate": 1011601
+    },
+    {
+      "path": "docs/versions/v10.1.16/evidence/app-active.png",
+      "caption": "APP 明确授权后 ACTIVE",
+      "sha256": "5225c4ba4426fef12c8dc9e8b2953f8eabbe490e8fef9aa1da8253f5eb587c3b",
+      "bytes": 175217,
+      "candidate": 1011601
+    },
+    {
+      "path": "docs/versions/v10.1.16/evidence/app-round-closed.png",
+      "caption": "已有轮次报名已结束，任务按原因跳过",
+      "sha256": "543bd4aae4401ff21b72e4757e031546c1ab1861bf7524562a748e36a927b911",
+      "bytes": 175635,
+      "candidate": 1011601
+    },
+    {
+      "path": "docs/versions/v10.1.16/evidence/app-paused.png",
+      "caption": "APP 暂停后 PAUSED",
+      "sha256": "7ecd13ebf0ff15a5dd90e93bfc2714f073dcbd8fd74b139d1ea18bf1f6c68340",
+      "bytes": 172001,
+      "candidate": 1011601
+    },
+    {
+      "path": "docs/versions/v10.1.16/evidence/app-cold-active.png",
+      "caption": "APP 进程重启后读取仍为 ACTIVE",
+      "sha256": "afed83d1a3362724c4d412dd29c7ea399fb0587bfb0ef58a009fb837870b754f",
+      "bytes": 183362,
+      "candidate": 1011601
+    },
+    {
+      "path": "docs/versions/v10.1.16/evidence/app-revoked.png",
+      "caption": "APP 撤销后 REVOKED",
+      "sha256": "0ba311e99758073a098451230f192c47d23c61ca8c5010ade909f536f95e2f17",
+      "bytes": 184238,
+      "candidate": 1011601
+    },
+    {
+      "path": "docs/versions/v10.1.16/evidence/app-account-b-off.png",
+      "caption": "切换 QA B 后探索未开始、自动化 OFF",
+      "sha256": "52cfb9227de2dd41f6ce214b81318f19ae848295bbdab0cafb1f7e04d99cf3f5",
+      "bytes": 172735,
+      "candidate": 1011601
+    },
+    {
+      "path": "docs/versions/v10.1.16/evidence/app-account-a-returned.png",
+      "caption": "返回 QA A 后保留 REVOKED",
+      "sha256": "9e1daee429ef71c98339eee816d8bd04b991434262beae2e591666f75eddae4a",
+      "bytes": 172063,
+      "candidate": 1011601
+    }
+  ],
+  "tests": {
+    "php": {
+      "unique_tests": 104,
+      "assertions": 1115,
+      "groups": [
+        {
+          "log": "final-green-03-php-private.log",
+          "tests": 84,
+          "assertions": 883
+        },
+        {
+          "log": "ws-compat-green-01-php-private.log",
+          "tests": 11,
+          "assertions": 74
+        },
+        {
+          "log": "chat-compat-green-02-php-private.log",
+          "tests": 9,
+          "assertions": 158
+        }
+      ],
+      "b2_parameterized_cases": 17,
+      "result": "PASS"
+    },
+    "widget": {
+      "tests": 4,
+      "result": "PASS",
+      "log": "flutter-final-green.log"
+    },
+    "dart_analysis": {
+      "files": 5,
+      "result": "PASS",
+      "log": "dart-final-analysis.log"
+    },
+    "php_syntax": {
+      "files": 16,
+      "result": "PASS"
+    },
+    "full_regression": "NOT_RUN"
+  },
+  "backups": {
+    "pre_migration": {
+      "utc": "2026-11-15T13:01:21.241314+00:00",
+      "file": "pre-migration.sql",
+      "bytes": 3331363,
+      "sha256": "46bf44d402dc3a9fc6d5105ca0bc962a7b3e19ab851132275727b4c58eb96c42",
+      "source_database": "elitesync_v10_1_5_dev",
+      "exit_code": 0
+    },
+    "final": {
+      "utc": "2026-11-15T14:05:08.134456+00:00",
+      "file": "final-b2.sql",
+      "bytes": 3361220,
+      "sha256": "84c29c49dd03b5fdfed74a64d400baeaa39348f6bde064aec07cd3d58f77298d",
+      "source_database": "elitesync_v10_1_5_dev",
+      "exit_code": 0,
+      "isolated_restore": "NOT_RUN_THIS_VERSION"
+    },
+    "independent_final_restore": "NOT_RUN_THIS_VERSION"
+  },
+  "private_evidence": [
+    {
+      "name": "final-green-03-php-private.log",
+      "bytes": 369,
+      "sha256": "1140fb08d7aef93d9ecd9dc9da1d9d763255a52a997191825589391232b43cd3",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "ws-compat-green-01-php-private.log",
+      "bytes": 287,
+      "sha256": "d5e7a9ccd68747648d3bdbec97c932685b49dd5db9cbb1d7899d4b610d2fe66e",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "chat-compat-green-02-php-private.log",
+      "bytes": 287,
+      "sha256": "0d5fc7e418d3a07b5b0a518540fd97aa23497e8887a91af4cc7e7c4cf8d83103",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "flutter-final-green.log",
+      "bytes": 489,
+      "sha256": "990cc5b963ca19763b9ecb80a39a8b65f4aaa49cf72e84b70af8c8b5afb7b065",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "dart-final-analysis.log",
+      "bytes": 150,
+      "sha256": "5af6f212a0230cec481ec5545ee2139af318071393bc0413c17d233d113df6d0",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "php-lint-private.json",
+      "bytes": 2823,
+      "sha256": "1277f520c821081c4681d9c260cb8d0ff7ac91464440bc9b4c09da5d03fc09ce",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "reliability-summary-private.json",
+      "bytes": 2585,
+      "sha256": "de52d3957c7ab007ab1e1b3ba9549451e20d2c83086979622018b503def7a274",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "http-summary-private.json",
+      "bytes": 592,
+      "sha256": "73d5aa528d0c473fa7a6b14607414666b487d48b775eaeb52411f05c9572e8b1",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "app-lifecycle-summary-private.json",
+      "bytes": 1184,
+      "sha256": "82598ad63cebb238a03bd986c683a462881a92de1a7f7c4463afbd4e13efc0fc",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "app-account-switch-private.json",
+      "bytes": 339,
+      "sha256": "9d76737dc26a55b28141e76853fdd37c08da197fe9ee41c8f1969ff03ecedddb",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "runtime-source-identity-private.json",
+      "bytes": 3329,
+      "sha256": "752bbe7160db0bc91dfb7e2565c3c0acb22b61b6096a9c164b40fb2756835c52",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "baseline-regression-verified-private.log",
+      "bytes": 13749,
+      "sha256": "d5fd7243aa8a58e06b312239d6599fce1321b6cccfa7a5abcc82591cfaa040db",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "baseline-runtime-identity-private.json",
+      "bytes": 194,
+      "sha256": "cc568539db31ca0460bc7abae1befa17ac4b02028c858f555d46d1a0580440a6",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "baseline-comparison-private.json",
+      "bytes": 2168,
+      "sha256": "128e6037420c125763d3261154a4ca5e2ae6be79fc4f7465c1eaa7c566513566",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "original-protection-current-private.json",
+      "bytes": 1216,
+      "sha256": "1d5ae7db39b4835bc792772d1312f34272f0916afb5ea804e7ad7a87c2572cfa",
+      "storage": "OWNER_LOCAL_ONLY"
+    },
+    {
+      "name": "final-runtime-private.json",
+      "bytes": 714,
+      "sha256": "1fafb2bfe3fc88fd07255d39962175d179b46a7ebe5afa12233f68aa0f2ba719",
+      "storage": "OWNER_LOCAL_ONLY"
+    }
+  ],
+  "final_runtime": {
+    "services": {
+      "v1015-current-dev-db": {
+        "status": "running",
+        "running": true
+      },
+      "v1015-current-dev-api": {
+        "status": "running",
+        "running": true
+      },
+      "v1015-current-dev-ws": {
+        "status": "running",
+        "running": true
+      },
+      "v1015-current-dev-sfu": {
+        "status": "exited",
+        "running": false
+      }
+    },
+    "processes": [
+      {
+        "pid": 1007,
+        "command": "app:automation:work"
+      }
+    ],
+    "scheduler_success_count": 31,
+    "scheduler_failure_count": 0,
+    "emulator_ports_listening": {
+      "5580": false,
+      "5582": false
+    },
+    "avd_data": "RETAINED",
+    "phone": "NOT_USED",
+    "private_assets": "RETAINED"
+  },
+  "original_worktree_protection": {
+    "head": true,
+    "branch": true,
+    "tracked": true,
+    "cached": true,
+    "index": true,
+    "status": true
+  },
+  "limits": [
+    "main dev APP enrollment into newly open round NOT_RUN",
+    "real cross-week calendar wait NOT_RUN",
+    "Owner phone and overall device acceptance NOT_RUN",
+    "final backup independent restore NOT_RUN",
+    "long-duration production load NOT_RUN",
+    "main merge, release and live operations NOT_RUN",
+    "new automation table erasure integration NOT_RUN"
+  ],
+  "boundaries": {
+    "B3": "NOT_RUN",
+    "B4": "NOT_RUN",
+    "phase_C": "NOT_RUN",
+    "main_merge": "NOT_RUN",
+    "release": "NOT_RUN",
+    "real_users_and_production_data": "NOT_USED",
+    "owner_overall_device_acceptance": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE"
+  }
+}

@@ -1,0 +1,441 @@
+{
+  "version": "v10.1.16",
+  "phase": "V3.0_B2",
+  "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+  "engineering_result": "PASS_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+  "acceptance": {
+    "advisor": "PENDING",
+    "owner": "PENDING",
+    "owner_overall_device_evaluation": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE"
+  },
+  "tests": {
+    "php": {
+      "unique_tests": 104,
+      "assertions": 1115,
+      "groups": [
+        {
+          "log": "final-green-03-php-private.log",
+          "tests": 84,
+          "assertions": 883
+        },
+        {
+          "log": "ws-compat-green-01-php-private.log",
+          "tests": 11,
+          "assertions": 74
+        },
+        {
+          "log": "chat-compat-green-02-php-private.log",
+          "tests": 9,
+          "assertions": 158
+        }
+      ],
+      "b2_parameterized_cases": 17,
+      "result": "PASS"
+    },
+    "widget": {
+      "tests": 4,
+      "result": "PASS",
+      "log": "flutter-final-green.log"
+    },
+    "dart_analysis": {
+      "files": 5,
+      "result": "PASS",
+      "log": "dart-final-analysis.log"
+    },
+    "php_syntax": {
+      "files": 16,
+      "result": "PASS"
+    },
+    "full_regression": "NOT_RUN"
+  },
+  "real_database_reliability": {
+    "database": "new isolated MariaDB schema",
+    "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "actual_process_kill": true,
+    "checks": [
+      {
+        "case": "kill-before-commit",
+        "killed_exit": 137,
+        "before": {
+          "state": "RUNNING",
+          "result_code": null,
+          "attempts": 1,
+          "reconciliation": "NONE",
+          "effects": 0,
+          "participation_revision": 0,
+          "participation_state": "NOT_ENROLLED",
+          "matching_runs": 0,
+          "proposals": 0
+        },
+        "after": {
+          "state": "SUCCEEDED",
+          "result_code": "PARTICIPATION_COORDINATED",
+          "attempts": 2,
+          "reconciliation": "CONFIRMED",
+          "effects": 1,
+          "participation_revision": 1,
+          "participation_state": "ACTIVE",
+          "matching_runs": 0,
+          "proposals": 0
+        },
+        "status": "PASS"
+      },
+      {
+        "case": "kill-after-commit",
+        "killed_exit": 137,
+        "before": {
+          "state": "RUNNING",
+          "result_code": null,
+          "attempts": 1,
+          "reconciliation": "NONE",
+          "effects": 1,
+          "participation_revision": 1,
+          "participation_state": "ACTIVE",
+          "matching_runs": 0,
+          "proposals": 0
+        },
+        "after": {
+          "state": "SUCCEEDED",
+          "result_code": "RECONCILED_EFFECT",
+          "attempts": 1,
+          "reconciliation": "CONFIRMED",
+          "effects": 1,
+          "participation_revision": 1,
+          "participation_state": "ACTIVE",
+          "matching_runs": 0,
+          "proposals": 0
+        },
+        "status": "PASS"
+      },
+      {
+        "case": "two-concurrent-workers",
+        "claims": [
+          7,
+          null
+        ],
+        "after": {
+          "state": "SUCCEEDED",
+          "result_code": "PARTICIPATION_COORDINATED",
+          "attempts": 1,
+          "reconciliation": "CONFIRMED",
+          "effects": 1,
+          "participation_revision": 1,
+          "participation_state": "ACTIVE",
+          "matching_runs": 0,
+          "proposals": 0
+        },
+        "status": "PASS"
+      },
+      {
+        "case": "revoke-between-claim-and-effect",
+        "after": {
+          "state": "CANCELLED",
+          "result_code": "AUTHORIZATION_CHANGED",
+          "attempts": 1,
+          "reconciliation": "NONE",
+          "effects": 0,
+          "participation_revision": 0,
+          "participation_state": "NOT_ENROLLED",
+          "matching_runs": 0,
+          "proposals": 0
+        },
+        "status": "PASS"
+      }
+    ],
+    "named_laravel_event": "PASS"
+  },
+  "http": {
+    "fictional_accounts": 2,
+    "isolation": "PASS",
+    "state_source_changes": [
+      "Lifestyle completion",
+      "matching preparation",
+      "notification silence"
+    ],
+    "read_only_source_ledger_digest": "UNCHANGED_FOR_NINE_OWNED_TABLES",
+    "anonymous_read": 401,
+    "foreign_user_query": 422,
+    "authorization_lifecycle": "PASS",
+    "ordinary_off_account_endpoints": {
+      "/status/posts": 200,
+      "/buddy": 200,
+      "/conversations": 404,
+      "/social": 200,
+      "/formal-relationships": 200
+    },
+    "main_dev_round_result": "ROUND_NOT_OPEN",
+    "ordinary_message_and_websocket_contracts": "20_CASES_PASS"
+  },
+  "app": {
+    "candidate": 1011601,
+    "installation": "PASS_IDENTICAL_APK_SHA256",
+    "steps": [
+      {
+        "case": "ready-revoked-before-app-grant",
+        "expected": "REVOKED",
+        "server_code": "REVOKED",
+        "revision": 8
+      },
+      {
+        "case": "app-grant",
+        "expected": "ACTIVE",
+        "server_code": "ACTIVE",
+        "revision": 9
+      },
+      {
+        "case": "app-pause",
+        "expected": "PAUSED",
+        "server_code": "PAUSED",
+        "revision": 10
+      },
+      {
+        "case": "app-resume",
+        "expected": "ACTIVE",
+        "server_code": "ACTIVE",
+        "revision": 11
+      },
+      {
+        "case": "cold-reopen-authoritative-active",
+        "expected": "ACTIVE",
+        "server_code": "ACTIVE",
+        "revision": 11
+      },
+      {
+        "case": "app-revoke",
+        "expected": "REVOKED",
+        "server_code": "REVOKED",
+        "revision": 12
+      }
+    ],
+    "switch": {
+      "candidate": 1011601,
+      "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+      "sequence": "A to B to A through APP logout/login",
+      "B": {
+        "lifestyle": "not_started",
+        "automation": "OFF"
+      },
+      "A_return": {
+        "automation": "REVOKED",
+        "revision": 12
+      },
+      "result": "PASS",
+      "phone": "NOT_USED"
+    },
+    "screenshots": [
+      {
+        "path": "docs/versions/v10.1.16/evidence/legacy-default-off.png",
+        "caption": "旧虚构账号保持默认关闭，资格不足时授权按钮禁用",
+        "sha256": "29e732ff2f3a222374dc1b7a539f16cecf6c4bd0eaf233af64f9709ea7d09a9c",
+        "bytes": 179248,
+        "candidate": 1011601
+      },
+      {
+        "path": "docs/versions/v10.1.16/evidence/ready-before-grant.png",
+        "caption": "已完成准备的 QA A，授权前状态",
+        "sha256": "ebc43f8c72da0b8e430d05ce4595a318b98adcda3202d9bc9b56f729d3f3c0cb",
+        "bytes": 172175,
+        "candidate": 1011601
+      },
+      {
+        "path": "docs/versions/v10.1.16/evidence/explicit-consent.png",
+        "caption": "持续参与的独立授权确认",
+        "sha256": "86472d5c462b33e3b6bddaac29c2ccaf849120376784df0c99ea9e160fefb034",
+        "bytes": 206713,
+        "candidate": 1011601
+      },
+      {
+        "path": "docs/versions/v10.1.16/evidence/app-active.png",
+        "caption": "APP 明确授权后 ACTIVE",
+        "sha256": "5225c4ba4426fef12c8dc9e8b2953f8eabbe490e8fef9aa1da8253f5eb587c3b",
+        "bytes": 175217,
+        "candidate": 1011601
+      },
+      {
+        "path": "docs/versions/v10.1.16/evidence/app-round-closed.png",
+        "caption": "已有轮次报名已结束，任务按原因跳过",
+        "sha256": "543bd4aae4401ff21b72e4757e031546c1ab1861bf7524562a748e36a927b911",
+        "bytes": 175635,
+        "candidate": 1011601
+      },
+      {
+        "path": "docs/versions/v10.1.16/evidence/app-paused.png",
+        "caption": "APP 暂停后 PAUSED",
+        "sha256": "7ecd13ebf0ff15a5dd90e93bfc2714f073dcbd8fd74b139d1ea18bf1f6c68340",
+        "bytes": 172001,
+        "candidate": 1011601
+      },
+      {
+        "path": "docs/versions/v10.1.16/evidence/app-cold-active.png",
+        "caption": "APP 进程重启后读取仍为 ACTIVE",
+        "sha256": "afed83d1a3362724c4d412dd29c7ea399fb0587bfb0ef58a009fb837870b754f",
+        "bytes": 183362,
+        "candidate": 1011601
+      },
+      {
+        "path": "docs/versions/v10.1.16/evidence/app-revoked.png",
+        "caption": "APP 撤销后 REVOKED",
+        "sha256": "0ba311e99758073a098451230f192c47d23c61ca8c5010ade909f536f95e2f17",
+        "bytes": 184238,
+        "candidate": 1011601
+      },
+      {
+        "path": "docs/versions/v10.1.16/evidence/app-account-b-off.png",
+        "caption": "切换 QA B 后探索未开始、自动化 OFF",
+        "sha256": "52cfb9227de2dd41f6ce214b81318f19ae848295bbdab0cafb1f7e04d99cf3f5",
+        "bytes": 172735,
+        "candidate": 1011601
+      },
+      {
+        "path": "docs/versions/v10.1.16/evidence/app-account-a-returned.png",
+        "caption": "返回 QA A 后保留 REVOKED",
+        "sha256": "9e1daee429ef71c98339eee816d8bd04b991434262beae2e591666f75eddae4a",
+        "bytes": 172063,
+        "candidate": 1011601
+      }
+    ],
+    "touch": "owned emulator built-in gRPC",
+    "cold_reopen": "PASS",
+    "phone": "NOT_RUN"
+  },
+  "migration": {
+    "main_dev_incremental": "PASS",
+    "effect_authorization_revision_column": "VERIFIED_PRESENT",
+    "sqlite_legacy_manual_active_down_up": "PASS",
+    "pre_backup": {
+      "utc": "2026-11-15T13:01:21.241314+00:00",
+      "file": "pre-migration.sql",
+      "bytes": 3331363,
+      "sha256": "46bf44d402dc3a9fc6d5105ca0bc962a7b3e19ab851132275727b4c58eb96c42",
+      "source_database": "elitesync_v10_1_5_dev",
+      "exit_code": 0
+    },
+    "final_backup": {
+      "utc": "2026-11-15T14:05:08.134456+00:00",
+      "file": "final-b2.sql",
+      "bytes": 3361220,
+      "sha256": "84c29c49dd03b5fdfed74a64d400baeaa39348f6bde064aec07cd3d58f77298d",
+      "source_database": "elitesync_v10_1_5_dev",
+      "exit_code": 0,
+      "isolated_restore": "NOT_RUN_THIS_VERSION"
+    }
+  },
+  "review": {
+    "role": "Sol/high bounded read-only engineering helper",
+    "confirmed_findings_fixed": [
+      "draft binding",
+      "same-cycle new authorization receipt",
+      "natural proposal deadline coordination",
+      "claim/complete User-to-task lock order",
+      "SKIPPED execution-time eligibility fingerprint"
+    ],
+    "final_bounded_review": "NO_NEW_CONFIRMED_P1_P2",
+    "external_advisor": "PENDING"
+  },
+  "preserved_failures": {
+    "expanded_current_run": {
+      "tests": 97,
+      "errors": 6,
+      "failures": 7,
+      "b2_regression_fixed": 1
+    },
+    "fixed_task_baseline": {
+      "commit": "89ce556ab67c6ea759d3a2ffea7016edf11b892e",
+      "tests": 26,
+      "errors": 6,
+      "failures": 6,
+      "same_failure_names": [
+        "Tests\\Feature\\MatchingFoundationServiceTest::test_all_unmatched_reveals_no_candidate_then_closes_projection",
+        "Tests\\Feature\\MatchingFoundationServiceTest::test_atomic_pair_failure_leaves_no_matches_or_projections_then_records_failure",
+        "Tests\\Feature\\MatchingFoundationServiceTest::test_input_change_after_freeze_is_rejected",
+        "Tests\\Feature\\MatchingFoundationServiceTest::test_latest_additive_migrations_roll_back_without_deleting_legacy_matches",
+        "Tests\\Feature\\MatchingFoundationServiceTest::test_prepare_request_claim_heartbeat_finalize_and_idempotent_replay",
+        "Tests\\Feature\\MatchingFoundationServiceTest::test_reveal_atomically_updates_match_and_user_projections",
+        "Tests\\Feature\\V1011SocialTest::test_privacy_posts_and_revocation_do_not_disclose_deep_fields",
+        "Tests\\Feature\\V1015MessagingTest::test_committed_attachment_state_change_does_not_hide_same_key_result_or_conflict",
+        "Tests\\Feature\\V1015MessagingTest::test_committed_block_denies_even_same_key_replay_and_private_reader_without_new_side_effects",
+        "Tests\\Feature\\V1015MessagingTest::test_departed_member_cannot_replay_a_committed_message",
+        "Tests\\Feature\\V1015MessagingTest::test_hiding_keeps_authorized_history_readable_but_cn_close_does_not",
+        "Tests\\Feature\\V1015MessagingTest::test_replay_is_exactly_once_conflicting_payload_rejected_and_readback_retains_idempotency_identity"
+      ],
+      "runtime_identity_verified": true,
+      "comparison": "PASS_SAME_TWELVE_FAILURES"
+    },
+    "harness_corrections": [
+      "app-scoped DB variables and SELECT DATABASE guard",
+      "port 43326",
+      "fixture phone length",
+      "writable /tmp barrier",
+      "explicit completion marker despite exit 0",
+      "Support trait copied for chat test",
+      "baseline classmap and APP_BASE_PATH verified",
+      "APP cold wait, existing closed round label, safe touch bounds"
+    ],
+    "first_db_probe": {
+      "migrate": "NOTHING_TO_MIGRATE_ON_ALREADY_UPGRADED_DEV_DB",
+      "business_fixture": "REJECTED_BY_ISOLATED_NAME_GUARD",
+      "table_digest_before_after": "UNKNOWN"
+    },
+    "failed_assets": "RETAINED_PRIVATELY"
+  },
+  "final_runtime": {
+    "services": {
+      "v1015-current-dev-db": {
+        "status": "running",
+        "running": true
+      },
+      "v1015-current-dev-api": {
+        "status": "running",
+        "running": true
+      },
+      "v1015-current-dev-ws": {
+        "status": "running",
+        "running": true
+      },
+      "v1015-current-dev-sfu": {
+        "status": "exited",
+        "running": false
+      }
+    },
+    "processes": [
+      {
+        "pid": 1007,
+        "command": "app:automation:work"
+      }
+    ],
+    "scheduler_success_count": 31,
+    "scheduler_failure_count": 0,
+    "emulator_ports_listening": {
+      "5580": false,
+      "5582": false
+    },
+    "avd_data": "RETAINED",
+    "phone": "NOT_USED",
+    "private_assets": "RETAINED"
+  },
+  "asset_protection": {
+    "head": true,
+    "branch": true,
+    "tracked": true,
+    "cached": true,
+    "index": true,
+    "status": true
+  },
+  "limits": [
+    "main dev APP enrollment into newly open round NOT_RUN",
+    "real cross-week calendar wait NOT_RUN",
+    "Owner phone and overall device acceptance NOT_RUN",
+    "final backup independent restore NOT_RUN",
+    "long-duration production load NOT_RUN",
+    "main merge, release and live operations NOT_RUN",
+    "new automation table erasure integration NOT_RUN"
+  ],
+  "source_remote_readback": {
+    "source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "origin": "git@github.com:zcx369658780/EliteSync-v10.git",
+    "remote_branch": "codex/v10.1.16-user-state-automation-center-20261115",
+    "fetch_head": "00cec7843911bb3341304c004059de0a91e12f16",
+    "ls_remote": "00cec7843911bb3341304c004059de0a91e12f16",
+    "result": "PASS"
+  }
+}
