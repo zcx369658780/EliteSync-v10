@@ -2,6 +2,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_elitesync_module/features/status/domain/entities/status_post_entity.dart';
 
 void main() {
+  test(
+    'video main media survives serialization while old image posts stay images',
+    () {
+      final video = StatusPostEntity.fromJson({
+        'id': 14,
+        'cover_media': {'id': 42, 'media_type': 'video'},
+      });
+      expect(video.coverMediaType, 'video');
+      expect(StatusPostEntity.fromJson(video.toJson()).coverMediaType, 'video');
+      expect(StatusPostEntity.fromJson({'id': 1}).coverMediaType, 'image');
+    },
+  );
   test('status post entity prefers synthetic truth for layer label', () {
     final entity = StatusPostEntity.fromJson({
       'id': 1,

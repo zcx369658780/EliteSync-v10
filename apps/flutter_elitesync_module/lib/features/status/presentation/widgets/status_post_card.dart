@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/chat/presentation/widgets/private_video_player.dart';
 import 'package:flutter_elitesync_module/features/buddy_v1013/comment_panel.dart';
 import 'dart:async';
 import 'dart:typed_data';
@@ -113,7 +114,27 @@ class StatusPostCard extends ConsumerWidget {
             ),
             if (coverAssetId != null && coverAssetId > 0) ...[
               SizedBox(height: t.spacing.sm),
-              AuthenticatedStatusImage(assetId: coverAssetId),
+              if (post.coverMediaType == 'video')
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.play_circle_outline),
+                  label: const Text('打开视频'),
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => Scaffold(
+                        appBar: AppBar(title: Text(displayTitle)),
+                        body: SingleChildScrollView(
+                          padding: const EdgeInsets.all(16),
+                          child: PrivateVideoPlayer(
+                            assetId: coverAssetId,
+                            unavailableMessage: '视频不可用，请检查当前登录与动态受众权限。',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              else
+                AuthenticatedStatusImage(assetId: coverAssetId),
             ],
             SizedBox(height: t.spacing.sm),
             Text(

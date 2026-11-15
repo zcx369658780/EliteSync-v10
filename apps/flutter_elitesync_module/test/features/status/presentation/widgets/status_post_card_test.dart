@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -8,7 +9,38 @@ import 'package:flutter_elitesync_module/features/status/domain/entities/status_
 import 'package:flutter_elitesync_module/features/status/presentation/widgets/status_post_card.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
+class _SignedOutSession extends SessionNotifier {
+  @override
+  SessionState build() => SessionState.unknown;
+}
+
 void main() {
+  testWidgets('video card offers explicit playback without decoding an image', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [sessionProvider.overrideWith(_SignedOutSession.new)],
+        child: MaterialApp(
+          theme: AppTheme.light,
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: StatusPostCard(
+                post: StatusPostEntity.fromJson({
+                  'id': 14,
+                  'title': 'Water',
+                  'body': 'QA',
+                  'cover_media': {'id': 42, 'media_type': 'video'},
+                }),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    expect(find.text('打开视频'), findsOneWidget);
+    expect(find.byType(AuthenticatedStatusImage), findsNothing);
+  });
   testWidgets(
     'status post card shows author, actions and media placeholder text',
     (tester) async {
@@ -45,6 +77,7 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
+            sessionProvider.overrideWith(_SignedOutSession.new),
             appEnvProvider.overrideWithValue(
               const AppEnv(
                 flavor: AppFlavor.prod,
@@ -122,6 +155,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          sessionProvider.overrideWith(_SignedOutSession.new),
           appEnvProvider.overrideWithValue(
             const AppEnv(
               flavor: AppFlavor.prod,

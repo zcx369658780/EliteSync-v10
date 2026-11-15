@@ -22,6 +22,7 @@ class StatusPostEntity {
     this.favoritedByViewer = false,
     required this.coverMediaAssetId,
     required this.coverMediaUrl,
+    this.coverMediaType = 'image',
     required this.createdAt,
     required this.isDeleted,
   });
@@ -48,6 +49,7 @@ class StatusPostEntity {
   final bool favoritedByViewer;
   final int? coverMediaAssetId;
   final String? coverMediaUrl;
+  final String coverMediaType;
   final DateTime createdAt;
   final bool isDeleted;
 
@@ -129,6 +131,11 @@ class StatusPostEntity {
               : null),
       coverMediaUrl:
           parseMediaUrl(json['cover_media']) ?? parseMediaUrl(json['media']),
+      coverMediaType:
+          json['cover_media'] is Map &&
+              json['cover_media']['media_type'] == 'video'
+          ? 'video'
+          : 'image',
       createdAt:
           DateTime.tryParse((json['created_at'] ?? '').toString()) ??
           DateTime.fromMillisecondsSinceEpoch(0),
@@ -182,9 +189,13 @@ class StatusPostEntity {
       'liked_by_viewer': likedByViewer,
       'favorited_by_viewer': favoritedByViewer,
       'cover_media_asset_id': coverMediaAssetId,
-      'cover_media': coverMediaUrl == null
+      'cover_media': coverMediaUrl == null && coverMediaAssetId == null
           ? null
-          : {'id': coverMediaAssetId, 'public_url': coverMediaUrl},
+          : {
+              'id': coverMediaAssetId,
+              'public_url': coverMediaUrl,
+              'media_type': coverMediaType,
+            },
       'media': coverMediaUrl == null ? const [] : [coverMediaUrl],
       'created_at': createdAt.toIso8601String(),
       'author': {

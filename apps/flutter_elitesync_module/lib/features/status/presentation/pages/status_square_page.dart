@@ -48,6 +48,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
   bool _submitting = false;
   bool _prefilledLocation = false;
   bool _feedUnavailable = false;
+  String _coverMediaType = 'image';
   String? _coverImagePath;
   String? _coverImageName;
   int? _coverMediaAssetId;
@@ -91,11 +92,11 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
       return;
     }
     if (_coverStage == _CoverUploadStage.uploading) {
-      AppFeedback.showInfo(context, '封面图片正在上传，请稍后再发布');
+      AppFeedback.showInfo(context, '媒体正在上传，请稍后再发布');
       return;
     }
-    if (_coverImagePath != null && _coverStage == _CoverUploadStage.failed) {
-      AppFeedback.showInfo(context, '封面图片上传失败，请重试或清除后再发布');
+    if (_coverImagePath != null && _coverStage != _CoverUploadStage.ready) {
+      AppFeedback.showInfo(context, '媒体尚未就绪，请重试或清除后再发布');
       return;
     }
 
@@ -307,7 +308,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     }
   }
 
-  Future<void> _pickAndUploadCoverImage() async {
+  Future<void> _pickAndUploadCoverImage({bool video = false}) async {
     if (_submitting || _coverStage == _CoverUploadStage.uploading) return;
     final token = ref.read(sessionProvider).asData?.value.accessToken;
     final epoch = ref.read(relationshipAuthorityEpochProvider);
@@ -318,15 +319,26 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     ref
         .read(frontendTelemetryProvider)
         .statusImagePickerOpened(sourcePage: 'status_square');
-    final picked = await _imagePicker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 88,
-    );
+    final XFile? picked;
+    try {
+      picked = video
+          ? await _imagePicker.pickVideo(source: ImageSource.gallery)
+          : await _imagePicker.pickImage(
+              source: ImageSource.gallery,
+              imageQuality: 88,
+            );
+    } catch (_) {
+      if (current()) AppFeedback.showError(context, '无法打开媒体选择器，请重试');
+      return;
+    }
     if (picked == null || !current()) return;
 
     setState(() {
+      _coverMediaType = video ? 'video' : 'image';
       _coverImagePath = picked.path;
-      _coverImageName = picked.name.isNotEmpty ? picked.name : 'status.jpg';
+      _coverImageName = picked.name.isNotEmpty
+          ? picked.name
+          : (video ? 'status.mp4' : 'status.jpg');
       _coverStage = _CoverUploadStage.uploading;
       _coverUploadError = null;
     });
@@ -337,7 +349,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     try {
       final api = ref.read(apiClientProvider);
       final form = FormData.fromMap({
-        'media_type': 'image',
+        'media_type': _coverMediaType,
         'original_name': _coverImageName,
         'file': await MultipartFile.fromFile(
           picked.path,
@@ -362,6 +374,11 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
       }
       final assetId = (asset['id'] as num?)?.toInt() ?? 0;
       final status = (asset['status'] ?? '').toString();
+      if (assetId <= 0 ||
+          !const ['uploaded', 'ready'].contains(status) ||
+          (video && status != 'ready')) {
+        throw Exception('媒体尚未准备好，请重新选择后重试');
+      }
       if (!current()) return;
       setState(() {
         _coverMediaAssetId = assetId > 0 ? assetId : null;
@@ -377,7 +394,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
             assetId: assetId,
           );
       if (!mounted) return;
-      AppFeedback.showSuccess(context, '封面图片已准备好，可以发布状态');
+      AppFeedback.showSuccess(context, '媒体已准备好，可以发布状态');
     } catch (e) {
       if (!current()) return;
       setState(() {
@@ -392,12 +409,13 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
             errorCode: 'upload_failed',
           );
       if (!mounted) return;
-      AppFeedback.showError(context, '封面上传失败，请重试');
+      AppFeedback.showError(context, '媒体上传失败，请重新选择后重试');
     }
   }
 
   void _clearCoverImage() {
     setState(() {
+      _coverMediaType = 'image';
       _coverImagePath = null;
       _coverImageName = null;
       _coverMediaAssetId = null;
@@ -419,20 +437,26 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
         _coverUploadError ??
         switch (_coverStage) {
           _CoverUploadStage.uploading => '封面正在准备中。',
-          _CoverUploadStage.processing => '封面已准备好，稍后可用于状态发布。',
+          _CoverUploadStage.processing => '媒体正在处理中，请稍后再试。',
           _CoverUploadStage.failed => '封面上传失败，可重试或重新选择。',
           _CoverUploadStage.ready => '封面已可用于状态发布。',
-          _CoverUploadStage.idle => '单图状态优先，建议先补一张轻量封面。',
+          _CoverUploadStage.idle => '图片或视频二选一。视频MP4/H.264，最长30秒，最大25 MiB。',
         };
 
     return AppInfoSectionCard(
-      title: '封面图片',
-      subtitle: '单图状态，先上传再发布',
+      title: '动态媒体',
+      subtitle: '选择一张图片或一个视频，上传完成后发布',
       leadingIcon: Icons.photo_outlined,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (_coverImagePath != null)
+          if (_coverImagePath != null && _coverMediaType == 'video')
+            ListTile(
+              leading: const Icon(Icons.movie_outlined),
+              title: Text(_coverImageName ?? '视频'),
+              subtitle: const Text('MP4 · H.264 · 最长30秒 · 最大25 MiB'),
+            )
+          else if (_coverImagePath != null)
             ClipRRect(
               borderRadius: BorderRadius.circular(t.radius.lg),
               child: AspectRatio(
@@ -462,7 +486,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                   Icon(Icons.image_outlined, color: t.textSecondary),
                   SizedBox(height: t.spacing.xs),
                   Text(
-                    '暂未选择封面图片',
+                    '暂未选择图片或视频',
                     style: Theme.of(
                       context,
                     ).textTheme.bodyMedium?.copyWith(color: t.textSecondary),
@@ -494,7 +518,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                 onPressed:
                     _submitting || _coverStage == _CoverUploadStage.uploading
                     ? null
-                    : _pickAndUploadCoverImage,
+                    : () => _pickAndUploadCoverImage(),
                 icon: _coverStage == _CoverUploadStage.uploading
                     ? const SizedBox(
                         width: 16,
@@ -505,12 +529,25 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                 label: Text(
                   _coverStage == _CoverUploadStage.uploading
                       ? '上传中...'
-                      : '选择封面',
+                      : '选择图片',
                 ),
               ),
+              OutlinedButton.icon(
+                onPressed:
+                    _submitting || _coverStage == _CoverUploadStage.uploading
+                    ? null
+                    : () => _pickAndUploadCoverImage(video: true),
+                icon: const Icon(Icons.video_library_outlined),
+                label: const Text('选择视频'),
+              ),
               OutlinedButton(
-                onPressed: _coverImagePath == null ? null : _clearCoverImage,
-                child: const Text('清除封面'),
+                onPressed:
+                    _submitting ||
+                        _coverStage == _CoverUploadStage.uploading ||
+                        _coverImagePath == null
+                    ? null
+                    : _clearCoverImage,
+                child: const Text('清除媒体'),
               ),
             ],
           ),

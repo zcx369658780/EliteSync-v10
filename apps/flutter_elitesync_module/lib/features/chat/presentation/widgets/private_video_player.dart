@@ -17,9 +17,11 @@ class PrivateVideoPlayer extends ConsumerStatefulWidget {
     super.key,
     required this.assetId,
     this.controllerFactory,
+    this.unavailableMessage = '视频不可用，请检查当前登录与消息权限。',
   });
 
   final int assetId;
+  final String unavailableMessage;
   final PrivateVideoControllerFactory? controllerFactory;
 
   @override
@@ -203,7 +205,7 @@ class _PrivateVideoPlayerState extends ConsumerState<PrivateVideoPlayer>
         unawaited(_invalidate());
       }
     });
-    if (_blocked) return const Text('视频不可用，请检查当前登录与消息权限。');
+    if (_blocked) return Text(widget.unavailableMessage);
     final player = _player;
     if (player == null || !player.value.isInitialized) {
       return const Center(child: CircularProgressIndicator());

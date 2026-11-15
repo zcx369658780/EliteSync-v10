@@ -326,8 +326,17 @@ class StatusPostController extends Controller
                     return response()->json(['message' => 'private cover media required'], 422);
                 }
 
-                if (! str_starts_with((string) $coverAsset->media_type, 'image')) {
-                    return response()->json(['message' => 'cover media must be an image'], 422);
+                $isVideo = $coverAsset->media_type === 'video';
+                if (! str_starts_with((string) $coverAsset->media_type, 'image') && ! $isVideo) {
+                    return response()->json(['message' => 'main media must be an image or video'], 422);
+                }
+
+                if ($isVideo && (! in_array($coverAsset->storage_disk, ['v1009', 'v1011_relationship'], true)
+                    || $coverAsset->status !== 'ready' || $coverAsset->mime_type !== 'video/mp4'
+                    || ($coverAsset->metadata['validation'] ?? null) !== 'ffprobe-mp4-h264-v1'
+                    || $coverAsset->size_bytes <= 0 || $coverAsset->size_bytes > 25 * 1024 * 1024
+                    || $coverAsset->duration_ms <= 0 || $coverAsset->duration_ms > 30000)) {
+                    return response()->json(['message' => 'ready validated private MP4 required'], 422);
                 }
 
                 if (! in_array((string) $coverAsset->status, ['uploaded', 'ready'], true)) {
