@@ -10,13 +10,13 @@ Owner已确认项目交接及选定旧版主要功能接续完成。当前完善
 
 ## 2026-11-15 当前交付状态
 
-v10.1.13已集中工程交付，六项AC按具名范围自验PASS，等待独立顾问验收及Owner接受。实际范围、原失败和限制见[实施报告](docs/versions/v10.1.13/IMPLEMENTATION_REPORT.md)、[manifest](docs/versions/v10.1.13/artifact_manifest.json)及[证据摘要](docs/versions/v10.1.13/EVIDENCE_SUMMARY_20261115.json)。
+v10.1.13已获独立顾问验收及Owner接受，六项AC按具名代表性范围接受，NO_R1/NO_R2。实际范围、原失败和限制见[实施报告](docs/versions/v10.1.13/IMPLEMENTATION_REPORT.md)、[manifest](docs/versions/v10.1.13/artifact_manifest.json)及[证据摘要](docs/versions/v10.1.13/EVIDENCE_SUMMARY_20261115.json)。
 
 当前分支为`codex/v10.1.13-integration-reliability-20261115`，唯一父基线`ffddf23dd07743538c43ef8f9a6dd7f1ff580467`，开工任务固定文档`af3fa09c8c8eacecf31a968ebcfce6f745a89dce`逐份LOCAL_DOCS_SYNCED。最终候选10.1.13-dev/1011303，APP源码`2b4fdcc9f342b972a37b35de74fbf099827a7c2e`，包含v10.1.12 R1源码`3e0e75758acf81e1ea754f739c9687226fbfcaff`。原1011204及中间1011301/1011302按原身份保留。
 
 真实TalkBack、普通APP/API/MariaDB/Web链、受控丢响应和重启持久化分别记账。MariaDB重启后通过重启原API/WS容器恢复共享网络命名空间，再确认原记录一致，自动透明恢复为NOT_RUN。原主库HEAD/index/跟踪差异指纹相同，status指纹变化原因为UNKNOWN。DB/API/WS运行，SFU exited，模拟器停止且数据保留。
 
-真实Push为REAL_PUSH_PROVIDER_PENDING，历史非注入SFU/RPC精确根因为UNKNOWN，算法独立精度为UNVERIFIED，未验范围沿原报告保留。当前停下等待顾问验收。v10.1.14及后续版本授权为NOT_GRANTED，main集成及正式发布为NOT_RUN。
+真实Push为REAL_PUSH_PROVIDER_PENDING，历史非注入SFU/RPC精确根因为UNKNOWN，算法独立精度为UNVERIFIED，未验范围沿原报告保留。v10.1.13当前状态为OWNER_ACCEPTED_IN_NAMED_SCOPE。v10.1.14及后续版本授权为NOT_GRANTED，main集成及正式发布为NOT_RUN；下一阶段产品目标和路线正在与Owner讨论，讨论本身不构成开发授权。
 
 ## 入口与自主执行
 
