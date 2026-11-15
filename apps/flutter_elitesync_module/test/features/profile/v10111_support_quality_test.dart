@@ -155,6 +155,22 @@ Future<void> _click(WidgetTester tester, Finder finder) async {
 }
 
 void main() {
+  testWidgets('V10113 feedback input and validation have independent semantics', (tester) async {
+    final semantics = tester.ensureSemantics();
+    try {
+      final api = _Relationship((method, path, body) async => _list(12));
+      await _show(tester, const InnerTestFeedbackPage(), relationship: api);
+      final field = tester.getSemantics(find.byType(TextField));
+      expect(field.label, isNot(contains('提交内容仅本人')));
+      await _click(tester, find.byKey(const Key('support-submit')));
+      final message = tester.getSemantics(find.byKey(const Key('support-message')));
+      expect(message.label, '请填写反馈内容。');
+      expect(message.getSemanticsData().flagsCollection.isLiveRegion, isTrue);
+    } finally {
+      semantics.dispose();
+    }
+  });
+
   for (final timestamp in [
     '2026-11-14T23:05:17.123456Z',
     '2026-11-15T01:05:17.123456+02:00',

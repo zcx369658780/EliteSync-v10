@@ -381,24 +381,32 @@ class _InnerTestFeedbackPageState extends ConsumerState<InnerTestFeedbackPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppTextField(
-                    controller: _contentController,
-                    label: '你想反馈什么？',
-                    hint: '例如：紫微飞星线条方向和参考截图不一致，可以写下页面位置和截图来源。',
-                    minLines: 4,
-                    maxLines: 7,
-                    maxLength: 800,
-                    onChanged: (_) {
-                      if (_draft.isNotEmpty) {
-                        setState(() => _draft = '');
-                      }
-                    },
+                  Semantics(
+                    container: true,
+                    explicitChildNodes: true,
+                    child: AppTextField(
+                      controller: _contentController,
+                      label: '你想反馈什么？',
+                      hint: '例如：紫微飞星线条方向和参考截图不一致，可以写下页面位置和截图来源。',
+                      minLines: 4,
+                      maxLines: 7,
+                      maxLength: 800,
+                      onChanged: (_) {
+                        if (_draft.isNotEmpty) {
+                          setState(() => _draft = '');
+                        }
+                      },
+                    ),
                   ),
                   SizedBox(height: t.spacing.sm),
                   const Text('提交内容仅本人和获授权支持管理员可读。请填写最少必要信息。'),
                   if (_busy) const LinearProgressIndicator(),
                   if (_message != null)
-                    Text(_message!, key: const Key('support-message')),
+                    Semantics(
+                      container: true,
+                      liveRegion: true,
+                      child: Text(_message!, key: const Key('support-message')),
+                    ),
                   if (_owner == null) const Text('登录后可提交和读取本人反馈。'),
                   FilledButton(
                     key: const Key('support-submit'),

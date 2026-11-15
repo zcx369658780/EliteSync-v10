@@ -377,19 +377,21 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             child: SettingsGroup(
               title: '显示与外观',
               children: [
-                SettingsItemTile(
-                  title: '夜间模式',
-                  subtitle: _themeSaving
-                      ? '正在保存本机外观…'
-                      : themeMode == AppThemeMode.system
-                      ? '本机外观 · 当前跟随系统'
-                      : '本机外观 · 当前手动选择',
-                  icon: Icons.dark_mode_outlined,
-                  trailing: AppSwitch(
-                    value: isDark,
-                    onChanged: _themeSaving ? null : setDark,
+                MergeSemantics(
+                  child: SettingsItemTile(
+                    title: '夜间模式',
+                    subtitle: _themeSaving
+                        ? '正在保存本机外观…'
+                        : themeMode == AppThemeMode.system
+                        ? '本机外观 · 当前跟随系统'
+                        : '本机外观 · 当前手动选择',
+                    icon: Icons.dark_mode_outlined,
+                    trailing: AppSwitch(
+                      value: isDark,
+                      onChanged: _themeSaving ? null : setDark,
+                    ),
+                    onTap: _themeSaving ? null : () => setDark(!isDark),
                   ),
-                  onTap: _themeSaving ? null : () => setDark(!isDark),
                 ),
                 TextButton.icon(
                   onPressed: _themeSaving || themeMode == AppThemeMode.system
@@ -425,19 +427,21 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   ),
                 ),
                 Divider(height: 1, color: t.overlay.withValues(alpha: 0.35)),
-                SettingsItemTile(
-                  title: '性能模式',
-                  subtitle: _localPrefsLoaded ? '降低动画与背景渲染，改善卡顿' : '正在读取本机设置…',
-                  icon: Icons.bolt_outlined,
-                  trailing: _localPrefsLoaded
-                      ? AppSwitch(
-                          value: _performanceLiteMode,
-                          onChanged: _togglePerformanceLiteMode,
-                        )
-                      : const SizedBox.shrink(),
-                  onTap: _localPrefsLoaded
-                      ? () => _togglePerformanceLiteMode(!_performanceLiteMode)
-                      : null,
+                MergeSemantics(
+                  child: SettingsItemTile(
+                    title: '性能模式',
+                    subtitle: _localPrefsLoaded ? '降低动画与背景渲染，改善卡顿' : '正在读取本机设置…',
+                    icon: Icons.bolt_outlined,
+                    trailing: _localPrefsLoaded
+                        ? AppSwitch(
+                            value: _performanceLiteMode,
+                            onChanged: _togglePerformanceLiteMode,
+                          )
+                        : const SizedBox.shrink(),
+                    onTap: _localPrefsLoaded
+                        ? () => _togglePerformanceLiteMode(!_performanceLiteMode)
+                        : null,
+                  ),
                 ),
               ],
             ),

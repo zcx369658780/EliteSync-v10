@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui' show Tristate;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -278,6 +279,24 @@ String _visibleText(WidgetTester tester) {
 }
 
 void main() {
+  testWidgets('V10113 settings switches expose their name and state', (tester) async {
+    final semantics = tester.ensureSemantics();
+    try {
+      await _pumpSettingsPage(tester, flavor: AppFlavor.prod, phone: '19900111201');
+      for (final label in ['夜间模式', '性能模式']) {
+        await tester.scrollUntilVisible(find.text(label), 250,
+            scrollable: find.byType(Scrollable).first);
+        await tester.pumpAndSettle();
+        final tile = find.ancestor(of: find.text(label), matching: find.byType(SettingsItemTile));
+        final node = tester.getSemantics(find.descendant(of: tile, matching: find.byType(Switch)));
+        expect(node.label, contains(label));
+        expect(node.getSemanticsData().flagsCollection.isToggled, isNot(Tristate.none));
+      }
+    } finally {
+      semantics.dispose();
+    }
+  });
+
   testWidgets('System appearance selection persists as a local preference', (tester) async {
     final storage = await _pumpSettingsPage(tester, flavor: AppFlavor.dev, phone: '19900111201');
     await tester.tap(find.text('跟随系统外观'));
