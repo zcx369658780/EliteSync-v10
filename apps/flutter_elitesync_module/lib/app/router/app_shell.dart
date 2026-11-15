@@ -204,12 +204,22 @@ class SplashPage extends ConsumerWidget {
         return;
       }
 
+      // Resume an explicit entry after bootstrap. The router still applies
+      // authentication and the target's own readiness/permission guards.
+      final entry = env.initialRoute;
+      if (entry != null &&
+          ![AppRouteNames.splash, AppRouteNames.login, AppRouteNames.register]
+              .contains(entry)) {
+        context.go(entry);
+        return;
+      }
+
       if (!nav.isReadinessEstablished) {
         context.go(AppRouteNames.meReadiness);
         return;
       }
 
-      context.go(env.initialRoute ?? AppRouteNames.home);
+      context.go(AppRouteNames.home);
     });
 
     return Scaffold(
