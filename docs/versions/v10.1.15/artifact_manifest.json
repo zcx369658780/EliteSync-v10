@@ -1,0 +1,526 @@
+{
+  "version": "v10.1.15",
+  "phase": "V3.0_B1",
+  "branch": "codex/v10.1.15-lifestyle-discovery-progressive-preferences-20261115",
+  "fixed_parent": "98b06629eec122bf97bbcfe20adaf950041ecfee",
+  "fixed_task_commit": "f40415fc23260556c95ae0c4615e811d847d08b0",
+  "docs_sync_commit": "db5473139c1110e9411febf0b39c875eea66fc5f",
+  "source_commit": "2123496a4d347220e17b84eeec4df9d9f9455399",
+  "candidate": {
+    "version_name": "10.1.15-dev",
+    "version_code": 1011501,
+    "package": "com.elitesync.v1015dev",
+    "build_type": "debug",
+    "abi": "arm64-v8a",
+    "apk_bytes": 124044809,
+    "apk_sha256": "342ec435ba995fc5494adacf5120fa3ae13a558a55eb9b0d2acdcb254776762e",
+    "signing_certificate_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+    "private_apk_name": "candidate-1011501-private.apk",
+    "identity_signature_installation": "PASS"
+  },
+  "engineering_result": "DELIVERED_WITH_AC15_02_METADATA_GAP",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "ac_status": {
+    "AC15-01": "PASS",
+    "AC15-02": "PARTIAL_EXACT_MODEL_IDENTIFIER_UNAVAILABLE",
+    "AC15-03": "PASS_IN_NAMED_SCOPE",
+    "AC15-04": "PASS_IN_NAMED_SCOPE",
+    "AC15-05": "PASS_IN_NAMED_SCOPE",
+    "AC15-06": "PASS_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS"
+  },
+  "art_assets": {
+    "path": "design/assets/lifestyle-discovery/v1",
+    "manifest": "design/assets/lifestyle-discovery/v1/asset_manifest.json",
+    "model_metadata_status": "MODEL_IDENTIFIER_UNVERIFIED",
+    "original_bytes": 9319113,
+    "optimized_bytes": 77996,
+    "art_direction": "GPT-6 Astra",
+    "actual_image_model": "UNKNOWN"
+  },
+  "source_remote_readback": {
+    "remote": "origin",
+    "branch": "codex/v10.1.15-lifestyle-discovery-progressive-preferences-20261115",
+    "commit": "2123496a4d347220e17b84eeec4df9d9f9455399",
+    "status": "PASS"
+  },
+  "source_files": [
+    {
+      "path": "apps/android/app/build.gradle.kts",
+      "git_blob_sha": "60710aa9d6703994e1516b26902acb97c6611c56",
+      "git_canonical_bytes": 13608,
+      "git_canonical_sha256": "8f039aa58398dcac95ed97b72a2e0320256a833456f1225ed3f1faf306a41322"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/assets/config/lifestyle_discovery_v1.json",
+      "git_blob_sha": "bcda4184d6c4b0baf45965628d57085f094d4666",
+      "git_canonical_bytes": 6322,
+      "git_canonical_sha256": "997534686aa3e5695067322d7fd5330ff762733a427b65615bae86b5da47d992"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/assets/lifestyle_discovery/home_atmosphere.webp",
+      "git_blob_sha": "09b9fc96cef3f681c7495398b3a8923df69bce75",
+      "git_canonical_bytes": 12442,
+      "git_canonical_sha256": "10d8da3f264891651d644556a43ba2c7afeaba2cb65beed10bc8a30067fd0499"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/assets/lifestyle_discovery/meal_company.webp",
+      "git_blob_sha": "c628515f11165087b092caba23fbe6d0d773861c",
+      "git_canonical_bytes": 12688,
+      "git_canonical_sha256": "1c6e34c17dd9bfecd4c2615227d3b0bbab6195c0c8976a05d3fa6724b5622166"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/assets/lifestyle_discovery/shared_time.webp",
+      "git_blob_sha": "f7040138ad8a13ea3473fe40cb3a61e8eacd34dd",
+      "git_canonical_bytes": 15700,
+      "git_canonical_sha256": "3ed59babaf9a807f9613ee1487fb6b75cb035f79de21878f8ce3ee91d775ef98"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/assets/lifestyle_discovery/travel_structure.webp",
+      "git_blob_sha": "486fe92a1e10f877ce77fb18735a9ec2b538947e",
+      "git_canonical_bytes": 19364,
+      "git_canonical_sha256": "e2cd30c17da821eaaa1694cc3d6c5bfaac27950a8b18cfbcae7266746f4d5b95"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/assets/lifestyle_discovery/weekend_activity.webp",
+      "git_blob_sha": "d93213f88d51d4d17112f683c7272e1334cdfa70",
+      "git_canonical_bytes": 17802,
+      "git_canonical_sha256": "fd6919efba5fb1f18682592e77991ea4d6d9a6f4bb59d7350f6720c4d785a325"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/app/router/app_router.dart",
+      "git_blob_sha": "d4b025008b4ec0bd8b72d21ff75b6972df9fc1e7",
+      "git_canonical_bytes": 29128,
+      "git_canonical_sha256": "a34bd380fea1d08e354f471cdca4b69dc3fa0d7de46e7acd0a6b13d4c310860c"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/core/storage/private_cache_service.dart",
+      "git_blob_sha": "1894602b2288ba84fe0cb00c01ed58862fbfa65f",
+      "git_canonical_bytes": 26752,
+      "git_canonical_sha256": "9bddf9c4b895a71fdce2ae739011cde51895f6e78b4f603023530c8eb9a747b6"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/data/datasource/auth_remote_data_source.dart",
+      "git_blob_sha": "f94d880c8671539d73d30ddcdce26d8e3a0469aa",
+      "git_canonical_bytes": 2553,
+      "git_canonical_sha256": "d898ad12716720c1270732fa53ef4aa26f80bd51c2191ced681ec6aff8189e13"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/data/dto/register_request_dto.dart",
+      "git_blob_sha": "1356d79b4e60f135f0fa643fdd87dbd79180ed72",
+      "git_canonical_bytes": 745,
+      "git_canonical_sha256": "788710fbf5e07713d2202f58010633eb7af809a0c026e50aeae19f357e89aa13"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/data/repository/auth_repository_impl.dart",
+      "git_blob_sha": "83c0e0893f18770d35e7302cf7fae1a4faa3a0dd",
+      "git_canonical_bytes": 3442,
+      "git_canonical_sha256": "83bbf41086e83ad638adbb87caa9ed6eb01069fe722fa74b127407f0e6fed111"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/domain/repository/auth_repository.dart",
+      "git_blob_sha": "894df72a7af165df0c4554475332ec43ddd98f47",
+      "git_canonical_bytes": 351,
+      "git_canonical_sha256": "b99beaf1c1241b2cafd62682223ece9fe26b2aba95837721ad20d61223360aad"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/domain/usecases/register_usecase.dart",
+      "git_blob_sha": "26b182dde7bacd3eff6b6523cdf0b311c07997fd",
+      "git_canonical_bytes": 475,
+      "git_canonical_sha256": "a045de9506dac085553ce51f81ea7c0153f37454597b53544d07580ca6f1a04c"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/providers/login_form_provider.dart",
+      "git_blob_sha": "5431ce10d31ee56998a37f187b75e98bcdf2a9dc",
+      "git_canonical_bytes": 3435,
+      "git_canonical_sha256": "fe95f90ee899c740f3b0f3adacf175abad7d1031e121527680619880171e78cd"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/auth/presentation/providers/register_form_provider.dart",
+      "git_blob_sha": "3953706ea6c0f077ffd596f0e7f2b769d3d02df5",
+      "git_canonical_bytes": 3061,
+      "git_canonical_sha256": "ea5d4a56ad32e40fe322df5f82b0c7cdbd8cbb3bbed87e6671c6b713202e0f15"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/lifestyle_discovery/lifestyle_controller.dart",
+      "git_blob_sha": "a4553835a83783b6c930231a3b4519fb02e9b64e",
+      "git_canonical_bytes": 4102,
+      "git_canonical_sha256": "1cd6cdc80ccd90e874af3ab2fb63c01fb2f1f2fb439c1035a58404d8f62932d6"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/lifestyle_discovery/lifestyle_page.dart",
+      "git_blob_sha": "2b78d583995d0063259b9d1c833bfba770a89ab6",
+      "git_canonical_bytes": 22107,
+      "git_canonical_sha256": "e683bfd7345802056aa849bbe16069bba2335a54477d592300942131fa91de5b"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/lifestyle_discovery/lifestyle_providers.dart",
+      "git_blob_sha": "f21c1326ecab5af95827864cf0e9dbc057e53c4e",
+      "git_canonical_bytes": 2335,
+      "git_canonical_sha256": "051b5f192bd9e60214014f40fbaa7ff4555a41f871c85a81ebe3174bd33b905c"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/me/presentation/pages/me_landing_page.dart",
+      "git_blob_sha": "94c0dc52ae8222fac1269f2619a9e2c1c1d5d3fe",
+      "git_canonical_bytes": 8440,
+      "git_canonical_sha256": "0cc94e67a28474d43048bbbc943c32c8d62e583ca199666e9d44e16feb0ad884"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/slow_dating_v1012/slow_dating_journey_page.dart",
+      "git_blob_sha": "eb6d54b34ee997fe97f5e7668dbac5f57f1d1938",
+      "git_canonical_bytes": 13990,
+      "git_canonical_sha256": "ef9a371ce132a41697651aebd5e596111d38ff231b37565a0ac3d3764a405add"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/pubspec.yaml",
+      "git_blob_sha": "14f1061d74c9b156cdc5dcb6c1b9ea6937eb510a",
+      "git_canonical_bytes": 2001,
+      "git_canonical_sha256": "021d9690091bb6a98e2acfdafdbef379975eed2099237d064eb6e045ec3a0d54"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/lifestyle_discovery/lifestyle_controller_test.dart",
+      "git_blob_sha": "1208842656006ae6dc902dc57f04dd549eab91c8",
+      "git_canonical_bytes": 4422,
+      "git_canonical_sha256": "f2db67a1b1c989ce17c6a666e50b2fcac7f2778e96c5cb25df7602415f43fd34"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/lifestyle_discovery/lifestyle_page_test.dart",
+      "git_blob_sha": "0a3c7a443421b69b93bb6801cff1bd353d2c08b8",
+      "git_canonical_bytes": 5105,
+      "git_canonical_sha256": "48f247f0fb633f5236e43a96d1e76c719a3c4eb0d92f84b554cbf23e83d4a51f"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/lifestyle_discovery/lifestyle_private_resume_test.dart",
+      "git_blob_sha": "3b17d5495d2a4e01a2b715bbdcafaab623dec817",
+      "git_canonical_bytes": 2551,
+      "git_canonical_sha256": "952ef0fe4a1e33e5b0bc465d0f5002a49f4b7b2ad05f8ea0cffd20982120ba7d"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/lifestyle_discovery/registration_session_test.dart",
+      "git_blob_sha": "29d4e8642d426316977d9750c1ee59f1cc6e4c5e",
+      "git_canonical_bytes": 2995,
+      "git_canonical_sha256": "c3c28ff64ccf2e7b64c43a993498eea64ced9a2df30b1b258a6073bd132c77be"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/app/home_atmosphere.webp",
+      "git_blob_sha": "09b9fc96cef3f681c7495398b3a8923df69bce75",
+      "git_canonical_bytes": 12442,
+      "git_canonical_sha256": "10d8da3f264891651d644556a43ba2c7afeaba2cb65beed10bc8a30067fd0499"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/app/meal_company.webp",
+      "git_blob_sha": "c628515f11165087b092caba23fbe6d0d773861c",
+      "git_canonical_bytes": 12688,
+      "git_canonical_sha256": "1c6e34c17dd9bfecd4c2615227d3b0bbab6195c0c8976a05d3fa6724b5622166"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/app/shared_time.webp",
+      "git_blob_sha": "f7040138ad8a13ea3473fe40cb3a61e8eacd34dd",
+      "git_canonical_bytes": 15700,
+      "git_canonical_sha256": "3ed59babaf9a807f9613ee1487fb6b75cb035f79de21878f8ce3ee91d775ef98"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/app/travel_structure.webp",
+      "git_blob_sha": "486fe92a1e10f877ce77fb18735a9ec2b538947e",
+      "git_canonical_bytes": 19364,
+      "git_canonical_sha256": "e2cd30c17da821eaaa1694cc3d6c5bfaac27950a8b18cfbcae7266746f4d5b95"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/app/weekend_activity.webp",
+      "git_blob_sha": "d93213f88d51d4d17112f683c7272e1334cdfa70",
+      "git_canonical_bytes": 17802,
+      "git_canonical_sha256": "fd6919efba5fb1f18682592e77991ea4d6d9a6f4bb59d7350f6720c4d785a325"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/asset_manifest.json",
+      "git_blob_sha": "fbf221b8b6837cf9f563fcc37740e5a09b40eaff",
+      "git_canonical_bytes": 16805,
+      "git_canonical_sha256": "e72752ed0fbbb0328b1e06066b526f3325042bb051636b9bcf1ea59d3079bf1d"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/originals/home_atmosphere.png",
+      "git_blob_sha": "451cb965202d272fdc4d9d78695eb2ed9e6739d6",
+      "git_canonical_bytes": 1912234,
+      "git_canonical_sha256": "473519a8ccd81f4c7d8277baadbf230b92c2b2aa468ddd950792327be3db7789"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/originals/meal_company.png",
+      "git_blob_sha": "a27dda878433c78236c5169414d1ccae62cc87cf",
+      "git_canonical_bytes": 1775717,
+      "git_canonical_sha256": "bee5eb4001119e89977b3cb26a65c9056a6ea5646926ee120fec8ac3b8e19907"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/originals/shared_time.png",
+      "git_blob_sha": "bfba82672a9af278265985cedfe6129361f56b09",
+      "git_canonical_bytes": 1807396,
+      "git_canonical_sha256": "f5f57beb0743967404d859100ac915fc67e20577afdaffa03a6f7affd77ae1cb"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/originals/travel_structure.png",
+      "git_blob_sha": "0402906ad712c0dc78492ff21a6832f7f2e50315",
+      "git_canonical_bytes": 1832275,
+      "git_canonical_sha256": "12b1e1347675241a5856c390615bdaa378695f1a459c0cbffae0b282e498de51"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/originals/weekend_activity.png",
+      "git_blob_sha": "6344073cddfbd5d50d02c9f77c9ff385b712a42e",
+      "git_canonical_bytes": 1991491,
+      "git_canonical_sha256": "80587d18ed862e5c5a53a5c0f43ea35e3209af0316f8aac2539d02a8f7ac85a1"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/preview.jpg",
+      "git_blob_sha": "344810e09cce02309d4e6d04b7c72afd3ac0337d",
+      "git_canonical_bytes": 103207,
+      "git_canonical_sha256": "65a4180f9ec1435edd515c43ea4f6a50a03ccc5b0e1c6a00547089d45382f530"
+    },
+    {
+      "path": "design/assets/lifestyle-discovery/v1/prompt_pack.json",
+      "git_blob_sha": "86e74d1fc268fec156a801a6e39c78c5ef383951",
+      "git_canonical_bytes": 12484,
+      "git_canonical_sha256": "10aa26e1914d683fad4a97506155df71383a68e9d826ded72f2e3aa629bd2b9c"
+    },
+    {
+      "path": "docs/versions/v10.1.15/ASTRA_ART_DIRECTION_V1.md",
+      "git_blob_sha": "61a7a159efc40873f75a6f272db23cfd43da9fb9",
+      "git_canonical_bytes": 19055,
+      "git_canonical_sha256": "f9679cfd38f237542fff7e86ab6cb10862e90c389be4ad52b14b590f9ebaa870"
+    },
+    {
+      "path": "docs/versions/v10.1.15/LIFESTYLE_DISCOVERY_QUESTION_BANK_V1.md",
+      "git_blob_sha": "26c48767647e30e5aab58eda6d1813b272ba59c2",
+      "git_canonical_bytes": 2282,
+      "git_canonical_sha256": "26093d0abd088ef62307b186f2dc42656aaacdaeae4689b9a5d1be0351a85394"
+    },
+    {
+      "path": "docs/versions/v10.1.15/LOCAL_DOCS_SYNC_RECEIPT.json",
+      "git_blob_sha": "aa393cd7890ae34c25bcd65bacf7c2fe8dffa50c",
+      "git_canonical_bytes": 3423,
+      "git_canonical_sha256": "da5912b7ac34de3e5adeeeb4ade45f5320b1b4e69c7ad112e74359e6769c4e20"
+    },
+    {
+      "path": "docs/versions/v10.1.15/ROADMAP_ALIGNMENT_ACK.md",
+      "git_blob_sha": "64943351f61d171cc8077e2c3fa614a3eba8c467",
+      "git_canonical_bytes": 2482,
+      "git_canonical_sha256": "d4332ac441a50d9bc6ad7275ba6df2fbdcede71bc7ca1c029bc4ec25a1b3467d"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/AuthController.php",
+      "git_blob_sha": "a3fbbb1cf2d4230a8d43bb74b40726a949d10cb0",
+      "git_canonical_bytes": 7620,
+      "git_canonical_sha256": "cba02c3c5e8d5f33be74ea565faed15a5801d27c1b5631b31d8d514dbe714921"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/LifestyleDiscoveryController.php",
+      "git_blob_sha": "ec6dd1ea5e39fa64a31847acd03c2148c5bcfd62",
+      "git_canonical_bytes": 1348,
+      "git_canonical_sha256": "cd25b818d55a36f474800c82d74f5ae6d9f42e54cc8eadce5ee3f82d8ecee455"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/Accounts/AccountClosure.php",
+      "git_blob_sha": "611945125916f114eca37250a6583f72fcd47db9",
+      "git_canonical_bytes": 14083,
+      "git_canonical_sha256": "feec504aa11e910db9eae1b2475374528818e50e313a34d3ad6799f692d4a7fa"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/LifestyleDiscoveryService.php",
+      "git_blob_sha": "4241ab1c4dfb96600083aaf5cc88145fd26a4a68",
+      "git_canonical_bytes": 6149,
+      "git_canonical_sha256": "bf6b444f1bfdd32f38d9a1acf580485c097594769a18929105c175cef3fd87c6"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/MatchingRunService.php",
+      "git_blob_sha": "abd4f4f0400f69caee1a531ec2ef3b4b0af049dc",
+      "git_canonical_bytes": 24609,
+      "git_canonical_sha256": "9933fddc79d3b183b340e994840fc45e9f093d8302338533a4f57a10f11108eb"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ProfileReadinessService.php",
+      "git_blob_sha": "7670a79372c1584e3c9d3a7304e3acb246d42c0a",
+      "git_canonical_bytes": 5104,
+      "git_canonical_sha256": "d42dda49ac2632369d6e41b5416051e0b425c5ac454fcd453cbcef0c51507abd"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/SlowDatingService.php",
+      "git_blob_sha": "69020586cb2364caf17714dc0f06e2de0ca08c57",
+      "git_canonical_bytes": 18199,
+      "git_canonical_sha256": "316fece43428a2bc895c756cdb9e644a38610ffc5e24473d12b1ea8e5c01cfdd"
+    },
+    {
+      "path": "services/backend-laravel/config/lifestyle_discovery_v1.json",
+      "git_blob_sha": "bcda4184d6c4b0baf45965628d57085f094d4666",
+      "git_canonical_bytes": 6322,
+      "git_canonical_sha256": "997534686aa3e5695067322d7fd5330ff762733a427b65615bae86b5da47d992"
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_11_15_190000_create_lifestyle_discoveries.php",
+      "git_blob_sha": "7957e5050ea23c5c4bff6169dd5bf2f0bcb76228",
+      "git_canonical_bytes": 1444,
+      "git_canonical_sha256": "eb83f06b41c2fd3578af994cde00f520f5ec42d79c2513d7461e316a7687c3e8"
+    },
+    {
+      "path": "services/backend-laravel/routes/api.php",
+      "git_blob_sha": "159dc61bcc181e2049fe8dc71c8f83b091acff2e",
+      "git_canonical_bytes": 30033,
+      "git_canonical_sha256": "e02bf31be75616f4a0c7f686ed3d05d09f12604794e5057f999a791494c81f45"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/MatchingFoundationServiceTest.php",
+      "git_blob_sha": "4c41a3113d4b878798556442a7a568430c1b93f8",
+      "git_canonical_bytes": 13469,
+      "git_canonical_sha256": "21a330adcff88e53f218e67cb4b9874814f46f3c31e824f0cf2e6e72f0820187"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/ProfileReadinessTruthApiTest.php",
+      "git_blob_sha": "2c9b0f29a842acab904a650498bd244f1b1f8eba",
+      "git_canonical_bytes": 6737,
+      "git_canonical_sha256": "c595cfb81ffd850a1c609efc76982eed460a36d947b4a0f0abb0543214810c07"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V10115LifestyleDiscoveryTest.php",
+      "git_blob_sha": "42eb5aabd7731eff5164527a392553ac75fd1999",
+      "git_canonical_bytes": 10347,
+      "git_canonical_sha256": "2944adf9c673e10c9e912587987c3ffa0479ef1f21ca194bea0e4828a758bb34"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1012JourneyTest.php",
+      "git_blob_sha": "f736f6ea4d2a27b0ddb8aa78f2bb87672bb92f80",
+      "git_canonical_bytes": 25730,
+      "git_canonical_sha256": "a01197072894b00e79222c05efdbf2f5c33a871aee6e03144c5d63f6299be558"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1012R1BoundaryTest.php",
+      "git_blob_sha": "8c079396e3542a3484f4cb2ef5fe70ba702509df",
+      "git_canonical_bytes": 21806,
+      "git_canonical_sha256": "ad13ee421cf6cc7fb47079c8747fbe142dab4334537ea97267a5e264d3a2293b"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1017MatchingJourneyTest.php",
+      "git_blob_sha": "271496d2ffbf49ef8d306a9de8488caddcc85e10",
+      "git_canonical_bytes": 25830,
+      "git_canonical_sha256": "7dfc598687485b45e47e0eb7a5787b88ea2b7a2c573cbfecff912b76516e57ed"
+    },
+    {
+      "path": "services/backend-laravel/tests/Integration/v10115_lifestyle_current_read.php",
+      "git_blob_sha": "5b3ee45392e91fac83532811948f9d2ca6d27c40",
+      "git_canonical_bytes": 2576,
+      "git_canonical_sha256": "89fbc5bdf1213c94687e1aba3d5420acae4dcafadd5b1e9a0b5ab17e366951b5"
+    },
+    {
+      "path": "services/backend-laravel/tests/TestCase.php",
+      "git_blob_sha": "32394c1aa0f978034794478f45b3607af9f4bd18",
+      "git_canonical_bytes": 1581,
+      "git_canonical_sha256": "f413bd2c674e22017857a88d099c504d607e5afffcda0a8a63f4b06bafc13576"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/versions/v10.1.15/evidence/01-new-registration-welcome.png",
+      "candidate": 1011501,
+      "bytes": 62490,
+      "sha256": "374abab42317c01bde3e6f44fa641d5f8effddeab53aac8f01aa59d26798b9a6"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/03-skipped-community.png",
+      "candidate": 1011501,
+      "bytes": 107293,
+      "sha256": "506f46ed18b938a8761e3240a97ce17c0dd7e8dad1ecdadef778f116e9611205"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/04-scene-home.png",
+      "candidate": 1011501,
+      "bytes": 158700,
+      "sha256": "8b013eac6fee3551b91128cd7abc73aa250325fbcf2440f22299efd23fe18923"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/05-scene-travel.png",
+      "candidate": 1011501,
+      "bytes": 221091,
+      "sha256": "2bdf9c6c53222aebd52c86687711bddefec2d40cde3ada6c4bcf490820a7a7c1"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/06-partial-weekend.png",
+      "candidate": 1011501,
+      "bytes": 207255,
+      "sha256": "f4195f8b74ded2585deb514404731f6d78802a2b0043b4053a1ea394122d6d87"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/08-cold-resume-pending.png",
+      "candidate": 1011501,
+      "bytes": 206287,
+      "sha256": "89c49f7e37fa5f2eed3d02847353d4e3ad402a5b58df8dcde065329b1202f473"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/09-back-to-saved-travel.png",
+      "candidate": 1011501,
+      "bytes": 218177,
+      "sha256": "b6c184acd7008f13c741e694e4df2b3347d717024c8faebd6c1d3e52a066b0a9"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/10-scene-meal.png",
+      "candidate": 1011501,
+      "bytes": 161785,
+      "sha256": "2b6c97c178ac36b01b20568fb7a92f46775e3420e2934773a017130f74199da9"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/11-scene-shared-time.png",
+      "candidate": 1011501,
+      "bytes": 201313,
+      "sha256": "88a204fe5be67e3ef0e71114205a0b26a4e8ad76acead1e6cac806dcbf0b5a8b"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/13-reset-first-scene.png",
+      "candidate": 1011501,
+      "bytes": 158700,
+      "sha256": "8b013eac6fee3551b91128cd7abc73aa250325fbcf2440f22299efd23fe18923"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/15-completed-cold-read.png",
+      "candidate": 1011501,
+      "bytes": 155099,
+      "sha256": "6cfb4fe694e42af1ef2c6efbec11b1bbaf4873d0431acee9e9599c2c97d74ba6"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/17-account-b-isolated.png",
+      "candidate": 1011501,
+      "bytes": 62881,
+      "sha256": "5f700dc7d0d570358b6b2d3214a8a1b2ab3b5710de5e5fd66486de6856ac1fcd"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/18-account-a-restored.png",
+      "candidate": 1011501,
+      "bytes": 155099,
+      "sha256": "6cfb4fe694e42af1ef2c6efbec11b1bbaf4873d0431acee9e9599c2c97d74ba6"
+    }
+  ],
+  "documents": [
+    "LOCAL_DOCS_SYNC_RECEIPT.json",
+    "ROADMAP_ALIGNMENT_ACK.md",
+    "ASTRA_ART_DIRECTION_V1.md",
+    "LIFESTYLE_DISCOVERY_QUESTION_BANK_V1.md",
+    "IMPLEMENTATION_REPORT.md",
+    "EVIDENCE_SUMMARY_20261115.json",
+    "OWNER_REVIEW.md"
+  ],
+  "final_delivery_identity": "Git commit enclosing this manifest, confirmed by the final push/readback receipt and delivery response",
+  "final_backup": {
+    "file": "final-b1-database.sql",
+    "bytes": 3331363,
+    "sha256": "4c8beb6ce9a9adfb7c1d6f2209b047fd799a17f2df3f5de070ba298d6f966217",
+    "database": "elitesync_v10_1_5_dev",
+    "restore": "NOT_RUN_FOR_THIS_B1_BACKUP",
+    "previous_restore_evidence": "v10.1.14 named scope retained"
+  },
+  "runtime": {
+    "DB": "running",
+    "API": "running",
+    "WS": "running",
+    "SFU": "exited",
+    "emulator_a": "stopped; AVD/data retained",
+    "emulator_b": "not started; AVD/data retained",
+    "isolated_RR_schema": "retained with only fictional minimal fixture",
+    "phone": "NOT_USED"
+  },
+  "main_integration": "NOT_RUN",
+  "formal_release": "NOT_RUN",
+  "B2_B3_B4_C": "NOT_RUN"
+}

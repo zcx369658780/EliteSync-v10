@@ -1,0 +1,386 @@
+{
+  "version": "v10.1.15",
+  "date": "2026-11-15",
+  "source_commit": "2123496a4d347220e17b84eeec4df9d9f9455399",
+  "candidate": {
+    "version_name": "10.1.15-dev",
+    "version_code": 1011501,
+    "package": "com.elitesync.v1015dev",
+    "apk_sha256": "342ec435ba995fc5494adacf5120fa3ae13a558a55eb9b0d2acdcb254776762e",
+    "source_commit": "2123496a4d347220e17b84eeec4df9d9f9455399"
+  },
+  "ac_status": {
+    "AC15-01": "PASS",
+    "AC15-02": "PARTIAL_EXACT_MODEL_IDENTIFIER_UNAVAILABLE",
+    "AC15-03": "PASS_IN_NAMED_SCOPE",
+    "AC15-04": "PASS_IN_NAMED_SCOPE",
+    "AC15-05": "PASS_IN_NAMED_SCOPE",
+    "AC15-06": "PASS_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS"
+  },
+  "checks": [
+    {
+      "id": "register_welcome",
+      "surface": "APP/API/DB",
+      "status": "PASS",
+      "evidence": "01-new-registration-welcome"
+    },
+    {
+      "id": "skip_community",
+      "surface": "APP/API/DB",
+      "status": "PASS",
+      "evidence": "03-skipped-community",
+      "server_status": "skipped",
+      "answers": 0
+    },
+    {
+      "id": "partial_progress",
+      "surface": "APP/API/DB",
+      "status": "PASS",
+      "server_revision": 4,
+      "answers": 2
+    },
+    {
+      "id": "pending_process_restart",
+      "surface": "APP/API/DB + encrypted draft",
+      "status": "PASS",
+      "server_revision_after_replay": 5,
+      "answers": 3,
+      "steps": [
+        "remove emulator API reverse",
+        "choose weekend option",
+        "capture pending",
+        "force stop process",
+        "restore reverse",
+        "relaunch with verified online session",
+        "reenter discovery",
+        "pending answer replayed"
+      ]
+    },
+    {
+      "id": "back_modify",
+      "surface": "APP/API/DB",
+      "status": "PASS",
+      "scene": "travel_structure",
+      "changed_option": "open",
+      "server_revision": 6
+    },
+    {
+      "id": "complete",
+      "surface": "APP/API/DB",
+      "status": "PASS",
+      "server_revision": 8,
+      "answers": 5,
+      "derived_preferences": 5
+    },
+    {
+      "id": "reset_and_redo",
+      "surface": "APP/API/DB",
+      "status": "PASS",
+      "reset_revision": 9,
+      "reset_status": "not_started",
+      "reset_answers": 0,
+      "redone_revision": 14,
+      "redone_status": "completed"
+    },
+    {
+      "id": "completed_cold_read",
+      "surface": "APP/API/DB",
+      "status": "PASS",
+      "evidence": "15-completed-cold-read"
+    },
+    {
+      "id": "a_b_a_isolation",
+      "surface": "APP/API/DB",
+      "status": "PASS",
+      "b_status": "not_started",
+      "b_answers": 0,
+      "a_restored_revision": 14,
+      "evidence": [
+        "17-account-b-isolated",
+        "18-account-a-restored"
+      ]
+    },
+    {
+      "id": "weekly_gate",
+      "surface": "real API same APP actors + isolated tests",
+      "status": "PASS",
+      "incomplete_rejection": "lifestyle_discovery_incomplete",
+      "complete_other_prerequisites_rejection": "preparation incomplete",
+      "new_run_reset_rechecks": "PASS",
+      "existing_proposal_after_reset": "PASS"
+    },
+    {
+      "id": "ordinary_buddy",
+      "surface": "real API + directed PHP",
+      "status": "PASS"
+    },
+    {
+      "id": "animations_forward_reverse",
+      "surface": "Widget + observed APP navigation",
+      "status": "PASS"
+    },
+    {
+      "id": "reduced_motion",
+      "surface": "Widget",
+      "status": "PASS",
+      "device_system_reduced_motion": "NOT_RUN"
+    },
+    {
+      "id": "offline_artwork",
+      "surface": "APK archive byte comparison + local scene rendering",
+      "status": "PASS",
+      "count": 5,
+      "optimized_bytes": 77996
+    },
+    {
+      "id": "audio",
+      "status": "NONE",
+      "mute": "NOT_APPLICABLE"
+    },
+    {
+      "id": "phone",
+      "status": "NOT_RUN"
+    }
+  ],
+  "directed_tests": {
+    "php": {
+      "tests": 46,
+      "assertions": 447,
+      "status": "PASS"
+    },
+    "flutter": {
+      "tests": 106,
+      "status": "PASS"
+    },
+    "dart_analysis": {
+      "files": 18,
+      "status": "PASS"
+    },
+    "mariadb_repeatable_read_two_connection": {
+      "status": "PASS",
+      "stale_snapshot_completed": true,
+      "locked_current_completed": false
+    },
+    "migration": {
+      "sqlite_up_down_up": "PASS",
+      "local_mariadb_apply": "PASS"
+    },
+    "real_api": {
+      "requests": 19,
+      "synthetic_accounts": 2,
+      "status": "PASS"
+    },
+    "persistent_db": {
+      "result": "PASS",
+      "database": "persistent MariaDB development DB",
+      "a_revision": 14,
+      "a_status": "completed",
+      "raw_answers": 5,
+      "derived_preferences": 5,
+      "b_rows": 0,
+      "post_reset_commands": 6,
+      "versions": [
+        "lifestyle_v1",
+        "lifestyle_rules_v1"
+      ]
+    }
+  },
+  "diagnostics": {
+    "php_legacy": {
+      "suite_files": [
+        "V1012JourneyTest.php",
+        "V1012R1BoundaryTest.php",
+        "MatchingFoundationServiceTest.php",
+        "ProfileReadinessTruthApiTest.php"
+      ],
+      "errors": 6,
+      "failures": 10,
+      "same_failure_names_on_fixed_task_service_overrides": true
+    },
+    "flutter_legacy": {
+      "suite_files": [
+        "home_progress_guard_refresh_test.dart",
+        "readiness_purpose_page_test.dart"
+      ],
+      "failures": 11,
+      "same_failure_names_on_fixed_task_router_override": true
+    },
+    "baseline_comparison_scope": "Only three owning PHP services or the owning Flutter router replaced from fixed task commit; remainder kept current. Current router restored byte-for-byte.",
+    "full_fixed_baseline_checkout_regression": "NOT_RUN"
+  },
+  "review": {
+    "role": "Sol/high read-only engineering reviewer",
+    "findings": [
+      {
+        "severity": "P1",
+        "topic": "RR stale snapshot during reveal",
+        "resolution": "current locked read under User lock; real two-connection reproduction PASS"
+      },
+      {
+        "severity": "P2",
+        "topic": "navigation during pending save",
+        "resolution": "disabled navigation; delayed-response widget red then green"
+      }
+    ],
+    "advisor_acceptance": "PENDING",
+    "owner_acceptance": "PENDING"
+  },
+  "art_model": {
+    "tool": "image_gen.imagegen",
+    "requested": "latest available online GPT Image",
+    "actual_identifier": "UNKNOWN",
+    "status": "MODEL_IDENTIFIER_UNVERIFIED"
+  },
+  "preservation": {
+    "head": {
+      "equal_bytes": true,
+      "current_bytes": 41,
+      "sha256": "e893b1f18dd13d1670e13508aed954df9615b393208b10ebf26aed1c6dd4cbb7"
+    },
+    "branch": {
+      "equal_bytes": true,
+      "current_bytes": 5,
+      "sha256": "6403203dd5a0867eb14d104ee8a73730bd72dd9ad92e78d996a6dba0a5dcfc01"
+    },
+    "tracked": {
+      "equal_bytes": true,
+      "current_bytes": 2500010,
+      "sha256": "effd685d008a3ff7ec30bb223b2762c01759a3b1d537f249c5bc155e895d1ac7"
+    },
+    "cached": {
+      "equal_bytes": true,
+      "current_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "status": {
+      "equal_bytes": true,
+      "current_bytes": 22191,
+      "sha256": "399d6e8e86437f43aff329dec724b6068c3705e816569fe3530ee22754c3cdea",
+      "command": "git --no-optional-locks status --porcelain=v2"
+    },
+    "index": {
+      "equal_bytes": true,
+      "sha256": "2be660029a2e2c2578f5193bc050dee35be3e71ce941460a42331babf577e716",
+      "bytes": 530824
+    }
+  },
+  "backups": {
+    "pre_migration": {
+      "utc": "2026-11-15T10:12:28.376414+00:00",
+      "file": "pre-b1-migration.sql",
+      "bytes": 3316343,
+      "sha256": "19232a8dd3bb589771ddd31465ec80704979012b1933aed46c800da6a4101a95",
+      "source": "v1015-current-dev-db",
+      "exit_code": 0,
+      "scope": "pre-additive-B1-migration; private SQL retained locally"
+    },
+    "final": {
+      "file": "final-b1-database.sql",
+      "bytes": 3331363,
+      "sha256": "4c8beb6ce9a9adfb7c1d6f2209b047fd799a17f2df3f5de070ba298d6f966217",
+      "database": "elitesync_v10_1_5_dev",
+      "restore": "NOT_RUN_FOR_THIS_B1_BACKUP",
+      "previous_restore_evidence": "v10.1.14 named scope retained"
+    }
+  },
+  "final_runtime": {
+    "DB": "running",
+    "API": "running",
+    "WS": "running",
+    "SFU": "exited",
+    "emulator_a": "stopped; AVD/data retained",
+    "emulator_b": "not started; AVD/data retained",
+    "isolated_RR_schema": "retained with only fictional minimal fixture",
+    "phone": "NOT_USED"
+  },
+  "source_remote_readback": {
+    "remote": "origin",
+    "branch": "codex/v10.1.15-lifestyle-discovery-progressive-preferences-20261115",
+    "commit": "2123496a4d347220e17b84eeec4df9d9f9455399",
+    "status": "PASS"
+  },
+  "screenshots": [
+    {
+      "path": "docs/versions/v10.1.15/evidence/01-new-registration-welcome.png",
+      "candidate": 1011501,
+      "bytes": 62490,
+      "sha256": "374abab42317c01bde3e6f44fa641d5f8effddeab53aac8f01aa59d26798b9a6"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/03-skipped-community.png",
+      "candidate": 1011501,
+      "bytes": 107293,
+      "sha256": "506f46ed18b938a8761e3240a97ce17c0dd7e8dad1ecdadef778f116e9611205"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/04-scene-home.png",
+      "candidate": 1011501,
+      "bytes": 158700,
+      "sha256": "8b013eac6fee3551b91128cd7abc73aa250325fbcf2440f22299efd23fe18923"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/05-scene-travel.png",
+      "candidate": 1011501,
+      "bytes": 221091,
+      "sha256": "2bdf9c6c53222aebd52c86687711bddefec2d40cde3ada6c4bcf490820a7a7c1"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/06-partial-weekend.png",
+      "candidate": 1011501,
+      "bytes": 207255,
+      "sha256": "f4195f8b74ded2585deb514404731f6d78802a2b0043b4053a1ea394122d6d87"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/08-cold-resume-pending.png",
+      "candidate": 1011501,
+      "bytes": 206287,
+      "sha256": "89c49f7e37fa5f2eed3d02847353d4e3ad402a5b58df8dcde065329b1202f473"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/09-back-to-saved-travel.png",
+      "candidate": 1011501,
+      "bytes": 218177,
+      "sha256": "b6c184acd7008f13c741e694e4df2b3347d717024c8faebd6c1d3e52a066b0a9"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/10-scene-meal.png",
+      "candidate": 1011501,
+      "bytes": 161785,
+      "sha256": "2b6c97c178ac36b01b20568fb7a92f46775e3420e2934773a017130f74199da9"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/11-scene-shared-time.png",
+      "candidate": 1011501,
+      "bytes": 201313,
+      "sha256": "88a204fe5be67e3ef0e71114205a0b26a4e8ad76acead1e6cac806dcbf0b5a8b"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/13-reset-first-scene.png",
+      "candidate": 1011501,
+      "bytes": 158700,
+      "sha256": "8b013eac6fee3551b91128cd7abc73aa250325fbcf2440f22299efd23fe18923"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/15-completed-cold-read.png",
+      "candidate": 1011501,
+      "bytes": 155099,
+      "sha256": "6cfb4fe694e42af1ef2c6efbec11b1bbaf4873d0431acee9e9599c2c97d74ba6"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/17-account-b-isolated.png",
+      "candidate": 1011501,
+      "bytes": 62881,
+      "sha256": "5f700dc7d0d570358b6b2d3214a8a1b2ab3b5710de5e5fd66486de6856ac1fcd"
+    },
+    {
+      "path": "docs/versions/v10.1.15/evidence/18-account-a-restored.png",
+      "candidate": 1011501,
+      "bytes": 155099,
+      "sha256": "6cfb4fe694e42af1ef2c6efbec11b1bbaf4873d0431acee9e9599c2c97d74ba6"
+    }
+  ],
+  "private_receipts_location": "Owner-local v10115-current; raw SQL, credentials, APK and device logs retained locally",
+  "main_integration": "NOT_RUN",
+  "formal_release": "NOT_RUN",
+  "B2_B3_B4_C": "NOT_RUN"
+}

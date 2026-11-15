@@ -1,21 +1,17 @@
-# 当前入口 2026-11-15 v10.1.14 Owner接受，v10.1.15 B1已授权
+# 当前入口 2026-11-15 v10.1.15 B1交付待顾问验收
 
-**V10114_OWNER_ACCEPTED_IN_NAMED_SCOPE / V10115_PHASE_B1_AUTHORIZED**。
+**V10115_B1_DELIVERED_WITH_AC15_02_METADATA_GAP / ADVISOR_PENDING / OWNER_PENDING**。
 
-v10.1.14顾问及Owner均按具名代表性范围接受；顾问`ACCEPTED_IN_NAMED_SCOPE — NO_R1 — NO_R2`。三项P2、耳机/人耳听感/双实机/跨公网RTC及新增手机备份恢复等NOT_RUN/NOT_RERUN边界保留。Owner记录：[v10.1.14 Owner接受](../versions/v10.1.14/OWNER_ACCEPTANCE_20261115.md)；顾问报告：[ADVISOR_ACCEPTANCE_20261115](../versions/v10.1.14/ADVISOR_ACCEPTANCE_20261115.md)。
+当前固定APP/API/题库及美术源码为 `2123496a4d347220e17b84eeec4df9d9f9455399`，候选 `10.1.15-dev / 1011501`，Debug、arm64。任务分支为 `codex/v10.1.15-lifestyle-discovery-progressive-preferences-20261115`，唯一父基线 `98b06629eec122bf97bbcfe20adaf950041ecfee`，固定任务文档 `f40415fc23260556c95ae0c4615e811d847d08b0`。十一份文档在编码前逐Blob核验并提交路线ACK。
 
-## 当前授权任务
+五场景十五选项、注册欢迎和跳过、逐题加密待同步、恢复/改选/重做、可解释私有映射及每周慢约会服务端门禁已交付。Astra艺术指导和五幅在线生成素材已提交。图像工具未暴露实际模型精确身份，AC15-02保留PARTIAL。其余AC按具名工程范围记录，顾问及Owner接受均PENDING。
 
-**v10.1.15：Lifestyle Discovery与渐进式偏好（V3.0阶段B1）**。任务：[task_order](../versions/v10.1.15/task_order.md)；[plan](../versions/v10.1.15/plan.md)；[DEVELOPMENT_ALIGNMENT](../versions/v10.1.15/DEVELOPMENT_ALIGNMENT.md)；[CODEX_START_PROMPT](../versions/v10.1.15/CODEX_START_PROMPT.txt)。路线权威：[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)及[2026-11-15补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115.md)。
+入口材料为[实施报告](../versions/v10.1.15/IMPLEMENTATION_REPORT.md)、[manifest](../versions/v10.1.15/artifact_manifest.json)、[证据摘要](../versions/v10.1.15/EVIDENCE_SUMMARY_20261115.json)、[题库](../versions/v10.1.15/LIFESTYLE_DISCOVERY_QUESTION_BANK_V1.md)和[Owner评审说明](../versions/v10.1.15/OWNER_REVIEW.md)。路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)及[11月15日补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115.md)。
 
-任务分支：`codex/v10.1.15-lifestyle-discovery-progressive-preferences-20261115`；唯一父基线：`98b06629eec122bf97bbcfe20adaf950041ecfee`。必须先同步全部路线/授权/任务文档、逐Blob核验并创建ROADMAP_ALIGNMENT_ACK，再开始编码。
+定向PHP46项/447断言、Flutter106项、18个Dart文件分析及真实APP/API/MariaDB具名流程通过。扩大旧套件诊断保留PHP16个和Flutter11个失败，固定任务权威源码对照复现同名失败。完整固定基线全量回归NOT_RUN。
 
-## 本版目标
+原D:\EliteSync-v10的HEAD、分支、tracked/cached diff、相同选项status和index原字节与本轮启动一致，稳定根 `%SystemDrive%/` 保留。私有原证位于Owner本机 `v10115-current`。DB/API/WS运行，SFU exited，模拟器停止，AVD/数据保留。本版手机NOT_RUN。最终数据库备份独立恢复NOT_RUN。
 
-注册后默认展示生活方式探索，可跳过且不影响注册、匿名社区、好友或Buddy；未来每周慢约会匹配必须完成。题库4—6场景，每场景2—3选项；支持自动保存、返回修改、正反向动画、冷启动续做；原始答案与可解释偏好映射分开保存。
+v10.1.14的[Owner接受](../versions/v10.1.14/OWNER_ACCEPTANCE_20261115.md)与[顾问验收](../versions/v10.1.14/ADVISOR_ACCEPTANCE_20261115.md)及原P2、NOT_RUN/UNKNOWN边界保留。
 
-Astra负责艺术指导，最新在线GPT Image生成静态美术素材；资产和manifest放GitHub固定目录供Codex调用。运行时不接AI，不上传用户偏好。视觉方向保持Owner已确认的低分辨率质感、几何色块、低刺激、二次元卡通/构成主义。
-
-## 未授权范围
-
-B2通用后台自动化、B3全局低操作成本重构、B4运行时AI、阶段C身份/信用/Push/支付等未授权。不得将探索设为注册或社区门槛，不收集实名/出生时地/信用资料，不改变匹配算法和关系状态机。main集成与正式发布仍NOT_RUN。
+当前停止等待GPT顾问独立验收。B2、B3、B4、阶段C、main集成、正式发布及真实运营均NOT_RUN。
