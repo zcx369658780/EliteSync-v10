@@ -22,6 +22,6 @@
 
 美术由本轮GPT-6 Astra提供艺术指导及五图一致性审阅，正式素材经在线内置GPT Image入口生成。工具返回信息未暴露实际图像模型的精确名称和版本，记录为 `UNKNOWN / MODEL_IDENTIFIER_UNVERIFIED`，AC15-02保留PARTIAL。
 
-定向验证、扩大诊断和固定任务源码对照的结果见实施报告。顾问独立验收与Owner接受均为PENDING。
+定向验证、扩大诊断和固定任务源码对照的结果见实施报告。顾问已完成具名范围接受，R1-01已关闭且无需R2；AC15-02仍为PARTIAL。Owner接受仍为PENDING，需Owner本人完成最终评审。
 
 [素材预览](../../../design/assets/lifestyle-discovery/v1/preview.jpg)与[代表截图](evidence/)可用于顾问对照。本轮APP进度恢复从我的 → 生活方式探索进入，冷启动初始路由沿既有准备页。
