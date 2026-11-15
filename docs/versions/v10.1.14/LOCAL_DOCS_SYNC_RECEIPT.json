@@ -1,0 +1,69 @@
+{
+  "fixed_task_commit": "866ccb269603ab451f84e948fa23d7361362f33f",
+  "status": "LOCAL_DOCS_SYNCED",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "git_blob_sha": "05bb5bfa4134b5936f511fb364d100ee1e9a12f8",
+      "local_blob_sha": "05bb5bfa4134b5936f511fb364d100ee1e9a12f8",
+      "normalized_content_equal": true,
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/workflow/ACTIVE_STATE.md",
+      "git_blob_sha": "6aaf7d904c705ad8cd9743a09f91c72b4769055d",
+      "local_blob_sha": "6aaf7d904c705ad8cd9743a09f91c72b4769055d",
+      "normalized_content_equal": true,
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/workflow/CURRENT_WORKFLOW.md",
+      "git_blob_sha": "4fc343befe591ddce3b427fabd018b61a2ace244",
+      "local_blob_sha": "4fc343befe591ddce3b427fabd018b61a2ace244",
+      "normalized_content_equal": true,
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md",
+      "git_blob_sha": "de2653cdd80ddbf296b378924012b95d679d81ee",
+      "local_blob_sha": "de2653cdd80ddbf296b378924012b95d679d81ee",
+      "normalized_content_equal": true,
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/decisions/OWNER_V10_1_13_ACCEPTANCE_AND_V10_1_14_PHASE_A_AUTHORIZATION_20261115.md",
+      "git_blob_sha": "156c108f070043a22c6b52ecfb48432d450b943a",
+      "local_blob_sha": "156c108f070043a22c6b52ecfb48432d450b943a",
+      "normalized_content_equal": true,
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.14/task_order.md",
+      "git_blob_sha": "465a51b27830a55144e7a7d53a4d2b44cbecee88",
+      "local_blob_sha": "465a51b27830a55144e7a7d53a4d2b44cbecee88",
+      "normalized_content_equal": true,
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.14/plan.md",
+      "git_blob_sha": "d97ea12e7484ee82a754963fc4ff5c04b93d1f27",
+      "local_blob_sha": "d97ea12e7484ee82a754963fc4ff5c04b93d1f27",
+      "normalized_content_equal": true,
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.14/DEVELOPMENT_ALIGNMENT.md",
+      "git_blob_sha": "37eae86fe7fae3616b9c039e85a7c307d6ba9543",
+      "local_blob_sha": "37eae86fe7fae3616b9c039e85a7c307d6ba9543",
+      "normalized_content_equal": true,
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.14/CODEX_START_PROMPT.txt",
+      "git_blob_sha": "264e6c1b64cf09f647c598200677cf5cd31055ac",
+      "local_blob_sha": "264e6c1b64cf09f647c598200677cf5cd31055ac",
+      "normalized_content_equal": true,
+      "status": "LOCAL_DOCS_SYNCED"
+    }
+  ]
+}
