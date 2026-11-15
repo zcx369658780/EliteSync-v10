@@ -1,5 +1,26 @@
 # B1 生活方式探索艺术指导 V1
 
+## 当前美术资产状态
+
+2026-11-15，R1-01文档对齐。下表依据产品源码 `2123496a4d347220e17b84eeec4df9d9f9455399`、候选 `10.1.15-dev / 1011501` 的已有记录整理。
+
+五幅图片均已生成，GPT-6 Astra已完成五图静态视觉审阅，状态为 `REVIEWED_WITH_NOTES`。实际图像模型名称为 `UNKNOWN`，模型版本为 `UNKNOWN`，元数据状态为 `MODEL_IDENTIFIER_UNVERIFIED`。AC15-02维持 `PARTIAL_EXACT_MODEL_IDENTIFIER_UNAVAILABLE`。[资产manifest](../../../design/assets/lifestyle-discovery/v1/asset_manifest.json)
+
+| 核验项 | 当前状态 | 证据与范围 |
+| --- | --- | --- |
+| 五幅插画生成 | `GENERATED_ALL_FIVE` | 五个场景的原图与优化图已交付。[资产manifest](../../../design/assets/lifestyle-discovery/v1/asset_manifest.json) |
+| Astra静态视觉审阅 | `REVIEWED_WITH_NOTES` | 已查看联系表和五幅原图。共餐中央桌略大、相聚圆片稍鲜亮的备注保留。[首批静态审阅记录](#2026-11-15-首批生成图艺术复核) |
+| APP内实际呈现 | `PASS_IN_NAMED_SCOPE` | 1011501模拟器具名场景呈现与十三张代表截图已有记录。[实施报告](IMPLEMENTATION_REPORT.md)及[代表截图](evidence/) |
+| 场景前进与返回动画 | `PASS` | 范围为Widget与观察到的APP导航，对应 `animations_forward_reverse`。[证据摘要](EVIDENCE_SUMMARY_20261115.json) |
+| 减少动态效果逻辑 | `PASS`（Widget） | 对应 `reduced_motion` 的Widget验证。[证据摘要](EVIDENCE_SUMMARY_20261115.json) |
+| 系统级减少动态效果设备验证 | `NOT_RUN` | 对应 `device_system_reduced_motion`，沿已有记录保留。[证据摘要](EVIDENCE_SUMMARY_20261115.json) |
+| 本地素材打包与离线可用 | `PASS` | 范围为APK内五图及题库逐字节核对、本地场景渲染，对应 `offline_artwork`。[实施报告](IMPLEMENTATION_REPORT.md)及[证据摘要](EVIDENCE_SUMMARY_20261115.json) |
+| Owner手机验证 | `NOT_RUN` | 对应 `phone` 的本版记录。[证据摘要](EVIDENCE_SUMMARY_20261115.json) |
+
+## 生成前历史快照（已被后续记录取代）
+
+> 生成前历史状态，已被2026-11-15生成及审阅记录取代。下方原始过程文字按当时时点保留。当前分项状态见本文件开头摘要。
+
 日期为 2026-11-15，北京时间。艺术指导由本轮 GPT-6 Astra 助手提供，精确服务端版本未暴露。范围仅为 v10.1.15 B1。主代理保留题库定稿、实现、产品边界、工程验收和 Git 权力。
 
 本文件依据已固定的 `task_order.md`、`plan.md`、`DEVELOPMENT_ALIGNMENT.md` 与 `app_colors.dart`。当前交付为艺术指导和提示词包，未生成、审阅或验收图片，素材状态为 `ASSET_GENERATION_PENDING`。艺术指导模型与之后实际调用的图像模型须分别记录。
@@ -128,9 +149,13 @@ Show a simple shared activity room with a broad window, an empty cork board and 
 - 前进、返回、改选、快速连点与动画中断后是否保持正确选择，减少动态效果是否关闭位移与缩放。
 - 离线是否可展示五图和全部反馈，图片尺寸与总包体是否在主代理实际评估后接受。
 
+> 下段为生成前历史状态，已被2026-11-15生成及审阅记录和后续工程验证记录取代。
+
 当前图片与动画审阅均为 `NOT_RUN`。本指导不构成正式素材验收、用户偏好测量有效性证明或产品接受。用户答案不得进入图像提示词，不调用运行时 AI，不改变匹配算法。
 
 ## 2026-11-15 首批生成图艺术复核
+
+> 本节保留五图静态审阅时点的记录。其中运行时呈现、动画、减少动态效果和离线检查的 `NOT_RUN` 为该时点状态，已由后续实施报告及证据摘要中的具名验证记录更新。当前分项状态见本文件开头摘要。
 
 本次由 GPT-6 Astra 查看 `design/assets/lifestyle-discovery/v1/preview.jpg` 与 `originals/` 下五幅 PNG 原图。以上 `ASSET_GENERATION_PENDING` 和图片 `NOT_RUN` 保留为生成前记录。本次只将所列图片的静态视觉审阅记为 `REVIEWED_WITH_NOTES`，不代表 AC15-02 完整通过或正式素材接受。真实图像模型精确版本仍未暴露，保留 `UNKNOWN`。运行时呈现、动画、减少动态效果和离线检查仍为 `NOT_RUN`。
 

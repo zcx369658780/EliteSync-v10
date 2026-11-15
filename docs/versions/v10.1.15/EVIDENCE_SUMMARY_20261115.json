@@ -388,12 +388,47 @@
   "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md",
   "r1": {
     "id": "R1-01",
-    "status": "OPEN_DOCS_ONLY",
+    "status": "CLOSED",
     "path": "docs/versions/v10.1.15/ASTRA_ART_DIRECTION_V1.md",
     "issue": "The opening/current-state paragraphs still say assets have not been generated and art review is NOT_RUN/ASSET_GENERATION_PENDING, while the later 2026-11-15 addendum and asset manifest record all five images generated and static art review completed with notes.",
     "required_change": "Label the earlier statements explicitly as a pre-generation historical snapshot or replace the current-state summary while preserving chronology. Current status must say five images generated and statically reviewed with notes; exact online image model identifier remains UNKNOWN/PARTIAL; in-app animation/runtime/reduced-motion/system-level review remains only as actually recorded.",
     "scope": "Documentation only. No product source, image, prompt, asset manifest, APK, database, build, or test changes are requested.",
-    "validation": "Read the revised document and check consistency against design/assets/lifestyle-discovery/v1/asset_manifest.json and IMPLEMENTATION_REPORT.md. Push to the existing v10.1.15 branch and same-origin readback."
+    "validation": "Read the revised document and check consistency against design/assets/lifestyle-discovery/v1/asset_manifest.json and IMPLEMENTATION_REPORT.md. Push to the existing v10.1.15 branch and same-origin readback.",
+    "issue_recorded_at_commit": "8dc539d4053f895ceaa68bbe5c728402b685139a",
+    "closeout": {
+      "status": "CLOSED",
+      "scope": "DOCS_ONLY",
+      "input_commit": "8dc539d4053f895ceaa68bbe5c728402b685139a",
+      "corrected_document": "ASTRA_ART_DIRECTION_V1.md",
+      "corrected_document_git_blob_sha": "b6e24fbfcee3794fd6d21160eb68aa12a770286f",
+      "history": "Pre-generation statements and static-review-time NOT_RUN statements retained verbatim with supersession labels.",
+      "art_state": {
+        "generated": "GENERATED_ALL_FIVE",
+        "static_review": "REVIEWED_WITH_NOTES",
+        "image_model_name": "UNKNOWN",
+        "image_model_version": "UNKNOWN",
+        "model_metadata": "MODEL_IDENTIFIER_UNVERIFIED",
+        "AC15-02": "PARTIAL_EXACT_MODEL_IDENTIFIER_UNAVAILABLE",
+        "app_display": "PASS_IN_NAMED_SCOPE",
+        "animations": "PASS",
+        "reduced_motion_widget": "PASS",
+        "device_system_reduced_motion": "NOT_RUN",
+        "phone": "NOT_RUN",
+        "offline_artwork": "PASS",
+        "animation_scope": "Widget + observed APP navigation",
+        "offline_artwork_scope": "APK archive byte comparison + local scene rendering"
+      },
+      "validation": [
+        "Markdown content and links",
+        "JSON parse and evidence consistency",
+        "Git diff limited to five closeout documents",
+        "Original text and prompt blocks preserved"
+      ],
+      "advisor_rereview": "PENDING",
+      "owner_acceptance": "PENDING"
+    }
   },
-  "r2": "NOT_REQUIRED"
+  "r2": "NOT_REQUIRED",
+  "advisor_acceptance_basis_commit": "f4c48d14f6875b59eefad0f49cafeec38b977066",
+  "advisor_rereview_status": "PENDING"
 }

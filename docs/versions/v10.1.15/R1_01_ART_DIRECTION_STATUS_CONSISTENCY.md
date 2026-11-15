@@ -1,6 +1,9 @@
 # v10.1.15 R1-01：艺术指导文档状态一致性修正
 
-状态：`OPEN — DOCS ONLY`  
+当前状态为 `CLOSED — DOCS ONLY`。
+
+顾问重新复核为 `PENDING`。
+
 顾问验收提交：`f4c48d14f6875b59eefad0f49cafeec38b977066`
 
 ## 问题文件
@@ -40,3 +43,13 @@
 ## 交付
 
 更新该文档，在同一v10.1.15任务分支提交；检查Markdown、链接和Git差异，完成同源远端固定回读。提交后停止，交GPT顾问复核关闭R1-01。
+
+## 2026-11-15 Codex文档修正回执
+
+本轮从固定提交 `8dc539d4053f895ceaa68bbe5c728402b685139a` 同步五份指定文档并逐Blob核验，状态均为 `LOCAL_DOCS_SYNCED`。
+
+艺术指导文首已增加当前状态摘要。生成前原文、完整prompt及首批静态审阅原文逐行保留，旧生成状态和旧运行时 `NOT_RUN` 均已标明历史时点及后续取代关系。五图生成、静态审阅备注、APP具名呈现、动画、Widget减少动态效果、系统级设备验证和手机验证分别对齐已有证据。实际图像模型名称与版本均为 `UNKNOWN`，AC15-02保留PARTIAL。
+
+文档核对覆盖Markdown内容及链接、JSON解析和既有证据一致性、Git变更范围、历史原文与prompt保留。交付记录同步更新至CLOSED，顾问重新复核为PENDING，Owner接受为PENDING。原顾问验收报告按其对固定交付提交的历史结论保留。
+
+修正文档见[艺术指导](ASTRA_ART_DIRECTION_V1.md)，依据为[资产manifest](../../../design/assets/lifestyle-discovery/v1/asset_manifest.json)、[实施报告](IMPLEMENTATION_REPORT.md)和[证据摘要](EVIDENCE_SUMMARY_20261115.json)。最终修正由包含本回执的Git提交固定，同源远端回读记录保存在Owner本机本轮回执目录。

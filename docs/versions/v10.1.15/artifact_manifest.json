@@ -525,8 +525,42 @@
   "B2_B3_B4_C": "NOT_RUN",
   "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md",
   "advisor_acceptance_date": "2026-11-15",
-  "advisor_acceptance_scope": "AC15-01/03/04/05/06 accepted in named scope; AC15-02 accepted only for generated/reviewed art direction and asset integration with exact image model identifier remaining UNKNOWN/PARTIAL. One documentation-only R1-01 is required to reconcile stale pre-generation status statements in ASTRA_ART_DIRECTION_V1.md.",
-  "r1_status": "R1_01_OPEN_DOCS_ONLY",
+  "advisor_acceptance_scope": "AC15-01/03/04/05/06 accepted in named scope; AC15-02 accepted only for generated/reviewed art direction and asset integration with exact image model identifier remaining UNKNOWN/PARTIAL. The dated advisor verdict applies to the original delivery. Codex completed documentation-only R1-01 to reconcile pre-generation and later art/runtime evidence. Advisor re-review is pending.",
+  "r1_status": "R1_01_CLOSED_DOCS_ONLY",
   "r2_status": "NOT_REQUIRED",
-  "next": "WAIT_FOR_R1_01_DOCS_ONLY_CLOSEOUT_AND_OWNER_ACCEPTANCE"
+  "next": "WAIT_FOR_GPT_ADVISOR_R1_01_REREVIEW",
+  "advisor_acceptance_basis_commit": "f4c48d14f6875b59eefad0f49cafeec38b977066",
+  "advisor_rereview_status": "PENDING",
+  "r1_closeout": {
+    "status": "CLOSED",
+    "scope": "DOCS_ONLY",
+    "input_commit": "8dc539d4053f895ceaa68bbe5c728402b685139a",
+    "corrected_document": "ASTRA_ART_DIRECTION_V1.md",
+    "corrected_document_git_blob_sha": "b6e24fbfcee3794fd6d21160eb68aa12a770286f",
+    "history": "Pre-generation statements and static-review-time NOT_RUN statements retained verbatim with supersession labels.",
+    "art_state": {
+      "generated": "GENERATED_ALL_FIVE",
+      "static_review": "REVIEWED_WITH_NOTES",
+      "image_model_name": "UNKNOWN",
+      "image_model_version": "UNKNOWN",
+      "model_metadata": "MODEL_IDENTIFIER_UNVERIFIED",
+      "AC15-02": "PARTIAL_EXACT_MODEL_IDENTIFIER_UNAVAILABLE",
+      "app_display": "PASS_IN_NAMED_SCOPE",
+      "animations": "PASS",
+      "reduced_motion_widget": "PASS",
+      "device_system_reduced_motion": "NOT_RUN",
+      "phone": "NOT_RUN",
+      "offline_artwork": "PASS",
+      "animation_scope": "Widget + observed APP navigation",
+      "offline_artwork_scope": "APK archive byte comparison + local scene rendering"
+    },
+    "validation": [
+      "Markdown content and links",
+      "JSON parse and evidence consistency",
+      "Git diff limited to five closeout documents",
+      "Original text and prompt blocks preserved"
+    ],
+    "advisor_rereview": "PENDING",
+    "owner_acceptance": "PENDING"
+  }
 }
