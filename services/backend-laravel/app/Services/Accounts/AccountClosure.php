@@ -142,7 +142,8 @@ final class AccountClosure
     private function erasePrivateData(User $user): array
     {
         $cleared = [];
-        foreach (['user_astro_profiles', 'user_natal_profiles', 'user_dynamic_charts', 'mbti_attempts', 'questionnaire_drafts', 'lifestyle_discovery_commands', 'lifestyle_discoveries'] as $table) {
+        foreach (['user_astro_profiles', 'user_natal_profiles', 'user_dynamic_charts', 'mbti_attempts', 'questionnaire_drafts', 'lifestyle_discovery_commands', 'lifestyle_discoveries',
+            'automation_audits', 'automation_commands', 'automation_effects', 'automation_tasks', 'automation_authorizations'] as $table) {
             if (Schema::hasTable($table)) {
                 $cleared[$table] = DB::table($table)->where('user_id', $user->id)->delete();
             }

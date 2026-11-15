@@ -62,3 +62,9 @@ Artisan::command('accounts:process-closures', function () {
 });
 
 Schedule::command('accounts:process-closures')->everyMinute()->withoutOverlapping();
+
+Artisan::command('app:automation:tick {--limit=25}', function () {
+    $processed = app(\App\Services\AutomationService::class)->tick((string) \Illuminate\Support\Str::uuid(), (int) $this->option('limit'));
+    $this->info('Processed whitelisted automation tasks: '.$processed);
+});
+Schedule::command('app:automation:tick --limit=25')->name('user-automation')->everyMinute()->withoutOverlapping();

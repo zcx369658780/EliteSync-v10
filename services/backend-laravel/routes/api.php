@@ -78,6 +78,13 @@ Route::prefix('v1')->group(function () {
         Route::delete('/account', [AuthController::class, 'deleteSelf'])->middleware(['auth:sanctum', 'account.active']);
     });
 
+    Route::middleware(['auth:sanctum', 'account.active', \App\Http\Middleware\JourneyPrivateResponse::class])->group(function () {
+        $controller = \App\Http\Controllers\Api\V1\UserAutomationController::class;
+        Route::get('/user-state', [$controller, 'state']);
+        Route::get('/automations', [$controller, 'show']);
+        Route::put('/automations/{scope}', [$controller, 'update']);
+    });
+
     Route::get('/profile/lifestyle-discovery', [\App\Http\Controllers\Api\V1\LifestyleDiscoveryController::class, 'show'])->middleware(['auth:sanctum', 'account.active', \App\Http\Middleware\JourneyPrivateResponse::class]);
     Route::put('/profile/lifestyle-discovery', [\App\Http\Controllers\Api\V1\LifestyleDiscoveryController::class, 'update'])->middleware(['auth:sanctum', 'account.active', \App\Http\Middleware\JourneyPrivateResponse::class]);
 

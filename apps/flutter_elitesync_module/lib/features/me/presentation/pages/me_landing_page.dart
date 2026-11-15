@@ -69,6 +69,13 @@ class MeLandingPage extends StatelessWidget {
                 push: true,
               ),
               _MePurposeEntry(
+                icon: Icons.manage_accounts_outlined,
+                title: '状态与自动化',
+                subtitle: '查看本人状态、持续参与授权和处理结果。',
+                route: '/user-state',
+                push: true,
+              ),
+              _MePurposeEntry(
                 key: readinessKey,
                 icon: Icons.fact_check_outlined,
                 title: '准备状态',

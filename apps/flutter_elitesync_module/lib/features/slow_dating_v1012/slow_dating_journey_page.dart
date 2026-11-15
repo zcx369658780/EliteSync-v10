@@ -1,3 +1,4 @@
+import '../user_automation/user_state_page.dart';
 import '../lifestyle_discovery/lifestyle_page.dart';
 import '../relationships_v1011/relationship_api.dart';
 import 'matching_input_page.dart';
@@ -83,6 +84,15 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
         spacing: 8,
         runSpacing: 8,
         children: [
+          OutlinedButton(
+            onPressed: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute<void>(builder: (_) => const UserStatePage()),
+              );
+              if (mounted) await refresh();
+            },
+            child: const Text('状态与自动化'),
+          ),
           OutlinedButton(
             key: const Key('journey-matching-inputs'),
             onPressed: () async {

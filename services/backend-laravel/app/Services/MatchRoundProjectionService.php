@@ -12,6 +12,25 @@ use App\Domain\Matching\RunState;
 
 class MatchRoundProjectionService
 {
+    /** Minimal self-only projection. This path never enters proposal reconciliation. */
+    public function readOnlySummary(int $userId): array
+    {
+        $channel = DatingRoundChannel::whereKey('default')->first();
+        $round = $channel?->active_round_id ? DatingRound::find($channel->active_round_id) : null;
+        if (! $round) {
+            return ['code' => 'no_round', 'source_revision' => (int) ($channel->state_version ?? 0),
+                'source_updated_at' => $channel?->updated_at?->toISOString()];
+        }
+        $round->loadMissing('activeRun');
+        $state = DatingRoundUserState::where('round_id', $round->id)->where('user_id', $userId)->first();
+        return ['code' => $this->publicState($round, $state), 'round_id' => $round->id,
+            'source_revision' => (int) ($state?->projection_version ?? $round->state_version),
+            'round_revision' => $round->state_version,
+            'source_updated_at' => ($state?->updated_at ?? $round->updated_at)?->toISOString(),
+            'scheduled_for' => $round->scheduled_for?->toISOString(),
+            'reveal_at' => $round->reveal_at?->toISOString()];
+    }
+
     public function currentForUser(int $userId, string $channelKey = 'default'): array
     {
         $channel = DatingRoundChannel::query()->whereKey($channelKey)->first();

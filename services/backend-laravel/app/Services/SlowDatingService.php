@@ -18,7 +18,13 @@ final class SlowDatingService
 
     public function enrolled(int $id, ?int $generation = null): bool
     {
-        return DB::table('matching_participations')->where('user_id', $id)->where('state', 'ACTIVE')->when($generation !== null, fn ($q) => $q->where('generation', $generation))->lockForUpdate()->exists();
+        $p = DB::table('matching_participations')->where('user_id', $id)->where('state', 'ACTIVE')->when($generation !== null, fn ($q) => $q->where('generation', $generation))->lockForUpdate()->first();
+        if (! $p || ! app(AutomationAuthorizationService::class)->delegatedParticipationAllowed($p)) { return false; }
+        if ($generation === null && ($p->automation_authorization_id ?? null)) {
+            $roundId = DB::table('dating_round_channels')->where('channel_key', 'default')->value('active_round_id');
+            return $roundId !== null && app(AutomationAuthorizationService::class)->roundAllowed($id, (int) $roundId);
+        }
+        return true;
     }
 
     public function participate(int $id, string $action, int $revision, string $intent): array
@@ -45,6 +51,13 @@ final class SlowDatingService
             } elseif ($action === 'exit') { $state = 'EXITED';
             } else { abort_unless($action === 'draft', 422); }
             DB::table('matching_participations')->updateOrInsert(['user_id' => $id], ['state' => $state, 'generation' => $generation, 'revision' => $revision + 1, 'intent' => $intent, 'opted_in_at' => $action === 'opt_in' ? now() : ($p->opted_in_at ?? null), 'created_at' => $p->created_at ?? now(), 'updated_at' => now()]);
+            if ($action === 'opt_in') {
+                DB::table('matching_participations')->where('user_id', $id)->update([
+                    'automation_authorization_id' => null, 'automation_authorization_revision' => null, 'automation_round_id' => null]);
+            }
+            if (in_array($action, ['pause', 'exit'], true)) {
+                app(AutomationAuthorizationService::class)->suspendFromParticipation($id, $action);
+            }
             if ($action === 'exit') {
                 foreach ($this->pendingFor($id) as $old) {
                     $this->finish($old, 'WITHDRAWN');
@@ -100,6 +113,12 @@ final class SlowDatingService
             $this->finish($p, 'EXPIRED');
             app(JourneyStore::class)->audit(null, $p->id, 'EXPIRED', []);
         }
+    }
+
+    /** Natural deadlines only. Caller holds questionnaire and actor User locks. */
+    public function reconcileOwnProposalDeadlines(int $actor): void
+    {
+        foreach ($this->pendingFor($actor) as $proposal) { $this->expire($proposal); }
     }
 
     private function pendingFor(int $actor): \Illuminate\Support\Collection
