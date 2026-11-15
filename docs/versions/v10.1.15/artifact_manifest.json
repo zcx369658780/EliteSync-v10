@@ -19,7 +19,7 @@
     "identity_signature_installation": "PASS"
   },
   "engineering_result": "DELIVERED_WITH_AC15_02_METADATA_GAP",
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
   "owner_acceptance": "PENDING",
   "ac_status": {
     "AC15-01": "PASS",
@@ -522,5 +522,11 @@
   },
   "main_integration": "NOT_RUN",
   "formal_release": "NOT_RUN",
-  "B2_B3_B4_C": "NOT_RUN"
+  "B2_B3_B4_C": "NOT_RUN",
+  "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md",
+  "advisor_acceptance_date": "2026-11-15",
+  "advisor_acceptance_scope": "AC15-01/03/04/05/06 accepted in named scope; AC15-02 accepted only for generated/reviewed art direction and asset integration with exact image model identifier remaining UNKNOWN/PARTIAL. One documentation-only R1-01 is required to reconcile stale pre-generation status statements in ASTRA_ART_DIRECTION_V1.md.",
+  "r1_status": "R1_01_OPEN_DOCS_ONLY",
+  "r2_status": "NOT_REQUIRED",
+  "next": "WAIT_FOR_R1_01_DOCS_ONLY_CLOSEOUT_AND_OWNER_ACCEPTANCE"
 }

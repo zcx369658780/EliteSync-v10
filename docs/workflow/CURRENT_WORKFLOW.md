@@ -23,3 +23,8 @@ Astra艺术指导与提示词；最新在线GPT Image生成正式静态素材；
 ## 边界
 
 不接实名/出生时地/信用/身份供应商/Push/支付；不改匹配算法或关系状态机；不把探索设为社区/Buddy/好友门槛；不提前实现B2/B3/B4/C；不合main、不发布、不运营。v10.1.15交付后停下供顾问验收。
+
+
+## v10.1.15顾问验收（2026-11-15）
+
+顾问已按具名范围接受AC15-01/03/04/05/06；AC15-02保持PARTIAL，实际在线图像模型精确标识UNKNOWN。R1-01仅要求修正`ASTRA_ART_DIRECTION_V1.md`生成前状态与最终生成/静态审阅状态之间的文档冲突，不涉及源码、APK或测试；R2不需要。详见[v10.1.15顾问验收报告](../versions/v10.1.15/ADVISOR_ACCEPTANCE_20261115.md)及[R1-01任务](../versions/v10.1.15/R1_01_ART_DIRECTION_STATUS_CONSISTENCY.md)。Owner接受仍PENDING。

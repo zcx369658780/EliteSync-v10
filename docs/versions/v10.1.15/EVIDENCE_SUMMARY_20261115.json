@@ -382,5 +382,18 @@
   "private_receipts_location": "Owner-local v10115-current; raw SQL, credentials, APK and device logs retained locally",
   "main_integration": "NOT_RUN",
   "formal_release": "NOT_RUN",
-  "B2_B3_B4_C": "NOT_RUN"
+  "B2_B3_B4_C": "NOT_RUN",
+  "advisor_acceptance": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
+  "owner_acceptance": "PENDING",
+  "advisor_acceptance_report": "ADVISOR_ACCEPTANCE_20261115.md",
+  "r1": {
+    "id": "R1-01",
+    "status": "OPEN_DOCS_ONLY",
+    "path": "docs/versions/v10.1.15/ASTRA_ART_DIRECTION_V1.md",
+    "issue": "The opening/current-state paragraphs still say assets have not been generated and art review is NOT_RUN/ASSET_GENERATION_PENDING, while the later 2026-11-15 addendum and asset manifest record all five images generated and static art review completed with notes.",
+    "required_change": "Label the earlier statements explicitly as a pre-generation historical snapshot or replace the current-state summary while preserving chronology. Current status must say five images generated and statically reviewed with notes; exact online image model identifier remains UNKNOWN/PARTIAL; in-app animation/runtime/reduced-motion/system-level review remains only as actually recorded.",
+    "scope": "Documentation only. No product source, image, prompt, asset manifest, APK, database, build, or test changes are requested.",
+    "validation": "Read the revised document and check consistency against design/assets/lifestyle-discovery/v1/asset_manifest.json and IMPLEMENTATION_REPORT.md. Push to the existing v10.1.15 branch and same-origin readback."
+  },
+  "r2": "NOT_REQUIRED"
 }
