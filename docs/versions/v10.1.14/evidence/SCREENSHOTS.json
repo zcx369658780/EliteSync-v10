@@ -1,0 +1,107 @@
+{
+  "visual_review": "17 selected original screenshots inspected in a local contact sheet; no login credentials, tokens or private media URLs visible",
+  "items": [
+    {
+      "path": "evidence/screenshots/01-owner-community-cold-readback-1011402.png",
+      "caption": "作者冷启动后社区入口，视口位于发布表单和列表起始处",
+      "candidate": 1011402,
+      "sha256": "d9316ac25ebf39ecf1bdada1018d5e677843daded5bd8da36e53e9ef4ace3405"
+    },
+    {
+      "path": "evidence/screenshots/02-published-I20.png",
+      "caption": "1011402发布I20后的普通APP回执与卡片起始部分",
+      "candidate": 1011402,
+      "sha256": "19258262bd0a904d7f56d86eece06562503ccab1ac6fe04ebe485156cfdc031c"
+    },
+    {
+      "path": "evidence/screenshots/03-video-owner-loaded-1011402.png",
+      "caption": "作者V05播放器加载",
+      "candidate": 1011402,
+      "sha256": "85302b1c63fdb4041dd23be9ac9be0976a59b6c3f156027a0eeefc86ed2247d0"
+    },
+    {
+      "path": "evidence/screenshots/04-video-owner-playing-native-1011402.png",
+      "caption": "作者V05主动播放的原生画面",
+      "candidate": 1011402,
+      "sha256": "787a7d927b955099b162b502713a7721a588133b2a84f7c0bea0bc92b5764467"
+    },
+    {
+      "path": "evidence/screenshots/05-video-owner-paused-1011402.png",
+      "caption": "作者V05暂停，进度0:02/0:08",
+      "candidate": 1011402,
+      "sha256": "77375b087bab675f16e83b0f452d35f33a0e5ec273c2dd07185a5b88c233595c"
+    },
+    {
+      "path": "evidence/screenshots/06-friend-video-loaded-1011402.png",
+      "caption": "好友V04播放器加载",
+      "candidate": 1011402,
+      "sha256": "fb91c60c819e9cf498e42d0e8af2a38a4ac094eba907e0666b25568e5d28ca0e"
+    },
+    {
+      "path": "evidence/screenshots/07-friend-video-revoked-1011402.png",
+      "caption": "好友V04受众撤回后播放器不可用",
+      "candidate": 1011402,
+      "sha256": "5463dca49356817ac9021dd0357eb6ac97621eafaea46145703213c53b4613f4"
+    },
+    {
+      "path": "evidence/screenshots/08-friend-comment-1011402.png",
+      "caption": "好友普通APP提交一级评论",
+      "candidate": 1011402,
+      "sha256": "375c4fa194d77651aa0a2447bf556b544f65b7a2111d8a8ec9718350719985fb"
+    },
+    {
+      "path": "evidence/screenshots/09-paired-message-sender-1011402.png",
+      "caption": "发送端聊天页，键盘使最新消息位于当前可视区域下方；消息136以接收端与API核对",
+      "candidate": 1011402,
+      "sha256": "2b8befbc35d98c14f5fef4fb5974d3978d6d147115ac05000220a80db4e177f6"
+    },
+    {
+      "path": "evidence/screenshots/10-paired-message-receiver-1011402.png",
+      "caption": "好友端实际显示消息136",
+      "candidate": 1011402,
+      "sha256": "b886d17a263a6e92f72bad0c4deb40f1dc5f2795fd68ae6eae868e216ddb8354"
+    },
+    {
+      "path": "evidence/screenshots/11-matching-eligibility-boundary-1011402.png",
+      "caption": "匹配未就绪与当前资格说明",
+      "candidate": 1011402,
+      "sha256": "9f914912dedb15022728af4a410ab1f3333c04942155d16926d7d24e45d74c53"
+    },
+    {
+      "path": "evidence/screenshots/12-buddy-existing-terminal-1011402.png",
+      "caption": "Buddy入口；具名COMPLETED记录由API回执确认",
+      "candidate": 1011402,
+      "sha256": "e0aa693ebf8435d557f9378641760096206a46a653ae1dff68929d58b0bab93b"
+    },
+    {
+      "path": "evidence/screenshots/13-platform-existing-history-1011402.png",
+      "caption": "平台活动入口；具名历史终态由API回执确认",
+      "candidate": 1011402,
+      "sha256": "ff82ec98e0dca1540a007d2ba814da46c38b9438611a5912868a587dc61cb1dc"
+    },
+    {
+      "path": "evidence/screenshots/14-formal-identity-unconfigured-1011402.png",
+      "caption": "正式关系入口及未配置身份能力说明",
+      "candidate": 1011402,
+      "sha256": "32084b5db354187de5c950c00f974082734910e590643193c441ff9d8f6a1ab5"
+    },
+    {
+      "path": "evidence/screenshots/15-outsider-mbti-history8-1011402.png",
+      "caption": "非好友账号的本人MBTI结果与历史8",
+      "candidate": 1011402,
+      "sha256": "8f0af4de11ed57cec39be62b7d86faeeb94f1e92cae10d2a11cff4d754afc5f5"
+    },
+    {
+      "path": "evidence/screenshots/16-outsider-feedback7-resolved-1011402.png",
+      "caption": "非好友账号的反馈表单；反馈7版本2由UI层级及API回执确认",
+      "candidate": 1011402,
+      "sha256": "edf755301a2968466facba90917beb78d5cc3a10571c0750b5926ad7054f97b4"
+    },
+    {
+      "path": "evidence/screenshots/17-outsider-empty-feed-final-1011402.png",
+      "caption": "非好友冷启动社区空列表说明",
+      "candidate": 1011402,
+      "sha256": "1d82d2a8f61ed1f8c7e4d1feb76c83b103422e7f2b1c1f2e7869725cd6dc5754"
+    }
+  ]
+}

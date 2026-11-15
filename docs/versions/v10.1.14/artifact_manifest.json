@@ -1,0 +1,244 @@
+{
+  "version": "v10.1.14",
+  "phase": "A",
+  "branch": "codex/v10.1.14-product-readiness-core-journeys-20261115",
+  "fixed_parent": "5dd0c9e6625699947f8dd0755ff568a3edfe0b04",
+  "fixed_task_documents": "866ccb269603ab451f84e948fa23d7361362f33f",
+  "app_source_commit": "88540f7f4d5a64500996b67eb04bfd9aba7c0af3",
+  "api_last_change_commit": "d9c49dd8d6f5721c56f5cfc87b2cbaf721819883",
+  "web_source_commit": "e2448e2c4d630fad31168e3c0b70d3831011215f",
+  "engineering_status": "PASS_NAMED_REPRESENTATIVE_SCOPE",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "apk": {
+    "version_name": "10.1.14-dev",
+    "version_code": 1011402,
+    "package": "com.elitesync.v1015dev",
+    "apk_bytes": 123928582,
+    "apk_sha256": "b5cc7e9bbca910a0e4da3af0a64e56d99eb82bb848743786c62244bb59c8e2b1",
+    "signature_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+    "exit_code": 0,
+    "elapsed_seconds": 76.0727349
+  },
+  "abi": "arm64-v8a",
+  "build_type": "Debug",
+  "migration": "NONE",
+  "installation": {
+    "A_android_user": 11,
+    "B_android_user": 12,
+    "both_installed_hashes_equal_apk": true,
+    "data_retained": true
+  },
+  "content": {
+    "images": 20,
+    "videos": 5,
+    "friends": 23,
+    "self": 2,
+    "created_with_1011401": 4,
+    "created_with_1011402": 21,
+    "index": "QA_CONTENT_INDEX.md",
+    "license_list": "MATERIAL_LICENSES.json"
+  },
+  "tests": {
+    "unique_dart": 15,
+    "php": 9,
+    "php_assertions": 86,
+    "analysis": "PASS targeted source and P1 test"
+  },
+  "isolated_restore": {
+    "tables": 104,
+    "table_counts_equal": true,
+    "all_row_values_canonical_equal": true,
+    "private_media_files_equal": 59,
+    "existing_database_overwritten": false
+  },
+  "backups": {
+    "database.sql": {
+      "bytes": 3235863,
+      "sha256": "eef13a7bbae9036f3bdf8ff34bada50cbbed155ae258ab2f5fd751a35684cab1"
+    },
+    "private-media.tar": {
+      "bytes": 18237440,
+      "sha256": "9eafadd62d472a43498027033d73ef03e25ed8b9321d1ac9ab6ce5d7577362f9"
+    }
+  },
+  "resources": {
+    "DB": "RUNNING",
+    "API": "RUNNING",
+    "WS": "RUNNING",
+    "SFU": "EXITED",
+    "emulators": "STOPPED_AVD_DATA_RETAINED",
+    "restore_containers": "STOPPED_VOLUMES_RETAINED",
+    "B_input_setting": "RESTORED_null"
+  },
+  "owner_phone": "NOT_USED_OWNER_ACTION_PENDING",
+  "owner_review_local_directory": "EliteSyncDev/v1015-current-dev/v10114-current/OWNER_REVIEW_1011402",
+  "original_repository_fingerprints_equal_to_start": {
+    "head": true,
+    "branch": true,
+    "status": true,
+    "index": true,
+    "tracked": true,
+    "cached": true
+  },
+  "protected_untracked_SystemDrive": "PRESERVED",
+  "code_and_test_blobs_at_app_source": {
+    "apps/android/app/build.gradle.kts": "9d9ef2ba5cc1ed211804a33b85cf452936d6d5d3",
+    "apps/flutter_elitesync_module/lib/features/chat/presentation/widgets/private_video_player.dart": "9bebc2fa9ab8102f2951dcac78c35e23109c8a13",
+    "apps/flutter_elitesync_module/lib/features/status/domain/entities/status_post_entity.dart": "2ae1a22c3c7e9c257e198ab70532607cf4f7b935",
+    "apps/flutter_elitesync_module/lib/features/status/presentation/pages/status_square_page.dart": "d8b48dfb1eaafac2784359b9a4d711144c6ad4e9",
+    "apps/flutter_elitesync_module/lib/features/status/presentation/widgets/status_post_card.dart": "1e95d3c0d54d3867a7ca613b214fef9801da49ae",
+    "apps/flutter_elitesync_module/test/features/status/domain/entities/status_post_entity_test.dart": "45a7d4331a809507c2f00ca5cb1e822aba02ade4",
+    "apps/flutter_elitesync_module/test/features/status/presentation/pages/status_square_page_test.dart": "c0ed74720d38218faeeb64798ae4919e90879060",
+    "apps/flutter_elitesync_module/test/features/status/presentation/widgets/status_post_card_test.dart": "7d613c033f584d9fc0a5707aebefa579f07d86b1",
+    "services/backend-laravel/app/Http/Controllers/Api/V1/StatusPostController.php": "0c5633bd48c238cade4dea9d0ff0a79310a62a68",
+    "services/backend-laravel/tests/Feature/V10114StatusVideoTest.php": "34e983323b0c10685a0ea26e4770e20562c37270"
+  },
+  "main_integration": "NOT_RUN",
+  "release": "NOT_RUN",
+  "next": "STOP_FOR_ADVISOR_INDEPENDENT_ACCEPTANCE",
+  "delivery_identity": {
+    "source_commit": "88540f7f4d5a64500996b67eb04bfd9aba7c0af3",
+    "document_commit_binding": "The fixed Git commit containing this manifest; SHA is provided in the final same-origin readback receipt and final Owner reply",
+    "local_readback_receipt": "v10114-current/final-origin-readback-private.json",
+    "reason": "A Git commit SHA cannot be embedded into its own committed content"
+  },
+  "public_artifacts": {
+    "CODEX_START_PROMPT.txt": {
+      "bytes": 3293,
+      "sha256": "c26943bb069094a1cc961fb212b894c4dd4e0f4633ad04c9854b5e761d73cb79"
+    },
+    "CORE_JOURNEY_MATRIX.md": {
+      "bytes": 7677,
+      "sha256": "09f9e4cd1a41fd024b026ef109263fc99ff24d2b7ec3cdd4afd2727f8629fcfe"
+    },
+    "DEVELOPMENT_ALIGNMENT.md": {
+      "bytes": 4948,
+      "sha256": "ea06970883b289d886dcc0e4f84ef275278e338aa479eebb7230caf902240422"
+    },
+    "EVIDENCE_SUMMARY_20261115.json": {
+      "bytes": 7936,
+      "sha256": "2da14aa6ccfd380e782f7fc8526478c0da121bb76414ce7c2c3147314699b69a"
+    },
+    "FEATURE_CATALOG.md": {
+      "bytes": 4291,
+      "sha256": "6487556efc9597741dfb0b01b65a93b387e944e7eedd3d2e5edfc58fa0689c64"
+    },
+    "IMPLEMENTATION_REPORT.md": {
+      "bytes": 9431,
+      "sha256": "46536736b175a1c8b8e4d05f21e3f20ffb6e6d8ddf7458c2e65c5f269da33bff"
+    },
+    "LOCAL_DOCS_SYNC_RECEIPT.json": {
+      "bytes": 2729,
+      "sha256": "44f5f9979dcdfc6dbaf1015f3abae052f83bfdba87655bd5dc7d7b99c40302d4"
+    },
+    "LOCAL_SERVICE_RECOVERY.md": {
+      "bytes": 7142,
+      "sha256": "f32b1deb6dd4182fe2e84c8cce1591fa3469fbb8812ef60f387fa6999480ff46"
+    },
+    "MATERIAL_LICENSES.json": {
+      "bytes": 29233,
+      "sha256": "5e957c06412f1e4f2414b73059b718c0a78492ef7abcd189f9036d72234c4ff0"
+    },
+    "OWNER_DEVICE_CHECKLIST.md": {
+      "bytes": 4738,
+      "sha256": "f88a36b60d3e560d376e282ddf2d5ee7897a813097e3ec1d93ac5dd0f706b322"
+    },
+    "plan.md": {
+      "bytes": 5465,
+      "sha256": "8bc26e74517b2bce4127e1fca170ed71ff32ad5a5a2aa19a68584ef294055208"
+    },
+    "QA_CONTENT_INDEX.md": {
+      "bytes": 3043,
+      "sha256": "1215c77c4eba8c95412ab17fca2779275569f975e60eda76cef79e916ac0c93b"
+    },
+    "ROADMAP_ALIGNMENT_ACK.md": {
+      "bytes": 2424,
+      "sha256": "dda4053d2fbf29fb5a7599a2f4c4fd4ce17a2b21e1122632a9b63383d1721a5b"
+    },
+    "task_order.md": {
+      "bytes": 11255,
+      "sha256": "1d38dd7f392bca1f94f4207547b3de806307f9493e232d8cfd0af2d74eb32785"
+    },
+    "evidence/SCREENSHOTS.json": {
+      "bytes": 4848,
+      "sha256": "8e847fa7de8393138001237ba6d07bf21d8c3f5100dd6595eda4520c5fa523d2"
+    },
+    "evidence/screenshots/01-owner-community-cold-readback-1011402.png": {
+      "bytes": 117163,
+      "sha256": "d9316ac25ebf39ecf1bdada1018d5e677843daded5bd8da36e53e9ef4ace3405"
+    },
+    "evidence/screenshots/02-published-I20.png": {
+      "bytes": 243132,
+      "sha256": "19258262bd0a904d7f56d86eece06562503ccab1ac6fe04ebe485156cfdc031c"
+    },
+    "evidence/screenshots/03-video-owner-loaded-1011402.png": {
+      "bytes": 405335,
+      "sha256": "85302b1c63fdb4041dd23be9ac9be0976a59b6c3f156027a0eeefc86ed2247d0"
+    },
+    "evidence/screenshots/04-video-owner-playing-native-1011402.png": {
+      "bytes": 404157,
+      "sha256": "787a7d927b955099b162b502713a7721a588133b2a84f7c0bea0bc92b5764467"
+    },
+    "evidence/screenshots/05-video-owner-paused-1011402.png": {
+      "bytes": 410575,
+      "sha256": "77375b087bab675f16e83b0f452d35f33a0e5ec273c2dd07185a5b88c233595c"
+    },
+    "evidence/screenshots/06-friend-video-loaded-1011402.png": {
+      "bytes": 41294,
+      "sha256": "fb91c60c819e9cf498e42d0e8af2a38a4ac094eba907e0666b25568e5d28ca0e"
+    },
+    "evidence/screenshots/07-friend-video-revoked-1011402.png": {
+      "bytes": 27989,
+      "sha256": "5463dca49356817ac9021dd0357eb6ac97621eafaea46145703213c53b4613f4"
+    },
+    "evidence/screenshots/08-friend-comment-1011402.png": {
+      "bytes": 70582,
+      "sha256": "375c4fa194d77651aa0a2447bf556b544f65b7a2111d8a8ec9718350719985fb"
+    },
+    "evidence/screenshots/09-paired-message-sender-1011402.png": {
+      "bytes": 101138,
+      "sha256": "2b8befbc35d98c14f5fef4fb5974d3978d6d147115ac05000220a80db4e177f6"
+    },
+    "evidence/screenshots/10-paired-message-receiver-1011402.png": {
+      "bytes": 82856,
+      "sha256": "b886d17a263a6e92f72bad0c4deb40f1dc5f2795fd68ae6eae868e216ddb8354"
+    },
+    "evidence/screenshots/11-matching-eligibility-boundary-1011402.png": {
+      "bytes": 221948,
+      "sha256": "9f914912dedb15022728af4a410ab1f3333c04942155d16926d7d24e45d74c53"
+    },
+    "evidence/screenshots/12-buddy-existing-terminal-1011402.png": {
+      "bytes": 58531,
+      "sha256": "e0aa693ebf8435d557f9378641760096206a46a653ae1dff68929d58b0bab93b"
+    },
+    "evidence/screenshots/13-platform-existing-history-1011402.png": {
+      "bytes": 78483,
+      "sha256": "ff82ec98e0dca1540a007d2ba814da46c38b9438611a5912868a587dc61cb1dc"
+    },
+    "evidence/screenshots/14-formal-identity-unconfigured-1011402.png": {
+      "bytes": 214768,
+      "sha256": "32084b5db354187de5c950c00f974082734910e590643193c441ff9d8f6a1ab5"
+    },
+    "evidence/screenshots/15-outsider-mbti-history8-1011402.png": {
+      "bytes": 89950,
+      "sha256": "8f0af4de11ed57cec39be62b7d86faeeb94f1e92cae10d2a11cff4d754afc5f5"
+    },
+    "evidence/screenshots/16-outsider-feedback7-resolved-1011402.png": {
+      "bytes": 130191,
+      "sha256": "edf755301a2968466facba90917beb78d5cc3a10571c0750b5926ad7054f97b4"
+    },
+    "evidence/screenshots/17-outsider-empty-feed-final-1011402.png": {
+      "bytes": 121658,
+      "sha256": "1d82d2a8f61ed1f8c7e4d1feb76c83b103422e7f2b1c1f2e7869725cd6dc5754"
+    }
+  },
+  "resource_snapshot": {
+    "at_utc": "2026-11-15T07:14:42.739449+00:00",
+    "host_total_visible_memory_kib": 33012620,
+    "host_free_physical_memory_kib": 10567252,
+    "A_test_memory_mib": 3072,
+    "B_test_memory_mib": 2048,
+    "emulator_ports_5580_5582_closed": true
+  }
+}

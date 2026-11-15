@@ -1,19 +1,15 @@
-# 当前入口 2026-11-15 v10.1.14已授权，等待本地Codex同步V3.0路线并开工
+# 当前入口 2026-11-15 v10.1.14阶段A集中交付
 
-**V10114_TASK_ISSUED — PHASE_A_PRODUCT_READINESS**。Owner已接受v10.1.13顾问验收，状态`OWNER_ACCEPTED_IN_NAMED_SCOPE`，无R1/无R2。Owner授权v10.1.14「产品评审准备与核心旅程收口」。当前唯一下一阶段权威为[V3.0路线图](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)。
+**V10114_ENGINEERING_PASS_NAMED_SCOPE / LOCAL_DOCS_SYNCED / ADVISOR_PENDING / OWNER_PENDING**。当前路线为[V3.0阶段A](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)，工程范围与限制见[实施报告](../versions/v10.1.14/IMPLEMENTATION_REPORT.md)、[manifest](../versions/v10.1.14/artifact_manifest.json)和[证据摘要](../versions/v10.1.14/EVIDENCE_SUMMARY_20261115.json)。最终交付身份由包含本入口的固定Git提交及同源远端回读共同绑定。
 
-任务：[task_order](../versions/v10.1.14/task_order.md)；[plan](../versions/v10.1.14/plan.md)；[DEVELOPMENT_ALIGNMENT](../versions/v10.1.14/DEVELOPMENT_ALIGNMENT.md)；[CODEX_START_PROMPT](../versions/v10.1.14/CODEX_START_PROMPT.txt)；Owner决定：[decision](../decisions/OWNER_V10_1_13_ACCEPTANCE_AND_V10_1_14_PHASE_A_AUTHORIZATION_20261115.md)。
+稳定根`D:\EliteSync-v10-product-v1015-20261101`，origin为`git@github.com:zcx369658780/EliteSync-v10.git`，分支`codex/v10.1.14-product-readiness-core-journeys-20261115`，唯一父基线`5dd0c9e6625699947f8dd0755ff568a3edfe0b04`。九份文档已核对任务提交`866ccb269603ab451f84e948fa23d7361362f33f`，编码前已生成[路线ACK](../versions/v10.1.14/ROADMAP_ALIGNMENT_ACK.md)。
 
-任务分支：`codex/v10.1.14-product-readiness-core-journeys-20261115`；唯一父基线：`5dd0c9e6625699947f8dd0755ff568a3edfe0b04`。v10.1.13 APP源码`2b4fdcc9f342b972a37b35de74fbf099827a7c2e`，API源码`47e1b4fd8fad3dd8165d1be6dc9f059095290e75`，Web视图`e2448e2c4d630fad31168e3c0b70d3831011215f`。
+最终APP源码`88540f7f4d5a64500996b67eb04bfd9aba7c0af3`，候选`10.1.14-dev / 1011402`，APK SHA256为`b5cc7e9bbca910a0e4da3af0a64e56d99eb82bb848743786c62244bb59c8e2b1`。API最近改动提交`d9c49dd8d6f5721c56f5cfc87b2cbaf721819883`，Web沿用`e2448e2c4d630fad31168e3c0b70d3831011215f`。双模拟器安装后哈希一致。15项唯一Dart及9项PHP/86断言定向通过，改动Dart源码分析通过。
 
-## 本版目标
+社区主媒体图片/视频二选一，复用私有MediaAsset与验证器，迁移NONE。20图文和5视频全部普通APP发布，4条图文由1011401创建、后续21条由1011402创建，最终候选读回全部。25份CC0许可、分页、好友/非好友权限、互动、视频播放暂停、撤回/删除及账号切换具名核验。P1文件选择返回时草稿清空已修复。低内存系统回收后的未发布草稿恢复列P2，最终A为同AVD/数据3GiB、B2GiB。视频样本静音，人耳NOT_RUN。
 
-阶段A：核心旅程盘点与P0/P1修复；社区20图文+5视频本机QA语料；最小社区视频动态；开发服务与隔离备份/恢复；新候选与Owner手动实机评估包。
+最终隔离恢复104表全行值一致、59媒体哈希一致。原服务有序重启后25条内容、消息136和CN/MC向量一致。DB/API/WS运行，SFU exited。两个模拟器停止，AVD/数据保留，临时输入设置恢复。Owner手机本版NOT_USED，全部实机检查OWNER_ACTION_PENDING。
 
-当前社区动态仅图像封面；本版允许单视频动态，复用现有私有媒体管线和PrivateVideoValidator约束，不建设短视频平台。测试素材逐项核许可、作者、来源、日期和SHA256；二进制仅本机忽略目录，不推GitHub。
+原主库HEAD、分支、status-v2、index和跟踪/暂存差异均与本版开工匹配，历史UNKNOWN按原报告保留。原dirty/index、私有资产及`%SystemDrive%/`保留。完整原证和Owner评估包位于Owner本机`EliteSyncDev/v1015-current-dev/v10114-current`，评估包子目录为`OWNER_REVIEW_1011402`。
 
-## 重要边界
-
-先同步V3.0路线和DEVELOPMENT_ALIGNMENT并生成ROADMAP_ALIGNMENT_ACK，完成前不得编码。阶段B（Lifestyle Discovery、自动化中心、全局减法重构、AI辅助）未在本版实施；阶段C身份/信用/Push/支付等未授权。视觉方向已冻结等待下次会议。Owner手机由Owner操作，Codex只提供候选和手动检查表。
-
-不使用真实用户/生产数据，不接外部付费服务，不合main、不正式发布、不开展内测/运营。集中交付后停止供顾问验收，不自动进入v10.1.15。
+固定提交与同源回读完成后停止，等待GPT顾问独立验收。顾问和Owner接受均PENDING。main集成与正式发布NOT_RUN，阶段B/C和v10.1.15等待Owner后续指令。

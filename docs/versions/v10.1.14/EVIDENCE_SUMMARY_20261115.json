@@ -1,0 +1,158 @@
+{
+  "version": "v10.1.14",
+  "phase": "A",
+  "fixed_parent": "5dd0c9e6625699947f8dd0755ff568a3edfe0b04",
+  "task_documents_commit": "866ccb269603ab451f84e948fa23d7361362f33f",
+  "app_source_commit": "88540f7f4d5a64500996b67eb04bfd9aba7c0af3",
+  "candidate": 1011402,
+  "engineering_acceptance": "PASS_NAMED_REPRESENTATIVE_SCOPE",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "unique_dart_tests": 15,
+  "php_tests": 9,
+  "php_assertions": 86,
+  "cases": [
+    {
+      "id": "DOCS",
+      "channel": "Git blob and normalized content",
+      "result": "PASS",
+      "scope": "Nine task documents matched before product changes; ACK committed c729148b. Six source anchors were compared with fixed-parent objects after implementation and matched."
+    },
+    {
+      "id": "TEST-DART10",
+      "channel": "Flutter targeted tests",
+      "result": "PASS",
+      "count": 10,
+      "scope": "Entity, status card and existing private-player authorization tests; flutter-green3.log. Tested source unchanged by later page-only P1 fix."
+    },
+    {
+      "id": "TEST-P1-5",
+      "channel": "Flutter targeted Widget tests",
+      "result": "PASS",
+      "count": 5,
+      "scope": "Delayed picker result, account switch rejection, true page-provider old-feed removal and local draft preservation/clearing; picker-authority-complete.log, final page source88540."
+    },
+    {
+      "id": "TEST-PHP9",
+      "channel": "PHPUnit in real development runtime using isolated test fixtures",
+      "result": "PASS",
+      "count": 9,
+      "assertions": 86,
+      "scope": "Video acceptance/validation and audience, block, disabled actor, withdrawal/deletion full+Range restrictions; status-video-final.log."
+    },
+    {
+      "id": "ANALYSIS",
+      "channel": "Dart analyzer",
+      "result": "PASS",
+      "scope": "Four changed Dart source files and final P1 page/test. Final logs show no issues. Standalone process exit receipts are not embedded in the text logs."
+    },
+    {
+      "id": "CORPUS",
+      "channel": "ordinary APP -> real API -> MariaDB/private media",
+      "result": "PASS",
+      "scope": "20 image posts +5 videos remain, 23 FRIENDS and2 SELF. Four images from1011401; remaining21 items from1011402. All25 verified from current candidate/API."
+    },
+    {
+      "id": "PERMISSIONS",
+      "channel": "real authenticated API and media HTTP",
+      "result": "PASS",
+      "scope": "All25 details/media Range checked as author, friend and outsider. Author feed20+9, friend20+5, outsider0; author-page20+5 without duplicates. Existing posts included in feed counts."
+    },
+    {
+      "id": "VIDEO-OWNER",
+      "channel": "ordinary APP native playback",
+      "result": "PASS",
+      "scope": "V05/media56 loaded, played, advanced and paused at0:02/0:08 on1011402. Samples contain no audio track; human acoustic NOT_RUN."
+    },
+    {
+      "id": "VIDEO-REVOKE",
+      "channel": "friend APP player + author ordinary API + HTTP",
+      "result": "PASS",
+      "scope": "V04/post34/media55 playing on friend17, author changed audience SELF. After2.5s observed unavailable feedback; full+Range404. FRIENDS restored in finally. Zero buffered-frame tail UNVERIFIED."
+    },
+    {
+      "id": "INTERACTIONS",
+      "channel": "ordinary APP with API readback",
+      "result": "PASS",
+      "scope": "Friend17 favorites/unfavorites, likes/unlikes post34 and submits first-level comment. Outsider comment read404. Final like/favorite false."
+    },
+    {
+      "id": "DELETE",
+      "channel": "ordinary APP plus media HTTP",
+      "result": "PASS",
+      "scope": "Temporary post36/media57 created and deleted viaAPP. Friend beforeRange206, after complete/Range404 and post404. Outsider media404. Uploaded unlinked owner asset remains200/206 under existing ownership contract. Permanent25-item corpus retained."
+    },
+    {
+      "id": "AUTH-ISOLATION",
+      "channel": "ordinary APP login/logout/switch/cold launch + API",
+      "result": "PASS",
+      "scope": "Accounts16/17/21 ordinary login. Author cold-launch corpus re-read; outsider cold-launch empty community, own MBTI history8 and feedback7 version2 resolved. Nonfriend details/media denied."
+    },
+    {
+      "id": "PROFILE-PRIVACY",
+      "channel": "ordinary APP save + real API readback",
+      "result": "PASS",
+      "scope": "Author city saved/read back. Private resume null->fictional note->null; field audience SELF saved, revision1."
+    },
+    {
+      "id": "MATCH-BOUNDARY",
+      "channel": "APP and real API",
+      "result": "PASS",
+      "scope": "Synthetic author matching eligibility false, reason synthetic_account_excluded. Existing round/proposal read; no new matching round generated. Identity PROVIDER_NOT_CONFIGURED and activation_available=false."
+    },
+    {
+      "id": "CN-MC-MESSAGE",
+      "channel": "two emulator APPs + real API",
+      "result": "PASS",
+      "scope": "APP message136 sender16 receiver17 actually displayed onB. CN3 revision2, readMC45 revision2 and sendMC46 revision2 same before/after. Outsider21->16 messages read/send404."
+    },
+    {
+      "id": "SOCIAL-HISTORY",
+      "channel": "APP entries + real API records",
+      "result": "PASS",
+      "scope": "Existing16/17 bidirectional friend. Buddy COMPLETED revision6 and platform-event COMPLETED revision17/registrationCANCELLED_BY_USER read. API terminal read and APP entry reachability separately recorded."
+    },
+    {
+      "id": "SERVICE-RESTART",
+      "channel": "original Docker containers and loopback API",
+      "result": "PASS",
+      "scope": "WS/API/DB stopped in order, DB SQL probes retained, original API/WS restarted. Container IDs/mounts unchanged;25 posts, message136 and CN/MC vector read back. WS TCP ready; current-version post-restart WS frame delivery NOT_RUN."
+    },
+    {
+      "id": "RESTORE-FINAL",
+      "channel": "isolated no-network container/new volume and local media copy",
+      "result": "PASS",
+      "scope": "104 table counts and full canonical row values equal.59 media hashes equal. Existing development DB untouched. Both restore containers stopped, volumes retained."
+    },
+    {
+      "id": "APK",
+      "channel": "build output/aapt2/apksigner/installation hashes",
+      "result": "PASS",
+      "scope": "Build exit0,1011402,arm64-v8a,Debug. Same SHA256 installed onA user11 andB user12, data retained. Builder snapshot marked BUILD_COMPLETED_UNVERIFIED before later installation evidence."
+    },
+    {
+      "id": "OWNER",
+      "channel": "local review package preparation",
+      "result": "OWNER_ACTION_PENDING",
+      "scope": "APK/hash/manual checklist/local QA credentials prepared. All phone actions remain Owner pending."
+    },
+    {
+      "id": "ASSETS",
+      "channel": "read-only original Git fingerprints",
+      "result": "PASS",
+      "scope": "Original HEAD, branch, porcelain-v2 status, index bytes, tracked diff and cached diff match startup. Incomparable v1/uall probes corrected to startup v2. Historical v13 UNKNOWN remains as recorded."
+    }
+  ],
+  "screenshots": "evidence/SCREENSHOTS.json",
+  "p2": [
+    "V10114-P2-01 Low-memory Android process reclamation loses unpublished in-memory community draft; retry possible. A uses same AVD/data with3GiB, B2GiB."
+  ],
+  "limitations": [
+    "All video samples silent; human audio NOT_RUN",
+    "Owner phone checks OWNER_ACTION_PENDING",
+    "Post-upload delayed callback after account switch lacks new explicit test; unchanged token guards reviewed",
+    "Zero native buffered playback tail UNVERIFIED",
+    "Real Push/identity, algorithm accuracy and RTC hardware matrix retain prior states",
+    "v13 DB first-probe receipts missing, auxiliary log append, original status-history cause and notification exact ID retain original UNKNOWN/NOT_RUN"
+  ]
+}

@@ -12,9 +12,11 @@ Owner已确认项目交接及选定旧版主要功能接续完成。当前完善
 
 v10.1.13已获独立顾问验收及Owner接受，六项AC按具名代表性范围接受，NO_R1/NO_R2。实际范围、原失败和限制见[顾问验收](docs/versions/v10.1.13/ADVISOR_ACCEPTANCE_20261115.md)、[Owner接受](docs/versions/v10.1.13/OWNER_ACCEPTANCE_20261115.md)、[实施报告](docs/versions/v10.1.13/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.13/artifact_manifest.json)。
 
-v10.1.14已获Owner授权，任务分支`codex/v10.1.14-product-readiness-core-journeys-20261115`，唯一父基线`5dd0c9e6625699947f8dd0755ff568a3edfe0b04`。V3.0路线图、本版Owner决定、task_order、plan、DEVELOPMENT_ALIGNMENT和CODEX_START_PROMPT已发布于本版任务分支固定提交`b6ee7e2cada8f1270e9466dc657fd0fb9d3fcb80`。远端发布不代表本地同步；Codex必须逐份核Blob并完成LOCAL_DOCS_SYNCED，再生成ROADMAP_ALIGNMENT_ACK后才可编码。
+v10.1.14阶段A六项AC已按具名代表范围完成工程自验，顾问独立验收和Owner接受均PENDING。分支为`codex/v10.1.14-product-readiness-core-journeys-20261115`，唯一父基线`5dd0c9e6625699947f8dd0755ff568a3edfe0b04`，任务文档固定提交`866ccb269603ab451f84e948fa23d7361362f33f`。编码前九份文档逐Blob核对并生成路线ACK，完整记录见[同步回执](docs/versions/v10.1.14/LOCAL_DOCS_SYNC_RECEIPT.json)。
 
-本版阶段A只做核心旅程P0/P1盘点与修复、社区单视频动态、20图文+5视频本机QA语料、开发服务与隔离备份/恢复、候选及Owner手动实机包。阶段B（Lifestyle Discovery、统一状态/自动化、全局低操作成本重构、AI辅助）未授权实现；阶段C身份/信用/Push/支付等未授权。视觉方向已确认并冻结至下次会议。Owner手机由Owner自行操作。
+最终APP源码`88540f7f4d5a64500996b67eb04bfd9aba7c0af3`，候选`10.1.14-dev / 1011402`。社区单视频、20图文+5视频本机语料、P1草稿修复、核心旅程代表验证、独立备份恢复及Owner手动评估包已交付，范围见[实施报告](docs/versions/v10.1.14/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.14/artifact_manifest.json)。低内存进程回收后草稿丢失保留P2，手机全部OWNER_ACTION_PENDING。集中提交并同源远端回读后停止供顾问验收。
+
+当前范围为V3.0阶段A，视觉方向继续冻结。阶段B的Lifestyle Discovery、全局低操作成本重构、自动化和AI辅助，以及阶段C身份/信用/Push/支付等保留Owner后续授权。Owner手机由Owner自行操作。
 
 ## 入口与自主执行
 
