@@ -35,7 +35,8 @@ void main() {
       tester,
     ) async {
       final router = await _show(tester, entry: entry, authenticated: true);
-      expect(router.routeInformationProvider.value.uri.path, '/me/readiness');
+      expect(router.routeInformationProvider.value.uri.path,
+          const bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD') ? '/home' : '/me/readiness');
     });
   }
 }
@@ -55,6 +56,7 @@ Future<GoRouter> _show(
         '/match',
         '/missing-route',
         '/auth/login',
+        '/home',
         '/me/readiness',
       ])
         GoRoute(

@@ -214,7 +214,8 @@ class SplashPage extends ConsumerWidget {
         return;
       }
 
-      if (!nav.isReadinessEstablished) {
+      if (!const bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD') &&
+          !nav.isReadinessEstablished) {
         context.go(AppRouteNames.meReadiness);
         return;
       }
