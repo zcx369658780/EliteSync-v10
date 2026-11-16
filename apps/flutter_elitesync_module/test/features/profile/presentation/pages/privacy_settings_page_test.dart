@@ -27,37 +27,32 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('隐私控制中心'), findsOneWidget);
-    expect(find.text('按用途理解和管理'), findsOneWidget);
-    expect(find.textContaining('没有全局公开 MVP Profile'), findsOneWidget);
+    expect(find.text('权限与说明'), findsOneWidget);
+    expect(find.text('管理资料受众与本人预览'), findsOneWidget);
 
-    for (final key in [
-      'private-identity',
-      'matching-inputs-readiness',
-      'candidate-showcase',
-      'product-connection',
-      'private-conversation',
-      'ai-private-support',
-      'safety-restricted',
-      'operational-minimum',
+    for (final title in [
+      '匹配与每周慢约',
+      '持续参与与自动化',
+      '私密资料与展示',
+      '连接与私密消息',
+      '搭子与社区',
+      '自我了解工具',
+      '举报与受限资料',
+      '账号与设备',
     ]) {
-      expect(
-        find.byKey(ValueKey('privacy-purpose-$key')),
-        findsOneWidget,
-        reason: key,
-      );
+      expect(find.text(title), findsOneWidget, reason: title);
+      await tester.tap(find.text(title));
+      await tester.pumpAndSettle();
     }
 
-    expect(find.textContaining('NOT YET ESTABLISHED'), findsWidgets);
-    expect(find.text('发生了什么'), findsOneWidget);
-    expect(find.text('为什么'), findsOneWidget);
-    expect(find.text('使用的信息类别'), findsOneWidget);
-    expect(find.text('不代表什么'), findsOneWidget);
-    expect(find.text('不确定性与限制'), findsOneWidget);
-    expect(find.text('你可以做什么'), findsOneWidget);
-    expect(find.text('EliteSync 有新提醒'), findsOneWidget);
-    expect(find.text('打开应用查看详情'), findsOneWidget);
-    expect(find.textContaining('不代表 OS 推送或送达能力已经建立'), findsOneWidget);
+    expect(find.textContaining('完整数据导出、统一删除、保留期限及地区权利处理仍待完善'), findsOneWidget);
+    expect(find.textContaining('本版尚未接入系统推送'), findsOneWidget);
+    expect(find.textContaining('本版未接入运行时AI'), findsOneWidget);
+    expect(find.text('管理连接'), findsOneWidget);
+    expect(find.text('查看消息'), findsOneWidget);
+    expect(find.text('编辑私密资料'), findsOneWidget);
+    expect(find.text('编辑展示资料'), findsOneWidget);
+    expect(find.textContaining('NOT YET ESTABLISHED'), findsNothing);
 
     expect(find.byType(Switch), findsNothing);
     expect(find.text('公开个人资料'), findsNothing);

@@ -36,6 +36,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
+import '../../features/slow_dating_v1012/journey_pages_test.dart'
+    as journey_test;
 
 NavigationSnapshot _snapshot({
   ReadinessGuardState readiness = ReadinessGuardState.ready,
@@ -144,6 +147,12 @@ class _Harness {
         navigationGuardProvider.overrideWith((ref) => ref.watch(_guard)),
         authStatusProvider.overrideWith((ref) => ref.watch(_guard).authStatus),
         localStorageProvider.overrideWithValue(storage),
+        sessionProvider.overrideWith(journey_test.TestSession.new),
+        relationshipApiProvider.overrideWithValue(
+          journey_test.FakeApi(
+            (method, path, body) async => <String, dynamic>{},
+          ),
+        ),
         secureStorageProvider.overrideWith((ref) => forbidden('secureStorage')),
         apiClientProvider.overrideWith((ref) => forbidden('apiClient')),
         dioProvider.overrideWith((ref) => forbidden('dio')),
@@ -335,7 +344,7 @@ void main() {
     final router = h.router;
     expect(find.byType(HomeShellPage), findsOneWidget);
     final dock = find.byType(FloatingDockBottomBar);
-    await tester.tap(find.descendant(of: dock, matching: find.text('进展')));
+    await tester.tap(find.descendant(of: dock, matching: find.text('匹配')));
     await settle(tester);
     expect(h.path, AppRouteNames.progress);
     await tester.tap(find.byKey(ProgressPage.matchEntryKey));

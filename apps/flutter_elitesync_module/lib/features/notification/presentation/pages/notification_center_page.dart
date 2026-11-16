@@ -794,8 +794,7 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
             loading: () => const AppPresentationStateView(
               state: AppPresentationState.loading(
                 safeTitle: '正在读取通知',
-                safeBody:
-                    '通知来源尚未完成解析；这不代表任何 Match、Connection 或 Conversation 结果。',
+                safeBody: '暂时无法确认通知内容，请刷新',
               ),
               loadingLines: 6,
             ),
@@ -822,12 +821,11 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
                 final emptyState = _hasOlder
                     ? const AppPresentationState.empty(
                         safeTitle: '本页暂无可显示提醒',
-                        safeBody: '可以继续加载更早通知，查看当前仍有权读取的提醒。',
+                        safeBody: '可以继续查看更早的提醒',
                       )
                     : const AppPresentationState.empty(
                         safeTitle: '当前没有提醒',
-                        safeBody:
-                            '已授权通知来源当前没有返回提醒。这只表示本页面当前没有内容，不代表拒绝、不符合条件、Safety 结论或任何生命周期结束。有新的慢约会进度、聊天回流或资料准备事项时，会先在这里帮助你回到当前节奏。',
+                        safeBody: '新的匹配、消息和资料提醒会显示在这里',
                       );
                 return ListView(
                   key: ValueKey('notification-list-$_historyGeneration'),

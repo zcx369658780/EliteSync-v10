@@ -63,7 +63,7 @@ void main() {
       expect(find.byKey(const ValueKey('proposal-accept')), findsNothing);
       expect(find.byKey(const ValueKey('proposal-decline')), findsNothing);
       expect(find.byKey(const ValueKey('proposal-withdraw')), findsOneWidget);
-      expect(find.textContaining('请先撤回再明确重新报名'), findsOneWidget);
+      expect(find.textContaining('如需重新报名，请先撤回当前候选'), findsOneWidget);
       expect(find.text('候选：暂不可见'), findsOneWidget);
       expect(find.text('分别申请连接（CN）与消息同意（MC）'), findsNothing);
       expect(writes, isEmpty);

@@ -85,6 +85,13 @@ class _MatchingInputState extends SessionBoundPage<MatchingInputPage> {
     if (busy || data == null || !(_form.currentState?.validate() ?? false)) {
       return;
     }
+    if (data!['confirmed'] != true &&
+        !await confirm(
+          '开始了解彼此',
+          '匹配依据你确认的资料与偏好。报名、接受候选、分享资料和聊天都由你决定；现实相处需要你自己判断。完整说明可在我的→权限与说明查看。',
+        )) {
+      return;
+    }
     final body = <String, dynamic>{
       'revision': data!['revision'],
       'birthday': _birthday.text.trim(),

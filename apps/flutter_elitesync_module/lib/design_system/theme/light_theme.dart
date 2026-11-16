@@ -11,9 +11,12 @@ ThemeData buildLightTheme() {
   const colorScheme = ColorScheme.light(
     primary: Color(0xFF245FB8),
     onPrimary: Colors.white,
+    primaryContainer: Color(0xFFE7EDF8),
+    onPrimaryContainer: Color(0xFF183F7A),
     secondary: AppColors.brandSecondary,
     surface: AppColors.lightSurface,
     error: Color(0xFFB42318),
+    onError: Colors.white,
   );
 
   final tokens = AppThemeTokens(

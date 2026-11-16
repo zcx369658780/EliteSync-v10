@@ -175,13 +175,13 @@ class _BuddyDiscoveryPageState extends SessionBoundPage<BuddyDiscoveryPage>
 
   @override
   Widget build(BuildContext context) => frame('搭子发现', [
-    const Text('选择粗城市或线上、搭子类型。只展示明确发布且当前可申请的活动。请先在“我的搭子”开启搭子请求。'),
+    const Text('选择城市和活动类型，查找正在招募的搭子。请先在“我的搭子”开启搭子请求。'),
     TextField(
       key: const Key('buddy-discovery-city'),
       controller: _city,
       enabled: !busy && _pendingBody == null,
       maxLength: 40,
-      decoration: const InputDecoration(labelText: '粗城市 / 线上'),
+      decoration: const InputDecoration(labelText: '城市 / 线上'),
     ),
     DropdownButton<String>(
       key: const Key('buddy-discovery-type'),
@@ -204,10 +204,11 @@ class _BuddyDiscoveryPageState extends SessionBoundPage<BuddyDiscoveryPage>
       FilledButton(
         key: const Key('buddy-discovery-retry'),
         onPressed: busy ? null : _retry,
-        child: const Text('原编号重试申请'),
+        child: const Text('重试申请'),
       ),
     ],
-    if (_items.isEmpty && !busy && error == null) const Text('当前没有符合条件的公开搭子。'),
+    if (_items.isEmpty && !busy && error == null)
+      const Text('暂未找到搭子，试试其他城市或活动类型'),
     for (final item in _items)
       Card(
         key: ValueKey('buddy-discovery-${item['publication_id']}'),

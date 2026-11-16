@@ -169,7 +169,7 @@ class _AppShellState extends ConsumerState<AppShell> {
           AppBottomNavItem(
             icon: Icons.route_outlined,
             activeIcon: Icons.route_rounded,
-            label: '进展',
+            label: '匹配',
           ),
           AppBottomNavItem(
             icon: Icons.chat_bubble_outline,
@@ -208,8 +208,11 @@ class SplashPage extends ConsumerWidget {
       // authentication and the target's own readiness/permission guards.
       final entry = env.initialRoute;
       if (entry != null &&
-          ![AppRouteNames.splash, AppRouteNames.login, AppRouteNames.register]
-              .contains(entry)) {
+          ![
+            AppRouteNames.splash,
+            AppRouteNames.login,
+            AppRouteNames.register,
+          ].contains(entry)) {
         context.go(entry);
         return;
       }

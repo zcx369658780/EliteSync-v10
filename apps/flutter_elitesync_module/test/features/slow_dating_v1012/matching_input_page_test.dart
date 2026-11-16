@@ -112,6 +112,33 @@ String fieldText(WidgetTester tester, String key) =>
     tester.widget<TextFormField>(find.byKey(ValueKey(key))).controller!.text;
 
 void main() {
+  testWidgets(
+    'first explanation cancel or account change never confirms inputs',
+    (tester) async {
+      final notifier = TestSession();
+      var writes = 0;
+      await mount(
+        tester,
+        const MatchingInputPage(),
+        FakeApi((method, path, body) async {
+          if (method == 'PUT') writes++;
+          return matchingInput()..['confirmed'] = false;
+        }),
+        notifier: notifier,
+      );
+      await saveInput(tester);
+      expect(find.text('开始了解彼此'), findsOneWidget);
+      await tester.tap(find.text('取消'));
+      await tester.pumpAndSettle();
+      expect(writes, 0);
+      await saveInput(tester);
+      notifier.change(2);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('确认'));
+      await tester.pumpAndSettle();
+      expect(writes, 0);
+    },
+  );
   testWidgets('save failure retains input and permits retry on the same page', (
     tester,
   ) async {
@@ -173,12 +200,19 @@ void main() {
 
       await selectChoice(tester, 'matching-age-mode', null, '成年范围不限（18周岁起）');
       await saveInput(tester);
+      expect(find.text('开始了解彼此'), findsOneWidget);
+      expect(writes, isEmpty);
+      await tester.tap(find.text('确认'));
+      await tester.pumpAndSettle();
       expect(writes, hasLength(1));
       expect(writes.single['age_mode'], 'adult_any');
       expect(writes.single['age_min'], isNull);
       expect(writes.single['age_max'], isNull);
       expect(writes.single['confirm'], isTrue);
       expect(find.text('当前输入已确认'), findsOneWidget);
+      await saveInput(tester);
+      expect(find.text('开始了解彼此'), findsNothing);
+      expect(writes, hasLength(2));
     },
   );
 

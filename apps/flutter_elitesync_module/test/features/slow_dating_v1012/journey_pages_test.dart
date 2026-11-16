@@ -87,9 +87,29 @@ Future<void> mount(
 }
 
 void main() {
-  testWidgets('Readiness detail keeps its own title when opened under Me', (tester) async {
-    await mount(tester, const ReadinessPurposePage(), FakeApi((method, path, body) async => journey()));
-    expect(find.widgetWithText(AppBar, '慢约会旅程'), findsOneWidget);
+  testWidgets('retryable failed round does not imply recovery has started', (
+    tester,
+  ) async {
+    await mount(
+      tester,
+      const SlowDatingJourneyPage(),
+      FakeApi(
+        (method, path, body) async =>
+            journey()..['round'] = {'state': 'failed', 'retry_eligible': true},
+      ),
+    );
+    expect(find.text('本轮暂未完成，请稍后刷新'), findsOneWidget);
+    expect(find.textContaining('正在恢复'), findsNothing);
+  });
+  testWidgets('Readiness detail keeps its own title when opened under Me', (
+    tester,
+  ) async {
+    await mount(
+      tester,
+      const ReadinessPurposePage(),
+      FakeApi((method, path, body) async => journey()),
+    );
+    expect(find.widgetWithText(AppBar, '每周慢约'), findsOneWidget);
   });
   testWidgets(
     'resume saves own value and blank clears without changing audience',
@@ -189,7 +209,7 @@ void main() {
             },
         ),
       );
-      expect(find.text('准备提示：已完成当前必要准备，可自行决定是否参与'), findsOneWidget);
+      expect(find.text('准备提示：准备已完成'), findsOneWidget);
       expect(find.text('尚缺必要问卷答案：0'), findsOneWidget);
       expect(
         tester
@@ -199,7 +219,7 @@ void main() {
             .onPressed,
         isNotNull,
       );
-      expect(find.textContaining('Showcase仅作信息展示'), findsOneWidget);
+      expect(find.textContaining('Showcase仅作信息展示'), findsNothing);
     },
   );
 
@@ -227,8 +247,8 @@ void main() {
       await tester.tap(find.text('保存草稿'));
       await tester.pumpAndSettle();
       expect(sent, {'action': 'draft', 'revision': 7, 'intent': '先了解彼此'});
-      expect(find.textContaining('本轮暂无候选'), findsOneWidget);
-      expect(find.textContaining('运营审核不等于实人核验'), findsOneWidget);
+      expect(find.textContaining('本轮暂无匹配'), findsOneWidget);
+      expect(find.textContaining('运营审核不等于实人核验'), findsNothing);
     },
   );
 
@@ -271,7 +291,7 @@ void main() {
       expect(sent?['action'], 'accept');
       expect(sent?['revision'], 4);
       expect(sent?['idempotency_key'], isA<String>());
-      expect(find.text('分别申请连接（CN）与消息同意（MC）'), findsNothing);
+      expect(find.text('连接与消息许可'), findsNothing);
     },
   );
 
@@ -293,7 +313,7 @@ void main() {
         ),
       );
       expect(find.byKey(const ValueKey('proposal-accept')), findsNothing);
-      expect(find.text('分别申请连接（CN）与消息同意（MC）'), findsNothing);
+      expect(find.text('连接与消息许可'), findsNothing);
     },
   );
 
@@ -426,7 +446,7 @@ void main() {
         scrollable: find.byType(Scrollable).first,
       );
       expect(find.text('当前轮次：结果已生成，等待揭晓'), findsOneWidget);
-      expect(find.text('独立接受候选'), findsNothing);
+      expect(find.text('接受候选'), findsNothing);
     },
   );
 }

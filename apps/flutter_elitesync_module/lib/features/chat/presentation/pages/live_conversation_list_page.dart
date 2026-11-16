@@ -407,10 +407,6 @@ class _LiveConversationListPageState
       body: ListView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 112),
         children: [
-          Text(
-            '仅显示当前获准的会话，进入对话时会重新核验。',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
           if (_cacheStatus != null)
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
@@ -419,12 +415,12 @@ class _LiveConversationListPageState
                 key: const ValueKey('live-private-cache-status'),
               ),
             ),
-          if (!_foreground) const Text('应用返回前台后将先重新核验。'),
-          if (_offlineReadOnly) const Text('离线只读：不可打开新会话、发送、隐藏或修改。'),
+          if (!_foreground) const Text('正在更新会话'),
+          if (_offlineReadOnly) const Text('离线浏览，联网后可继续聊天'),
           Card(
             child: SwitchListTile(
               title: const Text('查看我隐藏的会话'),
-              subtitle: const Text('隐藏只影响本人入口，不删除消息，也不改变联系授权。'),
+              subtitle: const Text('可随时找回，消息会保留'),
               value: _hiddenOnly,
               onChanged: _busy || _offlineReadOnly || _trustedContextLocked
                   ? null
@@ -448,7 +444,7 @@ class _LiveConversationListPageState
               _error == null &&
               !_trustedContextLocked &&
               items.isEmpty)
-            const Text('暂无服务端可读取会话，请刷新或先完成双方连接和消息同意。'),
+            const Text('暂无会话'),
           for (final item in items)
             Card(
               child: ListTile(

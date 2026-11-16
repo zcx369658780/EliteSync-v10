@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'dart:async';
 import 'dart:io';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_elitesync_module/features/lifestyle_discovery/lifestyle_controller.dart';
 import 'package:flutter_elitesync_module/features/lifestyle_discovery/lifestyle_page.dart';
 import 'package:flutter_elitesync_module/features/lifestyle_discovery/lifestyle_providers.dart';
+import 'package:flutter_elitesync_module/design_system/theme/light_theme.dart';
+import 'package:flutter_elitesync_module/design_system/theme/dark_theme.dart';
 
 void main() {
   late Map<String, dynamic> data;
@@ -45,6 +49,8 @@ void main() {
   Future<void> mount(
     WidgetTester tester, {
     bool reduced = false,
+    ThemeData? theme,
+    double textScale = 1,
     VoidCallback? onExit,
   }) async {
     tester.view.physicalSize = const Size(440, 960);
@@ -55,14 +61,84 @@ void main() {
       ProviderScope(
         overrides: [lifestyleControllerProvider.overrideWithValue(controller)],
         child: MaterialApp(
+          theme: theme,
           home: MediaQuery(
-            data: MediaQueryData(disableAnimations: reduced),
+            data: MediaQueryData(
+              disableAnimations: reduced,
+              textScaler: TextScaler.linear(textScale),
+            ),
             child: LifestyleDiscoveryPage(onExit: onExit),
           ),
         ),
       ),
     );
     await tester.pumpAndSettle();
+  }
+
+  for (final brightness in Brightness.values) {
+    for (final scale in [1.0, 2.0]) {
+      testWidgets(
+        '$brightness $scale selected choice keeps readable style and keyboard access',
+        (tester) async {
+          final semantics = tester.ensureSemantics();
+          try {
+            final theme = brightness == Brightness.light
+                ? buildLightTheme()
+                : buildDarkTheme();
+            await mount(tester, theme: theme, textScale: scale);
+            await tester.ensureVisible(
+              find.byKey(const Key('lifestyle-start')),
+            );
+            await tester.tap(find.byKey(const Key('lifestyle-start')));
+            await tester.pumpAndSettle();
+            await tester.ensureVisible(find.byKey(const Key('option-quiet')));
+            await tester.tap(find.byKey(const Key('option-quiet')));
+            await tester.pumpAndSettle();
+            await tester.ensureVisible(find.byKey(const Key('lifestyle-back')));
+            await tester.tap(find.byKey(const Key('lifestyle-back')));
+            await tester.pumpAndSettle();
+            await tester.ensureVisible(find.byKey(const Key('option-quiet')));
+            final choice = find.byKey(const Key('choice-quiet'));
+            expect(
+              tester.getSemantics(choice).flagsCollection.isSelected,
+              ui.Tristate.isTrue,
+            );
+            final button = tester.widget<OutlinedButton>(
+              find.byKey(const Key('option-quiet')),
+            );
+            expect(
+              button.style!.foregroundColor!.resolve({WidgetState.pressed}),
+              theme.colorScheme.onPrimaryContainer,
+            );
+            expect(
+              button.style!.backgroundColor!.resolve({WidgetState.pressed}),
+              theme.colorScheme.primaryContainer,
+            );
+            // Focus traversal must reach the option and activate the existing save action.
+            var reached = false;
+            for (var step = 0; step < 12 && !reached; step++) {
+              await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+              await tester.pumpAndSettle();
+              final focusContext = FocusManager.instance.primaryFocus?.context;
+              focusContext?.visitAncestorElements((element) {
+                if (element.widget.key == const Key('option-quiet')) {
+                  reached = true;
+                }
+                return !reached;
+              });
+            }
+            expect(reached, true);
+            final revision = data['revision'] as int;
+            await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+            await tester.pumpAndSettle();
+            expect(data['revision'], revision + 1);
+            expect(tester.takeException(), isNull);
+          } finally {
+            semantics.dispose();
+          }
+        },
+      );
+    }
   }
 
   testWidgets(

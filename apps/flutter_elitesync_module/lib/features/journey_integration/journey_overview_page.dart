@@ -6,6 +6,7 @@ import '../../shared/providers/session_provider.dart';
 import '../relationships_v1011/relationship_api.dart';
 import '../relationships_v1011/session_bound_page.dart';
 import '../slow_dating_v1012/journey_components.dart';
+import '../slow_dating_v1012/matching_history_page.dart';
 
 /// A current projection of existing authorities. All decisions remain commands
 /// to their original services; opening this page never submits a command.
@@ -145,31 +146,29 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
     ),
   );
 
-  Widget _domain(String title, String value, String source, {Key? key}) =>
-      ListTile(
-        key: key,
-        dense: true,
-        contentPadding: EdgeInsets.zero,
-        title: Text('$title · $value'),
-        subtitle: Text(source),
-      );
+  Widget _domain(String title, String value, {Key? key}) => ListTile(
+    key: key,
+    dense: true,
+    contentPadding: EdgeInsets.zero,
+    title: Text('$title · $value'),
+  );
 
   List<Widget> _home(Map<String, dynamic> domains) {
     final actions = rows(data?['next_actions']);
     final first = actions.isEmpty ? null : actions.first['code'];
     final action = switch (first) {
       'complete_lifestyle' => ('继续生活方式探索', '/lifestyle-discovery'),
-      'review_preparation' => ('查看必要准备', AppRouteNames.progressMatch),
-      'view_journey' => ('查看我的进展', AppRouteNames.progress),
+      'review_preparation' => ('完善匹配资料', AppRouteNames.progressMatch),
+      'view_journey' => ('查看匹配', AppRouteNames.progress),
       _ => null,
     };
     return [
       Text('当前状态', style: Theme.of(context).textTheme.headlineSmall),
-      Text(
-        objectMap(domains['account'])['code'] == 'AVAILABLE'
-            ? '账号可用'
-            : '账号状态暂不可用',
-      ),
+      Text(switch (objectMap(domains['account'])['code']) {
+        'AVAILABLE' => '欢迎回来',
+        'UNAVAILABLE' => '当前账号受限，请查看账号状态',
+        _ => '账号状态暂时无法确认',
+      }),
       Text(preparationReasonLabel(objectMap(domains['readiness'])['code'])),
       Text('生活方式 ${_lifestyleLabel(objectMap(domains['lifestyle'])['code'])}'),
       Text(
@@ -201,15 +200,11 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
           child: Text(action.$1),
         )
       else
-        const Text('下一步暂未识别，请刷新状态'),
+        const Text('暂时无法确认下一步，请刷新'),
       const SizedBox(height: 8),
       Text('相约与交流', style: Theme.of(context).textTheme.titleMedium),
-      _link('独立吃饭 / 学习搭子', '/buddy-v1013', subtitle: '独立参与，联系前仍需双方同意'),
-      _link(
-        '好友可见社区',
-        AppRouteNames.statusSquare,
-        subtitle: '有限好友动态，按本人选择的受众发布',
-      ),
+      _link('吃饭 / 学习搭子', '/buddy-v1013'),
+      _link('好友可见社区', AppRouteNames.statusSquare),
       _link('平台活动 · 合成演练', '/platform-events', subtitle: '虚构开发演练，不招募、预订或付款'),
     ];
   }
@@ -230,18 +225,29 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
         conversations['_unavailable'] != true &&
         conversation.isNotEmpty;
     return [
-      Text('我的关系旅程', style: Theme.of(context).textTheme.headlineSmall),
-      const Text('匹配、连接、消息同意、会话和正式关系分别确认。'),
+      _link(
+        '持续参与与自动化',
+        '/user-state',
+        subtitle: _automationLabel(objectMap(domains['automation'])['code']),
+        key: const Key('match-automation-entry'),
+      ),
+      _domain(
+        '当前轮次',
+        journeyStateLabel(
+          objectMap(domains['round'])['state'] ??
+              objectMap(domains['round'])['code'],
+        ),
+      ),
       Card(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text('当前提案', style: Theme.of(context).textTheme.titleMedium),
+              Text('匹配结果', style: Theme.of(context).textTheme.titleMedium),
               Text(
                 journey['_unavailable'] == true
-                    ? '提案读取未完成，请刷新'
+                    ? '匹配结果暂时无法加载，请刷新'
                     : _proposalLabel(
                         proposal['state'] ??
                             objectMap(domains['proposal'])['code'],
@@ -253,8 +259,7 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
                   '我的回应 ${decisionLabel(proposal['decision_me'])} · 对方回应 ${decisionLabel(proposal['decision_peer'])}',
                 ),
                 if (proposal['expires_at'] != null)
-                  Text('服务器有效期至 ${proposal['expires_at']}'),
-                const Text('来源 /journey。选择不会自动分享、连接、同意消息或建立正式关系。'),
+                  Text('有效期至 ${proposal['expires_at']}'),
                 Wrap(
                   spacing: 8,
                   children: [
@@ -278,9 +283,9 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
                                   },
                                 ),
                           child: Text(switch (action) {
-                            'accept' => '独立接受候选',
+                            'accept' => '接受候选',
                             'decline' => '拒绝候选',
-                            _ => '撤回当前提案',
+                            _ => '撤回匹配结果',
                           }),
                         ),
                   ],
@@ -290,90 +295,83 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
                 onPressed: busy
                     ? null
                     : () => _open(AppRouteNames.progressMatch),
-                child: const Text('提案详情与慢约操作'),
+                child: const Text('报名与候选详情'),
               ),
             ],
           ),
         ),
       ),
       _domain(
-        'Connection',
+        '连接',
         _pairLabel(objectMap(pair['connection'])),
-        '来源 /connections/{peer}',
         key: const Key('domain-connection'),
       ),
       _domain(
-        'Messaging Consent',
+        '消息许可',
         _pairLabel(objectMap(pair['consent'])),
-        '来源 /connections/{peer}，独立于连接',
         key: const Key('domain-consent'),
       ),
       if (canRead && peer is int)
         FilledButton(
           onPressed: busy ? null : () => _open('/live-chat/$peer'),
-          child: const Text('进入有权会话'),
+          child: const Text('进入聊天'),
         ),
       _link(
         '连接与消息许可',
         peer is int && peer > 0
             ? '/live-connection?peerId=$peer'
             : AppRouteNames.progressConnection,
-        subtitle: '按服务端当前权限分别申请、回应或撤销',
       ),
       _domain(
-        'Conversation',
+        '聊天',
         conversations['_unavailable'] == true
             ? '状态暂未确认'
-            : '${rows(conversations['items']).length} 个当前获准会话',
-        '来源 /conversations，进入仍需重新核验',
+            : '${rows(conversations['items']).length} 个会话',
         key: const Key('domain-conversation'),
       ),
       _domain(
-        'Relationship',
+        '正式关系',
         formal['_unavailable'] == true
-            ? '正式关系读取未完成，请刷新'
+            ? '正式关系暂时无法加载，请刷新'
             : rows(formal['relationships']).isEmpty
             ? '尚无正式关系记录'
             : rows(
                 formal['relationships'],
               ).map((item) => journeyStateLabel(item['state'])).join('、'),
-        '来源 /formal-relationships，各关系独立',
         key: const Key('domain-formal'),
       ),
-      _link('正式恋爱关系', '/formal-relationship', subtitle: '独立自愿申请与逐次确认'),
+      _link('正式恋爱关系', '/formal-relationship'),
+      Card(
+        child: ListTile(
+          title: const Text('匹配记录'),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: busy
+              ? null
+              : () async {
+                  invalidatePendingProjection();
+                  await Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const MatchingHistoryPage(),
+                    ),
+                  );
+                  if (mounted && _foreground) await refresh();
+                },
+        ),
+      ),
       Text('我的准备与参与', style: Theme.of(context).textTheme.titleMedium),
       _domain(
         '资料准备',
         preparationReasonLabel(objectMap(domains['readiness'])['code']),
-        '来源 B2 /user-state → ProfileReadinessService',
       ),
       _link(
         '生活方式与偏好',
         '/lifestyle-discovery',
         subtitle: _lifestyleLabel(objectMap(domains['lifestyle'])['code']),
       ),
-      _link(
-        '我的匹配输入',
-        AppRouteNames.meMatchingInputs,
-        subtitle: '查看已有输入，修改后明确确认',
-      ),
+      _link('我的匹配输入', AppRouteNames.meMatchingInputs),
       _domain(
         '每周参与',
         journeyStateLabel(objectMap(domains['participation'])['code']),
-        '来源 B2 /user-state → SlowDatingService',
-      ),
-      _domain(
-        '当前轮次',
-        journeyStateLabel(
-          objectMap(domains['round'])['state'] ??
-              objectMap(domains['round'])['code'],
-        ),
-        '来源 B2 /user-state → MatchRoundProjectionService',
-      ),
-      _link(
-        '持续参与与自动化',
-        '/user-state',
-        subtitle: _automationLabel(objectMap(domains['automation'])['code']),
       ),
     ];
   }
@@ -384,7 +382,7 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
     final current = _foreground && _routeActive && data != null;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.detailed ? '进展' : '首页'),
+        title: Text(widget.detailed ? '匹配' : '首页'),
         actions: [
           IconButton(
             tooltip: '持续参与与自动化',
@@ -403,15 +401,11 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
         children: [
           if (busy) const LinearProgressIndicator(),
           if (error != null)
-            Text('状态读取未完成，请刷新。$error', key: const Key('server-error')),
+            const Text('暂时无法加载，请刷新重试', key: Key('server-error')),
           if (current) ...[
             for (final child
                 in widget.detailed ? _progress(domains) : _home(domains))
               Padding(padding: const EdgeInsets.only(bottom: 10), child: child),
-            Text(
-              '来源 B2 /user-state · ${data?['generated_at'] ?? '读取时间未知'}',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
           ] else if (!busy && error == null)
             const Text('状态暂未确认，请刷新后查看'),
         ],
@@ -441,7 +435,7 @@ String _lifestyleLabel(Object? code) => switch (code) {
 };
 
 String _automationLabel(Object? code) => switch (code) {
-  'ACTIVE' => '已授权，系统按现有轮次检查',
+  'ACTIVE' => '已开启',
   'PAUSED' => '已暂停',
   'REVOKED' => '已撤销',
   'EXPIRED' => '授权已到期或说明已更新',
@@ -452,7 +446,7 @@ String _automationLabel(Object? code) => switch (code) {
 String _proposalLabel(Object? code) => switch (code) {
   'NONE' => '当前没有提案',
   null => '状态暂未确认',
-  'RECONCILIATION_REQUIRED' => '提案期限待服务端核对，请进入详情',
+  'RECONCILIATION_REQUIRED' => '结果正在更新，请查看详情',
   _ => journeyStateLabel(code),
 };
 

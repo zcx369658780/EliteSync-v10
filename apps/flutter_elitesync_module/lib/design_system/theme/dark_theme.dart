@@ -11,9 +11,12 @@ ThemeData buildDarkTheme() {
   const colorScheme = ColorScheme.dark(
     primary: AppColors.brandPrimary,
     onPrimary: AppColors.darkBg,
+    primaryContainer: Color(0xFF203956),
+    onPrimaryContainer: Color(0xFFD9E9FF),
     secondary: AppColors.brandSecondary,
     surface: AppColors.darkSurface,
     error: AppColors.error,
+    onError: Color(0xFF290A0A),
   );
 
   final tokens = AppThemeTokens(

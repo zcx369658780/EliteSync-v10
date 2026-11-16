@@ -48,28 +48,42 @@ Future<void> mount(
 }
 
 void main() {
-  testWidgets('login guard redirect reads the resolved Home route immediately', (tester) async {
-    var reads = 0;
-    final router = GoRouter(
-      initialLocation: '/auth/login',
-      redirect: (_, state) => state.uri.path == '/auth/login' ? '/home' : null,
-      routes: [
-        GoRoute(path: '/auth/login', builder: (_, _) => const SizedBox()),
-        GoRoute(path: '/home', builder: (_, _) => const JourneyOverviewPage()),
-      ],
-    );
-    addTearDown(router.dispose);
-    await tester.pumpWidget(ProviderScope(overrides: [
-      sessionProvider.overrideWith(TestSession.new),
-      relationshipApiProvider.overrideWithValue(FakeApi((m, p, b) async {
-        reads++;
-        return stateFor(1);
-      })),
-    ], child: MaterialApp.router(routerConfig: router)));
-    await tester.pumpAndSettle();
-    expect(reads, greaterThan(0));
-    expect(find.byKey(const Key('home-primary-action')), findsOneWidget);
-  });
+  testWidgets(
+    'login guard redirect reads the resolved Home route immediately',
+    (tester) async {
+      var reads = 0;
+      final router = GoRouter(
+        initialLocation: '/auth/login',
+        redirect: (_, state) =>
+            state.uri.path == '/auth/login' ? '/home' : null,
+        routes: [
+          GoRoute(path: '/auth/login', builder: (_, _) => const SizedBox()),
+          GoRoute(
+            path: '/home',
+            builder: (_, _) => const JourneyOverviewPage(),
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            sessionProvider.overrideWith(TestSession.new),
+            relationshipApiProvider.overrideWithValue(
+              FakeApi((m, p, b) async {
+                reads++;
+                return stateFor(1);
+              }),
+            ),
+          ],
+          child: MaterialApp.router(routerConfig: router),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(reads, greaterThan(0));
+      expect(find.byKey(const Key('home-primary-action')), findsOneWidget);
+    },
+  );
 
   testWidgets(
     'existing CN MC and conversation remain independent of expired proposal eligibility',
@@ -105,9 +119,9 @@ void main() {
         detailed: true,
       );
       expect(paths, contains('/connections/2'));
-      expect(find.text('Connection · 已连接'), findsOneWidget);
-      expect(find.text('Messaging Consent · 已同意'), findsOneWidget);
-      expect(find.text('进入有权会话'), findsOneWidget);
+      expect(find.text('连接 · 已连接'), findsOneWidget);
+      expect(find.text('消息许可 · 已同意'), findsOneWidget);
+      expect(find.text('进入聊天'), findsOneWidget);
     },
   );
 
@@ -189,7 +203,7 @@ void main() {
       shell.goBranch(0);
       await tester.pumpAndSettle();
       expect(find.text('继续生活方式探索'), findsOneWidget);
-      expect(find.text('查看必要准备'), findsNothing);
+      expect(find.text('完善匹配资料'), findsNothing);
       final before = reads;
       router.push('/detail');
       await tester.pumpAndSettle();
@@ -223,7 +237,7 @@ void main() {
     );
     expect(calls, ['GET /user-state']);
     expect(find.text('继续生活方式探索'), findsOneWidget);
-    expect(find.text('已完成当前必要准备，可自行决定是否参与'), findsOneWidget);
+    expect(find.text('准备已完成'), findsOneWidget);
     expect(find.byKey(const Key('home-primary-action')), findsOneWidget);
   });
 
@@ -235,7 +249,7 @@ void main() {
       FakeApi((m, p, b) async => stateFor(1, action: 'future_code')),
     );
     expect(find.byKey(const Key('home-primary-action')), findsNothing);
-    expect(find.text('下一步暂未识别，请刷新状态'), findsOneWidget);
+    expect(find.text('暂时无法确认下一步，请刷新'), findsOneWidget);
   });
 
   testWidgets('wrong subject is rejected instead of showing private state', (
@@ -268,7 +282,7 @@ void main() {
     first.complete(stateFor(1, action: 'review_preparation'));
     await tester.pumpAndSettle();
     expect(find.text('继续生活方式探索'), findsOneWidget);
-    expect(find.text('查看必要准备'), findsNothing);
+    expect(find.text('完善匹配资料'), findsNothing);
   });
 
   testWidgets(
@@ -305,9 +319,9 @@ void main() {
         detailed: true,
       );
       expect(calls.every((call) => call.startsWith('GET ')), isTrue);
-      expect(find.text('Connection · 已连接'), findsOneWidget);
-      expect(find.text('Messaging Consent · 等待对方决定'), findsOneWidget);
-      expect(find.text('进入有权会话'), findsNothing);
+      expect(find.text('连接 · 已连接'), findsOneWidget);
+      expect(find.text('消息许可 · 等待对方决定'), findsOneWidget);
+      expect(find.text('进入聊天'), findsNothing);
       expect(find.byKey(const Key('domain-formal')), findsOneWidget);
       expect(find.byKey(const Key('domain-conversation')), findsOneWidget);
     },
@@ -332,9 +346,9 @@ void main() {
       }),
       detailed: true,
     );
-    expect(find.text('Connection · 状态暂未确认'), findsOneWidget);
-    expect(find.text('Messaging Consent · 状态暂未确认'), findsOneWidget);
-    expect(find.text('进入有权会话'), findsNothing);
-    expect(find.textContaining('正式关系读取未完成'), findsOneWidget);
+    expect(find.text('连接 · 状态暂未确认'), findsOneWidget);
+    expect(find.text('消息许可 · 状态暂未确认'), findsOneWidget);
+    expect(find.text('进入聊天'), findsNothing);
+    expect(find.textContaining('正式关系暂时无法加载'), findsOneWidget);
   });
 }

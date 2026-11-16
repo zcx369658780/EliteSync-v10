@@ -20,6 +20,40 @@ class _NoSession extends SessionNotifier {
 void main() {
   const b3 = bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD');
 
+  testWidgets('automation is visible and opens the canonical control route', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(360, 640);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final router = GoRouter(
+      initialLocation: '/me',
+      routes: [
+        GoRoute(path: '/me', builder: (_, _) => const MeLandingPage()),
+        GoRoute(
+          path: '/user-state',
+          builder: (_, _) => const Scaffold(body: Text('canonical automation')),
+        ),
+      ],
+    );
+    addTearDown(router.dispose);
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [sessionProvider.overrideWith(_NoSession.new)],
+        child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
+      ),
+    );
+    await tester.pumpAndSettle();
+    if (b3) {
+      expect(find.text('持续参与与自动化').hitTestable(), findsOneWidget);
+      expect(find.text('权限与说明').hitTestable(), findsOneWidget);
+      await tester.tap(find.text('持续参与与自动化'));
+      await tester.pumpAndSettle();
+      expect(find.text('canonical automation'), findsOneWidget);
+    }
+  });
+
   testWidgets(
     'B3 purpose entries and optional MBTI are reachable without scroll',
     (tester) async {

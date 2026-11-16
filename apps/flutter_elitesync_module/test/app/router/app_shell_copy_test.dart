@@ -18,7 +18,7 @@ void main() {
             onCenterActionTap: null,
             items: const [
               AppBottomNavItem(icon: Icons.home_outlined, label: '首页'),
-              AppBottomNavItem(icon: Icons.route_outlined, label: '进展'),
+              AppBottomNavItem(icon: Icons.route_outlined, label: '匹配'),
               AppBottomNavItem(icon: Icons.chat_bubble_outline, label: '消息'),
               AppBottomNavItem(icon: Icons.person_outline, label: '我的'),
             ],
@@ -27,11 +27,11 @@ void main() {
       ),
     );
 
-    for (final label in ['首页', '进展', '消息', '我的']) {
+    for (final label in ['首页', '匹配', '消息', '我的']) {
       expect(find.text(label), findsOneWidget);
     }
     expect(find.text('发现'), findsNothing);
-    expect(find.text('匹配'), findsNothing);
+    expect(find.text('进展'), findsNothing);
     expect(find.text('查看状态'), findsNothing);
     expect(find.text('发布状态'), findsNothing);
     expect(find.text('发布'), findsNothing);

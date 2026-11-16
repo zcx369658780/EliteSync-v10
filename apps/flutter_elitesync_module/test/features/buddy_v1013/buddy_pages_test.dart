@@ -28,7 +28,7 @@ SessionState _session(int id) => SessionState(
 
 class _Sessions extends SessionNotifier {
   @override
-  Future<SessionState> build() async => _session(1);
+  SessionState build() => _session(1);
   void change(int id) => state = AsyncData(_session(id));
 }
 
@@ -94,6 +94,13 @@ class _Telemetry extends AppTelemetryService {
 class _Notifications extends NotificationRemoteDataSource {
   _Notifications() : super(apiClient: ApiClient(dio: Dio()), useMock: false);
   int marked = 0;
+  late NotificationItemEntity current;
+  @override
+  Future<NotificationItemEntity> fetchNotification(int id) async {
+    expect(id, current.id);
+    return current;
+  }
+
   @override
   Future<void> markRead(int notificationId) async {
     marked++;
@@ -127,6 +134,17 @@ Future<void> _mountNotification(
     ],
   );
   addTearDown(router.dispose);
+  notifications.current = NotificationItemEntity(
+    id: 1,
+    kind: kind,
+    title: 'Generic update',
+    body: 'No private body',
+    payload: payload,
+    routeName: '',
+    routeArgs: const {},
+    isRead: false,
+    createdAt: '2026-10-21T00:00:00Z',
+  );
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
@@ -137,19 +155,7 @@ Future<void> _mountNotification(
         ),
         notificationRemoteDataSourceProvider.overrideWithValue(notifications),
         notificationListProvider.overrideWith(
-          (ref) async => [
-            NotificationItemEntity(
-              id: 1,
-              kind: kind,
-              title: 'Generic update',
-              body: 'No private body',
-              payload: payload,
-              routeName: '',
-              routeArgs: const {},
-              isRead: false,
-              createdAt: '2026-10-21T00:00:00Z',
-            ),
-          ],
+          (ref) async => [notifications.current],
         ),
         notificationUnreadCountProvider.overrideWith((ref) async => 1),
       ],

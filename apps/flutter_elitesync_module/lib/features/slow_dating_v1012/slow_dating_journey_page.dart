@@ -77,9 +77,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
       'MUTUALLY_ACCEPTED',
     ].contains(proposal['state']);
     final showcase = objectMap(proposal['showcase']);
-    final explanation = objectMap(proposal['explanation']);
-    return frame('慢约会旅程', [
-      const Text('准备 → 主动报名 → 等待揭晓 → 独立选择。匹配不会自动建立连接、消息同意或正式恋爱关系。'),
+    return frame('每周慢约', [
       Wrap(
         spacing: 8,
         runSpacing: 8,
@@ -91,7 +89,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
               );
               if (mounted) await refresh();
             },
-            child: const Text('状态与自动化'),
+            child: const Text('持续参与与自动化'),
           ),
           OutlinedButton(
             key: const Key('journey-matching-inputs'),
@@ -123,7 +121,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
                 builder: (_) => const MatchingHistoryPage(),
               ),
             ),
-            child: const Text('本人慢约历史'),
+            child: const Text('匹配记录'),
           ),
           if (!const bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD')) ...[
             OutlinedButton(
@@ -167,10 +165,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
               ),
             ),
           ),
-        IdentityGateCard(identity: objectMap(data!['identity'])),
-        Text(
-          '参与状态：${journeyStateLabel(participation['state'])} · 代际 ${participation['generation'] ?? '—'}',
-        ),
+        Text('参与状态：${journeyStateLabel(participation['state'])}'),
         const SizedBox(height: 16),
         Text('报名准备：${readiness['eligible'] == true ? '符合当前参与资格' : '尚未符合参与资格'}'),
         Text(
@@ -178,9 +173,6 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
         ),
         Text(
           '候选展示资料：${objectMap(readiness['showcase'])['publication_status'] == 'published' ? '已发布' : '尚未发布'}',
-        ),
-        const Text(
-          '按服务器逐项提示完成必要问卷。Showcase仅作信息展示，报名资格以服务器结果为准。可选人格、玄学、私聊及内部记录不作为额外必填。',
         ),
         if ((readiness['reasons'] is! List ||
                 (readiness['reasons'] as List).isEmpty) &&
@@ -248,22 +240,18 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
               ),
           ],
         ),
-        const Text(
-          '暂停后不再接受候选，可独立撤回当前未决提案；请先撤回再明确重新报名，进入新代际。退出会撤回未决提案，不影响独立连接与消息同意。',
-        ),
         const Divider(),
         Text(
           '当前轮次：${round['state'] == 'scheduled' && round['next_action_code'] == 'wait_for_reveal' ? '结果已生成，等待揭晓' : journeyStateLabel(round['state'])}',
         ),
         if (round['reason_code'] != null || round['failure_code'] != null)
           Text('轮次说明：${journeyStateLabel(round['state'])}'),
-        if (round['retry_eligible'] == true)
-          const Text('服务器标记轮次可重试；由获准运营处理，刷新可查看进展。'),
+        if (round['retry_eligible'] == true) const Text('本轮暂未完成，请稍后刷新'),
         if (round['scheduled_at'] != null)
-          Text('本轮配置时间 ${round['scheduled_at']}'),
+          Text('本轮时间 ${round['scheduled_at']}'),
         if (round['next_transition_at'] != null)
-          Text('下次阶段时间 ${round['next_transition_at']}'),
-        if (proposal.isEmpty) const Text('当前没有可回应的候选。请按本轮状态等待或稍后刷新。'),
+          Text('下次更新 ${round['next_transition_at']}'),
+        if (proposal.isEmpty) const Text('当前没有待回应的候选'),
         if (proposal.isNotEmpty) ...[
           Text(
             '候选：${showcase['display_name'] ?? showcase['public_id'] ?? '暂不可见'}',
@@ -272,16 +260,15 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
           Text('提案状态：${journeyStateLabel(proposal['state'])}'),
           if (proposal['availability_reason'] != null)
             const Text('当前参与已暂停、退出或换代际；候选不再提供新的选择或联系资格。未决提案可独立撤回。'),
+          if (proposal['withdraw_available'] == true &&
+              ['PAUSED', 'EXITED'].contains(participation['state']))
+            const Text('如需重新报名，请先撤回当前候选'),
           Text(
             '我的回应：${decisionLabel(proposal['decision_me'])}；对方回应：${decisionLabel(proposal['decision_peer'])}',
           ),
           if (proposal['expires_at'] != null)
-            Text('服务器有效期至：${proposal['expires_at']}；到期由服务器判断。'),
-          const Text('原因类别：本人提供的问卷偏好与基础匹配输入'),
-          const Text('来源：本轮实际匹配结果；不展示对方原始答案'),
-          Text('不确定性：${explanation['uncertainty'] ?? '不能保证现实相处结果'}'),
-          Text('非目标：${explanation['non_goals'] ?? '不判定爱情、身份或安全结论'}'),
-          const Text('不会展示对方原问卷、精确生辰、私聊或内部记录；没有权威兼容分。'),
+            Text('有效期至：${proposal['expires_at']}'),
+          const Text('依据你确认的资料与问卷偏好生成'),
           if (!terminal &&
               proposal['revision'] is int &&
               proposal['id'] != null)
@@ -308,7 +295,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
                             ),
                       child: Text(
                         {
-                          'accept': '独立接受候选',
+                          'accept': '接受候选',
                           'decline': '拒绝候选',
                           'withdraw': '撤回当前提案',
                         }[action]!,
@@ -327,7 +314,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
                         builder: (_) => PeerRelationshipPage(peerId: peer),
                       ),
                     ),
-              child: const Text('分别申请连接（CN）与消息同意（MC）'),
+              child: const Text('连接与消息许可'),
             ),
         ],
         const Divider(),
@@ -339,7 +326,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
                     builder: (_) => const FormalRelationshipPage(),
                   ),
                 ),
-          child: const Text('自愿申请 / 管理正式恋爱关系'),
+          child: const Text('管理正式恋爱关系'),
         ),
       ],
     ]);

@@ -73,8 +73,8 @@ class MeLandingPage extends StatelessWidget {
               ),
               _MePurposeEntry(
                 icon: Icons.manage_accounts_outlined,
-                title: '状态与自动化',
-                subtitle: '查看本人状态、持续参与授权和处理结果。',
+                title: '持续参与与自动化',
+                subtitle: '管理每周慢约报名与处理结果。',
                 route: '/user-state',
                 push: true,
               ),
@@ -100,8 +100,8 @@ class MeLandingPage extends StatelessWidget {
               const _MePurposeEntry(
                 key: privacySettingsKey,
                 icon: Icons.privacy_tip_outlined,
-                title: '隐私控制',
-                subtitle: '管理资料受众，查看各项隐私说明。',
+                title: '权限与说明',
+                subtitle: '管理资料受众，查看使用说明。',
                 route: AppRouteNames.mePrivacySettings,
               ),
               if (restorationLocalBuild ||
@@ -248,18 +248,18 @@ class _B3MeLandingPage extends StatelessWidget {
             ],
           ),
           const _MeQuickGroup(
-            title: '隐私与账号',
+            title: '权限与参与',
             children: [
               _MeQuickEntry(
                 key: MeLandingPage.privacySettingsKey,
-                title: '隐私控制',
+                title: '权限与说明',
                 icon: Icons.privacy_tip_outlined,
                 route: AppRouteNames.mePrivacySettings,
               ),
               _MeQuickEntry(
-                title: '设置与账号安全',
-                icon: Icons.security_outlined,
-                route: AppRouteNames.settings,
+                title: '持续参与与自动化',
+                icon: Icons.manage_accounts_outlined,
+                route: '/user-state',
               ),
             ],
           ),
@@ -289,7 +289,6 @@ class _B3MeLandingPage extends StatelessWidget {
                 ),
               ],
             ),
-            const Text('工具自愿使用，非心理诊断，也不作为匹配硬筛选。'),
           ],
           SizedBox(height: t.spacing.md),
           const AvatarManagementEntry(),
@@ -297,16 +296,9 @@ class _B3MeLandingPage extends StatelessWidget {
             title: '参与与记录',
             children: [
               _MePurposeEntry(
-                title: '状态与自动化',
-                subtitle: '查看同一规范页面中的持续参与授权和执行结果。',
-                icon: Icons.manage_accounts_outlined,
-                route: '/user-state',
-                push: true,
-              ),
-              _MePurposeEntry(
                 key: MeLandingPage.readinessKey,
                 title: '准备状态',
-                subtitle: '查看准备条件与本人下一步。',
+                subtitle: '查看报名条件。',
                 icon: Icons.fact_check_outlined,
                 route: AppRouteNames.meReadiness,
                 push: true,
@@ -317,7 +309,7 @@ class _B3MeLandingPage extends StatelessWidget {
             SettingsItemTile(
               key: MeLandingPage.accountStatusKey,
               title: '资格、状态与申诉',
-              subtitle: '查看参与资格、本人处理状态与申诉入口。',
+              subtitle: '查看账号状态或提交申诉。',
               icon: Icons.shield_outlined,
               onTap: () => Navigator.of(context, rootNavigator: true).push(
                 MaterialPageRoute<void>(
@@ -328,26 +320,19 @@ class _B3MeLandingPage extends StatelessWidget {
             ),
             const _MePurposeEntry(
               title: '站内通知',
-              subtitle: '通知与聊天会话分别读取和处理已读。',
+              subtitle: '查看提醒与已读记录。',
               icon: Icons.notifications_none_rounded,
               route: AppRouteNames.notificationCenter,
               push: true,
             ),
             const _MePurposeEntry(
               title: '动态广场',
-              subtitle: '查看与管理本人动态和当前有权访问的好友动态。',
+              subtitle: '查看好友动态，管理自己的发布。',
               icon: Icons.dynamic_feed_outlined,
               route: AppRouteNames.statusSquare,
               push: true,
             ),
           ],
-          SizedBox(height: t.spacing.sm),
-          Text(
-            '私密资料与展示资料分别管理；公开、分享和互动仍由你明确决定。',
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: t.textSecondary),
-          ),
         ],
       ),
     );

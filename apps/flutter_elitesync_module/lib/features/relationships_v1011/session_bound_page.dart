@@ -136,12 +136,12 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(
-              error == 'Forbidden' ? '当前账号没有此项访问权限。' : '未完成：$error',
+              relationshipErrorLabel(error!),
               key: const Key('server-error'),
             ),
           ),
         if (_identity == null)
-          const Text('请重新登录；旧账号资料已清除。')
+          const Text('请登录后继续')
         else
           for (final child in children)
             Padding(padding: const EdgeInsets.only(bottom: 12), child: child),
@@ -180,4 +180,20 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
     _generation++;
     super.dispose();
   }
+}
+
+String relationshipErrorLabel(String error) {
+  if (error.contains('enable Buddy')) return '请先开启搭子请求，再继续操作';
+  if (error.contains('分享授权已撤回')) return '分享授权已撤回，请重新确认访问权限';
+  if (error == 'Forbidden' || error == 'Forbidden.') {
+    return '当前账号没有此项访问权限。';
+  }
+  if (error.contains('revision') || error.contains('stale')) {
+    return '内容已更新，请刷新后再试';
+  }
+  if (error.contains('eligibility') ||
+      error.contains('participation generation')) {
+    return '报名状态已变化，请查看准备与参与状态';
+  }
+  return '暂时无法完成，请刷新重试';
 }

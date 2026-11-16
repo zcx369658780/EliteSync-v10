@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../app/router/app_route_names.dart';
+import '../../design_system/theme/app_component_theme.dart';
 import '../relationships_v1011/relationship_api.dart';
 import '../slow_dating_v1012/journey_components.dart';
 import 'lifestyle_controller.dart';
@@ -75,6 +76,7 @@ class _LifestylePageState extends ConsumerState<LifestyleDiscoveryPage>
             child: const Text('取消'),
           ),
           TextButton(
+            style: appDestructiveButtonStyle(Theme.of(context)),
             onPressed: () => Navigator.pop(context, true),
             child: const Text('重新开始'),
           ),
@@ -332,62 +334,45 @@ class _LifestylePageState extends ConsumerState<LifestyleDiscoveryPage>
                                       child: Semantics(
                                         key: Key('choice-${option['id']}'),
                                         selected: selected == option['id'],
-                                        child: AnimatedContainer(
-                                          duration: _reduced
-                                              ? Duration.zero
-                                              : const Duration(
-                                                  milliseconds: 200,
-                                                ),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                              14,
-                                            ),
-                                            color: selected == option['id']
-                                                ? Theme.of(
-                                                    context,
-                                                  ).colorScheme.primaryContainer
-                                                : Colors.transparent,
+                                        child: OutlinedButton(
+                                          key: Key('option-${option['id']}'),
+                                          style: appOptionButtonStyle(
+                                            Theme.of(context),
+                                            selected: selected == option['id'],
                                           ),
-                                          child: OutlinedButton(
-                                            key: Key('option-${option['id']}'),
-                                            style: OutlinedButton.styleFrom(
-                                              minimumSize:
-                                                  const Size.fromHeight(52),
-                                            ),
-                                            onPressed: enabled
-                                                ? () async {
-                                                    final next =
-                                                        const bool.fromEnvironment(
-                                                              'ELITESYNC_V1017_LOCAL_BUILD',
-                                                            ) &&
-                                                            data['status'] ==
-                                                                'completed'
-                                                        ? scenes.length
-                                                        : _index + 1;
-                                                    if (await controller.answer(
-                                                          '${scene['id']}',
-                                                          '${option['id']}',
-                                                        ) &&
-                                                        mounted &&
-                                                        controller == _loaded) {
-                                                      await _move(next);
-                                                    }
+                                          onPressed: enabled
+                                              ? () async {
+                                                  final next =
+                                                      const bool.fromEnvironment(
+                                                            'ELITESYNC_V1017_LOCAL_BUILD',
+                                                          ) &&
+                                                          data['status'] ==
+                                                              'completed'
+                                                      ? scenes.length
+                                                      : _index + 1;
+                                                  if (await controller.answer(
+                                                        '${scene['id']}',
+                                                        '${option['id']}',
+                                                      ) &&
+                                                      mounted &&
+                                                      controller == _loaded) {
+                                                    await _move(next);
                                                   }
-                                                : null,
-                                            child: Row(
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                    '${option['label']}',
-                                                  ),
+                                                }
+                                              : null,
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  '${option['label']}',
                                                 ),
-                                                if (selected == option['id'])
-                                                  const Icon(
-                                                    Icons.check,
-                                                    size: 20,
-                                                  ),
-                                              ],
-                                            ),
+                                              ),
+                                              if (selected == option['id'])
+                                                const Icon(
+                                                  Icons.check,
+                                                  size: 20,
+                                                ),
+                                            ],
                                           ),
                                         ),
                                       ),

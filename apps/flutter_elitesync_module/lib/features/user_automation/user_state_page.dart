@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
+import '../../design_system/theme/app_component_theme.dart';
 import '../relationships_v1011/session_bound_page.dart';
 import '../slow_dating_v1012/journey_components.dart';
 import '../slow_dating_v1012/slow_dating_journey_page.dart';
@@ -133,7 +134,7 @@ class _UserStatePageState extends SessionBoundPage<UserStatePage>
                 Text(_authorizationLabel(code)),
                 const SizedBox(height: 12),
                 const Text(
-                  '开启后，系统在已有开放轮次中检查准备状态并协调报名。'
+                  '开启后，系统在开放轮次中检查准备状态并为你报名。'
                   '你仍独立决定匹配选择、连接、消息同意和正式关系。',
                 ),
                 const SizedBox(height: 12),
@@ -186,6 +187,7 @@ class _UserStatePageState extends SessionBoundPage<UserStatePage>
                     if (['ACTIVE', 'PAUSED'].contains(code))
                       TextButton(
                         key: const Key('automation-revoke'),
+                        style: appDestructiveButtonStyle(Theme.of(context)),
                         onPressed: busy
                             ? null
                             : () => _authorize('revoke', authorization),
@@ -218,7 +220,8 @@ String _authorizationLabel(Object? code) => switch (code) {
   'PAUSED' => '已暂停',
   'REVOKED' => '已撤销',
   'EXPIRED' => '授权已到期或说明版本已更新',
-  _ => '尚未授权',
+  'OFF' => '尚未开启',
+  _ => '状态暂未确认',
 };
 
 String _taskLabel(Object? code) => switch (code) {
@@ -238,13 +241,13 @@ String _resultLabel(Object? code) => switch (code) {
   'ROUND_NOT_OPEN' => '当前轮次报名阶段已结束',
   'EXISTING_PROPOSAL' => '已有提案，请先按原规则处理',
   'LIFESTYLE_INCOMPLETE' => '生活方式探索尚未完成',
-  'PARTICIPATION_COORDINATED' => '本轮报名已协调',
+  'PARTICIPATION_COORDINATED' => '本轮已报名',
   'RECONCILED_EFFECT' => '已核对先前处理结果',
   'RECONCILED_EFFECT_SOURCE_CHANGED' => '已核对先前结果，参与状态随后已有更新',
   'AUTHORIZATION_CHANGED' => '授权已变化，任务已停止',
-  'RETRY_EXHAUSTED' => '本轮尝试已用完，请查看当前状态',
+  'RETRY_EXHAUSTED' => '本轮未能完成，请查看状态',
   'EXECUTION_UNCERTAIN' => '处理结果待核对',
   'ACCOUNT_UNAVAILABLE' => '当前账号不可参与',
-  null => '等待系统检查已有轮次与资格',
+  null => '等待下一次检查',
   _ => preparationReasonLabel(code),
 };

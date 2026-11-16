@@ -168,6 +168,6 @@ void main() {
     pending.complete(snapshot('ACTIVE', 99));
     await tester.pumpAndSettle();
     expect(find.text('持续参与已授权'), findsNothing);
-    expect(find.text('尚未授权'), findsOneWidget);
+    expect(find.text('尚未开启'), findsOneWidget);
   });
 }

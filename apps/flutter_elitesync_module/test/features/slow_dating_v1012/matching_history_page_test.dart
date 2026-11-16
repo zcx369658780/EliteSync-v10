@@ -86,7 +86,7 @@ void main() {
     expect(find.text('轮次 17 · 提案 terminal-17'), findsOneWidget);
     expect(find.text('揭晓 2026-11-13T12:00:00Z'), findsOneWidget);
     expect(find.text('有效期 2026-11-20T12:00:00Z'), findsOneWidget);
-    expect(find.textContaining('双方已选择'), findsOneWidget);
+    expect(find.textContaining('双方已接受'), findsOneWidget);
     expect(find.text('此处保留过程记录，当前提案操作请返回慢约旅程。'), findsOneWidget);
     expect(find.byKey(const ValueKey('proposal-accept')), findsNothing);
     expect(find.byKey(const ValueKey('proposal-decline')), findsNothing);
