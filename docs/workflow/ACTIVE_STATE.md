@@ -1,6 +1,6 @@
-# 当前入口 2026-11-16 v10.1.17 B3工程交付，等待顾问验收
+# 当前入口 2026-11-16 v10.1.17 Owner有限实机反馈已收
 
-**V10117_ENGINEERING_PASS_IN_NAMED_SCOPE / ADVISOR_PENDING / OWNER_PENDING**。
+**V10117_ENGINEERING_PASS_IN_NAMED_SCOPE / OWNER_DEVICE_FEEDBACK_RECEIVED / ADVISOR_PENDING / OWNER_PENDING**。
 
 最终源码 `1953582093d3469a48cd7275864309cb09eb0e53`。候选 `10.1.17-dev / 1011703`，包名 `com.elitesync.v1017dev`，APK SHA256 `729be2af7d215f4701c49e494d1767e59d350b1aee5bf83ecb553910f050f8ea`。旧 1011601 独立包及数据保留。
 
@@ -10,7 +10,9 @@
 
 本版新隔离 DB/API/WS 运行，API回环18021、WS18022。旧开发 DB/API/WS/SFU保持exited，模拟器已停止，AVD/数据与私有原证保留。原库HEAD/index/差异及同格式status指纹与本轮开工一致。历史未知和失败沿原记录保留。
 
-顾问验收及Owner整体实机接受PENDING。手机操作NOT_RUN。当前停止等待顾问；B4、阶段C及后继版本后续另行授权。main集成及发布NOT_RUN。
+Owner后续授权安装、登录和打开探索，已完成有限实机评测。首页、探索及Me有正向观察；开发式文案、选项对比度、自动化入口与“进展→匹配”建议列入后续UI收口。第8项补注为新账号未显示旧账号消息，关闭重开等场景未测。见 [Owner评测](../versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md)。
+
+顾问验收及Owner整版接受PENDING。后续UI源码实施等待相应任务。B4、阶段C及后继版本另行授权，main集成及发布NOT_RUN。
 
 ## 历史启动入口（保留）
 

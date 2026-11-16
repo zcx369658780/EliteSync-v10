@@ -243,19 +243,19 @@
     },
     {
       "path": "docs/versions/v10.1.17/EVIDENCE_SUMMARY_20261116.json",
-      "bytes": 4726,
-      "sha256": "9364b868c0ad2d0587acfdab292cf31d905bfdcfbfcfe05a66ba121334f60822",
-      "git_blob_sha": "1121fe88fdaf29a2c4ce6119ad201d52f0c962b6",
-      "local_worktree_bytes": 4839,
-      "local_worktree_sha256": "ecc479f1b0f9c22243554d60e6b79fd6bb4f3c4caadfcce4c05f2d86165ee7ab"
+      "bytes": 6251,
+      "sha256": "78d221b565a96e6dc74d297633a478eafae38fcb4a1e7559d68e36d6d5e9285d",
+      "git_blob_sha": "cd73134107bec6adb96c2d4c9303e13b6fe31c9f",
+      "local_worktree_bytes": 6401,
+      "local_worktree_sha256": "107d91401d850b1780153d60bd806363ee7c94d93591303430909e672e26bf33"
     },
     {
       "path": "docs/versions/v10.1.17/IMPLEMENTATION_REPORT.md",
-      "bytes": 8565,
-      "sha256": "3107ba988f697fd750fdf023d84f2bfaa74bbb42913f7bc97436914057f63c03",
-      "git_blob_sha": "3dda8ac70a7b8bf344a82c918f601ab6912e5080",
-      "local_worktree_bytes": 8637,
-      "local_worktree_sha256": "72c6e1efdca726ad5b360234bb677d97e5ac93af3898c3f97b5634881a942f24"
+      "bytes": 9135,
+      "sha256": "e6c8a0f650d652fe55de722206c1050bb10f98502883b3feb2676d25de06f4de",
+      "git_blob_sha": "e53989854c794705ea0011e3cfdc4db6b94f8867",
+      "local_worktree_bytes": 9211,
+      "local_worktree_sha256": "d5c49a013c82233e8f897d67f60f244892c935e3d5264de333c52eea97362c3e"
     },
     {
       "path": "docs/versions/v10.1.17/LOCAL_DOCS_SYNC_RECEIPT.json",
@@ -267,11 +267,19 @@
     },
     {
       "path": "docs/versions/v10.1.17/OWNER_DEVICE_CHECKLIST.md",
-      "bytes": 3997,
-      "sha256": "2e820a300bf38f8f369999206373e57e6b299c586ae84eedcb5e9083f35db7c7",
-      "git_blob_sha": "a618fb47cc3c4bc297b0c6db37b8688244983d59",
-      "local_worktree_bytes": 4042,
-      "local_worktree_sha256": "e03b8a6949e27656e979ae777175a08479b9527be404da23cf7b2f02bf9dc1be"
+      "bytes": 4763,
+      "sha256": "b70c386fa80ee0aa89465032421f7aaf03ffb18c01bebcb4ac1069a643a3018a",
+      "git_blob_sha": "7d40a7f1e63fff78dca58b1aaa81b610a2e8294b",
+      "local_worktree_bytes": 4808,
+      "local_worktree_sha256": "d63bd789564eaf0ce53ace08e00323722f048366f0fec8c5ea6964a2ceaef6fa"
+    },
+    {
+      "path": "docs/versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md",
+      "bytes": 5340,
+      "sha256": "3f544a59303955176e89192e600c530d28407df97985ed7d85d7b3e0712b72fe",
+      "git_blob_sha": "499d6aad3b6956749a0097137f249c4887c17437",
+      "local_worktree_bytes": 5395,
+      "local_worktree_sha256": "94276897bf3a343ea127ed65b369043847efd9f0ed4fc52233330166daf38bb0"
     },
     {
       "path": "docs/versions/v10.1.17/plan.md",
@@ -303,24 +311,24 @@
     },
     {
       "path": "docs/workflow/ACTIVE_STATE.md",
-      "bytes": 3735,
-      "sha256": "e286df24adc3b5bd740b8007d2e2b5668de3d472f3ad7fd700e16dceefb1333e",
-      "git_blob_sha": "afd9c302662a5d49c5a3de9cbd21e745d6f67323",
-      "local_worktree_bytes": 3780,
-      "local_worktree_sha256": "c68e96b92ade17c6bd3f64b6e95cc62c50112aae65c0cd264ace2f45f2cc76ac"
+      "bytes": 4124,
+      "sha256": "0ccfe88cb55ffa88012296138a28bbf166052aa7fb40828f37d9b69e55c051d7",
+      "git_blob_sha": "32895724f92c76bac091a322f7b78862ceb70db3",
+      "local_worktree_bytes": 4171,
+      "local_worktree_sha256": "0f4c02995d4198bf9522d0661b347df0899449d5adacf2cb80c0f7c88de64273"
     },
     {
       "path": "docs/workflow/CURRENT_WORKFLOW.md",
-      "bytes": 2792,
-      "sha256": "c1ed4daa1a269adfe245c136fdf7fa0adae3a95db737a2562ff5599592788875",
-      "git_blob_sha": "bc2d6a82627101145fe8bfc34940fc882a953a40",
-      "local_worktree_bytes": 2823,
-      "local_worktree_sha256": "28e97734dc01b2863fa052dd0b348124c15e05095b18ac7f4ebfcaa545436993"
+      "bytes": 3169,
+      "sha256": "687012c72f5692f7f4115130613d8b39c9050f02842598fb7460cfa2cdbbcab6",
+      "git_blob_sha": "f834b4146e7a366239f2159174b600d66912ab11",
+      "local_worktree_bytes": 3202,
+      "local_worktree_sha256": "a1a815887725ba53e513ecb41a74cae914f35f2a575b697759c405647ae45da5"
     }
   ],
   "recorded_limits": [
-    "Owner phone/system-level matrix NOT_RUN, Owner and advisor acceptance PENDING",
-    "Historical B1 image-model name/version UNKNOWN and v10.1.16 initial DB probe/status unknowns retained"
+    "Historical B1 image-model name/version UNKNOWN and v10.1.16 initial DB probe/status unknowns retained",
+    "Owner limited phone feedback received; automation, Progress/message end-to-end and full switch/restart/system-level matrix remain untested in this review. Final Owner and advisor acceptance PENDING"
   ],
   "artifact_checksum_basis": "Committed Git blob bytes. Differing local worktree byte hashes are explicitly recorded.",
   "baseline_prefreeze_integrity": {
@@ -328,5 +336,17 @@
     "sha256": "43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d",
     "receipt": "evidence/BASELINE_INTEGRITY_RECEIPT.json",
     "augmented_summary": "LOCAL_ONLY_RETAINED"
-  }
+  },
+  "owner_device_review": {
+    "date": "2026-11-16",
+    "record": "docs/versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md",
+    "status": "FEEDBACK_RECEIVED_IN_PARTIAL_SCOPE",
+    "candidate": 1011703,
+    "owner_final_acceptance": "PENDING",
+    "code_changes_from_feedback": "NOT_RUN_DEFERRED_UI_ALIGNMENT",
+    "readback_receipt": "LOCAL_ONLY owner-device-feedback-readback-20261116-private.json"
+  },
+  "prior_engineering_delivery_commit": "93cb9e4db01ed5262d100f5982b5e01bf4799015",
+  "runtime_end_scope": "Original engineering delivery snapshot; later phone setup and review recorded separately",
+  "final_delivery_readback_scope": "Original engineering delivery 93cb9e4db01ed5262d100f5982b5e01bf4799015; original private readback receipt preserved"
 }

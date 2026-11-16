@@ -110,5 +110,42 @@
     "original_whole_summary_bytes_match": "VERIFIED_RECOVERED_EXACT_BYTES",
     "prefreeze_sha256": "43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d",
     "recovery": "Original Windows CRLF serialized bytes verified against pre-code committed hash; augmented summary retained"
+  },
+  "validation_scope": "Original pre-Owner-device-review engineering delivery snapshot",
+  "owner_device_review": {
+    "date": "2026-11-16",
+    "candidate": 1011703,
+    "status": "FEEDBACK_RECEIVED_IN_PARTIAL_SCOPE",
+    "record": "OWNER_DEVICE_FEEDBACK_20261116.md",
+    "device": "REDMI K80 Ultra / Android 16",
+    "codex_authorized_setup": [
+      "APK installation and identity verification",
+      "fictional QA A login",
+      "open Lifestyle scene"
+    ],
+    "positive_observations": [
+      "Home state and main action understandable",
+      "Lifestyle scenario and progress feedback",
+      "Me entries clear"
+    ],
+    "open_ui_feedback": [
+      "developer-like copy and repeated explanations",
+      "selected/pressed option text contrast",
+      "automation entry not found",
+      "Owner proposes Progress label and scope toward matching",
+      "persistent disclaimers concentrated in a purpose/permissions page"
+    ],
+    "buddy": "Entry observed, Owner reports unable to match, cause UNKNOWN and further testing pending",
+    "account_isolation": "Observed new account does not display former account messages; full switch/restart/cache scope not run",
+    "untested": [
+      "automation lifecycle",
+      "Progress and proposal actions",
+      "current message/notification end-to-end flow",
+      "community flow",
+      "cold restart and full account-switch matrix",
+      "system-level accessibility matrix"
+    ],
+    "owner_final_acceptance": "PENDING",
+    "advisor_acceptance": "PENDING"
   }
 }
