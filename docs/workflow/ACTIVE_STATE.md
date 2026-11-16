@@ -1,18 +1,54 @@
-# 当前入口 2026-11-16 UI-AUDIT-01审计交付完成
+# 当前入口 2026-11-17：Home与Matching产品规则已冻结，继续讨论Me页面
 
-**`UI_AUDIT_01_AUDIT_COMPLETED_WITH_RECORDED_LIMITS / SAME_ORIGIN_EVIDENCE_READBACK_PASS / ADVISOR_OWNER_REVIEW_PENDING`**。
+**`HOME_MATCHING_DECISIONS_FROZEN / DESIGN_DISCUSSION_ONLY / NO_CODE_AUTHORIZATION`**
 
-- 审计分支`codex/ui-current-state-audit-20261116`，固定证据提交`fd2a0aa7037567f4c368d4bed5bd5e0f420b89d0`已同源回读38份文件。
-- 候选仍为`10.1.18-dev / 1011804`，包名`com.elitesync.v1018dev`，产品源码`1afa6940c37bc1b40aa3d05ea46fb47002f6455c`。
-- [审计报告](ui-current-state-audit-20261116/UI_CURRENT_STATE_AUDIT.md)与[截图manifest](ui-current-state-audit-20261116/SCREENSHOT_MANIFEST.json)交付36张已检查去敏副本、16条逻辑链、14项问题/建议及Owner目标流程对照。
-- 自验AC-AUDIT-01至08按具名范围完成，缺页、运行时URI、dynamic失败层、动画及完整缓存矩阵的限制见报告。顾问与Owner对本次审计材料接受PENDING。
-- 原保护库HEAD/index/dirty指纹与四份具名私有资产核对一致，21个具名业务表摘要一致，完整全库不变结论NOT_RUN。
-- 正常A→B→A会话采集已完成，最后QA-A冷启动到Home。模拟器已停止，AVD数据保留，字体恢复1.0，原DB/API/WS运行状态保留。
-- 产品源码、版本、构建、schema和业务配置保持固定身份。后续UI设计/实施、B4、阶段C、main及发布等待独立授权。
+## 一、最新产品决策冻结
 
-完成审计后停止，等待GPT顾问与Owner基于本报告讨论后续信息架构、操作逻辑及视觉方向。
+- Owner决策文件：[OWNER_HOME_MATCHING_PRODUCT_RULES_20261117.md](../decisions/OWNER_HOME_MATCHING_PRODUCT_RULES_20261117.md)。
+- 治理分支：`governance/home-matching-product-freeze-20261117`。
+- 基线：`404fae033584baa870af0a2c214044f8f969531b`。
+- 本文件记录Owner截至2026-11-17已确认的首页、内容权限、匹配准入、实人认证、星盘、Lifestyle和自动参与规则；同时把顾问建议与未决细节明确分开。
+- 历史UI-AUDIT-01报告及顾问审阅仍有效，见[审计报告](ui-current-state-audit-20261116/UI_CURRENT_STATE_AUDIT.md)和[顾问审阅](ui-current-state-audit-20261116/ADVISOR_REVIEW_20261116.md)。
+
+## 二、已冻结的Owner决定摘要
+
+### Home
+- 四个一级入口保持：首页、匹配、消息、我的。
+- 首页双频道：精选、好友；默认精选。
+- 精选包含官方精选/专题，以及独立的用户公开作品区域。
+- 官方精选允许访客阅读；官方专题按内容类型开放评论，采用问题引导式讨论。
+- 用户公开作品只允许已登录且账号状态有效的用户浏览；访客不可访问。
+- 好友动态按现有SELF/FRIENDS及有效好友权限读取。
+- 新用户发布作品默认FRIENDS；作者可选择SELF、FRIENDS或站内公开。
+- 用户作品评论策略可为ALL_ELIGIBLE、FRIENDS_ONLY或OFF。
+- 访客在APP任何地方均不能留言、评论、点赞、收藏、举报或提交其他互动/反馈。
+
+### Matching
+- 注册时Lifestyle可以跳过；进入真实匹配参与前必须完成五场景Lifestyle。
+- 正式参与真实匹配前必须通过真实实人认证；供应商未接入前不可假装核验成功或开放真实匹配。
+- 普通报名只针对当前轮次，不开启持续自动参与。
+- 自动参与独立授权、默认关闭，可暂停/恢复/撤销。
+- 星盘有足够出生资料且获用途授权时自动生成，但不是匹配硬门槛。
+- MBTI独立可选，不替代Lifestyle。
+- Match、Connection、Messaging Consent、Conversation、Relationship继续独立。
+
+### 视觉
+- 构成主义为主的二次元卡通画风。
+- 讨论阶段使用低分辨率设定图/低保真方向稿。
+
+## 三、当前工作状态
+
+- UI-AUDIT-01已完成并获顾问具名范围接受：`ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS`。
+- 当前工作进入产品设计讨论阶段；下一主题为「我的」页面及个人资料/工具/权限信息架构。
+- Personal Data Hub、匹配页五模块、用户评论默认值、部分评论历史可见性等仍按决策文件标记为顾问建议或OPEN，不能视为Owner已确认。
+- **当前没有授权Codex执行产品实现的任务。**
+- 不修改产品源码、API/Web、数据库schema或业务数据；不构建APK、不启动模拟器；不合main、不发布。
+- B4、阶段C、真实身份供应商接入、真实Push、支付、真实运营及正式发布仍需独立授权。
 
 ---
+
+## 历史入口快照（2026-11-16；仅供追溯，已由上方2026-11-17入口更新）
+
 
 以下保留本次审计授权时的入口原文。
 
@@ -83,3 +119,4 @@ Owner已明确后续视觉基调为**构成主义为主的二次元卡通画风*
 - Buddy原手机原因、B1图像模型精确身份、B2首次数据库探测历史原因等UNKNOWN继续保留；
 - Owner手机复验、系统级TalkBack、真实Push等NOT_RUN继续保留；
 - 不将顾问验收、Owner接受、工程自验、main集成和正式发布混为一谈。
+
