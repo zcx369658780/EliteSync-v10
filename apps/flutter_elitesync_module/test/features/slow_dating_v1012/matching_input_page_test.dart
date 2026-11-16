@@ -160,7 +160,7 @@ void main() {
     await tester.enterText(find.byKey(const Key('matching-occupation')), '新职业');
     await saveInput(tester);
 
-    expect(find.text('我的匹配输入'), findsOneWidget);
+    expect(find.text('匹配资料与偏好'), findsOneWidget);
     expect(find.byKey(const Key('server-error')), findsOneWidget);
     expect(fieldText(tester, 'matching-city'), '北京');
     expect(fieldText(tester, 'matching-occupation'), '新职业');

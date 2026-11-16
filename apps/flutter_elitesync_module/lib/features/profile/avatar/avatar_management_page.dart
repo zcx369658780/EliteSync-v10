@@ -20,7 +20,7 @@ class _AvatarManagementEntryState extends ConsumerState<AvatarManagementEntry> {
       child: ListTile(
         leading: AuthenticatedAvatar(ownerId: id ?? 0, refreshKey: _refresh),
         title: const Text('头像管理'),
-        subtitle: const Text('更换或移除头像；仅现有获准关系上下文可见'),
+        subtitle: const Text('更换或移除头像，仅向已获准的人展示'),
         trailing: const Icon(Icons.chevron_right),
         onTap: id == null
             ? null

@@ -196,7 +196,7 @@ class _UserStatePageState extends SessionBoundPage<UserStatePage>
                   ],
                 ),
                 Text(
-                  '授权说明 ${authorization['consent_version'] ?? ''}',
+                  '当前授权说明',
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],

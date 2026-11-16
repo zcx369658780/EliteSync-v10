@@ -60,7 +60,7 @@ class MeLandingPage extends StatelessWidget {
               _MePurposeEntry(
                 key: matchingInputsKey,
                 icon: Icons.tune_rounded,
-                title: '我的匹配输入',
+                title: '匹配资料与偏好',
                 subtitle: '确认本人资料与年龄、地域偏好，保存后自主报名。',
                 route: AppRouteNames.meMatchingInputs,
               ),
@@ -230,7 +230,7 @@ class _B3MeLandingPage extends StatelessWidget {
               ),
               _MeQuickEntry(
                 key: MeLandingPage.matchingInputsKey,
-                title: '我的匹配输入',
+                title: '匹配资料与偏好',
                 icon: Icons.tune_rounded,
                 route: AppRouteNames.meMatchingInputs,
               ),

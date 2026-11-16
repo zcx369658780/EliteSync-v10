@@ -196,7 +196,7 @@ class _MatchingReadinessCard extends StatelessWidget {
                 builder: (_) => const MatchingInputPage(),
               ),
             ),
-            child: const Text('我的匹配输入'),
+            child: const Text('匹配资料与偏好'),
           ),
           if (hasFreshTruth &&
               (matching.eligible ||

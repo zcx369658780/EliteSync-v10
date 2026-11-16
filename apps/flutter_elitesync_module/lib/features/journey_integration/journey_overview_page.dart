@@ -368,7 +368,7 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
         '/lifestyle-discovery',
         subtitle: _lifestyleLabel(objectMap(domains['lifestyle'])['code']),
       ),
-      _link('我的匹配输入', AppRouteNames.meMatchingInputs),
+      _link('匹配资料与偏好', AppRouteNames.meMatchingInputs),
       _domain(
         '每周参与',
         journeyStateLabel(objectMap(domains['participation'])['code']),

@@ -197,7 +197,7 @@ class _MatchingInputState extends SessionBoundPage<MatchingInputPage> {
   @override
   Widget build(BuildContext context) {
     if (data != null && !identical(data, _loadedData)) _load(data!);
-    return frame('我的匹配输入', [
+    return frame('匹配资料与偏好', [
       const Text('这些输入默认私密，用于准备度和双方匹配条件。保存并确认后，仍需你主动报名。'),
       if (_saved)
         const Text('已保存并确认，正在读取服务器结果。', key: Key('matching-input-saved')),

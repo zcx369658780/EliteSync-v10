@@ -101,7 +101,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
               );
               if (mounted) await refresh();
             },
-            child: const Text('我的匹配输入'),
+            child: const Text('匹配资料与偏好'),
           ),
           OutlinedButton(
             onPressed: () async {

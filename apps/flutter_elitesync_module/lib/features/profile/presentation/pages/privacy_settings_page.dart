@@ -33,7 +33,7 @@ class PrivacySettingsPage extends StatelessWidget {
             body:
                 '完成资料、问卷与生活方式探索后，可自主报名每周慢约。匹配结果供双方分别决定；连接、消息许可、正式关系和资料分享各自确认。实际相处由你自己判断。暂停或退出报名时，请阅读当次操作提示。',
             links: [
-              ('我的匹配输入', AppRouteNames.meMatchingInputs),
+              ('匹配资料与偏好', AppRouteNames.meMatchingInputs),
               ('匹配与报名', AppRouteNames.progressMatch),
             ],
           ),
