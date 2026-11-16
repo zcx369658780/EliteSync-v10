@@ -2,7 +2,7 @@
 
 日期 2026-11-16。对象为 `10.1.17-dev / 1011703`，APP 源码 `1953582093d3469a48cd7275864309cb09eb0e53`，原工程交付 `93cb9e4db01ed5262d100f5982b5e01bf4799015`。设备为 REDMI K80 Ultra / Android 16，登录本版虚构测试账号 A。
 
-Owner 在本会话追加授权安装、登录与打开生活方式探索，Codex 已执行这些操作。以下逐项评测由 Owner 陈述。整体产品接受及 GPT 顾问验收当前均为 `PENDING`。
+Owner 在本会话追加授权安装、登录与打开生活方式探索，Codex 已执行这些操作。以下逐项评测由 Owner 陈述。GPT 顾问已接受原固定工程交付，结论为 `ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS`，NO_R1/NO_R2，见 [顾问验收](ADVISOR_ACCEPTANCE_20261116.md)。该报告以原固定工程交付为审阅对象，本次实机反馈单独记录，Owner 整体产品接受仍为 `PENDING`。
 
 ## Owner 原始反馈
 

@@ -1,6 +1,6 @@
 # v10.1.17 B3 实施报告
 
-2026-11-16。工程结论为 `PASS_IN_NAMED_SCOPE`。GPT 顾问独立验收与 Owner 整体产品接受均为 `PENDING`。
+2026-11-16。原工程交付结论为 `PASS_IN_NAMED_SCOPE`，交付时 GPT 顾问独立验收与 Owner 整体产品接受均为 `PENDING`。后续 GPT 顾问已接受该固定交付的具名工程范围，NO_R1/NO_R2，见 [顾问验收](ADVISOR_ACCEPTANCE_20261116.md)。Owner 整体产品接受仍为 PENDING。
 
 ## 后续 Owner 实机评测
 

@@ -1,6 +1,6 @@
-# 当前入口 2026-11-16 v10.1.17 Owner有限实机反馈已收
+# 当前入口 2026-11-16 B3顾问已接受，Owner有限实机反馈已收
 
-**V10117_ENGINEERING_PASS_IN_NAMED_SCOPE / OWNER_DEVICE_FEEDBACK_RECEIVED / ADVISOR_PENDING / OWNER_PENDING**。
+**V10117_ADVISOR_ACCEPTED_IN_NAMED_SCOPE / NO_R1 / NO_R2 / OWNER_DEVICE_FEEDBACK_RECEIVED / OWNER_PENDING**。
 
 最终源码 `1953582093d3469a48cd7275864309cb09eb0e53`。候选 `10.1.17-dev / 1011703`，包名 `com.elitesync.v1017dev`，APK SHA256 `729be2af7d215f4701c49e494d1767e59d350b1aee5bf83ecb553910f050f8ea`。旧 1011601 独立包及数据保留。
 
@@ -12,7 +12,7 @@
 
 Owner后续授权安装、登录和打开探索，已完成有限实机评测。首页、探索及Me有正向观察；开发式文案、选项对比度、自动化入口与“进展→匹配”建议列入后续UI收口。第8项补注为新账号未显示旧账号消息，关闭重开等场景未测。见 [Owner评测](../versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md)。
 
-顾问验收及Owner整版接受PENDING。后续UI源码实施等待相应任务。B4、阶段C及后继版本另行授权，main集成及发布NOT_RUN。
+顾问已按具名工程范围接受固定交付93cb9e4d，R1/R2均不需要，见 [顾问验收](../versions/v10.1.17/ADVISOR_ACCEPTANCE_20261116.md)。Owner整版接受PENDING，后续按UI收口安排推进。该顾问报告审阅固定工程交付，本次Owner实机反馈单独接续。B4、阶段C及后继版本另行授权，main集成及发布NOT_RUN。
 
 ## 历史启动入口（保留）
 

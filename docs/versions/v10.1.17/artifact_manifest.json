@@ -3,7 +3,7 @@
   "version": "v10.1.17",
   "phase": "V3.0 B3",
   "engineering_status": "PASS_IN_NAMED_SCOPE",
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
   "owner_acceptance": "PENDING",
   "branch": "codex/v10.1.17-low-operation-cost-journey-integration-20261116",
   "unique_parent_baseline": "99a05c6f6d509c0607d8bff0d63b122d5cc84eec",
@@ -88,6 +88,14 @@
   "stop": "WAIT_GPT_ADVISOR_NO_SUCCESSOR_AUTHORITY",
   "files": [
     {
+      "path": "docs/versions/v10.1.17/ADVISOR_ACCEPTANCE_20261116.md",
+      "bytes": 10469,
+      "sha256": "50df9ef4e86174d195391146f584a1ce6e8f9b0facf4bde6a6e10da7f53f3985",
+      "git_blob_sha": "a4d5ef81eec3d2ffbad3b23859bd1973fd83c9d0",
+      "local_worktree_bytes": 10613,
+      "local_worktree_sha256": "b1cd0b766f1cf987b221290aa63d59d8f86c625ff281ef77735be68c987150a9"
+    },
+    {
       "path": "docs/versions/v10.1.17/B3_BASELINE_ACTION_RECEIPT.json",
       "bytes": 10306,
       "sha256": "6b381afebe44d2ce713dcf3dd96df99afc9839e7a725e1a61840e119c2b28779",
@@ -154,6 +162,58 @@
       "git_blob_sha": "2b1d43c59fd4de403ca67a14fea7815547d60d04",
       "local_worktree_bytes": 2561,
       "local_worktree_sha256": "f925a1d9cc02a49b4008f4cb9bbeeeaaac945bd07254bfc4cd9f0d61b12dd550"
+    },
+    {
+      "path": "docs/versions/v10.1.17/EVIDENCE_SUMMARY_20261116.json",
+      "bytes": 7288,
+      "sha256": "498a87156a0349399ae7a2b116f3535ccfb6de8993d94d94439127e5dcb501d7",
+      "git_blob_sha": "e7b907ef13524dc56da829caef1b0a3b2da6e664",
+      "local_worktree_bytes": 7461,
+      "local_worktree_sha256": "c9e82fcee832d6bd622b1e4b2a1ae7b261d4d3e831ddb59707bba8d1ab0ea161"
+    },
+    {
+      "path": "docs/versions/v10.1.17/IMPLEMENTATION_REPORT.md",
+      "bytes": 9327,
+      "sha256": "1c2eeea3476ac39f50c8b049b45a7e7caaf6babedf339cc3194752023cc3cbb6",
+      "git_blob_sha": "b8f4db6dbe6e7a782bd1ff7145bb78db7f463662",
+      "local_worktree_bytes": 9403,
+      "local_worktree_sha256": "0420634faa5ace6dcf0c4dfe019dc3b448daa45dfdd107fe67913f0046f9c7c8"
+    },
+    {
+      "path": "docs/versions/v10.1.17/LOCAL_DOCS_SYNC_RECEIPT.json",
+      "bytes": 5634,
+      "sha256": "8186f70ff59cd2579300a02d14defabf8f7047c293659206d9ffec595a469db7",
+      "git_blob_sha": "0d76a12ea77ffd8a792c13f3a8098a7533d9be83",
+      "local_worktree_bytes": 5765,
+      "local_worktree_sha256": "740539568be19742932cfc239c01fbc72cabfc991e32003208d68f796d63e246"
+    },
+    {
+      "path": "docs/versions/v10.1.17/OWNER_DEVICE_CHECKLIST.md",
+      "bytes": 4839,
+      "sha256": "f2e797eb3d0c85a647ff71a74e86d44d257b642c49416d12220e54ab7fbab793",
+      "git_blob_sha": "47d2298b303c8f7930436b444ee84586b6106cff",
+      "local_worktree_bytes": 4884,
+      "local_worktree_sha256": "4e759fd351c37bda48e98a193ac12a4d4862c53d1e126fec5d11d3e00654d1f2"
+    },
+    {
+      "path": "docs/versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md",
+      "bytes": 5573,
+      "sha256": "8fcde710c148dfd517b74b2cf71136672860f2c3c0266e457cb26c28dc37d9e3",
+      "git_blob_sha": "2845843552f1ab70e4701833f637c60878d36e7a",
+      "local_worktree_bytes": 5628,
+      "local_worktree_sha256": "42407cfd37c6d385b1560e5dea5a0709722f71a583d004174e222b2bea3b5000"
+    },
+    {
+      "path": "docs/versions/v10.1.17/ROADMAP_ALIGNMENT_ACK.md",
+      "bytes": 2255,
+      "sha256": "58afd90cec9c5c58e75495cf60338ae47db5c1047a95c54a62882f6ae80bb3b6",
+      "git_blob_sha": "fef9e608c8a756aa6bc949a18e5af3f4b1b2b4fc"
+    },
+    {
+      "path": "docs/versions/v10.1.17/TARGET_INFORMATION_ARCHITECTURE_V1.md",
+      "bytes": 3790,
+      "sha256": "418d4450dc6a4d7ae2602750c876ebe2cc3ac4fd32b91b012d994ab66cebefa3",
+      "git_blob_sha": "3a3a13a214fb0c5880f5267049e8bf3773926724"
     },
     {
       "path": "docs/versions/v10.1.17/evidence/BASELINE_INTEGRITY_RECEIPT.json",
@@ -242,64 +302,12 @@
       "git_blob_sha": "6f2ffad89093cd29d6577a8a65dcf82fb5069746"
     },
     {
-      "path": "docs/versions/v10.1.17/EVIDENCE_SUMMARY_20261116.json",
-      "bytes": 6251,
-      "sha256": "78d221b565a96e6dc74d297633a478eafae38fcb4a1e7559d68e36d6d5e9285d",
-      "git_blob_sha": "cd73134107bec6adb96c2d4c9303e13b6fe31c9f",
-      "local_worktree_bytes": 6401,
-      "local_worktree_sha256": "107d91401d850b1780153d60bd806363ee7c94d93591303430909e672e26bf33"
-    },
-    {
-      "path": "docs/versions/v10.1.17/IMPLEMENTATION_REPORT.md",
-      "bytes": 9135,
-      "sha256": "e6c8a0f650d652fe55de722206c1050bb10f98502883b3feb2676d25de06f4de",
-      "git_blob_sha": "e53989854c794705ea0011e3cfdc4db6b94f8867",
-      "local_worktree_bytes": 9211,
-      "local_worktree_sha256": "d5c49a013c82233e8f897d67f60f244892c935e3d5264de333c52eea97362c3e"
-    },
-    {
-      "path": "docs/versions/v10.1.17/LOCAL_DOCS_SYNC_RECEIPT.json",
-      "bytes": 5634,
-      "sha256": "8186f70ff59cd2579300a02d14defabf8f7047c293659206d9ffec595a469db7",
-      "git_blob_sha": "0d76a12ea77ffd8a792c13f3a8098a7533d9be83",
-      "local_worktree_bytes": 5765,
-      "local_worktree_sha256": "740539568be19742932cfc239c01fbc72cabfc991e32003208d68f796d63e246"
-    },
-    {
-      "path": "docs/versions/v10.1.17/OWNER_DEVICE_CHECKLIST.md",
-      "bytes": 4763,
-      "sha256": "b70c386fa80ee0aa89465032421f7aaf03ffb18c01bebcb4ac1069a643a3018a",
-      "git_blob_sha": "7d40a7f1e63fff78dca58b1aaa81b610a2e8294b",
-      "local_worktree_bytes": 4808,
-      "local_worktree_sha256": "d63bd789564eaf0ce53ace08e00323722f048366f0fec8c5ea6964a2ceaef6fa"
-    },
-    {
-      "path": "docs/versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md",
-      "bytes": 5340,
-      "sha256": "3f544a59303955176e89192e600c530d28407df97985ed7d85d7b3e0712b72fe",
-      "git_blob_sha": "499d6aad3b6956749a0097137f249c4887c17437",
-      "local_worktree_bytes": 5395,
-      "local_worktree_sha256": "94276897bf3a343ea127ed65b369043847efd9f0ed4fc52233330166daf38bb0"
-    },
-    {
       "path": "docs/versions/v10.1.17/plan.md",
       "bytes": 3659,
       "sha256": "098b8e90d23d7aed3a1810fb068ddc2bb00378b8b5d4cf61fc69ed94b3f10555",
       "git_blob_sha": "2541cb738d25471c509a5ccc91bc714ecc8931ff",
       "local_worktree_bytes": 3727,
       "local_worktree_sha256": "e87229dc90d66b8b205fbc26d8839e14c09524bc088419495d5a10e0ff54373d"
-    },
-    {
-      "path": "docs/versions/v10.1.17/ROADMAP_ALIGNMENT_ACK.md",
-      "bytes": 2255,
-      "sha256": "58afd90cec9c5c58e75495cf60338ae47db5c1047a95c54a62882f6ae80bb3b6",
-      "git_blob_sha": "fef9e608c8a756aa6bc949a18e5af3f4b1b2b4fc"
-    },
-    {
-      "path": "docs/versions/v10.1.17/TARGET_INFORMATION_ARCHITECTURE_V1.md",
-      "bytes": 3790,
-      "sha256": "418d4450dc6a4d7ae2602750c876ebe2cc3ac4fd32b91b012d994ab66cebefa3",
-      "git_blob_sha": "3a3a13a214fb0c5880f5267049e8bf3773926724"
     },
     {
       "path": "docs/versions/v10.1.17/task_order.md",
@@ -311,19 +319,19 @@
     },
     {
       "path": "docs/workflow/ACTIVE_STATE.md",
-      "bytes": 4124,
-      "sha256": "0ccfe88cb55ffa88012296138a28bbf166052aa7fb40828f37d9b69e55c051d7",
-      "git_blob_sha": "32895724f92c76bac091a322f7b78862ceb70db3",
-      "local_worktree_bytes": 4171,
-      "local_worktree_sha256": "0f4c02995d4198bf9522d0661b347df0899449d5adacf2cb80c0f7c88de64273"
+      "bytes": 4342,
+      "sha256": "696bd3773946ac0f7929fe1cf00558371e4d7ad964297d82dfe583f951da93d3",
+      "git_blob_sha": "228b9c78b2c0316f03c457b5c07665ce081d9060",
+      "local_worktree_bytes": 4389,
+      "local_worktree_sha256": "d8c9ba46c415c000e794e5b6f7237b3e5ac95794ddf4bb4d47c180a7b1b1fa49"
     },
     {
       "path": "docs/workflow/CURRENT_WORKFLOW.md",
-      "bytes": 3169,
-      "sha256": "687012c72f5692f7f4115130613d8b39c9050f02842598fb7460cfa2cdbbcab6",
-      "git_blob_sha": "f834b4146e7a366239f2159174b600d66912ab11",
-      "local_worktree_bytes": 3202,
-      "local_worktree_sha256": "a1a815887725ba53e513ecb41a74cae914f35f2a575b697759c405647ae45da5"
+      "bytes": 3309,
+      "sha256": "4f88e8d452e4f8d5244a09745aec0f5e64d7e733f4b9e632aba75437c9143865",
+      "git_blob_sha": "1887d6f516bf811e08af310d9b78832a66e0fbc0",
+      "local_worktree_bytes": 3342,
+      "local_worktree_sha256": "816ce8538a6aa61dbbfc77b794b0ab812f9691052f35fdb94a4c87417cbb5ab9"
     }
   ],
   "recorded_limits": [
@@ -344,9 +352,48 @@
     "candidate": 1011703,
     "owner_final_acceptance": "PENDING",
     "code_changes_from_feedback": "NOT_RUN_DEFERRED_UI_ALIGNMENT",
-    "readback_receipt": "LOCAL_ONLY owner-device-feedback-readback-20261116-private.json"
+    "readback_receipt": "LOCAL_ONLY owner-device-feedback-readback-20261116-private.json",
+    "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+    "feedback_followup_status": "PENDING_UI_ALIGNMENT",
+    "advisor_review_scope": "Prior engineering delivery 93cb9e4d; later Owner phone observations recorded separately"
   },
   "prior_engineering_delivery_commit": "93cb9e4db01ed5262d100f5982b5e01bf4799015",
   "runtime_end_scope": "Original engineering delivery snapshot; later phone setup and review recorded separately",
-  "final_delivery_readback_scope": "Original engineering delivery 93cb9e4db01ed5262d100f5982b5e01bf4799015; original private readback receipt preserved"
+  "final_delivery_readback_scope": "Original engineering delivery 93cb9e4db01ed5262d100f5982b5e01bf4799015; original private readback receipt preserved",
+  "advisor_review": {
+    "status": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+    "reviewed_delivery_commit": "93cb9e4db01ed5262d100f5982b5e01bf4799015",
+    "reviewed_source_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
+    "candidate_version_code": 1011703,
+    "accepted_ac": [
+      "AC17-01",
+      "AC17-02",
+      "AC17-03",
+      "AC17-04",
+      "AC17-05",
+      "AC17-06",
+      "AC17-07",
+      "AC17-08"
+    ],
+    "r1": "NOT_REQUIRED",
+    "r2": "NOT_REQUIRED",
+    "confirmed_p1_p2": [],
+    "owner_overall_device_acceptance": "PENDING",
+    "owner_device_checklist": "OWNER_DEVICE_CHECKLIST.md",
+    "report": "ADVISOR_ACCEPTANCE_20261116.md",
+    "reviewed_github_evidence": [
+      "IMPLEMENTATION_REPORT.md",
+      "artifact_manifest.json",
+      "EVIDENCE_SUMMARY_20261116.json",
+      "B3_OPERATION_COST_BASELINE.md",
+      "B3_OPERATION_COST_COMPARISON.json",
+      "B3_ROUTE_FUNCTION_MAP.md",
+      "evidence/INTEGRATION_RECEIPT.json",
+      "evidence/BASELINE_INTEGRITY_RECEIPT.json",
+      "evidence/SCREENSHOT_MANIFEST.json"
+    ]
+  },
+  "next": "OWNER_OVERALL_DEVICE_ACCEPTANCE_PENDING",
+  "owner_device_acceptance": "PENDING",
+  "advisor_record_commit": "f0e31d8ae9d00f5f10d18b932390ad721dec903c"
 }

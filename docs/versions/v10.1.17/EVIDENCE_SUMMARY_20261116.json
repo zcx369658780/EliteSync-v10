@@ -1,7 +1,7 @@
 {
   "status": "ENGINEERING_PASS_IN_NAMED_SCOPE",
   "source_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
   "owner_acceptance": "PENDING",
   "candidate": 1011703,
   "operation_cost": {
@@ -103,7 +103,7 @@
   "historical_unknowns": "v10.1.16 first probe per-table summaries and historical status-cause UNKNOWN retained",
   "release": "NOT_RUN",
   "main_integration": "NOT_RUN",
-  "next": "STOP_WAIT_GPT_ADVISOR",
+  "next": "OWNER_OVERALL_DEVICE_ACCEPTANCE_PENDING",
   "baseline_integrity": {
     "receipt": "evidence/BASELINE_INTEGRITY_RECEIPT.json",
     "nine_original_cases_match_frozen_git_actions_and_independent_ui_receipts": true,
@@ -146,6 +146,29 @@
       "system-level accessibility matrix"
     ],
     "owner_final_acceptance": "PENDING",
-    "advisor_acceptance": "PENDING"
+    "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+    "feedback_followup_status": "PENDING_UI_ALIGNMENT",
+    "advisor_review_scope": "Prior engineering delivery 93cb9e4d; later Owner phone observations recorded separately"
+  },
+  "advisor_review": {
+    "status": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+    "reviewed_delivery_commit": "93cb9e4db01ed5262d100f5982b5e01bf4799015",
+    "reviewed_source_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
+    "accepted_ac": [
+      "AC17-01",
+      "AC17-02",
+      "AC17-03",
+      "AC17-04",
+      "AC17-05",
+      "AC17-06",
+      "AC17-07",
+      "AC17-08"
+    ],
+    "r1": "NOT_REQUIRED",
+    "r2": "NOT_REQUIRED",
+    "confirmed_p1_p2": [],
+    "owner_overall_device_acceptance": "PENDING",
+    "report": "ADVISOR_ACCEPTANCE_20261116.md",
+    "reviewer_note": "GitHub structured evidence, source, reports and nine screenshots reviewed. Owner-local raw logs were not directly opened and tests were not re-executed in this review."
   }
 }
