@@ -3,7 +3,7 @@
   "version": "v10.1.17",
   "phase": "V3.0 B3",
   "engineering_status": "PASS_IN_NAMED_SCOPE",
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
   "owner_acceptance": "PENDING",
   "branch": "codex/v10.1.17-low-operation-cost-journey-integration-20261116",
   "unique_parent_baseline": "99a05c6f6d509c0607d8bff0d63b122d5cc84eec",
@@ -328,5 +328,40 @@
     "sha256": "43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d",
     "receipt": "evidence/BASELINE_INTEGRITY_RECEIPT.json",
     "augmented_summary": "LOCAL_ONLY_RETAINED"
-  }
+  },
+  "advisor_review": {
+    "status": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+    "reviewed_delivery_commit": "93cb9e4db01ed5262d100f5982b5e01bf4799015",
+    "reviewed_source_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
+    "candidate_version_code": 1011703,
+    "accepted_ac": [
+      "AC17-01",
+      "AC17-02",
+      "AC17-03",
+      "AC17-04",
+      "AC17-05",
+      "AC17-06",
+      "AC17-07",
+      "AC17-08"
+    ],
+    "r1": "NOT_REQUIRED",
+    "r2": "NOT_REQUIRED",
+    "confirmed_p1_p2": [],
+    "owner_overall_device_acceptance": "PENDING",
+    "owner_device_checklist": "OWNER_DEVICE_CHECKLIST.md",
+    "report": "ADVISOR_ACCEPTANCE_20261116.md",
+    "reviewed_github_evidence": [
+      "IMPLEMENTATION_REPORT.md",
+      "artifact_manifest.json",
+      "EVIDENCE_SUMMARY_20261116.json",
+      "B3_OPERATION_COST_BASELINE.md",
+      "B3_OPERATION_COST_COMPARISON.json",
+      "B3_ROUTE_FUNCTION_MAP.md",
+      "evidence/INTEGRATION_RECEIPT.json",
+      "evidence/BASELINE_INTEGRITY_RECEIPT.json",
+      "evidence/SCREENSHOT_MANIFEST.json"
+    ]
+  },
+  "next": "OWNER_OVERALL_DEVICE_ACCEPTANCE_PENDING",
+  "owner_device_acceptance": "PENDING"
 }

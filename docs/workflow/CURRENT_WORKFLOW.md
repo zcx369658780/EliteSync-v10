@@ -1,8 +1,8 @@
 # 当前交付状态 2026-11-16
 
-v10.1.17 / B3 已完成具名范围工程交付，最终源码 `1953582093d3469a48cd7275864309cb09eb0e53`，候选 `1011703 / com.elitesync.v1017dev`。八项 AC 工程自验与九项成本对比见 [实施报告](../versions/v10.1.17/IMPLEMENTATION_REPORT.md)。GPT 顾问验收和 Owner 整体实机接受为 PENDING。
+v10.1.17 / B3 已完成具名范围工程交付并获GPT顾问接受，结论 `ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS`，NO_R1/NO_R2。最终源码 `1953582093d3469a48cd7275864309cb09eb0e53`，候选 `1011703 / com.elitesync.v1017dev`。八项AC、九项成本对比及顾问边界见 [实施报告](../versions/v10.1.17/IMPLEMENTATION_REPORT.md) 和 [顾问验收](../versions/v10.1.17/ADVISOR_ACCEPTANCE_20261116.md)。
 
-当前停止等待顾问独立验收。Owner手机操作、main集成、正式发布及真实运营为NOT_RUN。B4、阶段C及后继版本后续另行授权。以下启动规则与既有保护合同保留。
+当前停止等待Owner整体实机验收。B1+B2+B3已全部完成，真实手机、TalkBack及系统权限矩阵仍NOT_RUN；请Owner使用 [检查表](../versions/v10.1.17/OWNER_DEVICE_CHECKLIST.md) 统一验收。main集成、正式发布及真实运营NOT_RUN。B4、阶段C及后继版本仍须Owner另行授权。以下启动规则与既有保护合同保留。
 
 # EliteSync-v10 当前工作流
 
@@ -29,3 +29,8 @@ Owner将在B1+B2+B3全部完成后统一进行整体实机验收。中间版本�
 ## 未授权边界
 
 B4运行时AI、阶段C身份/信用/Push/支付、main集成、正式发布、真实内测/运营未授权。v10.1.17交付后停止，等待顾问验收。
+
+
+## v10.1.17 B3顾问验收（2026-11-16）
+
+GPT顾问结论：`ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS`，AC17-01至AC17-08具名范围接受，NO_R1/NO_R2。九项旅程总动作53→35，减少33.96%；六项减少无必要页面跳转，五项动作减少至少20%。Owner整体实机验收现已到期，手机、TalkBack及系统权限矩阵保持NOT_RUN/PENDING。见[顾问验收](../versions/v10.1.17/ADVISOR_ACCEPTANCE_20261116.md)与[Owner检查表](../versions/v10.1.17/OWNER_DEVICE_CHECKLIST.md)。B4、阶段C、main集成和发布仍未授权。

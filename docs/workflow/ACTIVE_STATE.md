@@ -1,6 +1,6 @@
-# 当前入口 2026-11-16 v10.1.17 B3工程交付，等待顾问验收
+# 当前入口 2026-11-16 v10.1.17 B3顾问具名范围接受，等待Owner整体实机验收
 
-**V10117_ENGINEERING_PASS_IN_NAMED_SCOPE / ADVISOR_PENDING / OWNER_PENDING**。
+**V10117_ADVISOR_ACCEPTED_IN_NAMED_SCOPE / NO_R1 / NO_R2 / OWNER_DEVICE_ACCEPTANCE_PENDING**。
 
 最终源码 `1953582093d3469a48cd7275864309cb09eb0e53`。候选 `10.1.17-dev / 1011703`，包名 `com.elitesync.v1017dev`，APK SHA256 `729be2af7d215f4701c49e494d1767e59d350b1aee5bf83ecb553910f050f8ea`。旧 1011601 独立包及数据保留。
 
@@ -10,7 +10,7 @@
 
 本版新隔离 DB/API/WS 运行，API回环18021、WS18022。旧开发 DB/API/WS/SFU保持exited，模拟器已停止，AVD/数据与私有原证保留。原库HEAD/index/差异及同格式status指纹与本轮开工一致。历史未知和失败沿原记录保留。
 
-顾问验收及Owner整体实机接受PENDING。手机操作NOT_RUN。当前停止等待顾问；B4、阶段C及后继版本后续另行授权。main集成及发布NOT_RUN。
+GPT顾问已接受八项AC的具名范围，R1/R2均不需要。Owner整体实机验收现已到期并保持PENDING：请使用1011703候选及OWNER_DEVICE_CHECKLIST统一检查真实手机、TalkBack、系统权限、账号切换、消息和通知。手机操作本轮NOT_RUN。B4、阶段C及后继版本仍须Owner另行授权；main集成和发布NOT_RUN。详见[顾问验收](../versions/v10.1.17/ADVISOR_ACCEPTANCE_20261116.md)。
 
 ## 历史启动入口（保留）
 
