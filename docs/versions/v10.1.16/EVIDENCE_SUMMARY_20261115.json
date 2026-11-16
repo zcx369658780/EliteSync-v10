@@ -5,11 +5,14 @@
   "engineering_result": "R1_01_CLOSED_PENDING_ADVISOR_SECOND_REVIEW",
   "acceptance": {
     "advisor": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
-    "owner": "PENDING",
+    "owner": "OWNER_ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
     "owner_overall_device_evaluation": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE",
     "advisor_record_scope": "FIRST_REVIEW_DECISION_PRESERVED",
     "current_engineering": "R1_01_CLOSED",
-    "advisor_second_review": "PASS"
+    "advisor_second_review": "PASS",
+    "owner_date": "2026-11-16",
+    "owner_report": "OWNER_ACCEPTANCE_20261116.md",
+    "next": "V10_1_17_B3_AUTHORIZED"
   },
   "tests": {
     "php": {
@@ -840,5 +843,23 @@
     "new_confirmed_p1_p2": [],
     "report": "ADVISOR_R1_REREVIEW_20261116.md",
     "evidence_basis": "fixed source review, committed structured evidence summary, manifest hashes, implementation report; OWNER_LOCAL_ONLY raw logs were not directly opened in this chat"
+  },
+  "owner_decision": {
+    "status": "OWNER_ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+    "accepted_ac": [
+      "AC16-01",
+      "AC16-02",
+      "AC16-03",
+      "AC16-04",
+      "AC16-05",
+      "AC16-06",
+      "AC16-07"
+    ],
+    "r1": "CLOSED",
+    "advisor_second_review": "PASS",
+    "r2": "NOT_REQUIRED",
+    "limitations_preserved": true,
+    "overall_device_acceptance": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE",
+    "next_authorized": "v10.1.17 / V3.0 Phase B3"
   }
 }

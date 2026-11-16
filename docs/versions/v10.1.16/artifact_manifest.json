@@ -10,7 +10,7 @@
   "final_document_identity": "Git commit containing this manifest; same-origin fixed readback receipt retained privately and final reply lists exact commit",
   "engineering_result": "R1_01_CLOSED_PENDING_ADVISOR_SECOND_REVIEW",
   "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
-  "owner_acceptance": "PENDING",
+  "owner_acceptance": "OWNER_ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
   "ac_status": {
     "AC16-01": "PASS",
     "AC16-02": "PASS_IN_NAMED_SCOPE",
@@ -788,5 +788,17 @@
     "new_confirmed_p1_p2": [],
     "owner_acceptance": "PENDING",
     "report": "ADVISOR_R1_REREVIEW_20261116.md"
+  },
+  "owner_acceptance_date": "2026-11-16",
+  "owner_acceptance_report": "OWNER_ACCEPTANCE_20261116.md",
+  "owner_acceptance_scope": "Owner accepts AC16-01 through AC16-07 in the second-round advisor named scope; R1-01 CLOSED, second advisor review PASS, NO_R2. All UNKNOWN/FAIL/NOT_RUN limitations remain. Owner authorizes v10.1.17 / V3.0 B3. Overall Owner device acceptance remains deferred until B1+B2+B3 complete.",
+  "next": "V10_1_17_B3_AUTHORIZED",
+  "phase_b3_authorization": {
+    "version": "v10.1.17",
+    "scope": "Global low-operation-cost UX and product integration",
+    "status": "OWNER_AUTHORIZED",
+    "branch": "codex/v10.1.17-low-operation-cost-journey-integration-20261116",
+    "parent_commit": "99a05c6f6d509c0607d8bff0d63b122d5cc84eec",
+    "decision": "docs/decisions/OWNER_V10_1_16_ACCEPTANCE_AND_V10_1_17_B3_AUTHORIZATION_20261116.md"
   }
 }

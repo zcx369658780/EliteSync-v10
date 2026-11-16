@@ -1,39 +1,25 @@
 # EliteSync-v10 当前工作流
 
-2026-11-16更新。v10.1.15已获Owner具名范围接受，AC15-02仍PARTIAL，R1-01 CLOSED、NO_R2。当前[v10.1.16阶段B2](../versions/v10.1.16/task_order.md)已完成R1-01工程关闭并通过第二轮顾问复核，等待Owner整版决定，路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)和[B2补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md)。
+2026-11-16更新。v10.1.15 B1和v10.1.16 B2均已获Owner具名范围接受。v10.1.16第二轮顾问验收PASS，R1-01 CLOSED、NO_R2；历史UNKNOWN/FAIL/NOT_RUN继续保留。Owner接受记录：[v10.1.16 OWNER_ACCEPTANCE](../versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)。
 
 ## 当前Owner决定
 
-v10.1.15 Owner接受记录：[OWNER_ACCEPTANCE](../versions/v10.1.15/OWNER_ACCEPTANCE_20261115.md)。AC15-02精确图像模型身份UNKNOWN，继续PARTIAL。Owner整体实机验收安排在B1+B2+B3低操作成本主线完成后。
+Owner正式接受v10.1.16，并授权v10.1.17 / V3.0阶段B3「全APP低操作成本重构与功能整合」。授权依据：[Owner决定](../decisions/OWNER_V10_1_16_ACCEPTANCE_AND_V10_1_17_B3_AUTHORIZATION_20261116.md)和[B3补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md)。
 
-Owner授权v10.1.16「统一用户状态与后台自动化中心」。只授权B2；B3全局重构、B4运行时AI和阶段C外部服务未授权。
+## v10.1.17开工同步
 
-## v10.1.16同步与交付状态
+任务分支：`codex/v10.1.17-low-operation-cost-journey-integration-20261116`；唯一父基线：`99a05c6f6d509c0607d8bff0d63b122d5cc84eec`。Codex必须同步V3.0、B3补充决定、v10.1.15/16 Owner接受、本版task_order/plan/DEVELOPMENT_ALIGNMENT/B3合同/prompt及更新后的AGENTS/ACTIVE_STATE/CURRENT_WORKFLOW，逐Blob核验并记录LOCAL_DOCS_SYNCED。编码前完成当前旅程、操作成本基线、目标信息架构和ROADMAP_ALIGNMENT_ACK。
 
-十四份文档逐Blob核验及编码前ACK已完成。产品源码 `00cec7843911bb3341304c004059de0a91e12f16`，候选 `10.1.16-dev / 1011601`，具名验证、旧失败与NOT_RUN范围见[实施报告](../versions/v10.1.16/IMPLEMENTATION_REPORT.md)。首轮顾问结论为条件接受，当前R1-01第二轮顾问复核PASS，七项AC具名范围接受；Owner整版接受PENDING。R1后端源码 `4bfa9245f06548197532ecec2d5da0397ba8d33d`，APP沿原源码及1011601候选。
+## B3产品合同
 
-Codex先核本地根、remote、branch、HEAD、dirty/index和私有资产，再同步V3.0、B2补充决定、v10.1.15接受记录、本版task_order/plan/DEVELOPMENT_ALIGNMENT/B2合同/prompt及入口文档。逐Blob核验并记录LOCAL_DOCS_SYNCED或PENDING_LOCAL_SYNC，创建ROADMAP_ALIGNMENT_ACK后才编码。
+按用户目标重组Home / Progress / Messages / Me。默认保留四个底部主入口，不增加第五入口。Home复用B2 user-state及next_actions；Progress展示关系旅程但保持各业务状态独立；Messages保留现有访问门；Me整合资料、偏好、隐私、账号安全和工具。Buddy独立于恋爱匹配，社区保持有限场景。
 
-## B2产品合同
+低操作成本通过九项代表旅程前后测量。减少重复输入、跨页寻找和无意义确认，但不得移除隐私分享、匹配接受、消息同意、Connection、正式关系和不可逆动作的必要确认。
 
-统一用户状态是只读聚合投影，不重复建立Profile、LifestyleDiscovery、ProfileReadiness、SlowDating、Round等权威真相。自动化scope默认OFF、独立授权、可暂停/撤销/到期。任务具备幂等、有限重试、UNKNOWN核对、审计和可解释状态。
+## Owner整体实机验收
 
-首个试点是每周慢约持续参与协调；复用现有matching_participations和资格合同。不得创建或执行管理员匹配轮次，不自动接受匹配/连接/消息同意/正式关系。
+Owner将在B1+B2+B3全部完成后统一进行整体实机验收。中间版本由Codex使用虚构账号、模拟器和真实APP/API/DB链完成工程验证，不操作Owner手机。B4为独立阶段，不自动成为该验收前置。
 
-## Owner实机验收安排
+## 未授权边界
 
-Owner将在B1+B2+B3全部完成后进行整体实机验收。中间版本由Codex在授权范围内使用模拟器和虚构账号完成工程验证，不操作Owner手机。B4为独立阶段，不自动成为实机验收前置。
-
-## 边界
-
-不做B3全局UI重构、不做B4运行时AI、不接身份/征信/芝麻信用/蚂蚁积分/真实Push/支付或新供应商；不使用真实用户/生产数据；不合main、不发布、不运营。v10.1.16 B2已通过第二轮顾问验收；下一阶段B3仍须Owner单独讨论和授权。
-
-
-## v10.1.16顾问验收（2026-11-15）
-
-B2七项AC完成具名工程交付，但GPT顾问结论为`CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2`。R1-01要求修正：自动化暂停/撤销/到期不得暂停未绑定自动化的独立手动ACTIVE参与；委托绑定变化须推进参与source revision/freshness。见[顾问验收报告](../versions/v10.1.16/ADVISOR_ACCEPTANCE_20261115.md)与[R1-01任务](../versions/v10.1.16/R1_01_AUTOMATION_REVOCATION_SCOPE.md)。2026-11-16 R1已按任务工程关闭，定向27项/267断言、隔离MariaDB十场景/36次HTTP及四项进程可靠性检查通过，等待GPT顾问第二轮独立复核。
-
-
-## v10.1.16第二轮顾问验收（2026-11-16）
-
-结论：`ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS`。R1-01第二轮PASS、CLOSED、NO_R2；AC16-01至AC16-07按具名范围接受。Owner整版接受PENDING。详见[第二轮复核报告](../versions/v10.1.16/ADVISOR_R1_REREVIEW_20261116.md)。保留UNKNOWN、十二项基线旧FAIL、各项NOT_RUN及Owner整体验收延期安排。B3/v10.1.17未授权，不自动启动。
+B4运行时AI、阶段C身份/信用/Push/支付、main集成、正式发布、真实内测/运营未授权。v10.1.17交付后停止，等待顾问验收。

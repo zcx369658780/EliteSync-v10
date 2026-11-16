@@ -1,0 +1,70 @@
+请正式启动 EliteSync-v10 v10.1.17，执行Owner已授权的V3.0阶段B3：全APP低操作成本重构与功能整合。
+
+仓库：zcx369658780/EliteSync-v10
+任务分支：codex/v10.1.17-low-operation-cost-journey-integration-20261116
+唯一父基线：99a05c6f6d509c0607d8bff0d63b122d5cc84eec
+Owner接受v10.1.16并授权B3的决定：
+docs/decisions/OWNER_V10_1_16_ACCEPTANCE_AND_V10_1_17_B3_AUTHORIZATION_20261116.md
+V3.0路线图：
+docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md
+B3补充决定：
+docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md
+
+## 第一阶段：先同步路线与开发思路，禁止直接编码
+
+1. 核本地稳定工程根、origin、branch、HEAD、dirty/index、数据库、AVD、私有配置、测试账号、素材和原始证据。
+2. 只读本地AGENTS.md、ACTIVE_STATE.md当前首块和CURRENT_WORKFLOW.md。
+3. 从固定父基线同步并逐Git Blob核验：
+   - V3.0路线图；
+   - B1/B2授权历史及B3补充决定；
+   - v10.1.15 Owner接受；
+   - v10.1.16 Owner接受、第二轮顾问报告、R1关闭记录、实施报告、manifest；
+   - 本版task_order、plan、DEVELOPMENT_ALIGNMENT、B3_LOW_OPERATION_COST_PRODUCT_CONTRACT、CODEX_START_PROMPT；
+   - 更新后的AGENTS、ACTIVE_STATE、CURRENT_WORKFLOW。
+4. 保护dirty/index、数据库、AVD、凭据和证据；不盲pull/reset/rebase/stash/clean/prune，不force push。
+5. 逐Blob核验并记录LOCAL_DOCS_SYNCED或PENDING_LOCAL_SYNC。
+6. 编码前完成：
+   - CURRENT_JOURNEY_INVENTORY.md
+   - B3_OPERATION_COST_BASELINE.md
+   - TARGET_INFORMATION_ARCHITECTURE_V1.md
+   - ROADMAP_ALIGNMENT_ACK.md
+   其中ROADMAP_ALIGNMENT_ACK明确B3唯一范围、四入口方向、B2状态API复用、必要确认保留、B4/C未授权和Owner实机验收延后。完成前不得改产品源码。
+
+## 第二阶段：执行八项AC
+
+AC17-01 当前旅程与操作成本审计；
+AC17-02 统一信息架构与导航；
+AC17-03 Home一眼理解状态与下一步；
+AC17-04 Progress整合关系旅程；
+AC17-05 Messages降低沟通入口成本；
+AC17-06 Me整合资料/偏好/隐私/工具；
+AC17-07 低操作成本交互与权限一致性；
+AC17-08 联合验证与集中交付。
+
+## 产品边界
+
+- 默认保留首页/进展/消息/我的四个底部入口，不新增第五入口。
+- Home使用B2 /api/v1/user-state及next_actions，不创建竞争状态真相。
+- Progress清楚展示关系旅程，但Match、Connection、Messaging Consent、Conversation、Relationship保持独立。
+- Buddy独立于恋爱匹配；社区保持有限相互了解场景，不做无限Feed。
+- B2状态中心和自动化设置只有一个规范入口。
+- Messages保留ConversationAccessGate、消息同意、block、隐私、私有缓存、媒体授权和账号切换保护。
+- Me集中个人资料、偏好、隐私分享、账号安全和可选工具。
+- 普通导航、查看、草稿保存等低风险操作不增加无意义确认；隐私分享、匹配接受、消息同意、Connection、正式关系、删除/退出等保留明确行动。
+- 不自动接受匹配、不自动分享、不自动发消息、不确立关系。
+- 视觉方向冻结：低分辨率质感、色块、几何构成、低刺激配色、二次元/构成主义；本版不重新开启美术方向会议，不为装饰生成新素材。
+- Android权限按用途触发。
+- 不做B4运行时AI，不接阶段C身份/征信/芝麻信用/蚂蚁积分/Push/支付。
+- 不改匹配算法、候选排序、资格权威服务和关系状态机。
+- 不使用真实用户/生产数据，不操作Owner手机；整体实机验收在B1+B2+B3完成后。
+- 不合main、不正式发布、不开展真实内测/运营。
+
+## 操作成本目标
+
+九项代表旅程完成前后对比。至少6/9减少一个不必要页面跳转、重复输入或确认；至少4/9总操作动作减少20%或以上。必要授权/确认不得为指标移除，未达标项解释原因。
+
+## 最终交付
+
+交付当前旅程地图、目标信息架构、操作成本前后对比、实施报告、manifest、去敏证据、路由兼容说明、已知限制和候选APK。建议候选10.1.17-dev / 1011701，先核版本号、包名和签名隔离。
+
+固定提交并完成同源远端回读后停止，等待GPT顾问独立验收。不得自动启动B4或阶段C。
