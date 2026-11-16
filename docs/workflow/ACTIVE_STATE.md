@@ -1,19 +1,15 @@
-# 当前入口 2026-11-16 v10.1.18已获Owner授权，等待Codex同步与开工
+# 当前入口 2026-11-16 v10.1.18具名工程交付完成
 
-**V10117_ADVISOR_ACCEPTED_IN_NAMED_SCOPE / OWNER_OVERALL_ACCEPTANCE_PENDING / V10118_AUTHORIZED**。
+**V10118_ENGINEERING_PASS_IN_NAMED_SCOPE / ADVISOR_PENDING / OWNER_PENDING / FINAL_REMOTE_READBACK_PENDING**。
 
-## v10.1.17历史状态
+最终候选`10.1.18-dev / 1011804`，包名`com.elitesync.v1018dev`，APP源码`1afa6940c37bc1b40aa3d05ea46fb47002f6455c`。任务分支`codex/v10.1.18-ui-language-match-entry-consistency-20261116`，唯一父基线`507ffcbf5a5f5abd3cac27b965388c9cb7155867`。
 
-v10.1.17 B3原固定工程交付`93cb9e4db01ed5262d100f5982b5e01bf4799015`已获GPT顾问具名范围接受（NO_R1/NO_R2）。Owner于2026-11-16提供有限实机反馈，见[Owner实机反馈](../versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md)。Owner整体产品接受仍为PENDING；有限观察不等于整版接受。第8项仅观察到新账号未显示旧账号消息，冷启动及完整切号矩阵仍未验证。
+八项AC按具名范围工程自验通过。用户文案、匹配入口、共享按钮状态色、唯一自动化控制入口、说明归位、Buddy诊断和同包切号冷启动已交付。完整范围见[实施报告](../versions/v10.1.18/IMPLEMENTATION_REPORT.md)、[manifest](../versions/v10.1.18/artifact_manifest.json)和[证据摘要](../versions/v10.1.18/EVIDENCE_SUMMARY_20261116.json)。
 
-## 当前授权任务
+同一安装完成A→退出→B→强停→冷启动B→断网恢复→退出→A，状态、消息、通知、草稿与真实缓存主体互证。Buddy默认吃饭空结果，切换学习后发现活动并明确申请，Owner原手机问题确切原因仍UNKNOWN。14张代表截图已准备。
 
-**v10.1.18：UI表达与交互一致性收口**。任务分支：`codex/v10.1.18-ui-language-match-entry-consistency-20261116`；唯一父基线：`507ffcbf5a5f5abd3cac27b965388c9cb7155867`。任务见[task_order](../versions/v10.1.18/task_order.md)、[plan](../versions/v10.1.18/plan.md)、[DEVELOPMENT_ALIGNMENT](../versions/v10.1.18/DEVELOPMENT_ALIGNMENT.md)、[UI合同](../versions/v10.1.18/UI_AND_MATCH_CONSISTENCY_CONTRACT.md)和[Codex启动Prompt](../versions/v10.1.18/CODEX_START_PROMPT.txt)。
+原库dirty/index及具名旧资产匹配开工快照，%SystemDrive%/保留。v18 DB/API/WS运行，回环19021/19022。模拟器已停止，AVD及应用数据保留，Owner手机NOT_USED。私有原证保留于`C:\Users\zcxve\EliteSyncDev\v1015-current-dev\v10118-current`。
 
-本版八项AC：历史文档对齐、产品文案收口、一级「进展→匹配」、统一按钮/选项状态色、自动化入口可发现性、说明归位、Buddy独立诊断、同一安装冷启动/账号隔离补测。
+v17原固定工程交付已获顾问具名范围接受，Owner整体接受仍PENDING。本版顾问与Owner接受亦PENDING。B1图像模型精确身份UNKNOWN及历史NOT_RUN保持原范围。main集成、正式发布和运营NOT_RUN。B4和阶段C未授权。
 
-必须先同步全部路线和反馈文档，逐Blob核验，完成OWNER_FEEDBACK_TRACEABILITY和ROADMAP_ALIGNMENT_ACK后才编码。
-
-## 保留边界
-
-v10.1.17顾问接受不等于Owner整版接受；Owner接受仍PENDING。Buddy独立于恋爱匹配，算法不擅自重写。四底栏保留，Match/Connection/Messaging Consent/Conversation/Relationship独立。冷启动仍NOT_RUN，必须补测。Owner手机由Owner自行决定，Codex不得操作。B4、阶段C、main集成、正式发布和运营均未授权。
+完成本版最终同源远端回读后停止，等待GPT顾问独立验收。Owner手动复验见[检查表](../versions/v10.1.18/OWNER_DEVICE_CHECKLIST.md)。

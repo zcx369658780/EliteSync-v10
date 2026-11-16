@@ -1,0 +1,21 @@
+{
+  "original_matches_startup": true,
+  "original_head_branch_origin_status_tracked_cached_index": "ALL_MATCH",
+  "previous_credentials_and_apks": "HASH_MATCH",
+  "old_installed_packages": {
+    "com.elitesync.v1017dev": {
+      "version_code": 1011703,
+      "installed_sha256": "729be2af7d215f4701c49e494d1767e59d350b1aee5bf83ecb553910f050f8ea",
+      "preserved": true
+    },
+    "com.elitesync.v1015dev": {
+      "version_code": 1011601,
+      "installed_sha256": "ac86f8df05d1e39abfead445ba5d6e23bcb457b6c73030c02fa38d2d2cedb055",
+      "preserved": true
+    }
+  },
+  "AVD_data": "RETAINED",
+  "runtime_metadata_updated": true,
+  "unrelated_untracked": "%SystemDrive%/ retained",
+  "owner_phone": "NOT_USED"
+}

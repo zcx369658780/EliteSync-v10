@@ -1,0 +1,665 @@
+{
+  "status": "PASS_IN_NAMED_SCOPE",
+  "checks": [
+    {
+      "actor": "A",
+      "user_id": 1,
+      "method": "GET",
+      "path": "/user-state",
+      "http": 200,
+      "response": {
+        "contract_version": "user_state_v1",
+        "subject_user_id": 1,
+        "generated_at": "2026-11-16T06:55:27.940937Z",
+        "domains": {
+          "account": {
+            "code": "AVAILABLE",
+            "source_revision": null,
+            "source_updated_at": "2026-11-16T06:45:28.000000Z"
+          },
+          "profile": {
+            "code": "CONFIRMED_INPUTS",
+            "has_display_name": true,
+            "source_revision": 1,
+            "source_updated_at": "2026-11-16T06:45:28.000000Z",
+            "showcase": {
+              "draft_state": "none",
+              "review_status": "not_submitted",
+              "publication_status": "not_published",
+              "published_version_current": false,
+              "affects_matching_eligibility": false
+            }
+          },
+          "lifestyle": {
+            "code": "completed",
+            "source_revision": 5,
+            "source_updated_at": "2026-11-16 06:45:28",
+            "questionnaire_version": "lifestyle_v1",
+            "answered_count": 5,
+            "scene_count": 5,
+            "completed_at": "2026-11-16 06:45:28"
+          },
+          "readiness": {
+            "eligible": true,
+            "reason_code": "eligible",
+            "required_answer_count": 20,
+            "answered_answer_count": 20,
+            "missing_answer_count": 0,
+            "next_action_code": "wait_for_matching",
+            "code": "eligible",
+            "source_revision": 1,
+            "source_updated_at": "2026-11-16 06:45:06",
+            "questionnaire_revision": 0,
+            "account_source_updated_at": "2026-11-16T06:45:28.000000Z",
+            "operational_review": {
+              "code": "approved",
+              "source_revision": 0
+            }
+          },
+          "participation": {
+            "code": "ACTIVE",
+            "source_revision": 1,
+            "generation": 1,
+            "source_updated_at": "2026-11-16 06:45:28",
+            "delegated": false
+          },
+          "round": {
+            "code": "no_candidate",
+            "round_id": 1,
+            "source_revision": 1,
+            "round_revision": 1,
+            "source_updated_at": "2026-11-16T06:50:47.000000Z",
+            "scheduled_for": "2026-11-16T05:50:47.000000Z",
+            "reveal_at": "2026-11-19T06:50:47.000000Z"
+          },
+          "proposal": {
+            "code": "MUTUALLY_ACCEPTED",
+            "recorded_code": "MUTUALLY_ACCEPTED",
+            "proposal_id": "8a0a55ad-b2b7-4b96-b2ce-bcbd6d2a62e7",
+            "source_revision": 3,
+            "source_updated_at": "2026-11-16 06:50:47",
+            "expires_at": "2026-11-23 06:50:47",
+            "requires_reconciliation": false
+          },
+          "privacy": {
+            "code": "DEFAULTS",
+            "source_revision": 0,
+            "source_updated_at": null,
+            "requests_revision": 0,
+            "requests_enabled": false,
+            "shared_field_count": 0
+          },
+          "notifications": {
+            "code": "DEFAULTS",
+            "source_revision": null,
+            "source_updated_at": null,
+            "categories": {
+              "message": true,
+              "rtc": true,
+              "match": true,
+              "buddy": true,
+              "status": true,
+              "platform_event": true,
+              "safety_case": true,
+              "system": true
+            },
+            "silent": false
+          },
+          "automation": {
+            "code": "OFF",
+            "scope_key": "weekly_slow_dating_participation",
+            "policy_version": "weekly_participation_v1",
+            "consent_version": "weekly_consent_v1",
+            "source_revision": 0,
+            "source_updated_at": null,
+            "granted_at": null,
+            "paused_at": null,
+            "revoked_at": null,
+            "expires_at": null,
+            "last_checked_at": null,
+            "duration_code": "UNTIL_PAUSE_REVOKE_OR_POLICY_CHANGE",
+            "recent_task": null,
+            "next_planned_at": null
+          }
+        },
+        "next_actions": [
+          {
+            "code": "view_journey"
+          }
+        ]
+      }
+    },
+    {
+      "actor": "A",
+      "user_id": 1,
+      "method": "GET",
+      "path": "/conversations",
+      "http": 200,
+      "response": {
+        "ok": true,
+        "domain": "conversation",
+        "items": [
+          {
+            "entry_kind": "stored_conversation",
+            "conversation_id": 1,
+            "match_id": 1,
+            "id": "3",
+            "peer_user_id": 3,
+            "room_key": "1_3",
+            "name": "UI18 Fictional C",
+            "last_message": "V18 A private reply",
+            "last_time": "1 minute ago",
+            "unread": 1,
+            "state": "active",
+            "members": [
+              {
+                "user_id": 1,
+                "role": "member"
+              },
+              {
+                "user_id": 3,
+                "role": "member"
+              }
+            ],
+            "conversation_capability": {
+              "can_list": true,
+              "can_read": true,
+              "can_create": true,
+              "can_send": true,
+              "can_ws": true,
+              "reason_code": null
+            }
+          }
+        ],
+        "total": 1,
+        "note": null
+      }
+    },
+    {
+      "actor": "A",
+      "user_id": 1,
+      "method": "GET",
+      "path": "/notifications",
+      "http": 200,
+      "response": {
+        "ok": true,
+        "items": [
+          {
+            "id": 7,
+            "kind": "message",
+            "title": "有一条新消息",
+            "body": "请打开会话查看，读取前会验证当前权限。",
+            "payload": {
+              "source": "message",
+              "route_name": "chat_room",
+              "route_args": {
+                "conversation_id": "1"
+              }
+            },
+            "route_name": "chat_room",
+            "route_args": {
+              "conversation_id": "1"
+            },
+            "read_at": null,
+            "expires_at": null,
+            "created_at": "2026-11-16T06:54:13.000000Z",
+            "updated_at": "2026-11-16T06:54:13.000000Z",
+            "is_read": false
+          },
+          {
+            "id": 6,
+            "kind": "consent_message",
+            "title": "连接或消息同意有更新",
+            "body": "请查看当前状态",
+            "payload": {
+              "route_name": "connection_current",
+              "route_args": {
+                "peer_id": 3
+              }
+            },
+            "route_name": "connection_current",
+            "route_args": {
+              "peer_id": 3
+            },
+            "read_at": null,
+            "expires_at": null,
+            "created_at": "2026-11-16T06:54:12.000000Z",
+            "updated_at": "2026-11-16T06:54:12.000000Z",
+            "is_read": false
+          },
+          {
+            "id": 4,
+            "kind": "consent_connection",
+            "title": "连接或消息同意有更新",
+            "body": "请查看当前状态",
+            "payload": {
+              "route_name": "connection_current",
+              "route_args": {
+                "peer_id": 3
+              }
+            },
+            "route_name": "connection_current",
+            "route_args": {
+              "peer_id": 3
+            },
+            "read_at": null,
+            "expires_at": null,
+            "created_at": "2026-11-16T06:54:12.000000Z",
+            "updated_at": "2026-11-16T06:54:12.000000Z",
+            "is_read": false
+          },
+          {
+            "id": 2,
+            "kind": "match_decision",
+            "title": "匹配进程有更新",
+            "body": "请查看本人当前进程",
+            "payload": {
+              "route_name": "match_result",
+              "route_args": []
+            },
+            "route_name": "match_result",
+            "route_args": [],
+            "read_at": null,
+            "expires_at": null,
+            "created_at": "2026-11-16T06:50:47.000000Z",
+            "updated_at": "2026-11-16T06:50:47.000000Z",
+            "is_read": false
+          }
+        ],
+        "total": 4,
+        "unread_total": 4,
+        "has_more": false,
+        "next_before_id": 2
+      }
+    },
+    {
+      "actor": "B",
+      "user_id": 2,
+      "method": "GET",
+      "path": "/user-state",
+      "http": 200,
+      "response": {
+        "contract_version": "user_state_v1",
+        "subject_user_id": 2,
+        "generated_at": "2026-11-16T06:55:28.254502Z",
+        "domains": {
+          "account": {
+            "code": "AVAILABLE",
+            "source_revision": null,
+            "source_updated_at": "2026-11-16T06:45:28.000000Z"
+          },
+          "profile": {
+            "code": "CONFIRMED_INPUTS",
+            "has_display_name": true,
+            "source_revision": 1,
+            "source_updated_at": "2026-11-16T06:45:28.000000Z",
+            "showcase": {
+              "draft_state": "none",
+              "review_status": "not_submitted",
+              "publication_status": "not_published",
+              "published_version_current": false,
+              "affects_matching_eligibility": false
+            }
+          },
+          "lifestyle": {
+            "code": "not_started",
+            "source_revision": 0,
+            "source_updated_at": null,
+            "questionnaire_version": "lifestyle_v1",
+            "answered_count": 0,
+            "scene_count": 5,
+            "completed_at": null
+          },
+          "readiness": {
+            "eligible": true,
+            "reason_code": "eligible",
+            "required_answer_count": 20,
+            "answered_answer_count": 20,
+            "missing_answer_count": 0,
+            "next_action_code": "wait_for_matching",
+            "code": "eligible",
+            "source_revision": 1,
+            "source_updated_at": "2026-11-16 06:45:06",
+            "questionnaire_revision": 0,
+            "account_source_updated_at": "2026-11-16T06:45:28.000000Z",
+            "operational_review": {
+              "code": "approved",
+              "source_revision": 0
+            }
+          },
+          "participation": {
+            "code": "NOT_ENROLLED",
+            "source_revision": 0,
+            "generation": 0,
+            "source_updated_at": null,
+            "delegated": false
+          },
+          "round": {
+            "code": "no_candidate",
+            "round_id": 1,
+            "source_revision": 1,
+            "round_revision": 1,
+            "source_updated_at": "2026-11-16T06:50:47.000000Z",
+            "scheduled_for": "2026-11-16T05:50:47.000000Z",
+            "reveal_at": "2026-11-19T06:50:47.000000Z"
+          },
+          "proposal": {
+            "code": "NONE",
+            "source_revision": 0,
+            "source_updated_at": null
+          },
+          "privacy": {
+            "code": "DEFAULTS",
+            "source_revision": 0,
+            "source_updated_at": null,
+            "requests_revision": 0,
+            "requests_enabled": false,
+            "shared_field_count": 0
+          },
+          "notifications": {
+            "code": "DEFAULTS",
+            "source_revision": null,
+            "source_updated_at": null,
+            "categories": {
+              "message": true,
+              "rtc": true,
+              "match": true,
+              "buddy": true,
+              "status": true,
+              "platform_event": true,
+              "safety_case": true,
+              "system": true
+            },
+            "silent": false
+          },
+          "automation": {
+            "code": "OFF",
+            "scope_key": "weekly_slow_dating_participation",
+            "policy_version": "weekly_participation_v1",
+            "consent_version": "weekly_consent_v1",
+            "source_revision": 0,
+            "source_updated_at": null,
+            "granted_at": null,
+            "paused_at": null,
+            "revoked_at": null,
+            "expires_at": null,
+            "last_checked_at": null,
+            "duration_code": "UNTIL_PAUSE_REVOKE_OR_POLICY_CHANGE",
+            "recent_task": null,
+            "next_planned_at": null
+          }
+        },
+        "next_actions": [
+          {
+            "code": "complete_lifestyle"
+          },
+          {
+            "code": "view_journey"
+          }
+        ]
+      }
+    },
+    {
+      "actor": "B",
+      "user_id": 2,
+      "method": "GET",
+      "path": "/conversations",
+      "http": 404,
+      "response": {
+        "message": "conversation unavailable"
+      }
+    },
+    {
+      "actor": "B",
+      "user_id": 2,
+      "method": "GET",
+      "path": "/notifications",
+      "http": 200,
+      "response": {
+        "ok": true,
+        "items": [
+          {
+            "id": 10,
+            "kind": "buddy",
+            "title": "搭子状态有更新",
+            "body": "请在应用中查看当前有权状态",
+            "payload": {
+              "buddy_activity_id": "154a72ee-6dd1-4fe5-8006-393617a8fb67"
+            },
+            "route_name": "",
+            "route_args": [],
+            "read_at": null,
+            "expires_at": null,
+            "created_at": "2026-11-16T06:54:14.000000Z",
+            "updated_at": "2026-11-16T06:54:14.000000Z",
+            "is_read": false
+          }
+        ],
+        "total": 1,
+        "unread_total": 1,
+        "has_more": false,
+        "next_before_id": 10
+      }
+    },
+    {
+      "actor": "B",
+      "user_id": 2,
+      "method": "GET",
+      "path": "/messages?peer_id=3",
+      "http": 404,
+      "response": {
+        "message": "conversation unavailable"
+      }
+    },
+    {
+      "actor": "B",
+      "user_id": 2,
+      "method": "GET",
+      "path": "/user-state?user_id=1",
+      "http": 422,
+      "response": {
+        "ok": false,
+        "error": {
+          "code": "http_error",
+          "message": "unknown state query",
+          "details": null
+        }
+      }
+    },
+    {
+      "actor": "D",
+      "user_id": 4,
+      "method": "PUT",
+      "path": "/buddy/preferences",
+      "http": 200,
+      "response": {
+        "enabled": true,
+        "revision": 1
+      }
+    },
+    {
+      "actor": "E",
+      "user_id": 5,
+      "method": "PUT",
+      "path": "/buddy/preferences",
+      "http": 200,
+      "response": {
+        "enabled": true,
+        "revision": 1
+      }
+    },
+    {
+      "actor": "E",
+      "user_id": 5,
+      "method": "POST",
+      "path": "/buddy/activities",
+      "http": 201,
+      "response": {
+        "id": "3d1dfc02-0d5c-47ec-90ee-6073604a1b48",
+        "state": "DRAFT",
+        "revision": 1,
+        "allowed_actions": [
+          "open",
+          "cancel"
+        ],
+        "owner_id": 5,
+        "guest_id": null,
+        "type": "STUDY",
+        "subject": "V18 QA reading group",
+        "general_city": "QA City",
+        "place_kind": "ONLINE",
+        "budget_band": "LOW",
+        "start_at": "2026-11-17 06:55:29",
+        "end_at": "2026-11-17 07:55:29",
+        "discovery": null,
+        "discovery_actions": [],
+        "participation_source": null
+      }
+    },
+    {
+      "actor": "E",
+      "user_id": 5,
+      "method": "POST",
+      "path": "/buddy/3d1dfc02-0d5c-47ec-90ee-6073604a1b48/actions",
+      "http": 200,
+      "response": {
+        "id": "3d1dfc02-0d5c-47ec-90ee-6073604a1b48",
+        "state": "OPEN",
+        "revision": 2,
+        "allowed_actions": [
+          "invite",
+          "token",
+          "revoke_token",
+          "cancel"
+        ],
+        "owner_id": 5,
+        "guest_id": null,
+        "type": "STUDY",
+        "subject": "V18 QA reading group",
+        "general_city": "QA City",
+        "place_kind": "ONLINE",
+        "budget_band": "LOW",
+        "start_at": "2026-11-17 06:55:29",
+        "end_at": "2026-11-17 07:55:29",
+        "discovery": null,
+        "discovery_actions": [
+          "publish"
+        ],
+        "participation_source": null
+      }
+    },
+    {
+      "actor": "D",
+      "user_id": 4,
+      "method": "GET",
+      "path": "/buddy/discovery?city=%E7%BA%BF%E4%B8%8A&type=STUDY",
+      "http": 200,
+      "response": {
+        "items": [],
+        "next_cursor": null,
+        "has_more": false
+      }
+    },
+    {
+      "actor": "E",
+      "user_id": 5,
+      "method": "POST",
+      "path": "/buddy/3d1dfc02-0d5c-47ec-90ee-6073604a1b48/discovery",
+      "http": 200,
+      "response": {
+        "id": "3d1dfc02-0d5c-47ec-90ee-6073604a1b48",
+        "state": "OPEN",
+        "revision": 3,
+        "allowed_actions": [
+          "invite",
+          "token",
+          "revoke_token",
+          "cancel"
+        ],
+        "owner_id": 5,
+        "guest_id": null,
+        "type": "STUDY",
+        "subject": "V18 QA reading group",
+        "general_city": "QA City",
+        "place_kind": "ONLINE",
+        "budget_band": "LOW",
+        "start_at": "2026-11-17 06:55:29",
+        "end_at": "2026-11-17 07:55:29",
+        "discovery": {
+          "publication_id": 2,
+          "generation": 1,
+          "state": "PUBLISHED",
+          "expires_at": "2026-11-17 06:55:29",
+          "author_label": "V18 QA Reader E"
+        },
+        "discovery_actions": [
+          "withdraw"
+        ],
+        "participation_source": null
+      }
+    },
+    {
+      "actor": "D",
+      "user_id": 4,
+      "method": "GET",
+      "path": "/buddy/discovery?city=%E7%BA%BF%E4%B8%8A&type=MEAL",
+      "http": 200,
+      "response": {
+        "items": [],
+        "next_cursor": null,
+        "has_more": false
+      }
+    },
+    {
+      "actor": "D",
+      "user_id": 4,
+      "method": "GET",
+      "path": "/buddy/discovery?city=%E7%BA%BF%E4%B8%8A&type=STUDY",
+      "http": 200,
+      "response": {
+        "items": [
+          {
+            "publication_id": 2,
+            "activity_id": "3d1dfc02-0d5c-47ec-90ee-6073604a1b48",
+            "generation": 1,
+            "revision": 3,
+            "type": "STUDY",
+            "subject": "V18 QA reading group",
+            "general_city": "线上",
+            "place_kind": "ONLINE",
+            "budget_band": "LOW",
+            "start_at": "2026-11-17 06:55:29",
+            "end_at": "2026-11-17 07:55:29",
+            "expires_at": "2026-11-17 06:55:29",
+            "author_label": "V18 QA Reader E",
+            "avatar": null,
+            "available": true
+          }
+        ],
+        "next_cursor": null,
+        "has_more": false
+      }
+    }
+  ],
+  "before": {
+    "runs": 1,
+    "authorizations": [],
+    "effects": 0,
+    "users": 5,
+    "connections": 1,
+    "consents": 2
+  },
+  "after": {
+    "runs": 1,
+    "authorizations": [],
+    "effects": 0,
+    "users": 5,
+    "connections": 1,
+    "consents": 2
+  },
+  "counts_equal": true,
+  "fixture": "One controlled result, explicit fictional consent; no admin round execution",
+  "buddy": "Open-unpublished empty; published MEAL empty; published STUDY one",
+  "original_owner_buddy_cause": "UNKNOWN",
+  "first_count_assumption": "Expected one consent row; actual independent directional consent rows count is two. No product change."
+}

@@ -1,0 +1,1379 @@
+{
+  "status": "PASS_IN_NAMED_SCOPE",
+  "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+  "candidate": 1011804,
+  "package": "com.elitesync.v1018dev",
+  "serial": "emulator-5580",
+  "avd": "v1015_current_a",
+  "android_user": 11,
+  "same_install": true,
+  "installed_apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+  "sequence": [
+    "A",
+    "logout",
+    "B",
+    "force-stop",
+    "cold-start B",
+    "network interrupt",
+    "network recover",
+    "Buddy explicit request",
+    "logout",
+    "A"
+  ],
+  "cold_start": {
+    "package": "com.elitesync.v1018dev",
+    "candidate": 1011804,
+    "before_pid": "3314",
+    "after_pid": "8437",
+    "stopped_pid_absent": true,
+    "installation": "same final APK and package",
+    "note": "Initial stopped-PID absence assertion succeeded; startup UI read warmed up after bounded dump failures. Process identity and B restore then verified."
+  },
+  "cache_scopes": {
+    "a-draft-final": {
+      "pid": "3314",
+      "caches": [
+        {
+          "account_id": "1",
+          "namespace": "v1015_private:a1:d<same-qa-device>",
+          "unlocked": true,
+          "offline": false,
+          "generation": "2"
+        }
+      ],
+      "plaintext_draft_found_in_preferences": false
+    },
+    "a-logout-final": {
+      "pid": "3314",
+      "caches": [
+        {
+          "account_id": "1",
+          "namespace": "v1015_private:a1:d<same-qa-device>",
+          "unlocked": false,
+          "offline": false,
+          "generation": "5"
+        }
+      ],
+      "plaintext_draft_found_in_preferences": false
+    },
+    "b-login-final": {
+      "pid": "3314",
+      "caches": [
+        {
+          "account_id": "2",
+          "namespace": "v1015_private:a2:d<same-qa-device>",
+          "unlocked": true,
+          "offline": false,
+          "generation": "8"
+        }
+      ],
+      "plaintext_draft_found_in_preferences": false
+    },
+    "b-cold-final": {
+      "pid": "8437",
+      "caches": [
+        {
+          "account_id": "2",
+          "namespace": "v1015_private:a2:d<same-qa-device>",
+          "unlocked": true,
+          "offline": false,
+          "generation": "2"
+        }
+      ],
+      "plaintext_draft_found_in_preferences": false
+    },
+    "b-offline-final": {
+      "pid": "8437",
+      "caches": [
+        {
+          "account_id": "2",
+          "namespace": "v1015_private:a2:d<same-qa-device>",
+          "unlocked": true,
+          "offline": true,
+          "generation": "2"
+        }
+      ],
+      "plaintext_draft_found_in_preferences": false
+    },
+    "a-return-final": {
+      "pid": "8437",
+      "caches": [
+        {
+          "account_id": "1",
+          "namespace": "v1015_private:a1:d<same-qa-device>",
+          "unlocked": true,
+          "offline": false,
+          "generation": "42"
+        }
+      ],
+      "plaintext_draft_found_in_preferences": false
+    }
+  },
+  "namespace_normalization": "Actual VM namespace account and device binding read; random device suffix redacted consistently.",
+  "token_change": {
+    "a_distinct_native_tokens": 3,
+    "b_distinct_native_tokens": 2,
+    "disjoint": true
+  },
+  "database_counts": {
+    "users": 5,
+    "matching_runs": 1,
+    "automation_authorizations": 0,
+    "effects": 0,
+    "connections": 1,
+    "consents": 2
+  },
+  "drafts": {
+    "a_chat_explicitly_saved_encrypted": true,
+    "a_chat_cleared_on_logout": true,
+    "b_participation_draft_persisted_through_cold_start": true,
+    "old_account_content_visible_after_switch": false
+  },
+  "font_scale": {
+    "before": "1.0",
+    "after": "1.0",
+    "large_font": "2.0",
+    "android_user": 11
+  },
+  "old_packages": {
+    "com.elitesync.v1017dev": {
+      "version_code": 1011703,
+      "installed_sha256": "729be2af7d215f4701c49e494d1767e59d350b1aee5bf83ecb553910f050f8ea",
+      "preserved": true
+    },
+    "com.elitesync.v1015dev": {
+      "version_code": 1011601,
+      "installed_sha256": "ac86f8df05d1e39abfead445ba5d6e23bcb457b6c73030c02fa38d2d2cedb055",
+      "preserved": true
+    }
+  },
+  "steps": [
+    {
+      "step": "a-home-final",
+      "utc": "2026-11-16T07:40:41.957798+00:00",
+      "texts": [
+        "首页",
+        "持续参与与自动化",
+        "刷新状态",
+        "当前状态",
+        "欢迎回来",
+        "准备已完成",
+        "生活方式 已保存，可随时修改",
+        "慢约参与 已参与",
+        "持续参与 尚未授权",
+        "轮次 本轮已揭晓",
+        "提案 双方已接受",
+        "查看匹配",
+        "相约与交流",
+        "吃饭 / 学习搭子",
+        "好友可见社区",
+        "平台活动 · 合成演练\n虚构开发演练，不招募、预订或付款",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {
+        "user_id": 1,
+        "http_subject": 1,
+        "lifestyle": "completed"
+      }
+    },
+    {
+      "step": "a-match-final",
+      "utc": "2026-11-16T07:40:50.634211+00:00",
+      "texts": [
+        "匹配",
+        "持续参与与自动化",
+        "刷新状态",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "a-messages-final",
+      "utc": "2026-11-16T07:41:05.602435+00:00",
+      "texts": [
+        "消息",
+        "站内通知",
+        "刷新会话",
+        "会话已加密保存在本机",
+        "查看我隐藏的会话\n可随时找回，消息会保留",
+        "UI18 Fictional C\nV18 A private reply\n未读 0",
+        "会话选项",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "a-draft-saved-final",
+      "utc": "2026-11-16T07:41:32.254703+00:00",
+      "texts": [
+        "Back",
+        "对话",
+        "搜索当前会话",
+        "语音留言",
+        "刷新对话",
+        "语音通话",
+        "视频通话",
+        "V18 A private hello from C\n对方",
+        "引用回复",
+        "V18 A private reply\n我 · 已发送，未读",
+        "引用回复",
+        "草稿已加密保存在本机，尚未发送。",
+        "保存草稿",
+        "清除草稿",
+        "发送图片",
+        "发送短视频",
+        "V18_A_DRAFT_ONLY",
+        "发送"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "a-notifications-final",
+      "utc": "2026-11-16T07:44:08.964376+00:00",
+      "texts": [
+        "通知中心",
+        "通知设置",
+        "站内提醒\n匹配、消息与资料提醒\n未读 4 条\n全部已读",
+        "消息有新提醒\n点开查看详情\n消息\n49 分钟前",
+        "查看当前状态",
+        "稍后处理",
+        "标记已读",
+        "系统有新提醒\n点开查看详情\n系统\n49 分钟前",
+        "查看当前状态",
+        "稍后处理",
+        "标记已读",
+        "系统有新提醒\n点开查看详情\n系统\n49 分钟前"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "a-notification-to-chat-final",
+      "utc": "2026-11-16T07:44:22.633582+00:00",
+      "texts": [
+        "Back",
+        "对话",
+        "搜索当前会话",
+        "语音留言",
+        "刷新对话",
+        "语音通话",
+        "视频通话",
+        "V18 A private hello from C\n对方",
+        "引用回复",
+        "V18 A private reply\n我 · 已发送，未读",
+        "引用回复",
+        "已恢复本人草稿，发送前请确认。",
+        "保存草稿",
+        "清除草稿",
+        "发送图片",
+        "发送短视频",
+        "V18_A_DRAFT_ONLY",
+        "发送"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "a-logged-out-final",
+      "utc": "2026-11-16T07:45:05.983224+00:00",
+      "texts": [
+        "本机已退出；当前会话的服务端撤销已确认。",
+        "慢约会",
+        "在同一片星空下，认真认识一个人",
+        "账号登录",
+        "登录后继续匹配与聊天",
+        "手机号",
+        "密码",
+        "显示密码",
+        "密码规则：至少 8 位，建议字母+数字",
+        "我已阅读并同意用户协议与隐私政策",
+        "用户协议",
+        "隐私政策",
+        "进入慢约会",
+        "还没有账号，去注册",
+        "忘记密码与账号帮助",
+        "查询本机注销处理回执"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "b-home-final",
+      "utc": "2026-11-16T07:45:44.969945+00:00",
+      "texts": [
+        "首页",
+        "持续参与与自动化",
+        "刷新状态",
+        "当前状态",
+        "欢迎回来",
+        "准备已完成",
+        "生活方式 尚未开始",
+        "慢约参与 尚未报名",
+        "持续参与 尚未授权",
+        "轮次 本轮暂无匹配",
+        "提案 当前没有提案",
+        "继续生活方式探索",
+        "相约与交流",
+        "吃饭 / 学习搭子",
+        "好友可见社区",
+        "平台活动 · 合成演练\n虚构开发演练，不招募、预订或付款",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {
+        "user_id": 2,
+        "http_subject": 2,
+        "lifestyle": "not_started"
+      }
+    },
+    {
+      "step": "b-messages-final",
+      "utc": "2026-11-16T07:46:24.259758+00:00",
+      "texts": [
+        "消息",
+        "站内通知",
+        "刷新会话",
+        "查看我隐藏的会话\n可随时找回，消息会保留",
+        "当前没有可读取的会话。请先完成双方连接和消息同意，或刷新核验。",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "b-notifications-final",
+      "utc": "2026-11-16T07:46:34.022608+00:00",
+      "texts": [
+        "通知中心",
+        "通知设置",
+        "站内提醒\n匹配、消息与资料提醒\n未读 1 条\n全部已读",
+        "有一条新提醒\n为保护隐私，内容将在所属页面重新检查访问权限后显示。\n隐私保护提醒\n52 分钟前",
+        "打开所属页面",
+        "稍后处理",
+        "标记已读"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "b-match-final",
+      "utc": "2026-11-16T07:46:41.473987+00:00",
+      "texts": [
+        "匹配",
+        "持续参与与自动化",
+        "刷新状态",
+        "持续参与与自动化\n尚未授权",
+        "当前轮次 · 本轮暂无匹配",
+        "匹配结果\n当前没有提案",
+        "报名与候选详情",
+        "连接 · 状态暂未确认",
+        "消息许可 · 状态暂未确认",
+        "连接与消息许可",
+        "聊天 · 状态暂未确认",
+        "正式关系 · 尚无正式关系记录",
+        "正式恋爱关系",
+        "匹配记录",
+        "我的准备与参与",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "b-participation-draft-final",
+      "utc": "2026-11-16T07:47:02.044163+00:00",
+      "texts": [
+        "Back",
+        "每周慢约",
+        "刷新",
+        "持续参与与自动化",
+        "匹配资料与偏好",
+        "填写或修改必要问卷",
+        "匹配记录",
+        "参加每周慢约会前，请完成生活方式探索。社区和搭子可继续使用。",
+        "继续生活方式探索",
+        "参与状态：尚未报名",
+        "报名准备：符合当前参与资格",
+        "运营审核（非实人）：已通过",
+        "候选展示资料：尚未发布",
+        "准备提示：准备已完成",
+        "尚缺必要问卷答案：0",
+        "V18_B_DRAFT_ONLY",
+        "984 characters remaining",
+        "保存草稿",
+        "主动报名",
+        "暂停报名",
+        "退出报名",
+        "当前轮次：本轮暂无匹配",
+        "轮次说明：本轮暂无匹配",
+        "本轮时间 2026-11-16T05:50:47.000000Z",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "b-cold-home-final",
+      "utc": "2026-11-16T07:49:00.171291+00:00",
+      "texts": [
+        "首页",
+        "持续参与与自动化",
+        "刷新状态",
+        "当前状态",
+        "欢迎回来",
+        "准备已完成",
+        "生活方式 尚未开始",
+        "慢约参与 尚未报名",
+        "持续参与 尚未授权",
+        "轮次 本轮暂无匹配",
+        "提案 当前没有提案",
+        "继续生活方式探索",
+        "相约与交流",
+        "吃饭 / 学习搭子",
+        "好友可见社区",
+        "平台活动 · 合成演练\n虚构开发演练，不招募、预订或付款",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {
+        "user_id": 2,
+        "http_subject": 2,
+        "lifestyle": "not_started"
+      }
+    },
+    {
+      "step": "b-cold-draft-final",
+      "utc": "2026-11-16T07:49:22.272021+00:00",
+      "texts": [
+        "Back",
+        "每周慢约",
+        "刷新",
+        "持续参与与自动化",
+        "匹配资料与偏好",
+        "填写或修改必要问卷",
+        "匹配记录",
+        "参加每周慢约会前，请完成生活方式探索。社区和搭子可继续使用。",
+        "继续生活方式探索",
+        "参与状态：尚未报名",
+        "报名准备：符合当前参与资格",
+        "运营审核（非实人）：已通过",
+        "候选展示资料：尚未发布",
+        "准备提示：准备已完成",
+        "尚缺必要问卷答案：0",
+        "V18_B_DRAFT_ONLY",
+        "984 characters remaining",
+        "保存草稿",
+        "主动报名",
+        "暂停报名",
+        "退出报名",
+        "当前轮次：本轮暂无匹配",
+        "轮次说明：本轮暂无匹配",
+        "本轮时间 2026-11-16T05:50:47.000000Z",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "b-network-off-home-final",
+      "utc": "2026-11-16T07:49:41.383319+00:00",
+      "texts": [
+        "首页",
+        "持续参与与自动化",
+        "刷新状态",
+        "暂时无法加载，请刷新重试",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "b-network-off-messages-final",
+      "utc": "2026-11-16T07:50:05.976837+00:00",
+      "texts": [
+        "消息",
+        "站内通知",
+        "刷新会话",
+        "查看我隐藏的会话\n可随时找回，消息会保留",
+        "当前离线，没有本次可信登录并经服务端核验后保存的加密会话。",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "b-network-recovered-final",
+      "utc": "2026-11-16T07:50:23.800635+00:00",
+      "texts": [
+        "首页",
+        "持续参与与自动化",
+        "刷新状态",
+        "当前状态",
+        "欢迎回来",
+        "准备已完成",
+        "生活方式 尚未开始",
+        "慢约参与 尚未报名",
+        "持续参与 尚未授权",
+        "轮次 本轮暂无匹配",
+        "提案 当前没有提案",
+        "继续生活方式探索",
+        "相约与交流",
+        "吃饭 / 学习搭子",
+        "好友可见社区",
+        "平台活动 · 合成演练\n虚构开发演练，不招募、预订或付款",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {
+        "user_id": 2,
+        "http_subject": 2,
+        "lifestyle": "not_started"
+      }
+    },
+    {
+      "step": "b-buddy-default-empty-final",
+      "utc": "2026-11-16T07:51:52.164455+00:00",
+      "texts": [
+        "Back",
+        "搭子发现",
+        "刷新",
+        "选择城市和活动类型，查找正在招募的搭子。请先在“我的搭子”开启搭子请求。",
+        "线上",
+        "38 characters remaining",
+        "吃饭",
+        "查找搭子",
+        "暂未找到搭子，试试其他城市或活动类型"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "b-buddy-study-found-final",
+      "utc": "2026-11-16T07:52:07.684750+00:00",
+      "texts": [
+        "Back",
+        "搭子发现",
+        "刷新",
+        "选择城市和活动类型，查找正在招募的搭子。请先在“我的搭子”开启搭子请求。",
+        "线上",
+        "38 characters remaining",
+        "学习",
+        "查找搭子",
+        "学习 · V18 QA reading group\n发布称呼：V18 QA Reader E\n线上 · 线上\n预算档位：低\n2026-11-17 06:55 GMT 至 2026-11-17 07:55 GMT\n发现截止：2026-11-17 06:55 GMT",
+        "申请本次搭子"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "b-buddy-requested-final",
+      "utc": "2026-11-16T07:52:26.058577+00:00",
+      "texts": [
+        "Back",
+        "我的搭子",
+        "刷新",
+        "搭子发现",
+        "吃饭或学习，两人自愿确认。无需参加婚恋匹配；不会自动建立好友、私信、通话或正式关系。",
+        "接收搭子请求\n关闭后不再接受新申请；服务器按当前许可处理旧邀请。",
+        "学习搭子\n状态：已有申请，等待创建人确认\nV18 QA reading group\n粗城市：QA City\n线上\n开始：2026-11-17 06:55 GMT\n结束：2026-11-17 07:55 GMT\n预算档位：低",
+        "撤回并退出",
+        "搭子活动\n状态：已拒绝",
+        "Collapsed",
+        "创建搭子草稿, Collapsed",
+        "Collapsed",
+        "手动兑换一次性邀请, Collapsed"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "b-logged-out-final",
+      "utc": "2026-11-16T07:53:06.041862+00:00",
+      "texts": [
+        "本机已退出；当前会话的服务端撤销已确认。",
+        "慢约会",
+        "在同一片星空下，认真认识一个人",
+        "账号登录",
+        "登录后继续匹配与聊天",
+        "手机号",
+        "密码",
+        "显示密码",
+        "密码规则：至少 8 位，建议字母+数字",
+        "我已阅读并同意用户协议与隐私政策",
+        "用户协议",
+        "隐私政策",
+        "进入慢约会",
+        "还没有账号，去注册",
+        "忘记密码与账号帮助",
+        "查询本机注销处理回执"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "a-return-home-final",
+      "utc": "2026-11-16T07:53:38.367769+00:00",
+      "texts": [
+        "首页",
+        "持续参与与自动化",
+        "刷新状态",
+        "当前状态",
+        "欢迎回来",
+        "准备已完成",
+        "生活方式 已保存，可随时修改",
+        "慢约参与 已参与",
+        "持续参与 尚未授权",
+        "轮次 本轮已揭晓",
+        "提案 双方已接受",
+        "查看匹配",
+        "相约与交流",
+        "吃饭 / 学习搭子",
+        "好友可见社区",
+        "平台活动 · 合成演练\n虚构开发演练，不招募、预订或付款",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {
+        "user_id": 1,
+        "http_subject": 1,
+        "lifestyle": "completed"
+      }
+    },
+    {
+      "step": "a-return-chat-final",
+      "utc": "2026-11-16T07:54:01.459479+00:00",
+      "texts": [
+        "Back",
+        "对话",
+        "搜索当前会话",
+        "语音留言",
+        "刷新对话",
+        "语音通话",
+        "视频通话",
+        "V18 A private hello from C\n对方",
+        "引用回复",
+        "V18 A private reply\n我 · 已发送，未读",
+        "引用回复",
+        "保存草稿",
+        "清除草稿",
+        "发送图片",
+        "发送短视频",
+        "发送"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "a-match-final-loaded",
+      "utc": "2026-11-16T07:54:15.530277+00:00",
+      "texts": [
+        "匹配",
+        "持续参与与自动化",
+        "刷新状态",
+        "持续参与与自动化\n尚未授权",
+        "当前轮次 · 本轮已揭晓",
+        "匹配结果\n双方已接受",
+        "报名与候选详情",
+        "连接 · 已连接",
+        "消息许可 · 已同意",
+        "进入聊天",
+        "连接与消息许可",
+        "聊天 · 1 个会话",
+        "正式关系 · 尚无正式关系记录",
+        "正式恋爱关系",
+        "匹配记录",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "a-return-private-journey-final",
+      "utc": "2026-11-16T07:54:27.387019+00:00",
+      "texts": [
+        "Back",
+        "每周慢约",
+        "刷新",
+        "持续参与与自动化",
+        "匹配资料与偏好",
+        "填写或修改必要问卷",
+        "匹配记录",
+        "参与状态：已参与",
+        "报名准备：符合当前参与资格",
+        "运营审核（非实人）：已通过",
+        "候选展示资料：尚未发布",
+        "准备提示：准备已完成",
+        "尚缺必要问卷答案：0",
+        "Fictional UI18 journey fixture",
+        "970 characters remaining",
+        "保存草稿",
+        "主动报名",
+        "暂停报名",
+        "退出报名",
+        "当前轮次：本轮已揭晓",
+        "本轮时间 2026-11-16T05:50:47.000000Z",
+        "候选：暂不可见",
+        "提案状态：双方已接受",
+        "我的回应：已接受；对方回应：已接受",
+        "有效期至：2026-11-23 06:50:47",
+        "依据你确认的资料与问卷偏好生成",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "me-final",
+      "utc": "2026-11-16T07:56:13.896410+00:00",
+      "texts": [
+        "我的",
+        "设置",
+        "资料与偏好",
+        "私密资料",
+        "匹配资料与偏好",
+        "生活方式探索",
+        "展示资料",
+        "权限与参与",
+        "权限与说明",
+        "持续参与与自动化",
+        "自我了解工具",
+        "可选 MBTI 测评",
+        "三盘本命",
+        "动态星盘与关系盘",
+        "已存八字",
+        "头像管理\n更换或移除头像，仅向已获准的人展示",
+        "参与与记录\n准备状态\n查看报名条件。",
+        "资格、状态与申诉\n查看账号状态或提交申诉。",
+        "站内通知\n查看提醒与已读记录。",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "automation-final",
+      "utc": "2026-11-16T07:56:23.367700+00:00",
+      "texts": [
+        "Back",
+        "持续参与与自动化",
+        "刷新",
+        "每周慢约会持续参与\n尚未开启\n开启后，系统在开放轮次中检查准备状态并为你报名。你仍独立决定匹配选择、连接、消息同意和正式关系。\n有效期持续至你暂停、撤销或授权说明版本更新。\n暂停或撤销只暂停已委托给本授权的报名，独立手动报名保持原状态。当前提案按原规则保留。\n当前授权说明",
+        "授权持续参与",
+        "准备已完成",
+        "查看准备状态"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "permissions-final-expanded",
+      "utc": "2026-11-16T07:56:36.939787+00:00",
+      "texts": [
+        "返回",
+        "权限与说明",
+        "管理资料受众与本人预览\n选择分享范围，查看或撤回分享。",
+        "Expanded",
+        "匹配与每周慢约, Expanded",
+        "完成资料、问卷与生活方式探索后，可自主报名每周慢约。匹配结果供双方分别决定；连接、消息许可、正式关系和资料分享各自确认。实际相处由你自己判断。暂停或退出报名时，请阅读当次操作提示。",
+        "匹配资料与偏好",
+        "匹配与报名",
+        "Collapsed",
+        "持续参与与自动化, Collapsed",
+        "Collapsed",
+        "私密资料与展示, Collapsed",
+        "Collapsed",
+        "连接与私密消息, Collapsed",
+        "Collapsed",
+        "搭子与社区, Collapsed",
+        "Collapsed",
+        "自我了解工具, Collapsed",
+        "Collapsed",
+        "举报与受限资料, Collapsed",
+        "首页",
+        "匹配",
+        "消息",
+        "我的"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "lifestyle-final-selected-dark",
+      "utc": "2026-11-16T07:56:47.809733+00:00",
+      "texts": [
+        "Back",
+        "生活方式探索",
+        "跳过",
+        "1 / 5",
+        "在家放松时，你更喜欢哪种氛围？",
+        "安静一点",
+        "有些背景声音",
+        "看当天状态切换",
+        "返回",
+        "下一步"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "lifestyle-final-large-font",
+      "utc": "2026-11-16T07:56:53.347743+00:00",
+      "texts": [
+        "Back",
+        "生活方式探索",
+        "跳过",
+        "1 / 5",
+        "在家放松时，你更喜欢哪种氛围？",
+        "安静一点",
+        "有些背景声音",
+        "看当天状态切换",
+        "返回",
+        "下一步"
+      ],
+      "extra": {}
+    },
+    {
+      "step": "first-guide-final",
+      "utc": "2026-11-16T07:57:20.845627+00:00",
+      "texts": [
+        "第 1 步，共 5 步",
+        "跳过首次使用引导",
+        "20",
+        "查看匹配",
+        "在“匹配”入口查看结果，回应你感兴趣的候选。",
+        "进入下一步"
+      ],
+      "extra": {}
+    }
+  ],
+  "owner_phone": "NOT_USED",
+  "system_talkback": "NOT_RUN",
+  "real_push": "NOT_RUN",
+  "http_subject_audit_groups": [
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "POST",
+      "path": "api/v1/auth/session/verify",
+      "first_utc": "2026-11-16T07:13:43+00:00",
+      "last_utc": "2026-11-16T07:40:14+00:00",
+      "requests": 3
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/rtc/calls",
+      "first_utc": "2026-11-16T07:13:59+00:00",
+      "last_utc": "2026-11-16T07:45:01+00:00",
+      "requests": 546
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/user-state",
+      "first_utc": "2026-11-16T07:13:59+00:00",
+      "last_utc": "2026-11-16T07:40:57+00:00",
+      "requests": 18
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/journey",
+      "first_utc": "2026-11-16T07:15:08+00:00",
+      "last_utc": "2026-11-16T07:40:51+00:00",
+      "requests": 5
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/connections/3",
+      "first_utc": "2026-11-16T07:15:08+00:00",
+      "last_utc": "2026-11-16T07:40:51+00:00",
+      "requests": 5
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/conversations",
+      "first_utc": "2026-11-16T07:15:09+00:00",
+      "last_utc": "2026-11-16T07:45:00+00:00",
+      "requests": 131
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/formal-relationships",
+      "first_utc": "2026-11-16T07:15:09+00:00",
+      "last_utc": "2026-11-16T07:40:51+00:00",
+      "requests": 5
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/avatars/1",
+      "first_utc": "2026-11-16T07:15:28+00:00",
+      "last_utc": "2026-11-16T07:44:39+00:00",
+      "requests": 3
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/profile/lifestyle-discovery",
+      "first_utc": "2026-11-16T07:24:11+00:00",
+      "last_utc": "2026-11-16T07:24:11+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "PUT",
+      "path": "api/v1/profile/lifestyle-discovery",
+      "first_utc": "2026-11-16T07:26:05+00:00",
+      "last_utc": "2026-11-16T07:26:05+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/avatars/3",
+      "first_utc": "2026-11-16T07:26:22+00:00",
+      "last_utc": "2026-11-16T07:44:20+00:00",
+      "requests": 3
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/messages",
+      "first_utc": "2026-11-16T07:26:22+00:00",
+      "last_utc": "2026-11-16T07:44:32+00:00",
+      "requests": 71
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "POST",
+      "path": "api/v1/messages/ack",
+      "first_utc": "2026-11-16T07:26:23+00:00",
+      "last_utc": "2026-11-16T07:26:23+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/notifications",
+      "first_utc": "2026-11-16T07:26:51+00:00",
+      "last_utc": "2026-11-16T07:44:20+00:00",
+      "requests": 3
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/notifications/unread-count",
+      "first_utc": "2026-11-16T07:26:51+00:00",
+      "last_utc": "2026-11-16T07:44:20+00:00",
+      "requests": 3
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "POST",
+      "path": "api/v1/telemetry/events",
+      "first_utc": "2026-11-16T07:26:52+00:00",
+      "last_utc": "2026-11-16T07:44:20+00:00",
+      "requests": 3
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/notifications/7",
+      "first_utc": "2026-11-16T07:44:19+00:00",
+      "last_utc": "2026-11-16T07:44:19+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/conversations/1",
+      "first_utc": "2026-11-16T07:44:19+00:00",
+      "last_utc": "2026-11-16T07:44:19+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "POST",
+      "path": "api/v1/notifications/7/read",
+      "first_utc": "2026-11-16T07:44:20+00:00",
+      "last_utc": "2026-11-16T07:44:20+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 13,
+      "token_fingerprint": "48b8fa54401d32e5",
+      "method": "GET",
+      "path": "api/v1/admin/users",
+      "first_utc": "2026-11-16T07:44:42+00:00",
+      "last_utc": "2026-11-16T07:44:42+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 14,
+      "token_fingerprint": "d87a305aacb5d23f",
+      "method": "POST",
+      "path": "api/v1/auth/logout",
+      "first_utc": "2026-11-16T07:45:06+00:00",
+      "last_utc": "2026-11-16T07:45:06+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/profile/basic",
+      "first_utc": "2026-11-16T07:45:41+00:00",
+      "last_utc": "2026-11-16T07:45:41+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/user-state",
+      "first_utc": "2026-11-16T07:45:42+00:00",
+      "last_utc": "2026-11-16T07:52:33+00:00",
+      "requests": 15
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/rtc/calls",
+      "first_utc": "2026-11-16T07:45:42+00:00",
+      "last_utc": "2026-11-16T07:53:02+00:00",
+      "requests": 195
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/conversations",
+      "first_utc": "2026-11-16T07:46:21+00:00",
+      "last_utc": "2026-11-16T07:52:59+00:00",
+      "requests": 49
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/notifications",
+      "first_utc": "2026-11-16T07:46:31+00:00",
+      "last_utc": "2026-11-16T07:46:31+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/notifications/unread-count",
+      "first_utc": "2026-11-16T07:46:31+00:00",
+      "last_utc": "2026-11-16T07:46:31+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "POST",
+      "path": "api/v1/telemetry/events",
+      "first_utc": "2026-11-16T07:46:31+00:00",
+      "last_utc": "2026-11-16T07:46:31+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/journey",
+      "first_utc": "2026-11-16T07:46:42+00:00",
+      "last_utc": "2026-11-16T07:49:30+00:00",
+      "requests": 7
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/formal-relationships",
+      "first_utc": "2026-11-16T07:46:42+00:00",
+      "last_utc": "2026-11-16T07:49:31+00:00",
+      "requests": 4
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "PUT",
+      "path": "api/v1/journey/participation",
+      "first_utc": "2026-11-16T07:47:01+00:00",
+      "last_utc": "2026-11-16T07:47:01+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "POST",
+      "path": "api/v1/auth/session/verify",
+      "first_utc": "2026-11-16T07:47:21+00:00",
+      "last_utc": "2026-11-16T07:47:21+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/buddy",
+      "first_utc": "2026-11-16T07:51:45+00:00",
+      "last_utc": "2026-11-16T07:52:26+00:00",
+      "requests": 2
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/buddy/discovery",
+      "first_utc": "2026-11-16T07:51:51+00:00",
+      "last_utc": "2026-11-16T07:52:05+00:00",
+      "requests": 2
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "POST",
+      "path": "api/v1/buddy/discovery/2/apply",
+      "first_utc": "2026-11-16T07:52:19+00:00",
+      "last_utc": "2026-11-16T07:52:19+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/avatars/2",
+      "first_utc": "2026-11-16T07:52:39+00:00",
+      "last_utc": "2026-11-16T07:52:39+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 15,
+      "token_fingerprint": "f2179d9aeeee3019",
+      "method": "GET",
+      "path": "api/v1/admin/users",
+      "first_utc": "2026-11-16T07:52:42+00:00",
+      "last_utc": "2026-11-16T07:52:42+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 2,
+      "token_id": 16,
+      "token_fingerprint": "e960de68cd93f116",
+      "method": "POST",
+      "path": "api/v1/auth/logout",
+      "first_utc": "2026-11-16T07:53:06+00:00",
+      "last_utc": "2026-11-16T07:53:06+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/profile/basic",
+      "first_utc": "2026-11-16T07:53:35+00:00",
+      "last_utc": "2026-11-16T07:53:35+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/user-state",
+      "first_utc": "2026-11-16T07:53:35+00:00",
+      "last_utc": "2026-11-16T07:57:34+00:00",
+      "requests": 8
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/rtc/calls",
+      "first_utc": "2026-11-16T07:53:35+00:00",
+      "last_utc": "2026-11-16T08:01:42+00:00",
+      "requests": 244
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/conversations",
+      "first_utc": "2026-11-16T07:53:49+00:00",
+      "last_utc": "2026-11-16T08:01:39+00:00",
+      "requests": 97
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/avatars/3",
+      "first_utc": "2026-11-16T07:53:55+00:00",
+      "last_utc": "2026-11-16T07:53:55+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/messages",
+      "first_utc": "2026-11-16T07:53:55+00:00",
+      "last_utc": "2026-11-16T07:54:06+00:00",
+      "requests": 5
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/journey",
+      "first_utc": "2026-11-16T07:54:13+00:00",
+      "last_utc": "2026-11-16T07:54:35+00:00",
+      "requests": 3
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/connections/3",
+      "first_utc": "2026-11-16T07:54:13+00:00",
+      "last_utc": "2026-11-16T07:54:35+00:00",
+      "requests": 2
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/formal-relationships",
+      "first_utc": "2026-11-16T07:54:13+00:00",
+      "last_utc": "2026-11-16T07:54:36+00:00",
+      "requests": 2
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/avatars/1",
+      "first_utc": "2026-11-16T07:56:14+00:00",
+      "last_utc": "2026-11-16T07:56:14+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/profile/lifestyle-discovery",
+      "first_utc": "2026-11-16T07:56:44+00:00",
+      "last_utc": "2026-11-16T07:56:44+00:00",
+      "requests": 1
+    },
+    {
+      "subject_user_id": 1,
+      "token_id": 17,
+      "token_fingerprint": "98b94ddc32720463",
+      "method": "GET",
+      "path": "api/v1/admin/users",
+      "first_utc": "2026-11-16T07:57:07+00:00",
+      "last_utc": "2026-11-16T07:57:07+00:00",
+      "requests": 1
+    }
+  ],
+  "http_native_request_count": 1457,
+  "private_full_request_audit_sha256": "333d12c507a43c00bf97bd8fa9e004b02d99ffc481c8c25dc3ad4b67ca619569"
+}

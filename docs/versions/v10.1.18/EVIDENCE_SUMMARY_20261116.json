@@ -1,0 +1,467 @@
+{
+  "status": "ENGINEERING_PASS_IN_NAMED_SCOPE",
+  "version": "v10.1.18",
+  "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+  "candidate": 1011804,
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "delivery_sync": "PENDING_FINAL_PUSH_READBACK",
+  "ac_results": {
+    "AC18-01": "PASS_IN_NAMED_SCOPE",
+    "AC18-02": "PASS_IN_NAMED_SCOPE",
+    "AC18-03": "PASS_IN_NAMED_SCOPE",
+    "AC18-04": "PASS_IN_NAMED_SCOPE",
+    "AC18-05": "PASS_IN_NAMED_SCOPE",
+    "AC18-06": "PASS_IN_NAMED_SCOPE",
+    "AC18-07": "PASS_IN_NAMED_SCOPE",
+    "AC18-08": "PASS_IN_NAMED_SCOPE"
+  },
+  "validation_groups": [
+    {
+      "name": "Shared theme and Lifestyle",
+      "cases": 13,
+      "status": "PASS",
+      "logs": [
+        "theme-lifestyle-final.log"
+      ],
+      "scope": "4 color-state calculations and 9 Widget cases; light/dark, 1x/2x, keyboard, semantics, reduced motion"
+    },
+    {
+      "name": "Matching, Me and automation copy",
+      "cases": 39,
+      "status": "PASS",
+      "logs": [
+        "last-copy-widget.log"
+      ]
+    },
+    {
+      "name": "First-use guide and router",
+      "cases": 25,
+      "status": "PASS",
+      "logs": [
+        "onboarding-label-corrected.log"
+      ]
+    },
+    {
+      "name": "Default router compatibility",
+      "cases": 29,
+      "status": "PASS",
+      "logs": [
+        "router-default-corrected.log"
+      ]
+    },
+    {
+      "name": "Buddy Widget",
+      "cases": 12,
+      "status": "PASS",
+      "logs": [
+        "buddy-widget-final.log"
+      ]
+    },
+    {
+      "name": "Notification, message and private cache",
+      "cases": 122,
+      "status": "PASS_ACROSS_AFFECTED_RERUNS",
+      "logs": [
+        "notification-messages-corrected.log",
+        "notification-final-corrected.log"
+      ],
+      "count_basis": "Combined set119 PASS and3 stale copy assertions FAIL; unchanged product source then passed40 notification cases after assertion updates. Overlapping reruns counted once within this group."
+    },
+    {
+      "name": "PHP Buddy and B2",
+      "cases": 34,
+      "assertions": 438,
+      "status": "PASS",
+      "logs": [
+        "targeted-php-private.log"
+      ],
+      "database": "SQLite memory, independent test process"
+    },
+    {
+      "name": "Real HTTP and isolated MariaDB",
+      "cases": 16,
+      "status": "PASS",
+      "receipt": "evidence/API_MARIADB_RECEIPT.json"
+    }
+  ],
+  "dart_product_files_analyzed": 21,
+  "real_app_steps": 31,
+  "real_app_receipt": "COLD_START_ACCOUNT_ISOLATION_RECEIPT.json",
+  "screenshots": "evidence/SCREENSHOT_MANIFEST.json",
+  "private_logs": [
+    {
+      "name": "buddy-widget-final.log",
+      "bytes": 1033,
+      "sha256": "81f66cd789cfeb03429c734b5f3065835508e7e96d7d50a752b8061da083492e",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "dart-analyze-final.log",
+      "bytes": 426,
+      "sha256": "5156ca840aa2b6739cddb8983eee4d807af967a03b59b823cd5f01481f646587",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "dart-format-final.log",
+      "bytes": 1416,
+      "sha256": "9c88246947d6efa63ced08650e0437037d7bce8ecece7d45b56bd13bae646c71",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "final-build-private.log",
+      "bytes": 92263,
+      "sha256": "1152625efbc0e27527dd054b01ab3abf1106cc21df92200651e76f1eab43dd7b",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "fixture-first-error-private.log",
+      "bytes": 89,
+      "sha256": "068ff81e98adb006006e6bd7d09ae37ff730f1bcae6a929fb7c64bdf3db18a5d",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "last-copy-analyze.log",
+      "bytes": 236,
+      "sha256": "47b470a3da3c98391c95edb4312d7b268ff7d5540fa6fbbe8ca3dda7f49c30e8",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "last-copy-widget.log",
+      "bytes": 8147,
+      "sha256": "e28121f3bcfbe9e361e8cbaf0bdbc1bcc76c5cb897a762f703757f2c8e9cfde2",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "last-source-analyze.log",
+      "bytes": 137,
+      "sha256": "b1e719c9184fbf9107cca445e31e82e5c98be0186bac3d12d23e5c394a95b712",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "last-source-widget.log",
+      "bytes": 4966,
+      "sha256": "eafce948b4a3cf89e09ef4752e8e9011a0955a724455f6889415875b8b42e593",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "match-green-2.log",
+      "bytes": 7540,
+      "sha256": "98be47389fd88a207380c9fce69a2c1099052d70310e47afbefc037db7522a53",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "match-green-3.log",
+      "bytes": 5571,
+      "sha256": "5e07d0ee3be814211371dbf357d57f879624bd5c01f132ff934c462360c6bd9a",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "match-initial-green.log",
+      "bytes": 24348,
+      "sha256": "77cd10a8697fed5df135eea43ce350129e87a86ce5cddca8ff450525d94fb0b9",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "match-red.log",
+      "bytes": 2777,
+      "sha256": "cc2fb35169e114370e154d927b3bb07c8572dca355f0b46f2dacb00d179d54ad",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "me-copy-analyze.log",
+      "bytes": 98,
+      "sha256": "31fb808e5e4a7a8ddf593c656411dfded2c029998cc4c5aa6257b132e7f466f7",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "me-copy-green-full.log",
+      "bytes": 1223,
+      "sha256": "966c2f463b5d7f76a41d60e66db2c5ae6056e87b12e933736427fef09660b02f",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "me-copy-green.log",
+      "bytes": 1004,
+      "sha256": "d2d792aa38bff0cc17974570dade74425ad711d925a5d9c64a3801e208bf8026",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "me-copy-red.log",
+      "bytes": 5291,
+      "sha256": "e4bf51ad7b19dbec72e1fc56c9d179f9946179a31fd2fd8c84921e8ecd778cc7",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "migration-private.log",
+      "bytes": 7097,
+      "sha256": "a5d741435a90578dd4a7fb603302a22435df7c5b37138e6864a89c277c616f5a",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "notification-examples-red.log",
+      "bytes": 8434,
+      "sha256": "02daf989b455bdc654d426d44b7ce9bb55cd7945740e088d2c7496bed06153ac",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "notification-final-corrected.log",
+      "bytes": 3431,
+      "sha256": "38157aacb0f18c654ac314fb0fd04691cbd86436a2462cb11cc71bdd47ce4204",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "notification-final.log",
+      "bytes": 7266,
+      "sha256": "6dcc4d0ee8bbbf532bc5f3625e9bf37168d85183bf009ec0b874b96cb90db8eb",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "notification-last-analyze.log",
+      "bytes": 153,
+      "sha256": "d24c4aa7cceec82491d3ede35aad0760a7872610ae43c89e0c2e6825d3fd455b",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "notification-messages-corrected.log",
+      "bytes": 34775,
+      "sha256": "0f3df6ec10f29e85c9b72887d6d6d02b790e3d3d9c186923f48eed69e6a92ebe",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "notification-messages-green.log",
+      "bytes": 31675,
+      "sha256": "e0a718dafb7a47946c20fd42e51053056f55930c4f12a277f588e3b3a5b52281",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "onboarding-analyze.log",
+      "bytes": 63,
+      "sha256": "ab85500876a2ea94117c7dc01d980f2d83a48e78d7d534b2dae2822fe223b3c5",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "onboarding-label-corrected.log",
+      "bytes": 5917,
+      "sha256": "426d3f79ccf83de40d4482dd82a8385840c316f6a331ce431ada1384051b3c41",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "onboarding-label-final.log",
+      "bytes": 7186,
+      "sha256": "9f211fbc6b28ec243da5ffffa2e99f406d1efd12c604c2f1ce03ba4abcccdbc1",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "qualifier-first-launch-private.log",
+      "bytes": 3591,
+      "sha256": "cd4acd19ec47f1151ce99735b5e23a62d27fcfd5b1aed934a704b3a5eeaa0724",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "router-default-corrected.log",
+      "bytes": 9293,
+      "sha256": "7693ce6b059d1f6c4dee0171823bb84b426393fe520bbf75b11b5dd6d8bc3f8a",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "router-default.log",
+      "bytes": 19710,
+      "sha256": "34cde67d9370756668774b594144c08c58715e9785225e8cdeb48acd7f8e0237",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "server-first-error-private.log",
+      "bytes": 380,
+      "sha256": "3a87acca480c60321b1fca46b22c02843c28362ac298ebf90c7b252b128f8989",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "targeted-php-private.log",
+      "bytes": 288,
+      "sha256": "7b68d5addd3a0ab66176ac453472ad8ef134ffc24e52de21f97bb4dd22ab00f1",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "theme-analyze-final.log",
+      "bytes": 98,
+      "sha256": "f0fc25898a3aa47b8b73e4697b5a1b944460ded41bc544865e62ca0e5c5ca82e",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "theme-analyze.log",
+      "bytes": 502,
+      "sha256": "56e7ea0997274927bc43abefc3625b1db635be0cab683fc088d38836226a4c8b",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "theme-combinations-diagnostic.log",
+      "bytes": 1842,
+      "sha256": "ecdc0b8de2e3c0e33c61407d60c1f3cc3dbd372c91fa2db68aa4b20c186ec380",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "theme-green-1.log",
+      "bytes": 309,
+      "sha256": "b1b1b9980196b079f2ca447d25e333c7b5b25c600b6def9dca08092c6f5f1fcc",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "theme-lifestyle-final-2.log",
+      "bytes": 3891,
+      "sha256": "038598d635d190dc1f4f31bb248e99801ad94401aac738220808b1038ebf82d7",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "theme-lifestyle-final-3.log",
+      "bytes": 1269166,
+      "sha256": "34ff6219fafe92ac52c77f7c6dde5835b8f44f3f997264910c022c1374591509",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "theme-lifestyle-final-4.log",
+      "bytes": 2792,
+      "sha256": "817da9c4eeda4cff0164dc0119f76316b152f1c51bcf2a3ffd89b4fe39fd983b",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "theme-lifestyle-final.log",
+      "bytes": 2944,
+      "sha256": "f34fb0c27b88f35dda8288e1d555f311565da2a437647ece63b99b201499c311",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "theme-lifestyle-green-2.log",
+      "bytes": 2792,
+      "sha256": "57c7cfa53af7a15f9fcda1a09186fedbdb3f59a09c210a6026388455b8114ad6",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": true,
+      "contains_failure_marker": false
+    },
+    {
+      "name": "theme-lifestyle-green.log",
+      "bytes": 44232,
+      "sha256": "78ff395f0ed94c5fcf0ce76132b69e94cc25a2d50917ced82a85dec2e58c822f",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "theme-red.log",
+      "bytes": 1550,
+      "sha256": "e25de897e839f72fe4bb0c647b2ac2963db0cce10765e62befad7288c576ed4e",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "widget-corrected.log",
+      "bytes": 63996,
+      "sha256": "7b1d4d2e9915ebeb0ef49d8eb8221f950f5e8a0498b9421910ffbc0af6ee804d",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    },
+    {
+      "name": "widget-targeted-final.log",
+      "bytes": 107035,
+      "sha256": "0ebc9bb8c8907fa4bd3ba0437e0e56846a9ea2bfa925219d7427a77d6a80fda4",
+      "classification": "LOCAL_ONLY",
+      "contains_pass_marker": false,
+      "contains_failure_marker": true
+    }
+  ],
+  "non_author_codex_static_review": "Two state-wording findings corrected, cancellation/account-switch tests added, subsequent scoped review found no definite regression",
+  "limits": {
+    "original_owner_buddy_cause": "UNKNOWN",
+    "owner_phone": "NOT_USED",
+    "system_talkback": "NOT_RUN",
+    "real_push": "NOT_RUN",
+    "owner_overall_acceptance": "PENDING",
+    "v10117_owner_overall_acceptance": "PENDING",
+    "inherited_art_model_exact_name_and_version": "UNKNOWN",
+    "main_integration": "NOT_RUN",
+    "release": "NOT_RUN",
+    "B4_and_phase_C": "NOT_AUTHORIZED"
+  }
+}

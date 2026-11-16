@@ -1,0 +1,119 @@
+{
+  "status": "REVIEWED_FICTIONAL_EMULATOR",
+  "candidate": 1011804,
+  "files": [
+    {
+      "path": "evidence/screenshots/a-return-home-final.png",
+      "sha256": "8587e386a39f9de09ce38e0bbfc70a1f0ea7a5ff17c118a0b05ac913ef85712e",
+      "bytes": 105718,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/a-match-final-loaded.png",
+      "sha256": "cdaee741e58831fdce5c801c5dd3f122b3e54096d8a47c621cdc53337b7b3991",
+      "bytes": 90049,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/me-final.png",
+      "sha256": "b819d13c66dcc440802e6d565daffa8e3ae782814aa89e34849b8695d971ecbb",
+      "bytes": 132999,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/automation-final.png",
+      "sha256": "1036722dea92d60efc88f4ac54a7ae6bdb775d082860c180114eae4cb79cadbd",
+      "bytes": 115810,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/permissions-final-expanded.png",
+      "sha256": "45c46f6cd86227d048ade5688e3bff2667f323e01785883d58626a65122df563",
+      "bytes": 136914,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/lifestyle-final-selected-dark.png",
+      "sha256": "c1405c5fed85f686d4529bb6a794236f3d320e5a38899d874f5097a53cec327b",
+      "bytes": 162480,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/lifestyle-final-large-font.png",
+      "sha256": "5d699c960893bdcc45e088af328455a3ff6f0ad8ccf03d7e0fa470d3014c41d8",
+      "bytes": 185127,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/first-guide-final.png",
+      "sha256": "a450fb149a7a159231f5f5b74cd34ee919ad911540e035db97c119f54c36d826",
+      "bytes": 38888,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/a-notifications-final.png",
+      "sha256": "9e79bcc59799ad0cdbe59086adae52e6ef405bc754cc15f3c4aba14b50cf5e46",
+      "bytes": 96717,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/b-cold-home-final.png",
+      "sha256": "8182294c088fec432267201af84ef3e4b71f097d8d51182b9f7d996aedc8c176",
+      "bytes": 107584,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/b-network-off-messages-final.png",
+      "sha256": "849f8c71b108a1939d7072a7adbf8f77ee1e22095bee2bc2dd0f0b62cb9b8361",
+      "bytes": 65328,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/b-buddy-study-found-final.png",
+      "sha256": "bfd328a4b53e5681271f38fc467196bbf6bbe86ce2a1a0187f21ec6ea0c3fee8",
+      "bytes": 86579,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/b-buddy-requested-final.png",
+      "sha256": "de8d532bde0343a73f6e21b29463ff00fa2e9164548f02e81cc27069f6b91a42",
+      "bytes": 124061,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    },
+    {
+      "path": "evidence/screenshots/a-return-chat-final.png",
+      "sha256": "b044a042f37d544be90bddee151a099e4c10534383f54d0101dc8b8b28eed967",
+      "bytes": 51026,
+      "candidate": 1011804,
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "classification": "Fictional-account emulator screenshot, visually checked"
+    }
+  ],
+  "real_person_or_credentials": false
+}

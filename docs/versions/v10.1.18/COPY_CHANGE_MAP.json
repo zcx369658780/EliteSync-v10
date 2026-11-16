@@ -1,0 +1,765 @@
+[
+  {
+    "page": "app/router/app_shell.dart",
+    "old": "label: '进展'",
+    "new": "label: '匹配'",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "已参与 / 生效",
+    "new": "已参与",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "本轮暂无候选，不代表被拒绝",
+    "new": "本轮暂无匹配",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "轮次处理失败，可刷新查看恢复状态",
+    "new": "本轮处理遇到问题，请稍后刷新",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "等待双方独立回应",
+    "new": "等待双方回应",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "已有一方接受，等待另一方独立回应",
+    "new": "等待另一方回应",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "双方已选择，连接与消息同意仍需独立确认",
+    "new": "双方已接受",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "已结束，旧关系不可恢复",
+    "new": "已结束",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "核验失效，分享已暂停，需双方重新确认",
+    "new": "分享已暂停，请重新确认",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "已完成当前必要准备，可自行决定是否参与",
+    "new": "准备已完成",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "请进入我的匹配输入，确认本人资料及双方偏好",
+    "new": "请确认匹配资料与偏好",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "普通婚恋慢约需要本人自述年满18周岁",
+    "new": "参加慢约需年满18周岁",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "仅交友用途不参与普通婚恋慢约，可继续使用独立交友功能",
+    "new": "当前选择了交友，可前往搭子",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "运营参与资格正在审核，非实人认证",
+    "new": "参与资格审核中",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "运营参与资格尚未通过，请查看审核结果",
+    "new": "参与资格未通过，请查看结果",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/journey_components.dart",
+    "old": "当前暂不符合参与条件，请检查准备状态或稍后刷新",
+    "new": "暂时无法确认参与资格，请刷新",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "import '../slow_dating_v1012/journey_components.dart';",
+    "new": "import '../slow_dating_v1012/journey_components.dart';\nimport '../slow_dating_v1012/matching_history_page.dart';",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "subtitle: Text(source),",
+    "new": "// Source authorities are documented in the permissions/explanation page.",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "查看我的进展",
+    "new": "查看匹配",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "查看必要准备",
+    "new": "完善匹配资料",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "账号可用",
+    "new": "欢迎回来",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "账号状态暂不可用",
+    "new": "账号状态暂时无法确认",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "'独立吃饭 / 学习搭子', '/buddy-v1013', subtitle: '独立参与，联系前仍需双方同意'",
+    "new": "'吃饭 / 学习搭子', '/buddy-v1013'",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "subtitle: '有限好友动态，按本人选择的受众发布',",
+    "new": "",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "Text('我的关系旅程', style: Theme.of(context).textTheme.headlineSmall),\n      const Text('匹配、连接、消息同意、会话和正式关系分别确认。'),",
+    "new": "_link(\n        '持续参与与自动化',\n        '/user-state',\n        subtitle: _automationLabel(objectMap(domains['automation'])['code']),\n        key: const Key('match-automation-entry'),\n      ),\n      _domain(\n        '当前轮次',\n        journeyStateLabel(objectMap(domains['round'])['state'] ?? objectMap(domains['round'])['code']),\n        '',\n      ),",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "当前提案",
+    "new": "匹配结果",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "提案读取未完成，请刷新",
+    "new": "匹配结果暂时无法加载，请刷新",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "                const Text('来源 /journey。选择不会自动分享、连接、同意消息或建立正式关系。'),\n",
+    "new": "",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "独立接受候选",
+    "new": "接受候选",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "服务器有效期至",
+    "new": "有效期至",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "提案详情与慢约操作",
+    "new": "报名与候选详情",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "进入有权会话",
+    "new": "进入聊天",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "'Connection',",
+    "new": "'连接',",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "'Messaging Consent',",
+    "new": "'消息许可',",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "'Conversation',",
+    "new": "'聊天',",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "'Relationship',",
+    "new": "'正式关系',",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "subtitle: '按服务端当前权限分别申请、回应或撤销',",
+    "new": "",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "'${rows(conversations['items']).length} 个当前获准会话'",
+    "new": "'${rows(conversations['items']).length} 个会话'",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "'正式关系读取未完成，请刷新'",
+    "new": "'正式关系暂时无法加载，请刷新'",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "_link('正式恋爱关系', '/formal-relationship', subtitle: '独立自愿申请与逐次确认'),",
+    "new": "_link('正式恋爱关系', '/formal-relationship'),\n      Card(child: ListTile(\n        title: const Text('匹配记录'),\n        trailing: const Icon(Icons.chevron_right),\n        onTap: busy ? null : () async {\n          invalidatePendingProjection();\n          await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const MatchingHistoryPage()));\n          if (mounted && _foreground) await refresh();\n        },\n      )),",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "subtitle: '查看已有输入，修改后明确确认',",
+    "new": "",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "      _domain(\n        '当前轮次',\n        journeyStateLabel(\n          objectMap(domains['round'])['state'] ??\n              objectMap(domains['round'])['code'],\n        ),\n        '来源 B2 /user-state → MatchRoundProjectionService',\n      ),\n      _link(\n        '持续参与与自动化',\n        '/user-state',\n        subtitle: _automationLabel(objectMap(domains['automation'])['code']),\n      ),",
+    "new": "",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "title: Text(widget.detailed ? '进展' : '首页')",
+    "new": "title: Text(widget.detailed ? '匹配' : '首页')",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "Text('状态读取未完成，请刷新。$error', key: const Key('server-error'))",
+    "new": "const Text('暂时无法加载，请刷新重试', key: Key('server-error'))",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "            Text(\n              '来源 B2 /user-state · ${data?['generated_at'] ?? '读取时间未知'}',\n              style: Theme.of(context).textTheme.bodySmall,\n            ),",
+    "new": "",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "下一步暂未识别，请刷新状态",
+    "new": "暂时无法确认下一步，请刷新",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "已授权，系统按现有轮次检查",
+    "new": "已开启",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/journey_integration/journey_overview_page.dart",
+    "old": "提案期限待服务端核对，请进入详情",
+    "new": "结果正在更新，请查看详情",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/relationships_v1011/session_bound_page.dart",
+    "old": "error == 'Forbidden' ? '当前账号没有此项访问权限。' : '未完成：$error'",
+    "new": "error == 'Forbidden' ? '当前账号没有此项访问权限。' : '暂时无法完成，请刷新重试'",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/relationships_v1011/session_bound_page.dart",
+    "old": "请重新登录；旧账号资料已清除。",
+    "new": "请登录后继续",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "    final explanation = objectMap(proposal['explanation']);\n",
+    "new": "",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "return frame('慢约会旅程', [\n      const Text('准备 → 主动报名 → 等待揭晓 → 独立选择。匹配不会自动建立连接、消息同意或正式恋爱关系。'),",
+    "new": "return frame('每周慢约', [",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "状态与自动化",
+    "new": "持续参与与自动化",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "本人慢约历史",
+    "new": "匹配记录",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "        IdentityGateCard(identity: objectMap(data!['identity'])),\n",
+    "new": "",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "'参与状态：${journeyStateLabel(participation['state'])} · 代际 ${participation['generation'] ?? '—'}'",
+    "new": "'参与状态：${journeyStateLabel(participation['state'])}'",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "        const Text(\n          '按服务器逐项提示完成必要问卷。Showcase仅作信息展示，报名资格以服务器结果为准。可选人格、玄学、私聊及内部记录不作为额外必填。',\n        ),\n",
+    "new": "",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "        const Text(\n          '暂停后不再接受候选，可独立撤回当前未决提案；请先撤回再明确重新报名，进入新代际。退出会撤回未决提案，不影响独立连接与消息同意。',\n        ),\n",
+    "new": "",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "服务器标记轮次可重试；由获准运营处理，刷新可查看进展。",
+    "new": "本轮正在恢复，请稍后刷新",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "本轮配置时间",
+    "new": "本轮时间",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "下次阶段时间",
+    "new": "下次更新",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "当前没有可回应的候选。请按本轮状态等待或稍后刷新。",
+    "new": "当前没有待回应的候选",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "服务器有效期至：",
+    "new": "有效期至：",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "；到期由服务器判断。",
+    "new": "",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "          const Text('原因类别：本人提供的问卷偏好与基础匹配输入'),\n          const Text('来源：本轮实际匹配结果；不展示对方原始答案'),\n          Text('不确定性：${explanation['uncertainty'] ?? '不能保证现实相处结果'}'),\n          Text('非目标：${explanation['non_goals'] ?? '不判定爱情、身份或安全结论'}'),\n          const Text('不会展示对方原问卷、精确生辰、私聊或内部记录；没有权威兼容分。'),",
+    "new": "          const Text('依据你确认的资料与问卷偏好生成'),",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "独立接受候选",
+    "new": "接受候选",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "分别申请连接（CN）与消息同意（MC）",
+    "new": "连接与消息许可",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "自愿申请 / 管理正式恋爱关系",
+    "new": "管理正式恋爱关系",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/user_automation/user_state_page.dart",
+    "old": "在已有开放轮次中检查准备状态并协调报名。",
+    "new": "在开放轮次中检查准备状态并为你报名。",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/user_automation/user_state_page.dart",
+    "old": "本轮报名已协调",
+    "new": "本轮已报名",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/user_automation/user_state_page.dart",
+    "old": "本轮尝试已用完，请查看当前状态",
+    "new": "本轮未能完成，请查看状态",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/user_automation/user_state_page.dart",
+    "old": "等待系统检查已有轮次与资格",
+    "new": "等待下一次检查",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/user_automation/user_state_page.dart",
+    "old": "  _ => '尚未授权',",
+    "new": "  'OFF' => '尚未开启',\n  _ => '状态暂未确认',",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/slow_dating_v1012/matching_input_page.dart",
+    "old": "    final body = <String, dynamic>{",
+    "new": "    if (data!['confirmed'] != true &&\n        !await confirm(\n          '开始了解彼此',\n          '匹配依据你确认的资料与偏好。报名、接受候选、分享资料和聊天都由你决定；现实相处需要你自己判断。完整说明可在我的→权限与说明查看。',\n        )) {\n      return;\n    }\n    final body = <String, dynamic>{",
+    "source": "Existing service projection and explicit user action",
+    "reason": "Reduce diagnostic phrasing and keep state factual"
+  },
+  {
+    "page": "features/chat/presentation/pages/live_conversation_list_page.dart",
+    "old": "          Text(\n            '仅显示当前获准的会话，进入对话时会重新核验。',\n            style: Theme.of(context).textTheme.bodySmall,\n          ),\n",
+    "new": "",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/chat/presentation/pages/live_conversation_list_page.dart",
+    "old": "暂无服务端可读取会话，请刷新或先完成双方连接和消息同意。",
+    "new": "暂无会话",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/chat/presentation/pages/live_conversation_list_page.dart",
+    "old": "隐藏只影响本人入口，不删除消息，也不改变联系授权。",
+    "new": "可随时找回，消息会保留",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/chat/presentation/pages/live_conversation_list_page.dart",
+    "old": "离线只读：不可打开新会话、发送、隐藏或修改。",
+    "new": "离线浏览，联网后可继续聊天",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/chat/presentation/pages/live_conversation_list_page.dart",
+    "old": "应用返回前台后将先重新核验。",
+    "new": "正在更新会话",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/notification/presentation/pages/notification_center_page.dart",
+    "old": "通知来源尚未完成解析；这不代表任何 Match、Connection 或 Conversation 结果。",
+    "new": "暂时无法确认通知内容，请刷新",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/notification/presentation/pages/notification_center_page.dart",
+    "old": "已授权通知来源当前没有返回提醒。这只表示本页面当前没有内容，不代表拒绝、不符合条件、Safety 结论或任何生命周期结束。有新的慢约会进度、聊天回流或资料准备事项时，会先在这里帮助你回到当前节奏。",
+    "new": "新的匹配、消息和资料提醒会显示在这里",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/notification/presentation/pages/notification_center_page.dart",
+    "old": "可以继续加载更早通知，查看当前仍有权读取的提醒。",
+    "new": "可以继续查看更早的提醒",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/buddy_v1013/buddy_discovery_page.dart",
+    "old": "选择粗城市或线上、搭子类型。只展示明确发布且当前可申请的活动。请先在“我的搭子”开启搭子请求。",
+    "new": "选择城市和活动类型，查找正在招募的搭子。请先在“我的搭子”开启搭子请求。",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/buddy_v1013/buddy_discovery_page.dart",
+    "old": "粗城市 / 线上",
+    "new": "城市 / 线上",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/buddy_v1013/buddy_discovery_page.dart",
+    "old": "当前没有符合条件的公开搭子。",
+    "new": "暂未找到搭子，试试其他城市或活动类型",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/buddy_v1013/buddy_discovery_page.dart",
+    "old": "原编号重试申请",
+    "new": "重试申请",
+    "source": "Existing authorized service response",
+    "reason": "Product wording and explanation relocation"
+  },
+  {
+    "page": "features/onboarding/presentation/first_use_onboarding_page.dart",
+    "old": "先从慢约进展开始",
+    "new": "查看匹配",
+    "source": "Existing first-use guide and current matching navigation",
+    "reason": "New-install guide still introduced the old Progress entry in candidate1011801"
+  },
+  {
+    "page": "features/onboarding/presentation/first_use_onboarding_page.dart",
+    "old": "在“进展”入口查看慢约进展和下一步。",
+    "new": "在“匹配”入口查看结果，回应你感兴趣的候选。",
+    "source": "Existing first-use guide and current matching navigation",
+    "reason": "New-install guide still introduced the old Progress entry in candidate1011801"
+  },
+  {
+    "page": "features/onboarding/presentation/first_use_onboarding_page.dart",
+    "old": "资料由你填写；是否还需补充，以页面之后显示的可靠提示为准。",
+    "new": "填写资料与偏好，页面会提示尚需准备的内容。",
+    "source": "Existing first-use guide and current matching navigation",
+    "reason": "New-install guide still introduced the old Progress entry in candidate1011801"
+  },
+  {
+    "page": "features/onboarding/presentation/first_use_onboarding_page.dart",
+    "old": "等待可靠的进展通知",
+    "new": "查看站内提醒",
+    "source": "Existing first-use guide and current matching navigation",
+    "reason": "New-install guide still introduced the old Progress entry in candidate1011801"
+  },
+  {
+    "page": "features/onboarding/presentation/first_use_onboarding_page.dart",
+    "old": "有可确认的安排或结果时，页面会显示相应说明；也可能暂时没有结果。",
+    "new": "匹配与消息提醒会显示在站内通知中。",
+    "source": "Existing first-use guide and current matching navigation",
+    "reason": "New-install guide still introduced the old Progress entry in candidate1011801"
+  },
+  {
+    "page": "features/onboarding/presentation/first_use_onboarding_page.dart",
+    "old": "符合条件后再使用消息",
+    "new": "双方同意后再聊天",
+    "source": "Existing first-use guide and current matching navigation",
+    "reason": "New-install guide still introduced the old Progress entry in candidate1011801"
+  },
+  {
+    "page": "features/onboarding/presentation/first_use_onboarding_page.dart",
+    "old": "只有服务确认可以继续交流后，消息入口才会开放。",
+    "new": "建立连接并互相同意消息后，就可以开始交流。",
+    "source": "Existing first-use guide and current matching navigation",
+    "reason": "New-install guide still introduced the old Progress entry in candidate1011801"
+  },
+  {
+    "page": "features/onboarding/presentation/first_use_onboarding_page.dart",
+    "old": "你可以跳过；之后可在“设置 > 新手引导”重新查看。完成本引导不代表账户设置或准备状态已经完成。",
+    "new": "可以随时跳过，之后可在“设置 > 新手引导”重新查看。资料与报名请按各自页面完成。",
+    "source": "Existing first-use guide and current matching navigation",
+    "reason": "New-install guide still introduced the old Progress entry in candidate1011801"
+  },
+  {
+    "page": "lib/features/journey_integration/journey_overview_page.dart",
+    "old": "我的匹配输入",
+    "new": "匹配资料与偏好",
+    "source": "Existing matching-inputs confirmation",
+    "reason": "Natural product terminology"
+  },
+  {
+    "page": "lib/features/me/presentation/pages/me_landing_page.dart",
+    "old": "我的匹配输入",
+    "new": "匹配资料与偏好",
+    "source": "Existing matching-inputs confirmation",
+    "reason": "Natural product terminology"
+  },
+  {
+    "page": "lib/features/slow_dating_v1012/slow_dating_journey_page.dart",
+    "old": "我的匹配输入",
+    "new": "匹配资料与偏好",
+    "source": "Existing matching-inputs confirmation",
+    "reason": "Natural product terminology"
+  },
+  {
+    "page": "lib/features/slow_dating_v1012/matching_input_page.dart",
+    "old": "我的匹配输入",
+    "new": "匹配资料与偏好",
+    "source": "Existing matching-inputs confirmation",
+    "reason": "Natural product terminology"
+  },
+  {
+    "page": "lib/features/profile/presentation/pages/profile_page.dart",
+    "old": "我的匹配输入",
+    "new": "匹配资料与偏好",
+    "source": "Existing matching-inputs confirmation",
+    "reason": "Natural product terminology"
+  },
+  {
+    "page": "lib/features/profile/presentation/pages/privacy_settings_page.dart",
+    "old": "我的匹配输入",
+    "new": "匹配资料与偏好",
+    "source": "Existing matching-inputs confirmation",
+    "reason": "Natural product terminology"
+  },
+  {
+    "page": "lib\\features\\profile\\avatar\\avatar_management_page.dart",
+    "old": "更换或移除头像；仅现有获准关系上下文可见",
+    "new": "更换或移除头像，仅向已获准的人展示",
+    "source": "Existing avatar audience contract",
+    "reason": "Remove diagnostic phrasing"
+  },
+  {
+    "page": "lib\\features\\user_automation\\user_state_page.dart",
+    "old": "授权说明 weekly_consent_v1",
+    "new": "当前授权说明",
+    "source": "Existing versioned consent remains in request body",
+    "reason": "Keep internal policy version out of user copy"
+  },
+  {
+    "page": "features/notification/presentation/pages/notification_center_page.dart",
+    "old": "慢约会、聊天和资料准备的关键回流会收在这里",
+    "new": "匹配、消息与资料提醒",
+    "source": "Existing notification reads and error state",
+    "reason": "Remove repetitive developer-style description"
+  },
+  {
+    "page": "features/notification/presentation/pages/notification_center_page.dart",
+    "old": "慢约会、聊天和资料准备的应用内回流中心",
+    "new": "匹配、消息与资料提醒",
+    "source": "Existing notification reads and error state",
+    "reason": "Remove repetitive developer-style description"
+  },
+  {
+    "page": "features/notification/presentation/pages/notification_center_page.dart",
+    "old": "暂时无法加载通知，请稍后重试。本次读取失败不代表任何领域结果。",
+    "new": "暂时无法加载通知，请稍后重试",
+    "source": "Existing notification reads and error state",
+    "reason": "Remove repetitive developer-style description"
+  },
+  {
+    "page": "features/notification/presentation/pages/notification_center_page.dart",
+    "old": "暂时无法确认通知内容，请刷新",
+    "new": "请稍候",
+    "source": "Existing notification reads and error state",
+    "reason": "Remove repetitive developer-style description"
+  },
+  {
+    "page": "features/notification/presentation/pages/notification_center_page.dart",
+    "old": "提醒内容示例及四条虚构提示",
+    "new": "移除常驻示例卡",
+    "source": "Presentation-only examples, actual notification cards retained",
+    "reason": "APP inspection found filler ahead of real notifications"
+  },
+  {
+    "page": "features/notification/presentation/state/notification_privacy_contract.dart",
+    "old": "请查看当前有权状态。",
+    "new": "点开查看详情",
+    "source": "Existing in-app privacy presentation",
+    "reason": "Natural wording; metadata minimization retained"
+  },
+  {
+    "page": "features/chat/presentation/pages/live_chat_page.dart",
+    "old": "我 · 服务器已保存，未读",
+    "new": "我 · 已发送，未读",
+    "source": "Existing persisted outgoing message status",
+    "reason": "Product status wording"
+  }
+]
