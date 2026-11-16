@@ -1,38 +1,49 @@
 # EliteSync-v10 当前工作流
 
-2026-11-16更新。v10.1.17 B3与v10.1.18 UI表达/交互一致性收口均已获Owner整版接受，接受范围、固定身份和保留限制分别见：
-- [v10.1.17 Owner接受](../versions/v10.1.17/OWNER_ACCEPTANCE_20261116.md)；
-- [v10.1.18 Owner接受](../versions/v10.1.18/OWNER_ACCEPTANCE_20261116.md)。
+更新：2026-11-17。当前处于产品架构设计讨论阶段，不是Codex实施阶段。
 
-## 当前审计状态
+## 当前权威产品决策
+
+Owner已冻结截至2026-11-17的Home与Matching规则，详见：
+[Owner产品设计冻结记录](../decisions/OWNER_HOME_MATCHING_PRODUCT_RULES_20261117.md)。
+
+该文件区分`OWNER_CONFIRMED`、`ADVISOR_PROPOSAL`、`OPEN`和`EXISTING_BASELINE`，是本轮后续「我的」页面讨论的产品设计基线。旧版已接受文件保留为历史权威，不被静默覆盖；未来完整V2架构合同应显式处理与旧Home/Discover目标的差异。
+
+## UI-AUDIT-01审计结果
 
 UI-AUDIT-01已完成并获GPT顾问具名范围接受：`ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS`。
 
-- 固定审计候选：`10.1.18-dev / 1011804`，包名`com.elitesync.v1018dev`，源码`1afa6940c37bc1b40aa3d05ea46fb47002f6455c`，工程交付`0442335733555b38970131af7d5327a84e3dcb33`。
+- 固定候选：`10.1.18-dev / 1011804`，包名`com.elitesync.v1018dev`，源码`1afa6940c37bc1b40aa3d05ea46fb47002f6455c`，工程交付`0442335733555b38970131af7d5327a84e3dcb33`。
 - 审计最终提交：`1d8b485bf4f314d42431bb62a293a3fef9e9c8af`。
 - 证据：36张去敏模拟器截图、16条主要功能逻辑链、14项UI/交互问题。
 - [审计报告](ui-current-state-audit-20261116/UI_CURRENT_STATE_AUDIT.md) · [截图manifest](ui-current-state-audit-20261116/SCREENSHOT_MANIFEST.json) · [顾问独立审阅](ui-current-state-audit-20261116/ADVISOR_REVIEW_20261116.md)。
 
-顾问确认审计材料足以支持下一阶段产品逻辑与信息架构讨论。所有NOT_RUN、UNKNOWN、NOT_TRACED继续保留；本次审计不等于完整端到端功能验收。
+审计建立的是事实基线，不是全部业务功能的端到端验收。所有NOT_RUN、UNKNOWN和NOT_TRACED继续保留。
 
-## 当前等待Owner与顾问讨论
+## 当前讨论主题：我的 Me 页面
 
-优先讨论：
-1. 首页是否改为社交内容优先，以及公开内容/好友内容的可见范围；
-2. 注册后Lifestyle探索与独立MBTI简版测评如何衔接；
-3. 私密基础资料、匹配输入、展示资料和星盘出生资料如何按来源复用，并保留逐用途授权；
-4. 实名认证真实供应商未接入时的占位方式，以及姓名、生日、出生地点/时刻各自的数据来源；
-5. 星盘自动生成是否为匹配必需条件，缺少出生时间/地点时如何处理；
-6. 匹配、Connection、Messaging Consent、Conversation、Relationship和Buddy的目标页面组织及必须保留的用户决定。
+下一步与Owner讨论：
+1. 个人资料如何分组：私密身份、出生资料、匹配输入、展示资料；
+2. Lifestyle与MBTI如何展示和修改；
+3. 星盘、八字、紫微等特色工具如何组织；
+4. 好友与Buddy如何归属；
+5. 隐私、身份核验、授权和自动化如何组织；
+6. 通知、账号及安全设置如何归属；
+7. 哪些字段可复用，哪些需要独立用途授权。
 
-## 视觉方向与实施门禁
+Personal Data Hub目前是顾问提出的概念方案，尚未被Owner确认为最终数据架构；讨论Me页面时需要进一步确认。用户资料页面不能把私密身份、匹配输入和对外展示合并成一个无差别的公开Profile。
 
-Owner已明确下一阶段视觉方向为**构成主义为主的二次元卡通画风**。讨论阶段只使用低分辨率设定图/低保真方向稿；不把写实摄影、水面写实反光或玻璃拟态作为主视觉。字体、字号、行高、按钮和安全区在设计阶段统一讨论。
+## 设计与实施门禁
 
-**全局UI与操作逻辑重构尚未授权。** 当前不创建新的Codex实施任务；先由Owner与GPT顾问确认目标信息架构、资料来源/授权规则和关键用户旅程，再制作低保真样例。得到Owner明确授权后，Codex方可开始实施。
+- 视觉方向：构成主义为主的二次元卡通画风。
+- 讨论图：低分辨率设定图/低保真方向稿优先。
+- 首页和匹配规则按Owner冻结记录保留；尚未明确的评论默认值、历史评论可见性、身份供应商、具体资料模型等仍为OPEN。
+- 四个一级入口和核心旅程讨论完成后，再形成完整V2产品架构合同和设计样例。
+- **当前不创建Codex实现任务，不修改产品代码、API/Web、数据库schema或业务数据。**
+- 未获得Owner单独授权前，不启动全局UI重构、B4、阶段C、main集成、正式发布或真实运营。
 
 ## 持续有效的产品与权限边界
 
-Match、Connection、Messaging Consent、Conversation、Relationship保持独立；Buddy独立于恋爱匹配。减少操作步骤不等于自动分享资料、自动接受候选、自动授予消息同意或自动确立正式关系。真实身份供应商、真实Push、支付、生产数据、main集成、正式发布和真实运营仍需独立授权。历史UNKNOWN、NOT_RUN、FAIL与已接受范围不因本次任务而改写。
+Match、Connection、Messaging Consent、Conversation、Relationship保持独立；Buddy独立于恋爱匹配。减少操作步骤不等于自动分享资料、自动接受候选、自动授予消息同意或自动确立正式关系。真实身份供应商、真实Push、支付、生产数据、main集成、正式发布和真实运营仍需独立授权。历史UNKNOWN、NOT_RUN、FAIL与已接受范围不因本次设计冻结而改写。
 
 Owner负责产品方向和保留决定；本地Codex负责日常执行；网页GPT顾问负责战略讨论及按Owner要求审阅成果。
