@@ -1,0 +1,33 @@
+请接续 EliteSync-v10 本地项目，并执行 UI-AUDIT-01「UI现状审计与功能逻辑链盘点」。
+
+任务书：
+docs/workflow/UI_CURRENT_STATE_AUDIT_TASK_20261116.md
+
+Owner接受记录：
+- docs/versions/v10.1.17/OWNER_ACCEPTANCE_20261116.md
+- docs/versions/v10.1.18/OWNER_ACCEPTANCE_20261116.md
+
+固定审计候选：
+- 10.1.18-dev / 1011804
+- applicationId: com.elitesync.v1018dev
+- APP source: 1afa6940c37bc1b40aa3d05ea46fb47002f6455c
+- fixed delivery: 0442335733555b38970131af7d5327a84e3dcb33
+- APK SHA256: eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a
+
+## 执行要求
+
+1. 继续使用当前既有本地Codex会话和稳定工程根。先检查本地root、remote、branch、HEAD、工作区/index、AVD、安装包身份和服务状态；只读AGENTS、ACTIVE_STATE当前块及CURRENT_WORKFLOW。
+2. 不盲目切换分支或工作目录，不pull/reset/rebase/stash/clean/prune，不force push。保护所有未提交成果、index、数据库、AVD、私有配置和原始证据。
+3. 只使用Android模拟器和虚构QA账号，不操作Owner手机、不使用真实用户或生产数据。
+4. 先核验安装候选确为1011804。优先使用当前已安装APP及既有模拟器；不wipe、不清除数据、不卸载现有版本。若身份不匹配，先记录并停止将截图标记为1011804。
+5. 按任务书采集主要页面的真实模拟器截图；优先一个模拟器，确有双账号画面需求才使用第二个。记录设备/AVD、Android版本、分辨率、density、字体缩放、主题和候选身份。
+6. 截图原始件留在本机私有目录；仅上传经过检查、去敏的截图副本。不得上传姓名、电话、生日、精确位置、私聊正文、token、凭据、内部ID或数据库原件。
+7. 梳理至少12条实际用户逻辑链，追踪页面/路由→用户操作→API→后端服务→持久化状态/权限→结果。无法验证处明确UNKNOWN/NOT_TRACED。
+8. 将Owner目标流程与当前真实实现逐项比较。特别区分Lifestyle Discovery和MBTI；实名核验供应商未接入；出生信息自动复用/星盘自动生成属于待分析的目标，不得写成现成功能。
+9. 重点记录当前页面文字密度、字体大小、配色、图片/文字比例、按钮状态可读性、入口发现、重复输入、跳转和授权点；每个问题关联截图ID/代码证据。
+10. 不修改任何产品源码、API/Web、数据库schema、业务数据、导航或按钮逻辑；不构建新版本、不启动B4/阶段C、不合main、不发布。
+11. 按任务书交付UI_CURRENT_STATE_AUDIT.md、SCREENSHOT_MANIFEST.json和必要的去敏模拟器截图，推送任务分支并完成同源固定回读。若本地工作区保护条件不允许安全同步，保留本地成果并记录PENDING_SYNC，不冒险覆盖。
+
+## 输出后停止
+
+完成审计后停止，不开始UI设计或实现。将审计报告和截图交给GPT顾问，与Owner共同确定构成主义为主的二次元卡通风格、目标信息架构、功能逻辑简化和低分辨率设定图方向后，再另行授权Codex实施。
