@@ -22,6 +22,9 @@ class MeLandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (const bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD')) {
+      return _B3MeLandingPage(restorationLocalBuild: restorationLocalBuild);
+    }
     final t = context.appTokens;
     return Scaffold(
       appBar: AppBar(
@@ -187,6 +190,227 @@ class MeLandingPage extends StatelessWidget {
       ),
     );
   }
+}
+
+class _B3MeLandingPage extends StatelessWidget {
+  const _B3MeLandingPage({required this.restorationLocalBuild});
+
+  final bool restorationLocalBuild;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = context.appTokens;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('我的'),
+        actions: [
+          IconButton(
+            tooltip: '设置',
+            icon: const Icon(Icons.settings_outlined),
+            onPressed: () => context.push(AppRouteNames.settings),
+          ),
+        ],
+      ),
+      body: ListView(
+        padding: EdgeInsets.fromLTRB(
+          t.spacing.pageHorizontal,
+          t.spacing.md,
+          t.spacing.pageHorizontal,
+          112,
+        ),
+        children: [
+          const _MeQuickGroup(
+            title: '资料与偏好',
+            children: [
+              _MeQuickEntry(
+                key: MeLandingPage.privateIdentityKey,
+                title: '私密资料',
+                icon: Icons.badge_outlined,
+                route: AppRouteNames.mePrivateIdentity,
+              ),
+              _MeQuickEntry(
+                key: MeLandingPage.matchingInputsKey,
+                title: '我的匹配输入',
+                icon: Icons.tune_rounded,
+                route: AppRouteNames.meMatchingInputs,
+              ),
+              _MeQuickEntry(
+                title: '生活方式探索',
+                icon: Icons.landscape_outlined,
+                route: '/lifestyle-discovery',
+              ),
+              _MeQuickEntry(
+                key: MeLandingPage.showcaseKey,
+                title: '展示资料',
+                icon: Icons.auto_awesome_outlined,
+                route: AppRouteNames.meShowcase,
+              ),
+            ],
+          ),
+          const _MeQuickGroup(
+            title: '隐私与账号',
+            children: [
+              _MeQuickEntry(
+                key: MeLandingPage.privacySettingsKey,
+                title: '隐私控制',
+                icon: Icons.privacy_tip_outlined,
+                route: AppRouteNames.mePrivacySettings,
+              ),
+              _MeQuickEntry(
+                title: '设置与账号安全',
+                icon: Icons.security_outlined,
+                route: AppRouteNames.settings,
+              ),
+            ],
+          ),
+          if (restorationLocalBuild) ...[
+            const _MeQuickGroup(
+              title: '自我了解工具',
+              children: [
+                _MeQuickEntry(
+                  title: '可选 MBTI 测评',
+                  icon: Icons.psychology_outlined,
+                  route: AppRouteNames.mbtiCenter,
+                ),
+                _MeQuickEntry(
+                  title: '三盘本命',
+                  icon: Icons.auto_awesome_outlined,
+                  route: AppRouteNames.astroProfile,
+                ),
+                _MeQuickEntry(
+                  title: '动态星盘与关系盘',
+                  icon: Icons.calendar_month_outlined,
+                  route: AppRouteNames.astroAdvancedPreview,
+                ),
+                _MeQuickEntry(
+                  title: '已存八字',
+                  icon: Icons.history_outlined,
+                  route: AppRouteNames.astroBazi,
+                ),
+              ],
+            ),
+            const Text('工具自愿使用，非心理诊断，也不作为匹配硬筛选。'),
+          ],
+          SizedBox(height: t.spacing.md),
+          const AvatarManagementEntry(),
+          const _MeGroup(
+            title: '参与与记录',
+            children: [
+              _MePurposeEntry(
+                title: '状态与自动化',
+                subtitle: '查看同一规范页面中的持续参与授权和执行结果。',
+                icon: Icons.manage_accounts_outlined,
+                route: '/user-state',
+                push: true,
+              ),
+              _MePurposeEntry(
+                key: MeLandingPage.readinessKey,
+                title: '准备状态',
+                subtitle: '查看准备条件与本人下一步。',
+                icon: Icons.fact_check_outlined,
+                route: AppRouteNames.meReadiness,
+                push: true,
+              ),
+            ],
+          ),
+          if (restorationLocalBuild) ...[
+            SettingsItemTile(
+              key: MeLandingPage.accountStatusKey,
+              title: '资格、状态与申诉',
+              subtitle: '查看参与资格、本人处理状态与申诉入口。',
+              icon: Icons.shield_outlined,
+              onTap: () => Navigator.of(context, rootNavigator: true).push(
+                MaterialPageRoute<void>(
+                  builder: (_) =>
+                      const AccountStatusPage(restorationLocalBuild: true),
+                ),
+              ),
+            ),
+            const _MePurposeEntry(
+              title: '站内通知',
+              subtitle: '通知与聊天会话分别读取和处理已读。',
+              icon: Icons.notifications_none_rounded,
+              route: AppRouteNames.notificationCenter,
+              push: true,
+            ),
+            const _MePurposeEntry(
+              title: '动态广场',
+              subtitle: '查看与管理本人动态和当前有权访问的好友动态。',
+              icon: Icons.dynamic_feed_outlined,
+              route: AppRouteNames.statusSquare,
+              push: true,
+            ),
+          ],
+          SizedBox(height: t.spacing.sm),
+          Text(
+            '私密资料与展示资料分别管理；公开、分享和互动仍由你明确决定。',
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: t.textSecondary),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MeQuickGroup extends StatelessWidget {
+  const _MeQuickGroup({required this.title, required this.children});
+
+  final String title;
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.only(bottom: 12),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(title, style: Theme.of(context).textTheme.titleSmall),
+        const SizedBox(height: 8),
+        LayoutBuilder(
+          builder: (context, constraints) => Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final entry in children)
+                SizedBox(width: (constraints.maxWidth - 8) / 2, child: entry),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+class _MeQuickEntry extends StatelessWidget {
+  const _MeQuickEntry({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.route,
+  });
+
+  final String title;
+  final IconData icon;
+  final String route;
+
+  @override
+  Widget build(BuildContext context) => OutlinedButton(
+    style: OutlinedButton.styleFrom(
+      minimumSize: const Size.fromHeight(56),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      alignment: Alignment.centerLeft,
+    ),
+    onPressed: () => context.push(route),
+    child: Row(
+      children: [
+        Icon(icon, size: 20),
+        const SizedBox(width: 8),
+        Expanded(child: Text(title)),
+      ],
+    ),
+  );
 }
 
 class _MeGroup extends StatelessWidget {

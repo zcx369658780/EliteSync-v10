@@ -391,6 +391,12 @@ class _LiveConversationListPageState
       appBar: AppBar(
         title: const Text('消息'),
         actions: [
+          if (const bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD'))
+            IconButton(
+              tooltip: '站内通知',
+              onPressed: () => context.push('/notifications'),
+              icon: const Icon(Icons.notifications_none_outlined),
+            ),
           IconButton(
             onPressed: _busy ? null : _refresh,
             icon: const Icon(Icons.refresh),

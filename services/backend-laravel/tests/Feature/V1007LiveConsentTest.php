@@ -69,6 +69,9 @@ final class V1007LiveConsentTest extends TestCase
         $this->postJson('/api/v1/messages', $payload)->assertOk()->assertJsonPath('idempotent_replay', true);
         Sanctum::actingAs($this->b);
         $this->getJson('/api/v1/messages?peer_id='.$this->a->id)->assertOk()->assertJsonPath('items.0.content', 'v1007 text');
+        $this->assertFalse((bool) ChatMessage::find($sent->json('id'))->is_read);
+        $this->postJson('/api/v1/messages/ack', ['peer_id' => $this->a->id,
+            'message_ids' => [$sent->json('id')]])->assertOk();
         $this->assertTrue(ChatMessage::find($sent->json('id'))->is_read);
         $this->act('consent', 'revoke', 2, $this->b)->assertOk();
         $this->getJson('/api/v1/messages?peer_id='.$this->a->id)->assertNotFound();

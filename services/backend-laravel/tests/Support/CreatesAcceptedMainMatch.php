@@ -11,6 +11,32 @@ trait CreatesAcceptedMainMatch
 {
     private function createAcceptedMatchContext(User $a, User $b): void
     {
+        // Match decisions now recheck the current preparation contract. Give
+        // this controlled fixture valid inputs instead of weakening that gate.
+        foreach ([$a, $b] as $user) {
+            $user->update(['verify_status' => 'approved']);
+            $required = max(1, (int) config('questionnaire.required_answer_count', 10));
+            for ($i = 0; $i < $required; $i++) {
+                $question = \App\Models\QuestionnaireQuestion::firstOrCreate(
+                    ['question_key' => 'accepted-context-fixture-'.$i],
+                    ['category' => 'test', 'content' => 'Fictional context preference',
+                        'question_type' => 'single_choice', 'options' => [['option_id' => 'A']],
+                        'enabled' => true, 'version' => 1],
+                );
+                \App\Models\QuestionnaireAnswer::updateOrCreate(
+                    ['user_id' => $user->id, 'questionnaire_question_id' => $question->id],
+                    ['answer_payload' => ['selected_answer' => ['A']], 'version' => 1],
+                );
+            }
+            $input = app(\App\Services\MatchingInputService::class);
+            $input->save($user->id, [
+                'revision' => $input->read($user->fresh())['revision'], 'confirm' => true,
+                'birthday' => '1995-01-02', 'gender' => 'male', 'city_key' => 'QA',
+                'relationship_goal' => 'marriage', 'age_mode' => 'adult_any',
+                'age_min' => null, 'age_max' => null, 'region_mode' => 'same_city',
+            ]);
+            $this->completeLifestyleFixture($user->id);
+        }
         $stamp = ['created_at' => now(), 'updated_at' => now()];
         DB::table('dating_round_channels')->insertOrIgnore(['channel_key' => 'l13-compat-test'] + $stamp);
         $round = DB::table('dating_rounds')->insertGetId([

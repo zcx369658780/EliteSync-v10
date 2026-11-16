@@ -125,18 +125,22 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
             ),
             child: const Text('本人慢约历史'),
           ),
-          OutlinedButton(
-            onPressed: () => Navigator.of(
-              context,
-            ).push(MaterialPageRoute<void>(builder: (_) => const BuddyPage())),
-            child: const Text('独立吃饭 / 学习搭子'),
-          ),
-          OutlinedButton(
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => const StatusSquarePage()),
+          if (!const bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD')) ...[
+            OutlinedButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(builder: (_) => const BuddyPage()),
+              ),
+              child: const Text('独立吃饭 / 学习搭子'),
             ),
-            child: const Text('好友可见社区'),
-          ),
+            OutlinedButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const StatusSquarePage(),
+                ),
+              ),
+              child: const Text('好友可见社区'),
+            ),
+          ],
         ],
       ),
       if (data != null) ...[

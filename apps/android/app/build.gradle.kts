@@ -48,6 +48,10 @@ val requestedFlutterDartDefines = (
 val requestedDartDefineValues = requestedFlutterDartDefines.split(Regex("[;,]"))
     .map { it.trim() }.filter { it.isNotEmpty() }
 val isV1015LocalBuild = requestedDartDefineValues.contains("ELITESYNC_V1015_LOCAL_BUILD=true")
+val isV1017LocalBuild = requestedDartDefineValues.contains("ELITESYNC_V1017_LOCAL_BUILD=true")
+require(!isV1017LocalBuild || isV1015LocalBuild) {
+    "v10.1.17 requires the existing local restoration runtime"
+}
 // v10.1.5 continues the accepted v10.1.4 product routes. Carry that Dart gate
 // into the new build instead of silently returning to the legacy app entry.
 val flutterDartDefines = if (isV1015LocalBuild) {
@@ -146,8 +150,8 @@ android {
         targetSdk = 35
         // Versioning rule: major.minor.patch[alpha suffix]
         // versionCode uses an expanded numeric form to keep suffix releases ordered.
-        versionCode = if (isV1015LocalBuild) 1011601 else if (isV1014LocalBuild) 1010401 else if (isV1013LocalBuild) 1010301 else if (isV1012LocalBuild) 1010201 else if (isRelationshipDevBuild) 1010101 else 80400
-        versionName = if (isV1015LocalBuild) "10.1.16-dev" else if (isV1014LocalBuild) "10.1.4-dev" else if (isV1013LocalBuild) "10.1.3-dev" else if (isV1012LocalBuild) "10.1.2-dev" else if (isRelationshipDevBuild) "10.1.1-dev" else "0.08.04"
+        versionCode = if (isV1017LocalBuild) 1011701 else if (isV1015LocalBuild) 1011601 else if (isV1014LocalBuild) 1010401 else if (isV1013LocalBuild) 1010301 else if (isV1012LocalBuild) 1010201 else if (isRelationshipDevBuild) 1010101 else 80400
+        versionName = if (isV1017LocalBuild) "10.1.17-dev" else if (isV1015LocalBuild) "10.1.16-dev" else if (isV1014LocalBuild) "10.1.4-dev" else if (isV1013LocalBuild) "10.1.3-dev" else if (isV1012LocalBuild) "10.1.2-dev" else if (isRelationshipDevBuild) "10.1.1-dev" else "0.08.04"
         ndk {
             // Google Play 16KB page-size compliance: avoid x86_64 native libs from third-party SDKs.
             // Keep ARM ABIs for real-device testing and release publishing.
@@ -184,7 +188,8 @@ android {
             if (isV1013LocalBuild) { applicationIdSuffix = ".v1013dev" }
             if (isV1014LocalBuild) { applicationIdSuffix = ".v1014dev" }
             if (isV1012LocalBuild) { applicationIdSuffix = ".v1012dev" }
-            if (isV1015LocalBuild) { applicationIdSuffix = ".v1015dev" }
+            if (isV1017LocalBuild) { applicationIdSuffix = ".v1017dev" }
+            else if (isV1015LocalBuild) { applicationIdSuffix = ".v1015dev" }
             buildConfigField("boolean", "ELITESYNC_V1006_LOCAL_BUILD", isV1006LocalBuild.toString())
             buildConfigField("boolean", "ELITESYNC_V1015_LOCAL_BUILD", isV1015LocalBuild.toString())
             buildConfigField("String", "API_BASE_URL", if (isV1015LocalBuild) "\"http://127.0.0.1:8021/\"" else if (isV1014LocalBuild) "\"http://127.0.0.1:8019/\"" else if (isV1013LocalBuild) "\"http://127.0.0.1:8017/\"" else if (isV1012LocalBuild) "\"http://127.0.0.1:8015/\"" else if (isRelationshipDevBuild) "\"http://127.0.0.1:8012/\"" else if (isV1011LocalBuild) "\"http://127.0.0.1:8011/\"" else if (isV1010LocalBuild) "\"http://127.0.0.1:8010/\"" else if (isV1006LocalBuild) "\"http://127.0.0.1:8000/\"" else "\"https://slowdate.top/\"")

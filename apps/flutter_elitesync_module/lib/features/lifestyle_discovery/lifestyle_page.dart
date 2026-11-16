@@ -356,7 +356,14 @@ class _LifestylePageState extends ConsumerState<LifestyleDiscoveryPage>
                                             ),
                                             onPressed: enabled
                                                 ? () async {
-                                                    final next = _index + 1;
+                                                    final next =
+                                                        const bool.fromEnvironment(
+                                                              'ELITESYNC_V1017_LOCAL_BUILD',
+                                                            ) &&
+                                                            data['status'] ==
+                                                                'completed'
+                                                        ? scenes.length
+                                                        : _index + 1;
                                                     if (await controller.answer(
                                                           '${scene['id']}',
                                                           '${option['id']}',
@@ -432,7 +439,13 @@ class _LifestylePageState extends ConsumerState<LifestyleDiscoveryPage>
                                   const SizedBox(height: 16),
                                   FilledButton(
                                     onPressed: _exit,
-                                    child: const Text('完成，进入社区'),
+                                    child: Text(
+                                      const bool.fromEnvironment(
+                                            'ELITESYNC_V1017_LOCAL_BUILD',
+                                          )
+                                          ? '完成并返回'
+                                          : '完成，进入社区',
+                                    ),
                                   ),
                                   TextButton(
                                     onPressed: enabled

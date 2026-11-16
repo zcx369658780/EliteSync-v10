@@ -25,7 +25,7 @@ const _targetId = '00000000-0000-4000-8000-000000000014';
 
 class _Sessions extends SessionNotifier {
   @override
-  Future<SessionState> build() async => _state(1);
+  SessionState build() => _state(1);
   void change(int id) => state = AsyncData(_state(id));
   SessionState _state(int id) => SessionState(
     status: AuthStatus.authenticated,

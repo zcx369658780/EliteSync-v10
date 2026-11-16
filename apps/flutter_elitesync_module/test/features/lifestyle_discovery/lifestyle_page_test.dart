@@ -65,6 +65,29 @@ void main() {
     await tester.pumpAndSettle();
   }
 
+  testWidgets(
+    'completed preference edit returns directly to saved summary in B3',
+    (tester) async {
+      if (!const bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD')) return;
+      final scenes = (data['bank'] as Map)['scenes'] as List;
+      data['status'] = 'completed';
+      for (final scene in scenes) {
+        (data['answers'] as Map)[scene['id']] = {
+          'option_id': scene['options'][0]['id'],
+        };
+      }
+      await mount(tester);
+      await tester.tap(find.text('居所声音氛围'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('option-background_sound')));
+      await tester.pumpAndSettle();
+      expect(find.text('你的生活方式偏好'), findsOneWidget);
+      expect(data['revision'], 1);
+      expect((data['answers'] as Map).length, 5);
+      expect(find.text('完成并返回'), findsOneWidget);
+    },
+  );
+
   testWidgets('welcome skip saves skipped and exits freely', (tester) async {
     var exited = false;
     await mount(tester, onExit: () => exited = true);

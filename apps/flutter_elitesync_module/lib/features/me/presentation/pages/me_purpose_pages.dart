@@ -4,18 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/privacy_settings_page.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/pages/edit_profile_page.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/pages/personal_showcase_page.dart';
 
 class PrivateIdentityPurposePage extends StatelessWidget {
   const PrivateIdentityPurposePage({super.key});
 
   @override
-  Widget build(BuildContext context) => const _CompatibilityPurposePage(
-    title: '私密资料',
-    description: '这里用于账户私密身份资料，不代表公开个人主页，也不自动授权匹配使用。',
-    compatibilityNote: '在资料编辑页管理个人信息。编辑资料不会自动改变受众，也不代表已满足匹配参与条件。',
-    actionLabel: '编辑私密资料',
-    actionRoute: AppRouteNames.editProfile,
-  );
+  Widget build(BuildContext context) =>
+      const bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD')
+      ? const EditProfilePage()
+      : const _CompatibilityPurposePage(
+          title: '私密资料',
+          description: '这里用于账户私密身份资料，不代表公开个人主页，也不自动授权匹配使用。',
+          compatibilityNote: '在资料编辑页管理个人信息。编辑资料不会自动改变受众，也不代表已满足匹配参与条件。',
+          actionLabel: '编辑私密资料',
+          actionRoute: AppRouteNames.editProfile,
+        );
 }
 
 class MatchingInputsPurposePage extends StatelessWidget {
@@ -35,13 +40,16 @@ class ShowcasePurposePage extends StatelessWidget {
   const ShowcasePurposePage({super.key});
 
   @override
-  Widget build(BuildContext context) => const _CompatibilityPurposePage(
-    title: '展示资料',
-    description: '编辑本人展示资料和照片，选择可查看的关系范围。',
-    compatibilityNote: '草稿保存后可提交审核。审核通过后由你明确发布，已有发布版也可撤回。',
-    actionLabel: '编辑展示资料',
-    actionRoute: AppRouteNames.personalShowcase,
-  );
+  Widget build(BuildContext context) =>
+      const bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD')
+      ? const PersonalShowcasePage()
+      : const _CompatibilityPurposePage(
+          title: '展示资料',
+          description: '编辑本人展示资料和照片，选择可查看的关系范围。',
+          compatibilityNote: '草稿保存后可提交审核。审核通过后由你明确发布，已有发布版也可撤回。',
+          actionLabel: '编辑展示资料',
+          actionRoute: AppRouteNames.personalShowcase,
+        );
 }
 
 class PrivacySettingsPurposePage extends StatelessWidget {

@@ -43,7 +43,7 @@ class _UserStatePageState extends SessionBoundPage<UserStatePage>
           '授权持续参与？',
           '你授权系统在后续每周已有开放轮次中检查资格并协调报名。'
               '授权持续至你暂停、撤销或授权说明版本更新。'
-              '暂停或撤销会暂停今后报名，当前提案按原规则保留。'
+              '暂停或撤销只暂停已委托给本授权的报名，独立手动报名保持原状态。当前提案按原规则保留。'
               '匹配选择、连接、消息同意和正式关系仍由你逐项决定。',
         )) {
       return;
@@ -77,45 +77,48 @@ class _UserStatePageState extends SessionBoundPage<UserStatePage>
     final ready =
         readiness['eligible'] == true && lifestyle['code'] == 'completed';
     final code = authorization['code'];
-    return frame('状态与自动化', [
+    const b3 = bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD');
+    return frame(b3 ? '持续参与与自动化' : '状态与自动化', [
       if (data != null) ...[
-        Text('当前状态', style: Theme.of(context).textTheme.titleLarge),
-        Text(
-          objectMap(domains['account'])['code'] == 'AVAILABLE'
-              ? '账号可用'
-              : '请查看账号状态',
-        ),
-        Text(
-          '生活方式探索 ${lifestyle['answered_count'] ?? 0} / ${lifestyle['scene_count'] ?? 5}',
-        ),
-        if (lifestyle['code'] != 'completed')
-          OutlinedButton(
-            onPressed: () => _open(const LifestyleDiscoveryPage()),
-            child: const Text('继续生活方式探索'),
+        if (!b3) ...[
+          Text('当前状态', style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            objectMap(domains['account'])['code'] == 'AVAILABLE'
+                ? '账号可用'
+                : '请查看账号状态',
           ),
-        Text(preparationReasonLabel(readiness['code'])),
-        Text('慢约参与 ${journeyStateLabel(participation['code'])}'),
-        Text('当前轮次 ${journeyStateLabel(round['code'])}'),
-        Text(
-          proposal['code'] == 'NONE'
-              ? '当前没有提案'
-              : proposal['code'] == 'RECONCILIATION_REQUIRED'
-              ? '提案已到期，进入旅程查看业务更新'
-              : '本人提案 ${journeyStateLabel(proposal['code'])}',
-        ),
-        OutlinedButton(
-          onPressed: () => _open(const SlowDatingJourneyPage()),
-          child: const Text('查看准备状态'),
-        ),
-        Text(
-          '资料分享授权 ${objectMap(domains['privacy'])['shared_field_count'] ?? 0} 项',
-        ),
-        Text(
-          objectMap(domains['notifications'])['silent'] == true
-              ? '站内通知已设为静默'
-              : '站内通知按本人分类偏好投递',
-        ),
-        const SizedBox(height: 12),
+          Text(
+            '生活方式探索 ${lifestyle['answered_count'] ?? 0} / ${lifestyle['scene_count'] ?? 5}',
+          ),
+          if (lifestyle['code'] != 'completed')
+            OutlinedButton(
+              onPressed: () => _open(const LifestyleDiscoveryPage()),
+              child: const Text('继续生活方式探索'),
+            ),
+          Text(preparationReasonLabel(readiness['code'])),
+          Text('慢约参与 ${journeyStateLabel(participation['code'])}'),
+          Text('当前轮次 ${journeyStateLabel(round['code'])}'),
+          Text(
+            proposal['code'] == 'NONE'
+                ? '当前没有提案'
+                : proposal['code'] == 'RECONCILIATION_REQUIRED'
+                ? '提案已到期，进入旅程查看业务更新'
+                : '本人提案 ${journeyStateLabel(proposal['code'])}',
+          ),
+          OutlinedButton(
+            onPressed: () => _open(const SlowDatingJourneyPage()),
+            child: const Text('查看准备状态'),
+          ),
+          Text(
+            '资料分享授权 ${objectMap(domains['privacy'])['shared_field_count'] ?? 0} 项',
+          ),
+          Text(
+            objectMap(domains['notifications'])['silent'] == true
+                ? '站内通知已设为静默'
+                : '站内通知按本人分类偏好投递',
+          ),
+          const SizedBox(height: 12),
+        ],
         Card(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -139,7 +142,7 @@ class _UserStatePageState extends SessionBoundPage<UserStatePage>
                       ? '有效期持续至你暂停、撤销或授权说明版本更新。'
                       : '有效期至 ${authorization['expires_at']}',
                 ),
-                const Text('暂停或撤销会暂停今后报名，当前提案按原规则保留。'),
+                const Text('暂停或撤销只暂停已委托给本授权的报名，独立手动报名保持原状态。当前提案按原规则保留。'),
                 const SizedBox(height: 12),
                 if (task.isNotEmpty) ...[
                   Text('最近任务 ${_taskLabel(task['code'])}'),
@@ -198,6 +201,13 @@ class _UserStatePageState extends SessionBoundPage<UserStatePage>
             ),
           ),
         ),
+        if (b3) ...[
+          Text(preparationReasonLabel(readiness['code'])),
+          OutlinedButton(
+            onPressed: () => _open(const SlowDatingJourneyPage()),
+            child: const Text('查看准备状态'),
+          ),
+        ],
       ],
     ]);
   }

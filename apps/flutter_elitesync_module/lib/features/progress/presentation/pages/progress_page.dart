@@ -1,4 +1,5 @@
 import 'package:flutter_elitesync_module/features/platform_v1014/platform_events_page.dart';
+import '../../../journey_integration/journey_overview_page.dart';
 import 'package:flutter_elitesync_module/features/buddy_v1013/buddy_page.dart';
 import 'package:flutter_elitesync_module/features/status/presentation/pages/status_square_page.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,9 @@ class ProgressPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (const bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD')) {
+      return const JourneyOverviewPage(detailed: true);
+    }
     const v1014 = bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD');
     const v1013 = bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD') || v1014;
     final projection = v1013

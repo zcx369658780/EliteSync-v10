@@ -1,4 +1,5 @@
 import 'package:flutter_elitesync_module/features/platform_v1014/platform_home_page.dart';
+import '../../../journey_integration/journey_overview_page.dart';
 import 'package:flutter_elitesync_module/features/slow_dating_v1012/slow_dating_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +15,9 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (const bool.fromEnvironment('ELITESYNC_V1017_LOCAL_BUILD')) {
+      return const JourneyOverviewPage();
+    }
     if (const bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD')) {
       return const PlatformHomePage();
     }

@@ -1,4 +1,5 @@
 import '../../features/user_automation/user_state_page.dart';
+import '../../features/platform_v1014/platform_events_page.dart';
 import '../../features/lifestyle_discovery/lifestyle_page.dart';
 import '../../features/auth/presentation/providers/register_form_provider.dart';
 import 'package:flutter_elitesync_module/features/buddy_v1013/buddy_page.dart';
@@ -120,6 +121,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
+      if (env.restorationLocalBuild)
+        GoRoute(
+          path: '/platform-events',
+          builder: (context, state) => const PlatformEventsPage(),
+        ),
       GoRoute(
         path: '/user-state',
         builder: (context, state) => const UserStatePage(),

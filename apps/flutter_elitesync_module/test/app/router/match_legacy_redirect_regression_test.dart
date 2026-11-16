@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/slow_dating_v1012/slow_dating_journey_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
@@ -85,6 +86,8 @@ String _currentPath(WidgetTester tester) {
 }
 
 void main() {
+  const localJourney = bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD') || bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD') || bool.fromEnvironment('ELITESYNC_V1014_LOCAL_BUILD');
+  final readinessPage = localJourney ? SlowDatingJourneyPage : ReadinessPurposePage;
   const legacyMatchPaths = <String>[
     AppRouteNames.match,
     AppRouteNames.matchCountdown,
@@ -118,7 +121,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 500));
 
     expect(_currentPath(tester), AppRouteNames.meReadiness);
-    expect(find.byType(ReadinessPurposePage), findsOneWidget);
+    expect(find.byType(readinessPage), findsOneWidget);
     expect(find.byType(MatchShellPage), findsNothing);
   });
 
@@ -133,7 +136,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 500));
 
       expect(_currentPath(tester), AppRouteNames.meReadiness);
-      expect(find.byType(ReadinessPurposePage), findsOneWidget);
+      expect(find.byType(readinessPage), findsOneWidget);
       expect(find.byType(MatchShellPage), findsNothing);
     });
   }
@@ -148,7 +151,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 500));
 
     expect(_currentPath(tester), AppRouteNames.meReadiness);
-    expect(find.byType(ReadinessPurposePage), findsOneWidget);
+    expect(find.byType(readinessPage), findsOneWidget);
     expect(find.byType(MatchShellPage), findsNothing);
   });
 }
