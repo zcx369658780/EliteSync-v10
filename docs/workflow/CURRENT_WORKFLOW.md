@@ -4,29 +4,35 @@
 - [v10.1.17 Owner接受](../versions/v10.1.17/OWNER_ACCEPTANCE_20261116.md)；
 - [v10.1.18 Owner接受](../versions/v10.1.18/OWNER_ACCEPTANCE_20261116.md)。
 
-当前任务为`UI-AUDIT-01`：在固定候选`10.1.18-dev / 1011804`（包名`com.elitesync.v1018dev`，源码`1afa6940c37bc1b40aa3d05ea46fb47002f6455c`，交付`0442335733555b38970131af7d5327a84e3dcb33`）上，使用Android模拟器采集主要页面真实截图，并梳理当前主要功能逻辑链。任务书：[UI_CURRENT_STATE_AUDIT_TASK_20261116.md](UI_CURRENT_STATE_AUDIT_TASK_20261116.md)；Codex启动指令：[UI_CURRENT_STATE_AUDIT_START_PROMPT_20261116.txt](UI_CURRENT_STATE_AUDIT_START_PROMPT_20261116.txt)。
+## 当前审计状态
 
-## UI-AUDIT-01完成节点
+UI-AUDIT-01已完成并获GPT顾问具名范围接受：`ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS`。
 
-现状审计已完成并停止。固定证据提交`fd2a0aa7037567f4c368d4bed5bd5e0f420b89d0`经同源SSH fetch回读，38份文件Blob匹配，36张截图副本逐张哈希与去敏检查通过。[审计报告](ui-current-state-audit-20261116/UI_CURRENT_STATE_AUDIT.md)含16条逻辑链与14项问题/建议，缺失及未运行事项明确记录。顾问与Owner对本次审计材料的接受为PENDING，下一步为讨论目标信息架构与视觉方向。
+- 固定审计候选：`10.1.18-dev / 1011804`，包名`com.elitesync.v1018dev`，源码`1afa6940c37bc1b40aa3d05ea46fb47002f6455c`，工程交付`0442335733555b38970131af7d5327a84e3dcb33`。
+- 审计最终提交：`1d8b485bf4f314d42431bb62a293a3fef9e9c8af`。
+- 证据：36张去敏模拟器截图、16条主要功能逻辑链、14项UI/交互问题。
+- [审计报告](ui-current-state-audit-20261116/UI_CURRENT_STATE_AUDIT.md) · [截图manifest](ui-current-state-audit-20261116/SCREENSHOT_MANIFEST.json) · [顾问独立审阅](ui-current-state-audit-20261116/ADVISOR_REVIEW_20261116.md)。
 
-模拟器已停止、数据保留，应用最后恢复QA-A及默认字体。原保护库和具名私有资产核对一致，21表摘要一致。以下保留本次审计范围与持续边界，后续UI实施需独立授权。
+顾问确认审计材料足以支持下一阶段产品逻辑与信息架构讨论。所有NOT_RUN、UNKNOWN、NOT_TRACED继续保留；本次审计不等于完整端到端功能验收。
 
-## 当前任务边界
+## 当前等待Owner与顾问讨论
 
-- 仅做现状观察、截图、页面/路由清单、功能逻辑链与操作简化机会盘点。
-- 使用虚构QA账号和Android模拟器；不操作Owner手机，不使用真实用户或生产数据。
-- 原始截图与私有日志留在Owner本机；仅上传经去敏且适合顾问审阅的截图副本。
-- 不修改产品源码、API/Web、数据库schema、业务配置、导航、按钮行为或versionCode。
-- 不启动全局UI重构，不启动B4或阶段C，不合main、不正式发布、不运营。
-- 任务完成后停止，等待Owner与GPT顾问基于事实材料讨论目标信息架构、操作逻辑和视觉方向。
+优先讨论：
+1. 首页是否改为社交内容优先，以及公开内容/好友内容的可见范围；
+2. 注册后Lifestyle探索与独立MBTI简版测评如何衔接；
+3. 私密基础资料、匹配输入、展示资料和星盘出生资料如何按来源复用，并保留逐用途授权；
+4. 实名认证真实供应商未接入时的占位方式，以及姓名、生日、出生地点/时刻各自的数据来源；
+5. 星盘自动生成是否为匹配必需条件，缺少出生时间/地点时如何处理；
+6. 匹配、Connection、Messaging Consent、Conversation、Relationship和Buddy的目标页面组织及必须保留的用户决定。
 
-## 下一阶段设计方向（尚未授权实施）
+## 视觉方向与实施门禁
 
-Owner已明确：构成主义为主的二次元卡通画风；讨论阶段的UI图使用低分辨率设定图/低保真方向稿。此前写实摄影、水面写实反光和玻璃拟态稿不作为已接受的视觉基调。字体大小与细节规范可在后续设计阶段继续讨论。
+Owner已明确下一阶段视觉方向为**构成主义为主的二次元卡通画风**。讨论阶段只使用低分辨率设定图/低保真方向稿；不把写实摄影、水面写实反光或玻璃拟态作为主视觉。字体、字号、行高、按钮和安全区在设计阶段统一讨论。
+
+**全局UI与操作逻辑重构尚未授权。** 当前不创建新的Codex实施任务；先由Owner与GPT顾问确认目标信息架构、资料来源/授权规则和关键用户旅程，再制作低保真样例。得到Owner明确授权后，Codex方可开始实施。
 
 ## 持续有效的产品与权限边界
 
 Match、Connection、Messaging Consent、Conversation、Relationship保持独立；Buddy独立于恋爱匹配。减少操作步骤不等于自动分享资料、自动接受候选、自动授予消息同意或自动确立正式关系。真实身份供应商、真实Push、支付、生产数据、main集成、正式发布和真实运营仍需独立授权。历史UNKNOWN、NOT_RUN、FAIL与已接受范围不因本次任务而改写。
 
-Owner负责产品方向和保留决定；本地Codex负责日常执行；网页GPT顾问负责战略讨论及按Owner要求审阅本次审计材料。不得将本次审计授权解释为UI实施授权。
+Owner负责产品方向和保留决定；本地Codex负责日常执行；网页GPT顾问负责战略讨论及按Owner要求审阅成果。
