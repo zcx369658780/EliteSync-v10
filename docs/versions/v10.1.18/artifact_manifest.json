@@ -30,13 +30,16 @@
     "AC18-07": "PASS_IN_NAMED_SCOPE",
     "AC18-08": "PASS_IN_NAMED_SCOPE"
   },
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
   "owner_acceptance": "PENDING",
   "remote_readback": {
     "status": "PASS_SAME_ORIGIN_FIXED_PAYLOAD_READBACK",
     "payload_commit": "f404a7e9ad49331bb331f9460b09a98b9e183252",
     "receipt": "evidence/REMOTE_READBACK_RECEIPT.json",
-    "final_closeout": "Final branch HEAD verified in Owner-local final-readback-private.json and final handoff"
+    "final_closeout": "Final branch HEAD verified in Owner-local final-readback-private.json and final handoff",
+    "final_closeout_commit": "0442335733555b38970131af7d5327a84e3dcb33",
+    "final_branch_head": "0442335733555b38970131af7d5327a84e3dcb33",
+    "final_branch_head_readback": "PASS_GITHUB_BRANCH_REF_AND_FIXED_FILE_READBACK"
   },
   "files": [
     {
@@ -680,9 +683,52 @@
     "inherited_art_model_exact_name_and_version": "UNKNOWN",
     "main_integration": "NOT_RUN",
     "release": "NOT_RUN",
-    "B4_and_phase_C": "NOT_AUTHORIZED"
+    "B4_and_phase_C": "NOT_AUTHORIZED",
+    "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+    "r1": "NOT_REQUIRED",
+    "r2": "NOT_REQUIRED",
+    "non_blocking_dev_debug_ribbon": "PRESENT_IN_SOURCE_DEBUG_CANDIDATE"
   },
   "private_evidence_root": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\v10118-current",
   "artifact_hash_basis": "Git canonical blob bytes, with local worktree byte hashes recorded separately",
-  "self_hash": "Manifest excludes its own hash to avoid recursive identity"
+  "self_hash": "Manifest excludes its own hash to avoid recursive identity",
+  "advisor_review": {
+    "status": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+    "reviewed_delivery_commit": "0442335733555b38970131af7d5327a84e3dcb33",
+    "reviewed_payload_commit": "f404a7e9ad49331bb331f9460b09a98b9e183252",
+    "reviewed_source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+    "candidate_version_code": 1011804,
+    "accepted_ac": [
+      "AC18-01",
+      "AC18-02",
+      "AC18-03",
+      "AC18-04",
+      "AC18-05",
+      "AC18-06",
+      "AC18-07",
+      "AC18-08"
+    ],
+    "r1": "NOT_REQUIRED",
+    "r2": "NOT_REQUIRED",
+    "confirmed_blocking_p1_p2": [],
+    "non_blocking_note": "source-debug candidate displays the Flutter DEBUG ribbon because env.isDev controls debugShowCheckedModeBanner; this is a development-build marker, not a production UI feature.",
+    "owner_acceptance": "PENDING",
+    "owner_phone": "NOT_USED",
+    "system_talkback": "NOT_RUN",
+    "buddy_original_owner_cause": "UNKNOWN",
+    "report": "ADVISOR_ACCEPTANCE_20261116.md",
+    "evidence_reviewed": [
+      "IMPLEMENTATION_REPORT.md",
+      "artifact_manifest.json",
+      "EVIDENCE_SUMMARY_20261116.json",
+      "COPY_CHANGE_MAP.md",
+      "BUTTON_STATE_COLORS.md",
+      "ROUTE_COMPATIBILITY_REPORT.md",
+      "BUDDY_DIAGNOSIS.md",
+      "COLD_START_ACCOUNT_ISOLATION_RECEIPT.json",
+      "evidence/API_MARIADB_RECEIPT.json",
+      "evidence/SCREENSHOT_MANIFEST.json",
+      "evidence/REMOTE_READBACK_RECEIPT.json"
+    ]
+  }
 }

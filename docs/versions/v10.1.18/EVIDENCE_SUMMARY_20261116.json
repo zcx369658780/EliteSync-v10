@@ -3,7 +3,7 @@
   "version": "v10.1.18",
   "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
   "candidate": 1011804,
-  "advisor_acceptance": "PENDING",
+  "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
   "owner_acceptance": "PENDING",
   "delivery_sync": "PASS_SAME_ORIGIN_FIXED_PAYLOAD_READBACK",
   "ac_results": {
@@ -467,5 +467,29 @@
   "artifact_preflight_correction": "One retained CRLF test file had a different clean-filter object identity. Manifest now uses its actual committed Git blob. Source and test bytes retained.",
   "payload_delivery_commit": "f404a7e9ad49331bb331f9460b09a98b9e183252",
   "same_origin_readback": "evidence/REMOTE_READBACK_RECEIPT.json",
-  "final_closeout_verification": "Receipt/status commit verified separately at final handoff"
+  "final_closeout_verification": "Receipt/status commit verified separately at final handoff",
+  "advisor_review": {
+    "status": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+    "reviewed_delivery_commit": "0442335733555b38970131af7d5327a84e3dcb33",
+    "reviewed_payload_commit": "f404a7e9ad49331bb331f9460b09a98b9e183252",
+    "reviewed_source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+    "accepted_ac": [
+      "AC18-01",
+      "AC18-02",
+      "AC18-03",
+      "AC18-04",
+      "AC18-05",
+      "AC18-06",
+      "AC18-07",
+      "AC18-08"
+    ],
+    "r1": "NOT_REQUIRED",
+    "r2": "NOT_REQUIRED",
+    "owner_acceptance": "PENDING",
+    "owner_phone": "NOT_USED",
+    "system_talkback": "NOT_RUN",
+    "buddy_original_owner_cause": "UNKNOWN",
+    "evidence_reviewed": "GitHub fixed source, reports, manifest, structured summaries, API/MariaDB receipt, cold-start receipt, and 14 visually reviewed screenshots; local-only raw logs were not opened and tests were not re-executed in this chat.",
+    "non_blocking_note": "DEBUG ribbon is visible in the source-debug development candidate due to env.isDev."
+  }
 }
