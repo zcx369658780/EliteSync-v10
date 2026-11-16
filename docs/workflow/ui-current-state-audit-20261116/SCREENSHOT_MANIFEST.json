@@ -1,0 +1,1368 @@
+{
+  "task": "UI-AUDIT-01",
+  "task_commit": "9c0bb7f9f945c1d81eebe6129e5756006db43c55",
+  "status": "AUDIT_EVIDENCE_WITH_RECORDED_LIMITS",
+  "screenshots": [
+    {
+      "id": "S01",
+      "file": "screenshots/S01.png",
+      "page": "首页与冷启动首页",
+      "route": "/home",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "现有账号A恢复，首次启动进入Home。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "2e31db9954c220cdf8f259041bc409b67539f10e5d1bb979dd63daa227c9280f",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S01.png",
+        "sha256": "2e31db9954c220cdf8f259041bc409b67539f10e5d1bb979dd63daa227c9280f",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:40:09.199785+00:00"
+    },
+    {
+      "id": "S02",
+      "file": "screenshots/S02.png",
+      "page": "匹配首屏",
+      "route": "/progress",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "轮次、候选、连接和消息许可独立。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "de2e35125cd52650b13e6ad7ac9032832f68ab26e07f2d85e71d5dcbffa45fb1",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S02.png",
+        "sha256": "de2e35125cd52650b13e6ad7ac9032832f68ab26e07f2d85e71d5dcbffa45fb1",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:40:21.683379+00:00"
+    },
+    {
+      "id": "S03",
+      "file": "screenshots/S03.png",
+      "page": "每周慢约准备与参与",
+      "route": "/progress/match",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "只浏览既有报名及本人草稿，未保存或改变报名。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "MASKED_COPY",
+        "rectangles": [
+          [
+            45,
+            688,
+            650,
+            738
+          ]
+        ],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "REVIEWED_AFTER_MASK"
+      },
+      "sha256": "7e15cf6c4290da2156e1e047cc16c3b59ecf2101860a8b3e52262a4f2aa8176d",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S03.png",
+        "sha256": "20e5aa13c45e6a7d703c2fe613e6c9f25e2e4f26debef3c60051f40702dae8e5",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:44:42.558444+00:00"
+    },
+    {
+      "id": "S04",
+      "file": "screenshots/S04.png",
+      "page": "匹配历史",
+      "route": "/progress/match + MatchingHistoryPage",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "包含内部提案ID，公开副本需遮挡。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "MASKED_COPY",
+        "rectangles": [
+          [
+            48,
+            350,
+            650,
+            384
+          ]
+        ],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "REVIEWED_AFTER_MASK"
+      },
+      "sha256": "67f0682063dea82a6b0a211cc980e061ed5858ada055c94c94cb8dbafc483a84",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S04.png",
+        "sha256": "051addec5bdd052e78ea41a3eab3bea0ae17cd2ccf3ba73d01fb93b259e8df40",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:44:51.380398+00:00"
+    },
+    {
+      "id": "S05",
+      "file": "screenshots/S05.png",
+      "page": "我的首屏",
+      "route": "/me",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "6bdf8ed1b257da59e342288dfb1ae1b6f976de45f638749ac2ce46cc067318fe",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S05.png",
+        "sha256": "6bdf8ed1b257da59e342288dfb1ae1b6f976de45f638749ac2ce46cc067318fe",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:45:05.352029+00:00"
+    },
+    {
+      "id": "S06",
+      "file": "screenshots/S06.png",
+      "page": "持续参与与自动化OFF",
+      "route": "/user-state",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "只读，授权及暂停/恢复/撤销均未执行。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "d4c41340ec0d3607a8bc193116e8e4a4e41c1d89cffbd8581cd4f841a25df4cf",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S06.png",
+        "sha256": "d4c41340ec0d3607a8bc193116e8e4a4e41c1d89cffbd8581cd4f841a25df4cf",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:45:13.920966+00:00"
+    },
+    {
+      "id": "S07",
+      "file": "screenshots/S07.png",
+      "page": "权限与说明",
+      "route": "/me + PermissionInformationPage",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "展开匹配说明。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "252246e23e04075358c6650efba7c0cc28589568b845bef840e7ed6f46a9443b",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S07.png",
+        "sha256": "252246e23e04075358c6650efba7c0cc28589568b845bef840e7ed6f46a9443b",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:45:26.588633+00:00"
+    },
+    {
+      "id": "S08",
+      "file": "screenshots/S08.png",
+      "page": "Lifestyle完成摘要",
+      "route": "/lifestyle-discovery",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "已有五场景答案，仅浏览。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "b77337a9d0e9be165066735b30f4211b97069abab73b4d3c319e6f25890259e5",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S08.png",
+        "sha256": "b77337a9d0e9be165066735b30f4211b97069abab73b4d3c319e6f25890259e5",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:45:35.909643+00:00"
+    },
+    {
+      "id": "S09",
+      "file": "screenshots/S09.png",
+      "page": "Lifestyle返回改选题页",
+      "route": "/lifestyle-discovery",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "已有选中项及未选选项，未触发选项保存。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "eecfe6423ddadc15474028e912539c104025f739322b7df4d72658b78a7a8280",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S09.png",
+        "sha256": "eecfe6423ddadc15474028e912539c104025f739322b7df4d72658b78a7a8280",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:45:42.601814+00:00"
+    },
+    {
+      "id": "S10",
+      "file": "screenshots/S10.png",
+      "page": "会话列表",
+      "route": "/messages",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "只读取已有虚构会话。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "MASKED_COPY",
+        "rectangles": [
+          [
+            122,
+            376,
+            480,
+            445
+          ]
+        ],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "REVIEWED_AFTER_MASK"
+      },
+      "sha256": "80db9790a37cfb37228e784fa9eb767a2b603b543e37014a273d6997d3fe5da8",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S10.png",
+        "sha256": "21187a16bb800fc2444226ce0632f22bb86bf86703ab0d0ed5e1a857a19096a9",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:46:25.646664+00:00"
+    },
+    {
+      "id": "S11",
+      "file": "screenshots/S11.png",
+      "page": "会话详情",
+      "route": "/live-chat/:peerId",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "既有虚构会话，仅查看，可能自动发送读取确认。公开副本遮姓名与全部私聊正文。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "MASKED_COPY",
+        "rectangles": [
+          [
+            35,
+            708,
+            310,
+            750
+          ],
+          [
+            489,
+            895,
+            692,
+            932
+          ]
+        ],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "REVIEWED_AFTER_MASK"
+      },
+      "sha256": "82fb54493794305dbea31242675086c31a5ce539c34d7fd1c93a554ce091e705",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S11.png",
+        "sha256": "5ba3598f41fd2813830d0a8a1100a41c56361c538e050a1b5c9ec1203a1a2979",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:47:08.473387+00:00"
+    },
+    {
+      "id": "S12",
+      "file": "screenshots/S12.png",
+      "page": "站内通知",
+      "route": "/notifications",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "仅列表，不点通知以免标读写入。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "3653fc2e39f66e80fddd3cdce71017c2e658979883498cd54a0ab801386c8901",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S12.png",
+        "sha256": "3653fc2e39f66e80fddd3cdce71017c2e658979883498cd54a0ab801386c8901",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:47:18.654388+00:00"
+    },
+    {
+      "id": "S13",
+      "file": "screenshots/S13.png",
+      "page": "好友可见社区及发布入口",
+      "route": "/status/square",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "已有动态只读，未点赞评论收藏或发布。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "f9c1a4f6ef4fbe81dc1b8941fd7abc53abf74ff65284c5993e12b603bd05032f",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S13.png",
+        "sha256": "f9c1a4f6ef4fbe81dc1b8941fd7abc53abf74ff65284c5993e12b603bd05032f",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:47:43.886920+00:00"
+    },
+    {
+      "id": "S14",
+      "file": "screenshots/S14.png",
+      "page": "社区发布操作与内容区域",
+      "route": "/status/square",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "表单和内容区域，只读，不发布。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "d93d4181bee1abfae020372c6771b2259e821abe39016819b86a8d7be71a42aa",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S14.png",
+        "sha256": "d93d4181bee1abfae020372c6771b2259e821abe39016819b86a8d7be71a42aa",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:48:19.735205+00:00"
+    },
+    {
+      "id": "S15",
+      "file": "screenshots/S15.png",
+      "page": "Buddy主页与活动管理",
+      "route": "/buddy-v1013",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "仅查看既有偏好/活动，不开关或创建。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "00ce8dccf2dfb7cc561c27ded63b37eefe811d8a6f1bdbb5b969f45dbf8bc659",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S15.png",
+        "sha256": "00ce8dccf2dfb7cc561c27ded63b37eefe811d8a6f1bdbb5b969f45dbf8bc659",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:48:31.717555+00:00"
+    },
+    {
+      "id": "S16",
+      "file": "screenshots/S16.png",
+      "page": "Buddy发现与筛选",
+      "route": "/buddy-v1013 + BuddyDiscoveryPage",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "既有筛选，仅浏览，不提交申请。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "0e319b6b4244f2bf12969cfb91a8553a9369626b24d708d097e228c16758f054",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S16.png",
+        "sha256": "0e319b6b4244f2bf12969cfb91a8553a9369626b24d708d097e228c16758f054",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:48:54.997047+00:00"
+    },
+    {
+      "id": "S17",
+      "file": "screenshots/S17.png",
+      "page": "私密资料及出生信息入口",
+      "route": "/me/private-identity",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "现有输入只读，公开副本遮电话姓名生日。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "MASKED_COPY",
+        "rectangles": [
+          [
+            70,
+            698,
+            510,
+            737
+          ],
+          [
+            68,
+            1090,
+            435,
+            1138
+          ]
+        ],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "REVIEWED_AFTER_MASK"
+      },
+      "sha256": "64f43391c0e07008ab69054eaf0627775f023b55de7c638716003d658705c19f",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S17.png",
+        "sha256": "4d9ea646c7667ea71e39ec25fa3ec726048a959a5a33070cffa060ec76f0829b",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:49:07.760825+00:00"
+    },
+    {
+      "id": "S18",
+      "file": "screenshots/S18.png",
+      "page": "匹配资料与偏好",
+      "route": "/me/matching-inputs",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "只读取既有生日城市等输入，不修改或确认。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "MASKED_COPY",
+        "rectangles": [
+          [
+            42,
+            307,
+            405,
+            352
+          ]
+        ],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "REVIEWED_AFTER_MASK"
+      },
+      "sha256": "4f053c1027e8e0a4aa9904af2542574e50c044c83b8b4730a6c48d941e833133",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S18.png",
+        "sha256": "df6b216807f285d324bbd3930d82297aeaedcd1638ca805385c2e925be5164f1",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:49:39.858389+00:00"
+    },
+    {
+      "id": "S19",
+      "file": "screenshots/S19.png",
+      "page": "展示资料草稿与发布",
+      "route": "/me/showcase",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "仅查看，不保存送审发布。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "005432a9fdf37264e346ba462f0d2f3ded478ae0c6e68c98085a4caf3d7d704d",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S19.png",
+        "sha256": "005432a9fdf37264e346ba462f0d2f3ded478ae0c6e68c98085a4caf3d7d704d",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:49:51.614621+00:00"
+    },
+    {
+      "id": "S20",
+      "file": "screenshots/S20.png",
+      "page": "MBTI入口和当前结果",
+      "route": "/profile/mbti",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "不提交测评。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "465502e66773e9de20443931948ec0d2682eea7951e92c234adabe1e77866c0c",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S20.png",
+        "sha256": "465502e66773e9de20443931948ec0d2682eea7951e92c234adabe1e77866c0c",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:50:01.576806+00:00"
+    },
+    {
+      "id": "S21",
+      "file": "screenshots/S21.png",
+      "page": "MBTI问卷未选择",
+      "route": "/profile/mbti",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "只GET题库，不选择或提交。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "75e67067b6a6f5e71b7b167ade586e3380c14a019558d8cbac887345789f61a7",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S21.png",
+        "sha256": "75e67067b6a6f5e71b7b167ade586e3380c14a019558d8cbac887345789f61a7",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:50:10.001863+00:00"
+    },
+    {
+      "id": "S22",
+      "file": "screenshots/S22.png",
+      "page": "星盘画像与三盘本命入口",
+      "route": "/profile/astro",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "只读取原有资料，不保存计算。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "915b433a2cebb60fd76123ee774a91818b05569691fb32bd6d62e63b3dbc3752",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S22.png",
+        "sha256": "915b433a2cebb60fd76123ee774a91818b05569691fb32bd6d62e63b3dbc3752",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:50:55.316202+00:00"
+    },
+    {
+      "id": "S23",
+      "file": "screenshots/S23.png",
+      "page": "动态星盘与关系盘入口",
+      "route": "/profile/astro/advanced",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "未创建或计算新工具结果。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "64ec9a785a2b46a1d193742a2359c7a099365dee99e2506ae1abbe653b02029e",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S23.png",
+        "sha256": "64ec9a785a2b46a1d193742a2359c7a099365dee99e2506ae1abbe653b02029e",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:51:08.074227+00:00"
+    },
+    {
+      "id": "S24",
+      "file": "screenshots/S24.png",
+      "page": "已存八字空结果",
+      "route": "/profile/astro/bazi",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "现有账号无八字，不提交出生信息。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "b4a286b6e6d2a5e7318a759af1d1da644d6deb71558f5882554896e5aebd33fd",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S24.png",
+        "sha256": "b4a286b6e6d2a5e7318a759af1d1da644d6deb71558f5882554896e5aebd33fd",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:51:19.755328+00:00"
+    },
+    {
+      "id": "S25",
+      "file": "screenshots/S25.png",
+      "page": "三盘本命输入与来源状态",
+      "route": "/profile/astro + NatalRestorationPage",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "只读手动出生/时区/坐标字段，不保存计算。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "2e364d8be150bb88c758e537d612299e8c5bc3903569a79d0988d79be8cecf99",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S25.png",
+        "sha256": "2e364d8be150bb88c758e537d612299e8c5bc3903569a79d0988d79be8cecf99",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:51:43.650861+00:00"
+    },
+    {
+      "id": "S26",
+      "file": "screenshots/S26.png",
+      "page": "正式关系空态与身份占位",
+      "route": "/formal-relationship",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "不填对方编号、不申请。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "f50780cd23902cc2d04069b49962014adad749ecaa0ee8d9b3e109e64e3a8383",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S26.png",
+        "sha256": "f50780cd23902cc2d04069b49962014adad749ecaa0ee8d9b3e109e64e3a8383",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:53:11.798515+00:00"
+    },
+    {
+      "id": "S27",
+      "file": "screenshots/S27.png",
+      "page": "资料受众与本人预览",
+      "route": "/me/privacy-settings + RelationshipPrivacyPage",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "不改变受众。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "eb1206145d5f6d818d17bf9eeb13b297508278091b83d9f6dc7bce60bd36d622",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S27.png",
+        "sha256": "eb1206145d5f6d818d17bf9eeb13b297508278091b83d9f6dc7bce60bd36d622",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:53:25.629766+00:00"
+    },
+    {
+      "id": "S28",
+      "file": "screenshots/S28.png",
+      "page": "设置与账号退出入口",
+      "route": "/profile/settings",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "仅只读设置，之后为采集登录入口使用普通退出登录。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "504f2762f4ddc26559b1dbfa82a4ea07c6655120e8d3b1ecdfeec1984ae353d4",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S28.png",
+        "sha256": "504f2762f4ddc26559b1dbfa82a4ea07c6655120e8d3b1ecdfeec1984ae353d4",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:53:37.480561+00:00"
+    },
+    {
+      "id": "S29",
+      "file": "screenshots/S29.png",
+      "page": "好友与请求中心",
+      "route": "/social-baseline",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "只读，不申请/接受/撤回或邀请。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "1552fc988f7b4cd4a24cad71fe5e41a8103431984a8c47ecd05f77f93d87f9b9",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S29.png",
+        "sha256": "1552fc988f7b4cd4a24cad71fe5e41a8103431984a8c47ecd05f77f93d87f9b9",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:54:04.486984+00:00"
+    },
+    {
+      "id": "S30",
+      "file": "screenshots/S30.png",
+      "page": "登录入口",
+      "route": "/auth/login",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "正常退出QA-A，未清数据。登录输入空白截图。",
+      "account": "SIGNED_OUT",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "a02011358d83cc82c68856b378068eb86255cbd55eeaedbcea81a947aafbd844",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S30.png",
+        "sha256": "a02011358d83cc82c68856b378068eb86255cbd55eeaedbcea81a947aafbd844",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:54:34.145194+00:00"
+    },
+    {
+      "id": "S31",
+      "file": "screenshots/S31.png",
+      "page": "注册入口",
+      "route": "/auth/register",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "只浏览空白表单，不注册新账号。",
+      "account": "SIGNED_OUT",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "4c472abf4a8a12ec6118f3a043d2bb7e6d7f235acf3bb7527040b6e2f1113023",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S31.png",
+        "sha256": "4c472abf4a8a12ec6118f3a043d2bb7e6d7f235acf3bb7527040b6e2f1113023",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:54:57.536078+00:00"
+    },
+    {
+      "id": "S32",
+      "file": "screenshots/S32.png",
+      "page": "Lifestyle未开始欢迎页",
+      "route": "/lifestyle-discovery",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "已存在B账号未开始，未点击开始探索或跳过。注册后自动欢迎只做源码核对。",
+      "account": "QA-B",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "4e83e438b189d20634795267fbbcbe46ce4638dc1bf1242033ecd52674ff4049",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S32.png",
+        "sha256": "4e83e438b189d20634795267fbbcbe46ce4638dc1bf1242033ecd52674ff4049",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:56:01.852771+00:00"
+    },
+    {
+      "id": "S33",
+      "file": "screenshots/S33.png",
+      "page": "Buddy申请等待创建人确认",
+      "route": "/buddy-v1013",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "既有活动，仅浏览，不确认/取消/退出。",
+      "account": "QA-B",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "a1b2f6d2178ff58fdab724fabefd0028050681248b90bc6a299ee5d5b4525aaf",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S33.png",
+        "sha256": "a1b2f6d2178ff58fdab724fabefd0028050681248b90bc6a299ee5d5b4525aaf",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:56:13.875710+00:00"
+    },
+    {
+      "id": "S34",
+      "file": "screenshots/S34.png",
+      "page": "Buddy发现入口按住状态",
+      "route": "/buddy-v1013",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "同一Buddy页面，只读导航按钮按住约250ms后截图，5秒释放进入发现页。UI节点采用按下前读取，图片为按住期间原生截图。",
+      "account": "QA-B",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "c5e40339368666a6c7bf365caa17f9c9400a3b8165fe093308c8bb8b4c17a8bc",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S34.png",
+        "sha256": "c5e40339368666a6c7bf365caa17f9c9400a3b8165fe093308c8bb8b4c17a8bc",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:56:59.336355+00:00"
+    },
+    {
+      "id": "S35",
+      "file": "screenshots/S35.png",
+      "page": "首页字体放大一档",
+      "route": "/home",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "系统字体1.0→1.15只做可读性观察，完成后恢复1.0。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.15",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "REVIEWED_NO_MASK_REQUIRED",
+        "rectangles": [],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "RAW_AND_IDENTICAL_COPY_REVIEWED"
+      },
+      "sha256": "55a2bfb5da89903d26233e81adef548da1b333940aa651ee15cca4a6e96e466a",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S35.png",
+        "sha256": "55a2bfb5da89903d26233e81adef548da1b333940aa651ee15cca4a6e96e466a",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:58:23.320004+00:00"
+    },
+    {
+      "id": "S36",
+      "file": "screenshots/S36.png",
+      "page": "连接与消息许可独立状态",
+      "route": "/progress/connection",
+      "route_evidence": "UI_NAVIGATION_AND_SOURCE_MAPPING",
+      "direct_runtime_uri": "NOT_TRACED",
+      "state": "只读既有连接与许可，不撤回/关闭/申请。",
+      "account": "QA-A",
+      "device": "sdk_gphone64_x86_64 / v1015_current_a / Android 16 API36",
+      "resolution": [
+        720,
+        1280
+      ],
+      "density_dpi": 240,
+      "font_scale": "1.0",
+      "theme": "dark",
+      "candidate": 1011804,
+      "version_name": "10.1.18-dev",
+      "application_id": "com.elitesync.v1018dev",
+      "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+      "apk_sha256": "eaacc050f7e6fae7bc980c6a766bf1a08ba1cb723bdad6571c821a72e552ba5a",
+      "redaction": {
+        "status": "MASKED_COPY",
+        "rectangles": [
+          [
+            46,
+            212,
+            240,
+            245
+          ]
+        ],
+        "method": "opaque privacy masks only; original resolution retained",
+        "visual_review": "REVIEWED_AFTER_MASK"
+      },
+      "sha256": "b09fdd175ce36ef869c9a4f03a444be918dfd149b0dd5cbe1ee5f8928c406d28",
+      "original": {
+        "local_path": "C:\\Users\\zcxve\\EliteSyncDev\\ui-audit-01-20261116\\raw\\S36.png",
+        "sha256": "6c3538a6bb7cd59cf65eee15c1d1f32a3573d388bd65735bf9784dd468304cd5",
+        "retention": "LOCAL_ONLY"
+      },
+      "file_mtime_utc": "2026-11-16T09:58:34.202813+00:00"
+    }
+  ],
+  "originals_policy": "Private originals and UI hierarchy remain local; only reviewed 720x1280 copies published",
+  "route_method": "Direct VM URI evaluation failed. Paths are navigation/source mappings, including unnamed MaterialPageRoute suffixes. No runtime URI claim.",
+  "count": 36,
+  "review_status": "36_ORIGINALS_VISUALLY_INSPECTED_AND_ALL_PUBLIC_COPIES_VERIFIED"
+}
