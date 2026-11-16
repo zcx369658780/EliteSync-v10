@@ -357,7 +357,7 @@ P1候选表示有功能阻断现象，仍需下一项授权任务完成定位。
 | AC-AUDIT-05 | PASS | 第5节Owner目标假设逐项对照 |
 | AC-AUDIT-06 | PASS | U01–U14均关联截图、建议及权限/业务影响 |
 | AC-AUDIT-07 | PASS_IN_NAMED_SCOPE | 产品apps/services树与固定源码一致，无版本/构建/schema/配置改动，21表对照一致 |
-| AC-AUDIT-08 | PENDING_REMOTE_READBACK | 待本分支固定提交与同源回读后写入交付回执 |
+| AC-AUDIT-08 | PASS | 固定证据提交fd2a0aa7，38份文件同源SSH fetch回读、Blob核对及PNG字节比对通过 |
 
 上述为Codex审计材料完整性自查，顾问和Owner对本次审计材料的接受仍为PENDING。
 
@@ -367,4 +367,7 @@ P1候选表示有功能阻断现象，仍需下一项授权任务完成定位。
 
 ## 10. 固定交付与停止
 
-交付内容为本报告、SCREENSHOT_MANIFEST.json及36张去敏副本。最终远端固定身份与回读结果在交付提交后补记。审计完成后交由GPT顾问与Owner讨论信息架构、资料复用、授权点与低分辨率风格方向稿。
+交付内容为本报告、SCREENSHOT_MANIFEST.json及36张去敏副本。证据固定提交为`fd2a0aa7037567f4c368d4bed5bd5e0f420b89d0`，已推送原审计分支并通过同源SSH fetch固定回读。38份文件Git Blob与本地Git规范化内容一致，36张PNG字节与哈希一致。本回执及工作流状态作为其后续文档提交记录，最终分支HEAD另作同源固定回读，保存在本机FINAL_REMOTE_READBACK_PRIVATE回执并在最终交付消息列明。审计完成后交由GPT顾问与Owner讨论信息架构、资料复用、授权点与低分辨率风格方向稿。
+
+
+截图哈希与去敏记录可逐张核对。[SCREENSHOT_MANIFEST.json](SCREENSHOT_MANIFEST.json)

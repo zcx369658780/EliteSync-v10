@@ -1364,5 +1364,12 @@
   "originals_policy": "Private originals and UI hierarchy remain local; only reviewed 720x1280 copies published",
   "route_method": "Direct VM URI evaluation failed. Paths are navigation/source mappings, including unnamed MaterialPageRoute suffixes. No runtime URI claim.",
   "count": 36,
-  "review_status": "36_ORIGINALS_VISUALLY_INSPECTED_AND_ALL_PUBLIC_COPIES_VERIFIED"
+  "review_status": "36_ORIGINALS_VISUALLY_INSPECTED_AND_ALL_PUBLIC_COPIES_VERIFIED",
+  "remote_delivery": {
+    "evidence_commit": "fd2a0aa7037567f4c368d4bed5bd5e0f420b89d0",
+    "status": "SAME_ORIGIN_FIXED_READBACK_PASS",
+    "verified_files": 38,
+    "method": "Explicit same-origin SSH fetch, fixed ref equality, all Git blobs matched, PNG bytes matched",
+    "closeout": "Receipt and workflow state recorded in a descendant documentation commit"
+  }
 }
