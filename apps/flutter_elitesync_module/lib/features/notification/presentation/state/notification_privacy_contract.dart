@@ -87,7 +87,7 @@ abstract final class NotificationPrivacyContract {
     return NotificationPrivacyPresentation(
       audience: NotificationPresentationAudience.inApp,
       title: '$category有新提醒',
-      body: '请查看当前有权状态。',
+      body: '点开查看详情',
       categoryLabel: category,
       actionLabel: '查看当前状态',
       routeHint: '打开后重新核验当前权限与状态。',

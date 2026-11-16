@@ -29,8 +29,8 @@ void main() {
     final preview = NotificationPrivacyContract.inAppPreviewFor(privateItem);
 
     expect(preview.audience, NotificationPresentationAudience.inApp);
-    expect(preview.title, '有一条新提醒');
-    expect(preview.body, contains('重新检查访问权限'));
+    expect(preview.title, '消息有新提醒');
+    expect(preview.body, '点开查看详情');
     expect(preview.title, isNot(privateItem.title));
     expect(preview.body, isNot(privateItem.body));
   });

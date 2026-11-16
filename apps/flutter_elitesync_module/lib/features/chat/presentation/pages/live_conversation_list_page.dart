@@ -342,7 +342,7 @@ class _LiveConversationListPageState
       _trustedContextLocked = false;
       _cleanupStatus = null;
       _offlineReadOnly = false;
-      _cacheStatus = '当前会话已按账户和设备加密保存。';
+      _cacheStatus = '会话已加密保存在本机';
       _items = items;
     } catch (error) {
       if (mounted &&

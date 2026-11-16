@@ -691,14 +691,6 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
                   ],
                 ),
                 SizedBox(height: t.spacing.xs),
-                Text(
-                  privacyPresentation.routeHint,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: t.textSecondary,
-                    height: 1.3,
-                  ),
-                ),
-                SizedBox(height: t.spacing.xs),
                 Wrap(
                   spacing: t.spacing.xs,
                   runSpacing: t.spacing.xs,
@@ -794,7 +786,7 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
             loading: () => const AppPresentationStateView(
               state: AppPresentationState.loading(
                 safeTitle: '正在读取通知',
-                safeBody: '暂时无法确认通知内容，请刷新',
+                safeBody: '请稍候',
               ),
               loadingLines: 6,
             ),
@@ -804,7 +796,7 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
                 AppPresentationStateView(
                   state: const AppPresentationState.retryableError(
                     safeTitle: '通知加载失败',
-                    safeBody: '暂时无法加载通知，请稍后重试。本次读取失败不代表任何领域结果。',
+                    safeBody: '暂时无法加载通知，请稍后重试',
                     safeActionLabel: '重新加载',
                   ),
                   onRetryRead: _refresh,
@@ -833,7 +825,7 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
                   children: [
                     AppInfoSectionCard(
                       title: '站内提醒',
-                      subtitle: '慢约会、聊天和资料准备的关键回流会收在这里',
+                      subtitle: '匹配、消息与资料提醒',
                       leadingIcon: Icons.notifications_active_outlined,
                       child: Row(
                         children: [
@@ -853,7 +845,6 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
                       ),
                     ),
                     SizedBox(height: t.spacing.sm),
-                    const _LocalReturnPreviewCard(),
                     ..._historyControls(),
                   ],
                 );
@@ -865,7 +856,7 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
                 children: [
                   AppInfoSectionCard(
                     title: '站内提醒',
-                    subtitle: '慢约会、聊天和资料准备的应用内回流中心',
+                    subtitle: '匹配、消息与资料提醒',
                     leadingIcon: Icons.notifications_active_outlined,
                     child: Row(
                       children: [
@@ -888,7 +879,6 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
                     ),
                   ),
                   SizedBox(height: t.spacing.sm),
-                  const _LocalReturnPreviewCard(),
                   SizedBox(height: t.spacing.md),
                   ...items.map(
                     (item) => Padding(
@@ -910,82 +900,4 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
 String _unreadSummaryText(int unread) {
   if (unread > 20) return '有未读提醒';
   return '未读 $unread 条';
-}
-
-class _LocalReturnPreviewCard extends StatelessWidget {
-  const _LocalReturnPreviewCard();
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.appTokens;
-    return AppInfoSectionCard(
-      title: '提醒内容示例',
-      subtitle: '以下仅为可能出现的提醒示例，不代表当前通知；不会自动发送消息，也不会替你改资料或匹配结果',
-      leadingIcon: Icons.low_priority_rounded,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const _ReturnPreviewLine(
-            title: '本轮慢约会即将揭晓',
-            body: '有新的进度时，可以回到本轮节奏，不制造刷人压力。',
-          ),
-          SizedBox(height: t.spacing.xs),
-          const _ReturnPreviewLine(
-            title: '聊天可以低压继续',
-            body: '回到聊天页继续手动编辑草稿，发送前仍由你确认。',
-          ),
-          SizedBox(height: t.spacing.xs),
-          const _ReturnPreviewLine(
-            title: '资料准备提醒',
-            body: '完善展示自己后，后续推荐会更容易被理解。',
-          ),
-          SizedBox(height: t.spacing.xs),
-          const _ReturnPreviewLine(
-            title: '聊完后可以反馈方向',
-            body: '反馈只帮助整理后续方向，不会直接改变本轮匹配结果。',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ReturnPreviewLine extends StatelessWidget {
-  const _ReturnPreviewLine({required this.title, required this.body});
-
-  final String title;
-  final String body;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = context.appTokens;
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(Icons.notifications_none_rounded, size: 18, color: t.brandPrimary),
-        SizedBox(width: t.spacing.xs),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: t.textPrimary,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Text(
-                body,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: t.textSecondary,
-                  height: 1.4,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
 }

@@ -951,8 +951,8 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.textContaining('暂时无法加载通知，请稍后重试。'), findsOneWidget);
-    expect(find.textContaining('不代表任何领域结果'), findsOneWidget);
+    expect(find.textContaining('暂时无法加载通知，请稍后重试'), findsOneWidget);
+    expect(find.textContaining('不代表任何领域结果'), findsNothing);
     expect(find.textContaining('raw notification failure'), findsNothing);
     expect(find.text('重新加载'), findsOneWidget);
   });
@@ -1001,20 +1001,20 @@ void main() {
     expect(find.text('对方发来一条消息'), findsNothing);
     expect(find.text('可以继续手动编辑草稿'), findsNothing);
     expect(find.text('消息有新提醒'), findsOneWidget);
-    expect(find.textContaining('重新核验当前权限与状态'), findsWidgets);
+    expect(find.textContaining('重新核验当前权限与状态'), findsNothing);
     expect(find.text('消息'), findsOneWidget);
     expect(find.text('查看当前状态'), findsOneWidget);
     expect(find.text('稍后处理'), findsOneWidget);
     expect(find.text('标记已读'), findsOneWidget);
-    expect(find.text('打开后重新核验当前权限与状态。'), findsOneWidget);
-    expect(find.text('提醒内容示例'), findsOneWidget);
-    expect(find.textContaining('不代表当前通知'), findsOneWidget);
-    expect(find.text('本轮慢约会即将揭晓'), findsOneWidget);
-    expect(find.text('聊天可以低压继续'), findsOneWidget);
-    expect(find.text('资料准备提醒'), findsWidgets);
-    expect(find.text('聊完后可以反馈方向'), findsOneWidget);
-    expect(find.textContaining('不会自动发送消息'), findsOneWidget);
-    expect(find.textContaining('不会替你改资料或匹配结果'), findsOneWidget);
+    expect(find.text('打开后重新核验当前权限与状态。'), findsNothing);
+    expect(find.text('提醒内容示例'), findsNothing);
+    expect(find.textContaining('不代表当前通知'), findsNothing);
+    expect(find.text('本轮慢约会即将揭晓'), findsNothing);
+    expect(find.text('聊天可以低压继续'), findsNothing);
+    expect(find.text('资料准备提醒'), findsNothing);
+    expect(find.text('聊完后可以反馈方向'), findsNothing);
+    expect(find.textContaining('不会自动发送消息'), findsNothing);
+    expect(find.textContaining('不会替你改资料或匹配结果'), findsNothing);
     expect(find.text('message'), findsNothing);
     _expectNoD7CForbiddenVisibleCopy();
     expect(
@@ -1070,7 +1070,7 @@ void main() {
     expect(find.text('匹配有新提醒'), findsOneWidget);
     expect(find.text('匹配'), findsOneWidget);
     expect(find.text('查看当前状态'), findsOneWidget);
-    expect(find.text('打开后重新核验当前权限与状态。'), findsOneWidget);
+    expect(find.text('打开后重新核验当前权限与状态。'), findsNothing);
     _expectNoD7CForbiddenVisibleCopy();
   });
 
@@ -1097,16 +1097,16 @@ void main() {
 
     expect(find.text('通知中心'), findsOneWidget);
     expect(find.text('站内提醒'), findsOneWidget);
-    expect(find.textContaining('慢约会、聊天和资料准备'), findsOneWidget);
+    expect(find.textContaining('匹配、消息与资料提醒'), findsOneWidget);
     expect(find.textContaining('当前没有提醒'), findsOneWidget);
-    expect(find.text('提醒内容示例'), findsOneWidget);
-    expect(find.textContaining('不代表当前通知'), findsOneWidget);
-    expect(find.text('本轮慢约会即将揭晓'), findsOneWidget);
-    expect(find.text('聊天可以低压继续'), findsOneWidget);
-    expect(find.text('资料准备提醒'), findsOneWidget);
-    expect(find.text('聊完后可以反馈方向'), findsOneWidget);
-    expect(find.textContaining('不会自动发送消息'), findsOneWidget);
-    expect(find.textContaining('不会替你改资料或匹配结果'), findsOneWidget);
+    expect(find.text('提醒内容示例'), findsNothing);
+    expect(find.textContaining('不代表当前通知'), findsNothing);
+    expect(find.text('本轮慢约会即将揭晓'), findsNothing);
+    expect(find.text('聊天可以低压继续'), findsNothing);
+    expect(find.text('资料准备提醒'), findsNothing);
+    expect(find.text('聊完后可以反馈方向'), findsNothing);
+    expect(find.textContaining('不会自动发送消息'), findsNothing);
+    expect(find.textContaining('不会替你改资料或匹配结果'), findsNothing);
     _expectNoD7CForbiddenVisibleCopy();
   });
 
@@ -1425,7 +1425,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('所属页面会重新检查当前访问权限。'), findsOneWidget);
+    expect(find.text('所属页面会重新检查当前访问权限。'), findsNothing);
     expect(find.text('打开所属页面'), findsOneWidget);
 
     await tester.ensureVisible(find.widgetWithText(OutlinedButton, '打开所属页面'));

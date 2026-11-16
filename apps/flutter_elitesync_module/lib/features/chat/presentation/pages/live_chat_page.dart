@@ -1459,7 +1459,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                                 sentByMe
                                     ? (m['is_read'] == true
                                           ? '我 · 对方已读'
-                                          : '我 · 服务器已保存，未读')
+                                          : '我 · 已发送，未读')
                                     : (senderId == widget.peerId ? '对方' : '消息'),
                                 style: Theme.of(context).textTheme.bodySmall
                                     ?.copyWith(color: textColor),

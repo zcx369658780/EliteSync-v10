@@ -163,7 +163,7 @@ void main() {
         wallNow: () => now.add(elapsed),
         elapsed: () => elapsed,
       );
-      expect(find.text('当前会话已按账户和设备加密保存。'), findsOneWidget);
+      expect(find.text('会话已加密保存在本机'), findsOneWidget);
       expect(find.text('仅限测试的当前服务器内容'), findsOneWidget);
       expect(
         f.secure.values.keys.any(
