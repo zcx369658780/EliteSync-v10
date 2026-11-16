@@ -177,11 +177,11 @@ void main() {
             .items
             .map((item) => item.label)
             .toList(),
-        ['首页', '进展', '消息', '我的'],
+        ['首页', '匹配', '消息', '我的'],
       );
       final destinations = <String, Type>{
         '首页': HomeShellPage,
-        '进展': ProgressShellPage,
+        '匹配': ProgressShellPage,
         '消息': MessagesShellPage,
         '我的': MeShellPage,
       };
@@ -199,7 +199,7 @@ void main() {
         expect(currentDock.browseMode, index != 1);
       }
 
-      await tester.tap(find.descendant(of: dock, matching: find.text('进展')));
+      await tester.tap(find.descendant(of: dock, matching: find.text('匹配')));
       await tester.pump();
       await tester.tap(find.byKey(ProgressPage.matchEntryKey));
       await tester.pumpAndSettle();
@@ -228,14 +228,14 @@ void main() {
       );
 
       expect(storage.onboardingReadCount, 1);
-      expect(find.text('先从慢约进展开始'), findsOneWidget);
+      expect(find.text('查看匹配'), findsOneWidget);
 
       await tester.tap(find.text('跳过'));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 800));
       await tester.pump(const Duration(milliseconds: 300));
       expect(storage.onboardingStatus, 'skipped');
-      expect(find.text('先从慢约进展开始'), findsNothing);
+      expect(find.text('查看匹配'), findsNothing);
 
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump();
@@ -245,7 +245,7 @@ void main() {
       );
 
       expect(storage.onboardingReadCount, 2);
-      expect(find.text('先从慢约进展开始'), findsNothing);
+      expect(find.text('查看匹配'), findsNothing);
     },
   );
 
@@ -261,7 +261,7 @@ void main() {
 
       expect(find.text('账号登录'), findsOneWidget);
       expect(storage.onboardingReadCount, 0);
-      expect(find.text('先从慢约进展开始'), findsNothing);
+      expect(find.text('查看匹配'), findsNothing);
     },
   );
 }

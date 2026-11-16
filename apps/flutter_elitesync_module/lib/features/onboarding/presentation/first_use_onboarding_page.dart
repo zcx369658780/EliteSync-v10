@@ -23,28 +23,28 @@ class FirstUseOnboardingStep {
 
 const firstUseOnboardingSteps = <FirstUseOnboardingStep>[
   FirstUseOnboardingStep(
-    title: '先从慢约进展开始',
-    body: '在“进展”入口查看慢约进展和下一步。',
+    title: '查看匹配',
+    body: '在“匹配”入口查看结果，回应你感兴趣的候选。',
     icon: Icons.auto_awesome_rounded,
   ),
   FirstUseOnboardingStep(
     title: '按需要完善资料',
-    body: '资料由你填写；是否还需补充，以页面之后显示的可靠提示为准。',
+    body: '填写资料与偏好，页面会提示尚需准备的内容。',
     icon: Icons.person_outline_rounded,
   ),
   FirstUseOnboardingStep(
-    title: '等待可靠的进展通知',
-    body: '有可确认的安排或结果时，页面会显示相应说明；也可能暂时没有结果。',
+    title: '查看站内提醒',
+    body: '匹配与消息提醒会显示在站内通知中。',
     icon: Icons.hourglass_bottom_rounded,
   ),
   FirstUseOnboardingStep(
-    title: '符合条件后再使用消息',
-    body: '只有服务确认可以继续交流后，消息入口才会开放。',
+    title: '双方同意后再聊天',
+    body: '建立连接并互相同意消息后，就可以开始交流。',
     icon: Icons.chat_bubble_outline_rounded,
   ),
   FirstUseOnboardingStep(
     title: '随时跳过或重新查看',
-    body: '你可以跳过；之后可在“设置 > 新手引导”重新查看。完成本引导不代表账户设置或准备状态已经完成。',
+    body: '可以随时跳过，之后可在“设置 > 新手引导”重新查看。资料与报名请按各自页面完成。',
     icon: Icons.replay_rounded,
   ),
 ];

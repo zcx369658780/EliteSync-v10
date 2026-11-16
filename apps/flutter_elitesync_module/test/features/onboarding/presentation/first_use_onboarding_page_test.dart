@@ -94,19 +94,19 @@ void main() {
     expect(
       firstUseOnboardingSteps.map((step) => (step.title, step.body)).toList(),
       [
-        ('先从慢约进展开始', '在“进展”入口查看慢约进展和下一步。'),
-        ('按需要完善资料', '资料由你填写；是否还需补充，以页面之后显示的可靠提示为准。'),
-        ('等待可靠的进展通知', '有可确认的安排或结果时，页面会显示相应说明；也可能暂时没有结果。'),
-        ('符合条件后再使用消息', '只有服务确认可以继续交流后，消息入口才会开放。'),
-        ('随时跳过或重新查看', '你可以跳过；之后可在“设置 > 新手引导”重新查看。完成本引导不代表账户设置或准备状态已经完成。'),
+        ('查看匹配', '在“匹配”入口查看结果，回应你感兴趣的候选。'),
+        ('按需要完善资料', '填写资料与偏好，页面会提示尚需准备的内容。'),
+        ('查看站内提醒', '匹配与消息提醒会显示在站内通知中。'),
+        ('双方同意后再聊天', '建立连接并互相同意消息后，就可以开始交流。'),
+        ('随时跳过或重新查看', '可以随时跳过，之后可在“设置 > 新手引导”重新查看。资料与报名请按各自页面完成。'),
       ],
     );
 
     final copy = firstUseOnboardingSteps
         .expand((step) => [step.title, step.body])
         .join('\n');
-    expect(copy, contains('“进展”入口'));
-    expect(copy, contains('慢约进展'));
+    expect(copy, contains('“匹配”入口'));
+    expect(copy, contains('查看结果'));
     expect(copy, contains('消息'));
     expect(copy, isNot(contains('Profile')));
     expect(copy, isNot(contains('Match')));
@@ -134,7 +134,7 @@ void main() {
     );
 
     expect(find.text('1/5'), findsOneWidget);
-    expect(find.text('先从慢约进展开始'), findsOneWidget);
+    expect(find.text('查看匹配'), findsOneWidget);
     expect(find.text('上一步'), findsNothing);
 
     await tester.tap(find.text('继续'));
@@ -336,7 +336,7 @@ void main() {
 
     await tester.tap(find.text('跳过'));
     await tester.pump(const Duration(milliseconds: 749));
-    expect(find.text('先从慢约进展开始'), findsOneWidget);
+    expect(find.text('查看匹配'), findsOneWidget);
     await tester.pump(const Duration(milliseconds: 2));
     await tester.pumpAndSettle();
 
@@ -548,7 +548,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(storage.readCount, 1);
-      expect(find.text('先从慢约进展开始'), findsOneWidget);
+      expect(find.text('查看匹配'), findsOneWidget);
       expect(find.text('ORDINARY APP'), findsOneWidget);
     },
   );
@@ -563,7 +563,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(storage.readCount, 0);
-      expect(find.text('先从慢约进展开始'), findsNothing);
+      expect(find.text('查看匹配'), findsNothing);
 
       await tester.pumpWidget(
         _automaticEntryApp(storage: storage, eligible: true),
@@ -571,7 +571,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(storage.readCount, 1);
-      expect(find.text('先从慢约进展开始'), findsOneWidget);
+      expect(find.text('查看匹配'), findsOneWidget);
     },
   );
 
@@ -589,7 +589,7 @@ void main() {
 
     expect(find.text('LOGIN'), findsOneWidget);
     expect(storage.readCount, 0);
-    expect(find.text('先从慢约进展开始'), findsNothing);
+    expect(find.text('查看匹配'), findsNothing);
   });
 
   testWidgets('stored handled state suppresses automatic presentation', (
@@ -604,7 +604,7 @@ void main() {
 
     expect(storage.readCount, 1);
     expect(find.text('ORDINARY APP'), findsOneWidget);
-    expect(find.text('先从慢约进展开始'), findsNothing);
+    expect(find.text('查看匹配'), findsNothing);
   });
 
   testWidgets('automatic entry rebuild remains idempotent in one session', (
@@ -623,6 +623,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(storage.readCount, 1);
-    expect(find.text('先从慢约进展开始'), findsOneWidget);
+    expect(find.text('查看匹配'), findsOneWidget);
   });
 }
