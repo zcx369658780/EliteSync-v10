@@ -107,6 +107,8 @@
   "baseline_integrity": {
     "receipt": "evidence/BASELINE_INTEGRITY_RECEIPT.json",
     "nine_original_cases_match_frozen_git_actions_and_independent_ui_receipts": true,
-    "original_whole_summary_bytes_match": "UNKNOWN_AFTER_SUPPLEMENTAL_APPEND"
+    "original_whole_summary_bytes_match": "VERIFIED_RECOVERED_EXACT_BYTES",
+    "prefreeze_sha256": "43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d",
+    "recovery": "Original Windows CRLF serialized bytes verified against pre-code committed hash; augmented summary retained"
   }
 }

@@ -299,8 +299,9 @@
     "fixture_scope": "New isolated B3 DB, five fictional accounts. Controlled match fixtures do not constitute executing matching algorithm."
   },
   "private_raw_sha256": {
-    "baseline": "c24badaea9e0879f17db2b18d035789128b931d39b8214fc1932d7af17424921",
     "candidate": "2ad3397594ec41ea4b237cc1557e38622fd0c14db9d0133ec427b09c145c579f",
-    "normalized_J4": "85a5de47a31578e4fc600ea2ca66ee4f10bf75bba7f3cbaf9489f7b7cde618d3"
+    "normalized_J4": "85a5de47a31578e4fc600ea2ca66ee4f10bf75bba7f3cbaf9489f7b7cde618d3",
+    "baseline_augmented": "c24badaea9e0879f17db2b18d035789128b931d39b8214fc1932d7af17424921",
+    "baseline_prefreeze_exact": "43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d"
   }
 }

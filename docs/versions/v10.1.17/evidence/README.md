@@ -12,4 +12,4 @@
 - [自愿 MBTI 工具入口](screenshots/optional-mbti.png)
 - [保留会话的冷启动 Home](screenshots/cold-start-home.png)
 
-文件身份见 [截图 manifest](SCREENSHOT_MANIFEST.json)，具名 API/DB/APP 检查见 [集成回执](INTEGRATION_RECEIPT.json)，基线回执与私有汇总旧哈希限制见 [完整性核对](BASELINE_INTEGRITY_RECEIPT.json)。
+文件身份见 [截图 manifest](SCREENSHOT_MANIFEST.json)，具名 API/DB/APP 检查见 [集成回执](INTEGRATION_RECEIPT.json)，基线回执与编码前私有汇总的精确哈希核验见 [完整性核对](BASELINE_INTEGRITY_RECEIPT.json)。

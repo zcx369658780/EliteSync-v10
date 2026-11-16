@@ -59,7 +59,7 @@ B3 主要修改 11 个 Dart 产品文件与 Android 候选配置。后端产品�
 
 隔离服务初建出现 storage 卷属主、受控 fixture 唯一键和私有实例资格配置问题，均在新 B3 测试环境恢复。原 J8 默认 SELF 试做、旧通知测试的异步 build 签名、默认 wrapper 与本地构建门期望、UI dump 启动等待和测试启动目录错误均保留日志并完成相应修复。期限探针首次误期望已接受历史变成 EXPIRED，随后依据既有服务的历史状态与 candidate_available 合同复核，未改写业务状态机。
 
-补测复用了私有基线汇总文件，原整份文件的历史字节哈希未复原，记为 UNKNOWN。编码前已提交的逐动作回执、九项原数据及各项独立起止 UI 回执逐项核对一致，见 [基线完整性核对](evidence/BASELINE_INTEGRITY_RECEIPT.json)。本报告的九项成本依据这些具名记录，原整份私有汇总旧哈希的匹配状态保留为 UNKNOWN。
+补测复用了私有基线汇总文件。按原 Windows CRLF 序列化恢复为独立副本后，SHA256 `43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d` 与编码前冻结值完全一致。补测汇总继续保留。九项原数据、已提交逐动作回执及各项独立起止 UI 回执亦逐项一致，见 [基线完整性核对](evidence/BASELINE_INTEGRITY_RECEIPT.json)。初次 LF 重建未匹配的诊断结果保留，该项哈希限制已闭环。
 
 ## 保护、运行态与停止点
 

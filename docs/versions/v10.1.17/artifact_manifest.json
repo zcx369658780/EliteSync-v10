@@ -91,17 +91,17 @@
       "path": "docs/versions/v10.1.17/B3_BASELINE_ACTION_RECEIPT.json",
       "bytes": 10306,
       "sha256": "6b381afebe44d2ce713dcf3dd96df99afc9839e7a725e1a61840e119c2b28779",
-      "local_worktree_sha256": "9218447489b2bcc438ba5d17db7df862c28858fe97eee0a0ad3f42ffa10b7191",
+      "git_blob_sha": "af97a74aadd32a7c426bd806f7078266e7401a5a",
       "local_worktree_bytes": 10644,
-      "git_blob_sha": "af97a74aadd32a7c426bd806f7078266e7401a5a"
+      "local_worktree_sha256": "9218447489b2bcc438ba5d17db7df862c28858fe97eee0a0ad3f42ffa10b7191"
     },
     {
       "path": "docs/versions/v10.1.17/B3_LOW_OPERATION_COST_PRODUCT_CONTRACT.md",
       "bytes": 7865,
       "sha256": "11406085bb28ab81b76681b2e9010d2c0a6c3fabcc2a6881fc31b5ad40e0e000",
-      "local_worktree_sha256": "19aa87186592b003b80bb9fb6e7e2f8287b477710d216f5f67db55aab1ee0c2e",
+      "git_blob_sha": "784d64a3e6939584711f14772dd2181bff69327b",
       "local_worktree_bytes": 7980,
-      "git_blob_sha": "784d64a3e6939584711f14772dd2181bff69327b"
+      "local_worktree_sha256": "19aa87186592b003b80bb9fb6e7e2f8287b477710d216f5f67db55aab1ee0c2e"
     },
     {
       "path": "docs/versions/v10.1.17/B3_OPERATION_COST_BASELINE.md",
@@ -111,35 +111,35 @@
     },
     {
       "path": "docs/versions/v10.1.17/B3_OPERATION_COST_COMPARISON.json",
-      "bytes": 9013,
-      "sha256": "0ba3b9c48e2df6bce8965bdd844a6969eaef49e65159a4648c28a854c24f2f21",
-      "local_worktree_sha256": "101fcb162c631fe75d6ac9765f98bc662c11c16ba8b969acbd6d0d3e01ffb90b",
-      "local_worktree_bytes": 9318,
-      "git_blob_sha": "cc22270ceb17af6a30f9a1aa90ff55ba297385ba"
+      "bytes": 9123,
+      "sha256": "a202a0493160ab03d64bd7efd6004ead46c8ad1e525b20770aac336385f966b7",
+      "git_blob_sha": "97d2938db867fa0a4fe0c28359c15a3c6d69a550",
+      "local_worktree_bytes": 9429,
+      "local_worktree_sha256": "dbe3d1dda0eaf79ebd6556815c118783d4a51a9a589f4353ea26de4a85c9f458"
     },
     {
       "path": "docs/versions/v10.1.17/B3_OPERATION_COST_COMPARISON.md",
       "bytes": 2721,
       "sha256": "0162b226c265b1ca84b5dcff7009b430dc12943a3e727dd30da449d07b8f5115",
-      "local_worktree_sha256": "052e90fde045a8b05333b2aa42f36f5dbea915181faaf82b6df5853811586e14",
+      "git_blob_sha": "87d78ac89df2974302bbf0bec4d259db83dedf52",
       "local_worktree_bytes": 2750,
-      "git_blob_sha": "87d78ac89df2974302bbf0bec4d259db83dedf52"
+      "local_worktree_sha256": "052e90fde045a8b05333b2aa42f36f5dbea915181faaf82b6df5853811586e14"
     },
     {
       "path": "docs/versions/v10.1.17/B3_ROUTE_FUNCTION_MAP.md",
       "bytes": 5537,
       "sha256": "4ccf3e9d463f415eaa65c2d86a99b5f866f0673685ae8d21e69990e9d44df3dc",
-      "local_worktree_sha256": "33297581f6014a6745f908002a37e307fd1a86ec4469d5245040d57f546e9849",
+      "git_blob_sha": "605be22b8505cedc9710cf62824f81b9f9260247",
       "local_worktree_bytes": 5580,
-      "git_blob_sha": "605be22b8505cedc9710cf62824f81b9f9260247"
+      "local_worktree_sha256": "33297581f6014a6745f908002a37e307fd1a86ec4469d5245040d57f546e9849"
     },
     {
       "path": "docs/versions/v10.1.17/CODEX_START_PROMPT.txt",
       "bytes": 4452,
       "sha256": "91c927f034f8bd1643fab20a71f4232a232ed620da7840ae4cc958239500c72a",
-      "local_worktree_sha256": "39e3c06e7590d83f1f86ca6c75cf48ac9e0afe567159d0f6338609c3f8c8d424",
+      "git_blob_sha": "2be8cf825633271161a64a686352873b59057239",
       "local_worktree_bytes": 4523,
-      "git_blob_sha": "2be8cf825633271161a64a686352873b59057239"
+      "local_worktree_sha256": "39e3c06e7590d83f1f86ca6c75cf48ac9e0afe567159d0f6338609c3f8c8d424"
     },
     {
       "path": "docs/versions/v10.1.17/CURRENT_JOURNEY_INVENTORY.md",
@@ -151,41 +151,41 @@
       "path": "docs/versions/v10.1.17/DEVELOPMENT_ALIGNMENT.md",
       "bytes": 2521,
       "sha256": "09120c8268daa6187e4557f0cd2bfb013d9f864d4e3694045aaf2fa0b0984845",
-      "local_worktree_sha256": "f925a1d9cc02a49b4008f4cb9bbeeeaaac945bd07254bfc4cd9f0d61b12dd550",
+      "git_blob_sha": "2b1d43c59fd4de403ca67a14fea7815547d60d04",
       "local_worktree_bytes": 2561,
-      "git_blob_sha": "2b1d43c59fd4de403ca67a14fea7815547d60d04"
+      "local_worktree_sha256": "f925a1d9cc02a49b4008f4cb9bbeeeaaac945bd07254bfc4cd9f0d61b12dd550"
     },
     {
       "path": "docs/versions/v10.1.17/evidence/BASELINE_INTEGRITY_RECEIPT.json",
-      "bytes": 1746,
-      "sha256": "31d7f64dcdc5b3f90ce239ff45e03311c76f8b61b757640835c2eba6cb7f503f",
-      "local_worktree_sha256": "dc3289e7d0ced25f412aed220859c0981663aa9fc031e02dd4a242486303c484",
-      "local_worktree_bytes": 1800,
-      "git_blob_sha": "e897b04a5b70af10883ac28f8522c0f429dbd0f3"
+      "bytes": 2403,
+      "sha256": "5bc01311853a1eae3a40e33be8a1cd75f1bc1b4f142609223a4f161b1a865322",
+      "git_blob_sha": "1660d6169f2ccaf3e7f32656ccd26b0cccfeb63b",
+      "local_worktree_bytes": 2465,
+      "local_worktree_sha256": "183fdd05a2b762272f67f53312348c8087721402e30c5a39c2ccc42ac214564e"
     },
     {
       "path": "docs/versions/v10.1.17/evidence/INTEGRATION_RECEIPT.json",
       "bytes": 3212,
       "sha256": "cd16639c288bf27ac532fbb6e1db8153dba383dfb8de56032be281df2cccd573",
-      "local_worktree_sha256": "d4edca2f6579e4312d952e07e97076b5ad4f0a2110620eac5bff4ac5c32d0f43",
+      "git_blob_sha": "7cb31c84c32ff016deae558371fe976756398385",
       "local_worktree_bytes": 3326,
-      "git_blob_sha": "7cb31c84c32ff016deae558371fe976756398385"
+      "local_worktree_sha256": "d4edca2f6579e4312d952e07e97076b5ad4f0a2110620eac5bff4ac5c32d0f43"
     },
     {
       "path": "docs/versions/v10.1.17/evidence/README.md",
-      "bytes": 1062,
-      "sha256": "8f198690074e17fe04fa2fb786dad998dbc95cd24d4d164e3d97dc7f6d8d1cd2",
-      "local_worktree_sha256": "365c51ce2ee9b4b426155f633654d5467defbb57e75da23aa90b9cbce4606376",
-      "local_worktree_bytes": 1077,
-      "git_blob_sha": "69c024f623f9ab6e5f65a8eb691122d532cbfe97"
+      "bytes": 1077,
+      "sha256": "1fd7106d15131475075f61ece0f88a78a2d5f4b4c321c5f971a2bf78154e921b",
+      "git_blob_sha": "6421223eac9e8454e77a2ed024b793e2292acfaa",
+      "local_worktree_bytes": 1092,
+      "local_worktree_sha256": "3800da6372e0c4cbfe7171075fd0692c9081cd5ca010bf31dc3ca837b9cc956c"
     },
     {
       "path": "docs/versions/v10.1.17/evidence/SCREENSHOT_MANIFEST.json",
       "bytes": 2756,
       "sha256": "3e7b4aa69471431a58dd38d29e3b10c88f225efa6ab083dda60e544fbbce7adb",
-      "local_worktree_sha256": "943cafa561831f7b594d6e57182ffb10b302a8aebe7559e9a8c6b307de8c039d",
+      "git_blob_sha": "0cd99c9ee4933295aa72b44a241c3e0cfa0878fa",
       "local_worktree_bytes": 2826,
-      "git_blob_sha": "0cd99c9ee4933295aa72b44a241c3e0cfa0878fa"
+      "local_worktree_sha256": "943cafa561831f7b594d6e57182ffb10b302a8aebe7559e9a8c6b307de8c039d"
     },
     {
       "path": "docs/versions/v10.1.17/evidence/screenshots/authorized-chat.png",
@@ -243,43 +243,43 @@
     },
     {
       "path": "docs/versions/v10.1.17/EVIDENCE_SUMMARY_20261116.json",
-      "bytes": 4510,
-      "sha256": "0f9ed341afdb0e793436eeea188dc92525f425a6e2f8e87d435ad48897cec5cc",
-      "local_worktree_sha256": "d68acbc8a735af09716a7a4ae1e792792e45d45d1f1b75e8370405dfdbcba864",
-      "local_worktree_bytes": 4621,
-      "git_blob_sha": "767462c9dc54a29bfbea35fc570e0bdca066a9d9"
+      "bytes": 4726,
+      "sha256": "9364b868c0ad2d0587acfdab292cf31d905bfdcfbfcfe05a66ba121334f60822",
+      "git_blob_sha": "1121fe88fdaf29a2c4ce6119ad201d52f0c962b6",
+      "local_worktree_bytes": 4839,
+      "local_worktree_sha256": "ecc479f1b0f9c22243554d60e6b79fd6bb4f3c4caadfcce4c05f2d86165ee7ab"
     },
     {
       "path": "docs/versions/v10.1.17/IMPLEMENTATION_REPORT.md",
-      "bytes": 8489,
-      "sha256": "7ee164231e35b31d4b56248afb34ed4db681e34dc0540de0ee2d26ef5406872e",
-      "local_worktree_sha256": "5d2845bbea29481a23bed004b2891117fac360457d75ca2cbf5b0c43ac86ccb9",
-      "local_worktree_bytes": 8561,
-      "git_blob_sha": "62870d8400f60c9075967fe380f84fbb690174d2"
+      "bytes": 8565,
+      "sha256": "3107ba988f697fd750fdf023d84f2bfaa74bbb42913f7bc97436914057f63c03",
+      "git_blob_sha": "3dda8ac70a7b8bf344a82c918f601ab6912e5080",
+      "local_worktree_bytes": 8637,
+      "local_worktree_sha256": "72c6e1efdca726ad5b360234bb677d97e5ac93af3898c3f97b5634881a942f24"
     },
     {
       "path": "docs/versions/v10.1.17/LOCAL_DOCS_SYNC_RECEIPT.json",
       "bytes": 5634,
       "sha256": "8186f70ff59cd2579300a02d14defabf8f7047c293659206d9ffec595a469db7",
-      "local_worktree_sha256": "740539568be19742932cfc239c01fbc72cabfc991e32003208d68f796d63e246",
+      "git_blob_sha": "0d76a12ea77ffd8a792c13f3a8098a7533d9be83",
       "local_worktree_bytes": 5765,
-      "git_blob_sha": "0d76a12ea77ffd8a792c13f3a8098a7533d9be83"
+      "local_worktree_sha256": "740539568be19742932cfc239c01fbc72cabfc991e32003208d68f796d63e246"
     },
     {
       "path": "docs/versions/v10.1.17/OWNER_DEVICE_CHECKLIST.md",
       "bytes": 3997,
       "sha256": "2e820a300bf38f8f369999206373e57e6b299c586ae84eedcb5e9083f35db7c7",
-      "local_worktree_sha256": "e03b8a6949e27656e979ae777175a08479b9527be404da23cf7b2f02bf9dc1be",
+      "git_blob_sha": "a618fb47cc3c4bc297b0c6db37b8688244983d59",
       "local_worktree_bytes": 4042,
-      "git_blob_sha": "a618fb47cc3c4bc297b0c6db37b8688244983d59"
+      "local_worktree_sha256": "e03b8a6949e27656e979ae777175a08479b9527be404da23cf7b2f02bf9dc1be"
     },
     {
       "path": "docs/versions/v10.1.17/plan.md",
       "bytes": 3659,
       "sha256": "098b8e90d23d7aed3a1810fb068ddc2bb00378b8b5d4cf61fc69ed94b3f10555",
-      "local_worktree_sha256": "e87229dc90d66b8b205fbc26d8839e14c09524bc088419495d5a10e0ff54373d",
+      "git_blob_sha": "2541cb738d25471c509a5ccc91bc714ecc8931ff",
       "local_worktree_bytes": 3727,
-      "git_blob_sha": "2541cb738d25471c509a5ccc91bc714ecc8931ff"
+      "local_worktree_sha256": "e87229dc90d66b8b205fbc26d8839e14c09524bc088419495d5a10e0ff54373d"
     },
     {
       "path": "docs/versions/v10.1.17/ROADMAP_ALIGNMENT_ACK.md",
@@ -297,31 +297,36 @@
       "path": "docs/versions/v10.1.17/task_order.md",
       "bytes": 9407,
       "sha256": "cc8c4f187d0dc7956e8920136a934340a2d579bb1dd079223458416f971fb4bf",
-      "local_worktree_sha256": "9450e10707d06c0b4b6bb45ce9793d0f15e371ec85202facded5d425f5fe3d0f",
+      "git_blob_sha": "2f9372f8cecf0f59b079d3af11c1661e00e2f236",
       "local_worktree_bytes": 9544,
-      "git_blob_sha": "2f9372f8cecf0f59b079d3af11c1661e00e2f236"
+      "local_worktree_sha256": "9450e10707d06c0b4b6bb45ce9793d0f15e371ec85202facded5d425f5fe3d0f"
     },
     {
       "path": "docs/workflow/ACTIVE_STATE.md",
       "bytes": 3735,
       "sha256": "e286df24adc3b5bd740b8007d2e2b5668de3d472f3ad7fd700e16dceefb1333e",
-      "local_worktree_sha256": "c68e96b92ade17c6bd3f64b6e95cc62c50112aae65c0cd264ace2f45f2cc76ac",
+      "git_blob_sha": "afd9c302662a5d49c5a3de9cbd21e745d6f67323",
       "local_worktree_bytes": 3780,
-      "git_blob_sha": "afd9c302662a5d49c5a3de9cbd21e745d6f67323"
+      "local_worktree_sha256": "c68e96b92ade17c6bd3f64b6e95cc62c50112aae65c0cd264ace2f45f2cc76ac"
     },
     {
       "path": "docs/workflow/CURRENT_WORKFLOW.md",
       "bytes": 2792,
       "sha256": "c1ed4daa1a269adfe245c136fdf7fa0adae3a95db737a2562ff5599592788875",
-      "local_worktree_sha256": "28e97734dc01b2863fa052dd0b348124c15e05095b18ac7f4ebfcaa545436993",
+      "git_blob_sha": "bc2d6a82627101145fe8bfc34940fc882a953a40",
       "local_worktree_bytes": 2823,
-      "git_blob_sha": "bc2d6a82627101145fe8bfc34940fc882a953a40"
+      "local_worktree_sha256": "28e97734dc01b2863fa052dd0b348124c15e05095b18ac7f4ebfcaa545436993"
     }
   ],
   "recorded_limits": [
-    "Private baseline whole-summary old byte hash UNKNOWN after supplementary append; all nine frozen public action records and independent start/end UI receipts match",
     "Owner phone/system-level matrix NOT_RUN, Owner and advisor acceptance PENDING",
     "Historical B1 image-model name/version UNKNOWN and v10.1.16 initial DB probe/status unknowns retained"
   ],
-  "artifact_checksum_basis": "Committed Git blob bytes. Differing local worktree byte hashes are explicitly recorded."
+  "artifact_checksum_basis": "Committed Git blob bytes. Differing local worktree byte hashes are explicitly recorded.",
+  "baseline_prefreeze_integrity": {
+    "status": "VERIFIED_RECOVERED_EXACT_BYTES",
+    "sha256": "43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d",
+    "receipt": "evidence/BASELINE_INTEGRITY_RECEIPT.json",
+    "augmented_summary": "LOCAL_ONLY_RETAINED"
+  }
 }

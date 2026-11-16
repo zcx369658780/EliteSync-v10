@@ -1,5 +1,5 @@
 {
-  "status": "NINE_ORIGINAL_JOURNEYS_CHECKED_AGAINST_FROZEN_GIT_ACTIONS_AND_INDEPENDENT_UI_RECEIPTS",
+  "status": "NINE_ORIGINAL_JOURNEYS_AND_EXACT_PREFREEZE_BYTES_VERIFIED",
   "checks": {
     "J1": {
       "frozen_public_fields_match": true,
@@ -47,9 +47,17 @@
       "end_ui_receipt_match": true
     }
   },
-  "old_whole_summary_bytes_match": "UNKNOWN_AFTER_SUPPLEMENTAL_APPEND",
+  "old_whole_summary_bytes_match": "VERIFIED_RECOVERED_EXACT_BYTES",
   "old_summary_sha256": "43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d",
   "current_summary_sha256": "c24badaea9e0879f17db2b18d035789128b931d39b8214fc1932d7af17424921",
-  "failed_exact_reconstruction": "Retained as diagnostic only; no old summary file was written",
-  "supplemental_file": "baseline-j4-normalized-private.json"
+  "failed_exact_reconstruction": "Initial LF-only serialization probe failed; original Windows CRLF bytes then matched the frozen SHA256 exactly. Both diagnostic outcomes retained.",
+  "supplemental_file": "baseline-j4-normalized-private.json",
+  "exact_byte_recovery": {
+    "status": "EXACT_BYTES_RECOVERED_AND_VERIFIED_AGAINST_PRE_CODE_COMMITTED_SHA256",
+    "expected_sha256": "43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d",
+    "recovered_sha256": "43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d",
+    "method": "Remove supplementary entry and retain original Windows CRLF serialization. All original nine cases also match independent action and UI receipts.",
+    "recovered_file": "measurement-prefreeze-recovered-verified-private.json",
+    "augmented_file_preserved": "measurement-private.json"
+  }
 }
