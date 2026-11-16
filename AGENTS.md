@@ -1,6 +1,6 @@
 # EliteSync-v10 工程约定
 
-生效：2026-11-16。当前状态依据[v10.1.16 Owner接受记录](docs/versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)及[V3.0阶段B3补充决定](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md)，当前路线权威为[产品路线图V3.0](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)，普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
+生效：2026-11-16。当前状态依据[v10.1.17 Owner接受记录](docs/versions/v10.1.17/OWNER_ACCEPTANCE_20261116.md)、[v10.1.18 Owner接受记录](docs/versions/v10.1.18/OWNER_ACCEPTANCE_20261116.md)、[UI-AUDIT-01任务书](docs/workflow/UI_CURRENT_STATE_AUDIT_TASK_20261116.md)及[V3.0阶段B3补充决定](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md)，当前路线权威为[产品路线图V3.0](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)，普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
 
 历史实机授权记录：Owner曾明确授权Codex操作当前接入手机完成v10.1.14补证，该工作已完成，结果见v10.1.14实机报告。v10.1.17有限手机反馈已单独归档；Owner现已接受v10.1.17和v10.1.18。当前UI-AUDIT-01明确只用Android模拟器采集截图，不操作Owner手机。
@@ -53,7 +53,7 @@ Owner负责方向和保留决定；顾问提供路线；Codex负责工程拆解�
 
 保护原 D:\EliteSync-v10 的未提交成果和 index、当前开发目录及无关 %SystemDrive%/。不盲 pull/reset/rebase/stash/clean/prune，不 force push，不夹带无关内容。远端历史归档不是 main 合并或功能接受。
 
-设备、真实用户/生产数据、外部服务、费用、重大架构/版本和发布仍由 Owner 决定。旧 STOP、已耗次数和余额不追溯修改，不因规则简化自动恢复任何运行。历史测试脚本只作参考，退役路径不能作为现行可执行合同。资产清理阶段已结束。Owner 已授权继续 APP 功能开发；实际联测可等功能完成后进行，届时允许同时使用两个模拟器。v10.1.14手机补证已完成并单独记录；v10.1.17有限Owner实机反馈已归档；当前v10.1.18不操作Owner手机，交付后由Owner自行决定验收。Owner 已长期授权普通功能工程、定向验证与必要APK构建、本机独立开发服务及虚构数据库、必要双模拟器联测、已有许可的免费官方依赖和常规Git。优先源码功能，不为普通重编/启动/安装反复申请；旧执行器/已耗记录不复活。Owner 要求停下时及时保存并手动交接，长期授权本身继续有效。
+设备、真实用户/生产数据、外部服务、费用、重大架构/版本和发布仍由 Owner 决定。旧 STOP、已耗次数和余额不追溯修改，不因规则简化自动恢复任何运行。历史测试脚本只作参考，退役路径不能作为现行可执行合同。资产清理阶段已结束。Owner 已授权继续 APP 功能开发；实际联测可等功能完成后进行，届时允许同时使用两个模拟器。v10.1.14手机补证已完成并单独记录；v10.1.17有限Owner实机反馈已归档且Owner整版接受；v10.1.18亦已获Owner整版接受。当前UI-AUDIT-01仅使用Android模拟器，不操作Owner手机。Owner 已长期授权普通功能工程、定向验证与必要APK构建、本机独立开发服务及虚构数据库、必要双模拟器联测、已有许可的免费官方依赖和常规Git。优先源码功能，不为普通重编/启动/安装反复申请；旧执行器/已耗记录不复活。Owner 要求停下时及时保存并手动交接，长期授权本身继续有效。
 
 Owner于2026-11-12具体授权验收说明、120张测试截图、画廊/控件元数据和29份去敏证据摘要上传独立验收分支，范围及发布清单见[验收入口](https://github.com/zcx369658780/EliteSync-v10/blob/85197adec124ef94bbef2994c0668dc990f9bed4/docs/versions/v10.1.5/advisor-acceptance-20261112/README.md)。完整原始回执、APK、素材、凭据、许可证、SQL/数据库与设备原始日志由Owner本机保管。有意义节点维护ACTIVE_STATE单一当前入口及必要进度，常规同步授权分支，失败记PENDING_SYNC。
 
