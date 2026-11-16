@@ -463,5 +463,6 @@
     "main_integration": "NOT_RUN",
     "release": "NOT_RUN",
     "B4_and_phase_C": "NOT_AUTHORIZED"
-  }
+  },
+  "artifact_preflight_correction": "One retained CRLF test file had a different clean-filter object identity. Manifest now uses its actual committed Git blob. Source and test bytes retained."
 }
