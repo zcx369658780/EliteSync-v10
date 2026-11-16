@@ -32,7 +32,12 @@
   },
   "advisor_acceptance": "PENDING",
   "owner_acceptance": "PENDING",
-  "remote_readback": "PENDING_FINAL_PUSH_READBACK",
+  "remote_readback": {
+    "status": "PASS_SAME_ORIGIN_FIXED_PAYLOAD_READBACK",
+    "payload_commit": "f404a7e9ad49331bb331f9460b09a98b9e183252",
+    "receipt": "evidence/REMOTE_READBACK_RECEIPT.json",
+    "final_closeout": "Final branch HEAD verified in Owner-local final-readback-private.json and final handoff"
+  },
   "files": [
     {
       "path": "AGENTS.md",
@@ -456,17 +461,17 @@
     },
     {
       "path": "docs/versions/v10.1.18/EVIDENCE_SUMMARY_20261116.json",
-      "git_blob_sha": "49a9c422b82939d50d35157ffaca3788fe7035fa",
-      "sha256": "b77ef3f0c9483bd0e23c4546e7950660ff807caa4899ecb140b993cd536426d1",
-      "bytes": 15658,
-      "local_worktree_sha256": "b77ef3f0c9483bd0e23c4546e7950660ff807caa4899ecb140b993cd536426d1"
+      "git_blob_sha": "1a3f46d073c5aedf11d738e6e305ab647f5bf9b3",
+      "sha256": "3ea715d1dfec49423982f00777e43d79232806243be510b211051c1397ff2fce",
+      "bytes": 15905,
+      "local_worktree_sha256": "3ea715d1dfec49423982f00777e43d79232806243be510b211051c1397ff2fce"
     },
     {
       "path": "docs/versions/v10.1.18/IMPLEMENTATION_REPORT.md",
-      "git_blob_sha": "1f01da1cd9ba941dd393caa7e0a854062db7d398",
-      "sha256": "98601da69f8368e06db23e6626a732c4b9856f04f68a77c471270a8a1fb57a71",
-      "bytes": 7280,
-      "local_worktree_sha256": "98601da69f8368e06db23e6626a732c4b9856f04f68a77c471270a8a1fb57a71"
+      "git_blob_sha": "c777c8ffd4d968bc6c7f0e132e4473d74c824ccd",
+      "sha256": "1c318d893b101d3a3cc47867a5f95c478757ad01da9430d5d7f745638bd3c2bc",
+      "bytes": 7816,
+      "local_worktree_sha256": "1c318d893b101d3a3cc47867a5f95c478757ad01da9430d5d7f745638bd3c2bc"
     },
     {
       "path": "docs/versions/v10.1.18/LOCAL_DOCS_SYNC_RECEIPT.json",
@@ -523,6 +528,13 @@
       "sha256": "7d8c0d36047b3e9a3db943ccc6072c64586a864cc43be1017de7db2cbb7a240c",
       "bytes": 715,
       "local_worktree_sha256": "7d8c0d36047b3e9a3db943ccc6072c64586a864cc43be1017de7db2cbb7a240c"
+    },
+    {
+      "path": "docs/versions/v10.1.18/evidence/REMOTE_READBACK_RECEIPT.json",
+      "git_blob_sha": "f428502bbf71a2529e9907ee7c34295ec10a83a7",
+      "sha256": "3d2e2d19602f546a50fe4d4045f52350ddf7962e2af911fb8c5ed7834be62cd0",
+      "bytes": 862,
+      "local_worktree_sha256": "3d2e2d19602f546a50fe4d4045f52350ddf7962e2af911fb8c5ed7834be62cd0"
     },
     {
       "path": "docs/versions/v10.1.18/evidence/SCREENSHOT_MANIFEST.json",
@@ -645,17 +657,17 @@
     },
     {
       "path": "docs/workflow/ACTIVE_STATE.md",
-      "git_blob_sha": "e0992e7a150f31c63690c3ba52ad537611893c90",
-      "sha256": "531f784292cd211020549ba83d9d7b70f06232bb713b988ca0d2aeaf19a1e6e7",
-      "bytes": 1836,
-      "local_worktree_sha256": "531f784292cd211020549ba83d9d7b70f06232bb713b988ca0d2aeaf19a1e6e7"
+      "git_blob_sha": "9d10d7a3a2b6018bcfff9342a8c8f69e1aaad34e",
+      "sha256": "0af0b602c13746a3e187abcbcb4e13af7b782c0a4e3d0bcf0a63dbc3fd8c7988",
+      "bytes": 1954,
+      "local_worktree_sha256": "0af0b602c13746a3e187abcbcb4e13af7b782c0a4e3d0bcf0a63dbc3fd8c7988"
     },
     {
       "path": "docs/workflow/CURRENT_WORKFLOW.md",
-      "git_blob_sha": "05926b32551b56fa955144c13cac136e95606740",
-      "sha256": "3709a098fa093643d98a74db346870da83b47fbad7f5930028a10b753757ec8c",
-      "bytes": 1065,
-      "local_worktree_sha256": "3709a098fa093643d98a74db346870da83b47fbad7f5930028a10b753757ec8c"
+      "git_blob_sha": "9e527eee5202848e4f2221dffbb3f9cc0982e7bc",
+      "sha256": "a2899506df8f2cdd3c403b6691a710fdd97c4ba92611f232d7be6e5bbf99d301",
+      "bytes": 1185,
+      "local_worktree_sha256": "a2899506df8f2cdd3c403b6691a710fdd97c4ba92611f232d7be6e5bbf99d301"
     }
   ],
   "limits": {

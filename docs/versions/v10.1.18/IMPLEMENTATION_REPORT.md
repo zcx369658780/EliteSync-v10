@@ -57,3 +57,9 @@ v18 DB/API运行，WS在API容器内监听，API回环19021，WS回环19022。v1
 Owner原v17 Buddy问题的确切原因UNKNOWN。系统级TalkBack、真实Push及真实硬件通话矩阵为NOT_RUN。本版工程证据包含模拟器、Widget、受控fixture与私有诊断的各自范围。B1美术模型精确名称及版本UNKNOWN沿原记录保留，本版使用现有素材。Owner整体接受和GPT顾问独立验收PENDING。
 
 main集成、正式发布和真实运营为NOT_RUN。完成原分支同源固定回读后停止，等待顾问独立验收。Owner手动复验见[检查表](OWNER_DEVICE_CHECKLIST.md)。
+
+## 远端交付回执
+
+集中交付固定提交`f404a7e9ad49331bb331f9460b09a98b9e183252`已推送原任务分支，并完成同源远端固定回读。89项文件的Git Blob及SHA256核对通过，APP产品源码与候选源码一致。[回读回执](evidence/REMOTE_READBACK_RECEIPT.json)记录该交付主体。
+
+本次状态与回执收口提交的最终HEAD另作同源固定回读，记录在Owner本机`final-readback-private.json`及最终交接。当前停止点为等待GPT顾问独立验收，Owner整体接受仍PENDING。

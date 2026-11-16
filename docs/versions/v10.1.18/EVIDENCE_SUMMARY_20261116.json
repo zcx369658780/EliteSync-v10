@@ -5,7 +5,7 @@
   "candidate": 1011804,
   "advisor_acceptance": "PENDING",
   "owner_acceptance": "PENDING",
-  "delivery_sync": "PENDING_FINAL_PUSH_READBACK",
+  "delivery_sync": "PASS_SAME_ORIGIN_FIXED_PAYLOAD_READBACK",
   "ac_results": {
     "AC18-01": "PASS_IN_NAMED_SCOPE",
     "AC18-02": "PASS_IN_NAMED_SCOPE",
@@ -464,5 +464,8 @@
     "release": "NOT_RUN",
     "B4_and_phase_C": "NOT_AUTHORIZED"
   },
-  "artifact_preflight_correction": "One retained CRLF test file had a different clean-filter object identity. Manifest now uses its actual committed Git blob. Source and test bytes retained."
+  "artifact_preflight_correction": "One retained CRLF test file had a different clean-filter object identity. Manifest now uses its actual committed Git blob. Source and test bytes retained.",
+  "payload_delivery_commit": "f404a7e9ad49331bb331f9460b09a98b9e183252",
+  "same_origin_readback": "evidence/REMOTE_READBACK_RECEIPT.json",
+  "final_closeout_verification": "Receipt/status commit verified separately at final handoff"
 }

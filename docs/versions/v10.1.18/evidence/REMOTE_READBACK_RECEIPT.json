@@ -1,0 +1,16 @@
+{
+  "status": "PASS_SAME_ORIGIN_FIXED_READBACK",
+  "delivery_commit": "f404a7e9ad49331bb331f9460b09a98b9e183252",
+  "remote_commit": "f404a7e9ad49331bb331f9460b09a98b9e183252",
+  "source_commit": "1afa6940c37bc1b40aa3d05ea46fb47002f6455c",
+  "origin": "git@github.com:zcx369658780/EliteSync-v10.git",
+  "branch": "codex/v10.1.18-ui-language-match-entry-consistency-20261116",
+  "artifact_blob_count": 89,
+  "all_blob_and_sha256_checks": true,
+  "manifest_blob_sha": "57cfee34b0c6e60b0747485c1ce02c2eab804ae7",
+  "product_sources_match_candidate": true,
+  "index": "EMPTY",
+  "only_unrelated_untracked": "%SystemDrive%/",
+  "utc": "2026-11-16T08:15:32.628144+00:00",
+  "scope": "Concentrated delivery payload at the named fixed commit. The subsequent receipt/status closeout commit is independently checked by the final same-origin readback and final handoff."
+}
