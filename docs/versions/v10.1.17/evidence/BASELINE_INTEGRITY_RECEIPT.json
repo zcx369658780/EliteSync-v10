@@ -1,0 +1,55 @@
+{
+  "status": "NINE_ORIGINAL_JOURNEYS_CHECKED_AGAINST_FROZEN_GIT_ACTIONS_AND_INDEPENDENT_UI_RECEIPTS",
+  "checks": {
+    "J1": {
+      "frozen_public_fields_match": true,
+      "start_ui_receipt_match": true,
+      "end_ui_receipt_match": true
+    },
+    "J2": {
+      "frozen_public_fields_match": true,
+      "start_ui_receipt_match": true,
+      "end_ui_receipt_match": true
+    },
+    "J3": {
+      "frozen_public_fields_match": true,
+      "start_ui_receipt_match": true,
+      "end_ui_receipt_match": true
+    },
+    "J4": {
+      "frozen_public_fields_match": true,
+      "start_ui_receipt_match": true,
+      "end_ui_receipt_match": true
+    },
+    "J5": {
+      "frozen_public_fields_match": true,
+      "start_ui_receipt_match": true,
+      "end_ui_receipt_match": true
+    },
+    "J6": {
+      "frozen_public_fields_match": true,
+      "start_ui_receipt_match": true,
+      "end_ui_receipt_match": true
+    },
+    "J7": {
+      "frozen_public_fields_match": true,
+      "start_ui_receipt_match": true,
+      "end_ui_receipt_match": true
+    },
+    "J8": {
+      "frozen_public_fields_match": true,
+      "start_ui_receipt_match": true,
+      "end_ui_receipt_match": true
+    },
+    "J9": {
+      "frozen_public_fields_match": true,
+      "start_ui_receipt_match": true,
+      "end_ui_receipt_match": true
+    }
+  },
+  "old_whole_summary_bytes_match": "UNKNOWN_AFTER_SUPPLEMENTAL_APPEND",
+  "old_summary_sha256": "43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d",
+  "current_summary_sha256": "c24badaea9e0879f17db2b18d035789128b931d39b8214fc1932d7af17424921",
+  "failed_exact_reconstruction": "Retained as diagnostic only; no old summary file was written",
+  "supplemental_file": "baseline-j4-normalized-private.json"
+}

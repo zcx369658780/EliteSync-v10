@@ -1,0 +1,71 @@
+{
+  "source_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
+  "candidate": 1011703,
+  "screenshots": [
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/home-state.png",
+      "sha256": "51d8f650c598deb370a3a4810814484d12630ad519089997f4f2725c813993d8",
+      "bytes": 147014,
+      "candidate": 1011703,
+      "classification": "FICTIONAL_EMULATOR_REPRESENTATIVE"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/progress-proposal.png",
+      "sha256": "aa11f80dbaba0ed0380531128520b22a49afca0e04087a3c3ec73007a0d5e0a4",
+      "bytes": 174699,
+      "candidate": 1011703,
+      "classification": "FICTIONAL_EMULATOR_REPRESENTATIVE"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/me-purpose.png",
+      "sha256": "6f860ef68d28d2d06cd6936b55c76dc479cdc507e7e0d782b8b620a469408623",
+      "bytes": 143693,
+      "candidate": 1011703,
+      "classification": "FICTIONAL_EMULATOR_REPRESENTATIVE"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/preferences-edited.png",
+      "sha256": "9d44fd099fa26575a60f71d04febf8bee41217e73b352ee2ecae095bd8f5b39e",
+      "bytes": 152482,
+      "candidate": 1011703,
+      "classification": "FICTIONAL_EMULATOR_REPRESENTATIVE"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/automation-result.png",
+      "sha256": "dfdd4fd913eed2fc2c381472983d6965927f02b5d27c56638d5ae89d7e2e8f2d",
+      "bytes": 142942,
+      "candidate": 1011703,
+      "classification": "FICTIONAL_EMULATOR_REPRESENTATIVE"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/notifications.png",
+      "sha256": "05ae7af0e72164bf933b8d469b1f9c90b504f26742cdf527766a845d32879677",
+      "bytes": 163815,
+      "candidate": 1011703,
+      "classification": "FICTIONAL_EMULATOR_REPRESENTATIVE"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/authorized-chat.png",
+      "sha256": "72f2ce3bdd751e692f8367a76bf680ec9490065938fcff1f61726faa344a10d7",
+      "bytes": 51705,
+      "candidate": 1011703,
+      "classification": "FICTIONAL_EMULATOR_REPRESENTATIVE"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/optional-mbti.png",
+      "sha256": "ca43fb98a46c656d7abe2c4873b02e1933818c96006285b3fb7beb21d64ce7ec",
+      "bytes": 63439,
+      "candidate": 1011703,
+      "classification": "FICTIONAL_EMULATOR_REPRESENTATIVE"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/cold-start-home.png",
+      "sha256": "d68823fddf318673cd54ce6bcfcc7b3761e3a88511e8f1309ee4b539f8ea5c56",
+      "bytes": 155752,
+      "candidate": 1011703,
+      "classification": "FICTIONAL_EMULATOR_REPRESENTATIVE"
+    }
+  ],
+  "phone": "NOT_USED",
+  "raw_media": "LOCAL_ONLY"
+}

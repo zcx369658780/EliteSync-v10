@@ -1,3 +1,19 @@
+# 当前入口 2026-11-16 v10.1.17 B3工程交付，等待顾问验收
+
+**V10117_ENGINEERING_PASS_IN_NAMED_SCOPE / ADVISOR_PENDING / OWNER_PENDING**。
+
+最终源码 `1953582093d3469a48cd7275864309cb09eb0e53`。候选 `10.1.17-dev / 1011703`，包名 `com.elitesync.v1017dev`，APK SHA256 `729be2af7d215f4701c49e494d1767e59d350b1aee5bf83ecb553910f050f8ea`。旧 1011601 独立包及数据保留。
+
+八项 AC 按具名代表范围工程自验通过。九项旅程操作 53→35，六项减少无必要跳转，五项减少至少20%。报告、manifest、证据与Owner后续检查表已集中交付。
+
+[实施报告](../versions/v10.1.17/IMPLEMENTATION_REPORT.md) · [manifest](../versions/v10.1.17/artifact_manifest.json) · [证据摘要](../versions/v10.1.17/EVIDENCE_SUMMARY_20261116.json) · [成本对比](../versions/v10.1.17/B3_OPERATION_COST_COMPARISON.md) · [Owner检查表](../versions/v10.1.17/OWNER_DEVICE_CHECKLIST.md)。
+
+本版新隔离 DB/API/WS 运行，API回环18021、WS18022。旧开发 DB/API/WS/SFU保持exited，模拟器已停止，AVD/数据与私有原证保留。原库HEAD/index/差异及同格式status指纹与本轮开工一致。历史未知和失败沿原记录保留。
+
+顾问验收及Owner整体实机接受PENDING。手机操作NOT_RUN。当前停止等待顾问；B4、阶段C及后继版本后续另行授权。main集成及发布NOT_RUN。
+
+## 历史启动入口（保留）
+
 # 当前入口 2026-11-16 v10.1.16 Owner已接受，v10.1.17阶段B3已授权
 
 **V10116_OWNER_ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS / V10117_B3_AUTHORIZED**。

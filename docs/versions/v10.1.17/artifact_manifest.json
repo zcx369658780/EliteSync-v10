@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "version": "v10.1.17",
+  "phase": "V3.0 B3",
+  "engineering_status": "PASS_IN_NAMED_SCOPE",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "branch": "codex/v10.1.17-low-operation-cost-journey-integration-20261116",
+  "unique_parent_baseline": "99a05c6f6d509c0607d8bff0d63b122d5cc84eec",
+  "fixed_task_documents": "8117980c8f2b2e8ada61db52450a9aca7b643e13",
+  "pre_source_audit_commit": "f22871c0",
+  "source_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
+  "source_tree": "87e743c2caba1dd888f5e9bd8f1556a54b3aa37b",
+  "source_remote_readback": {
+    "status": "PASS_SAME_ORIGIN_FIXED_SOURCE_READBACK",
+    "source_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
+    "branch": "codex/v10.1.17-low-operation-cost-journey-integration-20261116",
+    "origin": "git@github.com:zcx369658780/EliteSync-v10.git",
+    "readback_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
+    "utc": "2026-11-16T02:36:40.299396+00:00"
+  },
+  "final_delivery_readback": "LOCAL_ONLY final-delivery-readback-private.json after final documentation push, final fixed HEAD reported in delivery",
+  "candidate": {
+    "version_name": "10.1.17-dev",
+    "version_code": 1011703,
+    "application_id": "com.elitesync.v1017dev",
+    "abi": "arm64-v8a",
+    "build": "source-debug",
+    "apk_bytes": 124076385,
+    "apk_sha256": "729be2af7d215f4701c49e494d1767e59d350b1aee5bf83ecb553910f050f8ea",
+    "signing_certificate_sha256": "7c023c0fbdab8cd4f53daedbc95badb47d5f968b2c267d94fa695655f391bd42",
+    "apk_local_only": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\v10117-current\\candidate\\candidate-1011703-private.apk",
+    "source_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
+    "installed_apk_sha256": "729be2af7d215f4701c49e494d1767e59d350b1aee5bf83ecb553910f050f8ea",
+    "emulator_serial": "emulator-5580",
+    "android_user": 11,
+    "dart_defines": [
+      "ELITESYNC_V1017_LOCAL_BUILD=true",
+      "ELITESYNC_V1015_LOCAL_BUILD=true",
+      "ELITESYNC_V1014_LOCAL_BUILD=true"
+    ]
+  },
+  "prior_candidate_1011601": {
+    "application_id": "com.elitesync.v1015dev",
+    "apk_sha256": "ac86f8df05d1e39abfead445ba5d6e23bcb457b6c73030c02fa38d2d2cedb055",
+    "status": "RETAINED_VERIFIED_SEPARATE_PACKAGE"
+  },
+  "superseded_candidates": [
+    {
+      "version_code": 1011701,
+      "source_commit": "596d6428b601d70b38b680bf42a54e8ad1c874f4",
+      "reason": "login redirect visibility defect",
+      "apk": "LOCAL_ONLY_RETAINED"
+    },
+    {
+      "version_code": 1011702,
+      "source_commit": "0bab747b96ee76d63faa8e28ef7634f7808473ea",
+      "reason": "default cold start still entered old preparation page",
+      "apk": "LOCAL_ONLY_RETAINED"
+    }
+  ],
+  "acceptance_criteria": {
+    "AC17-01": "PASS_IN_NAMED_SCOPE",
+    "AC17-02": "PASS_IN_NAMED_SCOPE",
+    "AC17-03": "PASS_IN_NAMED_SCOPE",
+    "AC17-04": "PASS_IN_NAMED_SCOPE",
+    "AC17-05": "PASS_IN_NAMED_SCOPE",
+    "AC17-06": "PASS_IN_NAMED_SCOPE",
+    "AC17-07": "PASS_IN_NAMED_SCOPE",
+    "AC17-08": "PASS_IN_NAMED_SCOPE"
+  },
+  "visual_assets": {
+    "reference_manifest": "design/assets/lifestyle-discovery/v1/asset_manifest.json",
+    "new_artwork_count": 0,
+    "actual_image_model_name": "UNKNOWN",
+    "actual_image_model_version": "UNKNOWN",
+    "metadata_scope": "Historical B1 metadata, preserved"
+  },
+  "private_evidence_root": "C:\\Users\\zcxve\\EliteSyncDev\\v1015-current-dev\\v10117-current",
+  "runtime_end": {
+    "new_isolated_db_api_ws": "RUNNING",
+    "prior_dev_db_api_ws_sfu": "EXITED_RETAINED",
+    "emulator": "STOPPED_DATA_RETAINED",
+    "owner_phone": "NOT_USED"
+  },
+  "main_integration": "NOT_RUN",
+  "publication": "NOT_RUN",
+  "stop": "WAIT_GPT_ADVISOR_NO_SUCCESSOR_AUTHORITY",
+  "files": [
+    {
+      "path": "docs/versions/v10.1.17/B3_BASELINE_ACTION_RECEIPT.json",
+      "bytes": 10644,
+      "sha256": "9218447489b2bcc438ba5d17db7df862c28858fe97eee0a0ad3f42ffa10b7191"
+    },
+    {
+      "path": "docs/versions/v10.1.17/B3_LOW_OPERATION_COST_PRODUCT_CONTRACT.md",
+      "bytes": 7980,
+      "sha256": "19aa87186592b003b80bb9fb6e7e2f8287b477710d216f5f67db55aab1ee0c2e"
+    },
+    {
+      "path": "docs/versions/v10.1.17/B3_OPERATION_COST_BASELINE.md",
+      "bytes": 5059,
+      "sha256": "9b7005cf2a55b0223bd80e726c0a8e46f00ff155bbc348a40d945226928bfccf"
+    },
+    {
+      "path": "docs/versions/v10.1.17/B3_OPERATION_COST_COMPARISON.json",
+      "bytes": 9318,
+      "sha256": "101fcb162c631fe75d6ac9765f98bc662c11c16ba8b969acbd6d0d3e01ffb90b"
+    },
+    {
+      "path": "docs/versions/v10.1.17/B3_OPERATION_COST_COMPARISON.md",
+      "bytes": 2750,
+      "sha256": "052e90fde045a8b05333b2aa42f36f5dbea915181faaf82b6df5853811586e14"
+    },
+    {
+      "path": "docs/versions/v10.1.17/B3_ROUTE_FUNCTION_MAP.md",
+      "bytes": 5580,
+      "sha256": "33297581f6014a6745f908002a37e307fd1a86ec4469d5245040d57f546e9849"
+    },
+    {
+      "path": "docs/versions/v10.1.17/CODEX_START_PROMPT.txt",
+      "bytes": 4523,
+      "sha256": "39e3c06e7590d83f1f86ca6c75cf48ac9e0afe567159d0f6338609c3f8c8d424"
+    },
+    {
+      "path": "docs/versions/v10.1.17/CURRENT_JOURNEY_INVENTORY.md",
+      "bytes": 11556,
+      "sha256": "1ab4ad35ead847b7483eef387dd53012fa4768daa60ac2c2f3a96bff0f728e93"
+    },
+    {
+      "path": "docs/versions/v10.1.17/DEVELOPMENT_ALIGNMENT.md",
+      "bytes": 2561,
+      "sha256": "f925a1d9cc02a49b4008f4cb9bbeeeaaac945bd07254bfc4cd9f0d61b12dd550"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/BASELINE_INTEGRITY_RECEIPT.json",
+      "bytes": 1800,
+      "sha256": "dc3289e7d0ced25f412aed220859c0981663aa9fc031e02dd4a242486303c484"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/INTEGRATION_RECEIPT.json",
+      "bytes": 3326,
+      "sha256": "d4edca2f6579e4312d952e07e97076b5ad4f0a2110620eac5bff4ac5c32d0f43"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/README.md",
+      "bytes": 1077,
+      "sha256": "365c51ce2ee9b4b426155f633654d5467defbb57e75da23aa90b9cbce4606376"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/SCREENSHOT_MANIFEST.json",
+      "bytes": 2826,
+      "sha256": "943cafa561831f7b594d6e57182ffb10b302a8aebe7559e9a8c6b307de8c039d"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/authorized-chat.png",
+      "bytes": 51705,
+      "sha256": "72f2ce3bdd751e692f8367a76bf680ec9490065938fcff1f61726faa344a10d7"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/automation-result.png",
+      "bytes": 142942,
+      "sha256": "dfdd4fd913eed2fc2c381472983d6965927f02b5d27c56638d5ae89d7e2e8f2d"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/cold-start-home.png",
+      "bytes": 155752,
+      "sha256": "d68823fddf318673cd54ce6bcfcc7b3761e3a88511e8f1309ee4b539f8ea5c56"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/home-state.png",
+      "bytes": 147014,
+      "sha256": "51d8f650c598deb370a3a4810814484d12630ad519089997f4f2725c813993d8"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/me-purpose.png",
+      "bytes": 143693,
+      "sha256": "6f860ef68d28d2d06cd6936b55c76dc479cdc507e7e0d782b8b620a469408623"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/notifications.png",
+      "bytes": 163815,
+      "sha256": "05ae7af0e72164bf933b8d469b1f9c90b504f26742cdf527766a845d32879677"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/optional-mbti.png",
+      "bytes": 63439,
+      "sha256": "ca43fb98a46c656d7abe2c4873b02e1933818c96006285b3fb7beb21d64ce7ec"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/preferences-edited.png",
+      "bytes": 152482,
+      "sha256": "9d44fd099fa26575a60f71d04febf8bee41217e73b352ee2ecae095bd8f5b39e"
+    },
+    {
+      "path": "docs/versions/v10.1.17/evidence/screenshots/progress-proposal.png",
+      "bytes": 174699,
+      "sha256": "aa11f80dbaba0ed0380531128520b22a49afca0e04087a3c3ec73007a0d5e0a4"
+    },
+    {
+      "path": "docs/versions/v10.1.17/EVIDENCE_SUMMARY_20261116.json",
+      "bytes": 4621,
+      "sha256": "d68acbc8a735af09716a7a4ae1e792792e45d45d1f1b75e8370405dfdbcba864"
+    },
+    {
+      "path": "docs/versions/v10.1.17/IMPLEMENTATION_REPORT.md",
+      "bytes": 8561,
+      "sha256": "5d2845bbea29481a23bed004b2891117fac360457d75ca2cbf5b0c43ac86ccb9"
+    },
+    {
+      "path": "docs/versions/v10.1.17/LOCAL_DOCS_SYNC_RECEIPT.json",
+      "bytes": 5765,
+      "sha256": "740539568be19742932cfc239c01fbc72cabfc991e32003208d68f796d63e246"
+    },
+    {
+      "path": "docs/versions/v10.1.17/OWNER_DEVICE_CHECKLIST.md",
+      "bytes": 4042,
+      "sha256": "e03b8a6949e27656e979ae777175a08479b9527be404da23cf7b2f02bf9dc1be"
+    },
+    {
+      "path": "docs/versions/v10.1.17/plan.md",
+      "bytes": 3727,
+      "sha256": "e87229dc90d66b8b205fbc26d8839e14c09524bc088419495d5a10e0ff54373d"
+    },
+    {
+      "path": "docs/versions/v10.1.17/ROADMAP_ALIGNMENT_ACK.md",
+      "bytes": 2255,
+      "sha256": "58afd90cec9c5c58e75495cf60338ae47db5c1047a95c54a62882f6ae80bb3b6"
+    },
+    {
+      "path": "docs/versions/v10.1.17/TARGET_INFORMATION_ARCHITECTURE_V1.md",
+      "bytes": 3790,
+      "sha256": "418d4450dc6a4d7ae2602750c876ebe2cc3ac4fd32b91b012d994ab66cebefa3"
+    },
+    {
+      "path": "docs/versions/v10.1.17/task_order.md",
+      "bytes": 9544,
+      "sha256": "9450e10707d06c0b4b6bb45ce9793d0f15e371ec85202facded5d425f5fe3d0f"
+    },
+    {
+      "path": "docs/workflow/ACTIVE_STATE.md",
+      "bytes": 3780,
+      "sha256": "c68e96b92ade17c6bd3f64b6e95cc62c50112aae65c0cd264ace2f45f2cc76ac"
+    },
+    {
+      "path": "docs/workflow/CURRENT_WORKFLOW.md",
+      "bytes": 2823,
+      "sha256": "28e97734dc01b2863fa052dd0b348124c15e05095b18ac7f4ebfcaa545436993"
+    }
+  ],
+  "recorded_limits": [
+    "Private baseline whole-summary old byte hash UNKNOWN after supplementary append; all nine frozen public action records and independent start/end UI receipts match",
+    "Owner phone/system-level matrix NOT_RUN, Owner and advisor acceptance PENDING",
+    "Historical B1 image-model name/version UNKNOWN and v10.1.16 initial DB probe/status unknowns retained"
+  ]
+}

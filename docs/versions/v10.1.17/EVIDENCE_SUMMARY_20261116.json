@@ -1,0 +1,112 @@
+{
+  "status": "ENGINEERING_PASS_IN_NAMED_SCOPE",
+  "source_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
+  "advisor_acceptance": "PENDING",
+  "owner_acceptance": "PENDING",
+  "candidate": 1011703,
+  "operation_cost": {
+    "before": 53,
+    "after": 35,
+    "reduction_pct": 33.96,
+    "journeys_reducing_unnecessary_page_transition": 6,
+    "journeys_reducing_actions_at_least_20pct": 5,
+    "receipt": "B3_OPERATION_COST_COMPARISON.json"
+  },
+  "validation": {
+    "widget_unique_cases_in_named_targeted_sets": 213,
+    "widget_count_basis": "204 in joint set, legacy 7 failures repaired in affected 13-case rerun, plus 1 login redirect regression and 8 Splash cases; overlaps across reruns counted once",
+    "default_build_compatibility_mode_cases": 23,
+    "dart_product_files_analyzed": 11,
+    "php_unique_cases": 50,
+    "php_breakdown": "35 B1/B2 plus 15 consent/current-chat cases after fixture and ACK repair",
+    "real_isolated_http_cases": 13,
+    "real_app_representative_journeys": 9,
+    "owner_phone": "NOT_USED",
+    "real_phone_system_matrix": "NOT_RUN"
+  },
+  "runtime_evidence": "evidence/INTEGRATION_RECEIPT.json",
+  "screenshots": "evidence/SCREENSHOT_MANIFEST.json",
+  "private_logs": [
+    {
+      "name": "final-targeted-widget.log",
+      "sha256": "8d77a6b231c6ef4b9b3de4df4d2a7d46200f2fbd069e6e3b7d8f1029d0e1fef4",
+      "classification": "LOCAL_ONLY",
+      "status": "PRESERVED_FAILURE"
+    },
+    {
+      "name": "legacy-build-gate-tests.log",
+      "sha256": "ab1514da10c67f4de3611f27bcc30c6042d8152268bdbfb8e2224dde8af17551",
+      "classification": "LOCAL_ONLY",
+      "status": "PASS"
+    },
+    {
+      "name": "cold-entry-green.log",
+      "sha256": "9a757d4acc900500519f3bad10f218695b2d30fb256e2b98b9f4c4531ece5993",
+      "classification": "LOCAL_ONLY",
+      "status": "PASS"
+    },
+    {
+      "name": "login-redirect-green.log",
+      "sha256": "d025c25257c49b2000b8fb8648bcc1ae6c0409b13d6fb9395278c3a6a4d4c394",
+      "classification": "LOCAL_ONLY",
+      "status": "PASS"
+    },
+    {
+      "name": "default-compatibility-widget.log",
+      "sha256": "ff247f50e2db13cf3738863bb808b8695565f8dd68773076c0454687c78c1d19",
+      "classification": "LOCAL_ONLY",
+      "status": "PASS"
+    },
+    {
+      "name": "final-dart-analyze.log",
+      "sha256": "7645094e637ddbda70b3c0b40d02cf2fbea8b736b92d70b4c51a18b4410eba0c",
+      "classification": "LOCAL_ONLY",
+      "status": "PASS"
+    },
+    {
+      "name": "final-entry-analyze.log",
+      "sha256": "a9ed1dd04634986dc2d9213d9f849082a01f659b440a06811b8f0088d553dc9b",
+      "classification": "LOCAL_ONLY",
+      "status": "PASS"
+    },
+    {
+      "name": "b3-api-regression-php-private.log",
+      "sha256": "1c5bc42f186dff92af372bd276679fc467768b6eb657b61e2ee84bfe81b4e007",
+      "classification": "LOCAL_ONLY",
+      "status": "PRESERVED_FAILURE"
+    },
+    {
+      "name": "b3-current-message-contract-php-private.log",
+      "sha256": "15379419bd200c5370fb7ee3ec6bc2a44159cc40160bbd37f4ae615a98697d15",
+      "classification": "LOCAL_ONLY",
+      "status": "PASS"
+    },
+    {
+      "name": "final-candidate-build-private.log",
+      "sha256": "e2699ac66a88e4f11819e83200f605daec613aaabb21939706bb2e5ce82598bb",
+      "classification": "LOCAL_ONLY",
+      "status": "PASS"
+    }
+  ],
+  "preserved_failures": [
+    "1011701 login redirected-route visibility defect",
+    "1011702 old default cold-start destination, provisional measurements excluded",
+    "original J8 SELF audience trial",
+    "legacy PHP fixture preparation and GET-read assumption",
+    "notification async build fixture compile failure",
+    "legacy wrapper expectations under full local build gates",
+    "initial expired-candidate-window oracle expected EXPIRED but current contract retains accepted history",
+    "private runtime setup and UI warmup diagnostics"
+  ],
+  "model_metadata": "B1 exact image model/version UNKNOWN retained, existing artwork used",
+  "original_worktree_protection": "HEAD branch origin same-format status tracked cached index MATCH_STARTUP",
+  "historical_unknowns": "v10.1.16 first probe per-table summaries and historical status-cause UNKNOWN retained",
+  "release": "NOT_RUN",
+  "main_integration": "NOT_RUN",
+  "next": "STOP_WAIT_GPT_ADVISOR",
+  "baseline_integrity": {
+    "receipt": "evidence/BASELINE_INTEGRITY_RECEIPT.json",
+    "nine_original_cases_match_frozen_git_actions_and_independent_ui_receipts": true,
+    "original_whole_summary_bytes_match": "UNKNOWN_AFTER_SUPPLEMENTAL_APPEND"
+  }
+}

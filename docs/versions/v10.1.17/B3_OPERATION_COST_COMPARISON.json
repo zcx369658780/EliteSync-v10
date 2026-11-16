@@ -1,0 +1,306 @@
+{
+  "status": "PASS_IN_NAMED_NINE_JOURNEYS",
+  "baseline_candidate": 1011601,
+  "final_candidate": 1011703,
+  "source_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
+  "total_before": 53,
+  "total_after": 35,
+  "total_reduction_pct": 33.96,
+  "journeys_reducing_unnecessary_page_transition": 6,
+  "journeys_reducing_total_actions_at_least_20pct": 5,
+  "counting_contract": "B3_OPERATION_COST_BASELINE.md",
+  "rows": [
+    {
+      "id": "J1",
+      "journey": "理解当前状态与下一步",
+      "before_actions": 2,
+      "after_actions": 0,
+      "reduction_pct": 100.0,
+      "before_page_transitions": 2,
+      "after_page_transitions": 0,
+      "removed_unnecessary_page_transition": true,
+      "candidate_actions": []
+    },
+    {
+      "id": "J2",
+      "journey": "完成缺失必要准备",
+      "before_actions": 9,
+      "after_actions": 8,
+      "reduction_pct": 11.11,
+      "before_page_transitions": 3,
+      "after_page_transitions": 2,
+      "removed_unnecessary_page_transition": true,
+      "candidate_actions": [
+        {
+          "kind": "tap",
+          "label": "继续生活方式探索",
+          "utc": "2026-11-16T02:08:17.828188+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "开始探索",
+          "utc": "2026-11-16T02:08:20.882575+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "安静一点",
+          "utc": "2026-11-16T02:08:24.576190+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "提前排好主要行程",
+          "utc": "2026-11-16T02:08:28.402716+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "放空休息",
+          "utc": "2026-11-16T02:08:32.199229+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "和一个人慢慢聊",
+          "utc": "2026-11-16T02:08:35.886311+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "留出固定的相聚时间",
+          "utc": "2026-11-16T02:08:39.652273+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "完成并返回",
+          "utc": "2026-11-16T02:08:43.507861+00:00"
+        }
+      ]
+    },
+    {
+      "id": "J3",
+      "journey": "修改已有偏好",
+      "before_actions": 8,
+      "after_actions": 4,
+      "reduction_pct": 50.0,
+      "before_page_transitions": 2,
+      "after_page_transitions": 2,
+      "removed_unnecessary_page_transition": false,
+      "candidate_actions": [
+        {
+          "kind": "tap",
+          "label": "我的",
+          "utc": "2026-11-16T02:04:09.613762+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "生活方式探索",
+          "utc": "2026-11-16T02:04:13.775176+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "居所声音氛围\n你在“居所声音氛围”这一题选择了“安静一点”。可随时修改。",
+          "utc": "2026-11-16T02:04:17.522323+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "有些背景声音",
+          "utc": "2026-11-16T02:04:20.864171+00:00"
+        }
+      ]
+    },
+    {
+      "id": "J4",
+      "journey": "自动化授权生命周期",
+      "before_actions": 7,
+      "after_actions": 6,
+      "reduction_pct": 14.29,
+      "before_page_transitions": 2,
+      "after_page_transitions": 1,
+      "removed_unnecessary_page_transition": true,
+      "candidate_actions": [
+        {
+          "kind": "tap",
+          "label": "持续参与与自动化",
+          "utc": "2026-11-16T02:04:37.747565+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "授权持续参与",
+          "utc": "2026-11-16T02:04:40.797587+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "确认",
+          "utc": "2026-11-16T02:04:43.876882+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "暂停",
+          "utc": "2026-11-16T02:04:47.392966+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "恢复",
+          "utc": "2026-11-16T02:04:50.877252+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "撤销授权",
+          "utc": "2026-11-16T02:04:54.365504+00:00"
+        }
+      ]
+    },
+    {
+      "id": "J5",
+      "journey": "提案独立选择",
+      "before_actions": 6,
+      "after_actions": 2,
+      "reduction_pct": 66.67,
+      "before_page_transitions": 2,
+      "after_page_transitions": 1,
+      "removed_unnecessary_page_transition": true,
+      "candidate_actions": [
+        {
+          "kind": "tap",
+          "label": "进展",
+          "utc": "2026-11-16T02:05:10.305808+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "拒绝候选",
+          "utc": "2026-11-16T02:05:14.531290+00:00"
+        }
+      ]
+    },
+    {
+      "id": "J6",
+      "journey": "连接、消息许可与会话",
+      "before_actions": 3,
+      "after_actions": 2,
+      "reduction_pct": 33.33,
+      "before_page_transitions": 3,
+      "after_page_transitions": 2,
+      "removed_unnecessary_page_transition": true,
+      "candidate_actions": [
+        {
+          "kind": "tap",
+          "label": "进展",
+          "utc": "2026-11-16T02:10:15.491506+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "进入有权会话",
+          "utc": "2026-11-16T02:10:19.345956+00:00"
+        }
+      ]
+    },
+    {
+      "id": "J7",
+      "journey": "独立 Buddy",
+      "before_actions": 1,
+      "after_actions": 1,
+      "reduction_pct": 0.0,
+      "before_page_transitions": 1,
+      "after_page_transitions": 1,
+      "removed_unnecessary_page_transition": false,
+      "candidate_actions": [
+        {
+          "kind": "tap",
+          "label": "独立吃饭 / 学习搭子\n独立参与，联系前仍需双方同意",
+          "utc": "2026-11-16T02:05:54.297903+00:00"
+        }
+      ]
+    },
+    {
+      "id": "J8",
+      "journey": "好友社区查看及发布",
+      "before_actions": 7,
+      "after_actions": 6,
+      "reduction_pct": 14.29,
+      "before_page_transitions": 1,
+      "after_page_transitions": 1,
+      "removed_unnecessary_page_transition": false,
+      "candidate_actions": [
+        {
+          "kind": "tap",
+          "label": "好友可见社区\n有限好友动态，按本人选择的受众发布",
+          "utc": "2026-11-16T02:06:09.795511+00:00"
+        },
+        {
+          "kind": "field_input",
+          "label": "field 0",
+          "utc": "2026-11-16T02:06:20.326287+00:00"
+        },
+        {
+          "kind": "field_input",
+          "label": "field 1",
+          "utc": "2026-11-16T02:06:27.329704+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "双向好友",
+          "utc": "2026-11-16T02:06:29.528632+00:00"
+        },
+        {
+          "kind": "scroll",
+          "label": "up",
+          "utc": "2026-11-16T02:06:32.661338+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "发布状态",
+          "utc": "2026-11-16T02:06:36.619189+00:00"
+        }
+      ]
+    },
+    {
+      "id": "J9",
+      "journey": "资料、隐私与可选工具",
+      "before_actions": 10,
+      "after_actions": 6,
+      "reduction_pct": 40.0,
+      "before_page_transitions": 8,
+      "after_page_transitions": 6,
+      "removed_unnecessary_page_transition": true,
+      "candidate_actions": [
+        {
+          "kind": "tap",
+          "label": "我的",
+          "utc": "2026-11-16T02:06:53.721894+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "私密资料",
+          "utc": "2026-11-16T02:06:56.801833+00:00"
+        },
+        {
+          "kind": "back",
+          "label": "return",
+          "utc": "2026-11-16T02:06:58.264874+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "隐私控制",
+          "utc": "2026-11-16T02:07:00.712437+00:00"
+        },
+        {
+          "kind": "back",
+          "label": "return",
+          "utc": "2026-11-16T02:07:01.643991+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "可选 MBTI 测评",
+          "utc": "2026-11-16T02:07:04.369353+00:00"
+        }
+      ]
+    }
+  ],
+  "normalization": {
+    "J4": "Initial OFF baseline retained. Supplemental unchanged 1011601 APK starts REVOKED, matching candidate logical state, and remains 7 actions. No authorization history deleted.",
+    "J2_J3_J5": "Same fictional accounts and initial business state; preferences reset through revisioned existing QA API, new controlled pending proposal preserves old decision history.",
+    "fixture_scope": "New isolated B3 DB, five fictional accounts. Controlled match fixtures do not constitute executing matching algorithm."
+  },
+  "private_raw_sha256": {
+    "baseline": "c24badaea9e0879f17db2b18d035789128b931d39b8214fc1932d7af17424921",
+    "candidate": "2ad3397594ec41ea4b237cc1557e38622fd0c14db9d0133ec427b09c145c579f",
+    "normalized_J4": "85a5de47a31578e4fc600ea2ca66ee4f10bf75bba7f3cbaf9489f7b7cde618d3"
+  }
+}

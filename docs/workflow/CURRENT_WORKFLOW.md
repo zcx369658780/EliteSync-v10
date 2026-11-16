@@ -1,3 +1,9 @@
+# 当前交付状态 2026-11-16
+
+v10.1.17 / B3 已完成具名范围工程交付，最终源码 `1953582093d3469a48cd7275864309cb09eb0e53`，候选 `1011703 / com.elitesync.v1017dev`。八项 AC 工程自验与九项成本对比见 [实施报告](../versions/v10.1.17/IMPLEMENTATION_REPORT.md)。GPT 顾问验收和 Owner 整体实机接受为 PENDING。
+
+当前停止等待顾问独立验收。Owner手机操作、main集成、正式发布及真实运营为NOT_RUN。B4、阶段C及后继版本后续另行授权。以下启动规则与既有保护合同保留。
+
 # EliteSync-v10 当前工作流
 
 2026-11-16更新。v10.1.15 B1和v10.1.16 B2均已获Owner具名范围接受。v10.1.16第二轮顾问验收PASS，R1-01 CLOSED、NO_R2；历史UNKNOWN/FAIL/NOT_RUN继续保留。Owner接受记录：[v10.1.16 OWNER_ACCEPTANCE](../versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)。

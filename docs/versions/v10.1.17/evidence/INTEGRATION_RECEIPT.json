@@ -1,0 +1,115 @@
+{
+  "source_commit": "1953582093d3469a48cd7275864309cb09eb0e53",
+  "candidate": 1011703,
+  "environment": "emulator-5580 / Android user 11 / isolated fictional MariaDB + API",
+  "http_checks": [
+    {
+      "actor_label": "A",
+      "method": "GET",
+      "path": "/user-state",
+      "http": 200
+    },
+    {
+      "actor_label": "B",
+      "method": "GET",
+      "path": "/user-state",
+      "http": 200
+    },
+    {
+      "actor_label": "A",
+      "method": "GET",
+      "path": "/user-state?user_id=2",
+      "http": 422
+    },
+    {
+      "actor_label": "A",
+      "method": "GET",
+      "path": "/journey",
+      "http": 200
+    },
+    {
+      "actor_label": "D",
+      "method": "GET",
+      "path": "/connections/5",
+      "http": 200
+    },
+    {
+      "actor_label": "B",
+      "method": "GET",
+      "path": "/connections/5",
+      "http": 404
+    },
+    {
+      "actor_label": "D",
+      "method": "GET",
+      "path": "/conversations",
+      "http": 200
+    },
+    {
+      "actor_label": "B",
+      "method": "GET",
+      "path": "/messages?peer_id=5",
+      "http": 404
+    },
+    {
+      "actor_label": "A",
+      "method": "GET",
+      "path": "/formal-relationships",
+      "http": 200
+    },
+    {
+      "actor_label": "D",
+      "method": "GET",
+      "path": "/formal-relationships",
+      "http": 200
+    },
+    {
+      "actor_label": "A",
+      "method": "GET",
+      "path": "/buddy",
+      "http": 200
+    },
+    {
+      "actor_label": "A",
+      "method": "GET",
+      "path": "/status/posts",
+      "http": 200
+    },
+    {
+      "actor_label": "A",
+      "method": "GET",
+      "path": "/profile/mbti/quiz",
+      "http": 200
+    }
+  ],
+  "reads_create_no_authorization_effect_or_matching_run": true,
+  "automation_tick": {
+    "processed": 1,
+    "effects": 0,
+    "matching_runs_before_after": 3,
+    "task_state": "SKIPPED",
+    "result_code": "ROUND_NOT_OPEN",
+    "manual_participation_after_revoke": "ACTIVE",
+    "manual_participation_delegated": false
+  },
+  "notification_chat_return": "PASS_CURRENT_PERMISSION_PREFLIGHT",
+  "notification_unread_before": "站内提醒\n慢约会、聊天和资料准备的应用内回流中心\n未读 5 条\n全部已读",
+  "notification_unread_after": "站内提醒\n慢约会、聊天和资料准备的应用内回流中心\n未读 4 条\n全部已读",
+  "cold_start_default_home": "PASS_REAL_RETAINED_SESSION",
+  "candidate_window_closed": {
+    "proposal_recorded_state": "MUTUALLY_ACCEPTED",
+    "candidate_available": false,
+    "connection_eligible": false,
+    "connection_state": "CN_ACTIVE",
+    "consent_state": "MC_ACTIVE",
+    "current_chat_read_allowed": true,
+    "real_app_chat_open": "PASS",
+    "initial_oracle_failure": "Expected EXPIRED; actual existing contract keeps MUTUALLY_ACCEPTED history and returns candidate_available=false"
+  },
+  "raw_receipts_sha256": {
+    "integration-api-private.json": "de97c11a0b8fa0e942f9aeacad33e1375853915523bba4a328c4110951ee48ef",
+    "runtime-extras-private.json": "b21f3da60dc12666acf8f0286f559780d6a5de55e339ee3bf8bf1cbc5a381810",
+    "expired-pair-independent-private.json": "001af8dc3f198df43ba5da0c692cad30c9db3bd88c25c2f844c1f71ab52c4fa7"
+  },
+  "owner_phone": "NOT_USED"
+}
