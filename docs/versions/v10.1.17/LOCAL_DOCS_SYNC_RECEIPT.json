@@ -1,0 +1,131 @@
+{
+  "status": "LOCAL_DOCS_SYNCED",
+  "fixed_task_commit": "8117980c8f2b2e8ada61db52450a9aca7b643e13",
+  "fixed_parent": "99a05c6f6d509c0607d8bff0d63b122d5cc84eec",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "git_blob_sha": "68514b72d13cd9530df70a9f248b582eb2d06fef",
+      "local_git_blob_sha": "68514b72d13cd9530df70a9f248b582eb2d06fef",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/workflow/ACTIVE_STATE.md",
+      "git_blob_sha": "922f9fced8e8d9e8450c538983d6294093cf3c86",
+      "local_git_blob_sha": "922f9fced8e8d9e8450c538983d6294093cf3c86",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/workflow/CURRENT_WORKFLOW.md",
+      "git_blob_sha": "e1f4fc2809ce2fb8adaa50dc66bb60d370f5c4e1",
+      "local_git_blob_sha": "e1f4fc2809ce2fb8adaa50dc66bb60d370f5c4e1",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md",
+      "git_blob_sha": "de2653cdd80ddbf296b378924012b95d679d81ee",
+      "local_git_blob_sha": "de2653cdd80ddbf296b378924012b95d679d81ee",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115.md",
+      "git_blob_sha": "147be6f9c3a355e005aa2cef5cf3144da9b3af39",
+      "local_git_blob_sha": "147be6f9c3a355e005aa2cef5cf3144da9b3af39",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md",
+      "git_blob_sha": "8fcab337f7f968219d727fc4bdb3c99af4940d14",
+      "local_git_blob_sha": "8fcab337f7f968219d727fc4bdb3c99af4940d14",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md",
+      "git_blob_sha": "9213a8c84b5d9d57c03602eb07da34464873896e",
+      "local_git_blob_sha": "9213a8c84b5d9d57c03602eb07da34464873896e",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/decisions/OWNER_V10_1_16_ACCEPTANCE_AND_V10_1_17_B3_AUTHORIZATION_20261116.md",
+      "git_blob_sha": "0783a9593cd8fc7a8acd164be310768d2d7bf63e",
+      "local_git_blob_sha": "0783a9593cd8fc7a8acd164be310768d2d7bf63e",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.15/OWNER_ACCEPTANCE_20261115.md",
+      "git_blob_sha": "ee11fd20004bcc3b51a96ce99ed4c61ee3bb522a",
+      "local_git_blob_sha": "ee11fd20004bcc3b51a96ce99ed4c61ee3bb522a",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md",
+      "git_blob_sha": "8c595751242b2384eed6c474e2b0aa5de10b86d7",
+      "local_git_blob_sha": "8c595751242b2384eed6c474e2b0aa5de10b86d7",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.16/ADVISOR_R1_REREVIEW_20261116.md",
+      "git_blob_sha": "c468eb888579a567628661728faa2c97bbbe5fde",
+      "local_git_blob_sha": "c468eb888579a567628661728faa2c97bbbe5fde",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.16/R1_01_AUTOMATION_REVOCATION_SCOPE.md",
+      "git_blob_sha": "5cb62956418a6e9145287a81dc32682b3fb2a7c6",
+      "local_git_blob_sha": "5cb62956418a6e9145287a81dc32682b3fb2a7c6",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.16/IMPLEMENTATION_REPORT.md",
+      "git_blob_sha": "6994539fe6fb29a4e02b45e11b05624cee7ba59a",
+      "local_git_blob_sha": "6994539fe6fb29a4e02b45e11b05624cee7ba59a",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.16/artifact_manifest.json",
+      "git_blob_sha": "57a4038c10bf5d54844944e9ba00b62c94a766f5",
+      "local_git_blob_sha": "57a4038c10bf5d54844944e9ba00b62c94a766f5",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.16/EVIDENCE_SUMMARY_20261115.json",
+      "git_blob_sha": "7911d703c4a6a0adc89baabe7ac36eb4b7ad2809",
+      "local_git_blob_sha": "7911d703c4a6a0adc89baabe7ac36eb4b7ad2809",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.17/task_order.md",
+      "git_blob_sha": "2f9372f8cecf0f59b079d3af11c1661e00e2f236",
+      "local_git_blob_sha": "2f9372f8cecf0f59b079d3af11c1661e00e2f236",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.17/plan.md",
+      "git_blob_sha": "2541cb738d25471c509a5ccc91bc714ecc8931ff",
+      "local_git_blob_sha": "2541cb738d25471c509a5ccc91bc714ecc8931ff",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.17/DEVELOPMENT_ALIGNMENT.md",
+      "git_blob_sha": "2b1d43c59fd4de403ca67a14fea7815547d60d04",
+      "local_git_blob_sha": "2b1d43c59fd4de403ca67a14fea7815547d60d04",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.17/B3_LOW_OPERATION_COST_PRODUCT_CONTRACT.md",
+      "git_blob_sha": "784d64a3e6939584711f14772dd2181bff69327b",
+      "local_git_blob_sha": "784d64a3e6939584711f14772dd2181bff69327b",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.17/CODEX_START_PROMPT.txt",
+      "git_blob_sha": "2be8cf825633271161a64a686352873b59057239",
+      "local_git_blob_sha": "2be8cf825633271161a64a686352873b59057239",
+      "status": "LOCAL_DOCS_SYNCED"
+    }
+  ],
+  "notes": [
+    "The embedded CODEX_START_PROMPT cites its preceding task commit f3bc5ecd; Owner fixed commit 8117980c and exact blobs govern this invocation.",
+    "V3.0 planned states and older Owner records are historical; B3 addendum and current Owner decision govern B3 authorization."
+  ]
+}

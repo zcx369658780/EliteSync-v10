@@ -1,0 +1,339 @@
+{
+  "baseline_candidate": 1011601,
+  "app_source": "00cec7843911bb3341304c004059de0a91e12f16",
+  "apk_sha256": "ac86f8df05d1e39abfead445ba5d6e23bcb457b6c73030c02fa38d2d2cedb055",
+  "emulator": "v1015_current_a",
+  "serial": "emulator-5580",
+  "android_user": 11,
+  "api_origin": "127.0.0.1:18021",
+  "database_scope": "new isolated B3 fictional test DB",
+  "measurement_sha256": "43dcbab6e79f30138f05ba646639dfdc18972d87aea407659d2ff55a70a1ee0d",
+  "journeys": {
+    "J1": {
+      "description": "Home to current preparation participation proposal state and next step",
+      "actions": [
+        {
+          "kind": "tap",
+          "label": "进展",
+          "utc": "2026-11-16T01:09:37.169312+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "匹配\n进入现有匹配流程；匹配不会自动建立连接或开启对话。",
+          "utc": "2026-11-16T01:09:51.343806+00:00"
+        }
+      ],
+      "total_actions": 2
+    },
+    "J3": {
+      "description": "Edit first existing Lifestyle preference and return to saved summary without re-entering others",
+      "actions": [
+        {
+          "kind": "tap",
+          "label": "我的",
+          "utc": "2026-11-16T01:10:43.774709+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "生活方式探索\n继续探索、查看偏好或返回修改。",
+          "utc": "2026-11-16T01:10:46.854863+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "居所声音氛围\n你在“居所声音氛围”这一题选择了“安静一点”。可随时修改。",
+          "utc": "2026-11-16T01:11:11.295549+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "有些背景声音",
+          "utc": "2026-11-16T01:11:26.471226+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "下一步",
+          "utc": "2026-11-16T01:11:30.391806+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "下一步",
+          "utc": "2026-11-16T01:11:33.762190+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "下一步",
+          "utc": "2026-11-16T01:11:37.151230+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "下一步",
+          "utc": "2026-11-16T01:11:40.691104+00:00"
+        }
+      ],
+      "total_actions": 8
+    },
+    "J4": {
+      "description": "Grant pause resume revoke weekly participation automation with explicit grant confirmation",
+      "actions": [
+        {
+          "kind": "tap",
+          "label": "我的",
+          "utc": "2026-11-16T01:11:56.258016+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "状态与自动化\n查看本人状态、持续参与授权和处理结果。",
+          "utc": "2026-11-16T01:11:59.311206+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "授权持续参与",
+          "utc": "2026-11-16T01:12:25.931903+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "确认",
+          "utc": "2026-11-16T01:12:41.301191+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "暂停",
+          "utc": "2026-11-16T01:12:44.843624+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "恢复",
+          "utc": "2026-11-16T01:12:48.212580+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "撤销授权",
+          "utc": "2026-11-16T01:12:51.579477+00:00"
+        }
+      ],
+      "total_actions": 7
+    },
+    "J5": {
+      "description": "Read pending proposal then decline through explicit confirmation",
+      "actions": [
+        {
+          "kind": "tap",
+          "label": "进展",
+          "utc": "2026-11-16T01:13:07.035018+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "匹配\n进入现有匹配流程；匹配不会自动建立连接或开启对话。",
+          "utc": "2026-11-16T01:13:10.139024+00:00"
+        },
+        {
+          "kind": "scroll",
+          "label": "up",
+          "utc": "2026-11-16T01:13:13.543370+00:00"
+        },
+        {
+          "kind": "scroll",
+          "label": "up",
+          "utc": "2026-11-16T01:13:17.446154+00:00"
+        },
+        {
+          "kind": "scroll",
+          "label": "up",
+          "utc": "2026-11-16T01:13:21.274593+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "拒绝候选",
+          "utc": "2026-11-16T01:13:25.306893+00:00"
+        }
+      ],
+      "total_actions": 6
+    },
+    "J7": {
+      "description": "Open independent Buddy and inspect finite listings",
+      "actions": [
+        {
+          "kind": "tap",
+          "label": "独立吃饭 / 学习搭子\n自主寻找搭子，联系前仍需双方同意。",
+          "utc": "2026-11-16T01:14:11.613801+00:00"
+        }
+      ],
+      "total_actions": 1
+    },
+    "J8": {
+      "description": "Open friends community and publish text with explicit FRIENDS audience",
+      "actions": [
+        {
+          "kind": "tap",
+          "label": "好友可见社区\n查看与分享好友范围内的动态。",
+          "utc": "2026-11-16T01:15:46.063158+00:00"
+        },
+        {
+          "kind": "field_input",
+          "label": "field 0",
+          "utc": "2026-11-16T01:15:52.791538+00:00"
+        },
+        {
+          "kind": "field_input",
+          "label": "field 1",
+          "utc": "2026-11-16T01:15:59.252448+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "双向好友",
+          "utc": "2026-11-16T01:16:01.429159+00:00"
+        },
+        {
+          "kind": "scroll",
+          "label": "up",
+          "utc": "2026-11-16T01:16:04.555084+00:00"
+        },
+        {
+          "kind": "scroll",
+          "label": "up",
+          "utc": "2026-11-16T01:16:08.391029+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "发布状态",
+          "utc": "2026-11-16T01:16:12.226280+00:00"
+        }
+      ],
+      "total_actions": 7
+    },
+    "J9": {
+      "description": "Open private editor, return, inspect privacy and optional MBTI without changing rights",
+      "actions": [
+        {
+          "kind": "tap",
+          "label": "我的",
+          "utc": "2026-11-16T01:16:25.494315+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "私密资料\n管理昵称与个人信息，不会因此向所有人公开。",
+          "utc": "2026-11-16T01:16:28.742480+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "编辑私密资料",
+          "utc": "2026-11-16T01:16:31.734606+00:00"
+        },
+        {
+          "kind": "back",
+          "label": "return",
+          "utc": "2026-11-16T01:16:33.210695+00:00"
+        },
+        {
+          "kind": "back",
+          "label": "return",
+          "utc": "2026-11-16T01:16:33.337537+00:00"
+        },
+        {
+          "kind": "scroll",
+          "label": "up",
+          "utc": "2026-11-16T01:16:35.818014+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "隐私控制\n管理资料受众，查看各项隐私说明。",
+          "utc": "2026-11-16T01:16:39.646850+00:00"
+        },
+        {
+          "kind": "back",
+          "label": "return",
+          "utc": "2026-11-16T01:16:40.610431+00:00"
+        },
+        {
+          "kind": "scroll",
+          "label": "up",
+          "utc": "2026-11-16T01:16:42.936536+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "可选 MBTI 测评\n自愿参与，不是心理诊断，不参与匹配排序。",
+          "utc": "2026-11-16T01:16:46.770667+00:00"
+        }
+      ],
+      "total_actions": 10
+    },
+    "J2": {
+      "description": "Complete missing Lifestyle scenes when existing matching inputs and questionnaire are ready",
+      "actions": [
+        {
+          "kind": "tap",
+          "label": "我的",
+          "utc": "2026-11-16T01:20:03.744643+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "生活方式探索\n继续探索、查看偏好或返回修改。",
+          "utc": "2026-11-16T01:20:06.966535+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "开始探索",
+          "utc": "2026-11-16T01:20:10.006388+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "安静一点",
+          "utc": "2026-11-16T01:20:13.504743+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "提前排好主要行程",
+          "utc": "2026-11-16T01:20:17.092821+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "放空休息",
+          "utc": "2026-11-16T01:20:20.626956+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "和一个人慢慢聊",
+          "utc": "2026-11-16T01:20:24.111943+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "留出固定的相聚时间",
+          "utc": "2026-11-16T01:20:27.806807+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "完成，进入社区",
+          "utc": "2026-11-16T01:20:31.342581+00:00"
+        }
+      ],
+      "total_actions": 9
+    },
+    "J6": {
+      "description": "Inspect distinct Connection and Messaging Consent then enter current authorized conversation",
+      "actions": [
+        {
+          "kind": "tap",
+          "label": "进展",
+          "utc": "2026-11-16T01:22:14.878973+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "连接\n查看独立的双方同意状态；连接不会自动开启消息或关系。",
+          "utc": "2026-11-16T01:22:17.924805+00:00"
+        },
+        {
+          "kind": "tap",
+          "label": "进入消息",
+          "utc": "2026-11-16T01:22:22.994220+00:00"
+        }
+      ],
+      "total_actions": 3
+    }
+  },
+  "excluded_trial": "J8_SETUP_AUDIENCE_ERROR, retained private raw, repeated with explicit friends audience",
+  "scope_notes": [
+    "Setup login and test fixture preparation excluded from the journey action metric",
+    "One field input counts once, keyboard navigation is excluded consistently",
+    "J9 opens tool hub, optional MBTI API was 410 due isolated runtime flag; tool completion is outside this endpoint",
+    "J1 ends at preparation/participation/next step; proposal decision is J5"
+  ]
+}
