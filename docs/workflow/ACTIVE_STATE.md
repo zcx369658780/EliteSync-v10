@@ -1,47 +1,19 @@
-# 当前入口 2026-11-16 B3顾问已接受，Owner有限实机反馈已收
+# 当前入口 2026-11-16 v10.1.18已获Owner授权，等待Codex同步与开工
 
-**V10117_ADVISOR_ACCEPTED_IN_NAMED_SCOPE / NO_R1 / NO_R2 / OWNER_DEVICE_FEEDBACK_RECEIVED / OWNER_PENDING**。
+**V10117_ADVISOR_ACCEPTED_IN_NAMED_SCOPE / OWNER_OVERALL_ACCEPTANCE_PENDING / V10118_AUTHORIZED**。
 
-最终源码 `1953582093d3469a48cd7275864309cb09eb0e53`。候选 `10.1.17-dev / 1011703`，包名 `com.elitesync.v1017dev`，APK SHA256 `729be2af7d215f4701c49e494d1767e59d350b1aee5bf83ecb553910f050f8ea`。旧 1011601 独立包及数据保留。
+## v10.1.17历史状态
 
-八项 AC 按具名代表范围工程自验通过。九项旅程操作 53→35，六项减少无必要跳转，五项减少至少20%。报告、manifest、证据与Owner后续检查表已集中交付。
-
-[实施报告](../versions/v10.1.17/IMPLEMENTATION_REPORT.md) · [manifest](../versions/v10.1.17/artifact_manifest.json) · [证据摘要](../versions/v10.1.17/EVIDENCE_SUMMARY_20261116.json) · [成本对比](../versions/v10.1.17/B3_OPERATION_COST_COMPARISON.md) · [Owner检查表](../versions/v10.1.17/OWNER_DEVICE_CHECKLIST.md)。
-
-本版新隔离 DB/API/WS 运行，API回环18021、WS18022。旧开发 DB/API/WS/SFU保持exited，模拟器已停止，AVD/数据与私有原证保留。原库HEAD/index/差异及同格式status指纹与本轮开工一致。历史未知和失败沿原记录保留。
-
-Owner后续授权安装、登录和打开探索，已完成有限实机评测。首页、探索及Me有正向观察；开发式文案、选项对比度、自动化入口与“进展→匹配”建议列入后续UI收口。第8项补注为新账号未显示旧账号消息，关闭重开等场景未测。见 [Owner评测](../versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md)。
-
-顾问已按具名工程范围接受固定交付93cb9e4d，R1/R2均不需要，见 [顾问验收](../versions/v10.1.17/ADVISOR_ACCEPTANCE_20261116.md)。Owner整版接受PENDING，后续按UI收口安排推进。该顾问报告审阅固定工程交付，本次Owner实机反馈单独接续。B4、阶段C及后继版本另行授权，main集成及发布NOT_RUN。
-
-## 历史启动入口（保留）
-
-# 当前入口 2026-11-16 v10.1.16 Owner已接受，v10.1.17阶段B3已授权
-
-**V10116_OWNER_ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS / V10117_B3_AUTHORIZED**。
-
-## v10.1.16接受状态
-
-Owner已正式接受B2七项AC的第二轮顾问结论。R1-01 CLOSED，第二轮PASS，NO_R2。所有UNKNOWN、FAIL、NOT_RUN和运行限制继续保留。记录：[Owner接受](../versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)、[第二轮顾问复核](../versions/v10.1.16/ADVISOR_R1_REREVIEW_20261116.md)、[实施报告](../versions/v10.1.16/IMPLEMENTATION_REPORT.md)。
+v10.1.17 B3原固定工程交付`93cb9e4db01ed5262d100f5982b5e01bf4799015`已获GPT顾问具名范围接受（NO_R1/NO_R2）。Owner于2026-11-16提供有限实机反馈，见[Owner实机反馈](../versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md)。Owner整体产品接受仍为PENDING；有限观察不等于整版接受。第8项仅观察到新账号未显示旧账号消息，冷启动及完整切号矩阵仍未验证。
 
 ## 当前授权任务
 
-**v10.1.17：全APP低操作成本重构与功能整合（V3.0阶段B3）**。
+**v10.1.18：UI表达与交互一致性收口**。任务分支：`codex/v10.1.18-ui-language-match-entry-consistency-20261116`；唯一父基线：`507ffcbf5a5f5abd3cac27b965388c9cb7155867`。任务见[task_order](../versions/v10.1.18/task_order.md)、[plan](../versions/v10.1.18/plan.md)、[DEVELOPMENT_ALIGNMENT](../versions/v10.1.18/DEVELOPMENT_ALIGNMENT.md)、[UI合同](../versions/v10.1.18/UI_AND_MATCH_CONSISTENCY_CONTRACT.md)和[Codex启动Prompt](../versions/v10.1.18/CODEX_START_PROMPT.txt)。
 
-任务分支：`codex/v10.1.17-low-operation-cost-journey-integration-20261116`  
-唯一父基线：`99a05c6f6d509c0607d8bff0d63b122d5cc84eec`  
-任务：[task_order](../versions/v10.1.17/task_order.md)；[plan](../versions/v10.1.17/plan.md)；[DEVELOPMENT_ALIGNMENT](../versions/v10.1.17/DEVELOPMENT_ALIGNMENT.md)；[B3合同](../versions/v10.1.17/B3_LOW_OPERATION_COST_PRODUCT_CONTRACT.md)；[Codex启动Prompt](../versions/v10.1.17/CODEX_START_PROMPT.txt)。路线授权：[B3补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md)。
+本版八项AC：历史文档对齐、产品文案收口、一级「进展→匹配」、统一按钮/选项状态色、自动化入口可发现性、说明归位、Buddy独立诊断、同一安装冷启动/账号隔离补测。
 
-必须先同步路线和任务文件、逐Blob核验，并完成CURRENT_JOURNEY_INVENTORY、B3_OPERATION_COST_BASELINE、TARGET_INFORMATION_ARCHITECTURE_V1及ROADMAP_ALIGNMENT_ACK后才编码。
+必须先同步全部路线和反馈文档，逐Blob核验，完成OWNER_FEEDBACK_TRACEABILITY和ROADMAP_ALIGNMENT_ACK后才编码。
 
-## B3目标
+## 保留边界
 
-按用户目标重组Home / Progress / Messages / Me，减少重复入口、重复填写、无意义确认和跨模块寻找状态。复用B1偏好和B2统一状态/自动化。默认保留四个底部主入口；不新增第五入口。Match、Connection、Messaging Consent、Conversation、Relationship保持独立；Buddy独立于恋爱匹配；社区保持有限相互了解场景。
-
-## Owner整体实机验收
-
-Owner整体实机验收安排在B1+B2+B3全部完成后。v10.1.17使用虚构账号、模拟器和真实APP/API/DB链进行工程验证，不操作Owner手机。B4为独立阶段，不自动成为整体实机验收前置。
-
-## 未授权边界
-
-B4运行时AI、阶段C身份/信用/芝麻信用/蚂蚁积分/Push/支付、main集成、正式发布、真实内测和运营均未授权。不得自动启动下一阶段。
+v10.1.17顾问接受不等于Owner整版接受；Owner接受仍PENDING。Buddy独立于恋爱匹配，算法不擅自重写。四底栏保留，Match/Connection/Messaging Consent/Conversation/Relationship独立。冷启动仍NOT_RUN，必须补测。Owner手机由Owner自行决定，Codex不得操作。B4、阶段C、main集成、正式发布和运营均未授权。

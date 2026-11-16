@@ -9,7 +9,7 @@
 
 Owner已确认项目交接及选定旧版主要功能接续完成。当前完善可实际使用的EliteSync APP、真实后端、持久数据库及独立Web管理面板。先完成业务功能与最小可操作界面，必要安全封装随功能收口处理，最后集中打磨UI和文字。现有鉴权、私信权限与数据隔离保留。
 
-整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6—v10.1.9按各自已接受范围保留。v10.1.10六项AC及手机补证获顾问范围接受，Owner整版最终接受沿原记录PENDING。v10.1.11六项AC声明工程范围已获顾问与Owner接受，AC11-02为限定能力接受，R1-01 CLOSED；原NOT_RUN/UNKNOWN继续保留。v10.1.12六项AC具名代表性范围已获顾问接受，R1-01 CLOSED；Owner整版接受仍单独记PENDING。v10.1.13六项AC具名代表性范围已获顾问与Owner接受，NO_R1/NO_R2；原NOT_RUN/UNKNOWN/UNVERIFIED继续保留。v10.1.14六项AC和1011402实机补证已获顾问及Owner具名代表性范围接受，NO_R1/NO_R2，三项P2及NOT_RUN边界保留。v10.1.15「生活方式探索与渐进式偏好」（V3.0阶段B1）已获Owner具名范围接受：AC15-01/03/04/05/06接受，AC15-02因图像模型精确身份UNKNOWN继续PARTIAL；R1-01 CLOSED、NO_R2。v10.1.16「统一用户状态与后台自动化中心」（V3.0阶段B2）已获Owner接受：七项AC具名范围接受，R1-01 CLOSED、第二轮顾问复核PASS、NO_R2；历史UNKNOWN/FAIL/NOT_RUN继续保留。当前授权版本为v10.1.17「全APP低操作成本重构与功能整合」（V3.0阶段B3）。B4运行时AI及阶段C外部服务仍未授权。
+整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6—v10.1.9按各自已接受范围保留。v10.1.10六项AC及手机补证获顾问范围接受，Owner整版最终接受沿原记录PENDING。v10.1.11六项AC声明工程范围已获顾问与Owner接受，AC11-02为限定能力接受，R1-01 CLOSED；原NOT_RUN/UNKNOWN继续保留。v10.1.12六项AC具名代表性范围已获顾问接受，R1-01 CLOSED；Owner整版接受仍单独记PENDING。v10.1.13六项AC具名代表性范围已获顾问与Owner接受，NO_R1/NO_R2；原NOT_RUN/UNKNOWN/UNVERIFIED继续保留。v10.1.14六项AC和1011402实机补证已获顾问及Owner具名代表性范围接受，NO_R1/NO_R2，三项P2及NOT_RUN边界保留。v10.1.15「生活方式探索与渐进式偏好」（V3.0阶段B1）已获Owner具名范围接受：AC15-01/03/04/05/06接受，AC15-02因图像模型精确身份UNKNOWN继续PARTIAL；R1-01 CLOSED、NO_R2。v10.1.16「统一用户状态与后台自动化中心」（V3.0阶段B2）已获Owner接受：七项AC具名范围接受，R1-01 CLOSED、第二轮顾问复核PASS、NO_R2；历史UNKNOWN/FAIL/NOT_RUN继续保留。v10.1.17「全APP低操作成本重构与功能整合」（V3.0阶段B3）已获GPT顾问具名范围接受，Owner有限实机反馈已归档，但Owner整版接受仍PENDING。当前授权版本为v10.1.18「UI表达与交互一致性收口」。B4运行时AI及阶段C外部服务仍未授权。
 
 ## 2026-11-15 当前交付状态
 
@@ -21,9 +21,9 @@ v10.1.14阶段A六项AC及1011402手机补证已获顾问和Owner具名代表性
 
 v10.1.15已获Owner具名范围接受，AC15-02保持PARTIAL；完整记录见[Owner接受](docs/versions/v10.1.15/OWNER_ACCEPTANCE_20261115.md)、[顾问验收](docs/versions/v10.1.15/ADVISOR_ACCEPTANCE_20261115.md)和[R1复核](docs/versions/v10.1.15/R1_01_REREVIEW_20261115.md)。
 
-v10.1.16 B2已获Owner接受，记录见[Owner接受](docs/versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)和[第二轮顾问验收](docs/versions/v10.1.16/ADVISOR_R1_REREVIEW_20261116.md)。当前授权执行V3.0阶段B3 / v10.1.17「全APP低操作成本重构与功能整合」，任务见[task_order](docs/versions/v10.1.17/task_order.md)、[plan](docs/versions/v10.1.17/plan.md)、[DEVELOPMENT_ALIGNMENT](docs/versions/v10.1.17/DEVELOPMENT_ALIGNMENT.md)和[B3合同](docs/versions/v10.1.17/B3_LOW_OPERATION_COST_PRODUCT_CONTRACT.md)。B3复用B1/B2能力，以用户目标重组四入口，减少重复输入和无意义确认。
+v10.1.16 B2已获Owner接受，记录见[Owner接受](docs/versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)和[第二轮顾问验收](docs/versions/v10.1.16/ADVISOR_R1_REREVIEW_20261116.md)。v10.1.17 B3已完成顾问具名范围验收，Owner整体接受仍PENDING；Owner实机反馈见[反馈记录](docs/versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md)。当前授权执行v10.1.18「UI表达与交互一致性收口」，任务见[task_order](docs/versions/v10.1.18/task_order.md)、[plan](docs/versions/v10.1.18/plan.md)、[DEVELOPMENT_ALIGNMENT](docs/versions/v10.1.18/DEVELOPMENT_ALIGNMENT.md)和[UI合同](docs/versions/v10.1.18/UI_AND_MATCH_CONSISTENCY_CONTRACT.md)。本版修正文案、进展→匹配、统一按钮状态色、自动化入口可发现性、说明归位，并独立诊断Buddy及补测冷启动/账号隔离。
 
-Owner整体实机验收安排在B1+B2+B3低操作成本主线完成后。当前v10.1.17不操作Owner手机；B4运行时AI及阶段C身份/信用/Push/支付等仍未授权。视觉风格保持冻结；若本版确需新美术资产，按Astra艺术指导与最新在线GPT Image工作流，并将实际可得模型信息和SHA256写入GitHub manifest。
+Owner已对v10.1.17提供有限手机反馈，整版接受仍PENDING。v10.1.18不操作Owner手机，Codex仅用虚构账号/模拟器验证；交付后由Owner自行决定复验。B4运行时AI及阶段C身份/信用/Push/支付等仍未授权。视觉风格保持冻结；若本版确需新美术资产，按Astra艺术指导与最新在线GPT Image工作流，并将实际可得模型信息和SHA256写入GitHub manifest。
 
 ## 入口与自主执行
 
@@ -47,7 +47,7 @@ Owner负责方向和保留决定；顾问提供路线；Codex负责工程拆解�
 
 保护原 D:\EliteSync-v10 的未提交成果和 index、当前开发目录及无关 %SystemDrive%/。不盲 pull/reset/rebase/stash/clean/prune，不 force push，不夹带无关内容。远端历史归档不是 main 合并或功能接受。
 
-设备、真实用户/生产数据、外部服务、费用、重大架构/版本和发布仍由 Owner 决定。旧 STOP、已耗次数和余额不追溯修改，不因规则简化自动恢复任何运行。历史测试脚本只作参考，退役路径不能作为现行可执行合同。资产清理阶段已结束。Owner 已授权继续 APP 功能开发；实际联测可等功能完成后进行，届时允许同时使用两个模拟器。v10.1.14手机补证已完成并单独记录；当前v10.1.17不操作Owner手机，整体实机验收延后至B1+B2+B3完成。Owner 已长期授权普通功能工程、定向验证与必要APK构建、本机独立开发服务及虚构数据库、必要双模拟器联测、已有许可的免费官方依赖和常规Git。优先源码功能，不为普通重编/启动/安装反复申请；旧执行器/已耗记录不复活。Owner 要求停下时及时保存并手动交接，长期授权本身继续有效。
+设备、真实用户/生产数据、外部服务、费用、重大架构/版本和发布仍由 Owner 决定。旧 STOP、已耗次数和余额不追溯修改，不因规则简化自动恢复任何运行。历史测试脚本只作参考，退役路径不能作为现行可执行合同。资产清理阶段已结束。Owner 已授权继续 APP 功能开发；实际联测可等功能完成后进行，届时允许同时使用两个模拟器。v10.1.14手机补证已完成并单独记录；v10.1.17有限Owner实机反馈已归档；当前v10.1.18不操作Owner手机，交付后由Owner自行决定验收。Owner 已长期授权普通功能工程、定向验证与必要APK构建、本机独立开发服务及虚构数据库、必要双模拟器联测、已有许可的免费官方依赖和常规Git。优先源码功能，不为普通重编/启动/安装反复申请；旧执行器/已耗记录不复活。Owner 要求停下时及时保存并手动交接，长期授权本身继续有效。
 
 Owner于2026-11-12具体授权验收说明、120张测试截图、画廊/控件元数据和29份去敏证据摘要上传独立验收分支，范围及发布清单见[验收入口](https://github.com/zcx369658780/EliteSync-v10/blob/85197adec124ef94bbef2994c0668dc990f9bed4/docs/versions/v10.1.5/advisor-acceptance-20261112/README.md)。完整原始回执、APK、素材、凭据、许可证、SQL/数据库与设备原始日志由Owner本机保管。有意义节点维护ACTIVE_STATE单一当前入口及必要进度，常规同步授权分支，失败记PENDING_SYNC。
 

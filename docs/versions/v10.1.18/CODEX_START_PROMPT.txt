@@ -1,0 +1,52 @@
+请正式启动EliteSync-v10 v10.1.18「UI表达与交互一致性收口」。
+
+仓库：zcx369658780/EliteSync-v10
+任务分支：codex/v10.1.18-ui-language-match-entry-consistency-20261116
+唯一父基线：507ffcbf5a5f5abd3cac27b965388c9cb7155867
+Owner授权：
+docs/decisions/OWNER_V10_1_18_UI_CLOSEOUT_AUTHORIZATION_20261116.md
+V3.0补充决定：
+docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_V1018_UI_CLOSEOUT.md
+
+## 第一阶段：同步，禁止直接编码
+
+1. 核本地稳定根、origin、branch、HEAD、dirty/index、DB、AVD、私有配置、QA账号与原始证据。
+2. 只读AGENTS.md、ACTIVE_STATE.md当前入口、CURRENT_WORKFLOW.md。
+3. 从固定父基线同步并逐Git Blob核验：
+   - V3.0路线图及v10.1.18补充决定；
+   - v10.1.17 OWNER_DEVICE_FEEDBACK_20261116.md；
+   - v10.1.17 IMPLEMENTATION_REPORT、ADVISOR_ACCEPTANCE、manifest、EVIDENCE_SUMMARY、OWNER_DEVICE_CHECKLIST；
+   - 本版task_order、plan、DEVELOPMENT_ALIGNMENT、UI_AND_MATCH_CONSISTENCY_CONTRACT、CODEX_START_PROMPT；
+   - 更新后的AGENTS、ACTIVE_STATE、CURRENT_WORKFLOW。
+4. 保护dirty/index、DB、AVD、凭据、媒体和原证，不盲pull/reset/rebase/stash/clean/prune，不force push。
+5. 逐Blob核验并记录LOCAL_DOCS_SYNCED/PENDING_LOCAL_SYNC。
+6. 源码修改前完成OWNER_FEEDBACK_TRACEABILITY.md和ROADMAP_ALIGNMENT_ACK.md。未完成不得改产品源码。
+
+## 第二阶段：执行八项AC
+
+AC18-01 历史状态和Owner反馈文档对齐；
+AC18-02 用户可见文案收口；
+AC18-03 进展→匹配一级入口调整；
+AC18-04 按钮/选项状态色统一；
+AC18-05 自动化入口可发现性；
+AC18-06 免责声明和说明归位；
+AC18-07 Buddy独立诊断；
+AC18-08 同一安装冷启动/账号隔离和集中交付。
+
+## 严格边界
+
+- 不改变匹配算法、候选排序、资格权威服务和关系状态机。
+- Buddy独立于恋爱匹配；仅修复证据明确的接线缺陷，算法问题先报告。
+- 四个底栏保留，第二入口显示「匹配」；旧progress深链兼容。
+- B2自动化只有一个规范控制页，匹配/我的提供入口即可。
+- 长说明集中在我的→权限/说明；必要的隐私/关系决定继续明确确认。
+- 颜色保持低刺激低饱和，按钮选中态文字必须清晰。
+- 冷启动必须是进程强制停止后重新启动；同一安装完成A→logout→B→force-stop→cold-start B→A，核对消息、通知、状态、缓存、草稿和离线恢复。
+- 不把Owner已观察到“新账号未显示旧消息”扩大为完整账号隔离通过。
+- 不操作Owner手机；只用虚构账号和隔离测试数据。
+- 不做B4运行时AI，不接身份/征信/芝麻信用/蚂蚁积分/Push/支付。
+- 不合main、不发布、不运营。
+
+## 最终交付
+
+候选建议1011801，构建前核验版本号、applicationId和签名占用，不覆盖1011703/1011601。交付文案映射表、UI状态色规范、路由兼容、Buddy诊断、冷启动/隔离回执、实施报告、manifest、证据摘要、Owner检查表和APK。固定提交并完成同源回读后停止，等待GPT顾问验收。

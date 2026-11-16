@@ -1,33 +1,19 @@
-# 当前交付状态 2026-11-16
-
-v10.1.17 / B3 已完成具名范围工程交付，最终源码 `1953582093d3469a48cd7275864309cb09eb0e53`，候选 `1011703 / com.elitesync.v1017dev`。八项 AC 工程自验与九项成本对比见 [实施报告](../versions/v10.1.17/IMPLEMENTATION_REPORT.md)。GPT 顾问已按具名工程范围接受，NO_R1/NO_R2，见 [顾问验收](../versions/v10.1.17/ADVISOR_ACCEPTANCE_20261116.md)。Owner 整体实机接受为 PENDING。
-
-Owner已在后续会话授权手机安装、登录与打开探索，有限实机反馈已归档，见 [Owner评测](../versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md)。自动化入口未找到、进展与消息链等未测项按原范围记录；第8项补注为新账号未显示旧账号消息。文案、配色、“进展→匹配”及说明收敛列入后续UI方向。
-
-顾问已接受原固定工程交付，本次Owner反馈列入后续UI收口；Owner整版接受PENDING。main集成、正式发布与真实运营NOT_RUN，B4和阶段C另行授权。以下启动规则与既有保护合同保留。
-
 # EliteSync-v10 当前工作流
 
-2026-11-16更新。v10.1.15 B1和v10.1.16 B2均已获Owner具名范围接受。v10.1.16第二轮顾问验收PASS，R1-01 CLOSED、NO_R2；历史UNKNOWN/FAIL/NOT_RUN继续保留。Owner接受记录：[v10.1.16 OWNER_ACCEPTANCE](../versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)。
+2026-11-16更新。v10.1.17 B3原工程交付已获GPT顾问具名范围接受（NO_R1/NO_R2），Owner有限实机反馈已归档，Owner整版接受仍PENDING。反馈原文：[OWNER_DEVICE_FEEDBACK_20261116](../versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md)。第8项只证明新账号未显示旧账号消息，冷启动仍NOT_RUN。
 
 ## 当前Owner决定
 
-Owner正式接受v10.1.16，并授权v10.1.17 / V3.0阶段B3「全APP低操作成本重构与功能整合」。授权依据：[Owner决定](../decisions/OWNER_V10_1_16_ACCEPTANCE_AND_V10_1_17_B3_AUTHORIZATION_20261116.md)和[B3补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md)。
+Owner已授权v10.1.18「UI表达与交互一致性收口」。授权依据：[Owner决定](../decisions/OWNER_V10_1_18_UI_CLOSEOUT_AUTHORIZATION_20261116.md)和[V3.0补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_V1018_UI_CLOSEOUT.md)。
 
-## v10.1.17开工同步
+## v10.1.18开工同步
 
-任务分支：`codex/v10.1.17-low-operation-cost-journey-integration-20261116`；唯一父基线：`99a05c6f6d509c0607d8bff0d63b122d5cc84eec`。Codex必须同步V3.0、B3补充决定、v10.1.15/16 Owner接受、本版task_order/plan/DEVELOPMENT_ALIGNMENT/B3合同/prompt及更新后的AGENTS/ACTIVE_STATE/CURRENT_WORKFLOW，逐Blob核验并记录LOCAL_DOCS_SYNCED。编码前完成当前旅程、操作成本基线、目标信息架构和ROADMAP_ALIGNMENT_ACK。
+任务分支：`codex/v10.1.18-ui-language-match-entry-consistency-20261116`；唯一父基线：`507ffcbf5a5f5abd3cac27b965388c9cb7155867`。Codex必须同步V3.0、v10.1.17反馈/顾问报告/实施报告/manifest/Owner检查表、本版task_order/plan/DEVELOPMENT_ALIGNMENT/UI合同/prompt及入口文档，逐Blob核验并记录LOCAL_DOCS_SYNCED。源码修改前完成OWNER_FEEDBACK_TRACEABILITY和ROADMAP_ALIGNMENT_ACK。
 
-## B3产品合同
+## 本版范围
 
-按用户目标重组Home / Progress / Messages / Me。默认保留四个底部主入口，不增加第五入口。Home复用B2 user-state及next_actions；Progress展示关系旅程但保持各业务状态独立；Messages保留现有访问门；Me整合资料、偏好、隐私、账号安全和工具。Buddy独立于恋爱匹配，社区保持有限场景。
+清理开发式文案；一级「进展」调整为「匹配」；统一按钮和选项状态配色；让自动化入口可发现但保持B2唯一控制页面；将一般说明归位；独立诊断Buddy无法匹配；在同一安装中补测A/B切号、强制停止和冷启动后的状态/消息/通知/缓存隔离。
 
-低操作成本通过九项代表旅程前后测量。减少重复输入、跨页寻找和无意义确认，但不得移除隐私分享、匹配接受、消息同意、Connection、正式关系和不可逆动作的必要确认。
+## 严格边界
 
-## Owner整体实机验收
-
-Owner将在B1+B2+B3全部完成后统一进行整体实机验收。中间版本由Codex使用虚构账号、模拟器和真实APP/API/DB链完成工程验证，不操作Owner手机。B4为独立阶段，不自动成为该验收前置。
-
-## 未授权边界
-
-B4运行时AI、阶段C身份/信用/Push/支付、main集成、正式发布、真实内测/运营未授权。v10.1.17交付后停止，等待顾问验收。
+不改恋爱匹配算法/候选排序/资格权威服务/关系状态机；Buddy独立；不做B4 AI，不接身份/信用/Push/支付；不操作Owner手机；不合main、不发布、不运营。v10.1.17 Owner整版接受仍PENDING，不因本版启动自动改为接受。
