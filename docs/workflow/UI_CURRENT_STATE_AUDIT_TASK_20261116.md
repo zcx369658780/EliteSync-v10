@@ -36,7 +36,7 @@ Owner已正式接受v10.1.17及v10.1.18，接受记录分别见：
 ## 三、执行治理与保护
 
 1. 继续使用既有本地Codex会话和稳定工程根；不得因本任务新建代理会话、复制整套工程或擅自切换工作目录。
-2. 首先核实际本地工程根、origin、branch、HEAD、工作区/index、AVD/模拟器、已安装包身份及当前本地服务状态；只读本地`AGENTS.md`、`ACTIVE_STATE.md`当前入口和`CURRENT_WORKFLOW.md)。
+2. 首先核实际本地工程根、origin、branch、HEAD、工作区/index、AVD/模拟器、已安装包身份及当前本地服务状态；只读本地`AGENTS.md`、`ACTIVE_STATE.md`当前入口和`CURRENT_WORKFLOW.md`。
 3. 不盲目pull/reset/rebase/stash/clean/prune，不force push；保护原主库未提交成果/index、数据库、AVD、私有配置、测试账号、APK及原始证据。
 4. 本任务只允许使用Owner已授权的本机开发环境、虚构QA账号及Android模拟器。**不操作Owner手机、不使用真实用户或生产数据。**
 5. 优先使用已安装的1011804候选和现有模拟器。不得为截图清理、卸载、wipe或重置现有AVD/应用数据。确需安装时先核验APK身份，采用保留数据的安全方式，并记录前后状态。
