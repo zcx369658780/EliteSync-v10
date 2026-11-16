@@ -3,7 +3,7 @@
 生效：2026-11-15。当前版本依据[v10.1.16 Owner接受记录](docs/versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)及[V3.0阶段B3补充决定](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md)，当前路线权威为[产品路线图V3.0](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)，普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
 
-历史实机授权记录：Owner曾明确授权Codex操作当前接入手机完成v10.1.14补证，该工作已完成，结果见v10.1.14实机报告。本次v10.1.16不授权操作Owner手机；Owner整体实机验收安排在B1+B2+B3低操作成本主线完成后。
+历史实机授权记录：Owner曾明确授权Codex操作当前接入手机完成v10.1.14补证，该工作已完成，结果见v10.1.14实机报告。当前v10.1.17不授权操作Owner手机；Owner整体实机验收安排在B1+B2+B3低操作成本主线完成后。
 
 ## 产品目标
 
