@@ -1,0 +1,149 @@
+{
+  "status": "LOCAL_DOCS_SYNCED",
+  "verified_at": "2026-11-16T06:37:10.534932+00:00",
+  "task_commit": "06109b33e3a3a6129c09ba33bdecf271f49e661b",
+  "parent_baseline": "507ffcbf5a5f5abd3cac27b965388c9cb7155867",
+  "root": "D:\\EliteSync-v10-product-v1015-20261101",
+  "branch": "codex/v10.1.18-ui-language-match-entry-consistency-20261116",
+  "origin": "git@github.com:zcx369658780/EliteSync-v10.git",
+  "encoding_note": "Git filtered blobs verified before derived documentation edits; raw local hashes separately recorded for CRLF.",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "expected_git_blob": "70646583c00481e9bed786ab66ae60f735b014b9",
+      "local_filtered_git_blob": "70646583c00481e9bed786ab66ae60f735b014b9",
+      "git_blob_sha256": "a8dc7fc0228b0f142c34b24c6ddd326cb7bd219799098e3df46dd2f5345903c2",
+      "local_bytes_sha256": "951796b0608e6e18b74621edbf8f549a22289052da7d62f2217272d7cc12c69d",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/workflow/ACTIVE_STATE.md",
+      "expected_git_blob": "37a65d7cce8ed42453c3ff2852f5aeb1c18fd245",
+      "local_filtered_git_blob": "37a65d7cce8ed42453c3ff2852f5aeb1c18fd245",
+      "git_blob_sha256": "0af1c3580a3482945e47b5462355d7606f3bd0a0f24d355a0b6c7f21b00ff335",
+      "local_bytes_sha256": "a8a10cf08a624f3b0edc8bdc249dd60b64e1f3554403a30452888e129d153adc",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/workflow/CURRENT_WORKFLOW.md",
+      "expected_git_blob": "55e0ded03a8903d62d2a81c20c1016ae6c28c6cf",
+      "local_filtered_git_blob": "55e0ded03a8903d62d2a81c20c1016ae6c28c6cf",
+      "git_blob_sha256": "288134f04071e2323361c6894934b5182b5f038903b21dc36dc0e341767b1a51",
+      "local_bytes_sha256": "52af849f438addb48c8963c6978a02561068ea159cc88e309274cc369ea707d4",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md",
+      "expected_git_blob": "de2653cdd80ddbf296b378924012b95d679d81ee",
+      "local_filtered_git_blob": "de2653cdd80ddbf296b378924012b95d679d81ee",
+      "git_blob_sha256": "92afb681cfada2a25ba5f5592170516fb69f037f3090c811d423582823b9adbd",
+      "local_bytes_sha256": "61c64ac1da64c2a58868d15fc25eb814389fef639e7dd9a07a5bc103cde953c2",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_V1018_UI_CLOSEOUT.md",
+      "expected_git_blob": "0b89ffdf469bee67598941a968ecce24f224abf2",
+      "local_filtered_git_blob": "0b89ffdf469bee67598941a968ecce24f224abf2",
+      "git_blob_sha256": "03c2379f530753ebb9d083f3a3c92ecb78b321b7155cddb20cb6caf5a2e19c04",
+      "local_bytes_sha256": "992163f25df9315ad3901d3d1863fd6dc4024829118b84d2b1026a84f8eb8ff1",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/decisions/OWNER_V10_1_18_UI_CLOSEOUT_AUTHORIZATION_20261116.md",
+      "expected_git_blob": "b5ab29715e6d666ad34b42ef781fa6f562de3e97",
+      "local_filtered_git_blob": "b5ab29715e6d666ad34b42ef781fa6f562de3e97",
+      "git_blob_sha256": "b82458ed9727bdca85760e3b7e276f21f7f447662bfbf4bb2101825dd9c6e0ec",
+      "local_bytes_sha256": "f157cd207e1eb4a576ee166464b7b34c78442e93b3c54befedff3fbbed018edb",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md",
+      "expected_git_blob": "2845843552f1ab70e4701833f637c60878d36e7a",
+      "local_filtered_git_blob": "2845843552f1ab70e4701833f637c60878d36e7a",
+      "git_blob_sha256": "8fcde710c148dfd517b74b2cf71136672860f2c3c0266e457cb26c28dc37d9e3",
+      "local_bytes_sha256": "42407cfd37c6d385b1560e5dea5a0709722f71a583d004174e222b2bea3b5000",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.17/IMPLEMENTATION_REPORT.md",
+      "expected_git_blob": "b8f4db6dbe6e7a782bd1ff7145bb78db7f463662",
+      "local_filtered_git_blob": "b8f4db6dbe6e7a782bd1ff7145bb78db7f463662",
+      "git_blob_sha256": "1c2eeea3476ac39f50c8b049b45a7e7caaf6babedf339cc3194752023cc3cbb6",
+      "local_bytes_sha256": "0420634faa5ace6dcf0c4dfe019dc3b448daa45dfdd107fe67913f0046f9c7c8",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.17/ADVISOR_ACCEPTANCE_20261116.md",
+      "expected_git_blob": "a4d5ef81eec3d2ffbad3b23859bd1973fd83c9d0",
+      "local_filtered_git_blob": "a4d5ef81eec3d2ffbad3b23859bd1973fd83c9d0",
+      "git_blob_sha256": "50df9ef4e86174d195391146f584a1ce6e8f9b0facf4bde6a6e10da7f53f3985",
+      "local_bytes_sha256": "b1cd0b766f1cf987b221290aa63d59d8f86c625ff281ef77735be68c987150a9",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.17/artifact_manifest.json",
+      "expected_git_blob": "f6fb89add9b2340e955e0af30bee78bf76874313",
+      "local_filtered_git_blob": "f6fb89add9b2340e955e0af30bee78bf76874313",
+      "git_blob_sha256": "477ef9c8949dd3811dc19c7d73f1b058b5042a68daad7dd3a790c151372846b9",
+      "local_bytes_sha256": "7c7ff35615e9bedc25281a1d97b5d9f92b30ab10b8be798c92cfed3162465981",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.17/EVIDENCE_SUMMARY_20261116.json",
+      "expected_git_blob": "e7b907ef13524dc56da829caef1b0a3b2da6e664",
+      "local_filtered_git_blob": "e7b907ef13524dc56da829caef1b0a3b2da6e664",
+      "git_blob_sha256": "498a87156a0349399ae7a2b116f3535ccfb6de8993d94d94439127e5dcb501d7",
+      "local_bytes_sha256": "c9e82fcee832d6bd622b1e4b2a1ae7b261d4d3e831ddb59707bba8d1ab0ea161",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.17/OWNER_DEVICE_CHECKLIST.md",
+      "expected_git_blob": "47d2298b303c8f7930436b444ee84586b6106cff",
+      "local_filtered_git_blob": "47d2298b303c8f7930436b444ee84586b6106cff",
+      "git_blob_sha256": "f2e797eb3d0c85a647ff71a74e86d44d257b642c49416d12220e54ab7fbab793",
+      "local_bytes_sha256": "4e759fd351c37bda48e98a193ac12a4d4862c53d1e126fec5d11d3e00654d1f2",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.18/task_order.md",
+      "expected_git_blob": "f5f61bffaf7602ab0d090b2c5de93df18294f389",
+      "local_filtered_git_blob": "f5f61bffaf7602ab0d090b2c5de93df18294f389",
+      "git_blob_sha256": "dd3c790c556b7902f177bfea331bf8b2b52834887fb32565307356376acebe0b",
+      "local_bytes_sha256": "20025f86c8051cfb5f54493128ea867f88d47562aea36903d9bf071f869c809e",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.18/plan.md",
+      "expected_git_blob": "096a2fa247dd9bb76ba379125c6665f1a82cf892",
+      "local_filtered_git_blob": "096a2fa247dd9bb76ba379125c6665f1a82cf892",
+      "git_blob_sha256": "9e8b7876f09e9fd08bfbca5726e3d7125edc479f452fbe1dc2cc54245f45afb8",
+      "local_bytes_sha256": "029c9a2c06762105108e720cb236414ec8d1b9f024f3540bd3d9cbe656dd9ebe",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.18/DEVELOPMENT_ALIGNMENT.md",
+      "expected_git_blob": "e3d95ae33a967ae85c88d0f1ea9ae2d30956a6c6",
+      "local_filtered_git_blob": "e3d95ae33a967ae85c88d0f1ea9ae2d30956a6c6",
+      "git_blob_sha256": "03cdd3b2e62794e6e7a9203efdbaf68cdec68562d150eee2bc74c54db776c819",
+      "local_bytes_sha256": "9d600b601d5aaee25b29f7149476fa77295beea7fca6ea170b627a280ef885b7",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.18/UI_AND_MATCH_CONSISTENCY_CONTRACT.md",
+      "expected_git_blob": "5f7955d27fc86c97c809a1002738a718c931e933",
+      "local_filtered_git_blob": "5f7955d27fc86c97c809a1002738a718c931e933",
+      "git_blob_sha256": "3c549e8f921d24f6f0e719a6a5591ddc98423973849c2a1053e7eccaa033603c",
+      "local_bytes_sha256": "86dee95d76680b143ca4ef5d50c0c12a3edf004f0a0ef44bb78182c2dab61fd2",
+      "status": "LOCAL_DOCS_SYNCED"
+    },
+    {
+      "path": "docs/versions/v10.1.18/CODEX_START_PROMPT.txt",
+      "expected_git_blob": "3bd60fb7cd413263419429b0ddd833e10b10ba46",
+      "local_filtered_git_blob": "3bd60fb7cd413263419429b0ddd833e10b10ba46",
+      "git_blob_sha256": "1fc4447e58e9f7e4cb7858c3c8cbf18f63b4b733e91d8fbca1a099199fdb7e3d",
+      "local_bytes_sha256": "deec525389600b9cffc28089ae21e35cba020f0476a5f63028630b683126bfa0",
+      "status": "LOCAL_DOCS_SYNCED"
+    }
+  ],
+  "protection": "Private startup receipt and original index copies retained locally. Original dirty root and %SystemDrive%/ protected."
+}

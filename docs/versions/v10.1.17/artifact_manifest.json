@@ -336,7 +336,7 @@
   ],
   "recorded_limits": [
     "Historical B1 image-model name/version UNKNOWN and v10.1.16 initial DB probe/status unknowns retained",
-    "Owner limited phone feedback received; automation, Progress/message end-to-end and full switch/restart/system-level matrix remain untested in this review. Final Owner and advisor acceptance PENDING"
+    "Owner limited phone feedback received; automation, Progress/message end-to-end and full switch/restart/system-level matrix remain untested in this review. At original delivery Owner and advisor acceptance were PENDING; subsequent advisor review ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS (ADVISOR_ACCEPTANCE_20261116.md), Owner overall acceptance remains PENDING"
   ],
   "artifact_checksum_basis": "Committed Git blob bytes. Differing local worktree byte hashes are explicitly recorded.",
   "baseline_prefreeze_integrity": {

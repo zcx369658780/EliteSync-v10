@@ -53,7 +53,7 @@ B3 主要修改 11 个 Dart 产品文件与 Android 候选配置。后端产品�
 - 实际 APP 从 A 切 B 再切 D，旧账号投影清空，新账号未授权及待探索状态正确。九项代表旅程通过，候选冷启动恢复当前登录并进入 Home。
 - D 经 APP 明确授权后，具名后台 tick 只处理一项，结果为 `SKIPPED / ROUND_NOT_OPEN`，effect 为 0、matching_runs 仍为 3 个受控 fixture。撤销后独立手动 ACTIVE 参与保持，delegated 为 false。
 - 受控关闭 D/E 候选信息期限后，既有服务保留 `MUTUALLY_ACCEPTED` 历史，返回 candidate_available/connection_eligible=false。CN_ACTIVE、MC_ACTIVE 和当前会话访问保持独立，实际 APP 仍可进入有权聊天。
-- 非作者静态审查覆盖最终源码提交。发现的连接摘要依赖提案资格问题已闭环，路由及生命周期补审未发现新增确定缺陷。顾问独立验收另记 PENDING。
+- 非作者静态审查覆盖最终源码提交。发现的连接摘要依赖提案资格问题已闭环，路由及生命周期补审未发现新增确定缺陷。原工程交付时顾问独立验收记 PENDING；后续顾问已接受原固定交付的具名范围，见 [顾问验收](ADVISOR_ACCEPTANCE_20261116.md)。Owner整体接受仍为PENDING。
 
 原始日志、完整 API 回执、截图、配置及 QA 口令为本机私有资料。公开交付包含九张经检查的虚构模拟器代表截图和去敏 JSON。[证据摘要](EVIDENCE_SUMMARY_20261116.json) 与 [集成回执](evidence/INTEGRATION_RECEIPT.json) 可直接复核。
 
@@ -73,4 +73,4 @@ B3 主要修改 11 个 Dart 产品文件与 Android 候选配置。后端产品�
 
 本版真实手机、系统级 TalkBack/全部权限矩阵及全设备覆盖为 NOT_RUN，Owner 手动整体检查为 PENDING，见 [检查表](OWNER_DEVICE_CHECKLIST.md)。B1 图像模型精确名称/版本 UNKNOWN 与既有范围限制沿原接受记录保留。本轮使用现有美术。
 
-源码已完成同源远端固定回读，集中文档提交后再核最终交付 HEAD。main 集成、正式发布与真实运营为 NOT_RUN。交付后停止，等待 GPT 顾问独立验收。
+源码已完成同源远端固定回读，集中文档提交后再核最终交付 HEAD。main 集成、正式发布与真实运营为 NOT_RUN。原工程交付后按当时停止点等待 GPT 顾问独立验收；后续顾问已完成具名范围接受，见 [顾问验收](ADVISOR_ACCEPTANCE_20261116.md)。Owner整体接受仍为PENDING。
