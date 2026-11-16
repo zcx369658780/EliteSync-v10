@@ -1,17 +1,17 @@
 # EliteSync-v10 工程约定
 
-生效：2026-11-15。当前版本依据[v10.1.16 Owner接受记录](docs/versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)及[V3.0阶段B3补充决定](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md)，当前路线权威为[产品路线图V3.0](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)，普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
+生效：2026-11-16。当前状态依据[v10.1.16 Owner接受记录](docs/versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)及[V3.0阶段B3补充决定](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md)，当前路线权威为[产品路线图V3.0](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)，普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
 
-历史实机授权记录：Owner曾明确授权Codex操作当前接入手机完成v10.1.14补证，该工作已完成，结果见v10.1.14实机报告。当前v10.1.17不授权操作Owner手机；Owner整体实机验收安排在B1+B2+B3低操作成本主线完成后。
+历史实机授权记录：Owner曾明确授权Codex操作当前接入手机完成v10.1.14补证，该工作已完成，结果见v10.1.14实机报告。v10.1.17有限手机反馈已单独归档；Owner现已接受v10.1.17和v10.1.18。当前UI-AUDIT-01明确只用Android模拟器采集截图，不操作Owner手机。
 
 ## 产品目标
 
 Owner已确认项目交接及选定旧版主要功能接续完成。当前完善可实际使用的EliteSync APP、真实后端、持久数据库及独立Web管理面板。先完成业务功能与最小可操作界面，必要安全封装随功能收口处理，最后集中打磨UI和文字。现有鉴权、私信权限与数据隔离保留。
 
-整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6—v10.1.9按各自已接受范围保留。v10.1.10六项AC及手机补证获顾问范围接受，Owner整版最终接受沿原记录PENDING。v10.1.11六项AC声明工程范围已获顾问与Owner接受，AC11-02为限定能力接受，R1-01 CLOSED；原NOT_RUN/UNKNOWN继续保留。v10.1.12六项AC具名代表性范围已获顾问接受，R1-01 CLOSED；Owner整版接受仍单独记PENDING。v10.1.13六项AC具名代表性范围已获顾问与Owner接受，NO_R1/NO_R2；原NOT_RUN/UNKNOWN/UNVERIFIED继续保留。v10.1.14六项AC和1011402实机补证已获顾问及Owner具名代表性范围接受，NO_R1/NO_R2，三项P2及NOT_RUN边界保留。v10.1.15「生活方式探索与渐进式偏好」（V3.0阶段B1）已获Owner具名范围接受：AC15-01/03/04/05/06接受，AC15-02因图像模型精确身份UNKNOWN继续PARTIAL；R1-01 CLOSED、NO_R2。v10.1.16「统一用户状态与后台自动化中心」（V3.0阶段B2）已获Owner接受：七项AC具名范围接受，R1-01 CLOSED、第二轮顾问复核PASS、NO_R2；历史UNKNOWN/FAIL/NOT_RUN继续保留。v10.1.17「全APP低操作成本重构与功能整合」（V3.0阶段B3）已获GPT顾问具名范围接受，Owner有限实机反馈已归档，但Owner整版接受仍PENDING。当前授权版本为v10.1.18「UI表达与交互一致性收口」。B4运行时AI及阶段C外部服务仍未授权。
+整个v10以功能、体验与UI为目标，不安排公司、内测或运营。v10.1.5已按Owner决定收尾，v10.1.6—v10.1.9按各自已接受范围保留。v10.1.10六项AC及手机补证获顾问范围接受，Owner整版最终接受沿原记录PENDING。v10.1.11六项AC声明工程范围已获顾问与Owner接受，AC11-02为限定能力接受，R1-01 CLOSED；原NOT_RUN/UNKNOWN继续保留。v10.1.12六项AC具名代表性范围已获顾问接受，R1-01 CLOSED；Owner整版接受仍单独记PENDING。v10.1.13六项AC具名代表性范围已获顾问与Owner接受，NO_R1/NO_R2；原NOT_RUN/UNKNOWN/UNVERIFIED继续保留。v10.1.14六项AC和1011402实机补证已获顾问及Owner具名代表性范围接受，NO_R1/NO_R2，三项P2及NOT_RUN边界保留。v10.1.15「生活方式探索与渐进式偏好」（V3.0阶段B1）已获Owner具名范围接受：AC15-01/03/04/05/06接受，AC15-02因图像模型精确身份UNKNOWN继续PARTIAL；R1-01 CLOSED、NO_R2。v10.1.16「统一用户状态与后台自动化中心」（V3.0阶段B2）已获Owner接受：七项AC具名范围接受，R1-01 CLOSED、第二轮顾问复核PASS、NO_R2；历史UNKNOWN/FAIL/NOT_RUN继续保留。v10.1.17「全APP低操作成本重构与功能整合」（V3.0阶段B3）已获GPT顾问具名范围接受并于2026-11-16获Owner整版接受，历史NOT_RUN/UNKNOWN继续保留。v10.1.18「UI表达与交互一致性收口」已获顾问具名范围接受并于2026-11-16获Owner整版接受。当前授权任务为UI-AUDIT-01：基于1011804候选进行模拟器UI现状审计和功能逻辑链盘点；本任务不改产品代码。B4运行时AI及阶段C外部服务仍未授权。
 
-## 2026-11-15 当前交付状态
+## 2026-11-16 当前交付状态
 
 v10.1.13已获独立顾问验收及Owner接受，六项AC按具名代表性范围接受，NO_R1/NO_R2。实际范围、原失败和限制见[顾问验收](docs/versions/v10.1.13/ADVISOR_ACCEPTANCE_20261115.md)、[Owner接受](docs/versions/v10.1.13/OWNER_ACCEPTANCE_20261115.md)、[实施报告](docs/versions/v10.1.13/IMPLEMENTATION_REPORT.md)和[manifest](docs/versions/v10.1.13/artifact_manifest.json)。
 
@@ -21,9 +21,15 @@ v10.1.14阶段A六项AC及1011402手机补证已获顾问和Owner具名代表性
 
 v10.1.15已获Owner具名范围接受，AC15-02保持PARTIAL；完整记录见[Owner接受](docs/versions/v10.1.15/OWNER_ACCEPTANCE_20261115.md)、[顾问验收](docs/versions/v10.1.15/ADVISOR_ACCEPTANCE_20261115.md)和[R1复核](docs/versions/v10.1.15/R1_01_REREVIEW_20261115.md)。
 
-v10.1.16 B2已获Owner接受，记录见[Owner接受](docs/versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)和[第二轮顾问验收](docs/versions/v10.1.16/ADVISOR_R1_REREVIEW_20261116.md)。v10.1.17 B3已完成顾问具名范围验收，Owner整体接受仍PENDING；Owner实机反馈见[反馈记录](docs/versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md)。当前授权执行v10.1.18「UI表达与交互一致性收口」，任务见[task_order](docs/versions/v10.1.18/task_order.md)、[plan](docs/versions/v10.1.18/plan.md)、[DEVELOPMENT_ALIGNMENT](docs/versions/v10.1.18/DEVELOPMENT_ALIGNMENT.md)和[UI合同](docs/versions/v10.1.18/UI_AND_MATCH_CONSISTENCY_CONTRACT.md)。本版修正文案、进展→匹配、统一按钮状态色、自动化入口可发现性、说明归位，并独立诊断Buddy及补测冷启动/账号隔离。
+v10.1.16 B2已获Owner接受，记录见[Owner接受](docs/versions/v10.1.16/OWNER_ACCEPTANCE_20261116.md)和[第二轮顾问验收](docs/versions/v10.1.16/ADVISOR_R1_REREVIEW_20261116.md)。v10.1.17 B3已获顾问及Owner整版接受，记录见[Owner接受](docs/versions/v10.1.17/OWNER_ACCEPTANCE_20261116.md)、[顾问验收](docs/versions/v10.1.17/ADVISOR_ACCEPTANCE_20261116.md)和[实机反馈](docs/versions/v10.1.17/OWNER_DEVICE_FEEDBACK_20261116.md)。v10.1.18已获顾问及Owner整版接受，记录见[Owner接受](docs/versions/v10.1.18/OWNER_ACCEPTANCE_20261116.md)及[顾问验收](docs/versions/v10.1.18/ADVISOR_ACCEPTANCE_20261116.md)。当前任务是[UI-AUDIT-01任务书](docs/workflow/UI_CURRENT_STATE_AUDIT_TASK_20261116.md)，Codex启动指令见[START PROMPT](docs/workflow/UI_CURRENT_STATE_AUDIT_START_PROMPT_20261116.txt)。审计固定候选1011804，不修改产品代码。
 
-Owner已对v10.1.17提供有限手机反馈，整版接受仍PENDING。v10.1.18不操作Owner手机，Codex仅用虚构账号/模拟器验证；交付后由Owner自行决定复验。B4运行时AI及阶段C身份/信用/Push/支付等仍未授权。视觉风格保持冻结；若本版确需新美术资产，按Astra艺术指导与最新在线GPT Image工作流，并将实际可得模型信息和SHA256写入GitHub manifest。
+Owner已接受v10.1.17和v10.1.18。当前UI-AUDIT-01仅使用Android模拟器和虚构QA账号，不操作Owner手机；先采集1011804真实界面和功能逻辑，不开始UI实现。下一阶段视觉基调已由Owner明确为构成主义为主的二次元卡通画风；讨论阶段使用低分辨率设定图/低保真方向稿。B4运行时AI及阶段C身份/信用/Push/支付等仍未授权。
+
+## 2026-11-16 UI现状审计任务
+
+当前任务：`UI-AUDIT-01`，分支`codex/ui-current-state-audit-20261116`，任务书见[UI现状审计任务](docs/workflow/UI_CURRENT_STATE_AUDIT_TASK_20261116.md)，启动指令见[Codex Prompt](docs/workflow/UI_CURRENT_STATE_AUDIT_START_PROMPT_20261116.txt)。固定审计候选为`10.1.18-dev / 1011804`，包名`com.elitesync.v1018dev`，APP源码`1afa6940c37bc1b40aa3d05ea46fb47002f6455c`。
+
+本任务仅采集模拟器主要页面截图、梳理当前功能逻辑链和简化机会；不改产品源码、API/Web、数据库schema、业务配置或版本号，不操作Owner手机，不合main、不发布。任务完成后停止，等待Owner与顾问讨论信息架构、交互逻辑及视觉方案。下一阶段视觉方向为构成主义为主的二次元卡通画风，讨论图采用低分辨率设定图。
 
 ## 入口与自主执行
 
