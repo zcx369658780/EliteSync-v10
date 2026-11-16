@@ -4,12 +4,12 @@
   "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
   "engineering_result": "R1_01_CLOSED_PENDING_ADVISOR_SECOND_REVIEW",
   "acceptance": {
-    "advisor": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
+    "advisor": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
     "owner": "PENDING",
     "owner_overall_device_evaluation": "DEFERRED_UNTIL_B1_B2_B3_COMPLETE",
     "advisor_record_scope": "FIRST_REVIEW_DECISION_PRESERVED",
     "current_engineering": "R1_01_CLOSED",
-    "advisor_second_review": "PENDING"
+    "advisor_second_review": "PASS"
   },
   "tests": {
     "php": {
@@ -515,7 +515,7 @@
     "closure_date": "2026-11-16",
     "closure_authority": "CODEX_ENGINEERING",
     "severity_at_first_review": "P1",
-    "advisor_second_review": "PENDING",
+    "advisor_second_review": "PASS",
     "owner_acceptance": "PENDING",
     "fixed_review_commit": "82b7946d2399200a099499f2fcb2a2b44fdb048a",
     "synced_workflow_commit": "e292ac4dbf063ba88354c5845bba555314cb0e6f",
@@ -829,5 +829,16 @@
     },
     "apk_device_or_full_suite_execution": "NOT_RUN_THIS_R1",
     "stop": "WAIT_FOR_GPT_ADVISOR_SECOND_REVIEW"
+  },
+  "advisor_second_review": {
+    "status": "PASS",
+    "conclusion": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+    "reviewed_delivery_commit": "51c58ddc7dc3561a6c4902519b8379ed1c84b51e",
+    "reviewed_source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+    "r1_01": "CLOSED",
+    "r2": "NOT_REQUIRED",
+    "new_confirmed_p1_p2": [],
+    "report": "ADVISOR_R1_REREVIEW_20261116.md",
+    "evidence_basis": "fixed source review, committed structured evidence summary, manifest hashes, implementation report; OWNER_LOCAL_ONLY raw logs were not directly opened in this chat"
   }
 }

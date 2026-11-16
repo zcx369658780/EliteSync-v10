@@ -68,3 +68,8 @@ R1-01已按原修正要求完成，状态为 CLOSED。关闭主体为 Codex 工�
 APP源码沿初次提交，1011601原APK SHA256核对一致。原始误连探测逐表摘要继续UNKNOWN。原数据库保持停止，验证数据仅写入本轮新建隔离库。
 
 完整结果见[实施报告](IMPLEMENTATION_REPORT.md)、[manifest](artifact_manifest.json)及[证据摘要](EVIDENCE_SUMMARY_20261115.json)。本关闭记录由其所在最终文档提交固定，推送和同源远端回读结果列于交付回复。完成后等待GPT顾问第二轮独立复核。
+
+
+## 2026-11-16 GPT顾问第二轮复核
+
+第二轮顾问复核结果：`PASS — R1-01 CLOSED`。确认暂停/撤销/到期只影响绑定到本授权记录的ACTIVE参与；未绑定的独立手动参与保持完整；实际绑定变化推进参与revision/updated_at，effect receipt保存最终revision；proposal/slot和显式withdraw边界保持。R1无需R2。详见[第二轮顾问复核报告](ADVISOR_R1_REREVIEW_20261116.md)。Owner整版接受仍PENDING。

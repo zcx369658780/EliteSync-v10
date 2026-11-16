@@ -1,12 +1,12 @@
-# 当前入口 2026-11-16 v10.1.16 R1-01工程关闭，等待第二轮顾问复核
+# 当前入口 2026-11-16 v10.1.16 B2顾问验收通过，等待Owner整版决定
 
-**V10116_R1_01_CLOSED_ENGINEERING / ADVISOR_REREVIEW_PENDING / NO_R2 / OWNER_PENDING**。
+**V10116_B2_ADVISOR_ACCEPTED_IN_NAMED_SCOPE / R1_01_CLOSED / NO_R2 / OWNER_PENDING**。
 
 ## 当前交付
 
 任务分支 `codex/v10.1.16-user-state-automation-center-20261115`，唯一父基线 `b981796e68ca512beeed2a18b40aeb8b09e26bc2`，任务文档固定提交 `89ce556ab67c6ea759d3a2ffea7016edf11b892e`。十四份路线与任务文档逐Blob核对，LOCAL_DOCS_SYNCED，编码前ACK提交 `c793eefcad2f5cff0c613b79b2b1d1cba32e6fa5`。
 
-初次产品源码 `00cec7843911bb3341304c004059de0a91e12f16` 已推送并同源回读。R1后端与测试源码为 `4bfa9245f06548197532ecec2d5da0397ba8d33d`，APP源码沿初次身份。候选 `10.1.16-dev / 1011601`，签名和模拟器安装SHA256核对通过。七项AC初次具名交付获顾问条件接受。R1-01当前由Codex工程关闭，第二轮顾问复核及Owner接受PENDING。
+初次产品源码 `00cec7843911bb3341304c004059de0a91e12f16` 已推送并同源回读。R1后端与测试源码为 `4bfa9245f06548197532ecec2d5da0397ba8d33d`，APP源码沿初次身份。候选 `10.1.16-dev / 1011601`，签名和模拟器安装SHA256核对通过。七项AC初次具名交付获顾问条件接受。R1-01已由GPT顾问第二轮复核PASS；七项AC在具名范围内接受，Owner整版接受PENDING。
 
 交付入口为[实施报告](../versions/v10.1.16/IMPLEMENTATION_REPORT.md)、[manifest](../versions/v10.1.16/artifact_manifest.json)、[证据摘要](../versions/v10.1.16/EVIDENCE_SUMMARY_20261115.json)、[状态来源图](../versions/v10.1.16/USER_STATE_SOURCE_MAP_V1.md)、[实现合同](../versions/v10.1.16/IMPLEMENTED_STATE_AUTOMATION_CONTRACT_V1.md)及[运行恢复说明](../versions/v10.1.16/LOCAL_AUTOMATION_OPERATIONS.md)。最终文档身份以包含本块的交付提交为准，最终远端回读回执保存在Owner本机并列于交付回复。
 
@@ -28,7 +28,7 @@
 
 路线权威为[V3.0](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)及[B2补充决定](../architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261115_PHASE_B2_AUTHORIZATION.md)，上版事实沿[v10.1.15 Owner接受记录](../versions/v10.1.15/OWNER_ACCEPTANCE_20261115.md)保留，AC15-02仍PARTIAL。
 
-本版R1-01当前工程CLOSED，等待GPT顾问第二轮独立复核。B3、B4、阶段C、main集成、正式发布及真实运营NOT_RUN。Owner整体实机验收安排在B1+B2+B3完成后。
+本版R1-01已工程关闭并经GPT顾问第二轮独立复核PASS；Owner整版接受仍PENDING。B3、B4、阶段C、main集成、正式发布及真实运营NOT_RUN。Owner整体实机验收安排在B1+B2+B3完成后。
 
 
 ## 首轮顾问验收及R1当前状态
@@ -36,3 +36,8 @@
 首轮顾问结论为 `CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2`。当时AC16-03/05存在自动化pause/revoke/expiry误暂停未绑定的独立手动ACTIVE参与问题；同一委托绑定更新未推进参与source revision/freshness。详见[顾问验收报告](../versions/v10.1.16/ADVISOR_ACCEPTANCE_20261115.md)及[R1-01任务](../versions/v10.1.16/R1_01_AUTOMATION_REVOCATION_SCOPE.md)。修正后等待第二轮复核。其他NOT_RUN/UNKNOWN及十二项基线旧失败继续保留。
 
 2026-11-16，R1-01已完成工程修正并关闭。暂停/撤销/到期只影响绑定到该授权记录的ACTIVE参与，实际绑定变化推进参与版本，effect收据记录最终版本。原误连逐表摘要仍UNKNOWN。当前主开发环境R1部署验证NOT_RUN，1011601原APK沿用且SHA256核对一致。详见[R1关闭记录](../versions/v10.1.16/R1_01_AUTOMATION_REVOCATION_SCOPE.md)。
+
+
+## 第二轮顾问复核（2026-11-16）
+
+GPT顾问结论：`ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS`。R1-01 CLOSED、第二轮PASS、NO_R2；七项AC具名范围接受。Owner整版接受PENDING。详见[第二轮复核报告](../versions/v10.1.16/ADVISOR_R1_REREVIEW_20261116.md)。所有既有UNKNOWN、十二项基线FAIL、NOT_RUN、Owner整体实机验收延期及B3/B4/阶段C未授权边界保持不变。

@@ -9,7 +9,7 @@
   "source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
   "final_document_identity": "Git commit containing this manifest; same-origin fixed readback receipt retained privately and final reply lists exact commit",
   "engineering_result": "R1_01_CLOSED_PENDING_ADVISOR_SECOND_REVIEW",
-  "advisor_acceptance": "CONDITIONAL_ACCEPTANCE_IN_NAMED_SCOPE — R1_01_OPEN — NO_R2",
+  "advisor_acceptance": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
   "owner_acceptance": "PENDING",
   "ac_status": {
     "AC16-01": "PASS",
@@ -711,7 +711,7 @@
     "closure_date": "2026-11-16",
     "closure_authority": "CODEX_ENGINEERING",
     "severity_at_first_review": "P1",
-    "advisor_second_review": "PENDING",
+    "advisor_second_review": "PASS",
     "owner_acceptance": "PENDING",
     "fixed_review_commit": "82b7946d2399200a099499f2fcb2a2b44fdb048a",
     "synced_workflow_commit": "e292ac4dbf063ba88354c5845bba555314cb0e6f",
@@ -773,6 +773,20 @@
       "result": "PASS",
       "evidence_summary": "EVIDENCE_SUMMARY_20261115.json#r1_01",
       "private_evidence_subdirectory": "r1-01-20261116"
-    }
+    },
+    "advisor_second_review_commit": "51c58ddc7dc3561a6c4902519b8379ed1c84b51e"
+  },
+  "advisor_second_review": {
+    "status": "PASS",
+    "conclusion": "ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS",
+    "reviewed_delivery_commit": "51c58ddc7dc3561a6c4902519b8379ed1c84b51e",
+    "reviewed_source_commit": "4bfa9245f06548197532ecec2d5da0397ba8d33d",
+    "app_source_commit": "00cec7843911bb3341304c004059de0a91e12f16",
+    "candidate_version_code": 1011601,
+    "r1_01": "CLOSED",
+    "r2": "NOT_REQUIRED",
+    "new_confirmed_p1_p2": [],
+    "owner_acceptance": "PENDING",
+    "report": "ADVISOR_R1_REREVIEW_20261116.md"
   }
 }

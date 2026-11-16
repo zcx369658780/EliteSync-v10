@@ -1,3 +1,9 @@
+## 2026-11-16 第二轮顾问复核结论
+
+**`ACCEPTED_IN_NAMED_SCOPE_WITH_RECORDED_LIMITS`。** R1-01第二轮复核PASS，七项AC均在具名范围内通过顾问验收。Owner整版接受仍为PENDING。
+
+详见[第二轮顾问复核报告](ADVISOR_R1_REREVIEW_20261116.md)。首轮条件接受报告、R1关闭记录和所有历史UNKNOWN/FAIL/NOT_RUN均保留。
+
 # v10.1.16 实施报告
 
 ## 2026-11-16 R1-01 当前工程关闭记录
