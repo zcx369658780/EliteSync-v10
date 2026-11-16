@@ -48,6 +48,29 @@ Future<void> mount(
 }
 
 void main() {
+  testWidgets('login guard redirect reads the resolved Home route immediately', (tester) async {
+    var reads = 0;
+    final router = GoRouter(
+      initialLocation: '/auth/login',
+      redirect: (_, state) => state.uri.path == '/auth/login' ? '/home' : null,
+      routes: [
+        GoRoute(path: '/auth/login', builder: (_, _) => const SizedBox()),
+        GoRoute(path: '/home', builder: (_, _) => const JourneyOverviewPage()),
+      ],
+    );
+    addTearDown(router.dispose);
+    await tester.pumpWidget(ProviderScope(overrides: [
+      sessionProvider.overrideWith(TestSession.new),
+      relationshipApiProvider.overrideWithValue(FakeApi((m, p, b) async {
+        reads++;
+        return stateFor(1);
+      })),
+    ], child: MaterialApp.router(routerConfig: router)));
+    await tester.pumpAndSettle();
+    expect(reads, greaterThan(0));
+    expect(find.byKey(const Key('home-primary-action')), findsOneWidget);
+  });
+
   testWidgets(
     'existing CN MC and conversation remain independent of expired proposal eligibility',
     (tester) async {

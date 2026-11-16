@@ -37,14 +37,14 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
     super.didChangeDependencies();
     final router = GoRouter.maybeOf(context);
     if (router == _router) return;
-    _router?.routeInformationProvider.removeListener(_routeChanged);
+    _router?.routerDelegate.removeListener(_routeChanged);
     _router = router;
-    _router?.routeInformationProvider.addListener(_routeChanged);
+    _router?.routerDelegate.addListener(_routeChanged);
     _routeChanged();
   }
 
   void _routeChanged() {
-    final path = _router?.routeInformationProvider.value.uri.path;
+    final path = _router?.state.uri.path;
     final active =
         path == null || path == (widget.detailed ? '/progress' : '/home');
     if (_routeActive == active) return;
@@ -62,7 +62,7 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
 
   @override
   void dispose() {
-    _router?.routeInformationProvider.removeListener(_routeChanged);
+    _router?.routerDelegate.removeListener(_routeChanged);
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
