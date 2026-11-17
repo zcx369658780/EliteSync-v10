@@ -6,26 +6,27 @@
 
 1. **当前完整Owner决策入口**：[Owner下一代产品决策总冻结 V1.0](../decisions/OWNER_NEXTGEN_PRODUCT_DECISIONS_CONSOLIDATED_20261117.md)。
 2. 首轮历史决定：[Home与Matching首轮冻结](../decisions/OWNER_HOME_MATCHING_PRODUCT_RULES_20261117.md)。
-3. 端到端候选：[V2注册到聊天完整用户旅程 V0.1](../product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_DRAFT_20261117.md)，标记`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`。
-4. 固定1011804基线：[UI-AUDIT-01审计](ui-current-state-audit-20261116/UI_CURRENT_STATE_AUDIT.md)与[顾问审阅](ui-current-state-audit-20261116/ADVISOR_REVIEW_20261116.md)。36截图/16逻辑链/14问题，接受仅在具名审计范围内成立；NOT_RUN、UNKNOWN保持原记录。
-5. v10.1.17、v10.1.18既有Owner接受记录继续有效；未合main，未发布。
+3. 新增Owner确认：[J-01首次Lifestyle及J-02连续Connection/消息许可](../decisions/OWNER_JOURNEY_INTERACTION_DECISIONS_20261117.md)。
+4. 当前端到端候选：[V2注册到聊天完整用户旅程 V0.2](../product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_V0_2.md)，新增操作成本D/I/N/A/W口径，除两项Owner明确决定外仍为顾问草案。原[V0.1](../product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_DRAFT_20261117.md)保留。
+5. 固定1011804基线：[UI-AUDIT-01审计](ui-current-state-audit-20261116/UI_CURRENT_STATE_AUDIT.md)与[顾问审阅](ui-current-state-audit-20261116/ADVISOR_REVIEW_20261116.md)。36截图/16逻辑链/14问题，接受仅在具名审计范围内成立；NOT_RUN、UNKNOWN保持原记录。
+6. v10.1.17、v10.1.18既有Owner接受记录继续有效；未合main，未发布。
 
 ## 二、当前讨论目标
 
 依据`OWNER_CONFIRMED`冻结的Home、Matching、Me、Messages规则，逐段审阅完整用户旅程：
 - 访客公开官方内容；
 - 账号注册/登录；
-- 首次可跳过Lifestyle；
+- 注册成功后自动展示一次可跳过Lifestyle欢迎页（Owner确认），再按需恢复未完成题目；
 - 登录后内容浏览、发布与评论；
 - 用户主动进入匹配准备，补缺失Lifestyle与匹配资料；
 - 真实身份核验（目前供应商未接入，不允许假成功）；
 - 星盘可选自动计算，不作为Match门禁；
 - 自主报名或独立自动参与授权；
 - 匹配轮次/候选本人决定；
-- 独立Connection、Messaging Consent后进入合法Conversation；
+- Connection与Messaging Consent连续引导但双方分别明确决定（Owner确认），在当前有效权限下进入Conversation；
 - 通知待处理优先，普通提醒按时间排列，通知回流二次权限验证。
 
-用户操作减负不取消个人数据用途授权、展示受众、匹配/连接/消息/关系独立决定。Personal Data Hub、匹配页面五模块、Me具体布局、历史评论受众与通知细则仍为提案或OPEN；不能将建议写成Owner已确认。
+未来以D（业务决定）、I（字段/题目）、N（额外导航）、A（自动工作）、W（等待）分别衡量操作成本，不把目标预算当成当前APP测试成绩。用户操作减负不取消个人数据用途授权、展示受众、匹配/连接/消息/关系独立决定。Personal Data Hub、匹配页面五模块、Me具体布局、历史评论受众与通知细则仍为提案或OPEN；不能将建议写成Owner已确认。
 
 ## 三、工作流与技术限制
 
