@@ -1,3 +1,33 @@
+# 当前入口 2026-11-17：四一级入口Owner决策已汇总，注册到聊天的端到端旅程进入设计审阅
+
+**`NEXTGEN_OWNER_DECISIONS_CONSOLIDATED / REGISTER_TO_CHAT_DRAFT_FOR_OWNER / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
+
+## 1. 当前权威文件
+
+- [Owner下一代产品决策总冻结 V1.0](../decisions/OWNER_NEXTGEN_PRODUCT_DECISIONS_CONSOLIDATED_20261117.md)：覆盖Home/Matching/Me/Messages、社交内容权限、实名门槛、星盘非硬门槛、个人形象及通知待办优先；区分Owner确认、既有合同、顾问建议和OPEN。
+- [Home与Matching首轮冻结](../decisions/OWNER_HOME_MATCHING_PRODUCT_RULES_20261117.md)：保留为历史冻结首版。
+- [注册到聊天完整旅程草案 V0.1](../product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_DRAFT_20261117.md)：顾问方案，尚待Owner逐段审阅与批准。
+- [UI-AUDIT-01现场审计](ui-current-state-audit-20261116/UI_CURRENT_STATE_AUDIT.md)与[顾问复核](ui-current-state-audit-20261116/ADVISOR_REVIEW_20261116.md)：基线`10.1.18-dev / 1011804`，36张去敏截图、16条现有逻辑链、14项问题。审计已获顾问具名范围接受，原NOT_RUN/UNKNOWN继续保留。
+
+## 2. 最新Owner确认点
+
+- Home：「精选/好友」双频道；官方精选访客可读、用户公开作品仅有效登录用户可读；新作品默认FRIENDS，作者选择评论范围；访客在任何地方不提交互动/反馈。
+- Matching：注册可跳过Lifestyle但真实匹配前必须完成；正式真实匹配必须实人核验；星盘授权且资料充足时自动生成、非Match硬门槛；普通报名与持续参与独立授权。
+- Me：顶部个人资料卡；MBTI与星盘/八字/紫微归于统一自我探索；好友与Buddy在社交与内容分组但业务独立。社交/匹配形象默认复用主头像昵称、独立可覆盖与授权；主形象变化自动更新本人默认预览，对外匹配展示仍由原发布版本/受众决定。
+- Messages：聊天与通知双频道，默认聊天，未读独立计算；**当前有效待处理事项优先、普通通知按时间排列**。
+- 视觉：构成主义为主的二次元卡通，低分辨率低保真设定稿优先，非写实的水中倒影/几何重组转场作为待设计概念。
+
+## 3. 当前工作与严格边界
+
+- Owner已请求统一设计`注册 → Lifestyle → 内容社区 → 用户主动匹配 → 实人及资料准备 → 报名 → 本轮提案 → Connection → Messaging Consent → Conversation`的未来流程。
+- 旅程文件仅为`ADVISOR_PROPOSAL`，包括未决门禁UI、数据复用/授权细节、返回路径、异常处理和待审问题；不能被当作当前1011804已经跑通的能力。
+- 当前没有授权Codex开发任务，不运行模拟器、不改APP/API/Web、schema/数据、不构建APK、不合main、不发布；B4与阶段C、真实身份供应商、真实Push均未授权。
+- Owner/顾问当前专注产品逻辑与低保真设计，未来形成V2正式合同后再由Owner另行决定实施。
+
+---
+
+## 上一入口历史快照（只供追溯，2026-11-17；当前以顶部入口为准）
+
 # 当前入口 2026-11-17：Home与Matching产品规则已冻结，继续讨论Me页面
 
 **`HOME_MATCHING_DECISIONS_FROZEN / DESIGN_DISCUSSION_ONLY / NO_CODE_AUTHORIZATION`**
@@ -119,4 +149,5 @@ Owner已明确后续视觉基调为**构成主义为主的二次元卡通画风*
 - Buddy原手机原因、B1图像模型精确身份、B2首次数据库探测历史原因等UNKNOWN继续保留；
 - Owner手机复验、系统级TalkBack、真实Push等NOT_RUN继续保留；
 - 不将顾问验收、Owner接受、工程自验、main集成和正式发布混为一谈。
+
 
