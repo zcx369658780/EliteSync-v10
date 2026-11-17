@@ -26,6 +26,8 @@
 - V0.2已记录Owner J-01/J-02明确决定；其他门禁UI、跨设备状态、数据复用/授权、操作成本预算和异常处理仍是`ADVISOR_PROPOSAL`。1011804没有真实身份供应商，不能把目标流程当成已跑通的真实全链。
 - 当前没有授权Codex开发任务，不运行模拟器、不改APP/API/Web、schema/数据、不构建APK、不合main、不发布；B4与阶段C、真实身份供应商、真实Push均未授权。
 - Owner/顾问当前专注产品逻辑与低保真设计，未来形成V2正式合同后再由Owner另行决定实施。
+- **Owner新增UI最高优先级：用户第一时间理解页面用途、最少操作完成目标。** 已写入[Owner总冻结](../decisions/OWNER_NEXTGEN_PRODUCT_DECISIONS_CONSOLIDATED_20261117.md)的UI-PRINCIPLE-01；[旅程V0.2](../product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_V0_2.md)新增逐页PURPOSE/PRIMARY_ACTION/RETURN_PATH/RECOVERY检查模板。减少操作不取消独立Consent及身份核验。
+
 
 ---
 
