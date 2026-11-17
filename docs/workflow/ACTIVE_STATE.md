@@ -1,6 +1,15 @@
-# 当前入口 2026-11-17：首次探索与连续关系引导已确认，旅程V0.2进入设计审阅
+# 当前入口 2026-11-17：V2设计结论已固定，顾问会话准备交接
 
-**`JOURNEY_J01_J02_OWNER_CONFIRMED / V0_2_DESIGN_REVIEW / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
+**`V2_UI_DESIGN_FREEZE / FIRST_THREE_LOW_FI_SKETCHES_NEXT / SESSION_HANDOFF_READY / CODEX_NOT_AUTHORIZED`**
+
+## 0. 本会话交接与最新下一步
+
+- **最新交接文档**：[SESSION_HANDOFF_20261117_V2_UI_DESIGN_BEFORE_CONCEPT_SKETCH.md](SESSION_HANDOFF_20261117_V2_UI_DESIGN_BEFORE_CONCEPT_SKETCH.md)。
+- 本轮Owner认可将首批视觉讨论限定为三张**低分辨率、低保真构成主义+二次元卡通设定图**，顺序为：①首次Lifestyle探索；②内容首页；③匹配准备。
+- 一切页面设计的首要规则：**用户第一眼明白页面用途，以最少的不必要操作完成当前目标；必要身份核验、关系决定与授权绝不省略**。
+- 以上已增补在[Owner决策总冻结 §12](../decisions/OWNER_NEXTGEN_PRODUCT_DECISIONS_CONSOLIDATED_20261117.md)；三图仍未生成或Owner视觉验收。
+- 当前项目状态：Owner/GPT顾问产品设计阶段。会话结束后在新会话从上述交接文档接续，Codex不启动、无开发实施授权、未合main、未发布。
+- 截至本入口，v10.1.18/1011804与UI-AUDIT-01固定审计事实不变；旧UNKNOWN/NOT_RUN继续保留。
 
 ## 1. 当前权威文件
 
