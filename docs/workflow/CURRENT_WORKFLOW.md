@@ -1,6 +1,13 @@
-# EliteSync-v10 CURRENT_WORKFLOW — 2026-11-17 产品设计状态
+# EliteSync-v10 CURRENT_WORKFLOW — 2026-11-17 设计会话交接状态
 
 **当前模式：Owner与GPT顾问产品架构讨论；Codex未获新产品开发授权。**
+
+## 当前交接入口与下一步
+
+- [完整GPT顾问会话交接文档](SESSION_HANDOFF_20261117_V2_UI_DESIGN_BEFORE_CONCEPT_SKETCH.md)已保存GitHub；新会话从此文档及Owner决策/用户旅程V0.2接续，不递归历史handoff。
+- Owner已认可首批设定图讨论顺序：**①Lifestyle首次探索 → ②内容首页 → ③匹配准备**。仅低分辨率、低保真、构成主义主导的二次元卡通方向稿。
+- 页面优先回答“这是什么页面？我要做什么？”并提供最短合法完成路径。水中倒影/幻化只是非写实转场概念，不能压倒易用性。
+- **目前没有设计稿成品，也没有Codex实施授权**。下一步由Owner与网页GPT顾问在新会话中讨论视觉方案，不修改产品代码/数据库，不合main。
 
 ## 一、权威与已存文件
 
