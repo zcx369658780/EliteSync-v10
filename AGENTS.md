@@ -1,13 +1,13 @@
 # EliteSync-v10 工程约定
 
-生效：2026-11-17。当前产品设计状态依据[Owner Home与Matching产品规则冻结记录](docs/decisions/OWNER_HOME_MATCHING_PRODUCT_RULES_20261117.md)、[v10.1.17 Owner接受记录](docs/versions/v10.1.17/OWNER_ACCEPTANCE_20261116.md)、[v10.1.18 Owner接受记录](docs/versions/v10.1.18/OWNER_ACCEPTANCE_20261116.md)及[UI-AUDIT-01顾问审阅](docs/workflow/ui-current-state-audit-20261116/ADVISOR_REVIEW_20261116.md)。当前处于设计讨论阶段；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
+生效：2026-11-17。当前产品设计状态依据[Owner下一代产品决策总冻结](docs/decisions/OWNER_NEXTGEN_PRODUCT_DECISIONS_CONSOLIDATED_20261117.md)、[注册到聊天完整旅程顾问草案](docs/product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_DRAFT_20261117.md)、[Home与Matching首轮冻结](docs/decisions/OWNER_HOME_MATCHING_PRODUCT_RULES_20261117.md)、[v10.1.17 Owner接受记录](docs/versions/v10.1.17/OWNER_ACCEPTANCE_20261116.md)、[v10.1.18 Owner接受记录](docs/versions/v10.1.18/OWNER_ACCEPTANCE_20261116.md)及[UI-AUDIT-01顾问审阅](docs/workflow/ui-current-state-audit-20261116/ADVISOR_REVIEW_20261116.md)。当前处于设计讨论阶段；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
 
 历史实机授权记录：Owner曾明确授权Codex操作当前接入手机完成v10.1.14补证，该工作已完成，结果见v10.1.14实机报告。v10.1.17有限手机反馈已单独归档；Owner现已接受v10.1.17和v10.1.18。UI-AUDIT-01已完成，顾问具名范围接受；当前讨论阶段不授权Codex实施全局UI或产品代码变更。
 
 ## 2026-11-17 当前产品设计状态
 
-Owner已冻结Home与Matching产品规则，权威记录见[OWNER_HOME_MATCHING_PRODUCT_RULES_20261117.md](docs/decisions/OWNER_HOME_MATCHING_PRODUCT_RULES_20261117.md)。当前继续讨论「我的」页面。UI-AUDIT-01已完成并获顾问具名范围接受。**当前没有授权Codex实施产品改造的任务**；讨论、低保真设计和产品规则整理不构成代码实现授权。Owner确认与顾问建议必须分开记录。
+Owner已汇总冻结Home、Matching、Me、Messages四一级入口已经明确的产品决定，权威记录见[Owner下一代产品决策总冻结](docs/decisions/OWNER_NEXTGEN_PRODUCT_DECISIONS_CONSOLIDATED_20261117.md)。当前正在审阅[注册到聊天完整用户旅程](docs/product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_DRAFT_20261117.md)，它是顾问草案而非已批准的开发合同。UI-AUDIT-01已完成并获顾问具名范围接受。**当前没有授权Codex实施产品改造的任务**；讨论、低保真设计和产品规则整理不构成代码实现授权。Owner确认与顾问建议必须分开记录。
 
 ## 产品目标
 
