@@ -1,12 +1,14 @@
-# 当前入口 2026-11-17：四一级入口Owner决策已汇总，注册到聊天的端到端旅程进入设计审阅
+# 当前入口 2026-11-17：首次探索与连续关系引导已确认，旅程V0.2进入设计审阅
 
-**`NEXTGEN_OWNER_DECISIONS_CONSOLIDATED / REGISTER_TO_CHAT_DRAFT_FOR_OWNER / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
+**`JOURNEY_J01_J02_OWNER_CONFIRMED / V0_2_DESIGN_REVIEW / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
 
 ## 1. 当前权威文件
 
 - [Owner下一代产品决策总冻结 V1.0](../decisions/OWNER_NEXTGEN_PRODUCT_DECISIONS_CONSOLIDATED_20261117.md)：覆盖Home/Matching/Me/Messages、社交内容权限、实名门槛、星盘非硬门槛、个人形象及通知待办优先；区分Owner确认、既有合同、顾问建议和OPEN。
 - [Home与Matching首轮冻结](../decisions/OWNER_HOME_MATCHING_PRODUCT_RULES_20261117.md)：保留为历史冻结首版。
-- [注册到聊天完整旅程草案 V0.1](../product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_DRAFT_20261117.md)：顾问方案，尚待Owner逐段审阅与批准。
+- [首次Lifestyle与连续关系引导Owner补充决定](../decisions/OWNER_JOURNEY_INTERACTION_DECISIONS_20261117.md)：注册后一次可跳过欢迎页；Connection和Messaging Consent连续引导但分别作出决定。
+- [注册到聊天完整旅程V0.2](../product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_V0_2.md)：顾问细化方案及D/I/N/A/W操作成本预算，其他细节仍待Owner审阅。
+- [V0.1历史初稿](../product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_DRAFT_20261117.md)：保留初版以供追溯。
 - [UI-AUDIT-01现场审计](ui-current-state-audit-20261116/UI_CURRENT_STATE_AUDIT.md)与[顾问复核](ui-current-state-audit-20261116/ADVISOR_REVIEW_20261116.md)：基线`10.1.18-dev / 1011804`，36张去敏截图、16条现有逻辑链、14项问题。审计已获顾问具名范围接受，原NOT_RUN/UNKNOWN继续保留。
 
 ## 2. 最新Owner确认点
@@ -19,8 +21,9 @@
 
 ## 3. 当前工作与严格边界
 
-- Owner已请求统一设计`注册 → Lifestyle → 内容社区 → 用户主动匹配 → 实人及资料准备 → 报名 → 本轮提案 → Connection → Messaging Consent → Conversation`的未来流程。
-- 旅程文件仅为`ADVISOR_PROPOSAL`，包括未决门禁UI、数据复用/授权细节、返回路径、异常处理和待审问题；不能被当作当前1011804已经跑通的能力。
+- Owner已确认注册后自动出现一次可跳过Lifestyle欢迎页；候选后的Connection与Messaging Consent采取连续引导，但双方和不同业务决定均独立确认。
+- Owner已请求细化`注册 → Lifestyle → 内容社区 → 主动匹配 → 实人及资料准备 → 报名 → 本轮提案 → Connection → Messaging Consent → Conversation`的未来流程，重点量化不必要操作。
+- V0.2已记录Owner J-01/J-02明确决定；其他门禁UI、跨设备状态、数据复用/授权、操作成本预算和异常处理仍是`ADVISOR_PROPOSAL`。1011804没有真实身份供应商，不能把目标流程当成已跑通的真实全链。
 - 当前没有授权Codex开发任务，不运行模拟器、不改APP/API/Web、schema/数据、不构建APK、不合main、不发布；B4与阶段C、真实身份供应商、真实Push均未授权。
 - Owner/顾问当前专注产品逻辑与低保真设计，未来形成V2正式合同后再由Owner另行决定实施。
 
