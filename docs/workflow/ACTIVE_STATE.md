@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：A6.6 Owner原则认可，三项修订与最终确认待完成
+
+**`A6_6_OWNER_PRINCIPLE_ACCEPTED_WITH_REFINEMENTS / A6_6_FINAL_CONFIRMATION_PENDING / A6_7_ON_HOLD / CODEX_NOT_AUTHORIZED`**
+
+- [A6.6 Owner审阅结论](../decisions/OWNER_A66_CONCEPT_REVIEW_20261119.md)：Owner原则认可五屏方向，并采纳**安全返回、写入UNKNOWN查询优先恢复、反馈与操作层级**三项修订；不能把V0.1认作无修改最终定稿。仅A6.6修订并回交Owner作明确最终确认。
+- **A6.7尚不讨论/不启动**；A6正式会议继续暂缓，精确UI规范与工程合同尚未冻结。
+- A6.6原始SVG与V0.1源说明保持原件身份；五场景账号切换/旧通知/未知写入/编辑回流/查看失权仍独立。失权先隐藏敏感内容，异常页只保留安全摘要与合法反馈入口；真实身份供应商未接入，1011804旧NOT_RUN/UNKNOWN不改变。
+- **Codex继续停止新V2实施**：不改APP/API/Web/DB、不运行模拟器/手机、不构建APK、不合main、不发布。GitHub治理分支仅为文件记录，不表示本地工程已同步；43份原PNG仍`PENDING_BINARY_UPLOAD`。
+
+---
+
 # 当前入口 2026-11-18：网页顾问A6.6待审与设计资产交接
 
 **`A6_5_OWNER_CONCEPT_ACCEPTED / A6_6_OWNER_REVIEW_PENDING / FULL_LOCAL_ARCHIVE / REMOTE_PNG_PENDING / CODEX_NOT_AUTHORIZED`**
