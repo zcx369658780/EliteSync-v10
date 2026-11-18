@@ -1,3 +1,12 @@
+# 2026-11-18 UI设计讨论当前入口（增量）
+
+- 当前模式仍为**Owner + 网页GPT顾问的产品/UI讨论，Codex无新实施授权**。
+- [Owner最新视觉与交互反馈](../decisions/OWNER_UI_VISUAL_INTERACTION_FEEDBACK_20261118.md)：构成主义主要用于降低信息量；低刺激深青/蓝绿配柔和淡绿/淡蓝背景；Lifestyle保留带图的三选项；前几轮视觉精确画风待开会后再细化。
+- [A1–A3概念及SVG结构示意](../product/ELITESYNC_V2_UI_CONCEPT_A1_A3_20261118.md)已归档。**下一步是A4：提案→Connection→Messaging Consent→Conversation的连续但独立决定的界面讨论**。A4尚未获得Owner逐项UI接受；不能把概念设计当成产品代码合同。
+- 以下2026-11-17内容保留为历史工作流基础；其中“目前没有设计稿成品／下一步为首次三页出图”按时点解释，已由上述2026-11-18入口更新。
+
+---
+
 # EliteSync-v10 CURRENT_WORKFLOW — 2026-11-17 设计会话交接状态
 
 **当前模式：Owner与GPT顾问产品架构讨论；Codex未获新产品开发授权。**
