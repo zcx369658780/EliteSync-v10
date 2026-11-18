@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：A6.6最终概念确认；A6.7全局一致性审查草案待Owner审阅
+
+**`A6_6_OWNER_CONCEPT_ACCEPTED_WITH_REFINEMENTS / A6_7_ADVISOR_AUDIT_DRAFT_OWNER_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
+
+- Owner已明确回复“没问题确认修改通过，请继续”。[A6.6最终概念确认](../decisions/OWNER_A66_CONCEPT_REVIEW_20261119.md)：三项安全返回/UNKNOWN查询优先/反馈与操作层级修订正式接受；原V0.1 SVG保留原件身份，不冒充改绘的新版图稿。
+- [A6.7全局一致性审查V0.1](../product/ELITESYNC_V2_A6_7_GLOBAL_CONSISTENCY_AUDIT_V0_1_20261119.md)已由顾问启动并形成静态检查草案，**尚待Owner审阅**。提出四个优先消歧：内容失权与账号失效分开、失效通知的显示与排序、未接入核验和待补Lifestyle分开、跨页回流统一先核当前事实。概念文档对照不等于运行时PASS。
+- A6正式会议仍暂缓；最终色卡/字号/组件/schema/实际验证未冻结。真实身份供应商未接入，1011804既有UNKNOWN/NOT_RUN不升级；43份原PNG GitHub备份仍`PENDING_BINARY_UPLOAD`。
+- 本地Codex继续无新V2实施授权；不改APP/API/Web/DB、不启动模拟器/手机、不建APK、不合main、不发布。治理分支状态不等于Owner本地工程已同步。
+
+---
+
 # 当前入口 2026-11-19：A6.6 Owner原则认可，三项修订与最终确认待完成
 
 **`A6_6_OWNER_PRINCIPLE_ACCEPTED_WITH_REFINEMENTS / A6_6_FINAL_CONFIRMATION_PENDING / A6_7_ON_HOLD / CODEX_NOT_AUTHORIZED`**
