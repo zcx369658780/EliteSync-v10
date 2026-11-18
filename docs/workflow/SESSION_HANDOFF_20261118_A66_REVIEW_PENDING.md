@@ -83,3 +83,5 @@ Owner反馈：此前会话提供的完整交接ZIP链接无法下载，并明确
 - 核验结果：GitHub当前治理分支上**未出现上述ZIP文件的可验证二进制对象**。本会话的GitHub连接提供`create_file`（UTF-8文本）与`create_blob`（调用参数含完整Base64内容），但没有可直接从本地文件路径上传48MB二进制的入口；本机运行环境对GitHub地址的外部网络/凭据不可用。故**ZIP_GITHUB_UPLOAD=PENDING**；不能发布伪造的ZIP GitHub URL，也不能把本地文件链接、空文件或原始SVG说成ZIP已上传。
 - 推荐后续闭合：由具有GitHub远端访问权限的本地环境将校验一致的ZIP以标准Git提交到治理分支，例如`docs/workflow/handoff-assets/EliteSync_V2_20261118_SESSION_HANDOFF_FULL.zip`，不合main；上传后回读并核对SHA-256，再把**可实际打开的固定commit ZIP链接**补写到此文档以及Owner新会话Prompt末尾。
 - 本附录仅记录归档障碍，不修改此前已确认的业务、Owner决定、工作流或A6.6待审状态。
+
+- 详细补传步骤：[完整ZIP二进制上传说明](handoff-assets/ZIP_UPLOAD_INSTRUCTIONS_20261118.md)。目前此链接是**操作说明**，不是ZIP原件下载地址。已备妥六个本地小分卷与合并校验脚本，供原ZIP大文件下载失败时使用。
