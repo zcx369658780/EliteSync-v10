@@ -1,3 +1,13 @@
+# 2026-11-19 Owner审阅增量（优先于下方V0.1初稿状态）
+
+Owner已明确回复“**我认可，请继续**”，接受本稿A67-R1至A67-R4四项跨页面设计原则。[正式决策记录](../decisions/OWNER_A67_CROSS_PAGE_CONSISTENCY_ACCEPTANCE_20261119.md)。
+
+当前状态：`A67_R1_R4_OWNER_CONCEPT_ACCEPTED / STATIC_AUDIT_CLOSED_WITH_OPEN_ITEMS / NOT_RUNTIME_VERIFIED / CODEX_NOT_AUTHORIZED`。
+
+下方原V0.1中的`OWNER_REVIEW_PENDING`和“顾问建议”是提出时的历史状态；四项原则已经获得Owner概念认可，**其余十二项表中的OPEN/NEEDS_CLARIFICATION/OPEN_DEPENDENCY不因此成为已通过或已实现**。后续设计汇总与未决条目见[总览V0.1](ELITESYNC_V2_DESIGN_CONSOLIDATION_AND_OPEN_DECISIONS_V0_1_20261119.md)。A6会议仍暂缓，Codex无新V2实施授权。
+
+---
+
 # EliteSync V2｜A6.7 全局交互与状态一致性审查 V0.1
 
 日期：2026-11-19（Asia/Singapore）  
