@@ -1,3 +1,13 @@
+# 2026-11-18 A6.1 当前工作流入口：消息/匹配已归档，继续「我的」简化
+
+- Owner对A5-3、A5-4、A6.1匹配准备与通知简化作概念认可。正式权威和存档见[最新Owner反馈](../decisions/OWNER_A5_3_A6_1_DESIGN_FEEDBACK_20261118.md)、[A6.1 UI对齐](../product/ELITESYNC_V2_A6_1_UI_SIMPLIFICATION_V0_1_20261118.md)及[A5-4审查清单](../product/ELITESYNC_V2_A5_4_UNIFIED_INTERACTION_AUDIT_20261118.md)。此前A4/A5的既有业务决定继续有效。
+- 最新设计任务：网页GPT顾问继续A6.1「我的」资料卡、偏好、自我探索、社交/内容、隐私授权导航与源字段编辑回流；Owner未批准最终组件或数据模型。
+- Owner明确**会议暂缓**，A6 PPT/规范仅为未来参考，不召开会议也不冻结具体品牌色；继续淡绿/淡蓝/灰青低信息密度构成主义+少量二次元图像。
+- GitHub已增量保存设计文本与重新绘制的SVG示意；**此前会话PNG原图及会议PDF/ZIP并未以二进制原件提交**。真实核验供应商未接入，1011804与原NOT_RUN/UNKNOWN不改判。
+- **Codex继续无实施授权**；不改APP/API/Web/DB、不运行设备、不构建APK、不合main、不发布；远端文档不是本地实时HEAD。
+
+---
+
 # 2026-11-18 A4/A5概念归档后的当前UI设计入口
 
 - 由Owner明确认可A4与A5首轮设计概念，材料为[Owner接受记录](../decisions/OWNER_A4_A5_CONCEPT_ACCEPTANCE_20261118.md)及[A4/A5 V0.3](../product/ELITESYNC_V2_A4_A5_CONCEPT_AND_NAVIGATION_V0_3_20261118.md)。结构化SVG已在GitHub保存，聊天原生成PNG尚未原样上传。
