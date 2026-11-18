@@ -74,3 +74,12 @@
 ## 8. 防越界的短句
 
 `DESIGN_ONLY / A6_6_PENDING_OWNER_REVIEW / PENDING_BINARY_UPLOAD / CODEX_STOPPED / NO_CODE_CHANGES / NO_DEVICE / NO_MAIN / NO_RELEASE`。
+
+## 9. 2026-11-18 ZIP GitHub上传复核与明确状态（后续补记）
+
+Owner反馈：此前会话提供的完整交接ZIP链接无法下载，并明确请求将原 ZIP 上传到 GitHub，追加 GitHub 地址到本交接文档；交接 Prompt 不修改。
+
+- 目标原件：`EliteSync_V2_20261118_SESSION_HANDOFF_FULL.zip`，大小 **48,346,194 bytes**（约46.1 MiB），ZIP自检通过，包含68条压缩包目录记录；SHA-256：`98b6c40c64468fa3482559d26c310c6c6929f74dd8cf22cb0d99a63e00221a2c`。
+- 核验结果：GitHub当前治理分支上**未出现上述ZIP文件的可验证二进制对象**。本会话的GitHub连接提供`create_file`（UTF-8文本）与`create_blob`（调用参数含完整Base64内容），但没有可直接从本地文件路径上传48MB二进制的入口；本机运行环境对GitHub地址的外部网络/凭据不可用。故**ZIP_GITHUB_UPLOAD=PENDING**；不能发布伪造的ZIP GitHub URL，也不能把本地文件链接、空文件或原始SVG说成ZIP已上传。
+- 推荐后续闭合：由具有GitHub远端访问权限的本地环境将校验一致的ZIP以标准Git提交到治理分支，例如`docs/workflow/handoff-assets/EliteSync_V2_20261118_SESSION_HANDOFF_FULL.zip`，不合main；上传后回读并核对SHA-256，再把**可实际打开的固定commit ZIP链接**补写到此文档以及Owner新会话Prompt末尾。
+- 本附录仅记录归档障碍，不修改此前已确认的业务、Owner决定、工作流或A6.6待审状态。
