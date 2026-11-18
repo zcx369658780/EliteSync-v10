@@ -1,3 +1,13 @@
+# 2026-11-18 当前工作流入口：A6.5已接受并存档，A6.6设计讨论
+
+- 目前仍为Owner与网页GPT顾问设计阶段。Owner确认A6.5异常页面的重点：**便于截图/保留安全问题摘要，随时能退出并反馈，同时失权立即隐藏敏感内容**。具体见[Owner增量反馈](../decisions/OWNER_A6_1_ME_TO_A6_5_CONCEPT_FEEDBACK_20261118.md)和[A6.5详细说明](../product/ELITESYNC_V2_A6_5_ERROR_PERSISTENCE_FEEDBACK_V0_1_20261118.md)。
+- A6.1–A6.5的设计汇总及SVG结构示例已在[设计归档](../product/ELITESYNC_V2_A6_1_TO_A6_5_ME_PERMISSIONS_ERROR_DESIGN_V0_1_20261118.md)保存。原聊天PNG与原SVG未逐字节上传，SVG是新绘结构示意。
+- 现在只继续**A6.6：跨页面状态一致性与恢复**。不自动合并身份资料用途授权、内容受众、匹配决定、Connection和Messaging Consent，不能在权限失效时维持旧缓存；UNKNOWN不假成功/失败。
+- Owner已确认会议暂缓，A6评审材料暂为未来参考；继续淡绿／淡蓝／灰青低信息密度构成主义＋适度二次元生活场景，具体色值、组件、动态恢复门槛仍OPEN。
+- **Codex未获新产品实施授权**；APP/API/DB/设备/构建/发布/main均不操作，GitHub治理资料不能冒充Owner本地同步结果。
+
+---
+
 # 2026-11-18 A6.1 当前工作流入口：消息/匹配已归档，继续「我的」简化
 
 - Owner对A5-3、A5-4、A6.1匹配准备与通知简化作概念认可。正式权威和存档见[最新Owner反馈](../decisions/OWNER_A5_3_A6_1_DESIGN_FEEDBACK_20261118.md)、[A6.1 UI对齐](../product/ELITESYNC_V2_A6_1_UI_SIMPLIFICATION_V0_1_20261118.md)及[A5-4审查清单](../product/ELITESYNC_V2_A5_4_UNIFIED_INTERACTION_AUDIT_20261118.md)。此前A4/A5的既有业务决定继续有效。
