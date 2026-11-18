@@ -1,3 +1,11 @@
+# 2026-11-19：O04/O05 Owner确认；顾问仅审O06/O07
+
+- [Owner O04/O05决定](../decisions/OWNER_V2_O04_O05_DATA_REUSE_AVATAR_PUBLICATION_20261119.md)已生效：合法按用途复用、本人预览与对外发布分离，匹配形象版本选择默认**方案A仅未来候选**，既有候选快照仍受当前受众与Block门禁，不自动追溯新版。
+- 当前顾问讨论仅针对[O06/O07通知标读与派生结果处理V0.1](../product/ELITESYNC_V2_O06_O07_NOTIFICATIONS_DERIVED_DATA_CONSENT_V0_1_20261119.md)；具体标读时机、撤销用途后处理方案尚未获Owner批准。O03真实身份供应商仍未接入，既有UNKNOWN/NOT_RUN不改判。
+- 沿用**DESIGN_ONLY / CODEX_NOT_AUTHORIZED**：A6正式会议继续暂缓；不派新V2代码任务，不碰APP/API/Web/数据库/设备/模拟器/APK/main/发布。本地源码同步由Owner之后另行决定，43份原PNG仍未全部上GitHub。
+
+---
+
 # 2026-11-19：O01/O02 Owner确认后，继续O04/O05概念审阅
 
 - [Owner O01/O02内容权限决策](../decisions/OWNER_V2_CONTENT_PERMISSIONS_O01_O02_20261119.md)已记录：访客不读官方专题评论；公开范围扩大不自动公开历史好友评论。用户作品默认评论策略、历史评论保留等仍OPEN，不用这两个决定推断其它默认策略。
