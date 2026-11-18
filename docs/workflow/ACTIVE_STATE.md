@@ -1,3 +1,15 @@
+# 当前入口 2026-11-18：A4/A5-2概念接受并归档，A5-3继续设计
+
+**`OWNER_A4_A5_CONCEPT_ACK / A4_A5_ARCHIVED / A5_3_MESSAGE_ME_DESIGN_NEXT / CODEX_NOT_AUTHORIZED`**
+
+- 最新Owner接受：[A4–A5概念设计Owner接受记录](../decisions/OWNER_A4_A5_CONCEPT_ACCEPTANCE_20261118.md)：A4连续关系决定、A4-R异常与通知回流、A5四入口职责及A5-2三条最短合法跨页路径的概念方向获得Owner认可；**不是逐像素布局冻结或产品实现授权**。
+- 已归档：[A4/A5 V0.3顾问交互与导航草案](../product/ELITESYNC_V2_A4_A5_CONCEPT_AND_NAVIGATION_V0_3_20261118.md)及三张SVG结构化示意（A4/A4-R、A5四入口、A5跨页路径）。GitHub SVG为重绘结构示意，不是聊天原PNG原件上传。
+- 当前下一步：**A5-3 消息/我的页面细化**，聚焦聊天与通知分组、当前有效待办优先、独立未读、合法通知回流、个人资料卡、资料分组/授权边界、从匹配编辑字段的自动返回。仍属顾问设计，未批准工程任务。
+- 保留2026-11-17的[Owner下一代产品冻结](../decisions/OWNER_NEXTGEN_PRODUCT_DECISIONS_CONSOLIDATED_20261117.md)、[J-01/J-02决定](../decisions/OWNER_JOURNEY_INTERACTION_DECISIONS_20261117.md)，以及[2026-11-18的蓝绿低刺激/低信息密度视觉反馈](../decisions/OWNER_UI_VISUAL_INTERACTION_FEEDBACK_20261118.md)。匹配/连接/消息许可/聊天/正式关系独立；真实身份供应商未接入，真实链不可冒充已跑通。
+- **没有Codex产品实施授权**：不改APP/API/DB、不运行模拟器/设备、不构建APK、不合main、不发布。此治理分支不是Owner本地实时HEAD；旧NOT_RUN/UNKNOWN不改判。
+
+---
+
 # 当前入口 2026-11-18：A1–A3 UI概念存档，进入A4连续关系交互设计
 
 **`OWNER_UI_DIRECTION_CONFIRMED / A1_A3_CONCEPT_ARCHIVED / A4_DESIGN_DISCUSSION / CODEX_NOT_AUTHORIZED`**
