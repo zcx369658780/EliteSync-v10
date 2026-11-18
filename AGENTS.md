@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问新入口：A6.7已接受，进入V2设计决策收口
+
+- Owner已经明确认可[A6.7四项跨页设计规则](docs/decisions/OWNER_A67_CROSS_PAGE_CONSISTENCY_ACCEPTANCE_20261119.md)，本轮静态审查已概念收口，但仍存在OPEN与未来工程验证；不得把顾问分析写成运行时PASS。
+- [V2设计成果总览/未决清单](docs/product/ELITESYNC_V2_DESIGN_CONSOLIDATION_AND_OPEN_DECISIONS_V0_1_20261119.md)是当前顾问工作草案；最终产品决定仍以Owner明确回复为准。A6正式UI会议继续暂缓，Codex未获新V2实施授权，GitHub仅为治理文档归档。
+- 原A6.6与A6.7待Owner审阅字样按其历史版本理解，当前权威入口见[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部；原始PNG远端存档仍PENDING_BINARY_UPLOAD，不等于原件全部上GitHub。
+
+---
+
 # 2026-11-19 GPT顾问增量入口：A6.6确认，A6.7顾问审查中
 
 - Owner已最终确认A6.6三项修订通过（[记录](docs/decisions/OWNER_A66_CONCEPT_REVIEW_20261119.md)），现在可进行[A6.7全局一致性概念审查](docs/product/ELITESYNC_V2_A6_7_GLOBAL_CONSISTENCY_AUDIT_V0_1_20261119.md)，状态`ADVISOR_AUDIT_DRAFT / OWNER_REVIEW_PENDING`。此前“A6.6未审阅/A6.7未启动”均为历史时点快照，不得覆盖最新入口。
