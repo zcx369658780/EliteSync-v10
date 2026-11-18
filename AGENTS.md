@@ -1,3 +1,12 @@
+# 2026-11-18 GPT顾问最新设计交接入口（增量，不改变工程长期授权）
+
+- 最新顾问交接：[SESSION_HANDOFF_20261118_A66_REVIEW_PENDING.md](docs/workflow/SESSION_HANDOFF_20261118_A66_REVIEW_PENDING.md)；当前活动事实以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部和[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)为准。
+- Owner已接受A6.5异常页设计方向（稳定可截图、可退出、可反馈且失权即时隐藏私密），A6.6只完成顾问出稿，**未获Owner审阅**。A6会议暂缓，Codex没有新的V2 UI/产品代码实施授权。
+- 资产审计：[ELITESYNC_V2_DESIGN_ASSET_COVERAGE_20261118.md](docs/product/ELITESYNC_V2_DESIGN_ASSET_COVERAGE_20261118.md)；4份原始SVG在GitHub按Blob SHA核验通过，43份原PNG备于本地交接包但**尚未完整上传GitHub**。不能把重绘SVG说成原PNG已经归档。
+- 本入口仅为网页顾问文档接续，不恢复旧main派单或本地工程接管、不改变Owner既有工程长期授权事实及历史测试结论。未经新授权不启动Codex、APP/API/DB、模拟器、APK、main或发布。
+
+---
+
 # EliteSync-v10 工程约定
 
 生效：2026-11-17。当前产品设计状态依据[Owner下一代产品决策总冻结](docs/decisions/OWNER_NEXTGEN_PRODUCT_DECISIONS_CONSOLIDATED_20261117.md)、[注册到聊天完整旅程顾问草案](docs/product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_V0_2.md)、[Home与Matching首轮冻结](docs/decisions/OWNER_HOME_MATCHING_PRODUCT_RULES_20261117.md)、[v10.1.17 Owner接受记录](docs/versions/v10.1.17/OWNER_ACCEPTANCE_20261116.md)、[v10.1.18 Owner接受记录](docs/versions/v10.1.18/OWNER_ACCEPTANCE_20261116.md)及[UI-AUDIT-01顾问审阅](docs/workflow/ui-current-state-audit-20261116/ADVISOR_REVIEW_20261116.md)。当前处于设计讨论阶段；普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
