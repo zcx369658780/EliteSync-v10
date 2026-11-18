@@ -1,3 +1,12 @@
+# 2026-11-19：A6.6 Owner原则认可后的顾问工作流入口
+
+- [A6.6 Owner审阅决定](../decisions/OWNER_A66_CONCEPT_REVIEW_20261119.md)：五屏概念原则认可，并采纳安全返回、UNKNOWN查询优先恢复、反馈与按钮层级三项修订。当前不是无修改V0.1最终接受；**下一步仅整理A6.6修订稿供Owner最终确认，A6.7不讨论、不启动**。
+- 继承A6.5原则：异常稳定、可安全截图复制、可退出、仍有资格的登录用户可主动反馈；账号或权限失效立即隐藏失权内容，旧响应不能回填、旧历史不能绕过权限。
+- **DESIGN_ONLY**：A6正式会议暂缓；Owner最终决定，网页GPT顾问做设计与指定文档；本地Codex没有新V2实现授权，不操作APP/API/Web/DB、设备、模拟器、APK、main或发布。
+- 原始SVG/原说明保留V0.1身份。43份本地原PNG远端仍待二进制上传，GitHub治理分支记录不等于Owner本地源码同步。
+
+---
+
 # 2026-11-18：会话交接/资产核查后的当前工作流
 
 - [会话交接主文](SESSION_HANDOFF_20261118_A66_REVIEW_PENDING.md)、[Owner决策增量](../decisions/OWNER_UI_SESSION_DECISIONS_DELTA_20261118.md)与[原稿资产核查](../product/ELITESYNC_V2_DESIGN_ASSET_COVERAGE_20261118.md)为当前网页顾问入口。此后按Owner要求**先核A6.6设计**；A6.6尚未获Owner概念接受，A6.7仅为后续候选讨论。
