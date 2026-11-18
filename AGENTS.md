@@ -1,3 +1,10 @@
+# 2026-11-19 GPT顾问新入口：O01/O02已接受，O04/O05顾问讨论中
+
+- [Owner O01/O02内容权限决策](docs/decisions/OWNER_V2_CONTENT_PERMISSIONS_O01_O02_20261119.md)已确认；[O04/O05资料来源与对外发布交互草案](docs/product/ELITESYNC_V2_O04_O05_DATA_SOURCE_AND_PUBLICATION_FLOW_V0_1_20261119.md)目前`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`。当前状态以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部和[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为准，不用历史快照覆盖新决定。
+- 不召开A6正式会议，不启动Codex新V2工程、设备/模拟器、APP/API/DB、APK、main或发布。V2真实核验未接入，旧NOT_RUN/UNKNOWN不升PASS；43份原PNG远端仍PENDING_BINARY_UPLOAD。
+
+---
+
 # 2026-11-19 GPT顾问新入口：A6.7已接受，进入V2设计决策收口
 
 - Owner已经明确认可[A6.7四项跨页设计规则](docs/decisions/OWNER_A67_CROSS_PAGE_CONSISTENCY_ACCEPTANCE_20261119.md)，本轮静态审查已概念收口，但仍存在OPEN与未来工程验证；不得把顾问分析写成运行时PASS。
