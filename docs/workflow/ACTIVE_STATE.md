@@ -1,3 +1,16 @@
+# 当前入口 2026-11-18：A5-3/A5-4与A6.1概念认可归档，继续简化「我的」
+
+**`OWNER_A5_3_A6_1_CONCEPT_ACK / ARCHIVED_DESIGN_REFERENCES / NEXT_ME_SIMPLIFICATION / MEETING_DEFERRED / CODEX_NOT_AUTHORIZED`**
+
+- Owner最新概念反馈：[A5-3、A5-4、A6与A6.1增量认可](../decisions/OWNER_A5_3_A6_1_DESIGN_FEEDBACK_20261118.md)。A5-3消息/我的低保真、A5-4八项审查清单、A6.1匹配准备2/5与通知四状态方案获Owner认可；**仅作为继续设计的概念方向**，不等于功能交付、设计合同或逐像素冻结。
+- 文档：[A5-3消息与我的](../product/ELITESYNC_V2_A5_3_MESSAGES_ME_LOW_FI_20261118.md)、[A5-4统一交互审查](../product/ELITESYNC_V2_A5_4_UNIFIED_INTERACTION_AUDIT_20261118.md)、[A6.1功能/UI简化对齐](../product/ELITESYNC_V2_A6_1_UI_SIMPLIFICATION_V0_1_20261118.md)，附匹配准备及通知SVG结构稿。**原聊天PNG/会议PDF尚未作为GitHub原二进制文件上传，SVG为新绘结构图**。
+- Owner明确A6会议材料可作为**未来会议参考**，目前功能开发及UI简化未完成，**暂不开会**；色值/组件/字体/夜间模式/动效未冻结。
+- 下一设计：**A6.1「我的」主页与资料/自我探索入口简化**：个人资料卡、社交与匹配形象对外权限制、Lifestyle和匹配偏好、自我探索归类、社交与内容、隐私与设置；跨页字段编辑后回到原匹配任务。此项仍是顾问设计，未Owner逐项接受。
+- 1011804/UI-AUDIT-01仍为固定工程审计基线；服务端 PUBLIC_EDITORIAL、PUBLIC_AUTHENTICATED 目标能力和真实实人核验供应商尚未按V2交付。Match / Connection / Messaging Consent / Conversation / Relationship独立，原NOT_RUN/UNKNOWN保持。
+- **Codex保持停止**，无新增APP/API/数据库开发授权；不得操作设备/模拟器、构建APK、合main或发布。远端治理分支文档更新不代表Owner本地仓库已同步。
+
+---
+
 # 当前入口 2026-11-18：A4/A5-2概念接受并归档，A5-3继续设计
 
 **`OWNER_A4_A5_CONCEPT_ACK / A4_A5_ARCHIVED / A5_3_MESSAGE_ME_DESIGN_NEXT / CODEX_NOT_AUTHORIZED`**
