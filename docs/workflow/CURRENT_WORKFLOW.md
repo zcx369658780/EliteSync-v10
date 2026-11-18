@@ -1,3 +1,11 @@
+# 2026-11-19：O01/O02 Owner确认后，继续O04/O05概念审阅
+
+- [Owner O01/O02内容权限决策](../decisions/OWNER_V2_CONTENT_PERMISSIONS_O01_O02_20261119.md)已记录：访客不读官方专题评论；公开范围扩大不自动公开历史好友评论。用户作品默认评论策略、历史评论保留等仍OPEN，不用这两个决定推断其它默认策略。
+- 网页GPT当前只对[O04/O05字段来源与发布流程V0.1](../product/ELITESYNC_V2_O04_O05_DATA_SOURCE_AND_PUBLICATION_FLOW_V0_1_20261119.md)进行产品/交互讨论。本人预览、用途、受众、对外版本、现有候选更新范围按已接受业务语义分开；具体O04流程/O05-X版本传播未获Owner新批准。
+- A6正式UI会议继续暂缓；Codex无新V2实施授权，不派代码任务、不触及APP/API/Web/DB、设备、模拟器、APK、main或发布。43份原PNG远端仍PENDING_BINARY_UPLOAD；1011804及NOT_RUN/UNKNOWN维持原有证据边界。
+
+---
+
 # 2026-11-19：A6.7接受后，网页顾问转入V2设计成果/OPEN产品规则收口
 
 - [A6.7 Owner四项原则接受](../decisions/OWNER_A67_CROSS_PAGE_CONSISTENCY_ACCEPTANCE_20261119.md)生效：四项跨页概念原则已接受，十二项静态核查仍保留OPEN/外部依赖/工程待验证，不宣称动态PASS。
