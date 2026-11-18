@@ -1,3 +1,15 @@
+# 当前入口 2026-11-18：A1–A3 UI概念存档，进入A4连续关系交互设计
+
+**`OWNER_UI_DIRECTION_CONFIRMED / A1_A3_CONCEPT_ARCHIVED / A4_DESIGN_DISCUSSION / CODEX_NOT_AUTHORIZED`**
+
+- 最新Owner UI增量决定：[2026-11-18视觉与交互反馈](../decisions/OWNER_UI_VISUAL_INTERACTION_FEEDBACK_20261118.md)。Owner确认构成主义首要服务低信息密度、淡绿/淡蓝/灰青夜间友好背景、蓝绿主色、Lifestyle带图三选项；A1–A3为可继续讨论的概念方向，不是实施合同。
+- [A1–A3设计文本与SVG结构图归档](../product/ELITESYNC_V2_UI_CONCEPT_A1_A3_20261118.md)：涵盖首次探索、登录/访客首页、匹配准备与Lifestyle保存中/失败/改选/恢复。GitHub中的SVG为重绘结构示意，不等于聊天原始PNG全量上载。
+- Owner于2026-11-18明确授权**保存上述设计文档，并进入A4顾问讨论**。A4范围：提案决定→Connection双方许可→Messaging Consent双方许可→有权Conversation；过程连续，业务决定独立。设计尚未冻结。
+- 既有[Owner下一代产品总决定](../decisions/OWNER_NEXTGEN_PRODUCT_DECISIONS_CONSOLIDATED_20261117.md)、[J-01/J-02交互决定](../decisions/OWNER_JOURNEY_INTERACTION_DECISIONS_20261117.md)和[V0.2旅程草案](../product/ELITESYNC_V2_REGISTER_TO_CHAT_USER_JOURNEY_V0_2.md)仍作为业务边界；既有v10.1.18 / 1011804与UI-AUDIT-01审计事实不变，真实身份供应商未接入，UNKNOWN/NOT_RUN不自动变PASS。
+- 当前**只允许顾问设计/文档讨论**，没有Codex产品实施任务，不运行设备/模拟器、不改APP/API/DB、不构建APK、不合main、不发布；本分支记录不代表Owner本地仓库已同步。
+
+---
+
 # 当前入口 2026-11-17：V2设计结论已固定，顾问会话准备交接
 
 **`V2_UI_DESIGN_FREEZE / FIRST_THREE_LOW_FI_SKETCHES_NEXT / SESSION_HANDOFF_READY / CODEX_NOT_AUTHORIZED`**
