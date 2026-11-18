@@ -1,3 +1,13 @@
+# 2026-11-18：会话交接/资产核查后的当前工作流
+
+- [会话交接主文](SESSION_HANDOFF_20261118_A66_REVIEW_PENDING.md)、[Owner决策增量](../decisions/OWNER_UI_SESSION_DECISIONS_DELTA_20261118.md)与[原稿资产核查](../product/ELITESYNC_V2_DESIGN_ASSET_COVERAGE_20261118.md)为当前网页顾问入口。此后按Owner要求**先核A6.6设计**；A6.6尚未获Owner概念接受，A6.7仅为后续候选讨论。
+- Owner负责最终产品及实施方向；网页GPT只做产品/UI/策略顾问和指定文档治理；本地Codex既有工程职责不变，但**目前无新V2实施授权**。不派新代码任务、不操作手机/模拟器、不改APP/API/DB，不建APK，不合main，不发布。
+- A6会议暂缓，功能开发与UI简化未完成；最终品牌色、字号、组件、动效/深色模式及数据模型没有冻结。
+- GitHub治理分支用于文档备份，本地交接包另保留原PNG。GitHub当前有**4份逐字节核验的原始SVG**和设计/重绘稿，但**43份PNG原件尚待二进制上传**，不可称远端设计原件已全部闭环；文件SHA与阶段明细见资产清单。不要把远端HEAD当成Owner本地工作区真实状态。
+- 产品业务门禁不变：访客仅只读官方公开精选且不能互动，Lifestyle真实参与匹配前必须完成，真正实人核验供应商尚未接入；Match/Connection/Messaging Consent/Conversation/Relationship独立。异常可截图留证和方便退出，但失权内容不得继续显示。
+
+---
+
 # 2026-11-18 当前工作流入口：A6.5已接受并存档，A6.6设计讨论
 
 - 目前仍为Owner与网页GPT顾问设计阶段。Owner确认A6.5异常页面的重点：**便于截图/保留安全问题摘要，随时能退出并反馈，同时失权立即隐藏敏感内容**。具体见[Owner增量反馈](../decisions/OWNER_A6_1_ME_TO_A6_5_CONCEPT_FEEDBACK_20261118.md)和[A6.5详细说明](../product/ELITESYNC_V2_A6_5_ERROR_PERSISTENCE_FEEDBACK_V0_1_20261118.md)。
