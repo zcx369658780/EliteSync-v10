@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：O04/O05已接受，O05方案A生效；O06/O07顾问设计待Owner审阅
+
+**`O01_O02_OWNER_CONFIRMED / O04_O05_OWNER_CONCEPT_ACCEPTED / O05_X_OPTION_A_CONFIRMED / O06_O07_ADVISOR_DRAFT_PENDING_OWNER_REVIEW / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
+
+- [Owner O04/O05最新决定](../decisions/OWNER_V2_O04_O05_DATA_REUSE_AVATAR_PUBLICATION_20261119.md)：O04具名用途授权内合法复用事实、缺项直达单一权威编辑、确切保存后回原任务；O05个人预览与对外有效发布独立；O05-X**方案A**——新匹配形象默认只供未来新形成且有权候选查看，既有候选继续按原有效快照及当前权限展示，**不是永久查看旧资料的许可**。不批准新数据库schema或自动对既有候选发布新版。
+- [O06/O07下一项顾问方案](../product/ELITESYNC_V2_O06_O07_NOTIFICATIONS_DERIVED_DATA_CONSENT_V0_1_20261119.md)已出稿、**Owner尚未确认**：通知单条打开详情标读候选方案（非进入频道全标读），有效待办独立于阅读状态；用途撤销/事实纠错分别影响后续使用与派生结果待核查，具体留存/重算仍OPEN。
+- O01/O02内容可见性已确认，A6.6/A6.7概念原则仍已接受，具体UI组件/数据映射/运行时验证未冻结。固定1011804原NOT_RUN/UNKNOWN不能冒称PASS，真实实人核验未接入，真实匹配报名不可用。
+- **A6正式UI会议继续暂缓，Codex停止新V2产品实施**；不改APP/API/Web/数据库，不启动设备或模拟器、不构建APK、不合main、不发布。GitHub文档不是本地工程同步凭据；43份原PNG备份仍`PENDING_BINARY_UPLOAD`。
+
+---
+
 # 当前入口 2026-11-19：O01/O02内容权限已确认，O04/O05交互方案待Owner审阅
 
 **`O01_O02_OWNER_CONFIRMED / O04_O05_ADVISOR_PROPOSAL_OWNER_REVIEW_PENDING / A6_7_CONCEPT_ACCEPTED / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
