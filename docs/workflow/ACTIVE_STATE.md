@@ -1,3 +1,16 @@
+# 当前入口 2026-11-18：A6.1–A6.5概念归档，进入A6.6跨页面状态与恢复设计
+
+**`OWNER_A6_5_ERROR_RECOVERY_ACCEPTED / A6_1_A6_5_ARCHIVED / NEXT_A6_6_DESIGN / MEETING_DEFERRED / CODEX_NOT_AUTHORIZED`**
+
+- Owner已认可A6.1「我的」简化、A6.2主形象/社交与匹配展示隔离、A6.3资料来源与用途、A6.4撤销用途与纠错两条路径，以及**A6.5异常页稳定可截图、易退出、方便反馈**，见[2026-11-18增量Owner反馈](../decisions/OWNER_A6_1_ME_TO_A6_5_CONCEPT_FEEDBACK_20261118.md)。上述是继续设计的概念接受，**不是组件/代码/权限细则最终冻结**。
+- 归档主文：[A6.1–A6.5汇总](../product/ELITESYNC_V2_A6_1_TO_A6_5_ME_PERMISSIONS_ERROR_DESIGN_V0_1_20261118.md)；[A6.5原始详细说明](../product/ELITESYNC_V2_A6_5_ERROR_PERSISTENCE_FEEDBACK_V0_1_20261118.md)；附两份新绘SVG结构图。原会话的PNG及此前A6.1/A6.2/A6.4原SVG未作为相同字节文件上传，不冒充原件存档。
+- A6.5重点：异常页不自动快速消失，保存/复制非敏感摘要、明确返回与反馈；**权限失效/切账号立即隐藏不再有权读取的私密数据**。反馈由当前有权账号主动检查描述和附件后提交，访客不能站内提交。不会预设24小时草稿存储、自动日志上传、实际错误编号或成功回执。
+- 下一项仅**A6.6跨页面状态一致性与恢复低保真设计**：账号切换、通知回流、资料变更后资格重查、网络UNKNOWN/重试、授权撤销后的回流。具体界面设计尚未Owner最终审阅。
+- 继承2026-11-17产品决策和2026-11-18青绿低刺激/低信息密度视觉约束；固定工程审计仍为1011804，真实实人核验供应商/新内容域未按V2交付，旧NOT_RUN/UNKNOWN不改变。
+- **当前只有设计和GitHub治理文档授权**。Codex继续停止；不改APP/API/Web/DB、不运行设备、不构建APK、不合main、不发布。GitHub分支记录不代表本地工作区实时状态。A6会议仍暂缓。
+
+---
+
 # 当前入口 2026-11-18：A5-3/A5-4与A6.1概念认可归档，继续简化「我的」
 
 **`OWNER_A5_3_A6_1_CONCEPT_ACK / ARCHIVED_DESIGN_REFERENCES / NEXT_ME_SIMPLIFICATION / MEETING_DEFERRED / CODEX_NOT_AUTHORIZED`**
