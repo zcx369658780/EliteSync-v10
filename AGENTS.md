@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问增量入口：A6.6确认，A6.7顾问审查中
+
+- Owner已最终确认A6.6三项修订通过（[记录](docs/decisions/OWNER_A66_CONCEPT_REVIEW_20261119.md)），现在可进行[A6.7全局一致性概念审查](docs/product/ELITESYNC_V2_A6_7_GLOBAL_CONSISTENCY_AUDIT_V0_1_20261119.md)，状态`ADVISOR_AUDIT_DRAFT / OWNER_REVIEW_PENDING`。此前“A6.6未审阅/A6.7未启动”均为历史时点快照，不得覆盖最新入口。
+- 当前权威摘要见[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部与[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部。此次只做网页顾问设计与归档，不开启A6正式会议、不调用Codex、不开工程代码/设备/构建/main/发布。
+- A6.6原SVG为V0.1原件；43份原PNG远端备份仍待补；旧UNKNOWN/NOT_RUN不转PASS。
+
+---
+
 # 2026-11-18 GPT顾问最新设计交接入口（增量，不改变工程长期授权）
 
 - 最新顾问交接：[SESSION_HANDOFF_20261118_A66_REVIEW_PENDING.md](docs/workflow/SESSION_HANDOFF_20261118_A66_REVIEW_PENDING.md)；当前活动事实以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部和[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)为准。
