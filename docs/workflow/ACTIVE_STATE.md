@@ -1,3 +1,16 @@
+# 当前入口 2026-11-18：网页顾问A6.6待审与设计资产交接
+
+**`A6_5_OWNER_CONCEPT_ACCEPTED / A6_6_OWNER_REVIEW_PENDING / FULL_LOCAL_ARCHIVE / REMOTE_PNG_PENDING / CODEX_NOT_AUTHORIZED`**
+
+- [最新顾问会话交接](SESSION_HANDOFF_20261118_A66_REVIEW_PENDING.md)已保存。下一会话先从此文件及本文件顶部入口接续，不递归历史handoff。
+- [Owner本会话重要决定与顾问边界](../decisions/OWNER_UI_SESSION_DECISIONS_DELTA_20261118.md)：低信息密度构成主义＋二次元、淡绿/淡蓝灰青底、Lifestyle五场景带图三选项；A6会议**暂缓**；异常页面需稳定、易留证、易退出、便于已登录授权用户提交反馈，同时失权内容立即隐藏。
+- A6.1–A6.5相关概念方向得到Owner认可，已归档顾问设计说明与图稿。**A6.6五屏“账号切换/通知失效/结果UNKNOWN/资料编辑返回/权限撤回”仅出设计稿，Owner尚未审阅接受**；原设计SVG见[确切原始SVG](../product/ui-concepts-20261118/original-svg/A66_CROSS_PAGE_RECOVERY_ORIGINAL.svg)，详细说明见[原稿文字](../product/ui-concepts-20261118/source-notes/A66_CROSS_PAGE_RECOVERY_SOURCE_V0_1.md)。
+- **设计稿完整性检查结果并非全部Github原图PASS**：[资产核查与远端缺口](../product/ELITESYNC_V2_DESIGN_ASSET_COVERAGE_20261118.md)，[54项SHA清单](../product/ui-concepts-20261118/ALL_LOCAL_ASSETS_SHA256_MANIFEST_20261118.csv)。本地交接包含43份原PNG；Github已验证4份原始SVG与大量设计记录，但原PNG二进制存档仍`PENDING_BINARY_UPLOAD`，不能以重绘SVG充数。需Owner后续通过正规二进制Git通道补齐。
+- 固定工程审计仍为1011804及UI-AUDIT-01，未知/未跑结论不升级；真实实人核验供应商未接入，未来目标公开内容域未按V2交付。
+- 仅限网页顾问设计与文档归档。**Codex停止**；不改APP/API/Web/数据库，不启动模拟器或手机，不构建APK，不合main，不发布；GitHub远端治理文档不意味着本地仓库同步。
+
+---
+
 # 当前入口 2026-11-18：A6.1–A6.5概念归档，进入A6.6跨页面状态与恢复设计
 
 **`OWNER_A6_5_ERROR_RECOVERY_ACCEPTED / A6_1_A6_5_ARCHIVED / NEXT_A6_6_DESIGN / MEETING_DEFERRED / CODEX_NOT_AUTHORIZED`**
