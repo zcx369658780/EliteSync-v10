@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问增量：O04/O05确认，O06/O07审阅中
+
+- [O04/O05 Owner决定](docs/decisions/OWNER_V2_O04_O05_DATA_REUSE_AVATAR_PUBLICATION_20261119.md)现为当前有效概念规则：一处事实来源按具名用途复用，**本人预览和对外发布独立，O05-X选方案A仅默认未来候选**；旧快照仍受当前权限及Block约束。
+- 下一顾问草案：[O06通知与O07派生数据](docs/product/ELITESYNC_V2_O06_O07_NOTIFICATIONS_DERIVED_DATA_CONSENT_V0_1_20261119.md)，尚待Owner审阅，不当作已实现/已批准。治理当前入口以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部和[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为准。
+- A6正式会议暂缓，Codex无新V2工程实施授权；不可改APP/API/DB、使用设备/模拟器、构建APK、合main或发布。原PNG远端仍待补传，不冒称已完成。
+
+---
+
 # 2026-11-19 GPT顾问新入口：O01/O02已接受，O04/O05顾问讨论中
 
 - [Owner O01/O02内容权限决策](docs/decisions/OWNER_V2_CONTENT_PERMISSIONS_O01_O02_20261119.md)已确认；[O04/O05资料来源与对外发布交互草案](docs/product/ELITESYNC_V2_O04_O05_DATA_SOURCE_AND_PUBLICATION_FLOW_V0_1_20261119.md)目前`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`。当前状态以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部和[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为准，不用历史快照覆盖新决定。
