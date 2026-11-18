@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：O01/O02内容权限已确认，O04/O05交互方案待Owner审阅
+
+**`O01_O02_OWNER_CONFIRMED / O04_O05_ADVISOR_PROPOSAL_OWNER_REVIEW_PENDING / A6_7_CONCEPT_ACCEPTED / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
+
+- [Owner O01/O02确认](../decisions/OWNER_V2_CONTENT_PERMISSIONS_O01_O02_20261119.md)：访客只读允许公开的官方正文、不读专题评论；已发FRIENDS作品扩大至PUBLIC_AUTHENTICATED不自动扩大历史好友评论可见范围，无法安全隔离时不得无保护扩大。**用户作品评论默认策略仍OPEN**。
+- [O04/O05顾问方案V0.1](../product/ELITESYNC_V2_O04_O05_DATA_SOURCE_AND_PUBLICATION_FLOW_V0_1_20261119.md)已出稿、**待Owner审阅**：字段事实来源/用途许可/展示受众/已发布版本分层；从匹配缺项直达权威编辑页，确切保存后返原任务；主形象本人预览与社交/匹配覆盖、对外发布独立。既有候选是否随新形象版本同步属于O05-X OPEN，不能预设答案。
+- [V2设计成果与OPEN汇总增量](../product/ELITESYNC_V2_DESIGN_CONSOLIDATION_AND_OPEN_DECISIONS_V0_1_20261119.md)已更新。A6.6三项与A6.7四项原则仍是Owner概念认可，非APP运行时PASS；1011804固定审计与既有NOT_RUN/UNKNOWN不改判。
+- **边界不变**：A6正式UI会议暂缓；Codex未获新V2实现授权；不改APP/API/Web/数据库、不运行设备或模拟器、不构建APK、不合main、不发布；GitHub治理文档不表示本地工程同步。43份原PNG GitHub备份仍PENDING_BINARY_UPLOAD。
+
+---
+
 # 当前入口 2026-11-19：A6.7四原则获Owner确认；V2设计汇总与OPEN清单已出稿
 
 **`A6_6_OWNER_CONCEPT_ACCEPTED / A6_7_R1_R4_OWNER_CONCEPT_ACCEPTED / V2_CONSOLIDATION_ADVISOR_DRAFT / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
