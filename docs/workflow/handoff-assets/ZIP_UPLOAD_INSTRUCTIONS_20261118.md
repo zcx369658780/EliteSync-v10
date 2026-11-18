@@ -34,4 +34,4 @@ GitHub文字连接可操作文本与指定Base64 blob，但不具备直接从当
 
 ## 其他边界
 
-此项仅用于补齐顾问交接二进制资产；Owner并未借此授权Codex开发、运行设备、构建APK、修改APP/API/DB或合main。A6.6仍待Owner审阅；43份 PNG 原件的独立GitHub备份缺口另见[资产覆盖报告](../../../product/ELITESYNC_V2_DESIGN_ASSET_COVERAGE_20261118.md)。
+此项仅用于补齐顾问交接二进制资产；Owner并未借此授权Codex开发、运行设备、构建APK、修改APP/API/DB或合main。A6.6仍待Owner审阅；43份 PNG 原件的独立GitHub备份缺口另见[资产覆盖报告](../../product/ELITESYNC_V2_DESIGN_ASSET_COVERAGE_20261118.md)。
