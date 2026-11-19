@@ -1,3 +1,11 @@
+# 2026-11-19：SELF评论特例与FRIENDS好友评论意图区分，继续切换合同顾问审阅
+
+- [Owner最新澄清](../decisions/OWNER_V2_SELF_COMMENT_DEFAULT_CLARIFICATION_20261119.md)确认：普通作品默认`FRIENDS + FRIENDS_ONLY`，陌生人默认不能评论，有权好友可评论；`SELF`仅本人可读，`OFF`作为SELF特例默认。不能让SELF作品在不扩大阅读受众时供好友评论。
+- 当前讨论[作品受众×评论权限切换顾问V0.1](../product/ELITESYNC_V2_SELF_FRIENDS_COMMENT_AUDIENCE_TRANSITIONS_V0_1_20261119.md)，`CMT-T1`为新`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`；尤其要尊重作者显式OFF并防止SELF→FRIENDS时误扩大评论或无端阻塞好友交流。
+- S01–S16四批具名概念审阅已阶段收口；接下来的产品合同与历史权限仍OPEN。**DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED**，不派代码任务、不改APP/API/Web/DB、不运行设备/模拟器、不建APK、不合main、不发布；旧NOT_RUN/UNKNOWN与43份原PNG备份缺口保留。
+
+---
+
 # 2026-11-19：S01–S16四批具名增量概念审阅收束，转剩余OPEN决策咨询
 
 - [第四批Owner确认S15-D1/S16-D2](../decisions/OWNER_V2_S15_D1_S16_D2_ACCEPTANCE_20261119.md)已生效；四批每批两组新建议共八组具名交互获得Owner概念接受，不代表16屏全部实现合同冻结。
