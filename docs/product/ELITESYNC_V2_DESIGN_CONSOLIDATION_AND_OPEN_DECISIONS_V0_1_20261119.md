@@ -1,3 +1,11 @@
+# 2026-11-19 最新增量：O01默认评论/O02历史附件受众已确认
+
+- Owner决定：[O01方案A与O02媒体/引用保护](../decisions/OWNER_V2_O01_DEFAULT_COMMENTS_O02_MEDIA_REFERENCES_20261119.md)：新作品默认FRIENDS与FRIENDS_ONLY；扩大作品范围不默认扩大评论范围；历史受限评论附件、引用、缩略图和可识别信息仍按原有效权限受控。SELF默认评论、既有历史留存与媒体技术实现仍OPEN。
+- 当前下一步：[O11官方编辑精选、用户作品推荐与转载授权草案](ELITESYNC_V2_O11_EDITORIAL_RECOMMENDATION_REPOST_GOVERNANCE_V0_1_20261119.md)，属于`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，不是已确认运营政策。
+- 原O01“评论初始默认值OPEN”、O02“历史附件尚待决定”等均为过去版本时点；现行已接受部分以上述Owner文件为准。不启动Codex、A6正式会议或发布。
+
+---
+
 # 2026-11-19 最新增量：O09-D1/D2已概念接受，转入剩余产品决定与设计收口门槛
 
 - [O09 Owner正式决定](../decisions/OWNER_V2_O09_CROSS_DEVICE_AUTH_UNKNOWN_ACCEPTANCE_20261119.md)：受保护跨设备回流/切号/深链先重验身份、权限、业务事实；不能核实时安全占位并阻断不合法操作；写入UNKNOWN先只读查权威结果，不从另一设备画面或缓存推断成功，不自动重复高影响写入。
