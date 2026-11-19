@@ -1,3 +1,11 @@
+# 2026-11-19 HIS方案A已接受；现行OPEN聚焦真实保留与删除请求
+
+- [Owner HIS-D1/D2接受](../decisions/OWNER_V2_HIS_D1_D2_HISTORICAL_ACCESS_AND_SNAPSHOTS_20261119.md)确认历史评论重现与失权旧匹配快照的合法可读边界；未决定历史保存/物理删除、法定/安全留存例外和实际传播时限。
+- [RET-D1/D2顾问草案](ELITESYNC_V2_HISTORY_RETENTION_DELETION_PURPOSE_REVOCATION_V0_1_20261119.md)仍待Owner审阅，涉及撤销后停止使用/展示、提交删除请求和可核实删除完成状态区分，以及第三方评论/证据/独立用途保护。不是正在实施的全局删除功能。
+- 当前实施门禁仍`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`；最新详情请看S01–S16全局汇总顶部与ACTIVE_STATE。
+
+---
+
 # 2026-11-19 评论默认值补充澄清：FRIENDS与SELF不能混为同一受众
 
 - [Owner最新澄清](../decisions/OWNER_V2_SELF_COMMENT_DEFAULT_CLARIFICATION_20261119.md)：Owner强调普通新作品必须能让有权好友评论、拒绝陌生人默认评论；此前已确认`FRIENDS + FRIENDS_ONLY`保持不变。`SELF`仅作者有阅读权，接受`OFF`作为SELF特例默认，而非“全局默认关闭评论”。
