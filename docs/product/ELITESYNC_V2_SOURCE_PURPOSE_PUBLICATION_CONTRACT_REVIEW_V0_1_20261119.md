@@ -1,3 +1,13 @@
+# 2026-11-19 Owner具名接受增量（优先于下方初稿待审状态）
+
+Owner在本轮明确回复“**我认可这两项，请继续**”，确认[DATA-D1 A / DATA-D2 A Owner决定](../decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)：
+- **DATA-D1**：已有当前具名用途有效许可则合法复用资料；首次缺该用途许可时只说明当次任务必要字段/用途并提供明确同意、拒绝与返回，不自动捆绑别的工具或外显受众。
+- **DATA-D2**：仅真正依赖纠错来源、仍标“需要核查”的派生结果不得作为已验证有效内容发布给新受众；未受影响的独立资料、功能与关系不全局冻结，核查与本人发布需真实回执。
+
+下方原“DATA-D1/D2待审”属于草案形成时点，现这两项已具名概念接受；来源/用途/schema映射、计算依赖图、旧快照生命周期及真实执行证据继续OPEN。下一项[剩余P0三分流顾问汇总](ELITESYNC_V2_P0_OPEN_TRIAGE_PRODUCT_EXTERNAL_ENGINEERING_V0_1_20261119.md)仍是`ADVISOR_CONSOLIDATION / OWNER_REVIEW_PENDING_FOR_TRIAGE`，**不是Owner已确认的新开发顺序或可实施合同**。Codex/A6仍暂停。
+
+---
+
 # EliteSync V2｜来源事实×具名用途×外显发布：P0产品合同审查 V0.1
 
 日期：2026-11-19（Asia/Singapore）  
