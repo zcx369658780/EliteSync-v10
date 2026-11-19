@@ -1,3 +1,11 @@
+# 2026-11-19 首批逐屏增量：S02-D1、S03/S04-D2已确认
+
+- [首批Owner具体决定](../decisions/OWNER_V2_S02_D1_S03_S04_D2_ACCEPTANCE_20261119.md)已生效：Lifestyle选择题须确认保存成功才自动下一题，失败/UNKNOWN停留；访客/登录首页空态不得使用受保护旧缓存、私密作品/媒体或泄漏Block关系。其余S01–S04布局仍非逐项冻结。
+- [第二批S05–S08逐屏稿](ELITESYNC_V2_S05_S08_MATCH_CONNECTION_CONSENT_SCREEN_REVIEW_V0_1_20261119.md)状态为`ADVISOR_PER_SCREEN_DRAFT / OWNER_REVIEW_PENDING`；真实核验供应商未接入不能发生真实匹配报名，S07/S08提案→Connection→消息许可为未来合法前提或历史条件性状态，非现时完整成功链。
+- 本矩阵的检查方法已Owner认可，不等于所有16屏产品合同与动态测试PASS。
+
+---
+
 # 2026-11-19 Owner框架接受增量（优先于原V0.1待审状态）
 
 Owner明确回复“**好的我同意并且认可这个设计检查框架，请继续**”，故[S01–S16框架Owner接受记录](../decisions/OWNER_V2_S01_S16_REVIEW_FRAMEWORK_ACCEPTANCE_20261119.md)已生效：仅**检查方法与分批审阅过程**得到概念接受，未把S01–S16每行顾问布局、按钮文案、具体页数和工程接口逐项批准。下方`OWNER_REVIEW_PENDING`为原矩阵提出时点；目前有效状态：`OWNER_REVIEW_FRAMEWORK_ACCEPTED / PER_SCREEN_DETAILS_PENDING`。
