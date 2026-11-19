@@ -1,3 +1,11 @@
+# 2026-11-19：O09概念确认后，网页顾问转入V2剩余决策与设计收口
+
+- [O09-D1/D2 Owner接受](../decisions/OWNER_V2_O09_CROSS_DEVICE_AUTH_UNKNOWN_ACCEPTANCE_20261119.md)已生效。受保护内容先重验、无法核验安全占位；关键写入UNKNOWN只读核查权威结果、不可盲重试。技术传播时效、离线能力和API幂等能力仍OPEN，不宣称运行时PASS。
+- 当前顾问整理入口：[剩余O01–O12产品决定与设计Gate草案](../product/ELITESYNC_V2_REMAINING_DESIGN_DECISIONS_AND_GATES_V0_1_20261119.md)，状态`ADVISOR_CONSOLIDATION_DRAFT / OWNER_REVIEW_PENDING`。优先讨论用户新作品默认评论范围与受众扩大时旧媒体/引用的保护，其他仍OPEN项按需处理；不得把顾问建议当Owner决定。
+- **DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED**：不派新开发任务、不改APP/API/Web/数据库、不使用设备/模拟器、不建APK、不合main、不发布；43份原PNG原件远端仍PENDING_BINARY_UPLOAD。
+
+---
+
 # 2026-11-19：O08 Owner接受后，网页顾问审阅O09跨设备权限/UNKNOWN一致性
 
 - [O08-D1/D2 Owner接受](../decisions/OWNER_V2_O08_SAFE_FEEDBACK_ATTACHMENTS_DRAFTS_ACCEPTANCE_20261119.md)是当前有效概念决定；数据留存、自动脱敏、反馈接口仍OPEN。
