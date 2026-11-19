@@ -35,6 +35,12 @@
 | 43份原PNG远端二进制备份 | 依据现行文档仍`PENDING_BINARY_UPLOAD`；本轮未逐份核查 |
 | 固定旧软件`10.1.18-dev / 1011804`与UI-AUDIT-01 | 原`NOT_RUN/UNKNOWN`维持，不改判 |
 
+## 最新Owner具名决定：NEW-PC-01方案A接受；NEW-PC-03待审
+
+- [NEW-PC-01 Owner方案A](../decisions/OWNER_V2_NEW_PC01_COMMENT_AUTHOR_WITHDRAWAL_OPTION_A_DIRECTION_ACCEPTANCE_20261119.md)已确认**评论作者撤回本人评论当前对外展示的产品方向**；撤回不等于永久删除本人原件、合法独立留存或他人回复。回复/引用、恢复、删除请求、真实回执、动态QA仍OPEN。
+- NEW-PC-02作品作者隐藏本人作品内第三方评论的方向继续有效，但两种操作主体独立；[NEW-PC-03首期删除请求入口范围草案](../product/ELITESYNC_V2_NEW_PC03_INITIAL_DELETION_REQUEST_ENTRY_SCOPE_CONCEPT_REVIEW_V0_1_20261119.md)仅`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，不得自动批准物理删除、账号删除、后台系统、供应商或研发。
+- F-01`READABILITY_PARTIAL`，G01–G10全部新增QA`NOT_RUN`；`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`不变。下方NEW-PC-01“仍待审”仅为之前时点快照。
+
 ## 最新Owner具名增量：NEW-PC-02方向性接受；NEW-PC-01继续待审
 
 - [Owner NEW-PC-02方向性接受](../decisions/OWNER_V2_NEW_PC02_AUTHOR_CONTROL_THIRD_PARTY_COMMENT_DISPLAY_DIRECTION_ACCEPTANCE_20261119.md)：作品作者可管理自己作品内第三方评论的展示，但不得因此删除评论者原始数据；安全复核与申诉原则保留。**具体隐藏范围、通知、恢复、复核和实现机制仍OPEN**。此决定不是对上一份顾问审计所有建议的一揽子接受。
