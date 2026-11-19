@@ -1,3 +1,11 @@
+# 2026-11-19 DESIGN-AUDIT-03异常评论场景审阅（最新顾问增量）
+
+- [DESIGN-AUDIT-03 12项评论/删除异常场景静态审阅](../workflow/V2_STATIC_COMMENT_EXCEPTION_AUDIT_03_20261119.md)已形成；NEW-PC-01/02/03的具名Owner**概念接受不变**，没有新增自动批准的内容管理精确细节。
+- `EDGE-D1`父评论撤回/隐藏时其他人的独立回复如何展示、`EDGE-D2`评论作者是否获知隐藏/如何申诉仍仅`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`。既有失权隐藏、受众交集、删除状态三分离及UNKNOWN只读规则持续。
+- GitHub仅治理文档，G01–G10新动态`NOT_RUN`，F-01`READABILITY_PARTIAL`，Codex与A6仍STOP。
+
+---
+
 # 2026-11-19 NEW-PC-03方案A具名接受；内容展示控制与删除语义矩阵（最新增量）
 
 - [Owner NEW-PC-03方案A接受](../decisions/OWNER_V2_NEW_PC03_INITIAL_OBJECT_LEVEL_DELETION_REQUEST_ENTRY_OPTION_A_ACCEPTANCE_20261119.md)：V2首期**优先规划**本人作品、本人评论的对象级数据删除申请入口，与作品撤下、评论展示撤回、具名用途撤销独立。没有真实合法受理机制、权威回执及核查证据时不得假装可提交、已受理或已完成。
