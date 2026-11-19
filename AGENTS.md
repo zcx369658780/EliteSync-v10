@@ -1,3 +1,11 @@
+# 2026-11-19 最新有限授权：Owner S1-A只读工程差距核查，不含实施/动态测试
+
+- Owner明确批准**现有EliteSync本地Codex项目会话**一次性执行`S1-A`受限**只读**静态源码/产品合同差距核查（R1–R5一份脱敏报告）。独立决定：[Owner S1-A授权](docs/decisions/OWNER_V2_S1A_BOUNDED_READ_ONLY_CODEX_GAP_AUDIT_AUTHORIZATION_20261119.md)；可由Owner转给现有会话的单次[Codex核查Prompt](docs/workflow/V2_S1A_CODEX_EXISTING_SESSION_ONE_SHOT_READ_ONLY_HANDOFF_20261119.md)。必须先只读确认当前实际工程根/仓库/branch/HEAD/dirty状态，路径有冲突或身份无法唯一确定即停止，不盲切换工作树。
+- **S1仅只读**：允许不改文件的Git身份/源码定位命令；不允许改码、写报告到工程、执行测试/脚本、构建、依赖、DB/服务/设备/供应商、Git远程或状态变更。最终仅在原Codex会话回复一份静态差距报告；网页GPT目前没有执行S1。
+- 当前精确状态：`S1_READ_ONLY_AUDIT_AUTHORIZED / S1_NOT_EXECUTED / V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED`。下方旧`CODEX_NOT_AUTHORIZED`只是S1授权前/除S1外的实施、测试与发布STOP，不得以旧时点否认这项新有限授权；也不把S1授权扩大到开发、动态QA、A6、main或发布。G01–G10动态`NOT_RUN`，旧1011804/PNG等状态照旧。
+
+---
+
 # 2026-11-19 最新网页GPT顾问交接入口：静态设计审计两轮完成，Codex/A6仍停止
 
 - **Owner最新意图**：继续网页GPT静态审计，当前会话太长可主动交接，但必须先GitHub保存并远端回读；不曾批准Codex工程、APP/API/DB操作或A6正式UI会议。
