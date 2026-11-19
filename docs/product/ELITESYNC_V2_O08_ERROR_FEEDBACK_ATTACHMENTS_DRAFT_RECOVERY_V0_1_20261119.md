@@ -1,3 +1,11 @@
+# 2026-11-19 Owner确认增量（当前有效，优先于V0.1历史待审文字）
+
+Owner明确回复“我采纳这两项，请继续”，正式接受**O08-D1**（合法登录用户具备当前反馈资格才能提交，非敏感安全摘要，不自动收集失权正文、身份或原始日志）及**O08-D2**（附件默认关闭、用户主动选择/预览/移除/提交，当前有效会话内安全暂存、切号/撤权隔离、UNKNOWN不自动重传，不承诺24小时/跨进程/跨设备恢复）。权威见[O08 Owner决定](../decisions/OWNER_V2_O08_SAFE_FEEDBACK_ATTACHMENTS_DRAFTS_ACCEPTANCE_20261119.md)。
+
+下方原稿“ADVISOR_PROPOSAL/OWNER_REVIEW_PENDING”属于历史提出时点，**不适用于已接受的D1/D2**；仍OPEN的字段白名单、留存期限、反馈API/加密/自动脱敏和实际运行时行为不得误记为已接受。下一项是[O09跨设备权限与UNKNOWN一致性草案](ELITESYNC_V2_O09_MULTI_DEVICE_AUTH_STATE_UNKNOWN_CONSISTENCY_V0_1_20261119.md)，仅顾问建议、待Owner审阅。
+
+---
+
 # EliteSync V2｜O08 异常反馈、附件保护与草稿恢复 V0.1（顾问草案）
 
 日期：2026-11-19（Asia/Singapore）  
