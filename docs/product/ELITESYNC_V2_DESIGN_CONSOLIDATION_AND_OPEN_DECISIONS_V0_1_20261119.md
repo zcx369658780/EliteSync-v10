@@ -1,3 +1,11 @@
+# 2026-11-19 当前增量：S01–S16四批具名交互已审，汇总及OPEN继续区分
+
+- [Owner第四批S15/S16决定](../decisions/OWNER_V2_S15_D1_S16_D2_ACCEPTANCE_20261119.md)确认发布受众影响摘要、官方/用户来源标识及推荐/转载独立动作；连同前三批共八组新增交互原则获具名概念接受。
+- [四批逐屏审阅现行汇总](ELITESYNC_V2_S01_S16_FOUR_BATCH_CONSOLIDATION_AND_OPEN_GATES_V0_1_20261119.md)是当前`ADVISOR_CONSOLIDATION`，含逐屏状态和P0/P1/P2及Gate。它不是新增Owner全量实施授权。原稿“待审S09/S11、待审S15/S16”等属当时快照；以最新独立Owner决策为准。
+- 真实实人供应商/真实Push未接入，旧NOT_RUN/UNKNOWN保持；43份PNG原件远端仍PENDING，正式UI会议与Codex新V2工程均未授权。
+
+---
+
 # 2026-11-19 最新增量：O01默认评论/O02历史附件受众已确认
 
 - Owner决定：[O01方案A与O02媒体/引用保护](../decisions/OWNER_V2_O01_DEFAULT_COMMENTS_O02_MEDIA_REFERENCES_20261119.md)：新作品默认FRIENDS与FRIENDS_ONLY；扩大作品范围不默认扩大评论范围；历史受限评论附件、引用、缩略图和可识别信息仍按原有效权限受控。SELF默认评论、既有历史留存与媒体技术实现仍OPEN。
