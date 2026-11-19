@@ -1,9 +1,15 @@
 # EliteSync V2｜网页GPT顾问当前权威一页入口（2026-11-19）
 
-状态：`DESIGN_ONLY / THREE_STATIC_AUDIT_ROUNDS_DOCUMENTED / STATIC_PARTIAL / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`  
+状态：`S1_READ_ONLY_AUDIT_OWNER_AUTHORIZED / S1_NOT_YET_EXECUTED / V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED / STATIC_PARTIAL`  
 仓库：`zcx369658780/EliteSync-v10`  
 当前治理分支：`governance/home-matching-product-freeze-20261117`  
 本页是**导航摘要**，不代替独立具名Owner决定、当期完整审计证据或最终发布合同。具体审计见[DESIGN-AUDIT-01](V2_STATIC_DESIGN_CONTRACT_AUDIT_20261119.md)与[DESIGN-AUDIT-02](V2_STATIC_DESIGN_CONTRACT_AUDIT_02_P0_EVIDENCE_LEDGER_20261119.md)。
+
+## 最新Owner决定：S1-A一次性本地Codex只读核查已获授权（2026-11-19）
+
+- Owner在明确的S1-A/B询问后回复“我同意授权，请继续”。[Owner S1-A具名授权](../decisions/OWNER_V2_S1A_BOUNDED_READ_ONLY_CODEX_GAP_AUDIT_AUTHORIZATION_20261119.md)仅允许**现有EliteSync本地Codex项目会话**一次性读取其当前已验证唯一活动工程根下的源码/接口/迁移**定义**/测试源码，合并R1–R5给出一份`PRESENT/PARTIAL/ABSENT/UNKNOWN`静态差距报告；不得运行测试、构建、改码、数据库、设备/供应商或Git状态更改。
+- [交给现有Codex会话的可直接复制单次S1-A Prompt](V2_S1A_CODEX_EXISTING_SESSION_ONE_SHOT_READ_ONLY_HANDOFF_20261119.md)已归档。历史稳定目录仅作候选，不表示当前真实本地worktree已核实；Codex必须先在已有会话只读核对实际根、分支/HEAD、dirty/index及去敏仓库身份，身份不唯一即停止。网页顾问**尚未直连本地Codex或执行S1**，需要Owner将Prompt转交现有会话。
+- 新状态：`S1_READ_ONLY_AUTHORIZED / S1_AUTHORIZED_BUT_NOT_EXECUTED / V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED`；此前`CODEX_NOT_AUTHORIZED`段落仅为授权之前或**除S1外**的新V2研发/测试STOP历史状态。G01–G10动态`NOT_RUN`，外部依赖及旧失败、F-01、43PNG均不改判。
 
 ## 最新：S1一次性只读差距审计授权草案已经准备（仍未授权）
 
