@@ -1,3 +1,11 @@
+# 2026-11-19 NEW-PC-03方案A具名接受；内容展示控制与删除语义矩阵（最新增量）
+
+- [Owner NEW-PC-03方案A接受](../decisions/OWNER_V2_NEW_PC03_INITIAL_OBJECT_LEVEL_DELETION_REQUEST_ENTRY_OPTION_A_ACCEPTANCE_20261119.md)：V2首期**优先规划**本人作品、本人评论的对象级数据删除申请入口，与作品撤下、评论展示撤回、具名用途撤销独立。没有真实合法受理机制、权威回执及核查证据时不得假装可提交、已受理或已完成。
+- 与已确认[NEW-PC-01](../decisions/OWNER_V2_NEW_PC01_COMMENT_AUTHOR_WITHDRAWAL_OPTION_A_DIRECTION_ACCEPTANCE_20261119.md)及[NEW-PC-02](../decisions/OWNER_V2_NEW_PC02_AUTHOR_CONTROL_THIRD_PARTY_COMMENT_DISPLAY_DIRECTION_ACCEPTANCE_20261119.md)合并参照[内容控制与删除语义静态矩阵V0.1](ELITESYNC_V2_CONTENT_CONTROL_AND_DELETION_SEMANTICS_MATRIX_V0_1_20261119.md)，该矩阵是`ADVISOR_STATIC_CONSOLIDATION`，非整体Owner确认的新实施合同。旧“NEW-PC-03待审”段落属于历史快照。
+- NEW-PC-04/05首期扩展仍只是顾问建议延后；真实身份/Push、合法数据期限、APP/API/DB证据和G01–G10动态QA仍OPEN/NOT_RUN。**`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`继续。**
+
+---
+
 # 2026-11-19 NEW-PC-01方案A已获Owner明确接受；NEW-PC-03待审（最新增量）
 
 - [Owner NEW-PC-01方案A独立决定](../decisions/OWNER_V2_NEW_PC01_COMMENT_AUTHOR_WITHDRAWAL_OPTION_A_DIRECTION_ACCEPTANCE_20261119.md)：评论作者可撤回**本人评论当前作品内对外展示**；不自动物理删除原始评论、合法必要记录或第三方独立回复。回复树、恢复、申诉、媒体、真实接口与动态QA仍OPEN。
