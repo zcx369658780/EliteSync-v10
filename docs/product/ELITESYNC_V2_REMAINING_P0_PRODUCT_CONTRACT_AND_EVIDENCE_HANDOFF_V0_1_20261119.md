@@ -1,3 +1,11 @@
+# 2026-11-19 DATA-D1/D2获Owner认可；三类剩余OPEN证据入口
+
+- [DATA-D1/D2 Owner正式决策](../decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)已接受跨具名用途的最小独立授权、合法已授权资料不重复输入，以及来源纠错后仅受影响需核查结果不得作为已验证内容新发布。此确认不证明实际授权版本与依赖数据已经存在。
+- [P0三分流总览V0.1](ELITESYNC_V2_P0_OPEN_TRIAGE_PRODUCT_EXTERNAL_ENGINEERING_V0_1_20261119.md)现为顾问新汇总：`PRODUCT_CONTRACT_OPEN / EXTERNAL_DEPENDENCY_OPEN / ENGINEERING_EVIDENCE_REQUIRED`，不是Owner批准的工程优先级，亦非结果PASS。
+- 下方DATA待审和OBJ待审表述只对应当时生成的历史快照；P0继续留存真实字段/授权/版本、第三方权利、合规保留、实人核验、Push、幂等/缓存/接口以及动态QA/原图归档等缺口。
+
+---
+
 # 2026-11-19 Owner OBJ-D1方案A正式接受；下阶段转数据来源/具名用途/外显版本合同
 
 - [Owner OBJ-D1决定](../decisions/OWNER_V2_OBJ_D1_POST_TAKEDOWN_THIRD_PARTY_COMMENTS_ACCEPTANCE_20261119.md)已确认：作者撤下/收窄作品即不得继续让无当前读权用户读取作品及依附的第三方评论/媒体；作者请求删除作品不自动代表第三方评论者原始数据及必要记录都已物理删除；保留与删除按RET-D1/D2实际对象、权利、合法例外和核实结果区分。
