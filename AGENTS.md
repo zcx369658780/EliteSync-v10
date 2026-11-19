@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问最新入口：O01默认评论与O02历史媒体权限已接受，O11待审
+
+- [Owner O01/O02最新决定](docs/decisions/OWNER_V2_O01_DEFAULT_COMMENTS_O02_MEDIA_REFERENCES_20261119.md)确认新作品默认FRIENDS+FRIENDS_ONLY，扩大受众不默认扩大评论，历史受限评论附件/引用等保持原受众边界。
+- [O11官方精选/用户作品/转载权限草案](docs/product/ELITESYNC_V2_O11_EDITORIAL_RECOMMENDATION_REPOST_GOVERNANCE_V0_1_20261119.md)仅为顾问建议、待Owner审阅。当前状态按[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部与[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部，不把历史OPEN当最新。
+- 继续仅设计与治理文档；不召开A6正式会议、不启动Codex新V2工程、不碰APP/API/Web/DB/设备/模拟器/APK/main/发布。真实供应商/Push未接入，原PNG远端仍PENDING。
+
+---
+
 # 2026-11-19 GPT顾问最新入口：O09已接受，设计剩余决策盘点中
 
 - [Owner O09-D1/D2概念决定](docs/decisions/OWNER_V2_O09_CROSS_DEVICE_AUTH_UNKNOWN_ACCEPTANCE_20261119.md)已接受：跨设备/深链/切号受保护状态重验、无法核实时安全占位及UNKNOWN权威核对；不意味着真实跨设备同步、幂等接口已实现。
