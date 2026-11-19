@@ -1,3 +1,11 @@
+# 2026-11-19 DATA-D1/D2已确认，P0剩余未决分流总览形成
+
+- [Owner DATA-D1/D2](../decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)：首次跨用途且未获准时仅请求当前任务必要字段的独立具名授权；纠错真正影响且需核查的派生结果不得当作已验证内容对新受众发布；不受影响内容不全局锁定。
+- [P0合同/外部/工程证据三分流](ELITESYNC_V2_P0_OPEN_TRIAGE_PRODUCT_EXTERNAL_ENGINEERING_V0_1_20261119.md)由顾问整理，标签仅为分类，不是Owner工程路线图。旧文中的DATA待审仅属产生时点；真正OPEN是权限存储及合法依据、依赖图/版本、已发布快照/第三方权利、供应商和可核实执行能力。
+- 此增量不改变S01–S16具名概念、O04/O05/O07/HIS/RET/OBJ既有合同或Codex停止状态。
+
+---
+
 # 2026-11-19 OBJ-D1 Owner认可后：历史作品/评论权限动作分流已确认；P0-B/C顾问稿待审
 
 - [Owner OBJ-D1 A](../decisions/OWNER_V2_OBJ_D1_POST_TAKEDOWN_THIRD_PARTY_COMMENTS_ACCEPTANCE_20261119.md)明确作品撤下/收窄导致失权时评论及附件等不能继续向无权用户展示，申请删除作品不等于作者代第三方评论者请求删除其原始材料或永久删除所有关联记录；具体合法保留与真实物理删除仍OPEN。
