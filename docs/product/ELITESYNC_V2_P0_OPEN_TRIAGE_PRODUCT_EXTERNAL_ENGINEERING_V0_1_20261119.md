@@ -1,3 +1,10 @@
+# 2026-11-19 延伸顾问稿：P0安全阻断与证据核验矩阵已形成
+
+- [G01–G10安全阻断与未来证据矩阵V0.1](ELITESYNC_V2_P0_FAIL_CLOSED_SCREEN_AND_EVIDENCE_MATRIX_V0_1_20261119.md)是`ADVISOR_STATIC_GATE_DRAFT / OWNER_REVIEW_PENDING / ALL_NEW_QA_NOT_RUN`：逐域说明无真实依赖时的安全缺省、禁止误导性成功、和未来解除阻断须有的业务/工程/供应商证据。
+- 不据此启动Codex、手机测试、实际数据审查或供应商接入，不宣称现有1011804具备矩阵里的新V2能力。P0合同/外部/工程三分流仍是顾问分类，未获Owner另行批准为工程优先次序。
+
+---
+
 # EliteSync V2｜P0未决事项三分流：产品合同 / 外部依赖 / 未来工程核查 V0.1
 
 日期：2026-11-19（Asia/Singapore）  
