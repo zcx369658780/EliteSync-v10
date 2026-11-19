@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：O09-D1/D2获Owner接受；V2剩余决策与设计Gate草案待审
+
+**`O09_D1_D2_OWNER_CONCEPT_ACCEPTED / O01_O09_NAMED_CONCEPT_DECISIONS_RECORDED / REMAINING_DESIGN_GATES_ADVISOR_DRAFT / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- [Owner O09正式接受](../decisions/OWNER_V2_O09_CROSS_DEVICE_AUTH_UNKNOWN_ACCEPTANCE_20261119.md)：跨设备切号、旧通知/深链和受保护页面回流先核当前账号/权限/业务版本；无法核验则安全占位，已确认失权隐藏私密；写入UNKNOWN只读核对权威结果，不能假成功或自动重放。不代表已支持实时跨设备强同步、通用幂等API或离线长期授权。
+- [V2剩余产品决定与设计收口门槛V0.1](../product/ELITESYNC_V2_REMAINING_DESIGN_DECISIONS_AND_GATES_V0_1_20261119.md)现为**顾问草案待Owner审阅**。O01–O09有具名概念已确认，但每项剩余OPEN仍须分开；建议下轮先讨论新作品评论策略默认值与受众扩大时旧媒体/引用边界。O10–O12最终视觉、内容治理和QA尚未逐项冻结。
+- 原工程基线1011804/ UI-AUDIT-01原UNKNOWN、NOT_RUN不改判；真实核验供应商和真实Push未接入；原始43份PNG远端仍PENDING_BINARY_UPLOAD。
+- **A6正式UI会议继续暂缓，本地Codex没有新V2工程实施授权**：不改APP/API/Web/DB，不运行手机或模拟器，不构建APK，不合main，不发布。GitHub治理分支归档不代表Owner本地工作区同步。
+
+---
+
 # 当前入口 2026-11-19：O08-D1/D2获Owner认可；O09跨设备权限及UNKNOWN恢复草案待审
 
 **`O08_D1_D2_OWNER_CONCEPT_ACCEPTED / O09_ADVISOR_DRAFT_PENDING_OWNER_REVIEW / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / MEETING_DEFERRED`**
