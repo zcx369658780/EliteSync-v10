@@ -1,3 +1,11 @@
+# 2026-11-19 RET Owner确认后实际剩余OPEN：勿将用户可读权限与后台留存混同
+
+- [RET-D1/D2最新Owner决定](../decisions/OWNER_V2_RET_D1_D2_REVOCATION_DELETION_CONCEPT_ACCEPTANCE_20261119.md)已明确三种可证实状态以及分对象/用途/第三方权利的删除请求语义；已认可的是产品语义，不是实际法律保留期、存储架构、受理API或已运行的删除功能。
+- 现在可参考[剩余P0产品合同与证据梳理草案](ELITESYNC_V2_REMAINING_P0_PRODUCT_CONTRACT_AND_EVIDENCE_HANDOFF_V0_1_20261119.md)继续讨论仍OPEN的用户动作，或将需要工程/法律/供应商证据的事项显式延期。`OBJ-D1 A`是建议，不是Owner已确认的产品合同。
+- `DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`继续适用。原1011804工程证据与43 PNG备份缺口不改变。
+
+---
+
 # 2026-11-19 HIS方案A已接受；现行OPEN聚焦真实保留与删除请求
 
 - [Owner HIS-D1/D2接受](../decisions/OWNER_V2_HIS_D1_D2_HISTORICAL_ACCESS_AND_SNAPSHOTS_20261119.md)确认历史评论重现与失权旧匹配快照的合法可读边界；未决定历史保存/物理删除、法定/安全留存例外和实际传播时限。
