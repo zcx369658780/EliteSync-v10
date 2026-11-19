@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：DATA-D1/D2方案A获Owner认可；剩余P0三分流顾问汇总已出稿
+
+**`DATA_D1_A_DATA_D2_A_OWNER_CONCEPT_ACCEPTED / P0_TRIAGE_ADVISOR_DRAFT / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- [DATA-D1/D2 Owner具名决定](../decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)已经接受：资料已有当前有效具名用途许可时直接复用，缺新用途许可时仅就该任务必要字段/用途说明并独立允许/拒绝；来源纠错真正影响且仍需核查的派生结果不可作为“已验证有效”结果新发布，未影响的独立内容不被全局阻断。实际授权字段/schema、派生依赖及计算/发布回执仍OPEN。
+- [剩余P0三分流顾问总览](../product/ELITESYNC_V2_P0_OPEN_TRIAGE_PRODUCT_EXTERNAL_ENGINEERING_V0_1_20261119.md)已形成，标签为`PRODUCT_CONTRACT_OPEN / EXTERNAL_DEPENDENCY_OPEN / ENGINEERING_EVIDENCE_REQUIRED`，**尚非Owner批准的实现优先级或实施合同**。建议下一项纯设计是静态安全阻断/证据待核验对照，不启动工程核查。
+- S01–S16四批八组具名增量、CMT-T1、HIS-D1/D2、RET-D1/D2、OBJ-D1及DATA-D1/D2均有Owner概念确认；不等于16屏全部视觉/业务细则冻结。真实身份核验供应商与真实Push未接入，旧`10.1.18-dev / 1011804`及UI-AUDIT-01历史`NOT_RUN/UNKNOWN`不改判，43份原PNG仍`PENDING_BINARY_UPLOAD`。GitHub治理状态不证明本地工程同步。
+- **A6正式UI会议继续暂缓，本地Codex没有新V2工程实施授权**：不改APP/API/Web/数据库，不运行设备/模拟器，不构建APK、不合main、不发布、不接真实供应商。仅允许网页GPT静态设计咨询及治理文档归档。
+
+---
+
 # 当前入口 2026-11-19：OBJ-D1方案A获Owner认可；DATA-D1/D2数据用途与新发布门禁顾问稿待审
 
 **`OBJ_D1_OPTION_A_OWNER_CONCEPT_ACCEPTED / DATA_D1_D2_ADVISOR_OWNER_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
