@@ -1,3 +1,12 @@
+# 2026-11-19｜Owner授予S1-A单次只读Codex例外，工程开发仍STOP
+
+- Owner明确回复“我同意授权，请继续”，承接顾问提出的`S1-A`单次受限**只读工程差距核查**。授权的正式边界见[Owner S1-A具名决定](../decisions/OWNER_V2_S1A_BOUNDED_READ_ONLY_CODEX_GAP_AUDIT_AUTHORIZATION_20261119.md)；现有EliteSync本地Codex会话**一次性**可在确认唯一活动根后只读静态定位源码，合并R1–R5形成一份去敏报告。GitHub治理文档和历史路径不是本地实际工作树证明。
+- [S1-A现有Codex会话交接Prompt](V2_S1A_CODEX_EXISTING_SESSION_ONE_SHOT_READ_ONLY_HANDOFF_20261119.md)为Owner手动转交的单份指令；此处没有直连现有Codex，也没有执行代码审计。**可使用不改文件的只读终端定位命令，严禁运行项目代码、测试、构建/部署、数据库/设备/供应商、Git改动、写入工程或公开敏感数据**；报告仅在Codex会话返回。
+- 除S1只读静态审阅以外，全部新V2开发/动态验收、A6正式UI会议、真实供应商、main、发布仍`NOT_AUTHORIZED/DEFERRED`。原文`CODEX_NOT_AUTHORIZED`按之前时间快照或除S1外的实施STOP解释；**不应再把它当作S1仍未获授权，也不能把本次S1扩为通用代码权限。**
+- G01–G10新增动态仍`NOT_RUN`、旧1011804`UNKNOWN/NOT_RUN`、F-01`READABILITY_PARTIAL`、原43 PNG`PENDING_BINARY_UPLOAD`不变。S1本地结果须由Owner取得后再交网页顾问审阅。
+
+---
+
 # 2026-11-19｜V2网页顾问合并审阅节奏（Owner反馈：减少碎片门禁、加快收束）
 
 - Owner明确“不要把门禁拆的太散，我们需要加快速度”。现行顾问工作法调整为**同域静态草案合并审阅**：已有具名Owner原则不重复问，小型状态/文案/回退细节由网页GPT合并形成一份审阅稿，只有真正新增用户权利、跨受众/用途/法律重大取舍再集中向Owner提出清楚的独立选择。参见[合并审阅与Gate压缩V0.1](../product/ELITESYNC_V2_CONSOLIDATED_DESIGN_REVIEW_AND_GATE_COMPACTION_V0_1_20261119.md)与[本批统一内容UX状态稿](../product/ELITESYNC_V2_BATCH_CONTENT_SINGLE_PASS_UX_STATE_DRAFT_V0_1_20261119.md)。
