@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问当前入口：O08 D1/D2已接受，O09待审
+
+- [O08 Owner概念确认](docs/decisions/OWNER_V2_O08_SAFE_FEEDBACK_ATTACHMENTS_DRAFTS_ACCEPTANCE_20261119.md)已归档：当前有资格用户安全反馈、附件用户主动提交、仅当前会话内可安全暂存，失权及时隔离；其余存储/日志/自动脱敏仍OPEN。
+- 现行顾问设计讨论：[O09跨设备权限与UNKNOWN恢复V0.1](docs/product/ELITESYNC_V2_O09_MULTI_DEVICE_AUTH_STATE_UNKNOWN_CONSISTENCY_V0_1_20261119.md)，`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`；以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)和[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为当前入口，历史待审字样按发生时点理解。
+- 不召开A6正式会议、不启动Codex新V2实施、不改产品源码/API/DB、不运行设备、构建APK、合main或发布；真实供应商/Push未接入，原PNG远端备份仍PENDING。
+
+---
+
 # 2026-11-19 GPT顾问新入口：O06/O07第二轮接受，进入O08顾问审阅
 
 - Owner已接受[O06-R2/R3与O07-R2](docs/decisions/OWNER_V2_O06_R2_R3_O07_R2_ACCEPTANCE_20261119.md)；历史数据的实际留存、删除与技术实现仍OPEN。
