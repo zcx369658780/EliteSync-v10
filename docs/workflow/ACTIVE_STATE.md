@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：S05-D1及S07/S08-D2获Owner确认；S09–S12第三批逐屏顾问稿待审
+
+**`S05_D1_S07_S08_D2_OWNER_CONCEPT_ACCEPTED / S09_S12_ADVISOR_PER_SCREEN_OWNER_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- [第二批Owner正式确认](../decisions/OWNER_V2_S05_D1_S07_S08_D2_ACCEPTANCE_20261119.md)：S05匹配准备突出当前本人合法可完成任务、真实核验未接入独立表达且真实报名禁用；S07/S08在**未来真实前提满足**时保留连续任务上下文减少寻找入口，但提案/双方Connection/双方Messaging Consent/Conversation互不自动推出，独立拒绝撤回等待与权威回执保持真实。
+- [S09–S12消息/我的/形象发布/资料用途逐屏顾问稿V0.1](../product/ELITESYNC_V2_S09_S12_MESSAGES_ME_PUBLISH_DATA_SCREEN_REVIEW_V0_1_20261119.md)已出稿、**Owner尚未审阅**。其中新S09-D1建议安全地回到通知频道/原列表位置，新S11-D2建议对外发布前展示待发布与当前有效版本差异/用途受众/未来候选默认生效范围的最小影响摘要；不自动扩大受众或重授权。
+- S01–S16检查框架已接受，前两批只批准具名增量，不等于所有屏逐项冻结。O01–O12和A6.6/A6.7既有Owner原则保持；1011804原NOT_RUN/UNKNOWN不改判。真实实人核验和真实Push未接入，43份原PNG GitHub备份仍PENDING_BINARY_UPLOAD。
+- **A6正式UI会议继续暂缓，本地Codex未获新V2实施授权**：不改APP/API/Web/DB，不运行设备、模拟器，不建APK、不合main、不发布。远端治理分支不代表本地工程树同步。
+
+---
+
 # 当前入口 2026-11-19：S02与S03/S04具名交互原则接受；S05–S08第二批逐屏顾问稿待审
 
 **`S02_D1_S03_S04_D2_OWNER_CONCEPT_ACCEPTED / S05_S08_ADVISOR_PER_SCREEN_OWNER_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
