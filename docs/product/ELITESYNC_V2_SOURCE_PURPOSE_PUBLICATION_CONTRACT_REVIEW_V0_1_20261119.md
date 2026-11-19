@@ -13,7 +13,7 @@
 - [HIS-D2](../decisions/OWNER_V2_HIS_D1_D2_HISTORICAL_ACCESS_AND_SNAPSHOTS_20261119.md)：现有合法候选可在当前权限下读旧有效快照，失权隐藏；隐藏不等于底层删除。
 - [RET-D1/D2](../decisions/OWNER_V2_RET_D1_D2_REVOCATION_DELETION_CONCEPT_ACCEPTANCE_20261119.md)：用途撤销、删除受理、可核实删除完成是不同状态；各对象/第三方权利及合法必要例外分开。
 - [O09](../decisions/OWNER_V2_O09_CROSS_DEVICE_AUTH_UNKNOWN_ACCEPTANCE_20261119.md)：旧客户端缓存不替代真权限，UNKNOWN仅先只读核权威结果。
-- [O10/O12](../decisions/OWNER_V2_O10_O12_LOW_DENSITY_ACCESSIBILITY_QA_V0_1_20261119.md)所述的低密度与分项可用性仅是将来UI的工作方向，不能声称任何动态QA已通过。
+- [O10/O12](../decisions/OWNER_V2_O10_O12_LOW_DENSITY_ACCESSIBILITY_CONCEPT_ACCEPTANCE_20261119.md)所述的低密度与分项可用性仅是将来UI的工作方向，不能声称任何动态QA已通过。
 
 本文件仅整理数据**产品语义**，并未读取本地APP/API/DB/个人数据，不能确认代码存在何种表、字段、接口、授权版本或第三方供应商。
 
