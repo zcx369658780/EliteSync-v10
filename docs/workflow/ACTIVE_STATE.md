@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：O06排序/失效历史、O07派生历史获Owner接受；O08待审
+
+**`O01_O02_O04_O05_O06_O07_OWNER_CONCEPT_CONFIRMED_IN_NAMED_SCOPE / O08_ADVISOR_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
+
+- Owner正式认可[O06-R2/R3与O07-R2](../decisions/OWNER_V2_O06_R2_R3_O07_R2_ACCEPTANCE_20261119.md)：真实且可验证的截止时间优先待办排序，仍有权才显示失效通知非敏感摘要，失权则隐藏；撤销用途不再允许的派生访问立即隐藏，纠错后受影响结果标“需要核查”，完整历史需要独立合法权限；存储/删除期限仍OPEN。
+- [O08异常反馈、附件与草稿恢复顾问草案](../product/ELITESYNC_V2_O08_ERROR_FEEDBACK_ATTACHMENTS_DRAFT_RECOVERY_V0_1_20261119.md)已出稿，**Owner尚未审阅**。候选规则为有资格登录用户的安全反馈、用户主动选附件并预览确认、仅有效会话内暂存、切号/撤权隔离、不虚构反馈成功或24小时留存。
+- O01/O02、O04/O05及方案A、A6.6/A6.7概念决定继续有效；无V2产品代码实施授权。1011804审计与原NOT_RUN/UNKNOWN保持原记录；真实实人核验/真实Push未接入。
+- **A6正式UI会议暂缓，Codex继续停止新V2工程**：不改APP/API/Web/DB，不运行模拟器或手机，不建APK，不合main，不发布；43份原PNG GitHub备份仍PENDING_BINARY_UPLOAD，远端治理分支不代表Owner本地源码已同步。
+
+---
+
 # 当前入口 2026-11-19：O06-D1/O07-D1获Owner确认，排序及历史处理待审
 
 **`O01_O02_O04_O05_OWNER_CONFIRMED / O05_OPTION_A / O06_D1_O07_D1_OWNER_CONCEPT_ACCEPTED / O06_O07_HISTORY_SORT_ADVISOR_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
