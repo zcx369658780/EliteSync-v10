@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问最新入口：S01–S16四批具名交互已审，OPEN清单汇总完成
+
+- [第四批S15-D1/S16-D2 Owner决策](docs/decisions/OWNER_V2_S15_D1_S16_D2_ACCEPTANCE_20261119.md)及前三批具名决定已在治理分支归档。四批各两组、共八组具名交互概念认可，但**并未逐项冻结16页全部细节**。
+- 当前顾问阅读入口：[S01–S16四批审阅汇总与OPEN Gate V0.1](docs/product/ELITESYNC_V2_S01_S16_FOUR_BATCH_CONSOLIDATION_AND_OPEN_GATES_V0_1_20261119.md)，按页面区分OWNER/BASELINE/ADVISOR/OPEN及未来阻断；[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)、[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为现行治理入口。下方历史待审语句仅代表旧时点。
+- **仅设计咨询与文档归档**，A6正式会议暂缓、Codex没有新V2实施授权；不改APP/API/Web/数据库、不运行设备/模拟器、不建APK、不合main、不发布；核验供应商/Push未接入、历史NOT_RUN/UNKNOWN与43份原PNG备份缺口保持。
+
+---
+
 # 2026-11-19 GPT顾问当前入口：S09-D1/S11-D2已接受，S13–S16顾问草案待审
 
 - [第三批Owner决定](docs/decisions/OWNER_V2_S09_D1_S11_D2_ACCEPTANCE_20261119.md)已确认通知安全回流与形象发布前影响摘要；S09–S12其它细节尚未全部冻结。
