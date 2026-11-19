@@ -1,3 +1,11 @@
+# 2026-11-19：HIS-D1/D2概念认可，转RET历史留存/删除请求治理咨询
+
+- [HIS-D1/D2 Owner确认](../decisions/OWNER_V2_HIS_D1_D2_HISTORICAL_ACCESS_AND_SNAPSHOTS_20261119.md)已生效；历史评论可读交集与旧候选失权隐藏规则不代表具体数据删除/保存期限、后端真实清理。
+- 当前顾问讨论入口：[RET-D1/D2历史保留、删除请求与用途撤销草案](../product/ELITESYNC_V2_HISTORY_RETENTION_DELETION_PURPOSE_REVOCATION_V0_1_20261119.md)，`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`。只提出“当前撤权/删除请求/删除回执”三种状态及对象/用途/第三方权利拆分，不能提前记成Owner决定、法律保留制度或实现进度。
+- **DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED**：不派新V2开发任务，不改APP/API/Web/数据库、不运行手机/模拟器、不建APK、不合main、不发布。真实核验与Push未接入、旧1011804 NOT_RUN/UNKNOWN和原PNG远端备份缺口不改变。
+
+---
+
 # 2026-11-19：CMT-T1方案A接受；网页顾问接续历史评论与旧快照权限审阅
 
 - [CMT-T1 Owner确认](../decisions/OWNER_V2_CMT_T1_SELF_TO_FRIENDS_COMMENTS_20261119.md)已生效，尊重SELF→FRIENDS受众切换前的显式OFF，隐式OFF仅在明示并经作者确认后建议FRIENDS_ONLY；无法区分保留OFF，绝非全局默认关闭评论。
