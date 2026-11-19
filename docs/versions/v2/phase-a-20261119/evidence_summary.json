@@ -1,0 +1,296 @@
+{
+  "date": "2026-11-19 Asia/Shanghai",
+  "scope": "V2 PHASE A A1-A4 only",
+  "engineering_result": "PASS_IN_NAMED_AUTOMATED_SCOPE",
+  "owner_acceptance": "PENDING",
+  "advisor_acceptance": "PENDING",
+  "independent_codex_static_review": "NO_OPEN_P1_P2_AFTER_FIXES",
+  "root": "D:\\EliteSync\\development\\v2-phase-a-20261119",
+  "branch": "codex/v2-phase-a-security-baseline-20261119",
+  "base_commit": "1d8b485bf4f314d42431bb62a293a3fef9e9c8af",
+  "backend_commit": "c6ff7e4471287674db0f1caca851ba49cca238a4",
+  "final_product_commit": "4e6a5be6dcb7095438fb0a815c7831b14ffb561b",
+  "authority": {
+    "handoff_commit": "0df5b9ca70be34e028fa7ad67f355ec68fe559b7",
+    "owner_and_brief_commit": "bc1124ae0696fb4decac936eead6ce240f65eb9f",
+    "governance_branch": "governance/home-matching-product-freeze-20261117",
+    "active_state_blob": "f29351860f664aa19f442e722d49b92a290117be",
+    "workflow_blob": "c266b12081a85b426dd886246e835aa5edfcf51a",
+    "owner_blob": "6409ff31f06b6fd8b7144dea1f5a546b0e5f2734",
+    "brief_blob": "d7b2e5d59303d5049ee79d0e38a57b80b47aa12c"
+  },
+  "environment": {
+    "php": "8.5.3 CLI, process-local -d extension=gd",
+    "declared_root_php": "~8.4.0; PHP 8.4 runtime NOT_RUN",
+    "laravel": "13.39.0",
+    "locked_dependencies_verified": 114,
+    "locked_dependency_mismatches": 0,
+    "flutter": "3.41.7",
+    "dart": "3.11.5",
+    "database": "SQLite :memory:; Tests\\TestCase rejects other effective configuration before migrations",
+    "backend_http": "Laravel HTTP test kernel, no listening server",
+    "external_services": "NOT_USED",
+    "devices": "NOT_USED",
+    "real_data": "NOT_USED"
+  },
+  "final_validation": {
+    "php_tests": 110,
+    "php_assertions": 1429,
+    "php_failures": 0,
+    "php_errors": 0,
+    "flutter_tests": 140,
+    "flutter_failures": 0,
+    "dart_analysis_changed_files": 8,
+    "dart_analysis_issues": 0
+  },
+  "baseline_evidence": {
+    "php_original_tests": 78,
+    "php_original_failures": 5,
+    "flutter_cache_original_tests": 2,
+    "flutter_cache_original_failures": 2,
+    "resolution": "Explicit signed/current-input fixtures, explicit withdrawal fact, and pre-upload encrypted-draft authorization ordering corrected. Original failures retained, no product guard relaxed."
+  },
+  "gates": {
+    "G01": "PARTIAL: formal denial / signed TEST_ONLY cases PASS; real KYC NOT_RUN",
+    "G02": "PARTIAL: affected private media/Block denial PASS; full Home/public domain NOT_RUN",
+    "G03": "PARTIAL: legacy audience unknown hidden, finite original recipients/current rights intersection PASS; full reply/media system NOT_RUN",
+    "G04": "NOT_RUN",
+    "G05": "NOT_RUN",
+    "G06": "PARTIAL: original candidate binding, new publication, withdrawal epoch and UNKNOWN refresh PASS; full V2 publication journey NOT_RUN",
+    "G07": "NOT_RUN",
+    "G08": "PARTIAL: affected account switch/late response/private cache/deep links PASS; device and cross-device checks NOT_RUN",
+    "G09": "NOT_RUN",
+    "G10": "NOT_RUN"
+  },
+  "preserved_history": {
+    "1011804": "Historical FAIL/UNKNOWN/NOT_RUN unchanged",
+    "F-01": "READABILITY_PARTIAL",
+    "original_43_PNG": "PENDING_BINARY_UPLOAD"
+  },
+  "stop": {
+    "phase_B_C_D": "NOT_STARTED",
+    "main_merge": "NOT_RUN",
+    "release": "NOT_RUN",
+    "A6": "DEFERRED",
+    "production_or_shared_DB": "NOT_USED"
+  },
+  "raw_evidence_local_only": "D:\\EliteSync\\development\\v2-phase-a-evidence-20261119",
+  "source_files": [
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/lifestyle_discovery/lifestyle_controller.dart",
+      "sha256": "2534af7a3ff2bf86f266e429a853ca0820fd75c5b02a427c3652add310c609ef"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/lifestyle_discovery/lifestyle_providers.dart",
+      "sha256": "140087d5106916d3d410c2567118fb1a5303e95d8fe877561c52e697be92d0d0"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/profile/presentation/providers/profile_showcase_draft_provider.dart",
+      "sha256": "a13fcf241bf40187e812d12aade292e9b5e1a75e1788361b61623dc171ba1c0f"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/lib/features/relationships_v1011/session_bound_page.dart",
+      "sha256": "d979c29e6e3d66c58e684221ec362ecfb348852115910cb60d77a20ab77caf4a"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/chat/presentation/pages/live_chat_retained_list_cache_test.dart",
+      "sha256": "6ff3a210b01c227938b1ef59ccc00573b4c2274a8cd42554afe60749ad353edb"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/lifestyle_discovery/lifestyle_controller_test.dart",
+      "sha256": "58cf0d4b43984fc1c2a358b27679ab01ad8e051ffd1f47f05f9a725340ab6306"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/profile/presentation/providers/profile_showcase_draft_provider_test.dart",
+      "sha256": "b644f758eebe0bf8ecfed54de52b1344f79559e0a240d4750d8e13d937ed85a4"
+    },
+    {
+      "path": "apps/flutter_elitesync_module/test/features/slow_dating_v1012/journey_pages_test.dart",
+      "sha256": "202f35e0da9fe62568b31b903faa705685ffd88659ae41ec5d52a192c9968841"
+    },
+    {
+      "path": "services/backend-laravel/.gitignore",
+      "sha256": "2f2d262053dbbfdd8ef97d592b3f5841d23a59ab5c2a62a1be1092a8edd6c02a"
+    },
+    {
+      "path": "services/backend-laravel/app/Console/Commands/DevRunMatchingCommand.php",
+      "sha256": "9f8a4c3c10ec2fa6eeed2c01b986395a6667de341c5f0487192f2c0f83278375"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/LifestyleDiscoveryController.php",
+      "sha256": "9dadb9efbd912066ed901e84863c349b0c3c09a9daa165345b6f3d2a805a33ff"
+    },
+    {
+      "path": "services/backend-laravel/app/Http/Controllers/Api/V1/StatusCommentController.php",
+      "sha256": "75b71abea693195718ee6b821ce01e6516f86d9d9ed383ef78eb680d30cd7e22"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/AutomationAuthorizationService.php",
+      "sha256": "1e76adb33ca875de36326b19adc8e84fb7dbd4864160ef279e0bbf0e07b49d0f"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/FormalRelationshipService.php",
+      "sha256": "cb1a6e41b83d6b51ba11cac78537a4a0d2cbc64c5f78d24ce0f94daf938fe9d1"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/LifestyleDiscoveryService.php",
+      "sha256": "664efe0f2522575361e1e038179d4141076ff82b931e7b95b0d7f5bed961d93f"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/MatchingRunService.php",
+      "sha256": "012577e9e97a84421f192bc0a123edf88e0f6f6866a692667bb73745e2bded34"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/PostAudience.php",
+      "sha256": "b2353309cb5bd730d6bbb1d20642d042ac905a4a160449c16547acbd8fdcbdf9"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ProfileReadinessService.php",
+      "sha256": "16ef2d1be3e4d3cf4a3ca4484ca10c5ec9c6dc8ae69b886b53c59f64ac4c5df0"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ProfileShowcase/CandidateShowcaseSnapshot.php",
+      "sha256": "a3eb24590b6e28936800e4cd7ecf705263ed4ea381b84ae1f1add55b2046fa35"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/ProfileShowcase/ShowcaseWorkflow.php",
+      "sha256": "7c136fcd258cffd46efa2bd8b60ad881075e4fd1cf88deec98ff9ce5c17c9ef6"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/SlowDatingService.php",
+      "sha256": "911c09823746a09fa8d9715c47d5f8975dfa9a5a6d04c0b8df44f69051c93ac7"
+    },
+    {
+      "path": "services/backend-laravel/app/Services/TrustedIdentityService.php",
+      "sha256": "2f7e64f63dcf9ea16847b3497b448ba1b8dbbf018fb007f8d78bdedd56e7573b"
+    },
+    {
+      "path": "services/backend-laravel/database/migrations/2026_11_19_230000_phase_a_candidate_and_comment_authority.php",
+      "sha256": "548a942b872d5a746495bdcf10b6598c70579ca3e11f45fc1795eb5dffbbdb42"
+    },
+    {
+      "path": "services/backend-laravel/routes/api.php",
+      "sha256": "1152bebf21a13c11a31910046a5547eb64c6af912de10b1d3eade13f82569e10"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/ShowcaseJourneyAudienceTest.php",
+      "sha256": "50ac16862f40cf84b5af7a64adfb7480f41510866132fed70f2d2f56be6f0cf3"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V10115LifestyleDiscoveryTest.php",
+      "sha256": "f532626ab9bfb073d2a3338ae9f0e6fbdb6d75655ebd41beef0e253d6a3333ff"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V10116UserStateAutomationTest.php",
+      "sha256": "4213360129323fea2ddd2132d3f1c85f8f55f80cc32904d3f9c3d106053da9d2"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1012JourneyTest.php",
+      "sha256": "10f90e37bec73237c67457928a1e0f2c66ac274c35d5b0fe3e1f10dea5571ea6"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V1017MatchingJourneyTest.php",
+      "sha256": "9e1426953329ff54da19e49fcb32e1e84bb543e35f9da955a7c3700dbf916695"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V2CandidateSnapshotTest.php",
+      "sha256": "4f5d6c3b154172156fe2cb37c4b31425cdd9d1b7d28c31acd21dec405d161648"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V2CommentAudienceTest.php",
+      "sha256": "68ad234c3c927736fd7b0ea8bc2aa60af802b172c0841c36ca6497693ea3a793"
+    },
+    {
+      "path": "services/backend-laravel/tests/Feature/V2PhaseASecurityTest.php",
+      "sha256": "021f853b87d0d9affe269358d41d332dba38be1f89e0311dc783f70fdf2f3bea"
+    },
+    {
+      "path": "services/backend-laravel/tests/TestCase.php",
+      "sha256": "1ee263091eb3a78e53aa31434ac01c638538eb3e85d97804b86f6dae7c58595a"
+    }
+  ],
+  "validation_logs": [
+    {
+      "path": "final\\analysis.log",
+      "sha256": "0abf650b4037470434229f77266f38325a4227b28a0797231375c96dd0fc38c9"
+    },
+    {
+      "path": "final\\flutter.log",
+      "sha256": "5e57a580cc57504f68208c5c1e3fd76a87f9b0a7686d99568a5366a8e6c00550"
+    },
+    {
+      "path": "final\\identity_precommit.json",
+      "sha256": "068e60188c153fcb8bee57442b702628e56a7ef6610b815147da3d9662518557"
+    },
+    {
+      "path": "final\\php.log",
+      "sha256": "282ac3ae51129769dd93d78901872a40d61f5cc577058ed45a4e3a4ddbe40a4b"
+    },
+    {
+      "path": "final\\php.xml",
+      "sha256": "3af03be965ae122747dae950c029e031f1ab1057aef35f30ecc86970a589e041"
+    }
+  ],
+  "commands": [
+    {
+      "cwd": "D:\\EliteSync\\development\\v2-phase-a-20261119\\services\\backend-laravel",
+      "argv": [
+        "php",
+        "-d",
+        "extension=gd",
+        "vendor/phpunit/phpunit/phpunit",
+        "tests/Feature/V2PhaseASecurityTest.php",
+        "tests/Feature/V2CandidateSnapshotTest.php",
+        "tests/Feature/V2CommentAudienceTest.php",
+        "tests/Feature/V1017MatchingJourneyTest.php",
+        "tests/Feature/V10116UserStateAutomationTest.php",
+        "tests/Feature/V10115LifestyleDiscoveryTest.php",
+        "tests/Feature/V1019SocialCommunityTest.php",
+        "tests/Feature/ProfileShowcaseWorkflowTest.php",
+        "tests/Feature/V1019BuddyDiscoveryTest.php",
+        "tests/Feature/ShowcaseJourneyAudienceTest.php",
+        "tests/Feature/V1012JourneyTest.php"
+      ],
+      "exit_code": 0
+    },
+    {
+      "cwd": "D:\\EliteSync\\development\\v2-phase-a-20261119\\apps\\flutter_elitesync_module",
+      "argv": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "test/features/lifestyle_discovery",
+        "test/features/slow_dating_v1012",
+        "test/features/profile/presentation/providers/profile_showcase_draft_provider_test.dart",
+        "test/core/network/retry_session_guard_test.dart",
+        "test/core/network/api_transport_replay_test.dart",
+        "test/core/network/v1015_late_response_test.dart",
+        "test/core/storage/private_cache_service_test.dart",
+        "test/core/media/media_url_resolver_test.dart",
+        "test/features/chat/presentation/conversation_detail_live_test.dart",
+        "test/features/chat/presentation/pages/live_conversation_private_cache_test.dart",
+        "test/features/chat/presentation/pages/live_chat_retained_list_cache_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "exit_code": 0
+    },
+    {
+      "cwd": "D:\\EliteSync\\development\\v2-phase-a-20261119\\apps\\flutter_elitesync_module",
+      "argv": [
+        "flutter",
+        "analyze",
+        "--no-pub",
+        "lib/features/lifestyle_discovery/lifestyle_controller.dart",
+        "lib/features/lifestyle_discovery/lifestyle_providers.dart",
+        "lib/features/relationships_v1011/session_bound_page.dart",
+        "lib/features/profile/presentation/providers/profile_showcase_draft_provider.dart",
+        "test/features/lifestyle_discovery/lifestyle_controller_test.dart",
+        "test/features/slow_dating_v1012/journey_pages_test.dart",
+        "test/features/profile/presentation/providers/profile_showcase_draft_provider_test.dart",
+        "test/features/chat/presentation/pages/live_chat_retained_list_cache_test.dart"
+      ],
+      "exit_code": 0
+    }
+  ]
+}
