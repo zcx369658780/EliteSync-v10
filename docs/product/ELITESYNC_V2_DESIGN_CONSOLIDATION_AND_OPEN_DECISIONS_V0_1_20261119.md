@@ -1,3 +1,11 @@
+# 2026-11-19 当前增量：O08-D1/D2正式确认，O09草案待审
+
+- [O08 Owner明确确认](../decisions/OWNER_V2_O08_SAFE_FEEDBACK_ATTACHMENTS_DRAFTS_ACCEPTANCE_20261119.md)：安全、具资格反馈入口及可复制非敏感摘要；附件由用户主动选择、预览、删除、确认发送；有效会话内暂存且切号/失权隔离；UNKNOWN不自动重复提交。不承诺自动抓取日志/自动脱敏/24小时或跨设备草稿持久化。
+- [O09跨设备权限与UNKNOWN恢复V0.1](ELITESYNC_V2_O09_MULTI_DEVICE_AUTH_STATE_UNKNOWN_CONSISTENCY_V0_1_20261119.md)已形成`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，建议当前会话/权限核验、失权安全占位、旧账号响应拦截及UNKNOWN只读查权威结果；**跨设备实时通知和幂等接口是否存在仍UNKNOWN，不能虚构**。
+- 原O08待审字段仅为旧时点快照。O03真实身份核验供应商未接入，真实Push不算已完成；A6会议暂缓，Codex没有新V2实施授权，原始PNG GitHub补档仍PENDING。
+
+---
+
 # 2026-11-19 当前增量：O06-R2/R3与O07-R2已确认，O08审阅中
 
 - [O06-R2/R3与O07-R2 Owner决定](../decisions/OWNER_V2_O06_R2_R3_O07_R2_ACCEPTANCE_20261119.md)已明确接受：基于真实有效到期时间的待办排序、失效通知的有权最小历史摘要、无权派生内容立即隐藏与纠错后“需核查”状态。历史留存时长、自动删除、数据schema与服务端实现仍OPEN。
