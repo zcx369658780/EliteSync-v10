@@ -1,3 +1,11 @@
+# 2026-11-19 Owner S1-A受限只读工程差距核查具名授权（最新增量）
+
+- [S1-A具名Owner授权](../decisions/OWNER_V2_S1A_BOUNDED_READ_ONLY_CODEX_GAP_AUDIT_AUTHORIZATION_20261119.md)是**新有限权限决定**：只允许现有EliteSync本地Codex一次性对真实活动本地工程做无写入的静态差距阅读，R1–R5汇总为一份报告。此权限与NEW-PC/EDGE产品方向批准不同，不代表任何新V2实现或运行时验收已被许可。
+- [现有Codex会话一份S1-A可转交Prompt](../workflow/V2_S1A_CODEX_EXISTING_SESSION_ONE_SHOT_READ_ONLY_HANDOFF_20261119.md)已归档。当前网页顾问只保存GitHub治理文档，没有直接访问用户Windows源码或执行Codex；S1仍`AUTHORIZED_BUT_NOT_EXECUTED`。历史目录不证明当期唯一工作根，必须由既有Codex会话先只读验身份。
+- 除S1以外仍`V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED`；原`CODEX_NOT_AUTHORIZED`旧文段落只按历史时点/除S1外范围解释。G01–G10动态`NOT_RUN`、F-01及外部/法律/资产缺口不改判。
+
+---
+
 # 2026-11-19 BATCH-OTHER-DESIGN完成；现行概念与证据短入口（顾问增量）
 
 - [BATCH-OTHER-DESIGN四领域合并静态审阅](ELITESYNC_V2_BATCH_OTHER_DESIGN_SINGLE_PASS_STATIC_REVIEW_V0_1_20261119.md)已整理首页与内容、首次Lifestyle/匹配、资料/形象、消息通知的Owner确认规则、15个概念性UX异常状态和缺证据项；属于`ADVISOR_SINGLE_PASS_STATIC_REVIEW_COMPLETE`，并**非**四领域整篇实现合同获Owner确认。
