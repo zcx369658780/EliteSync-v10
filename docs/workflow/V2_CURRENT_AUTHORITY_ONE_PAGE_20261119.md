@@ -5,6 +5,12 @@
 当前治理分支：`governance/home-matching-product-freeze-20261117`  
 本页是**导航摘要**，不代替独立具名Owner决定、当期完整审计证据或最终发布合同。具体审计见[DESIGN-AUDIT-01](V2_STATIC_DESIGN_CONTRACT_AUDIT_20261119.md)与[DESIGN-AUDIT-02](V2_STATIC_DESIGN_CONTRACT_AUDIT_02_P0_EVIDENCE_LEDGER_20261119.md)。
 
+## 最新证据准备入口：集中未来核查要求，不启动工程（2026-11-19）
+
+- [V2未来工程/外部/法域/原件集中证据准备包V0.1](V2_CONSOLIDATED_FUTURE_EVIDENCE_READINESS_DOSSIER_V0_1_20261119.md)已为G01–G10整理**统一证据类别、可核证材料、保守阻断、结果登记格式与未来独立授权范围**。状态为`DOCUMENT_READINESS_PREPARED / EVIDENCE_NOT_COLLECTED`：**没有新增真实供应商、工程、法律或二进制/运行时证据**。
+- 后续四类授权（只读本地差距核查、外部/法域证据核实、设备动态QA、开发/A6/发布）必须由Owner未来**分别明确**批准，本轮并未下发Codex或任何工程/采购任务。旧G01–G10全`NOT_RUN`、F-01`READABILITY_PARTIAL`、43 PNG`PENDING_BINARY_UPLOAD`以及旧1011804`UNKNOWN/NOT_RUN`不变。
+- 继续合并文档和集中Owner决策，禁止从证据准备包自行解除`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`。
+
 ## 本轮最新简明入口：两批静态设计已合并（2026-11-19）
 
 - [V2概念收束与证据门禁短导航](V2_CONCEPT_REVIEW_CLOSURE_AND_EVIDENCE_HANDOFF_20261119.md)：可快速区分`OWNER_CONFIRMED / ADVISOR_UX_DRAFT / OPEN / NOT_RUN / UNKNOWN`；本页以下既有Owner接受与历史审计段落保持可追溯。
