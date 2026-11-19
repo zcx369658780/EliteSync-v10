@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问当前入口：O06-D1/O07-D1接受，下一细化待审
+
+- [Owner O06/O07确认记录](docs/decisions/OWNER_V2_O06_O07_NOTIFICATION_READ_DERIVED_REVIEW_20261119.md)：单条合法详情标读与待办独立、具名用途撤销后停止未经授权继续使用、事实更正后受影响派生结果需核查已获概念接受。
+- 当前设计草案：[O06通知排序/历史与O07派生历史恢复](docs/product/ELITESYNC_V2_O06_O07_FOLLOWUP_SORT_HISTORY_AND_DERIVED_RECOVERY_V0_1_20261119.md)。其余保留、删除和技术细节仍OPEN。当前入口以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部及[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为准。
+- DESIGN_ONLY：A6正式会议继续暂缓，Codex停止新V2实施，不改APP/API/DB/设备/模拟器/APK/main或发布；真实身份核验/Push未接入，原PNG远端未全备份。
+
+---
+
 # 2026-11-19 GPT顾问增量：O04/O05确认，O06/O07审阅中
 
 - [O04/O05 Owner决定](docs/decisions/OWNER_V2_O04_O05_DATA_REUSE_AVATAR_PUBLICATION_20261119.md)现为当前有效概念规则：一处事实来源按具名用途复用，**本人预览和对外发布独立，O05-X选方案A仅默认未来候选**；旧快照仍受当前权限及Block约束。
