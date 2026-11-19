@@ -1,3 +1,11 @@
+# 2026-11-19 当前增量：O06-R2/R3与O07-R2已确认，O08审阅中
+
+- [O06-R2/R3与O07-R2 Owner决定](../decisions/OWNER_V2_O06_R2_R3_O07_R2_ACCEPTANCE_20261119.md)已明确接受：基于真实有效到期时间的待办排序、失效通知的有权最小历史摘要、无权派生内容立即隐藏与纠错后“需核查”状态。历史留存时长、自动删除、数据schema与服务端实现仍OPEN。
+- [O08异常反馈/附件/草稿恢复V0.1](ELITESYNC_V2_O08_ERROR_FEEDBACK_ATTACHMENTS_DRAFT_RECOVERY_V0_1_20261119.md)目前`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，尚未获得Owner批准。建议先审有资格用户反馈及安全摘要、主动选附件及会话内暂存与失权隔离。
+- 此前初稿“待审O06-R2/R3、O07-R2”仅为历史时点，不覆盖本轮决定；A6正式会议仍暂停，Codex未获新V2实施授权。
+
+---
+
 # 2026-11-19 最新增量：O06-D1/O07-D1确认，后续细节待审
 
 - [Owner O06/O07决定](../decisions/OWNER_V2_O06_O07_NOTIFICATION_READ_DERIVED_REVIEW_20261119.md)确认**O06-D1**：合法单条详情实际打开后标读该条、不因进入频道全标读；业务待办独立于已读。确认**O07-D1**：用途撤销后停止该用途下不再有权的继续使用；原始事实纠错后受影响派生结果需核查，**不自动重算或发布**。
