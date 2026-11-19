@@ -1,3 +1,11 @@
+# 2026-11-19：O06/O07确认后，网页顾问进入排序与历史处理细化
+
+- [O06-D1/O07-D1 Owner确认](../decisions/OWNER_V2_O06_O07_NOTIFICATION_READ_DERIVED_REVIEW_20261119.md)已生效；下一审阅为[O06通知排序/失效历史与O07派生结果历史恢复 V0.1](../product/ELITESYNC_V2_O06_O07_FOLLOWUP_SORT_HISTORY_AND_DERIVED_RECOVERY_V0_1_20261119.md)。新稿`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，不推断排序与历史保留已经获批。
+- 已读≠待办解决，内容失权≠账号整体失效，撤销单一用途≠删除全部事实。未接入真实核验与真实Push继续标不可用；旧NOT_RUN/UNKNOWN维持。
+- A6正式UI会议继续暂缓；仅网页GPT顾问设计/文档工作，本地Codex无新V2实施授权；不启动设备/模拟器，不改APP/API/Web/数据库，不建APK，不合main、不发布。43份原PNG远端仍PENDING_BINARY_UPLOAD。
+
+---
+
 # 2026-11-19：O04/O05 Owner确认；顾问仅审O06/O07
 
 - [Owner O04/O05决定](../decisions/OWNER_V2_O04_O05_DATA_REUSE_AVATAR_PUBLICATION_20261119.md)已生效：合法按用途复用、本人预览与对外发布分离，匹配形象版本选择默认**方案A仅未来候选**，既有候选快照仍受当前受众与Block门禁，不自动追溯新版。
