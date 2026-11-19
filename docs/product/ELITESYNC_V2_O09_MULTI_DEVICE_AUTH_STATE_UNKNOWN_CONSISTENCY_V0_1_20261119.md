@@ -1,3 +1,11 @@
+# 2026-11-19 Owner审阅增量（优先于下方原V0.1历史待审标记）
+
+Owner在顾问明确询问O09-D1与O09-D2后回复“**我接受这两项，请继续**”。正式接受**受保护跨设备/切号/旧深链重验与安全占位（D1）**、**关键写入UNKNOWN只读查权威结果、无法确认不自动重放（D2）**的概念原则。独立[Owner确认记录](../decisions/OWNER_V2_O09_CROSS_DEVICE_AUTH_UNKNOWN_ACCEPTANCE_20261119.md)。
+
+原V0.1中的`OWNER_REVIEW_PENDING`仅属于当时阶段；现在概念已接受，**未证明跨设备零延迟撤权、离线许可、现有幂等API、实际实现或测试PASS**。下一阶段[设计剩余决策与收口门槛](ELITESYNC_V2_REMAINING_DESIGN_DECISIONS_AND_GATES_V0_1_20261119.md)属于`ADVISOR_CONSOLIDATION_DRAFT / OWNER_REVIEW_PENDING`。不启动Codex或正式UI会议。
+
+---
+
 # EliteSync V2｜O09 跨设备会话、权限重验与写入UNKNOWN一致性（顾问设计V0.1）
 
 日期：2026-11-19（Asia/Singapore）  
