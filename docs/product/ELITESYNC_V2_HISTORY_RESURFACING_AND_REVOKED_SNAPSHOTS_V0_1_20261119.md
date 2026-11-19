@@ -1,3 +1,11 @@
+# 2026-11-19 Owner HIS-D1/D2 方案A接受增量（最新有效，优先于下方原稿状态）
+
+Owner明确回复“**我接受这两项，请保存到github后继续**”，正式确认[HIS-D1 A / HIS-D2 A Owner决定](../decisions/OWNER_V2_HIS_D1_D2_HISTORICAL_ACCESS_AND_SNAPSHOTS_20261119.md)：旧评论重现须当前作品读权与原历史评论受众、现行Block/其它合法条件同时成立，不能核验默认隐藏；既有候选仍有权可沿原合法快照，失权后敏感旧快照隐藏，只有原业务入口仍合法且无泄密时可用中性状态，否则隐藏入口安全返回。
+
+下方`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`仅是原稿时点，不覆盖此两项正式概念决定。**保留/删除期限、合法例外、实际缓存清理时效和后端数据模型仍OPEN**。新讨论入口：[RET-D1/D2历史保留、删除请求与用途撤销顾问草案](ELITESYNC_V2_HISTORY_RETENTION_DELETION_PURPOSE_REVOCATION_V0_1_20261119.md)，仅`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，不自动成为Owner决定或Codex实现任务。
+
+---
+
 # EliteSync V2｜历史评论再展示、旧候选快照与用途撤销的权限边界 V0.1
 
 日期：2026-11-19（Asia/Singapore）  
