@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问最新入口：HIS-D1/D2已确认，RET历史数据治理草案待审
+
+- [Owner HIS-D1/D2概念接受](docs/decisions/OWNER_V2_HIS_D1_D2_HISTORICAL_ACCESS_AND_SNAPSHOTS_20261119.md)明确历史评论在原受众/当前作品读权交集内合法再现及失权旧候选快照隐藏；不能据此认定永久删除/保留期限已裁决。
+- 当前顾问草案：[RET-D1/D2保留、删除请求与具名用途撤销](docs/product/ELITESYNC_V2_HISTORY_RETENTION_DELETION_PURPOSE_REVOCATION_V0_1_20261119.md)，`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`。任何新建议不可自动变成Owner决定，当前状态以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)、[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为准。
+- **DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED**；不改APP/API/Web/数据库，不启动设备/模拟器/APK、main、发布。真实核验/Push未接入、历史NOT_RUN/UNKNOWN及43原PNG备份问题保持。
+
+---
+
 # 2026-11-19 GPT顾问最新入口：CMT-T1方案A已确认，HIS历史权限待审
 
 - [CMT-T1 Owner接受](docs/decisions/OWNER_V2_CMT_T1_SELF_TO_FRIENDS_COMMENTS_20261119.md)确认SELF→FRIENDS时隐式OFF可以明示建议FRIENDS_ONLY供作者确认，显式OFF保留，无法区分也保留OFF；普通FRIENDS+FRIENDS_ONLY不变。
