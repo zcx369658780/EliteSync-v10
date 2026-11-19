@@ -1,3 +1,10 @@
+# 2026-11-19 S1-A后工程差距集中路线图V0.1（最新顾问提案）
+
+- [V2 S1-A后四阶段集中路线图](ELITESYNC_V2_POST_S1_CONSOLIDATED_ENGINEERING_ROADMAP_V0_1_20261119.md)是根据已验收的真实静态源码差距制订的**顾问规划**：阶段A安全底线、B首页/评论、C资料与对象删除、D旅程/通知/体验，真实身份/真Push/合法与资产三条并行依赖。Owner本轮仅授权**规划**，没有批准路线图作为新工程任务或Codex实施。
+- [S1-A限定验收](../workflow/V2_S1A_READ_ONLY_GAP_AUDIT_ADVISOR_ACCEPTANCE_20261119.md)仍`ACCEPTED_WITH_RESERVATIONS / S1_CLOSED_AT_REPORT`。当前编排不更改NEW-PC、EDGE及O01–O12既有Owner范围，NEW-PC-04/05“延期”仍仅为建议。G01–G10动态`NOT_RUN`及外部/合法/资产OPEN持续。
+
+---
+
 # 2026-11-19 S1-A根目录及固定GitHub治理资料只读补充授权（最新）
 
 - [新Owner具名补充授权](../decisions/OWNER_V2_S1A_ROOT_AND_REMOTE_GOVERNANCE_READ_SUPPLEMENT_20261119.md)：只读R1–R5的**唯一工程根**改为Owner正式指定`D:\EliteSync-v10-product-v1015-20261101`，并新增只读固定GitHub治理文档权限；排除`D:\EliteSync-v10`为本次源码目标，保留全部未提交文件，不切分支/同步。
