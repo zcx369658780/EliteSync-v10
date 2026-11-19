@@ -1,3 +1,11 @@
+# 2026-11-19：OBJ-D1已明确接受，进入DATA来源/用途/外显版本概念审阅
+
+- [Owner OBJ-D1确认](../decisions/OWNER_V2_OBJ_D1_POST_TAKEDOWN_THIRD_PARTY_COMMENTS_ACCEPTANCE_20261119.md)已接受撤下作品后的第三方评论阅读阻断、作者删除请求与第三方评论者权利分开，不代表真实删除/保留合同已具备。
+- 当前顾问入口：[DATA-D1/D2来源事实、具名用途及外显发布合同V0.1](../product/ELITESYNC_V2_SOURCE_PURPOSE_PUBLICATION_CONTRACT_REVIEW_V0_1_20261119.md)，为`ADVISOR_PRODUCT_CONTRACT_DRAFT / OWNER_REVIEW_PENDING`。聚焦首次跨用途授权的最小字段披露、原始事实纠错后依赖派生结果的新发布门禁；既有O04/O05/O07规则保持，具体API和跨设备动态证据OPEN。
+- **DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED**：不得派V2新工程任务，不编辑APP/API/Web/DB，不运行手机/模拟器、不建APK、不合main、不发布；真核验/Push未接入、旧1011804 NOT_RUN/UNKNOWN及43 PNG归档缺口保留。
+
+---
+
 # 2026-11-19：RET-D1/D2概念确认，转P0未决产品合同与证据边界整理
 
 - [Owner RET-D1/D2确认](../decisions/OWNER_V2_RET_D1_D2_REVOCATION_DELETION_CONCEPT_ACCEPTANCE_20261119.md)已生效：撤销、真实受理的删除请求、可核实删除完成严格区别；各对象/用途/第三方权利及合法例外分开处理。不代表任何具体期限、实际后台API或已完成删除。
