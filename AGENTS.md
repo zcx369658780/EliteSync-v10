@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问最新入口：S02及S03/S04接受，S05–S08逐屏待审
+
+- [S02-D1/S03/S04-D2 Owner决定](docs/decisions/OWNER_V2_S02_D1_S03_S04_D2_ACCEPTANCE_20261119.md)已接受：Lifestyle点选后确切保存成功才自动进题，失权/UNKNOWN停留；首页安全空态不泄漏受限内容和Block身份。其余逐屏细节未全部批准。
+- [S05–S08匹配准备及关系许可逐屏草案](docs/product/ELITESYNC_V2_S05_S08_MATCH_CONNECTION_CONSENT_SCREEN_REVIEW_V0_1_20261119.md)为`ADVISOR_PER_SCREEN_DRAFT / OWNER_REVIEW_PENDING`；真实核验未接入、报名禁用，未来提案/Connection/Consent示例非现有成功链。以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部与[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为准。
+- A6正式会议继续暂缓，Codex无新V2工程授权；不改APP/API/Web/数据库、不运行设备/模拟器、不建APK、不合main、不发布。43原PNG远端仍待补齐，旧NOT_RUN/UNKNOWN不改判。
+
+---
+
 # 2026-11-19 GPT顾问最新入口：S01–S16框架接受，首批S01–S04待审
 
 - [Owner S01–S16检查框架接受](docs/decisions/OWNER_V2_S01_S16_REVIEW_FRAMEWORK_ACCEPTANCE_20261119.md)仅确认框架与分批审阅法，不等于逐屏布局/具体按钮/代码合同冻结。[S01–S04顾问逐屏检查草案](docs/product/ELITESYNC_V2_S01_S04_FIRST_JOURNEY_SCREEN_REVIEW_V0_1_20261119.md)是当前`ADVISOR_PER_SCREEN_DRAFT / OWNER_REVIEW_PENDING`。
