@@ -1,3 +1,11 @@
+# 2026-11-19 最新顾问规划：V2工程差距集中路线图V0.1，实施仍禁止
+
+- Owner明确同意**路线图规划**，不等于批准代码或动态测试。现行顾问规划：[V2 S1-A后四阶段+三并行线工程差距路线图](docs/product/ELITESYNC_V2_POST_S1_CONSOLIDATED_ENGINEERING_ROADMAP_V0_1_20261119.md)，依据[S1-A限定验收](docs/workflow/V2_S1A_READ_ONLY_GAP_AUDIT_ADVISOR_ACCEPTANCE_20261119.md)。A身份/旧候选快照/UNKNOWN基础安全；B首页/历史评论；C资料用途/派生/对象级删除；D连续关系/通知/整体UI。真实身份与Push供应商以及法务/资产为外部并行依赖。
+- `ADVISOR_ROADMAP_PROPOSAL / S1_CLOSED_AT_REPORT / V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED`。不将此文件当成Codex任务，不修改APP/API/Web/DB、运行测试/设备、联系真实供应商、main合并或发布。Owner未来如启动阶段A必须单独明确授权、当期唯一工程根与可执行范围；路线上顾问每阶段集中审阅，Codex获授权后自治拆版本与自验。
+- G01–G10动态均`NOT_RUN`，旧1011804历史`UNKNOWN/NOT_RUN`、43原PNG`PENDING_BINARY_UPLOAD`、F-01`READABILITY_PARTIAL`保持，**当前没有新动态工程证据**。
+
+---
+
 # 2026-11-19 S1-A验收最新权威：限定范围通过、一次性核查已结束，实施仍未授权
 
 - Owner已转交本地Codex S1-A 只读核查报告；网页顾问完成[独立限定验收](docs/workflow/V2_S1A_READ_ONLY_GAP_AUDIT_ADVISOR_ACCEPTANCE_20261119.md)：`S1_A_ACCEPTED_WITH_RESERVATIONS / S1_CLOSED_AT_REPORT`。报告覆盖R1–R5，远端固定工程HEAD `1d8b485bf4f314d42431bb62a293a3fef9e9c8af`可回读，身份、评论原受众、旧候选形象版本、对象级删除及UNKNOWN重试等关键风险得到了静态源码抽样印证；本地零写入是Codex自述、网页顾问未直接本地验真。
