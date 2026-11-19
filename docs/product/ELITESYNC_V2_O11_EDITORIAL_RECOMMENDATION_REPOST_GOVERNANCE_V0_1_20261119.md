@@ -1,3 +1,11 @@
+# 2026-11-19 Owner接受增量（最新有效，优先于下方V0.1历史待审状态）
+
+Owner已明确确认O11-D1、O11-D2、O11-D3全部三项概念原则，权威见[Owner O11接受记录](../decisions/OWNER_V2_O11_EDITORIAL_REPOST_SORT_CONCEPT_ACCEPTANCE_20261119.md)。其中：官方与用户作品分域；转载用户素材为访客可读官方内容前需对素材/用途/受众/版本独立授权；以可解释的人工编辑/专题/时间线为初期组织方向，不默认参与度最大化。下方`ADVISOR_PROPOSAL/OWNER_REVIEW_PENDING`仅代表原稿形成时的状态。
+
+官方编辑/审核权限、转载法律条款、具体排序算法、快照撤回与数据留存仍OPEN；原1011804并未因接受概念而取得新功能PASS。下一步仅[O10/O12 UI与QA顾问概念草案](ELITESYNC_V2_O10_O12_LOW_DENSITY_UI_ACCESSIBILITY_QA_V0_1_20261119.md)，尚待Owner审阅。A6正式会议与Codex新V2实施继续停止。
+
+---
+
 # EliteSync V2｜O11 首页编辑精选、站内公开作品与转载授权（顾问方案 V0.1）
 
 日期：2026-11-19（Asia/Singapore）  
