@@ -1,3 +1,11 @@
+# 2026-11-19：CMT-T1方案A接受；网页顾问接续历史评论与旧快照权限审阅
+
+- [CMT-T1 Owner确认](../decisions/OWNER_V2_CMT_T1_SELF_TO_FRIENDS_COMMENTS_20261119.md)已生效，尊重SELF→FRIENDS受众切换前的显式OFF，隐式OFF仅在明示并经作者确认后建议FRIENDS_ONLY；无法区分保留OFF，绝非全局默认关闭评论。
+- 当前顾问入口：[历史评论再展示、旧匹配快照及用途撤回权限草案](../product/ELITESYNC_V2_HISTORY_RESURFACING_AND_REVOKED_SNAPSHOTS_V0_1_20261119.md)，`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`；HIS-D1/D2仅建议合法历史重现与失权敏感快照隐藏，不设实际保留或删除期限。
+- **DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED**：不下新V2开发任务，不改APP/API/Web/数据库，不运行设备/模拟器、不建APK、不合main、不发布；真实核验/Push未接入，旧UNKNOWN/NOT_RUN及43份原PNG远端备份缺口保持。
+
+---
+
 # 2026-11-19：SELF评论特例与FRIENDS好友评论意图区分，继续切换合同顾问审阅
 
 - [Owner最新澄清](../decisions/OWNER_V2_SELF_COMMENT_DEFAULT_CLARIFICATION_20261119.md)确认：普通作品默认`FRIENDS + FRIENDS_ONLY`，陌生人默认不能评论，有权好友可评论；`SELF`仅本人可读，`OFF`作为SELF特例默认。不能让SELF作品在不扩大阅读受众时供好友评论。
