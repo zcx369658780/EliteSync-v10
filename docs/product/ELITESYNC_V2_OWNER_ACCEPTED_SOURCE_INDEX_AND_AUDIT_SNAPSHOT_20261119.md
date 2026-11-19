@@ -1,3 +1,11 @@
+# 2026-11-19 EDGE-D1方案A已具名接受；EDGE-D2仍待审（最新增量）
+
+- [Owner EDGE-D1方案A](../decisions/OWNER_V2_EDGE_D1_CONDITIONAL_INDEPENDENT_REPLIES_AFTER_PARENT_HIDDEN_ACCEPTANCE_20261119.md)确认：父评论撤回/隐藏后，仅在第三方回复自身当前合法可读、上下文不泄密且可核实的情况下，允许以不暴露父评论/身份/原因的中性结构占位继续展示独立回复；无法核实则隐藏受影响分支，**不物理删除**其他人的回复原始记录。
+- [DESIGN-AUDIT-03](../workflow/V2_STATIC_COMMENT_EXCEPTION_AUDIT_03_20261119.md)中`EDGE-D2`（被作者隐藏评论的评论者如何获知/复核）仍`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，没有因本次接受自动批准。原报告中“EDGE-D1/D2均待审”属于当期历史快照。
+- 只确认概念展示规则；真实历史评论/媒体/引用、回复树与通知精确状态、合法保留与动态QA继续`OPEN/NOT_RUN`。`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`持续。
+
+---
+
 # 2026-11-19 DESIGN-AUDIT-03异常评论场景审阅（最新顾问增量）
 
 - [DESIGN-AUDIT-03 12项评论/删除异常场景静态审阅](../workflow/V2_STATIC_COMMENT_EXCEPTION_AUDIT_03_20261119.md)已形成；NEW-PC-01/02/03的具名Owner**概念接受不变**，没有新增自动批准的内容管理精确细节。
