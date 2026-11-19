@@ -35,6 +35,12 @@
 | 43份原PNG远端二进制备份 | 依据现行文档仍`PENDING_BINARY_UPLOAD`；本轮未逐份核查 |
 | 固定旧软件`10.1.18-dev / 1011804`与UI-AUDIT-01 | 原`NOT_RUN/UNKNOWN`维持，不改判 |
 
+## 最新Owner EDGE-D1方案A已确认；EDGE-D2仍为顾问待审
+
+- [EDGE-D1具名Owner方案A决定](../decisions/OWNER_V2_EDGE_D1_CONDITIONAL_INDEPENDENT_REPLIES_AFTER_PARENT_HIDDEN_ACCEPTANCE_20261119.md)：父评论撤回或被隐藏时，第三方独立回复仅在当前作品/回复原受众、Block与合法上下文可核实且不泄密的条件下可用中性结构占位继续展示；一旦不能确认则折叠/隐藏受影响分支，**不**因此删除其他人的原始回复。
+- [DESIGN-AUDIT-03](V2_STATIC_COMMENT_EXCEPTION_AUDIT_03_20261119.md)中的`EDGE-D2`评论者获知隐藏状态、复核入口仍`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`。原静态报告中EDGE-D1“待审”按旧时点解释。精确UI/权限字段/通知/申诉/Safety证据和实际动态能力仍`OPEN / NOT_RUN`。
+- `DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`不变，不因设计选择启动新工程或正式会议。
+
 ## DESIGN-AUDIT-03：评论撤回/隐藏后的异常场景静态审阅（新增）
 
 - [DESIGN-AUDIT-03静态报告](V2_STATIC_COMMENT_EXCEPTION_AUDIT_03_20261119.md)基于NEW-PC-01/02/03与HIS/RET/OBJ/O06/O08/O09/S15对**12个异常场景**做了文本规则核查，未在指定具名Owner原则范围内发现直接冲突；但回复树、通知、恢复/申诉和媒体真实隔离仍`OPEN`，**所有动态QA继续`NOT_RUN`**。
