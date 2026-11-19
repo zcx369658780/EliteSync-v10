@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：DATA-D1/D2 Owner已确认；P0三分流及G01–G10安全阻断静态矩阵已整理
+
+**`DATA_D1_A_DATA_D2_A_OWNER_CONCEPT_ACCEPTED / P0_TRIAGE_AND_FAIL_CLOSED_ADVISOR_DRAFT / ALL_NEW_QA_NOT_RUN / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- [Owner DATA-D1/D2接受](../decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)：新具名用途缺许可时按必要字段最小明确申请且保留拒绝/返回；已获准的值合法复用；来源纠错真实影响且需核查的结果不能作为已验证结果新对外发布，不阻断无依赖的独立业务。
+- 两份顾问静态整理（均**非Owner已批工程合同**）：[剩余P0产品/外部/工程依赖三分流](../product/ELITESYNC_V2_P0_OPEN_TRIAGE_PRODUCT_EXTERNAL_ENGINEERING_V0_1_20261119.md)及[G01–G10安全阻断与未来证据矩阵](../product/ELITESYNC_V2_P0_FAIL_CLOSED_SCREEN_AND_EVIDENCE_MATRIX_V0_1_20261119.md)。前者明确待决主体/外部依据/后续技术核实，后者逐场景列合法可见内容、禁止假成功与未来证据；所有新动态QA保持`NOT_RUN`。
+- S01–S16四批具名增量、CMT/HIS/RET/OBJ/DATA既有Owner确认保持；真实实人核验与真实Push未接入，旧`10.1.18-dev / 1011804`及UI-AUDIT-01 `NOT_RUN/UNKNOWN`不改判；43份原PNG远端仍`PENDING_BINARY_UPLOAD`，治理分支不等于本地工程代码已同步。
+- **A6正式UI会议继续暂缓、Codex没有新V2实施授权**：不改APP/API/Web/DB、不运行设备或模拟器、不建APK、不合main、不发布，不接真实供应商。
+
+---
+
 # 当前入口 2026-11-19：DATA-D1/D2方案A获Owner认可；剩余P0三分流顾问汇总已出稿
 
 **`DATA_D1_A_DATA_D2_A_OWNER_CONCEPT_ACCEPTED / P0_TRIAGE_ADVISOR_DRAFT / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
