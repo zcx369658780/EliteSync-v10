@@ -87,6 +87,41 @@ Future<void> mount(
 }
 
 void main() {
+  testWidgets(
+    'unknown participation write requires a fresh authorized read before another command',
+    (tester) async {
+      var writes = 0;
+      var reads = 0;
+      await mount(
+        tester,
+        const SlowDatingJourneyPage(),
+        FakeApi((method, path, body) async {
+          if (method == 'PUT') {
+            writes++;
+            throw const RelationshipFailure('timeout');
+          }
+          reads++;
+          return journey();
+        }),
+      );
+      await tester.tap(find.text('保存草稿'));
+      await tester.pumpAndSettle();
+      expect(writes, 1);
+      expect(find.byKey(const ValueKey('participation-opt_in')), findsNothing);
+      await tester.tap(find.byTooltip('刷新'));
+      await tester.pumpAndSettle();
+      expect(reads, 2);
+      expect(writes, 1);
+      expect(
+        tester
+            .widget<OutlinedButton>(
+              find.byKey(const ValueKey('participation-opt_in')),
+            )
+            .onPressed,
+        isNotNull,
+      );
+    },
+  );
   testWidgets('retryable failed round does not imply recovery has started', (
     tester,
   ) async {

@@ -513,6 +513,7 @@ class ProfileShowcasePublicationController
     final current =
         state.asData?.value ?? const ProfileShowcasePublicationUiState();
     if (current.publishing ||
+        current.error != null ||
         !current.isPublished ||
         _session?.isLoggedIn != true) {
       return;

@@ -108,8 +108,15 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
     String path, [
     Map<String, dynamic>? body,
   ]) async {
+    if (data == null) return;
     final result = await run(
       () => ref.read(relationshipApiProvider).call(method, path, body),
+      onFailure: (_) {
+        // UNKNOWN is not permission to issue a fresh decision with a new request key.
+        data = null;
+        onAuthorityChanged();
+        error = '操作结果尚未确认，请先刷新当前状态核对。';
+      },
     );
     if (result != null) {
       ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();

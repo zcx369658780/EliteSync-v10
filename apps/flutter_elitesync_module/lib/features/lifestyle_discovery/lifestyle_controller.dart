@@ -10,6 +10,7 @@ class LifestyleController extends ChangeNotifier {
     required this.readDraft,
     required this.writeDraft,
     required this.isCurrent,
+    this.readCommandResult,
   });
 
   final Future<Map<String, dynamic>> Function() read;
@@ -17,6 +18,8 @@ class LifestyleController extends ChangeNotifier {
   final Future<Map<String, dynamic>?> Function() readDraft;
   final Future<bool> Function(Map<String, dynamic>) writeDraft;
   final bool Function() isCurrent;
+  final Future<Map<String, dynamic>> Function(Map<String, dynamic>)?
+  readCommandResult;
   Map<String, dynamic>? data;
   Map<String, dynamic>? pending;
   String? error;
@@ -49,7 +52,7 @@ class LifestyleController extends ChangeNotifier {
       busy = false;
       _notify();
     }
-    if (current && pending != null) await retry();
+    if (current && pending != null) await reconcile();
   }
 
   Future<bool> answer(String sceneId, String optionId) =>
@@ -67,10 +70,66 @@ class LifestyleController extends ChangeNotifier {
       'request_key': const Uuid().v4(),
       ...extra,
     };
-    return retry();
+    return _sendPending();
   }
 
   Future<bool> retry() async {
+    if (!current || busy || pending == null || conflict) return false;
+    final status = await reconcile();
+    if (!current) return false;
+    if (status == 'APPLIED') return pending == null;
+    // This method is an explicit user action; recovery/load never calls it.
+    return status == 'NOT_APPLIED' && !conflict ? _sendPending() : false;
+  }
+
+  Future<String> reconcile() async {
+    if (!current || busy || pending == null) return 'UNKNOWN';
+    busy = true;
+    error = null;
+    _notify();
+    try {
+      final query = readCommandResult;
+      if (query == null) throw StateError('Result query unavailable');
+      final result = await query(Map.of(pending!));
+      if (!current) return 'UNKNOWN';
+      final status = result['command_status'];
+      final latest = result['current'];
+      if (latest is! Map) throw StateError('Missing authoritative state');
+      data = Map<String, dynamic>.from(latest);
+      if (status == 'APPLIED') {
+        final cleared = await writeDraft({});
+        if (!current) return 'UNKNOWN';
+        if (!cleared) throw StateError('Local receipt cleanup unconfirmed');
+        pending = null;
+        conflict = false;
+        return 'APPLIED';
+      }
+      conflict =
+          status == 'CONFLICT' ||
+          (status == 'NOT_APPLIED' &&
+              (data!['revision'] != pending!['expected_revision'] ||
+                  data!['questionnaire_version'] !=
+                      pending!['questionnaire_version']));
+      error = conflict
+          ? '答案版本已变化，本机选择未重新提交。'
+          : status == 'NOT_APPLIED'
+          ? '服务端确认尚未保存，可按原选择重试。'
+          : '保存结果尚未确认，请联网查询；不会自动重新提交。';
+      return conflict
+          ? 'CONFLICT'
+          : status == 'NOT_APPLIED'
+          ? 'NOT_APPLIED'
+          : 'UNKNOWN';
+    } catch (_) {
+      if (current) error = '保存结果尚未确认，请联网查询；不会自动重新提交。';
+      return 'UNKNOWN';
+    } finally {
+      busy = false;
+      _notify();
+    }
+  }
+
+  Future<bool> _sendPending() async {
     if (!current || busy || pending == null || conflict) return false;
     busy = true;
     error = null;
@@ -86,7 +145,7 @@ class LifestyleController extends ChangeNotifier {
       final latest = await send(body);
       if (!current) return false;
       data = latest;
-      // Failure to clear is recoverable by replaying the identical command.
+      // A lost local receipt is recovered through the read-only command query.
       final cleared = await writeDraft({});
       if (!current) return false;
       if (!cleared) {

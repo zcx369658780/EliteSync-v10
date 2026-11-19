@@ -12,12 +12,72 @@ Map<String, dynamic> snapshot(int revision) => {
 
 void main() {
   test(
+    'a late command query cannot clear or apply a previous account draft',
+    () async {
+      var current = true;
+      final reply = Completer<Map<String, dynamic>>();
+      var writes = 0;
+      final controller = LifestyleController(
+        read: () async => snapshot(0),
+        readCommandResult: (_) => reply.future,
+        send: (_) async => fail('No write during reconciliation'),
+        readDraft: () async => {
+          'pending': {'request_key': 'old-key'},
+        },
+        writeDraft: (_) async {
+          writes++;
+          return true;
+        },
+        isCurrent: () => current,
+      );
+      final loading = controller.load();
+      await Future<void>.delayed(Duration.zero);
+      current = false;
+      reply.complete({'command_status': 'APPLIED', 'current': snapshot(1)});
+      await loading;
+      expect(writes, 0);
+      expect(controller.data?['revision'], 0);
+      expect(controller.pending?['request_key'], 'old-key');
+      controller.dispose();
+    },
+  );
+
+  test(
+    'an unavailable authoritative query never permits retry writes',
+    () async {
+      var sends = 0;
+      final controller = LifestyleController(
+        read: () async => snapshot(0),
+        readCommandResult: (_) async =>
+            throw const RelationshipFailure('offline'),
+        send: (_) async {
+          sends++;
+          return snapshot(1);
+        },
+        readDraft: () async => {
+          'pending': {'request_key': 'old-key'},
+        },
+        writeDraft: (_) async => true,
+        isCurrent: () => true,
+      );
+      await controller.load();
+      expect(await controller.retry(), false);
+      expect(sends, 0);
+      expect(controller.pending, isNotNull);
+      controller.dispose();
+    },
+  );
+  test(
     'durable command precedes network and retry preserves request identity',
     () async {
       Map<String, dynamic>? draft;
       final sent = <Map<String, dynamic>>[];
       final controller = LifestyleController(
         read: () async => snapshot(0),
+        readCommandResult: (body) async => {
+          'command_status': 'NOT_APPLIED',
+          'current': snapshot(0),
+        },
         send: (body) async {
           expect(draft?['pending'], body);
           sent.add(Map.of(body));
@@ -43,7 +103,7 @@ void main() {
   );
 
   test(
-    'cold restart replays encrypted pending with original CAS and key',
+    'cold restart queries encrypted pending without replaying a lost reply',
     () async {
       final pending = {
         'action': 'answer',
@@ -55,9 +115,12 @@ void main() {
       };
       final controller = LifestyleController(
         read: () async => snapshot(1),
-        send: (body) async {
+        readCommandResult: (body) async {
           expect(body, pending);
-          return snapshot(1);
+          return {'command_status': 'APPLIED', 'current': snapshot(1)};
+        },
+        send: (body) async {
+          fail('Recovery must never resend');
         },
         readDraft: () async => {'pending': pending},
         writeDraft: (_) async => true,
@@ -69,6 +132,38 @@ void main() {
       controller.dispose();
     },
   );
+
+  for (final status in ['NOT_APPLIED', 'UNKNOWN', 'CONFLICT']) {
+    test('restoring $status never writes and preserves original key', () async {
+      final pending = {
+        'request_key': 'original-key',
+        'expected_revision': 0,
+        'questionnaire_version': 'lifestyle_v1',
+        'action': 'skip',
+      };
+      var sends = 0;
+      final controller = LifestyleController(
+        read: () async => snapshot(0),
+        readCommandResult: (_) async => {
+          'command_status': status,
+          'current': snapshot(0),
+        },
+        send: (_) async {
+          sends++;
+          return snapshot(1);
+        },
+        readDraft: () async => {'pending': pending},
+        writeDraft: (_) async => true,
+        isCurrent: () => true,
+      );
+      await controller.load();
+      expect(sends, 0);
+      expect(controller.pending, pending);
+      expect(await controller.retry(), status == 'NOT_APPLIED');
+      expect(sends, status == 'NOT_APPLIED' ? 1 : 0);
+      controller.dispose();
+    });
+  }
 
   test(
     'conflict keeps draft and requires explicit discard before refresh',

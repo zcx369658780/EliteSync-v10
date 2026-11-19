@@ -27,11 +27,20 @@ final lifestyleControllerProvider = Provider.autoDispose<LifestyleController>((
       session?.isLoggedIn == true &&
       ref.read(sessionProvider).asData?.value.user?.id == id &&
       ref.read(sessionProvider).asData?.value.accessToken == token;
-  Future<Map<String, dynamic>> call(Map<String, dynamic>? body) async {
+  Future<Map<String, dynamic>> call(
+    Map<String, dynamic>? body, {
+    bool resultQuery = false,
+  }) async {
     if (!current()) throw const RelationshipFailure('session changed');
     final options = Options(extra: {requestSessionGuardKey: current});
     const path = '/api/v1/profile/lifestyle-discovery';
-    final result = body == null
+    final result = resultQuery
+        ? await client.get(
+            '$path/command-result',
+            query: body,
+            options: options,
+          )
+        : body == null
         ? await client.get(path, options: options)
         : await client.put(path, body: body, options: options);
     if (!current()) throw const RelationshipFailure('session changed');
@@ -43,6 +52,7 @@ final lifestyleControllerProvider = Provider.autoDispose<LifestyleController>((
 
   final controller = LifestyleController(
     read: () => call(null),
+    readCommandResult: (body) => call(body, resultQuery: true),
     send: call,
     readDraft: () => cache.readAfterCurrentAuthorization(
       lifestyleDraftKey,

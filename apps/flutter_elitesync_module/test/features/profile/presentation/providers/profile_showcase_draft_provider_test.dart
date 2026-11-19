@@ -173,6 +173,8 @@ class _FakePublicationRepository
       ProfileShowcasePublicationEntity.notPublished;
   bool throwOnPublish;
   bool publishCalled = false;
+  bool throwOnWithdraw = false;
+  int withdrawCalls = 0;
   int? observedDraftRevision;
   int? observedPublicationRevision;
 
@@ -211,6 +213,8 @@ class _FakePublicationRepository
   Future<ProfileShowcasePublicationEntity> withdraw({
     required int expectedRevision,
   }) async {
+    withdrawCalls++;
+    if (throwOnWithdraw) throw Exception('lost reply');
     publication = ProfileShowcasePublicationEntity(
       publicationStatus: 'withdrawn',
       revision: expectedRevision + 1,
@@ -823,6 +827,34 @@ void main() {
       expect(state.isPublished, isFalse);
       expect(state.message, isNull);
       expect(state.error, '发布操作结果未确认，请刷新发布状态核对。');
+    },
+  );
+
+  test(
+    'unknown withdrawal cannot write again until publication is read',
+    () async {
+      final repo = _FakePublicationRepository()..throwOnWithdraw = true;
+      repo.publication = const ProfileShowcasePublicationEntity(
+        publicationStatus: 'published',
+        publicDisplayEligible: true,
+        revision: 1,
+      );
+      final container = await _workflowContainer(
+        _FakeDraftRepository(),
+        publication: repo,
+      );
+      addTearDown(container.dispose);
+      final notifier = container.read(
+        profileShowcasePublicationControllerProvider.notifier,
+      );
+      await notifier.withdraw();
+      await notifier.withdraw();
+      expect(repo.withdrawCalls, 1);
+      await notifier.refreshPublication();
+      expect(repo.withdrawCalls, 1);
+      repo.throwOnWithdraw = false;
+      await notifier.withdraw();
+      expect(repo.withdrawCalls, 2);
     },
   );
 
