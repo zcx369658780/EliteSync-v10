@@ -1,3 +1,10 @@
+# 2026-11-19 第三批S09–S12具名决定接受，第四批S13–S16待审
+
+- [Owner S09-D1/S11-D2决定](../decisions/OWNER_V2_S09_D1_S11_D2_ACCEPTANCE_20261119.md)已接受：通知处理后优先回安全通知频道/可恢复列表位置，失权不回填；形象对外发布须显示拟发布和当前版本差异、受众及O05方案A默认未来有权候选的影响摘要并明确确认。
+- [S13–S16异常/失权/作品及官方内容逐屏草案](ELITESYNC_V2_S13_S16_ERRORS_CONTENT_PUBLISH_EDITORIAL_SCREEN_REVIEW_V0_1_20261119.md)状态`ADVISOR_PER_SCREEN_DRAFT / OWNER_REVIEW_PENDING`；新增S15-D1受众扩大前摘要及S16-D2编辑推荐/转载分流均是顾问建议，不能提前称Owner接受。框架已认可，但16屏具体实现尚未全合同冻结。
+
+---
+
 # 2026-11-19 第二批逐屏增量：S05-D1、S07/S08-D2已获得Owner认可
 
 - [第二批Owner决策](../decisions/OWNER_V2_S05_D1_S07_S08_D2_ACCEPTANCE_20261119.md)：S05突显本人当前可完成任务且外部核验不可用另列；S07/S08未来可运行时连续导航、各阶段双方独立确认及当前业务权限不合并。没有真实实人供应商时不能展示真实报名成功链。
