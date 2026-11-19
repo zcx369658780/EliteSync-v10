@@ -1,3 +1,11 @@
+# 2026-11-19：O06/O07第二轮概念接受，当前仅O08顾问审阅
+
+- [Owner接受O06排序/失效历史与O07派生历史](../decisions/OWNER_V2_O06_R2_R3_O07_R2_ACCEPTANCE_20261119.md)；保留真实历史保留期限、数据删除、历史快照与工程行为OPEN，不宣称动态PASS。
+- 当前网页GPT顾问讨论入口：[O08异常反馈与附件/草稿恢复V0.1](../product/ELITESYNC_V2_O08_ERROR_FEEDBACK_ATTACHMENTS_DRAFT_RECOVERY_V0_1_20261119.md)，状态`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`。只设计合法反馈入口、安全摘要、可选附件、当前会话内暂存与账号隔离，不预设实际后台上传、自动脱敏和24小时保存。
+- **DESIGN_ONLY / CODEX_NOT_AUTHORIZED**；A6会议仍暂缓，不派新V2工程任务、不操作APP/API/Web/DB、手机、模拟器、APK、main或发布。43份原PNG仍待GitHub二进制补齐；不将远端文档当作本地实时工程状态。
+
+---
+
 # 2026-11-19：O06/O07确认后，网页顾问进入排序与历史处理细化
 
 - [O06-D1/O07-D1 Owner确认](../decisions/OWNER_V2_O06_O07_NOTIFICATION_READ_DERIVED_REVIEW_20261119.md)已生效；下一审阅为[O06通知排序/失效历史与O07派生结果历史恢复 V0.1](../product/ELITESYNC_V2_O06_O07_FOLLOWUP_SORT_HISTORY_AND_DERIVED_RECOVERY_V0_1_20261119.md)。新稿`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，不推断排序与历史保留已经获批。
