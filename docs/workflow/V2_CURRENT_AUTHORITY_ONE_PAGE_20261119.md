@@ -11,6 +11,12 @@
 - 不让KYC/Push未接入无谓阻断独立安全软件工作，但真实报名/自动参与、正式Push与依法必须处理的请求继续fail-closed。每阶段未来建议Codex自治拆解/自验、顾问按一包验收、Owner作最终决定；**现阶段没有Codex实施授权**。S1只读一次性权利已随报告结束，A6正式UI会议仍DEFERRED。
 - G01–G10新动态全部`NOT_RUN`、F-01`READABILITY_PARTIAL`、43原PNG`PENDING_BINARY_UPLOAD`、旧1011804`UNKNOWN/NOT_RUN`与真实供应商缺口均不改判。
 
+## 最新2026-11-20：阶段A集中工程交付限定验收
+
+- [阶段A A1–A4网页顾问限定验收](V2_PHASE_A_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)：GitHub交付`07b51a6d...`、产品源码`4e6a5be6...`远端身份与变化已核。A1身份正式参与阻断、A2候选绑定原合法发布、A3 UNKNOWN只查询、A4旧评论原受众fail-closed有固定源码/测试断言抽样支持。Codex报告PHP 110项/1,429断言、Flutter 140项及8 Dart文件分析0问题，**原始运行日志与本地工作区未由网页顾问独立复验**。
+- `PHASE_A_SCOPED_ACCEPTED_WITH_RESERVATIONS / OWNER_FINAL_ACCEPTANCE_PENDING`：PHP项目约束`~8.4.0`而实测PHP8.5.3，PHP8.4、MariaDB并发/实际迁移、真机/模拟器、真实KYC/Push及跨端行为继续`NOT_RUN/OPEN`。仅G01/G02/G03/G06/G08的部分子场景有自动化证据，不是G01–G10全面PASS。
+- 阶段B依旧`NOT_AUTHORIZED`；整体路线图已接受不等于阶段B自动实施。Owner可集中审定阶段A限定范围验收并另决定是否启动阶段B；不得自行合main、发布或召开正式A6会议。
+
 ## 最新Owner决定：V2四阶段路线图获接受，阶段A工程启动获授权
 
 - [Owner路线图+阶段A具名授权](../decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md)：四阶段A→B→C→D、E1/E2/E3并行依赖的**方向已接受**，并允许原有本地Codex会话执行**阶段A**身份真实参与门禁、旧候选形象绑定、UNKNOWN先查与保守安全保护。这个新增授权不是旧S1只读授权复活；允许阶段A本地工程修改和隔离自动化测试。
