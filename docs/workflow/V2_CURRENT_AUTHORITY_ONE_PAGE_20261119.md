@@ -1,9 +1,15 @@
 # EliteSync V2｜网页GPT顾问当前权威一页入口（2026-11-19）
 
-状态：`S1_READ_ONLY_AUDIT_OWNER_AUTHORIZED / S1_NOT_YET_EXECUTED / V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED / STATIC_PARTIAL`  
+状态：`S1_A_ACCEPTED_WITH_RESERVATIONS / S1_CLOSED_AT_REPORT / V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED / RUNTIME_NOT_RUN`  
 仓库：`zcx369658780/EliteSync-v10`  
 当前治理分支：`governance/home-matching-product-freeze-20261117`  
 本页是**导航摘要**，不代替独立具名Owner决定、当期完整审计证据或最终发布合同。具体审计见[DESIGN-AUDIT-01](V2_STATIC_DESIGN_CONTRACT_AUDIT_20261119.md)与[DESIGN-AUDIT-02](V2_STATIC_DESIGN_CONTRACT_AUDIT_02_P0_EVIDENCE_LEDGER_20261119.md)。
+
+## 最新：S1-A只读工程差距报告限定验收完成，权限在报告处结束
+
+- Owner提交完整S1-A本地Codex只读报告后，网页顾问在远端固定工程源码`1d8b485bf4f314d42431bb62a293a3fef9e9c8af`抽样核实身份、评论/历史受众、旧候选形象版本、Lifestyle UNKNOWN重放、对象级删除与Push等问题；[S1-A限定验收报告](V2_S1A_READ_ONLY_GAP_AUDIT_ADVISOR_ACCEPTANCE_20261119.md)现已归档。
+- 结论：`S1_A_ACCEPTED_WITH_RESERVATIONS / S1_CLOSED_AT_REPORT`。R1–R5静态交付范围符合，关键源码抽查一致；Codex报告的Windows工作树零写入未由网页顾问本地独立证明；**工程GO/NO-GO仍BLOCKED，动态G01–G10仍`NOT_RUN`**。S1-PRESENT不是运行时PASS。
+- **S1一次性授权已随报告结束，不可复用为后续工程操作**；V2修改/测试、A6会议、供应商和发布都需Owner新授权。下方“已授权待执行”属此前时间快照，不再表示当前仍可继续S1。
 
 ## 最新Owner S1-A补充确认：唯一工程根和治理只读快照（2026-11-19）
 
