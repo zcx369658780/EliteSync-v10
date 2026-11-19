@@ -1,3 +1,11 @@
+# 2026-11-19：DATA Owner确认后的双静态稿，仍仅顾问工作流
+
+- 当前已归档[DATA-D1/D2 Owner决定](../decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)，不得把既有用途合法复用或纠错影响门禁当作正在运行的V2功能。
+- 仅供Owner设计阶段阅读的两份顾问材料：[P0未决事项三分流](../product/ELITESYNC_V2_P0_OPEN_TRIAGE_PRODUCT_EXTERNAL_ENGINEERING_V0_1_20261119.md)及[P0 G01–G10安全阻断与未来证据矩阵](../product/ELITESYNC_V2_P0_FAIL_CLOSED_SCREEN_AND_EVIDENCE_MATRIX_V0_1_20261119.md)。`ADVISOR_DRAFT / OWNER_REVIEW_PENDING / ALL_NEW_QA_NOT_RUN`，不派Codex进行这些证据核查；待未来明确Owner授权后再辨认现行真实代码/供应商状态。
+- **DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED**：无APP/API/Web/DB修改、无设备/模拟器/APK、main/发布或外部真实服务接入；1011804历史UNKNOWN/NOT_RUN及43 PNG备份缺口保持。
+
+---
+
 # 2026-11-19：DATA-D1/D2已接受，后续以P0三类OPEN分类推进纯设计咨询
 
 - [Owner DATA-D1/D2决定](../decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)确认当前用途未许可时的最小明确许可、已获准事实合法复用，及纠错后仅受影响待核查结果禁止作为有效内容新外显。真实依赖图、字段/授权版本和发布能力依旧需要未来证据。
