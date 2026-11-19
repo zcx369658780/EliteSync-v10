@@ -1,3 +1,11 @@
+# 2026-11-19 S1-A根目录及固定GitHub治理资料只读补充授权（最新）
+
+- [新Owner具名补充授权](../decisions/OWNER_V2_S1A_ROOT_AND_REMOTE_GOVERNANCE_READ_SUPPLEMENT_20261119.md)：只读R1–R5的**唯一工程根**改为Owner正式指定`D:\EliteSync-v10-product-v1015-20261101`，并新增只读固定GitHub治理文档权限；排除`D:\EliteSync-v10`为本次源码目标，保留全部未提交文件，不切分支/同步。
+- [Codex新启动Prompt](../workflow/V2_S1A_ROOT_PINNED_CODEX_RESTART_PROMPT_20261119.md)已备。目标工程分支/HEAD需Codex重新只读核验，顾问尚未实际运行R1–R5。只读治理补充授权证据commit `6af426b14cf6571c2de1d24281b03ca24e03c634`。
+- 限于S1静态只读；任何V2工程改动、运行时测试、供应商、A6、main合并和发布仍不可用，原动态QA全部`NOT_RUN`。
+
+---
+
 # 2026-11-19 Owner S1-A受限只读工程差距核查具名授权（最新增量）
 
 - [S1-A具名Owner授权](../decisions/OWNER_V2_S1A_BOUNDED_READ_ONLY_CODEX_GAP_AUDIT_AUTHORIZATION_20261119.md)是**新有限权限决定**：只允许现有EliteSync本地Codex一次性对真实活动本地工程做无写入的静态差距阅读，R1–R5汇总为一份报告。此权限与NEW-PC/EDGE产品方向批准不同，不代表任何新V2实现或运行时验收已被许可。
