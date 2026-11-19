@@ -1,3 +1,11 @@
+# 2026-11-19 RET-D1/D2方案A Owner正式确认增量（优先于下方初稿待审字样）
+
+Owner明确接受[RET-D1 A/RET-D2 A正式决定](../decisions/OWNER_V2_RET_D1_D2_REVOCATION_DELETION_CONCEPT_ACCEPTANCE_20261119.md)：用途/阅读权撤销、删除请求真实受理、指定范围删除真实完成严格区分；删除/撤权操作依对象、用途、主体/第三方权利及合法必要例外分别判断，不能承诺“统一删除全部历史”。`UNKNOWN`维持未知，隐藏内容不冒充底层已删除。
+
+下方`OWNER_REVIEW_PENDING`为本稿形成时状态，不再适用于两项已确认原则；**实际保留期限、适用法律/安全例外、数据归属、真实受理与物理清理API/回执仍OPEN**。当前后续[剩余P0产品合同与技术证据分类顾问草案](ELITESYNC_V2_REMAINING_P0_PRODUCT_CONTRACT_AND_EVIDENCE_HANDOFF_V0_1_20261119.md)只是`ADVISOR_CONSOLIDATION_DRAFT`、未获Owner逐项确认，不是Codex实施指令。
+
+---
+
 # EliteSync V2｜历史保留、删除请求与具名用途撤销：产品合同顾问稿 V0.1
 
 日期：2026-11-19（Asia/Singapore）  
