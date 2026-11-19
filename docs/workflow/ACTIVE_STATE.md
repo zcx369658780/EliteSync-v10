@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：O01默认评论方案A、O02媒体/引用保护已确认；O11顾问草案待审
+
+**`O01_DEFAULT_FRIENDS_ONLY_OWNER_CONFIRMED / O02_HISTORICAL_MEDIA_AUDIENCE_OWNER_CONFIRMED / O11_ADVISOR_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
+
+- [Owner O01/O02补充决定](../decisions/OWNER_V2_O01_DEFAULT_COMMENTS_O02_MEDIA_REFERENCES_20261119.md)：新用户作品默认FRIENDS且评论默认FRIENDS_ONLY；扩大作品公开受众不自动扩大评论范围；旧好友评论文字/附件/引用/缩略图/媒体直链继续受原权限与Block约束。SELF默认评论、历史保留期限、具体媒体技术仍OPEN。
+- [O11编辑精选/内容推荐/转载治理草案](../product/ELITESYNC_V2_O11_EDITORIAL_RECOMMENDATION_REPOST_GOVERNANCE_V0_1_20261119.md)已形成，**尚未获Owner确认**。顾问推荐官方访客可读内容与用户仅登录可读作品严格分域；用户作品推荐不自动扩大受众；平台访客可读转载须作者具名明确授权。排序与官方编辑权限仍待Owner决定。
+- 原A1–A6.7与O01–O09具名Owner决定持续有效；未接入真实身份核验/真实Push，旧1011804及NOT_RUN/UNKNOWN不变。43份原PNG GitHub二进制归档仍PENDING。
+- **A6正式会议继续暂缓，本地Codex没有新V2工程实施授权**：不改APP/API/Web/DB、不操作手机/模拟器、不建APK、不合main、不发布。Github文档不等于Owner本地实时工程同步。
+
+---
+
 # 当前入口 2026-11-19：O09-D1/D2获Owner接受；V2剩余决策与设计Gate草案待审
 
 **`O09_D1_D2_OWNER_CONCEPT_ACCEPTED / O01_O09_NAMED_CONCEPT_DECISIONS_RECORDED / REMAINING_DESIGN_GATES_ADVISOR_DRAFT / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
