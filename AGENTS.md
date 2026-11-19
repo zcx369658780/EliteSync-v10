@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问最新入口：DATA-D1/D2已确认，P0静态安全阻断矩阵待Owner阅知
+
+- [DATA-D1/D2 Owner决定](docs/decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)具名已接受；未批准真实授权数据模型、依赖重算、外部版本同步或动态PASS。
+- 当前仅设计咨询：[P0三类OPEN事项](docs/product/ELITESYNC_V2_P0_OPEN_TRIAGE_PRODUCT_EXTERNAL_ENGINEERING_V0_1_20261119.md)及[G01–G10安全阻断/未来证据矩阵](docs/product/ELITESYNC_V2_P0_FAIL_CLOSED_SCREEN_AND_EVIDENCE_MATRIX_V0_1_20261119.md)，均为`ADVISOR_DRAFT / OWNER_REVIEW_PENDING`、新QA未运行。以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)、[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为现行权威状态。
+- A6会议暂缓、Codex无新V2工程授权，不允许借本矩阵派单、跑设备或连接真实外部供应商。旧1011804 NOT_RUN/UNKNOWN、身份/Push未接入及43 PNG备份缺口不变。
+
+---
+
 # 2026-11-19 GPT顾问最新入口：DATA-D1/D2接受，P0三分流待Owner阅知
 
 - [DATA-D1/D2 Owner决定](docs/decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)已确认跨具名用途缺有效许可时的最小独立授权及纠错实际受影响派生结果的新发布限制，未授权具体schema、实际计算、自动新版传播或动态验收。
