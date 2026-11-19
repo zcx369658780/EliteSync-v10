@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-20：阶段A A1–A4工程交付获顾问限定验收，Owner终验/阶段B授权待定
+
+**`PHASE_A_SCOPED_ACCEPTED_WITH_RESERVATIONS / OWNER_FINAL_ACCEPTANCE_PENDING / PHASE_B_NOT_AUTHORIZED / G01_G10_PARTIAL_BY_SCOPE / A6_MEETING_DEFERRED / MAIN_MERGE_RELEASE_NOT_AUTHORIZED`**
+
+- Codex阶段A工程分支`codex/v2-phase-a-security-baseline-20261119`已核实指向交付`07b51a6de9695f5358b6bea2a59acd5be24ab6c2`；产品源码`4e6a5be6dcb7095438fb0a815c7831b14ffb561b`，父基线`1d8b485bf4f314d42431bb62a293a3fef9e9c8af`。报告与`evidence_summary.json`均可从GitHub固定回读。远端对比源基线→产品源码为2次提交/32个工程文件；产品源码→交付仅3个文档/证据文件。网页顾问已[限定验收](V2_PHASE_A_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)并独立抽样读A1–A4关键源码及测试断言。
+- **A1–A4结论：`ACCEPTED_WITH_RESERVATIONS`**。真实身份准入fail-closed、旧候选形象绑定、UNKNOWN先查询、历史评论原受众的部分安全保护具源码和定向测试依据。PHP110/1,429断言、Flutter140、八份Dart分析0问题是**Codex报告 + GitHub机器摘要**；原始测试日志本地保留，网页顾问未直接复跑或逐份验证原日志，报告的本地工作树干净亦属于`CODEX_REPORTED`。
+- **关键保留**：项目PHP约束`~8.4.0`，本批在PHP8.5.3执行，PHP8.4兼容`NOT_RUN`；MariaDB并发/实际迁移`NOT_RUN`，只验证SQLite内存。真实KYC/Push/设备与生产准入仍不可用；完整G项不升级PASS。阶段A4部分补原评论受众不等于阶段B完整内容域/评论独立权利已实现。
+- 阶段A在**指定自动化范围**可供Owner最终认可，但顾问未代Owner批准；阶段B/C/D只按既有四阶段总体路线存在，阶段B尚未获本地实施权限。原43 PNG`PENDING_BINARY_UPLOAD`、F-01`READABILITY_PARTIAL`、旧1011804/UI-AUDIT-01历史`UNKNOWN/NOT_RUN`均原判。未合main、未发布、A6正式UI会议仍DEFERRED。
+
+---
+
 # CURRENT ENTRY 2026-11-19：Owner接受V2集中路线图并正式授权阶段A工程执行
 
 **`OWNER_ROADMAP_V0_1_ACCEPTED / PHASE_A_ENGINEERING_AUTHORIZED / PHASE_A_CODEX_HANDOFF_READY / PHASE_A_NOT_YET_EXECUTED_BY_WEB / PHASE_B_C_D_NOT_YET_STARTED / A6_MEETING_DEFERRED / NO_MAIN_MERGE_OR_PRODUCTION_RELEASE`**
