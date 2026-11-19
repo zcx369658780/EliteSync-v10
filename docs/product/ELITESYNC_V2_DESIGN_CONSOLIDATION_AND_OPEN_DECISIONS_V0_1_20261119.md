@@ -1,3 +1,11 @@
+# 2026-11-19 Owner“默认好友可评论”澄清增量
+
+- [Owner SELF与FRIENDS评论范围澄清](../decisions/OWNER_V2_SELF_COMMENT_DEFAULT_CLARIFICATION_20261119.md)：默认新作品FRIENDS可见+FRIENDS_ONLY评论、陌生人默认不可评论；仅在作者选SELF（作品只由作者可读）时评论默认OFF，不允许好友评论突破SELF阅读权限。
+- [SELF→FRIENDS变更草案](ELITESYNC_V2_SELF_FRIENDS_COMMENT_AUDIENCE_TRANSITIONS_V0_1_20261119.md)仍`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`。历史评论受众、明确OFF偏好与受众切换的字段保存/迁移不擅自冻结。
+- 之前四批逐屏具名决定保持已接受；A6会议暂缓、Codex未获新V2实施授权。
+
+---
+
 # 2026-11-19 当前增量：S01–S16四批具名交互已审，汇总及OPEN继续区分
 
 - [Owner第四批S15/S16决定](../decisions/OWNER_V2_S15_D1_S16_D2_ACCEPTANCE_20261119.md)确认发布受众影响摘要、官方/用户来源标识及推荐/转载独立动作；连同前三批共八组新增交互原则获具名概念接受。
