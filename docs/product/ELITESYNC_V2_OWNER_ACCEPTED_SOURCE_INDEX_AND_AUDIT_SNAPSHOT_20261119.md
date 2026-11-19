@@ -1,3 +1,11 @@
+# 2026-11-19 EDGE-D2方案A具名接受；评论异常整包静态UX已出稿（最新增量）
+
+- [Owner EDGE-D2 A](../decisions/OWNER_V2_EDGE_D2_MINIMAL_COMMENT_STATUS_AND_REVIEW_OPTION_A_ACCEPTANCE_20261119.md)：仅评论者有权且不泄密时展示最小中性状态，真实合法渠道存在时方提供复核说明；不强制Push、无假申诉入口。NEW-PC-01/02/03与EDGE-D1/2共五项具名方向均已记录，不代表实装。
+- [BATCH-CONTENT一轮合并UX状态稿](ELITESYNC_V2_BATCH_CONTENT_SINGLE_PASS_UX_STATE_DRAFT_V0_1_20261119.md)及[合并审阅工作法](ELITESYNC_V2_CONSOLIDATED_DESIGN_REVIEW_AND_GATE_COMPACTION_V0_1_20261119.md)仅`ADVISOR_PROPOSAL`，原历史EDGE-D2待审只代表旧时点。Owner明确希望减少零碎审批，后续不逐条开EDGE-D3/4/5；只有新的实质权利取舍集中请Owner决定。
+- 继续`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`；法律/供应商/真实API、G01–G10 NOT_RUN、43 PNG PENDING及旧1011804 UNKNOWN不变。
+
+---
+
 # 2026-11-19 EDGE-D1方案A已具名接受；EDGE-D2仍待审（最新增量）
 
 - [Owner EDGE-D1方案A](../decisions/OWNER_V2_EDGE_D1_CONDITIONAL_INDEPENDENT_REPLIES_AFTER_PARENT_HIDDEN_ACCEPTANCE_20261119.md)确认：父评论撤回/隐藏后，仅在第三方回复自身当前合法可读、上下文不泄密且可核实的情况下，允许以不暴露父评论/身份/原因的中性结构占位继续展示独立回复；无法核实则隐藏受影响分支，**不物理删除**其他人的回复原始记录。
