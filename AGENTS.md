@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问新入口：O06/O07第二轮接受，进入O08顾问审阅
+
+- Owner已接受[O06-R2/R3与O07-R2](docs/decisions/OWNER_V2_O06_R2_R3_O07_R2_ACCEPTANCE_20261119.md)；历史数据的实际留存、删除与技术实现仍OPEN。
+- [O08异常反馈/附件/草稿恢复V0.1](docs/product/ELITESYNC_V2_O08_ERROR_FEEDBACK_ATTACHMENTS_DRAFT_RECOVERY_V0_1_20261119.md)已形成顾问草案，**未获Owner批准**；当前治理见[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)及[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部。
+- 仅网页产品设计与文档治理，A6正式UI会议继续暂缓，本地Codex无新V2实施授权。不改APP/API/Web/DB，不运行设备/模拟器、不构建APK、不合main、不发布；原PNG远端尚未全量存档。
+
+---
+
 # 2026-11-19 GPT顾问当前入口：O06-D1/O07-D1接受，下一细化待审
 
 - [Owner O06/O07确认记录](docs/decisions/OWNER_V2_O06_O07_NOTIFICATION_READ_DERIVED_REVIEW_20261119.md)：单条合法详情标读与待办独立、具名用途撤销后停止未经授权继续使用、事实更正后受影响派生结果需核查已获概念接受。
