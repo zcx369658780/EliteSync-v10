@@ -1,3 +1,9 @@
+# 2026-11-19 CMT-T1最新接受增量（本段优先于旧OPEN记录）
+
+Owner随后明确认可[CMT-T1方案A](OWNER_V2_CMT_T1_SELF_TO_FRIENDS_COMMENTS_20261119.md)：SELF主动扩大为FRIENDS时，**尊重作者明确OFF选择**；仅当原OFF为系统隐式SELF默认且作者未关闭，才在发布前可见性摘要中建议FRIENDS_ONLY，由作者确认。实际来源无法区分时保留OFF并提示作者手动开启。下方“SELF→FRIENDS规则OPEN”属于本决定形成时点的历史描述；其它历史评论/技术实现问题仍OPEN。
+
+---
+
 # EliteSync V2｜Owner关于SELF作品默认评论与好友评论的澄清决定
 
 日期：2026-11-19（Asia/Singapore）  
