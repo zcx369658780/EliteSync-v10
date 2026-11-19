@@ -35,6 +35,12 @@
 | 43份原PNG远端二进制备份 | 依据现行文档仍`PENDING_BINARY_UPLOAD`；本轮未逐份核查 |
 | 固定旧软件`10.1.18-dev / 1011804`与UI-AUDIT-01 | 原`NOT_RUN/UNKNOWN`维持，不改判 |
 
+## 最新当前入口：EDGE-D2 A接受；不再拆分微型顾问审批
+
+- [EDGE-D2 Owner具名方案A](../decisions/OWNER_V2_EDGE_D2_MINIMAL_COMMENT_STATUS_AND_REVIEW_OPTION_A_ACCEPTANCE_20261119.md)：评论者在自身合法历史上下文可读且不泄密时可看到中性状态，实际存在合法复核渠道时才提供说明；不默认Push、申诉受理或恢复。NEW-PC-01/02/03与EDGE-D1/2五项产品方向均已具名接受，**各自原范围内有效**。
+- Owner明确希望加快、不要把门禁拆太散。已改用[顾问合并审阅工作法](../product/ELITESYNC_V2_CONSOLIDATED_DESIGN_REVIEW_AND_GATE_COMPACTION_V0_1_20261119.md)，并完成[本批单份评论/删除UX静态状态稿](../product/ELITESYNC_V2_BATCH_CONTENT_SINGLE_PASS_UX_STATE_DRAFT_V0_1_20261119.md)。这两份是`ADVISOR_DRAFT`，其新增文案、详细UI、运营/法律及技术实现**未一揽子获Owner批准**。后续相关小细节集中审，不为每项再开一个审批门禁。
+- 合并仅限顾问阅读/设计节奏，不合并用户必要同意、OWNER最终权限、真实供应商/代码/动态证据。`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`不变；下方旧“EDGE-D2待审”为历史时点快照。
+
 ## 最新Owner EDGE-D1方案A已确认；EDGE-D2仍为顾问待审
 
 - [EDGE-D1具名Owner方案A决定](../decisions/OWNER_V2_EDGE_D1_CONDITIONAL_INDEPENDENT_REPLIES_AFTER_PARENT_HIDDEN_ACCEPTANCE_20261119.md)：父评论撤回或被隐藏时，第三方独立回复仅在当前作品/回复原受众、Block与合法上下文可核实且不泄密的条件下可用中性结构占位继续展示；一旦不能确认则折叠/隐藏受影响分支，**不**因此删除其他人的原始回复。
