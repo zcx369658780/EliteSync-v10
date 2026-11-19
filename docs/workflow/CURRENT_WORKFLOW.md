@@ -1,3 +1,11 @@
+# 2026-11-19：O01/O02补充Owner决定接受；顾问进入O11内容治理审阅
+
+- Owner已确认[O01默认评论FRIENDS_ONLY与O02历史评论附件/引用保护](../decisions/OWNER_V2_O01_DEFAULT_COMMENTS_O02_MEDIA_REFERENCES_20261119.md)。这不意味着SELF默认评论、历史记录保留或媒体URL技术已冻结。
+- 当前顾问讨论入口：[O11编辑精选、用户公开作品与平台转载授权V0.1](../product/ELITESYNC_V2_O11_EDITORIAL_RECOMMENDATION_REPOST_GOVERNANCE_V0_1_20261119.md)，`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`。优先检查访客官方内容与登录用户作品的分域、具名转载授权和可解释的非沉迷导向排序；不提前确定实际编辑角色和运营规则。
+- **DESIGN_ONLY / CODEX_NOT_AUTHORIZED / MEETING_DEFERRED**：不下发新V2开发任务，不动APP/API/Web/数据库或设备/模拟器，不建APK、不合main、不发布。真实身份供应商/Push未接入、1011804原UNKNOWN/NOT_RUN维持；43份原PNG远端PENDING。
+
+---
+
 # 2026-11-19：O09概念确认后，网页顾问转入V2剩余决策与设计收口
 
 - [O09-D1/D2 Owner接受](../decisions/OWNER_V2_O09_CROSS_DEVICE_AUTH_UNKNOWN_ACCEPTANCE_20261119.md)已生效。受保护内容先重验、无法核验安全占位；关键写入UNKNOWN只读核查权威结果、不可盲重试。技术传播时效、离线能力和API幂等能力仍OPEN，不宣称运行时PASS。
