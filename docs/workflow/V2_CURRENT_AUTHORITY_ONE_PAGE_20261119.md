@@ -35,6 +35,12 @@
 | 43份原PNG远端二进制备份 | 依据现行文档仍`PENDING_BINARY_UPLOAD`；本轮未逐份核查 |
 | 固定旧软件`10.1.18-dev / 1011804`与UI-AUDIT-01 | 原`NOT_RUN/UNKNOWN`维持，不改判 |
 
+## 新增静态产品合同复核：哪些问题真正需要Owner选择（2026-11-19）
+
+- 已归档[剩余真实Owner决策分类V0.1](../product/ELITESYNC_V2_REMAINING_TRUE_OWNER_PRODUCT_DECISIONS_TRIAGE_V0_1_20261119.md)，属于`ADVISOR_PROPOSAL`，**不是Owner已选择**。新候选`NEW-PC-01`评论者撤回自己评论当前展示、`NEW-PC-02`作品作者能否隐藏自己作品下第三方评论、`NEW-PC-03`删除请求首期入口范围，可按需由Owner逐项具名审阅。首选先讨论NEW-PC-02，因为涉及新的管理权限边界。
+- `NEW-PC-04`旧候选可选新版共享、`NEW-PC-05`正式官方转载首期范围建议延期；目前沿用已接受O05-X A及O11安全默认，不需要重新批准原原则。供应商、法律期限、数据库/幂等/缓存、动态QA都**不是仅凭静态设计可判通过的Owner产品选项**。
+- F-01仍`READABILITY_PARTIAL`；DESIGN-AUDIT-01/02仍`STATIC_PARTIAL / P0_EVIDENCE_OPEN`；G01–G10动态`NOT_RUN`。Codex与A6停止不变。
+
 ## 4. 立即接续的仅设计工作
 
 1. 使用本页、[具名Owner源索引](../product/ELITESYNC_V2_OWNER_ACCEPTED_SOURCE_INDEX_AND_AUDIT_SNAPSHOT_20261119.md)和两份静态审计报告复核当前事实，不递归加载全部历史快照。
