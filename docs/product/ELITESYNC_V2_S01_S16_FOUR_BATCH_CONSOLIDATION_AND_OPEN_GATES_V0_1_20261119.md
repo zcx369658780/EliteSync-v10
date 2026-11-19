@@ -1,3 +1,11 @@
+# 2026-11-19 CMT-T1方案A Owner确认后最新澄清
+
+- [CMT-T1 Owner决定](../decisions/OWNER_V2_CMT_T1_SELF_TO_FRIENDS_COMMENTS_20261119.md)正式接受SELF→FRIENDS评论策略建议：隐式SELF默认OFF且未显式关闭时发布前推荐FRIENDS_ONLY供作者确认，明确OFF继续保留，无法区分则保留OFF并可手动开启。普通FRIENDS默认FRIENDS_ONLY仍有效。
+- 本汇总原先“SELF→FRIENDS自动恢复规则仍OPEN”属于历史时点；仍OPEN的是默认来源字段、旧作品迁移、受众来回切换及旧评论的合法重新显示与历史保存/删除，不得推断已具备服务器迁移与恢复能力。
+- [历史评论再展示/旧匹配形象快照权限草案](ELITESYNC_V2_HISTORY_RESURFACING_AND_REVOKED_SNAPSHOTS_V0_1_20261119.md)现为`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`；两项HIS建议尚未确认，历史保留期限依然未定。
+
+---
+
 # 2026-11-19 最新澄清：普通作品好友可评论；SELF仅自己可读，默认OFF是受众特例
 
 - [Owner SELF/好友评论澄清决定](../decisions/OWNER_V2_SELF_COMMENT_DEFAULT_CLARIFICATION_20261119.md)：Owner同意仅自己可见SELF的默认评论OFF建议，**并强调普通新作品不应默认完全禁止评论**。现行普通新作品仍`FRIENDS + FRIENDS_ONLY`（好友可读可评，陌生人默认不能评论）；`SELF`只有作者本人可读，好友不可因评论策略跨越作品受众。不能将SELF特例误写成所有作品默认OFF。
