@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：S01–S16设计检查框架Owner认可；S01–S04首批逐屏顾问草案待审
+
+**`S01_S16_FRAMEWORK_OWNER_CONCEPT_ACCEPTED / S01_S04_PER_SCREEN_ADVISOR_DRAFT_OWNER_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- [S01–S16框架正式Owner决定](../decisions/OWNER_V2_S01_S16_REVIEW_FRAMEWORK_ACCEPTANCE_20261119.md)：Owner明确同意使用七项页面检查维度分批推进；**没有逐项批准16行具体按钮、布局、实现合同**。原始[16屏矩阵V0.1](../product/ELITESYNC_V2_KEY_SCREEN_CONTRACT_REVIEW_MATRIX_V0_1_20261119.md)已标注现行框架接受边界。
+- [首批S01–S04逐屏检查草案](../product/ELITESYNC_V2_S01_S04_FIRST_JOURNEY_SCREEN_REVIEW_V0_1_20261119.md)已形成、**待Owner审阅**：注册后可跳过的首次Lifestyle、带图三选项答题/失败恢复、访客只读官方正文、登录首页精选/好友分域。新增S02-D1保存确切成功才自动进题、S03/S04-D2隐私安全空态仅为顾问建议。
+- 已认可的O01–O12具名原则、A6.6/A6.7等保持有效；SELF评论默认、数据留存、精确视觉、跨设备和发布接口等仍OPEN。实人核验供应商与真实Push未接入；1011804及旧NOT_RUN/UNKNOWN不变。
+- **A6正式UI会议继续暂缓，本地Codex未获新V2实施授权**：不改APP/API/Web/数据库，不运行设备/模拟器、不建APK、不合main、不发布；43份原PNG远端仍`PENDING_BINARY_UPLOAD`，GitHub治理分支不证明Owner本地已同步。
+
+---
+
 # 当前入口 2026-11-19：O10/O12概念原则获Owner认可，16类关键页面审查矩阵待审
 
 **`O10_D1_O12_D1_OWNER_CONCEPT_ACCEPTED / KEY_SCREEN_MATRIX_ADVISOR_REVIEW_PENDING / A6_MEETING_DEFERRED / CODEX_NOT_AUTHORIZED`**
