@@ -1,3 +1,10 @@
+# 2026-11-19 第二批逐屏增量：S05-D1、S07/S08-D2已获得Owner认可
+
+- [第二批Owner决策](../decisions/OWNER_V2_S05_D1_S07_S08_D2_ACCEPTANCE_20261119.md)：S05突显本人当前可完成任务且外部核验不可用另列；S07/S08未来可运行时连续导航、各阶段双方独立确认及当前业务权限不合并。没有真实实人供应商时不能展示真实报名成功链。
+- [第三批S09–S12顾问逐屏审查V0.1](ELITESYNC_V2_S09_S12_MESSAGES_ME_PUBLISH_DATA_SCREEN_REVIEW_V0_1_20261119.md)已出稿，新增S09-D1安全返回消息通知频道、S11-D2对外发布前影响摘要均`OWNER_REVIEW_PENDING`；已有O05/O06/O07规则继续有效。静态矩阵不等于实现或QA PASS。
+
+---
+
 # 2026-11-19 首批逐屏增量：S02-D1、S03/S04-D2已确认
 
 - [首批Owner具体决定](../decisions/OWNER_V2_S02_D1_S03_S04_D2_ACCEPTANCE_20261119.md)已生效：Lifestyle选择题须确认保存成功才自动下一题，失败/UNKNOWN停留；访客/登录首页空态不得使用受保护旧缓存、私密作品/媒体或泄漏Block关系。其余S01–S04布局仍非逐项冻结。
