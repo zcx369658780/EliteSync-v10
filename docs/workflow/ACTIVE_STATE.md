@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：O08-D1/D2获Owner认可；O09跨设备权限及UNKNOWN恢复草案待审
+
+**`O08_D1_D2_OWNER_CONCEPT_ACCEPTED / O09_ADVISOR_DRAFT_PENDING_OWNER_REVIEW / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / MEETING_DEFERRED`**
+
+- [O08 Owner决定](../decisions/OWNER_V2_O08_SAFE_FEEDBACK_ATTACHMENTS_DRAFTS_ACCEPTANCE_20261119.md)：合法登录且具资格用户可安全反馈；无敏感摘要，附件默认不上传，用户主动选择、预览、移除和提交；草稿仅当前有效会话内安全暂存，换号/失权必须隔离，反馈UNKNOWN不盲重试。不承诺自动脱敏、日志上传、24小时或跨进程/跨设备恢复。
+- 当前顾问审阅入口：[O09跨设备/深链/权限重验与UNKNOWN恢复V0.1](../product/ELITESYNC_V2_O09_MULTI_DEVICE_AUTH_STATE_UNKNOWN_CONSISTENCY_V0_1_20261119.md)，尚**未获Owner确认**：设备A/B共享业务事实不能假设同步已完成，切号旧响应、Block/Consent撤销、离线安全占位和结果UNKNOWN必须明确区分；实际跨设备通知时延、离线策略、幂等查询接口仍OPEN。
+- O01/O02、O04/O05方案A、O06/O07、A6.6/A6.7均继续维持已接受的具名概念方向。1011804工程旧NOT_RUN/UNKNOWN不变；真正实人核验服务与真实Push未接入。
+- **A6正式UI会议继续暂缓，本地Codex没有新V2实施授权**：不改APP/API/Web/数据库，不运行模拟器/手机，不建APK，不合main，不发布；GitHub治理分支不代表本地同步，43份PNG原件远端仍PENDING_BINARY_UPLOAD。
+
+---
+
 # 当前入口 2026-11-19：O06排序/失效历史、O07派生历史获Owner接受；O08待审
 
 **`O01_O02_O04_O05_O06_O07_OWNER_CONCEPT_CONFIRMED_IN_NAMED_SCOPE / O08_ADVISOR_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
