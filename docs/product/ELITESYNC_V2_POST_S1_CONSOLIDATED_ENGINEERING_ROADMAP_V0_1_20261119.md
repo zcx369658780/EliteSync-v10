@@ -1,3 +1,11 @@
+# 最新Owner授权增量（2026-11-19）：路线图已接受，阶段A获启动权限
+
+- Owner对本路线图表示“上述路线图审阅完毕，我认为非常完善，并且授权你开始执行”。具名授权：[路线图方向接受与阶段A启动](../decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md)，当前结论为`OWNER_ROADMAP_V0_1_ACCEPTED / PHASE_A_ENGINEERING_AUTHORIZED`，本文件下方“顾问提案/尚未批准工程”的原始章节均为**此授权前时间快照**。
+- [阶段A合并工程任务书](../versions/v2/V2_PHASE_A_SECURITY_BASELINE_CONSOLIDATED_EXECUTION_BRIEF_20261119.md)与[现有Codex会话启动Prompt](../workflow/V2_PHASE_A_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261119.md)已准备；**网页GPT未直接操作本地Codex，工程尚未实测启动**。
+- 阶段B–D已获总体路线方向接受，但当前不跨阶段实施；真实KYC/Push供应商、真实个人数据/不可逆迁移、真机/模拟器、A6正式会议、main合并及生产发布依然另需授权。G01–G10新增动态历史`NOT_RUN`，S1已关闭。
+
+---
+
 # EliteSync V2｜S1-A后工程差距集中路线图 V0.1（顾问方案，尚未获工程授权）
 
 日期：2026-11-19（Asia/Singapore）  
