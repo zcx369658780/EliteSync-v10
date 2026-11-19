@@ -1,3 +1,11 @@
+# 2026-11-19 Owner接受增量（当前有效，优先于下方原V0.1待审文字）
+
+Owner明确确认[S05-D1与S07/S08-D2](../decisions/OWNER_V2_S05_D1_S07_S08_D2_ACCEPTANCE_20261119.md)两项增量：匹配准备突出当前用户可合法完成的一项任务，把实人核验供应商未接入独立表达为不可由本人补齐的外部依赖；未来真实资格都具备时，提案/Connection/Messaging Consent在同一任务上下文连续导航，但每个阶段双方的必要决定和权威回执仍须分别成立。
+
+下方原始`OWNER_REVIEW_PENDING`仅代表初稿形成时点，不覆盖这两项新确认。S05–S08其余布局、具体按钮、供应商、实施、QA仍OPEN；**当前真实实人核验未接入，正式真实报名仍不可用**。下一批[S09–S12逐屏顾问稿](ELITESYNC_V2_S09_S12_MESSAGES_ME_PUBLISH_DATA_SCREEN_REVIEW_V0_1_20261119.md)仅为`ADVISOR_PER_SCREEN_DRAFT / OWNER_REVIEW_PENDING`，不自动批准新细项。
+
+---
+
 # EliteSync V2｜S05–S08 匹配准备、资料回流、Connection与消息许可逐屏检查 V0.1
 
 日期：2026-11-19（Asia/Singapore）  
