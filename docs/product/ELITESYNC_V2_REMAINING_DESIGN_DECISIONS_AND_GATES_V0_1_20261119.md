@@ -1,3 +1,11 @@
+# 2026-11-19 最新增量：O11-D1/D2/D3获Owner确认，O10/O12顾问草案待审
+
+- [Owner O11接受记录](../decisions/OWNER_V2_O11_EDITORIAL_REPOST_SORT_CONCEPT_ACCEPTANCE_20261119.md)确认首页官方访客可读内容与仅登录可读用户作品分域、平台转载用户素材需单独具名许可，以及内容初期使用可解释编辑/专题/时间线而非默认参与度最大化。正式编辑角色、实际版权合同、算法、转载快照和留存策略仍OPEN。
+- [O10/O12低信息密度视觉与可用性/无障碍审查V0.1](ELITESYNC_V2_O10_O12_LOW_DENSITY_UI_ACCESSIBILITY_QA_V0_1_20261119.md)已出稿，仅`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`；具体色卡、字体、UI组件、动效时长与QA数值仍未冻结。下方“O11剩余编辑/推荐治理OPEN”按此增量拆分，不把全部O11细项改成PASS。
+- A6正式UI会议继续暂缓，Codex无新的V2实施授权；不触碰源码、设备、main或发布。历史NOT_RUN/UNKNOWN不变；43原PNG远端仍待补档。
+
+---
+
 # 2026-11-19 最新增量：O01方案A及O02历史媒体/引用保护获Owner确认；转O11顾问讨论
 
 - [O01/O02补充Owner决定](../decisions/OWNER_V2_O01_DEFAULT_COMMENTS_O02_MEDIA_REFERENCES_20261119.md)现已确认：新用户作品默认`FRIENDS`，评论默认`FRIENDS_ONLY`；扩大作品到`PUBLIC_AUTHENTICATED`不自动改为`ALL_ELIGIBLE`。历史好友评论的正文、附件、媒体缩略图及引用均保持原有受众/Block边界，不能通过直链、缓存或预览泄漏。具体SELF默认评论、媒体URL时效、历史保留期限仍OPEN。
