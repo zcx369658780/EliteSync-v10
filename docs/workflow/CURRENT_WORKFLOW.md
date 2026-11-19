@@ -1,3 +1,11 @@
+# 2026-11-20｜阶段A网页顾问限定验收完成，待Owner终验/阶段B决定
+
+- 基于Codex工程交付`07b51a6de9695f5358b6bea2a59acd5be24ab6c2`、产品源码`4e6a5be6...`与[网页顾问限定验收](V2_PHASE_A_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)，A1–A4在**报告的指定自动化范围内**`ACCEPTED_WITH_RESERVATIONS`：GitHub独立源码抽样支持关键门禁，但PHP/Flutter运行结果是Codex报告与本地原始日志哈希，网页顾问未直接复跑。
+- 保留PHP`~8.4.0`声明 vs 实际PHP8.5.3、MariaDB并发/迁移、真实供应商/设备与法律/资产证据`NOT_RUN/OPEN`。局部G项只记PARTIAL，历史FAIL/UNKNOWN/NOT_RUN原判不动。
+- 本地Codex阶段A已按交付报告停在集中验收节点；Owner最终是否接受、是否另行授权阶段B须独立明确一次。**不得自动把阶段A顾问验收当作main/发布/正式A6/外部供应商许可**；后续只对阶段里程碑集中汇报，不再拆碎小门禁。
+
+---
+
 # 2026-11-19｜路线图Owner接受、阶段A由现有本地Codex自治执行（尚未实作）
 
 - Owner明确回复“上述路线图审阅完毕，我认为非常完善，并且授权你开始执行”。现行权限由[具名决定](../decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md)确定：V2四阶段三并行路线图已采纳，阶段A允许**本地工程修改与安全隔离自动化测试**；阶段B–D尚未启动。旧文`V2_IMPLEMENTATION_NOT_AUTHORIZED`只属此前时点，不能覆盖新授权。
