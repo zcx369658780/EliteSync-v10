@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-19：Owner指定S1唯一代码根并批准固定GitHub治理只读，Codex新Prompt已备
+
+**`S1_A_OWNER_AUTHORIZED / S1_ROOT_OWNER_PINNED / GITHUB_GOVERNANCE_READ_ONLY_AUTHORIZED / S1_RESTART_PROMPT_READY / S1_R1_R5_NOT_EXECUTED / V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- 本地Codex前次只读核根返回`IDENTITY_UNRESOLVED`，未启动R1–R5：原会话根`D:\EliteSync-v10`为main 43未暂存/213未跟踪，稳定根`D:\EliteSync-v10-product-v1015-20261101`当时为`codex/ui-current-state-audit-20261116`/`1d8b485bf4f314d42431bb62a293a3fef9e9c8af`，1未跟踪，两者remote对应同repo。
+- Owner在两项选择的单一明确提问后回复“我同意，请给我一个新的codex用任务单启动prompt”。[Owner具名补充授权](../decisions/OWNER_V2_S1A_ROOT_AND_REMOTE_GOVERNANCE_READ_SUPPLEMENT_20261119.md)已把`D:\EliteSync-v10-product-v1015-20261101`指定为**唯一S1审阅根**，并允许只读读取固定治理HEAD `6af426b14cf6571c2de1d24281b03ca24e03c634`中的相关文件。工作根要由现有Codex会话用绝对路径再次只读核Git身份，禁止未经许可操作原main脏工作树。
+- [新Codex单次R1–R5启动Prompt](V2_S1A_ROOT_PINNED_CODEX_RESTART_PROMPT_20261119.md)已生成；Owner手动发往原有Codex会话，不能声称网页GPT已在Windows执行。本轮没有R1–R5源码结果，G01–G10动态全部`NOT_RUN`，F-01`READABILITY_PARTIAL`、旧1011804`UNKNOWN/NOT_RUN`、真实身份/Push未接入与43PNG`PENDING_BINARY_UPLOAD`不变。
+- 本次仅`S1_READ_ONLY_AUTHORIZED`。工程代码修改、运行脚本、测试/构建、数据库/设备、真实供应商、git fetch/pull/merge或其它Git写操作、A6正式UI会议、main与发布全部仍`NOT_AUTHORIZED/DEFERRED`。治理GitHub提交与本地真实工作树HEAD必须独立记账。
+
+---
+
 # CURRENT ENTRY 2026-11-19：Owner正式授权S1-A一次性本地Codex只读差距核查（未执行）
 
 **`S1_A_OWNER_AUTHORIZED / S1_READ_ONLY_ONLY / CODEX_EXISTING_SESSION_HANDOFF_READY / S1_NOT_EXECUTED / V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED / G01_G10_RUNTIME_NOT_RUN`**
