@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：CMT-T1方案A获Owner接受；历史评论与旧发布快照权限草案待审
+
+**`CMT_T1_OPTION_A_OWNER_CONCEPT_ACCEPTED / HIS_D1_D2_ADVISOR_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- [Owner CMT-T1方案A正式决定](../decisions/OWNER_V2_CMT_T1_SELF_TO_FRIENDS_COMMENTS_20261119.md)：普通新作品仍FRIENDS+FRIENDS_ONLY；SELF特例默认OFF。SELF→FRIENDS时仅隐式OFF且作者未明确关闭可在发布前建议FRIENDS_ONLY并由作者确认；明确OFF保留；隐式/明确来源无法判定时保留OFF、提示手动开启；受众更改必须本人确认。实际数据字段、旧作品迁移仍OPEN。
+- [下一项顾问草案HIS-D1/D2](../product/ELITESYNC_V2_HISTORY_RESURFACING_AND_REVOKED_SNAPSHOTS_V0_1_20261119.md)已形成、**Owner尚未审阅**：历史评论再可见建议同时满足当前作品读权与旧评论原受众边界；旧匹配形象快照在合法既有候选处保持O05方案A，但失权时隐藏敏感内容，仅原业务入口仍合法且不泄密时可显示最小状态。**历史保留/删除时长、旧作品迁移、撤权传播时效仍OPEN**。
+- S01–S16四批八组具名设计审阅均已获得Owner概念认可，旧1011804/UI-AUDIT-01的NOT_RUN/UNKNOWN不改判；真实身份核验供应商/真实Push未接入，43份原PNG GitHub归档仍`PENDING_BINARY_UPLOAD`；GitHub文档不是本地工程树同步凭据。
+- **A6正式UI会议继续暂缓、本地Codex没有新V2工程实施授权**：不改APP/API/Web/数据库，不运行设备、模拟器，不建APK，不合main，不发布，不接真实供应商。
+
+---
+
 # 当前入口 2026-11-19：Owner澄清FRIENDS好友可评与SELF特例OFF；切换规则待审
 
 **`FRIENDS_PLUS_FRIENDS_ONLY_OWNER_CONFIRMED / SELF_DEFAULT_OFF_SCOPED_OWNER_CLARIFICATION / CMT_T1_ADVISOR_OWNER_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
