@@ -35,6 +35,12 @@
 | 43份原PNG远端二进制备份 | 依据现行文档仍`PENDING_BINARY_UPLOAD`；本轮未逐份核查 |
 | 固定旧软件`10.1.18-dev / 1011804`与UI-AUDIT-01 | 原`NOT_RUN/UNKNOWN`维持，不改判 |
 
+## 最新Owner具名增量：NEW-PC-02方向性接受；NEW-PC-01继续待审
+
+- [Owner NEW-PC-02方向性接受](../decisions/OWNER_V2_NEW_PC02_AUTHOR_CONTROL_THIRD_PARTY_COMMENT_DISPLAY_DIRECTION_ACCEPTANCE_20261119.md)：作品作者可管理自己作品内第三方评论的展示，但不得因此删除评论者原始数据；安全复核与申诉原则保留。**具体隐藏范围、通知、恢复、复核和实现机制仍OPEN**。此决定不是对上一份顾问审计所有建议的一揽子接受。
+- [NEW-PC-01评论者撤回自己评论的设计选项](../product/ELITESYNC_V2_NEW_PC01_COMMENT_AUTHOR_WITHDRAWAL_CONCEPT_REVIEW_V0_1_20261119.md)已经出稿，仅`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，需要Owner后续单独选择；NEW-PC-03/04/05未由本次回复批准。
+- 两轮静态审计、F-01`READABILITY_PARTIAL`、G01–G10`NOT_RUN`、旧1011804 `UNKNOWN/NOT_RUN`、真实身份核验/Push及43 PNG原图未核的状态不变。`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`持续。
+
 ## 新增静态产品合同复核：哪些问题真正需要Owner选择（2026-11-19）
 
 - 已归档[剩余真实Owner决策分类V0.1](../product/ELITESYNC_V2_REMAINING_TRUE_OWNER_PRODUCT_DECISIONS_TRIAGE_V0_1_20261119.md)，属于`ADVISOR_PROPOSAL`，**不是Owner已选择**。新候选`NEW-PC-01`评论者撤回自己评论当前展示、`NEW-PC-02`作品作者能否隐藏自己作品下第三方评论、`NEW-PC-03`删除请求首期入口范围，可按需由Owner逐项具名审阅。首选先讨论NEW-PC-02，因为涉及新的管理权限边界。
