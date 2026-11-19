@@ -1,3 +1,11 @@
+# 2026-11-19 Owner正式接受路线图并授权阶段A（最新增量）
+
+- [具名路线图接受/阶段A授权](../decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md)：A→B→C→D与E1–E3总体方向获认可；首批A安全底线**正式获得工程实施与隔离测试权限**，由原有本地Codex自治，报告集中交Owner复核。阶段B–D尚未启动，KYC/Push、法域、设备/模拟器、A6、main及发布仍单独保留权限。
+- [阶段A合并任务单](../versions/v2/V2_PHASE_A_SECURITY_BASELINE_CONSOLIDATED_EXECUTION_BRIEF_20261119.md)、[Codex完整启动Prompt](../workflow/V2_PHASE_A_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261119.md)已归档。网页顾问没有本地Codex/Windows执行能力，当前只是`PHASE_A_HANDOFF_PENDING`。S1只读核查仍为已关闭历史阶段，不能用其替代本次授权。
+- NEW-PC/EDGE及所有既有具名产品规则未被路线图自动扩权；此前`ROADM​AP_PROPOSAL/IMPLEMENTATION_NOT_AUTHORIZED`旧段落仅反映Owner回复前的状态。G01–G10历史动态`NOT_RUN`及F-01/43 PNG等遗留状态不改判。
+
+---
+
 # 2026-11-19 S1-A后工程差距集中路线图V0.1（最新顾问提案）
 
 - [V2 S1-A后四阶段集中路线图](ELITESYNC_V2_POST_S1_CONSOLIDATED_ENGINEERING_ROADMAP_V0_1_20261119.md)是根据已验收的真实静态源码差距制订的**顾问规划**：阶段A安全底线、B首页/评论、C资料与对象删除、D旅程/通知/体验，真实身份/真Push/合法与资产三条并行依赖。Owner本轮仅授权**规划**，没有批准路线图作为新工程任务或Codex实施。
