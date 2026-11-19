@@ -1,3 +1,11 @@
+# 2026-11-19 当前最新授权：V2四阶段路线图获Owner接受，阶段A工程可执行
+
+- Owner明确“上述路线图审阅完毕，我认为非常完善，并且授权你开始执行”。[Owner路线图接受及阶段A工程授权](docs/decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md)现为最新权威：A安全基础阶段**允许原有本地Codex修改相关Flutter/Laravel/必要安全schema定义并运行本地隔离测试**；它是新的独立工程授权，不是S1一次性只读权限复活。阶段B/C/D纳入Owner已接受路线图但未启动。
+- [阶段A合并工程任务书](docs/versions/v2/V2_PHASE_A_SECURITY_BASELINE_CONSOLIDATED_EXECUTION_BRIEF_20261119.md)和[原Codex会话启动Prompt](docs/workflow/V2_PHASE_A_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261119.md)是现行执行入口。当前网页GPT仅创建GitHub治理/交接文档，**尚未直接运行或通知本地Codex**。Codex必须在开始改动前只读重核真实活动工作根、分支/HEAD及工作区是否安全，严禁覆盖`D:\EliteSync-v10`脏main和其它现存未提交文件；日常拆分/提交和自验由Codex自治，阶段A一包汇报。
+- **禁止范围没有被解除**：真实身份/Push/RTC供应商/采购、生产/共享DB与真实个人数据不可逆处理、真机/模拟器、正式A6 UI会议、main合并、发布/对外启动，以及跨阶段B/C/D实施。若有冲突先止损。G01–G10历史动态`NOT_RUN`、S1-A既有验收与旧1011804历史状态保持。
+
+---
+
 # 2026-11-19 最新顾问规划：V2工程差距集中路线图V0.1，实施仍禁止
 
 - Owner明确同意**路线图规划**，不等于批准代码或动态测试。现行顾问规划：[V2 S1-A后四阶段+三并行线工程差距路线图](docs/product/ELITESYNC_V2_POST_S1_CONSOLIDATED_ENGINEERING_ROADMAP_V0_1_20261119.md)，依据[S1-A限定验收](docs/workflow/V2_S1A_READ_ONLY_GAP_AUDIT_ADVISOR_ACCEPTANCE_20261119.md)。A身份/旧候选快照/UNKNOWN基础安全；B首页/历史评论；C资料用途/派生/对象级删除；D连续关系/通知/整体UI。真实身份与Push供应商以及法务/资产为外部并行依赖。
