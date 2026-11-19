@@ -5,6 +5,12 @@
 当前治理分支：`governance/home-matching-product-freeze-20261117`  
 本页是**导航摘要**，不代替独立具名Owner决定、当期完整审计证据或最终发布合同。具体审计见[DESIGN-AUDIT-01](V2_STATIC_DESIGN_CONTRACT_AUDIT_20261119.md)与[DESIGN-AUDIT-02](V2_STATIC_DESIGN_CONTRACT_AUDIT_02_P0_EVIDENCE_LEDGER_20261119.md)。
 
+## 最新：S1-A后工程差距集中路线图V0.1（仅顾问规划）
+
+- Owner明确同意进入**V2工程差距集中路线图规划**。[四阶段+三并行线路线图](../product/ELITESYNC_V2_POST_S1_CONSOLIDATED_ENGINEERING_ROADMAP_V0_1_20261119.md)已形成：A身份真实准入阻断/旧候选形象版本/UNKNOWN安全，B首页与历史评论权限，C资料用途/派生/对象级删除，D关系旅程/通知与体验整合；E1真实身份供应商、E2真Push、E3法律与资产证据并行。**这是`ADVISOR_ROADMAP_PROPOSAL`，不是Owner对开发阶段的执行批准，也不是已发生的实施结果。**
+- 不让KYC/Push未接入无谓阻断独立安全软件工作，但真实报名/自动参与、正式Push与依法必须处理的请求继续fail-closed。每阶段未来建议Codex自治拆解/自验、顾问按一包验收、Owner作最终决定；**现阶段没有Codex实施授权**。S1只读一次性权利已随报告结束，A6正式UI会议仍DEFERRED。
+- G01–G10新动态全部`NOT_RUN`、F-01`READABILITY_PARTIAL`、43原PNG`PENDING_BINARY_UPLOAD`、旧1011804`UNKNOWN/NOT_RUN`与真实供应商缺口均不改判。
+
 ## 最新：S1-A只读工程差距报告限定验收完成，权限在报告处结束
 
 - Owner提交完整S1-A本地Codex只读报告后，网页顾问在远端固定工程源码`1d8b485bf4f314d42431bb62a293a3fef9e9c8af`抽样核实身份、评论/历史受众、旧候选形象版本、Lifestyle UNKNOWN重放、对象级删除与Push等问题；[S1-A限定验收报告](V2_S1A_READ_ONLY_GAP_AUDIT_ADVISOR_ACCEPTANCE_20261119.md)现已归档。
