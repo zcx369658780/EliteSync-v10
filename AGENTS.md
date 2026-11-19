@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问最新入口：S01–S16框架接受，首批S01–S04待审
+
+- [Owner S01–S16检查框架接受](docs/decisions/OWNER_V2_S01_S16_REVIEW_FRAMEWORK_ACCEPTANCE_20261119.md)仅确认框架与分批审阅法，不等于逐屏布局/具体按钮/代码合同冻结。[S01–S04顾问逐屏检查草案](docs/product/ELITESYNC_V2_S01_S04_FIRST_JOURNEY_SCREEN_REVIEW_V0_1_20261119.md)是当前`ADVISOR_PER_SCREEN_DRAFT / OWNER_REVIEW_PENDING`。
+- 治理现行入口以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)与[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为准；旧“16屏框架未审阅”按历史时点理解。现阶段仍无新V2测试/工程授权。
+- A6正式会议暂缓，Codex停止新V2实施，不改APP/API/Web/DB、不启动设备/模拟器、不建APK、不合main、不发布；原PNG GitHub备份缺口与旧NOT_RUN/UNKNOWN保持。
+
+---
+
 # 2026-11-19 GPT顾问最新入口：O10/O12已确认，关键页面交互矩阵待审
 
 - [O10/O12 Owner接受](docs/decisions/OWNER_V2_O10_O12_LOW_DENSITY_ACCESSIBILITY_CONCEPT_ACCEPTANCE_20261119.md)是已确认的V2概念方向：一屏一目的、合法主操作突出、必要次操作可见，未来D/I/N/A/W和无障碍专项验证；具体色卡、组件、数值、动态QA不因此获批。
