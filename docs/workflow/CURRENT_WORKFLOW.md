@@ -1,3 +1,11 @@
+# 2026-11-19｜V2网页顾问合并审阅节奏（Owner反馈：减少碎片门禁、加快收束）
+
+- Owner明确“不要把门禁拆的太散，我们需要加快速度”。现行顾问工作法调整为**同域静态草案合并审阅**：已有具名Owner原则不重复问，小型状态/文案/回退细节由网页GPT合并形成一份审阅稿，只有真正新增用户权利、跨受众/用途/法律重大取舍再集中向Owner提出清楚的独立选择。参见[合并审阅与Gate压缩V0.1](../product/ELITESYNC_V2_CONSOLIDATED_DESIGN_REVIEW_AND_GATE_COMPACTION_V0_1_20261119.md)与[本批统一内容UX状态稿](../product/ELITESYNC_V2_BATCH_CONTENT_SINGLE_PASS_UX_STATE_DRAFT_V0_1_20261119.md)。
+- 本轮[EDGE-D2 Owner方案A决定](../decisions/OWNER_V2_EDGE_D2_MINIMAL_COMMENT_STATUS_AND_REVIEW_OPTION_A_ACCEPTANCE_20261119.md)已确认有权、不泄密条件下的中性展示状态与确有合法渠道时的复核说明；不强制Push或确认真实申诉系统。NEW-PC-01/02/03和EDGE-D1/2具名产品概念保持独立。上述两份整合顾问稿**不是**批量Owner接受，更不是可实施代码合同。
+- **压缩的是顾问决策节奏，不是用户独立授权或安全门禁。** `DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`不变：不派Codex、不触碰APP/API/Web/DB/设备/APK/main/发布/真实供应商；所有动态QA仍NOT_RUN，历史UNKNOWN、F-01可读性及43 PNG缺口不改判。GitHub治理分支仅记录文档，不证明本地工作区状态。
+
+---
+
 # 2026-11-19：两轮V2静态设计审计留证完毕，当前会话移交新网页GPT顾问
 
 - 最新Owner允许**继续静态审计并在会话太长时先存GitHub再交接**。已建立[一页权威状态](V2_CURRENT_AUTHORITY_ONE_PAGE_20261119.md)、[DESIGN-AUDIT-02静态P0证据复核](V2_STATIC_DESIGN_CONTRACT_AUDIT_02_P0_EVIDENCE_LEDGER_20261119.md)及[SESSION_HANDOFF_20261119交接](SESSION_HANDOFF_20261119_V2_DESIGN_AUDIT02_STATIC_ONLY.md)；[DESIGN-AUDIT-01](V2_STATIC_DESIGN_CONTRACT_AUDIT_20261119.md)仍`STATIC_PARTIAL`，不可改称工程PASS。
