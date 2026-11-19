@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：O06-D1/O07-D1获Owner确认，排序及历史处理待审
+
+**`O01_O02_O04_O05_OWNER_CONFIRMED / O05_OPTION_A / O06_D1_O07_D1_OWNER_CONCEPT_ACCEPTED / O06_O07_HISTORY_SORT_ADVISOR_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
+
+- [Owner O06/O07决定](../decisions/OWNER_V2_O06_O07_NOTIFICATION_READ_DERIVED_REVIEW_20261119.md)：合法单条通知详情打开后只标读该条，不能进入通知频道即全标；已读与待处理业务事实独立。确认撤销用途后停止该用途下未经授权的后续使用；纠正事实后仅受影响的派生结果标“需要核查”，**不自动重算/发布**。不推断已删除历史或同步清理完成。
+- [O06/O07细化方案V0.1](../product/ELITESYNC_V2_O06_O07_FOLLOWUP_SORT_HISTORY_AND_DERIVED_RECOVERY_V0_1_20261119.md)仅为顾问草案：真实到期时间优先的待办排序、合法安全历史摘要、派生结果历史合法展示与纠错恢复。**待Owner审阅**，通知保留期限、历史删除、快照权限、数据schema、工程细节仍OPEN。
+- O01/O02、O04/O05与O05方案A、A6.6/A6.7既有Owner概念决定继续有效；真实实人核验供应商未接入，1011804及历史UNKNOWN/NOT_RUN不能升级为PASS。
+- **A6正式UI会议暂缓；Codex未获新V2工程实施授权**：不改APP/API/Web/数据库、不运行设备/模拟器、不构建APK、不合main、不发布。43份原PNG GitHub备份仍PENDING_BINARY_UPLOAD；治理分支不代表本地工作区已同步。
+
+---
+
 # 当前入口 2026-11-19：O04/O05已接受，O05方案A生效；O06/O07顾问设计待Owner审阅
 
 **`O01_O02_OWNER_CONFIRMED / O04_O05_OWNER_CONCEPT_ACCEPTED / O05_X_OPTION_A_CONFIRMED / O06_O07_ADVISOR_DRAFT_PENDING_OWNER_REVIEW / DESIGN_ONLY / CODEX_NOT_AUTHORIZED`**
