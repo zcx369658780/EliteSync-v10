@@ -5,6 +5,12 @@
 当前治理分支：`governance/home-matching-product-freeze-20261117`  
 本页是**导航摘要**，不代替独立具名Owner决定、当期完整审计证据或最终发布合同。具体审计见[DESIGN-AUDIT-01](V2_STATIC_DESIGN_CONTRACT_AUDIT_20261119.md)与[DESIGN-AUDIT-02](V2_STATIC_DESIGN_CONTRACT_AUDIT_02_P0_EVIDENCE_LEDGER_20261119.md)。
 
+## 最新Owner S1-A补充确认：唯一工程根和治理只读快照（2026-11-19）
+
+- [Owner补充授权](../decisions/OWNER_V2_S1A_ROOT_AND_REMOTE_GOVERNANCE_READ_SUPPLEMENT_20261119.md)正式指定本次S1-A唯一R1–R5代码审阅根`D:\EliteSync-v10-product-v1015-20261101`，并允许只读访问固定GitHub治理提交`6af426b14cf6571c2de1d24281b03ca24e03c634`中的相关Owner/设计/证据文本文档；目标上次本地分支`codex/ui-current-state-audit-20261116`、HEAD`1d8b485bf4f314d42431bb62a293a3fef9e9c8af`只是前次只读快照，必须重新核实。
+- [新的Codex现有会话启动Prompt](V2_S1A_ROOT_PINNED_CODEX_RESTART_PROMPT_20261119.md)已经准备并固定，Owner可以手动粘贴执行；网页GPT尚未访问Windows源码，前次Codex仅`IDENTITY_UNRESOLVED`而**尚未执行R1–R5**。不把原`D:\EliteSync-v10` main及其大量未提交内容作为审阅根，也不切换/修改它们。
+- `S1_READ_ONLY_AUTHORIZED / ROOT_PINNED / REMOTE_GOVERNANCE_READ_ONLY_AUTHORIZED / S1_NOT_YET_RESUMED / V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED`。不触发git fetch/pull、运行测试、修改文件、供应商/设备或其他研发发布授权；G01–G10仍`NOT_RUN`。
+
 ## 最新Owner决定：S1-A一次性本地Codex只读核查已获授权（2026-11-19）
 
 - Owner在明确的S1-A/B询问后回复“我同意授权，请继续”。[Owner S1-A具名授权](../decisions/OWNER_V2_S1A_BOUNDED_READ_ONLY_CODEX_GAP_AUDIT_AUTHORIZATION_20261119.md)仅允许**现有EliteSync本地Codex项目会话**一次性读取其当前已验证唯一活动工程根下的源码/接口/迁移**定义**/测试源码，合并R1–R5给出一份`PRESENT/PARTIAL/ABSENT/UNKNOWN`静态差距报告；不得运行测试、构建、改码、数据库、设备/供应商或Git状态更改。
