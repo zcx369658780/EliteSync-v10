@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：S02与S03/S04具名交互原则接受；S05–S08第二批逐屏顾问稿待审
+
+**`S02_D1_S03_S04_D2_OWNER_CONCEPT_ACCEPTED / S05_S08_ADVISOR_PER_SCREEN_OWNER_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- [Owner S02-D1/S03/S04-D2接受](../decisions/OWNER_V2_S02_D1_S03_S04_D2_ACCEPTANCE_20261119.md)：Lifestyle点击答案提交，**只有确切保存成功才自动跳下一题**；UNKNOWN/失败停留当前题，先核权威结果；访客及登录用户首页无可读内容/权限暂不可核实显示不泄密空态，不借旧账号缓存、旧作品图或Block暗示泄漏。
+- [S05–S08匹配准备/资料回流/Connection与消息许可逐屏草案V0.1](../product/ELITESYNC_V2_S05_S08_MATCH_CONNECTION_CONSENT_SCREEN_REVIEW_V0_1_20261119.md)已出稿，**Owner尚未审阅**。新S05-D1建议突出当前本人可补一项任务并单独标不可用核验外部依赖；新S07/S08-D2建议未来条件满足时同一任务上下文连续引导，但每阶段双方各自独立许可。现时真实实人核验供应商未接入、真实报名禁用，S07/S08非当前可执行成功链。
+- S01–S16框架Owner已接受，上一批只接受两条具名增量，其他页面细节OPEN。O01–O12、A6.6/A6.7既有具名Owner概念决定继续有效，不等于实现合同。1011804原NOT_RUN/UNKNOWN不转PASS，43份原PNG GitHub备份仍PENDING_BINARY_UPLOAD。
+- **A6正式UI会议继续暂缓，本地Codex没有新V2实施授权**：不改APP/API/Web/DB，不运行设备/模拟器，不建APK，不合main，不发布；GitHub治理状态不代表Owner本地工程代码已同步。
+
+---
+
 # 当前入口 2026-11-19：S01–S16设计检查框架Owner认可；S01–S04首批逐屏顾问草案待审
 
 **`S01_S16_FRAMEWORK_OWNER_CONCEPT_ACCEPTED / S01_S04_PER_SCREEN_ADVISOR_DRAFT_OWNER_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
