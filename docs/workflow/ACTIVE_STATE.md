@@ -1,3 +1,16 @@
+# CURRENT ENTRY 2026-11-20｜V2 阶段 A 工程交付获顾问限定接受，待 Owner 终验
+
+**`PHASE_A_A1_A4_IMPLEMENTED / NAMED_AUTOMATED_QA_PASS / ADVISOR_ACCEPTED_WITH_RESERVATIONS / OWNER_FINAL_ACCEPTANCE_PENDING / PHASE_B_NOT_AUTHORIZED`**
+
+- Owner 已接受四阶段路线图，并批准 A1–A4 工程实施与隔离测试。后续确认此次指定治理快照 `8f528e6dc1df3d52ba931e65d8ce5658cfaf11f7` 的授权与任务书和执行时相同。[Owner 正式决定](https://github.com/zcx369658780/EliteSync-v10/blob/8f528e6dc1df3d52ba931e65d8ce5658cfaf11f7/docs/decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md)
+- 实际工程根 `D:\EliteSync\development\v2-phase-a-20261119`，分支 `codex/v2-phase-a-security-baseline-20261119`，基线 `1d8b485b`，最终产品源码 `4e6a5be6`，工程交付 `07b51a6d`。已完成正式身份门禁、候选旧发布绑定、UNKNOWN 只读核对、受众与失权保护。[阶段 A 集中报告](https://github.com/zcx369658780/EliteSync-v10/blob/07b51a6de9695f5358b6bea2a59acd5be24ab6c2/docs/versions/v2/phase-a-20261119/PHASE_A_ENGINEERING_REPORT.md)
+- 隔离实测 PHP 110 项 / 1,429 个断言，Flutter 140 项通过，8 个 Dart 文件分析 0 问题。非作者代码复核无开放 P1/P2。G01/G02/G03/G06/G08 为具名子项 PARTIAL，其余 NOT_RUN。旧 1011804 的 FAIL/UNKNOWN/NOT_RUN、F-01 和 43 PNG 原状态保留。PHP 8.4、MariaDB 并发、跨设备及真实供应商验证仍待补证。
+- B–D 尚未启动。顾问已限定接受，Owner 决定是否进入下一阶段。模型、子代理和交接规则已更新。详见 [当前工作流](CURRENT_WORKFLOW.md) 与 [会话交接](SESSION_HANDOFF_20261120_ELITESYNC_V2_PHASE_A_REVIEW.md)。
+
+- 顾问在固定产品源码上抽样核对 A1–A4，结论为 ACCEPTED_WITH_RESERVATIONS。执行计数沿 Codex 实测报告，顾问未复跑。详见 [顾问限定验收](https://github.com/zcx369658780/EliteSync-v10/blob/c97bc6c343f667413a489eeef9dc89f6af023a82/docs/workflow/V2_PHASE_A_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)。
+
+---
+
 # CURRENT ENTRY 2026-11-19：V2 阶段 A 工程候选完成，待 Owner/顾问集中审阅
 
 **`PHASE_A_A1_A4_IMPLEMENTED / NAMED_AUTOMATED_QA_PASS / OWNER_AND_ADVISOR_REVIEW_PENDING / PHASE_B_C_D_NOT_STARTED / NO_MAIN_MERGE_OR_RELEASE`**
