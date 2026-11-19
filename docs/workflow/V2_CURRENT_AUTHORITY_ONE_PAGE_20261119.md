@@ -35,6 +35,12 @@
 | 43份原PNG远端二进制备份 | 依据现行文档仍`PENDING_BINARY_UPLOAD`；本轮未逐份核查 |
 | 固定旧软件`10.1.18-dev / 1011804`与UI-AUDIT-01 | 原`NOT_RUN/UNKNOWN`维持，不改判 |
 
+## 2026-11-19最新Owner决定：NEW-PC-03 A接受；三项内容权利概念收口
+
+- [NEW-PC-03 Owner方案A](../decisions/OWNER_V2_NEW_PC03_INITIAL_OBJECT_LEVEL_DELETION_REQUEST_ENTRY_OPTION_A_ACCEPTANCE_20261119.md)明确首期**优先规划**本人作品、本人评论的对象级删除请求入口，不与受众收窄/评论撤回/具名用途撤销混用；只有真实合法受理/删除完成的权威证据才能显示对应事实。并未批准API、期限、物理删除、账号级清除或首期上线。
+- NEW-PC-01评论作者撤回本人评论展示、NEW-PC-02作品作者隐藏本作品第三方评论展示的**概念方向**此前已接受；[三项内容与删除静态对照矩阵](../product/ELITESYNC_V2_CONTENT_CONTROL_AND_DELETION_SEMANTICS_MATRIX_V0_1_20261119.md)只是顾问整理，不自动冻结回复/引用/通知/申诉/恢复/实际实现合同。下方旧“NEW-PC-03待审”仅为历史时点。
+- NEW-PC-04/05仍建议延期，Owner尚未批准新增功能。两轮设计审计仍`STATIC_PARTIAL`，F-01`READABILITY_PARTIAL`，G01–G10均`NOT_RUN`，`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`不变。
+
 ## 最新Owner具名决定：NEW-PC-01方案A接受；NEW-PC-03待审
 
 - [NEW-PC-01 Owner方案A](../decisions/OWNER_V2_NEW_PC01_COMMENT_AUTHOR_WITHDRAWAL_OPTION_A_DIRECTION_ACCEPTANCE_20261119.md)已确认**评论作者撤回本人评论当前对外展示的产品方向**；撤回不等于永久删除本人原件、合法独立留存或他人回复。回复/引用、恢复、删除请求、真实回执、动态QA仍OPEN。
