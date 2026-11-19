@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：RET-D1/D2方案A获Owner接受；剩余P0产品合同与证据分类草案待审
+
+**`RET_D1_A_RET_D2_A_OWNER_CONCEPT_ACCEPTED / P0_REMAINING_CONTRACT_ADVISOR_DRAFT / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- [Owner RET-D1/D2正式决定](../decisions/OWNER_V2_RET_D1_D2_REVOCATION_DELETION_CONCEPT_ACCEPTANCE_20261119.md)：已确认用途/阅读权限撤销、删除请求真实受理、指定范围删除核实完成各为独立可向用户表述的状态；删除请求须按对象、用途、主体/第三方权利及合法必要例外区分。**没有**确定统一保留期限、实际删除接口、跨设备瞬时清除、合法删除范围或后台已执行情况。
+- [P0剩余合同与工程/法律/供应商证据分类顾问草案](../product/ELITESYNC_V2_REMAINING_P0_PRODUCT_CONTRACT_AND_EVIDENCE_HANDOFF_V0_1_20261119.md)已形成，`ADVISOR_CONSOLIDATION_DRAFT / OWNER_REVIEW_PENDING`。将历史作品与评论、单一事实来源与用途、发布快照、数据删除请求、实人核验、跨设备UNKNOWN等按“可做产品取舍/需真实外部证据”分栏。下步`OBJ-D1`关于作者撤下作品和第三方评论的动作分流仅顾问建议，尚非Owner决定。
+- S01–S16四批八组具名增量、CMT-T1、HIS-D1/D2及其它具名概念已接受；原`10.1.18-dev / 1011804`、UI-AUDIT-01的`NOT_RUN/UNKNOWN`不改判；真实身份核验供应商与真实Push尚未接入。43份原PNG GitHub归档仍`PENDING_BINARY_UPLOAD`，治理分支文件不证明Owner本地工程已同步。
+- **A6正式UI会议继续暂缓，本地Codex无新V2实施授权**：不改APP/API/Web/数据库、不运行设备/模拟器、不构建APK、不合main、不发布、不接真实供应商；仅网页GPT概念咨询与治理文件归档。
+
+---
+
 # 当前入口 2026-11-19：HIS-D1/D2方案A获Owner认可；RET历史保留、删除请求与用途撤销草案待审
 
 **`HIS_D1_A_HIS_D2_A_OWNER_CONCEPT_ACCEPTED / RET_D1_D2_ADVISOR_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
