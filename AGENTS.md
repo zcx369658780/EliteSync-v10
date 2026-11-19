@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问最新入口：O09已接受，设计剩余决策盘点中
+
+- [Owner O09-D1/D2概念决定](docs/decisions/OWNER_V2_O09_CROSS_DEVICE_AUTH_UNKNOWN_ACCEPTANCE_20261119.md)已接受：跨设备/深链/切号受保护状态重验、无法核实时安全占位及UNKNOWN权威核对；不意味着真实跨设备同步、幂等接口已实现。
+- [V2剩余产品决定与设计门槛V0.1](docs/product/ELITESYNC_V2_REMAINING_DESIGN_DECISIONS_AND_GATES_V0_1_20261119.md)是**网页GPT顾问草案、待Owner审阅**；当前事实见[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)顶部与[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部。O01–O09具名认可不消除各条残留OPEN。
+- 不启动A6正式UI会议或Codex新V2工程；不改APP/API/Web/DB、不运行设备/模拟器、构建APK、合main或发布。原PNG远端备份仍PENDING_BINARY_UPLOAD。
+
+---
+
 # 2026-11-19 GPT顾问当前入口：O08 D1/D2已接受，O09待审
 
 - [O08 Owner概念确认](docs/decisions/OWNER_V2_O08_SAFE_FEEDBACK_ATTACHMENTS_DRAFTS_ACCEPTANCE_20261119.md)已归档：当前有资格用户安全反馈、附件用户主动提交、仅当前会话内可安全暂存，失权及时隔离；其余存储/日志/自动脱敏仍OPEN。
