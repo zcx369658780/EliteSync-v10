@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问现行入口：RET-D1/D2已接受，P0剩余合同/证据梳理待审
+
+- [RET-D1/D2 Owner正式决定](docs/decisions/OWNER_V2_RET_D1_D2_REVOCATION_DELETION_CONCEPT_ACCEPTANCE_20261119.md)已认可权限撤销/删除受理/可核实删除完成三种状态及按对象、用途、主体/第三方权利、合法例外处理。仍OPEN具体留存时长/技术清理机制/适用法律合同与实施。
+- 当前顾问文档：[剩余P0产品合同与证据依赖V0.1](docs/product/ELITESYNC_V2_REMAINING_P0_PRODUCT_CONTRACT_AND_EVIDENCE_HANDOFF_V0_1_20261119.md)是`ADVISOR_CONSOLIDATION_DRAFT / OWNER_REVIEW_PENDING`，不得将OBJ-D1或工作优先级直接当Owner已经批准；当期状态请读[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)、[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部。
+- **仅网页GPT设计咨询及GitHub治理文档**。Codex新V2实施仍停止，A6正式UI会议暂缓；不改APP/API/Web/DB/设备/模拟器/APK/main/发布。旧1011804/NOT_RUN/UNKNOWN、实人核验/Push未接入和43原PNG远端备份缺口仍有效。
+
+---
+
 # 2026-11-19 GPT顾问最新入口：HIS-D1/D2已确认，RET历史数据治理草案待审
 
 - [Owner HIS-D1/D2概念接受](docs/decisions/OWNER_V2_HIS_D1_D2_HISTORICAL_ACCESS_AND_SNAPSHOTS_20261119.md)明确历史评论在原受众/当前作品读权交集内合法再现及失权旧候选快照隐藏；不能据此认定永久删除/保留期限已裁决。
