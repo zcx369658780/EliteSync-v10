@@ -1,3 +1,12 @@
+# 2026-11-19｜路线图Owner接受、阶段A由现有本地Codex自治执行（尚未实作）
+
+- Owner明确回复“上述路线图审阅完毕，我认为非常完善，并且授权你开始执行”。现行权限由[具名决定](../decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md)确定：V2四阶段三并行路线图已采纳，阶段A允许**本地工程修改与安全隔离自动化测试**；阶段B–D尚未启动。旧文`V2_IMPLEMENTATION_NOT_AUTHORIZED`只属此前时点，不能覆盖新授权。
+- [阶段A合并工程任务书](../versions/v2/V2_PHASE_A_SECURITY_BASELINE_CONSOLIDATED_EXECUTION_BRIEF_20261119.md)与[原有Codex会话启动Prompt](V2_PHASE_A_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261119.md)已归档供Owner手动转交。**GitHub仅治理与备份**，本地Codex负责日常自治拆任务、实际代码、隔离测试、自验和阶段报告；不走网页GPT逐微任务审批。网页GPT目前没有实际启动本地Codex，阶段A尚无新工程结果。
+- 实际工程工作根/branch/dirty须Codex在开发前重新确认并保护`D:\EliteSync-v10`历史脏main和当前已有未跟踪资料。正式身份/Push提供者与不可逆真实数据、真机/模拟器、正式A6、main合并、发布均仍另行授权。每阶段统一提交一包证据，阶段A验收后再决定是否进入B。
+- G01–G10现有新动态仍`NOT_RUN`，旧1011804历史状态/F-01/43 PNG缺口不因Owner授予工程权限自动改变。
+
+---
+
 # 2026-11-19｜网页顾问已完成V2工程差距集中路线图草案（无工程执行授权）
 
 - Owner同意进行**V2工程差距的集中路线图规划**；顾问以[S1-A已验收报告](V2_S1A_READ_ONLY_GAP_AUDIT_ADVISOR_ACCEPTANCE_20261119.md)为工程证据边界，归档[四阶段三并行线顾问路线图V0.1](../product/ELITESYNC_V2_POST_S1_CONSOLIDATED_ENGINEERING_ROADMAP_V0_1_20261119.md)。不拆G01–G10单独开发任务：A安全/旧快照/UNKNOWN、B首页与历史评论、C资料/派生/删除、D匹配通知/体验，KYC、Push、合规/资产并行作为真实外部依赖。
