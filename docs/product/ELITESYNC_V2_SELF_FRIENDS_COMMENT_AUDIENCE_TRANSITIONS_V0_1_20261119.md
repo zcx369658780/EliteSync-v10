@@ -1,3 +1,11 @@
+# 2026-11-19 Owner接受增量（现行有效，优先于下方原始待审标记）
+
+Owner明确回复“**我认可CMT-T1方案A，请继续**”，现正式确认[Owner CMT-T1 方案A决定](../decisions/OWNER_V2_CMT_T1_SELF_TO_FRIENDS_COMMENTS_20261119.md)：作者主动将SELF改FRIENDS时，如果原OFF只是系统SELF隐式默认且没有作者明确OFF，则发布前可明确展示FRIENDS_ONLY作为推荐值，由作者确认；若曾主动OFF则保留；未来工程若不能区分隐式/显式OFF则安全保留OFF并提示手动启用好友评论。普通新作品FRIENDS+FRIENDS_ONLY，陌生人默认不能评论。
+
+下方CMT-T1“待Owner审阅”是原稿时点，**不适用于已接受的方案A**；实际字段记录、旧作品迁移、多次切换、旧评论历史保存及媒体权限仍OPEN。下一项[历史评论重现、旧候选快照和用途撤回权限草案](ELITESYNC_V2_HISTORY_RESURFACING_AND_REVOKED_SNAPSHOTS_V0_1_20261119.md)为`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，不能提前确认HIS-D1/D2。A6会议和Codex新V2实施仍停。
+
+---
+
 # EliteSync V2｜SELF / FRIENDS作品受众与评论权限联动 V0.1
 
 日期：2026-11-19（Asia/Singapore）  
