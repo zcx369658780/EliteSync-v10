@@ -1,6 +1,6 @@
 # EliteSync V2｜网页GPT顾问当前权威一页入口（2026-11-19）
 
-状态：`S1_A_ACCEPTED_WITH_RESERVATIONS / S1_CLOSED_AT_REPORT / V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED / RUNTIME_NOT_RUN`  
+状态：`OWNER_ROADMAP_ACCEPTED / PHASE_A_ENGINEERING_AUTHORIZED / PHASE_A_HANDOFF_PENDING / A6_MEETING_DEFERRED / NO_PRODUCTION_RELEASE / HISTORICAL_RUNTIME_NOT_RUN`  
 仓库：`zcx369658780/EliteSync-v10`  
 当前治理分支：`governance/home-matching-product-freeze-20261117`  
 本页是**导航摘要**，不代替独立具名Owner决定、当期完整审计证据或最终发布合同。具体审计见[DESIGN-AUDIT-01](V2_STATIC_DESIGN_CONTRACT_AUDIT_20261119.md)与[DESIGN-AUDIT-02](V2_STATIC_DESIGN_CONTRACT_AUDIT_02_P0_EVIDENCE_LEDGER_20261119.md)。
@@ -10,6 +10,12 @@
 - Owner明确同意进入**V2工程差距集中路线图规划**。[四阶段+三并行线路线图](../product/ELITESYNC_V2_POST_S1_CONSOLIDATED_ENGINEERING_ROADMAP_V0_1_20261119.md)已形成：A身份真实准入阻断/旧候选形象版本/UNKNOWN安全，B首页与历史评论权限，C资料用途/派生/对象级删除，D关系旅程/通知与体验整合；E1真实身份供应商、E2真Push、E3法律与资产证据并行。**这是`ADVISOR_ROADMAP_PROPOSAL`，不是Owner对开发阶段的执行批准，也不是已发生的实施结果。**
 - 不让KYC/Push未接入无谓阻断独立安全软件工作，但真实报名/自动参与、正式Push与依法必须处理的请求继续fail-closed。每阶段未来建议Codex自治拆解/自验、顾问按一包验收、Owner作最终决定；**现阶段没有Codex实施授权**。S1只读一次性权利已随报告结束，A6正式UI会议仍DEFERRED。
 - G01–G10新动态全部`NOT_RUN`、F-01`READABILITY_PARTIAL`、43原PNG`PENDING_BINARY_UPLOAD`、旧1011804`UNKNOWN/NOT_RUN`与真实供应商缺口均不改判。
+
+## 最新Owner决定：V2四阶段路线图获接受，阶段A工程启动获授权
+
+- [Owner路线图+阶段A具名授权](../decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md)：四阶段A→B→C→D、E1/E2/E3并行依赖的**方向已接受**，并允许原有本地Codex会话执行**阶段A**身份真实参与门禁、旧候选形象绑定、UNKNOWN先查与保守安全保护。这个新增授权不是旧S1只读授权复活；允许阶段A本地工程修改和隔离自动化测试。
+- [合并阶段A任务单](../versions/v2/V2_PHASE_A_SECURITY_BASELINE_CONSOLIDATED_EXECUTION_BRIEF_20261119.md)与[Codex启动Prompt](V2_PHASE_A_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261119.md)已写入治理分支供Owner转交，**并未直连Windows本地Codex、没有执行或验收阶段A**；现行状态`PHASE_A_AUTHORIZED / HANDOFF_PENDING`。建议原有Codex会话自己保护脏工作树、自主拆版本、自验，一次综合报告后停止跨阶段推进。
+- 阶段B/C/D只纳入已接受总体顺序，**尚未启动**；真供应商、生产/真实数据、真机/模拟器、A6正式会议、main合并或发布仍各自未授权。下方所有“路线图仅顾问提案/实施未授权”的表述是更早时点状态，按此Owner最新决定更新。历史G01–G10新动态`NOT_RUN`和旧1011804`UNKNOWN/NOT_RUN`不改判。
 
 ## 最新：S1-A只读工程差距报告限定验收完成，权限在报告处结束
 
