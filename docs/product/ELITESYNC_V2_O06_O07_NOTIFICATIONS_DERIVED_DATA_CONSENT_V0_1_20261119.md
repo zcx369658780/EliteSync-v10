@@ -1,3 +1,11 @@
+# 2026-11-19 Owner确认增量（当前有效，优先于下方V0.1待审字样）
+
+Owner明确回复“**好的我接受这两条，请继续**”，接受原稿中的**O06-D1单条合法详情标读、待办独立**及**O07-D1撤销用途后停止未获授权的继续使用、事实纠错后相关派生结果需要核查**。详见[独立Owner决策](../decisions/OWNER_V2_O06_O07_NOTIFICATION_READ_DERIVED_REVIEW_20261119.md)。
+
+本文件最初的`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`现仅适用于仍未确认的细节；不能覆盖已正式接受的O06-D1/O07-D1。下一轮审阅材料：[O06排序与失效历史、O07派生结果历史恢复V0.1](ELITESYNC_V2_O06_O07_FOLLOWUP_SORT_HISTORY_AND_DERIVED_RECOVERY_V0_1_20261119.md)，仍为顾问建议。通知历史保存期限、派生结果的实际删除/受控留存、完整schema及工程验证继续OPEN。
+
+---
+
 # EliteSync V2｜O06通知细则及O07撤销用途后的派生结果（顾问方案 V0.1）
 
 日期：2026-11-19（Asia/Singapore）  
