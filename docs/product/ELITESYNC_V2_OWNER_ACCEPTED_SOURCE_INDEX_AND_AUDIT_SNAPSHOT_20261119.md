@@ -1,3 +1,11 @@
+# 2026-11-19 BATCH-OTHER-DESIGN完成；现行概念与证据短入口（顾问增量）
+
+- [BATCH-OTHER-DESIGN四领域合并静态审阅](ELITESYNC_V2_BATCH_OTHER_DESIGN_SINGLE_PASS_STATIC_REVIEW_V0_1_20261119.md)已整理首页与内容、首次Lifestyle/匹配、资料/形象、消息通知的Owner确认规则、15个概念性UX异常状态和缺证据项；属于`ADVISOR_SINGLE_PASS_STATIC_REVIEW_COMPLETE`，并**非**四领域整篇实现合同获Owner确认。
+- [V2当前概念收束与证据门禁短导航](../workflow/V2_CONCEPT_REVIEW_CLOSURE_AND_EVIDENCE_HANDOFF_20261119.md)汇总两份合并批次。建议不再为已接受的S01–S16八组增量及NEW-PC-01/02/03、EDGE-D1/D2重复征求批准；真正新增重大产品选择仍由Owner决定。
+- 本次没有新的具名Owner决策，没有Codex、A6、供应商或工程授权。历史原`NOT_RUN/UNKNOWN`、F-01、原PNG备份OPEN均保留。
+
+---
+
 # 2026-11-19 EDGE-D2方案A具名接受；评论异常整包静态UX已出稿（最新增量）
 
 - [Owner EDGE-D2 A](../decisions/OWNER_V2_EDGE_D2_MINIMAL_COMMENT_STATUS_AND_REVIEW_OPTION_A_ACCEPTANCE_20261119.md)：仅评论者有权且不泄密时展示最小中性状态，真实合法渠道存在时方提供复核说明；不强制Push、无假申诉入口。NEW-PC-01/02/03与EDGE-D1/2共五项具名方向均已记录，不代表实装。
