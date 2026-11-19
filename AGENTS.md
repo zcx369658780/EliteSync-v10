@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问最新入口：CMT-T1方案A已确认，HIS历史权限待审
+
+- [CMT-T1 Owner接受](docs/decisions/OWNER_V2_CMT_T1_SELF_TO_FRIENDS_COMMENTS_20261119.md)确认SELF→FRIENDS时隐式OFF可以明示建议FRIENDS_ONLY供作者确认，显式OFF保留，无法区分也保留OFF；普通FRIENDS+FRIENDS_ONLY不变。
+- 当前顾问草案：[HIS-D1/D2历史评论再展示与旧匹配快照权限](docs/product/ELITESYNC_V2_HISTORY_RESURFACING_AND_REVOKED_SNAPSHOTS_V0_1_20261119.md)，`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，不将其新取舍当已获Owner批准；现行依据[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)、[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部。
+- **仅设计与治理**。A6正式会议仍暂缓、Codex停止新V2实施；不改APP/API/Web/DB、不运行设备/模拟器、APK、main或发布。真实核验/Push未接入、原NOT_RUN/UNKNOWN和43原PNG远端备份缺口不变。
+
+---
+
 # 2026-11-19 GPT顾问最新入口：评论默认权限Owner澄清，切换规则待审
 
 - [Owner评论默认与SELF特例澄清](docs/decisions/OWNER_V2_SELF_COMMENT_DEFAULT_CLARIFICATION_20261119.md)：普通用户新作品默认`FRIENDS + FRIENDS_ONLY`，好友在当前有权时能评论，陌生人不能；`SELF`作品只有作者可读、默认OFF仅用于该特例，不可借评论设置突破SELF受众。
