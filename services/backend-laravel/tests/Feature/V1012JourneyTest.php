@@ -6,6 +6,7 @@ use App\Models\QuestionnaireAnswer;
 use App\Models\QuestionnaireQuestion;
 use App\Models\User;
 use App\Services\LiveConsentService;
+use App\Services\MatchingInputService;
 use App\Services\SlowDatingService;
 use App\Services\TrustedIdentityService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -34,17 +35,24 @@ class V1012JourneyTest extends TestCase
             'verify_status' => 'approved', 'account_status' => 'active',
             'moderation_status' => 'normal', 'disabled' => false, 'is_match_eligible' => true]);
         app(TrustedIdentityService::class)->register($user->id);
+
         return $user;
     }
 
     private function qualify(User ...$users): void
     {
-        $q = QuestionnaireQuestion::create(['question_key' => 'v1012-fixture', 'category' => 'test',
+        $q = QuestionnaireQuestion::firstOrCreate(['question_key' => 'v1012-fixture'], ['category' => 'test',
             'content' => 'Synthetic preference', 'question_type' => 'single_choice',
             'options' => [['option_id' => 'A']], 'sort_order' => 0, 'enabled' => true, 'version' => 1]);
         foreach ($users as $user) {
+            $this->authorizeTestParticipation($user);
+            $inputs = app(MatchingInputService::class);
+            $inputs->save($user->id, ['revision' => $inputs->read($user->fresh())['revision'], 'confirm' => true,
+                'birthday' => '1995-01-02', 'gender' => $user->id % 2 ? 'male' : 'female',
+                'city_key' => 'fixture-city', 'relationship_goal' => 'marriage',
+                'age_mode' => 'adult_any', 'region_mode' => 'same_city']);
             $this->completeLifestyleFixture((int) $user->id);
-            QuestionnaireAnswer::create(['user_id' => $user->id, 'questionnaire_question_id' => $q->id,
+            QuestionnaireAnswer::updateOrCreate(['user_id' => $user->id, 'questionnaire_question_id' => $q->id], [
                 'answer_payload' => ['selected_answer' => ['A']], 'version' => 1]);
         }
     }
@@ -54,6 +62,7 @@ class V1012JourneyTest extends TestCase
         // R1 fixture declares independent controlled contact; this is not formal consent.
         DB::table('friendships')->updateOrInsert(['user_a' => min($a->id, $b->id), 'user_b' => max($a->id, $b->id)], ['state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
         DB::table('privacy_preferences')->updateOrInsert(['user_id' => $b->id], ['requests_enabled' => true]);
+
         return $this->actingAs($a, 'sanctum')->postJson('/api/v1/formal-relationships',
             ['peer_id' => $b->id, 'idempotency_key' => 'request'])->assertOk()->json();
     }
@@ -70,6 +79,7 @@ class V1012JourneyTest extends TestCase
         app(TrustedIdentityService::class)->issue($b->id, 'identity-b');
         $r = $this->relationship($a, $b);
         $r = $this->action($a, $r, 'confirm', 'confirm-a')->assertOk()->assertJsonPath('state', 'PENDING_MUTUAL')->json();
+
         return $this->action($b, $r, 'confirm', 'confirm-b')->assertOk()->assertJsonPath('state', 'ACTIVE')->json();
     }
 
@@ -92,7 +102,8 @@ class V1012JourneyTest extends TestCase
 
     public function test_field_sharing_defaults_private_can_be_withdrawn_and_pause_requires_both_again(): void
     {
-        $a = $this->subject('a'); $b = $this->subject('b');
+        $a = $this->subject('a');
+        $b = $this->subject('b');
         $a->update(['birthday' => '1990-01-02', 'public_zodiac_sign' => 'Capricorn']);
         $r = $this->activate($a, $b);
         // Established formal sharing survives removal of its independent request source.
@@ -125,7 +136,8 @@ class V1012JourneyTest extends TestCase
 
     public function test_revoked_identity_hides_sharing_and_does_not_prevent_ending_or_allow_resurrection(): void
     {
-        $a = $this->subject('a'); $b = $this->subject('b');
+        $a = $this->subject('a');
+        $b = $this->subject('b');
         $r = $this->activate($a, $b);
         app(TrustedIdentityService::class)->revoke($a->id, DB::table('identity_assertions')->where('user_id', $a->id)->value('id'));
         $r = $this->actingAs($a, 'sanctum')->getJson('/api/v1/formal-relationships')->assertOk()
@@ -177,7 +189,7 @@ class V1012JourneyTest extends TestCase
         $this->actingAs($a, 'sanctum')->putJson('/api/v1/journey/participation',
             ['action' => 'draft', 'revision' => 0, 'intent' => 'Take time'])->assertOk()
             ->assertJsonPath('state', 'NOT_ENROLLED')->assertJsonPath('generation', 0);
-        $this->putJson('/api/v1/journey/participation', ['action' => 'opt_in', 'revision' => 1, 'intent' => 'Take time'])->assertUnprocessable();
+        $this->putJson('/api/v1/journey/participation', ['action' => 'opt_in', 'revision' => 1, 'intent' => 'Take time'])->assertForbidden();
         $this->qualify($a);
         $this->putJson('/api/v1/journey/participation', ['action' => 'opt_in', 'revision' => 1, 'intent' => 'Take time'])->assertOk()
             ->assertJsonPath('state', 'ACTIVE')->assertJsonPath('generation', 1)->assertJsonPath('revision', 2);
@@ -191,7 +203,9 @@ class V1012JourneyTest extends TestCase
 
     public function test_proposal_identity_revision_and_idempotency_preserve_separate_consents(): void
     {
-        $a = $this->subject('a'); $b = $this->subject('b'); $outsider = $this->subject('outsider');
+        $a = $this->subject('a');
+        $b = $this->subject('b');
+        $outsider = $this->subject('outsider');
         $id = $this->proposalFixture($a, $b);
         $body = ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'accept-a'];
         $url = "/api/v1/journey/proposals/$id/decision";
@@ -214,13 +228,15 @@ class V1012JourneyTest extends TestCase
 
     public function test_expired_and_previous_generation_proposals_cannot_be_accepted(): void
     {
-        $a = $this->subject('a'); $b = $this->subject('b');
+        $a = $this->subject('a');
+        $b = $this->subject('b');
         $id = $this->proposalFixture($a, $b);
         DB::table('matching_participations')->where('user_id', $a->id)->update(['generation' => 2]);
         $this->actingAs($a, 'sanctum')->postJson("/api/v1/journey/proposals/$id/decision",
             ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'old-generation'])->assertConflict();
         $this->assertDatabaseHas('match_proposals', ['id' => $id, 'state' => 'WITHDRAWN']);
-        $c = $this->subject('expiry-c'); $d = $this->subject('expiry-d');
+        $c = $this->subject('expiry-c');
+        $d = $this->subject('expiry-d');
         $id = $this->proposalFixture($c, $d);
         $this->actingAs($c, 'sanctum');
         $this->travel(169)->hours();
@@ -234,7 +250,8 @@ class V1012JourneyTest extends TestCase
 
     public function test_reissuing_a_revoked_bound_credential_does_not_restore_an_active_relationship(): void
     {
-        $a = $this->subject('a'); $b = $this->subject('b');
+        $a = $this->subject('a');
+        $b = $this->subject('b');
         $r = $this->activate($a, $b);
         $issuer = app(TrustedIdentityService::class);
         $old = DB::table('identity_assertions')->where('user_id', $a->id)->value('id');
@@ -252,7 +269,8 @@ class V1012JourneyTest extends TestCase
 
     public function test_replacement_before_first_read_cannot_hide_expiry_of_a_bound_credential(): void
     {
-        $a = $this->subject('a'); $b = $this->subject('b');
+        $a = $this->subject('a');
+        $b = $this->subject('b');
         $issuer = app(TrustedIdentityService::class);
         $issuer->issue($a->id, 'short-lived-a', 1);
         $issuer->issue($b->id, 'long-lived-b', 120);
@@ -273,7 +291,8 @@ class V1012JourneyTest extends TestCase
 
     public function test_peer_cannot_complete_an_old_proposal_after_acceptor_pauses_and_reenrolls(): void
     {
-        $a = $this->subject('a'); $b = $this->subject('b');
+        $a = $this->subject('a');
+        $b = $this->subject('b');
         $this->qualify($a);
         $id = $this->proposalFixture($a, $b);
         $url = "/api/v1/journey/proposals/$id/decision";
@@ -288,15 +307,16 @@ class V1012JourneyTest extends TestCase
         $this->actingAs($b, 'sanctum')->postJson($url,
             ['action' => 'accept', 'revision' => 2, 'idempotency_key' => 'accept-b'])->assertConflict();
         $this->assertDatabaseHas('match_proposals', ['id' => $id, 'state' => 'WITHDRAWN',
-            'revision' => 3, 'decision_a' => 'ACCEPTED', 'decision_b' => 'PENDING']);
+            'revision' => 3, 'decision_a' => 'WITHDRAWN', 'decision_b' => 'PENDING']);
         $this->assertDatabaseCount('match_proposal_slots', 0);
         $this->assertDatabaseCount('product_connections', 0);
         $this->assertDatabaseCount('messaging_consents', 0);
     }
 
-    public function test_same_decision_key_reprojects_current_canonical_published_showcase(): void
+    public function test_legacy_candidate_without_provable_binding_stays_hidden_on_same_key_replay(): void
     {
-        $a = $this->subject('a'); $b = $this->subject('b');
+        $a = $this->subject('a');
+        $b = $this->subject('b');
         $id = $this->proposalFixture($a, $b);
         $stamp = ['created_at' => now(), 'updated_at' => now()];
         DB::table('friendships')->insert(['user_a' => min($a->id, $b->id), 'user_b' => max($a->id, $b->id),
@@ -311,16 +331,14 @@ class V1012JourneyTest extends TestCase
         $body = ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'accept-a'];
         $url = "/api/v1/journey/proposals/$id/decision";
         $this->actingAs($a, 'sanctum')->postJson($url, $body)->assertOk()
-            ->assertJsonPath('showcase.summary', 'First published introduction')
-            ->assertJsonPath('showcase.interest_tags', ['reading'])
+            ->assertJsonPath('showcase', null)
             ->assertJsonMissing(['summary' => 'Unpublished private draft']);
         DB::table('user_profile_showcase_publications')->where('user_id', $b->id)->update([
             'published_payload' => json_encode(['self_intro' => 'Later published introduction',
                 'interest_tags' => ['music'], 'lifestyle_tags' => [], 'audiences' => ['friends']]), 'updated_at' => now(),
         ]);
         $this->postJson($url, $body)->assertOk()->assertJsonPath('state', 'ACCEPTED_BY_ONE')
-            ->assertJsonPath('revision', 2)->assertJsonPath('showcase.summary', 'Later published introduction')
-            ->assertJsonPath('showcase.interest_tags', ['music'])
+            ->assertJsonPath('revision', 2)->assertJsonPath('showcase', null)
             ->assertJsonMissing(['summary' => 'First published introduction']);
         $this->assertDatabaseCount('journey_commands', 1);
         $this->assertDatabaseHas('match_proposals', ['id' => $id, 'revision' => 2, 'decision_a' => 'ACCEPTED']);
@@ -328,7 +346,8 @@ class V1012JourneyTest extends TestCase
 
     public function test_proposal_expiry_removes_new_connection_context_but_preserves_existing_explicit_consents(): void
     {
-        $a = $this->subject('a'); $b = $this->subject('b');
+        $a = $this->subject('a');
+        $b = $this->subject('b');
         $this->qualify($a, $b);
         $id = $this->proposalFixture($a, $b);
         $url = "/api/v1/journey/proposals/$id/decision";
@@ -375,6 +394,7 @@ class V1012JourneyTest extends TestCase
     /** A revealed product proposal, with real foreign-key parents and no matching execution. */
     private function proposalFixture(User $a, User $b): string
     {
+        $this->qualify($a, $b);
         $stamp = ['created_at' => now(), 'updated_at' => now()];
         DB::table('dating_round_channels')->insertOrIgnore(['channel_key' => 'v1012-test'] + $stamp);
         $round = DB::table('dating_rounds')->insertGetId(['round_key' => Str::uuid()->toString(),
@@ -391,10 +411,12 @@ class V1012JourneyTest extends TestCase
             'run_id' => $run, 'user_a' => $a->id, 'user_b' => $b->id, 'generation_a' => 1, 'generation_b' => 1,
             'revealed_at' => now(), 'expires_at' => now()->addHours(168)] + $stamp);
         foreach ([$a, $b] as $user) {
+            $this->authorizeTestParticipation($user);
             DB::table('matching_participations')->insert(['user_id' => $user->id, 'state' => 'ACTIVE',
                 'generation' => 1, 'revision' => 1, 'opted_in_at' => now()] + $stamp);
             DB::table('match_proposal_slots')->insert(['user_id' => $user->id, 'proposal_id' => $id]);
         }
+
         return $id;
     }
 }

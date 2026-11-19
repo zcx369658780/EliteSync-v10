@@ -11,6 +11,7 @@ use App\Services\Admin\UserGovernance;
 use App\Services\FormalRelationshipService;
 use App\Services\JourneyStore;
 use App\Services\LiveConsentService;
+use App\Services\NotificationService;
 use App\Services\PrivateProfileImageService;
 use App\Services\SocialPolicy;
 use Illuminate\Http\UploadedFile;
@@ -27,6 +28,7 @@ final class ShowcaseWorkflow
         foreach (['interest_tags', 'lifestyle_tags', 'photo_ids', 'audiences'] as $field) {
             $payload[$field] = array_values($payload[$field] ?? []);
         }
+
         return $payload;
     }
 
@@ -49,6 +51,7 @@ final class ShowcaseWorkflow
             $visible = $draft && $draft->draft_status !== 'cleared';
             $moderationStatus = in_array($draft?->moderation_status, ['not_submitted', 'pending', 'approved', 'rejected', 'needs_revision', 'manual_review_required'], true)
                 ? $draft->moderation_status : ($draft ? 'error' : 'not_submitted');
+
             return [
                 'ok' => true,
                 'draft' => $visible ? $this->snapshot($draft) + [
@@ -100,6 +103,7 @@ final class ShowcaseWorkflow
             $draft->fill($fields + ['revision' => $expected + 1, 'draft_status' => 'draft',
                 'moderation_status' => 'not_submitted', 'visibility_intent' => 'private_draft',
                 'source_type' => 'user_confirmed', 'public_display_eligible' => false, 'matching_scoring_eligible' => false])->save();
+
             return $this->ownerPayload($owner, 'saved_private_draft');
         });
     }
@@ -118,6 +122,7 @@ final class ShowcaseWorkflow
                     'interest_tags' => [], 'lifestyle_tags' => [], 'opener_note' => null, 'photo_ids' => [], 'audiences' => [],
                     'revision' => $expected + 1, 'draft_status' => 'cleared', 'moderation_status' => 'not_submitted'])->save();
             }
+
             return $this->ownerPayload($owner, 'cleared_private_draft');
         });
     }
@@ -138,6 +143,7 @@ final class ShowcaseWorkflow
                     'state' => 'pending', 'created_at' => now(), 'updated_at' => now()]);
                 $draft->update(['moderation_status' => 'pending']);
             }
+
             return $this->ownerPayload($owner, 'submitted_for_review_pending');
         });
     }
@@ -157,7 +163,7 @@ final class ShowcaseWorkflow
                 ['reason_code' => 'web_review', 'note' => mb_substr($reason, 0, 240), 'expected_revision' => $expected]);
             DB::table('profile_showcase_submissions')->where('id', $submission->id)->update([
                 'state' => $result, 'reviewer_id' => $actor->id, 'reason' => $reason, 'reviewed_at' => now(), 'updated_at' => now()]);
-            app(\App\Services\NotificationService::class)->createForUser((int) $hint->user_id,
+            app(NotificationService::class)->createForUser((int) $hint->user_id,
                 'showcase_review', '本人资料审核有更新', '请查看本人当前审核状态',
                 ['submission_id' => (int) $submission->id], sourceEventKey: 'showcase-review:'.$submission->id);
 
@@ -181,6 +187,7 @@ final class ShowcaseWorkflow
     {
         return DB::transaction(function () use ($owner) {
             app(JourneyStore::class)->users([$owner], true);
+
             return $this->publicationPayload(UserProfileShowcasePublication::where('user_id', $owner)->first());
         });
     }
@@ -201,12 +208,18 @@ final class ShowcaseWorkflow
             $snapshot = json_decode($submission->snapshot, true, 512, JSON_THROW_ON_ERROR);
             $this->validatePhotos($owner, $snapshot['photo_ids'] ?? []);
             $before = $publication?->publication_status ?? 'not_published';
+            $previousAudiences = $publication?->published_payload['audiences'] ?? [];
+            $revokesAudience = array_diff($previousAudiences, $snapshot['audiences'] ?? []) !== [];
+            if ($publication && $revokesAudience) {
+                $publication->access_epoch++;
+            }
             $publication ??= new UserProfileShowcasePublication(['user_id' => $owner]);
             $publication->fill(['source_draft_id' => $draft->id, 'source_draft_updated_at' => $draft->updated_at,
                 'source_revision' => $draftRevision, 'source_submission_id' => $submission->id, 'source_moderation_status' => 'approved',
                 'published_payload' => $snapshot, 'revision' => $publicationRevision + 1, 'publication_status' => 'published',
                 'public_display_eligible' => true, 'matching_scoring_eligible' => false, 'published_at' => now()])->save();
             $this->publicationAudit($publication, $owner, 'owner_publish_confirmed', $before, 'published');
+
             return $this->publicationPayload($publication);
         });
     }
@@ -222,7 +235,9 @@ final class ShowcaseWorkflow
             }
             abort_unless($publication->revision === $expected, 409, '发布状态已变化，请刷新。');
             $publication->update(['revision' => $expected + 1, 'publication_status' => 'withdrawn', 'public_display_eligible' => false]);
+            $publication->increment('access_epoch');
             $this->publicationAudit($publication, $owner, 'owner_withdraw', 'published', 'withdrawn');
+
             return $this->publicationPayload($publication);
         });
     }
@@ -236,19 +251,30 @@ final class ShowcaseWorkflow
 
     private function canView(int $viewer, int $owner, array $audiences): bool
     {
-        if ($viewer === $owner) return true;
+        if ($viewer === $owner) {
+            return true;
+        }
         $policy = app(SocialPolicy::class);
-        if (! $policy->pairAllowed($viewer, $owner)) return false;
+        if (! $policy->pairAllowed($viewer, $owner)) {
+            return false;
+        }
+
         return (in_array('friends', $audiences, true) && (bool) $policy->friendship($viewer, $owner))
             || (in_array('contacts', $audiences, true) && ((bool) app(LiveConsentService::class)->match($viewer, $owner, true)
                 || (app(LiveConsentService::class)->gates($viewer, $owner)['live_read_allowed'] ?? false)))
             || (in_array('relationship', $audiences, true) && app(FormalRelationshipService::class)->sharingAllowed($viewer, $owner));
     }
 
+    public function audienceAllowedLocked(int $viewer, int $owner, array $audiences): bool
+    {
+        return $this->canView($viewer, $owner, $audiences);
+    }
+
     /** Caller already holds the participants' ordered user locks. */
     public function visiblePublicationLocked(int $viewer, int $owner): ?UserProfileShowcasePublication
     {
         $publication = UserProfileShowcasePublication::where('user_id', $owner)->lockForUpdate()->first();
+
         return $this->publicationAccessErrorLocked($viewer, $owner, $publication) === null ? $publication : null;
     }
 
@@ -262,14 +288,19 @@ final class ShowcaseWorkflow
             || ! $this->canView($viewer, $owner, ['friends', 'contacts', 'relationship'])) {
             return 'showcase_unavailable';
         }
-        if (! $publication) return 'showcase_not_published';
-        if ($publication->publication_status === 'withdrawn') return 'showcase_withdrawn';
+        if (! $publication) {
+            return 'showcase_not_published';
+        }
+        if ($publication->publication_status === 'withdrawn') {
+            return 'showcase_withdrawn';
+        }
         if (! $this->canView($viewer, $owner, $publication->published_payload['audiences'] ?? [])) {
             return 'showcase_unavailable';
         }
         if ($publication->publication_status !== 'published' || ! $publication->public_display_eligible) {
             return 'showcase_not_published';
         }
+
         return null;
     }
 
@@ -279,6 +310,20 @@ final class ShowcaseWorkflow
         $publication = UserProfileShowcasePublication::where('user_id', $owner)->lockForUpdate()->first();
         $error = $this->publicationAccessErrorLocked($viewer, $owner, $publication);
         abort_if($error !== null, 404, $error ?? 'showcase_unavailable');
+        // A candidate deep link is not a separate grant to the latest publication or its photos.
+        if ($viewer !== $owner) {
+            $audiences = $publication->published_payload['audiences'] ?? [];
+            $independent = (in_array('friends', $audiences, true) && app(SocialPolicy::class)->friendship($viewer, $owner))
+                || (in_array('contacts', $audiences, true) && (app(LiveConsentService::class)->gates($viewer, $owner)['live_read_allowed'] ?? false))
+                || (in_array('relationship', $audiences, true) && app(FormalRelationshipService::class)->sharingAllowed($viewer, $owner));
+            if (! $independent) {
+                $match = app(LiveConsentService::class)->match($viewer, $owner, true);
+                $proposal = $match ? DB::table('match_proposals')->where('dating_match_id', $match->id)->lockForUpdate()->first() : null;
+                $bound = $proposal ? app(CandidateShowcaseSnapshot::class)->read($proposal, $viewer, $owner) : null;
+                abort_unless($bound && $bound['publication_revision'] === $publication->revision, 404, 'showcase_unavailable');
+            }
+        }
+
         return $publication;
     }
 
@@ -286,6 +331,7 @@ final class ShowcaseWorkflow
     {
         return DB::transaction(function () use ($viewer, $owner) {
             $publication = $this->requirePublication($viewer, $owner);
+
             return ['ok' => true, 'owner_id' => $owner, 'public_id' => 'ES-'.$owner] + $this->publicationPayload($publication);
         });
     }
@@ -300,6 +346,7 @@ final class ShowcaseWorkflow
     {
         $safe = array_intersect_key($snapshot, array_flip(self::FIELDS));
         $safe['photos'] = $this->photoReferences($owner, $snapshot['photo_ids'] ?? [], $revision);
+
         return $safe;
     }
 
@@ -322,20 +369,26 @@ final class ShowcaseWorkflow
             $old = DB::table('profile_showcase_photos')->where('user_id', $owner->id)->where('client_upload_id', $uploadId)->first();
             if ($old) {
                 abort_unless(hash_equals($old->input_hash, $hash), 409, 'upload_id_conflict');
+
                 return $old;
             }
             $draft = $this->draft((int) $owner->id);
             abort_unless((int) ($draft?->revision ?? 0) === $expected, 409, 'SHOWCASE_CHANGED_REFRESH_REQUIRED');
             abort_if(count($draft?->photo_ids ?? []) >= 6, 422, '最多6张展示照片。');
+
             return null;
         });
-        if ($existing) return $this->ownerPayload((int) $owner->id, 'photo_uploaded');
+        if ($existing) {
+            return $this->ownerPayload((int) $owner->id, 'photo_uploaded');
+        }
         $asset = app(PrivateProfileImageService::class)->store($owner, $input, 'profile_showcase', 'v1016_showcase', 1024);
+
         return DB::transaction(function () use ($owner, $expected, $uploadId, $hash, $asset) {
             app(JourneyStore::class)->users([(int) $owner->id]);
             $duplicate = DB::table('profile_showcase_photos')->where('user_id', $owner->id)->where('client_upload_id', $uploadId)->first();
             if ($duplicate) {
                 abort_unless(hash_equals($duplicate->input_hash, $hash), 409, 'upload_id_conflict');
+
                 return $this->ownerPayload((int) $owner->id, 'photo_uploaded');
             }
             $draft = $this->draft((int) $owner->id);
@@ -345,6 +398,7 @@ final class ShowcaseWorkflow
                 'client_upload_id' => $uploadId, 'input_hash' => $hash, 'created_at' => now(), 'updated_at' => now()]);
             $fields = $draft ? $this->snapshot($draft) : [];
             $fields['photo_ids'] = [...($draft?->photo_ids ?? []), $id];
+
             return $this->saveDraft((int) $owner->id, $fields, $expected);
         });
     }
@@ -366,6 +420,7 @@ final class ShowcaseWorkflow
             $photo = DB::table('profile_showcase_photos')->where('id', $photoId)->where('user_id', $owner)->first();
             $asset = $photo ? MediaAsset::whereKey($photo->media_asset_id)->where('owner_user_id', $owner)->first() : null;
             abort_unless($asset && $asset->storage_disk === 'v1016_showcase' && $asset->isBackingObjectAvailable(), 404, 'unavailable');
+
             return response()->file(Storage::disk('v1016_showcase')->path($asset->storage_key),
                 ['Content-Type' => 'image/png', 'Cache-Control' => 'private, no-store', 'Vary' => 'Authorization, Cookie', 'X-Content-Type-Options' => 'nosniff']);
         });

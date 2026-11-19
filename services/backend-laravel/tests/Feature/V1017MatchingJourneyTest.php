@@ -5,20 +5,33 @@ namespace Tests\Feature;
 use App\Domain\Matching\OperationAction;
 use App\Domain\Matching\RoundState;
 use App\Models\DatingMatch;
+use App\Models\MatchingRun;
+use App\Models\MatchingRunCandidate;
 use App\Models\QuestionnaireAnswer;
 use App\Models\QuestionnaireQuestion;
 use App\Models\User;
 use App\Models\UserBlock;
 use App\Models\UserProfileShowcaseDraft;
 use App\Models\UserProfileShowcasePublication;
+use App\Services\AstroCompatibilityService;
+use App\Services\CurrentQuestionnaire;
+use App\Services\LifestyleDiscoveryService;
 use App\Services\MatchingEngineService;
 use App\Services\MatchingInputService;
 use App\Services\MatchingRoundService;
 use App\Services\MatchingRunService;
+use App\Services\MatchRoundProjectionService;
 use App\Services\ProfileReadinessService;
+use App\Services\ProfileShowcase\ShowcaseWorkflow;
 use App\Services\SlowDatingService;
+use App\Services\TrustedIdentityService;
+use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
 
 /** Named fixtures for affected rules. Ordinary APP/Web/MariaDB evidence is recorded separately. */
@@ -46,7 +59,8 @@ class V1017MatchingJourneyTest extends TestCase
 
     private function subject(string $gender = 'male', array $input = []): User
     {
-        $user = User::factory()->state(['phone' => '17'.random_int(100000000,999999999)])->create(['verify_status' => 'approved', 'gender' => $gender]);
+        $user = User::factory()->state(['phone' => '17'.random_int(100000000, 999999999)])->create(['verify_status' => 'approved', 'gender' => $gender]);
+        $this->authorizeTestParticipation($user);
         app(MatchingInputService::class)->save($user->id, $this->input(['gender' => $gender] + $input));
         $q = QuestionnaireQuestion::firstOrCreate(['question_key' => 'v1017-current'], [
             'category' => 'lifestyle', 'content' => 'Fixture preference', 'question_type' => 'single_choice',
@@ -54,13 +68,14 @@ class V1017MatchingJourneyTest extends TestCase
         QuestionnaireAnswer::create(['user_id' => $user->id, 'questionnaire_question_id' => $q->id,
             'answer_payload' => ['selected_answer' => ['A']], 'selected_answer_json' => ['A'],
             'acceptable_answers_json' => ['A'], 'importance' => 3, 'version' => 1]);
+
         return $user->fresh();
     }
 
     private function enroll(User ...$users): void
     {
         foreach ($users as $user) {
-$this->completeLifestyleFixture((int) $user->id);
+            $this->completeLifestyleFixture((int) $user->id);
             app(SlowDatingService::class)->participate($user->id, 'opt_in', 0, 'Fixture explicit participation');
         }
     }
@@ -72,37 +87,41 @@ $this->completeLifestyleFixture((int) $user->id);
         $run = app(MatchingRunService::class)->request($round, 'v1017-request', 'test', null);
         $this->artisan('app:matching:execute-pending', ['--once' => true, '--run-id' => $run->id])->assertSuccessful();
         $this->assertSame(1, $run->fresh()->pair_count, json_encode(app(ProfileReadinessService::class)->forUser($a)));
-        $projection = app(\App\Services\MatchRoundProjectionService::class)->currentForUser($a->id)['data'];
+        $projection = app(MatchRoundProjectionService::class)->currentForUser($a->id)['data'];
         $this->assertSame('awaiting_reveal', $projection['reason_code']);
         $this->assertNull($projection['result']);
+
         return [$round->fresh(), $run->fresh()];
     }
 
     private function reveal($round, bool $stale = false): void
     {
         if (! $stale) {
-            $run = \App\Models\MatchingRun::findOrFail($round->active_run_id);
+            $run = MatchingRun::findOrFail($round->active_run_id);
             $fingerprint = new \ReflectionMethod(MatchingRunService::class, 'inputFingerprint');
             $this->assertSame($run->config_version, $fingerprint->invoke(app(MatchingRunService::class)), 'config');
-            foreach (\App\Models\MatchingRunCandidate::where('matching_run_id', $run->id)->get() as $candidate) {
+            foreach (MatchingRunCandidate::where('matching_run_id', $run->id)->get() as $candidate) {
                 $this->assertSame($candidate->matching_input_digest, app(MatchingInputService::class)->sourceDigest(User::findOrFail($candidate->user_id)), 'user digest');
             }
         }
         app(MatchingRoundService::class)->transition($round, RoundState::Revealed, $round->state_version,
             'test', null, OperationAction::Reveal, 'v1017-reveal');
-        if ($round->fresh()->state === RoundState::Revealed) { $this->assertDatabaseCount('match_proposals', 1); }
+        if ($round->fresh()->state === RoundState::Revealed) {
+            $this->assertDatabaseCount('match_proposals', 1);
+        }
     }
 
     public function test_lifestyle_reset_after_reveal_preserves_existing_proposal_and_consents(): void
     {
-        $a = $this->subject('male'); $b = $this->subject('female');
+        $a = $this->subject('male');
+        $b = $this->subject('female');
         [$round, $run] = $this->generate($a, $b);
         $this->reveal($round);
         $proposal = app(SlowDatingService::class)->proposal($a->id);
         $this->assertSame('PENDING', $proposal['state']);
-        $discovery = app(\App\Services\LifestyleDiscoveryService::class);
+        $discovery = app(LifestyleDiscoveryService::class);
         $discovery->command($a->id, ['action' => 'reset', 'expected_revision' => 5,
-            'questionnaire_version' => 'lifestyle_v1', 'request_key' => (string) \Illuminate\Support\Str::uuid()]);
+            'questionnaire_version' => 'lifestyle_v1', 'request_key' => (string) Str::uuid()]);
         $after = app(SlowDatingService::class)->proposal($a->id);
         $this->assertSame($proposal['id'], $after['id']);
         $this->assertSame('PENDING', $after['state']);
@@ -111,9 +130,57 @@ $this->completeLifestyleFixture((int) $user->id);
         $this->assertDatabaseCount('messaging_consents', 0);
     }
 
+    public function test_phase_a_real_round_binds_original_showcase_and_deep_links_recheck_authority(): void
+    {
+        Storage::fake('v1016_showcase');
+        $a = $this->subject();
+        $b = $this->subject('female');
+        DB::table('friendships')->insert(['user_a' => min($a->id, $b->id), 'user_b' => max($a->id, $b->id),
+            'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
+        $admin = User::factory()->create(['phone' => 'phase-a-admin', 'role' => 'admin']);
+        config(['app.admin_phones' => [$admin->phone]]);
+        $workflow = app(ShowcaseWorkflow::class);
+        $photo = $workflow->uploadPhoto($b, UploadedFile::fake()->image('fixture.png'), 0,
+            (string) Str::uuid());
+        $publish = function (string $intro) use ($workflow, $b, $admin, $photo) {
+            $before = $workflow->ownerPayload($b->id);
+            $current = $workflow->ownerPublication($b->id)['publication'];
+            $draft = $workflow->saveDraft($b->id, ['self_intro' => $intro, 'interest_tags' => ['fixture'],
+                'photo_ids' => $photo['draft']['photo_ids'], 'audiences' => ['friends', 'contacts']], $before['revision']);
+            $submission = $workflow->submit($b->id, $draft['revision'])['submission'];
+            $workflow->review($admin, $submission['id'], $submission['revision'], 'approved', 'fictional test');
+
+            return $workflow->publish($b->id, $draft['revision'], $current['revision'] ?? 0)['publication'];
+        };
+        $old = $publish('Original round summary');
+        [$round] = $this->generate($a, $b);
+        $this->reveal($round);
+        $proposal = app(SlowDatingService::class)->proposal($a->id);
+        $this->assertSame('Original round summary', $proposal['showcase']['summary']);
+        $new = $publish('Future candidate summary');
+        $this->actingAs($a, 'sanctum')->getJson('/api/v1/journey/history/'.$proposal['id'])->assertOk()
+            ->assertJsonPath('showcase.summary', 'Original round summary')->assertJsonPath('showcase.publication_revision', $old['revision']);
+        $oldPhoto = $old['public_fields']['photos'][0]['content_path'];
+        $newPhoto = $new['public_fields']['photos'][0]['content_path'];
+        $this->get($oldPhoto)->assertNotFound();
+        $this->get($newPhoto)->assertOk(); // Separate, still-current friendship grant.
+        app(SlowDatingService::class)->decision($a->id, $proposal['id'], 'accept', 1, 'phase-a-accept-a');
+        app(SlowDatingService::class)->decision($b->id, $proposal['id'], 'accept', 2, 'phase-a-accept-b');
+        DB::table('friendships')->update(['state' => 'REVOKED']);
+        $this->get($oldPhoto)->assertNotFound();
+        $this->get($newPhoto)->assertNotFound(); // Match alone cannot upgrade the old binding.
+        $this->getJson('/api/v1/profile/showcase/'.$b->id)->assertNotFound();
+        $this->getJson('/api/v1/journey/history/'.$proposal['id'])->assertOk()->assertJsonPath('showcase.summary', 'Original round summary');
+        $credential = app(TrustedIdentityService::class)->credential($a->id);
+        app(TrustedIdentityService::class)->revoke($a->id, $credential);
+        $this->postJson('/api/v1/journey/proposals/'.$proposal['id'].'/decision',
+            ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'phase-a-accept-a'])->assertForbidden();
+        $this->getJson('/api/v1/journey/history/'.$proposal['id'])->assertOk()->assertJsonPath('showcase', null);
+    }
+
     public function test_input_save_clear_read_and_revision_are_private_and_do_not_enroll(): void
     {
-        $user = User::factory()->state(['phone' => '17'.random_int(100000000,999999999)])->create();
+        $user = User::factory()->state(['phone' => '17'.random_int(100000000, 999999999)])->create();
         $this->actingAs($user, 'sanctum')->getJson('/api/v1/matching-inputs')->assertOk()->assertHeader('Cache-Control', 'no-store, private')->assertJsonPath('confirmed', false);
         $this->putJson('/api/v1/matching-inputs', $this->input(['occupation' => 'Fixture profession', 'height_cm' => 172]))
             ->assertOk()->assertJsonPath('revision', 1)->assertJsonPath('confirmed', true)->assertJsonPath('age_min', 18);
@@ -127,7 +194,7 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_invalid_input_and_unconfirmed_legacy_profile_cannot_supply_matching_consent(): void
     {
-        $user = User::factory()->state(['phone' => '17'.random_int(100000000,999999999)])->create(['relationship_goal' => 'dating', 'city' => 'Legacy free text']);
+        $user = User::factory()->state(['phone' => '17'.random_int(100000000, 999999999)])->create(['relationship_goal' => 'dating', 'city' => 'Legacy free text']);
         $this->actingAs($user, 'sanctum')->putJson('/api/v1/matching-inputs', $this->input(['age_mode' => 'range', 'age_min' => 17, 'age_max' => 16]))->assertUnprocessable();
         $this->putJson('/api/v1/matching-inputs', $this->input(['region_mode' => 'unknown']))->assertUnprocessable();
         $this->assertSame('matching_inputs_unconfirmed', app(MatchingInputService::class)->readinessReason($user));
@@ -159,10 +226,12 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_questionnaire_order_is_real_deterministic_and_legacy_astro_environment_cannot_change_it(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); $c = $this->subject('female');
+        $a = $this->subject();
+        $b = $this->subject('female');
+        $c = $this->subject('female');
         QuestionnaireAnswer::where('user_id', $b->id)->update(['selected_answer_json' => json_encode(['B'])]);
         config(['matching.core_weights.astro' => 999, 'matching.fairness.buckets' => [['min' => 0, 'multiplier' => 999]]]);
-        $this->mock(\App\Services\AstroCompatibilityService::class)->shouldNotReceive('score');
+        $this->mock(AstroCompatibilityService::class)->shouldNotReceive('score');
         $pairs = app(MatchingEngineService::class)->buildPairs([$c->id => [], $a->id => [], $b->id => []]);
         $this->assertSame($c->id, $pairs[0]['user_b']);
         $this->assertSame(1.0, $pairs[0]['match_reasons']['rank_score']);
@@ -174,11 +243,12 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_zero_weight_or_no_current_shared_answers_is_neutral_and_disabled_options_are_excluded(): void
     {
-        $a = $this->subject(); $b = $this->subject('female');
+        $a = $this->subject();
+        $b = $this->subject('female');
         QuestionnaireAnswer::query()->update(['importance' => 0]);
         $this->assertSame(0.5, app(MatchingEngineService::class)->buildPairs([$a->id => [], $b->id => []])[0]['match_reasons']['rank_score']);
         QuestionnaireQuestion::query()->update(['enabled' => false]);
-        $this->assertSame([], app(\App\Services\CurrentQuestionnaire::class)->answers($a->id));
+        $this->assertSame([], app(CurrentQuestionnaire::class)->answers($a->id));
         $this->assertSame(0.5, app(MatchingEngineService::class)->buildPairs([$a->id => [], $b->id => []])[0]['match_reasons']['rank_score']);
     }
 
@@ -191,13 +261,15 @@ $this->completeLifestyleFixture((int) $user->id);
             'answer_payload' => ['value' => 'casual'], 'selected_answer_json' => ['casual'], 'acceptable_answers_json' => ['long_term'], 'importance' => 2]);
         $this->assertSame('matching_inputs_unconfirmed', app(MatchingInputService::class)->readinessReason($user));
         app(MatchingInputService::class)->save($user->id, $this->input(['revision' => 1, 'relationship_goal' => 'dating']));
-        $this->assertSame(['long_term'], app(\App\Services\CurrentQuestionnaire::class)->answers($user->id)[$q->id]['selected']);
+        $this->assertSame(['long_term'], app(CurrentQuestionnaire::class)->answers($user->id)[$q->id]['selected']);
         $this->assertSame(['casual'], $answer->fresh()->selected_answer_json);
     }
 
     public function test_same_second_input_revision_invalidates_frozen_result(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); $this->enroll($a, $b);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        $this->enroll($a, $b);
         $round = app(MatchingRoundService::class)->prepare('default', 'freeze', now(), now(), 'test', null);
         $runs = app(MatchingRunService::class);
         $run = $runs->request($round, 'freeze-key', 'test', null);
@@ -210,7 +282,9 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_changed_input_before_reveal_has_recoverable_failed_state_and_retry_lineage(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); [$round, $run] = $this->generate($a, $b);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round, $run] = $this->generate($a, $b);
         app(MatchingInputService::class)->save($a->id, $this->input(['revision' => 1, 'region_mode' => 'long_distance']));
         $this->reveal($round, true);
         $this->assertSame('failed', $round->fresh()->state->value);
@@ -227,8 +301,12 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_pause_preserves_proposal_disallows_decision_and_requires_withdraw_before_reenroll(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); [$round] = $this->generate($a, $b); $this->reveal($round);
-        $service = app(SlowDatingService::class); $proposal = $service->proposal($a->id);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round] = $this->generate($a, $b);
+        $this->reveal($round);
+        $service = app(SlowDatingService::class);
+        $proposal = $service->proposal($a->id);
         $service->participate($a->id, 'pause', 1, '');
         $paused = $service->proposal($a->id);
         $this->assertSame('PENDING', $paused['state']);
@@ -243,7 +321,10 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_history_is_self_scoped_persistent_and_current_audience_is_never_bypassed(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); [$round] = $this->generate($a, $b); $this->reveal($round);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round] = $this->generate($a, $b);
+        $this->reveal($round);
         $payload = ['self_intro' => 'Restricted fixture text', 'interest_tags' => ['fixture'], 'audiences' => ['friends']];
         $draft = UserProfileShowcaseDraft::create(['user_id' => $b->id] + $payload);
         $publication = UserProfileShowcasePublication::create(['user_id' => $b->id, 'source_draft_id' => $draft->id, 'source_moderation_status' => 'approved',
@@ -252,12 +333,13 @@ $this->completeLifestyleFixture((int) $user->id);
         $this->assertNull($proposal['showcase']);
         $this->assertTrue($proposal['decision_available']);
         $this->actingAs($a, 'sanctum')->getJson('/api/v1/journey/history?per_page=1')->assertOk()->assertJsonPath('total', 1)->assertJsonPath('data.0.showcase', null)->assertJsonPath('data.0.decision_available', false);
-        $outsider = User::factory()->state(['phone' => '17'.random_int(100000000,999999999)])->create();
+        $outsider = User::factory()->state(['phone' => '17'.random_int(100000000, 999999999)])->create();
         $this->actingAs($outsider, 'sanctum')->getJson('/api/v1/journey/history/'.$proposal['id'])->assertNotFound();
         app(SlowDatingService::class)->decision($a->id, $proposal['id'], 'accept', 1, 'history-a-accept');
         app(SlowDatingService::class)->decision($b->id, $proposal['id'], 'accept', 2, 'history-b-accept');
         $publication->update(['published_payload' => array_replace($payload, ['audiences' => ['contacts']])]);
-        $this->actingAs($a, 'sanctum')->getJson('/api/v1/journey/history/'.$proposal['id'])->assertOk()->assertJsonPath('showcase.summary', 'Restricted fixture text');
+        // Publishing after reveal cannot retroactively authorize an uncaptured candidate.
+        $this->actingAs($a, 'sanctum')->getJson('/api/v1/journey/history/'.$proposal['id'])->assertOk()->assertJsonPath('showcase', null);
         $publication->update(['publication_status' => 'withdrawn', 'public_display_eligible' => false]);
         $this->getJson('/api/v1/journey/history/'.$proposal['id'])->assertOk()->assertJsonPath('showcase', null);
         $this->getJson('/api/v1/profile/showcase/'.$b->id)->assertNotFound();
@@ -265,7 +347,10 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_expiry_and_block_release_slot_without_fabricating_decline(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); [$round] = $this->generate($a, $b); $this->reveal($round);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round] = $this->generate($a, $b);
+        $this->reveal($round);
         UserBlock::create(['blocker_id' => $a->id, 'blocked_user_id' => $b->id]);
         $proposal = app(SlowDatingService::class)->proposal($a->id);
         $this->assertSame('WITHDRAWN', $proposal['state']);
@@ -275,8 +360,12 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_consumer_keeps_one_active_slot_and_both_independent_accepts_persist(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); [$round] = $this->generate($a, $b); $this->reveal($round);
-        $service = app(SlowDatingService::class); $proposal = $service->proposal($a->id);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round] = $this->generate($a, $b);
+        $this->reveal($round);
+        $service = app(SlowDatingService::class);
+        $proposal = $service->proposal($a->id);
         $one = $service->decision($a->id, $proposal['id'], 'accept', 1, 'a-accept');
         $this->assertSame('ACCEPTED_BY_ONE', $one['state']);
         $this->assertSame($one, $service->decision($a->id, $proposal['id'], 'accept', 1, 'a-accept'));
@@ -289,8 +378,12 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_decline_exit_and_expiry_keep_distinct_process_facts(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); [$round] = $this->generate($a, $b); $this->reveal($round);
-        $service = app(SlowDatingService::class); $proposal = $service->proposal($a->id);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round] = $this->generate($a, $b);
+        $this->reveal($round);
+        $service = app(SlowDatingService::class);
+        $proposal = $service->proposal($a->id);
         $this->travelTo(now()->addHours(168));
         $this->assertSame('EXPIRED', $service->proposal($a->id)['state']);
         $this->assertDatabaseCount('match_proposal_slots', 0);
@@ -301,8 +394,12 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_decline_is_independent_and_exit_releases_slot_without_peer_rejection(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); [$round] = $this->generate($a, $b); $this->reveal($round);
-        $service = app(SlowDatingService::class); $proposal = $service->proposal($a->id);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round] = $this->generate($a, $b);
+        $this->reveal($round);
+        $service = app(SlowDatingService::class);
+        $proposal = $service->proposal($a->id);
         $result = $service->decision($a->id, $proposal['id'], 'decline', 1, 'explicit-decline');
         $this->assertSame('DECLINED', $result['state']);
         $this->assertSame('DECLINED', $result['decision_me']);
@@ -314,7 +411,10 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_unresolved_slot_is_excluded_from_future_candidate_pool(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); [$round] = $this->generate($a, $b); $this->reveal($round);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round] = $this->generate($a, $b);
+        $this->reveal($round);
         $this->assertSame([], app(ProfileReadinessService::class)->eligibleUsersQuery()->pluck('id')->all());
         app(SlowDatingService::class)->participate($a->id, 'exit', 1, '');
         $this->assertSame('WITHDRAWN', app(SlowDatingService::class)->history($b->id, 1, 20)['data'][0]['state']);
@@ -324,7 +424,9 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_block_before_reveal_ends_in_recoverable_failure_without_releasing_old_result(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); [$round, $run] = $this->generate($a, $b);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round, $run] = $this->generate($a, $b);
         UserBlock::create(['blocker_id' => $a->id, 'blocked_user_id' => $b->id]);
         $this->reveal($round, true);
         $this->assertSame('failed', $round->fresh()->state->value);
@@ -336,8 +438,9 @@ $this->completeLifestyleFixture((int) $user->id);
     public function test_business_midnight_age_change_rechecks_bilateral_range_before_reveal(): void
     {
         $a = $this->subject('male', ['age_mode' => 'range', 'age_min' => 18, 'age_max' => 30]);
-        $b = $this->subject('female', ['birthday' => '1995-11-14']); [$round] = $this->generate($a, $b);
-        $this->travelTo(\Carbon\CarbonImmutable::parse('2026-11-14 00:00:00', 'Asia/Shanghai'));
+        $b = $this->subject('female', ['birthday' => '1995-11-14']);
+        [$round] = $this->generate($a, $b);
+        $this->travelTo(CarbonImmutable::parse('2026-11-14 00:00:00', 'Asia/Shanghai'));
         $this->reveal($round, true);
         $this->assertSame('failed', $round->fresh()->state->value);
         $this->assertDatabaseCount('match_proposals', 0);
@@ -345,8 +448,12 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_second_accept_rechecks_qualification_after_the_pre_read(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); [$round] = $this->generate($a, $b); $this->reveal($round);
-        $service = app(SlowDatingService::class); $proposal = $service->proposal($a->id);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round] = $this->generate($a, $b);
+        $this->reveal($round);
+        $service = app(SlowDatingService::class);
+        $proposal = $service->proposal($a->id);
         $service->decision($a->id, $proposal['id'], 'accept', 1, 'first-independent-accept');
         $armed = true;
         // Deterministic race fixture changes qualification after pre-read reconciliation.
@@ -359,7 +466,7 @@ $this->completeLifestyleFixture((int) $user->id);
         try {
             $service->decision($b->id, $proposal['id'], 'accept', 2, 'racing-second-accept');
             $this->fail('A changed qualification must prevent the second acceptance.');
-        } catch (\Symfony\Component\HttpKernel\Exception\HttpException $failure) {
+        } catch (HttpException $failure) {
             $this->assertSame(409, $failure->getStatusCode());
         }
         $this->assertFalse($armed);
@@ -368,20 +475,22 @@ $this->completeLifestyleFixture((int) $user->id);
 
     public function test_removed_retry_participant_waits_for_configured_reveal_before_no_candidate(): void
     {
-        $a = $this->subject(); $b = $this->subject('female'); [$round, $run] = $this->generate($a, $b);
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round, $run] = $this->generate($a, $b);
         $round->forceFill(['reveal_at' => now()->addHour()])->save();
         app(SlowDatingService::class)->participate($b->id, 'exit', 1, '');
         $this->reveal($round->fresh(), true);
         $retry = app(MatchingRunService::class)->retry($run->fresh(), 'removed-peer-retry', 'test', null);
         $this->artisan('app:matching:execute-pending', ['--once' => true, '--run-id' => $retry->id])->assertSuccessful();
-        $before = app(\App\Services\MatchRoundProjectionService::class)->currentForUser($b->id)['data'];
+        $before = app(MatchRoundProjectionService::class)->currentForUser($b->id)['data'];
         $this->assertNotSame('no_candidate', $before['state']);
         $this->assertNull($before['result']);
         $this->travelTo(now()->addHour());
         $current = $round->fresh();
         app(MatchingRoundService::class)->transition($current, RoundState::NoCandidate, $current->state_version,
             'test', null, OperationAction::Reveal, 'removed-peer-reveal');
-        $this->assertSame('no_candidate', app(\App\Services\MatchRoundProjectionService::class)->currentForUser($b->id)['data']['state']);
+        $this->assertSame('no_candidate', app(MatchRoundProjectionService::class)->currentForUser($b->id)['data']['state']);
         $this->assertDatabaseCount('match_proposals', 0);
     }
 }

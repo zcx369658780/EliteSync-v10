@@ -1,18 +1,24 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AccountSecurityController;
+use App\Http\Controllers\Api\V1\AccountSupportController;
 use App\Http\Controllers\Api\V1\AdminController;
 use App\Http\Controllers\Api\V1\AdminMatchingController;
 use App\Http\Controllers\Api\V1\AppVersionController;
 use App\Http\Controllers\Api\V1\AstroProfileController;
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\BuddyController;
+use App\Http\Controllers\Api\V1\BuddyDiscoveryController;
+use App\Http\Controllers\Api\V1\ContactController;
 use App\Http\Controllers\Api\V1\ConversationController;
 use App\Http\Controllers\Api\V1\DynamicChartController;
 use App\Http\Controllers\Api\V1\FrontendTelemetryController;
 use App\Http\Controllers\Api\V1\GeoController;
 use App\Http\Controllers\Api\V1\HomeController;
+use App\Http\Controllers\Api\V1\LifestyleDiscoveryController;
 use App\Http\Controllers\Api\V1\LiveConnectionController;
 use App\Http\Controllers\Api\V1\MatchController;
+use App\Http\Controllers\Api\V1\MatchingInputController;
 use App\Http\Controllers\Api\V1\MatchRoundController;
 use App\Http\Controllers\Api\V1\MbtiProfileController;
 use App\Http\Controllers\Api\V1\MediaController;
@@ -20,9 +26,14 @@ use App\Http\Controllers\Api\V1\MessageController;
 use App\Http\Controllers\Api\V1\ModerationController;
 use App\Http\Controllers\Api\V1\NatalProfileController;
 use App\Http\Controllers\Api\V1\NotificationController;
+use App\Http\Controllers\Api\V1\NotificationPreferencesController;
+use App\Http\Controllers\Api\V1\OperatingApplicationController;
+use App\Http\Controllers\Api\V1\PlatformController;
 use App\Http\Controllers\Api\V1\PrivacyController;
+use App\Http\Controllers\Api\V1\ProfileAvatarController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\ProfileShowcaseDraftController;
+use App\Http\Controllers\Api\V1\ProfileShowcasePhotoController;
 use App\Http\Controllers\Api\V1\ProfileShowcasePublicationController;
 use App\Http\Controllers\Api\V1\QuestionnaireController;
 use App\Http\Controllers\Api\V1\QuestionnaireDraftController;
@@ -30,8 +41,13 @@ use App\Http\Controllers\Api\V1\RelationshipController;
 use App\Http\Controllers\Api\V1\RtcController;
 use App\Http\Controllers\Api\V1\RtcGuardController;
 use App\Http\Controllers\Api\V1\SanctionAppealController;
+use App\Http\Controllers\Api\V1\SlowDatingController;
 use App\Http\Controllers\Api\V1\SocialController;
+use App\Http\Controllers\Api\V1\StatusCommentController;
 use App\Http\Controllers\Api\V1\StatusPostController;
+use App\Http\Controllers\Api\V1\SupportFeedbackController;
+use App\Http\Controllers\Api\V1\ToolRevisionController;
+use App\Http\Controllers\Api\V1\UserAutomationController;
 use App\Http\Controllers\Api\V2\AppHealthController;
 use App\Http\Controllers\Api\V2\AppReadinessController;
 use App\Http\Controllers\Api\V2\CanonicalMatch\CanonicalMatchEntryController;
@@ -39,6 +55,7 @@ use App\Http\Controllers\Api\V2\Contracts\LocationContractController;
 use App\Http\Controllers\Api\V2\Contracts\TransportEnvelopeController;
 use App\Http\Controllers\Api\V2\RuntimeReadiness\RuntimeReadinessEvaluationController;
 use App\Http\Middleware\DenyUnverifiedMessagingLiveAccess;
+use App\Http\Middleware\JourneyPrivateResponse;
 use App\Http\Middleware\MatchingOperationTransaction;
 use App\Http\Middleware\RtcTransaction;
 use App\Services\ConversationVisibility;
@@ -69,7 +86,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/account/closure-recovery', [AccountSecurityController::class, 'recover'])->middleware('throttle:10,1');
     Route::post('/account/closure-receipts/{requestId}', [AccountSecurityController::class, 'receipt'])->middleware('throttle:10,1');
     Route::prefix('auth')->group(function () {
-        Route::get('/support-capabilities', [\App\Http\Controllers\Api\V1\AccountSupportController::class, 'capabilities'])->middleware('throttle:60,1');
+        Route::get('/support-capabilities', [AccountSupportController::class, 'capabilities'])->middleware('throttle:60,1');
         Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:auth');
         Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:auth');
         Route::post('/session/verify', [AuthController::class, 'verifySession'])->middleware(['auth:sanctum', 'account.active']);
@@ -78,15 +95,16 @@ Route::prefix('v1')->group(function () {
         Route::delete('/account', [AuthController::class, 'deleteSelf'])->middleware(['auth:sanctum', 'account.active']);
     });
 
-    Route::middleware(['auth:sanctum', 'account.active', \App\Http\Middleware\JourneyPrivateResponse::class])->group(function () {
-        $controller = \App\Http\Controllers\Api\V1\UserAutomationController::class;
+    Route::middleware(['auth:sanctum', 'account.active', JourneyPrivateResponse::class])->group(function () {
+        $controller = UserAutomationController::class;
         Route::get('/user-state', [$controller, 'state']);
         Route::get('/automations', [$controller, 'show']);
         Route::put('/automations/{scope}', [$controller, 'update']);
     });
 
-    Route::get('/profile/lifestyle-discovery', [\App\Http\Controllers\Api\V1\LifestyleDiscoveryController::class, 'show'])->middleware(['auth:sanctum', 'account.active', \App\Http\Middleware\JourneyPrivateResponse::class]);
-    Route::put('/profile/lifestyle-discovery', [\App\Http\Controllers\Api\V1\LifestyleDiscoveryController::class, 'update'])->middleware(['auth:sanctum', 'account.active', \App\Http\Middleware\JourneyPrivateResponse::class]);
+    Route::get('/profile/lifestyle-discovery/command-result', [LifestyleDiscoveryController::class, 'commandResult'])->middleware(['auth:sanctum', 'account.active', JourneyPrivateResponse::class]);
+    Route::get('/profile/lifestyle-discovery', [LifestyleDiscoveryController::class, 'show'])->middleware(['auth:sanctum', 'account.active', JourneyPrivateResponse::class]);
+    Route::put('/profile/lifestyle-discovery', [LifestyleDiscoveryController::class, 'update'])->middleware(['auth:sanctum', 'account.active', JourneyPrivateResponse::class]);
 
     Route::prefix('questionnaire')->middleware(['auth:sanctum', 'account.active'])->group(function () {
         Route::get('/questions', [QuestionnaireController::class, 'questions']);
@@ -115,16 +133,16 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::middleware(['auth:sanctum', 'account.active'])->group(function () {
-        $comments = \App\Http\Controllers\Api\V1\StatusCommentController::class;
-        Route::middleware([\App\Http\Middleware\JourneyPrivateResponse::class])->group(function () use ($comments) {
+        $comments = StatusCommentController::class;
+        Route::middleware([JourneyPrivateResponse::class])->group(function () use ($comments) {
             Route::get('/status-posts/{postId}/comments', [$comments, 'index'])->whereNumber('postId');
             Route::get('/status-posts/{postId}/comments/{commentId}', [$comments, 'show'])->whereNumber('postId')->whereUuid('commentId');
             Route::post('/status-posts/{postId}/comments', [$comments, 'store'])->whereNumber('postId')->middleware('throttle:10,1');
             Route::delete('/status-posts/{postId}/comments/{commentId}', [$comments, 'destroy'])->whereNumber('postId')->whereUuid('commentId');
             Route::post('/status-posts/{postId}/comments/{commentId}/report', [$comments, 'report'])->whereNumber('postId')->whereUuid('commentId')->middleware('throttle:10,1');
         });
-        $platform = \App\Http\Controllers\Api\V1\PlatformController::class;
-        Route::middleware([\App\Http\Middleware\JourneyPrivateResponse::class, 'throttle:30,1'])->group(function () use ($platform) {
+        $platform = PlatformController::class;
+        Route::middleware([JourneyPrivateResponse::class, 'throttle:30,1'])->group(function () use ($platform) {
             Route::get('/platform-events', [$platform, 'index']);
             Route::post('/platform-events/redeem', [$platform, 'redeem']);
             Route::get('/platform-events/{id}', [$platform, 'show'])->whereUuid('id');
@@ -134,9 +152,9 @@ Route::prefix('v1')->group(function () {
             Route::get('/safety/own', [$platform, 'own']);
             Route::get('/safety/own/{id}', [$platform, 'ownShow'])->whereUuid('id');
         });
-        $buddy = \App\Http\Controllers\Api\V1\BuddyController::class;
-        Route::middleware([\App\Http\Middleware\JourneyPrivateResponse::class, 'throttle:30,1'])->group(function () use ($buddy) {
-            $discovery = \App\Http\Controllers\Api\V1\BuddyDiscoveryController::class;
+        $buddy = BuddyController::class;
+        Route::middleware([JourneyPrivateResponse::class, 'throttle:30,1'])->group(function () use ($buddy) {
+            $discovery = BuddyDiscoveryController::class;
             Route::get('/buddy/discovery', [$discovery, 'index']);
             Route::post('/buddy/discovery/{publication}/apply', [$discovery, 'apply'])->whereNumber('publication');
             Route::post('/buddy/{id}/discovery', [$discovery, 'publish'])->whereUuid('id');
@@ -150,10 +168,10 @@ Route::prefix('v1')->group(function () {
             Route::post('/buddy/{id}/tokens', [$buddy, 'token'])->whereUuid('id');
             Route::delete('/buddy/{id}/tokens', [$buddy, 'token'])->whereUuid('id');
         });
-        $journey = \App\Http\Controllers\Api\V1\SlowDatingController::class;
+        $journey = SlowDatingController::class;
         Route::get('/journey', [$journey, 'show']);
-        Route::get('/matching-inputs', [\App\Http\Controllers\Api\V1\MatchingInputController::class, 'show']);
-        Route::put('/matching-inputs', [\App\Http\Controllers\Api\V1\MatchingInputController::class, 'update']);
+        Route::get('/matching-inputs', [MatchingInputController::class, 'show']);
+        Route::put('/matching-inputs', [MatchingInputController::class, 'update']);
         Route::get('/journey/history', [$journey, 'history']);
         Route::get('/journey/history/{id}', [$journey, 'historyDetail'])->whereUuid('id');
         Route::put('/journey/participation', [$journey, 'participate']);
@@ -163,13 +181,13 @@ Route::prefix('v1')->group(function () {
         Route::post('/formal-relationships/{id}/actions', [$journey, 'relationshipAction'])->whereUuid('id');
         Route::put('/privacy/resume', [$journey, 'saveResume']);
         Route::get('/privacy/peers/{id}', [PrivacyController::class, 'peer'])->whereNumber('id');
-        $avatar = \App\Http\Controllers\Api\V1\ProfileAvatarController::class;
+        $avatar = ProfileAvatarController::class;
         Route::get('/avatars/{owner}', [$avatar, 'show'])->whereNumber('owner');
         Route::get('/avatars/{owner}/{revision}', [$avatar, 'content'])->whereNumber('owner')->whereNumber('revision');
         $social = SocialController::class;
         Route::get('/social', [$social, 'index']);
-        Route::get('/social/contacts', [\App\Http\Controllers\Api\V1\ContactController::class, 'index'])
-            ->middleware(\App\Http\Middleware\JourneyPrivateResponse::class);
+        Route::get('/social/contacts', [ContactController::class, 'index'])
+            ->middleware(JourneyPrivateResponse::class);
         Route::post('/social/preferences', [$social, 'preferences']);
         Route::post('/social/invites', [$social, 'invite'])->middleware('throttle:10,1');
         Route::delete('/social/invites/{id}', [$social, 'revokeInvite'])->whereNumber('id');
@@ -182,7 +200,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/privacy/preview', [$privacy, 'preview']);
         Route::get('/profile-peers/{id}', [$privacy, 'peer'])->whereNumber('id');
         $account = AccountSecurityController::class;
-        $support = \App\Http\Controllers\Api\V1\SupportFeedbackController::class;
+        $support = SupportFeedbackController::class;
         Route::get('/support/feedback', [$support, 'index']);
         Route::get('/support/feedback/{id}', [$support, 'show'])->whereNumber('id');
         Route::post('/support/feedback', [$support, 'store'])->middleware('throttle:10,1');
@@ -211,26 +229,26 @@ Route::prefix('v1')->group(function () {
             Route::post('/dynamic', [DynamicChartController::class, 'save']);
             Route::post('/dynamic/{id}', [DynamicChartController::class, 'save'])->whereNumber('id');
             Route::delete('/dynamic/{id}', [DynamicChartController::class, 'destroy'])->whereNumber('id');
-            Route::get('/dynamic/{id}/history', [\App\Http\Controllers\Api\V1\ToolRevisionController::class, 'dynamicIndex'])->whereNumber('id');
-            Route::get('/dynamic/{id}/history/{archive}', [\App\Http\Controllers\Api\V1\ToolRevisionController::class, 'dynamicShow'])->whereNumber(['id', 'archive']);
+            Route::get('/dynamic/{id}/history', [ToolRevisionController::class, 'dynamicIndex'])->whereNumber('id');
+            Route::get('/dynamic/{id}/history/{archive}', [ToolRevisionController::class, 'dynamicShow'])->whereNumber(['id', 'archive']);
             Route::get('/natal', [NatalProfileController::class, 'show']);
             Route::post('/natal', [NatalProfileController::class, 'save']);
-            Route::get('/natal/history', [\App\Http\Controllers\Api\V1\ToolRevisionController::class, 'natalIndex']);
-            Route::get('/natal/history/{archive}', [\App\Http\Controllers\Api\V1\ToolRevisionController::class, 'natalShow'])->whereNumber('archive');
+            Route::get('/natal/history', [ToolRevisionController::class, 'natalIndex']);
+            Route::get('/natal/history/{archive}', [ToolRevisionController::class, 'natalShow'])->whereNumber('archive');
             Route::get('/operating-status', function (Request $r) {
                 $u = $r->user();
 
                 return response()->json(['status' => $u->verify_status, 'reason' => $u->verify_reason ?? '', 'revision' => (int) $u->verify_revision, 'moderation_status' => $u->moderation_status, 'matching_eligibility' => app(ProfileReadinessService::class)->forUser($u)['matching_eligibility']]);
             });
 
-            Route::get('/operating-application', [\App\Http\Controllers\Api\V1\OperatingApplicationController::class, 'show']);
-            Route::post('/operating-application', [\App\Http\Controllers\Api\V1\OperatingApplicationController::class, 'store']);
+            Route::get('/operating-application', [OperatingApplicationController::class, 'show']);
+            Route::post('/operating-application', [OperatingApplicationController::class, 'store']);
             Route::get('/basic', [ProfileController::class, 'basic']);
             Route::post('/basic', [ProfileController::class, 'saveBasic']);
             Route::post('/city', [ProfileController::class, 'saveCity']);
             Route::post('/nickname', [ProfileController::class, 'saveNickname']);
-            Route::post('/avatar', [\App\Http\Controllers\Api\V1\ProfileAvatarController::class, 'store'])->middleware('throttle:10,1');
-            Route::delete('/avatar', [\App\Http\Controllers\Api\V1\ProfileAvatarController::class, 'destroy']);
+            Route::post('/avatar', [ProfileAvatarController::class, 'store'])->middleware('throttle:10,1');
+            Route::delete('/avatar', [ProfileAvatarController::class, 'destroy']);
             Route::get('/showcase/draft', [ProfileShowcaseDraftController::class, 'show']);
             Route::put('/showcase/draft', [ProfileShowcaseDraftController::class, 'update']);
             Route::post('/showcase/draft/submit-review', [ProfileShowcaseDraftController::class, 'submitForReview']);
@@ -238,8 +256,8 @@ Route::prefix('v1')->group(function () {
             Route::get('/showcase/publication', [ProfileShowcasePublicationController::class, 'show']);
             Route::post('/showcase/publication', [ProfileShowcasePublicationController::class, 'store']);
             Route::delete('/showcase/publication', [ProfileShowcasePublicationController::class, 'destroy']);
-            Route::post('/showcase/photos', [\App\Http\Controllers\Api\V1\ProfileShowcasePhotoController::class, 'store'])->middleware('throttle:10,1');
-            Route::get('/showcase/{owner}/photos/{photo}', [\App\Http\Controllers\Api\V1\ProfileShowcasePhotoController::class, 'content'])->whereNumber('owner')->whereNumber('photo');
+            Route::post('/showcase/photos', [ProfileShowcasePhotoController::class, 'store'])->middleware('throttle:10,1');
+            Route::get('/showcase/{owner}/photos/{photo}', [ProfileShowcasePhotoController::class, 'content'])->whereNumber('owner')->whereNumber('photo');
             Route::get('/showcase/{owner}', [ProfileShowcasePublicationController::class, 'detail'])->whereNumber('owner');
             Route::get('/astro/summary', [AstroProfileController::class, 'showSummary']);
             Route::get('/astro/chart', [AstroProfileController::class, 'showChart']);
@@ -305,7 +323,7 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::middleware('account.active')->group(function () {
-            $preferences = \App\Http\Controllers\Api\V1\NotificationPreferencesController::class;
+            $preferences = NotificationPreferencesController::class;
             Route::get('/notification-preferences', [$preferences, 'show']);
             Route::put('/notification-preferences', [$preferences, 'update']);
             Route::post('/notification-devices', [$preferences, 'register']);
@@ -366,7 +384,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/feed', [HomeController::class, 'feed']);
         });
 
-        Route::prefix('status')->middleware(\App\Http\Middleware\JourneyPrivateResponse::class)->group(function () {
+        Route::prefix('status')->middleware(JourneyPrivateResponse::class)->group(function () {
             Route::get('/posts', [StatusPostController::class, 'index']);
             Route::get('/favorites', [StatusPostController::class, 'favorites']);
             Route::put('/posts/{postId}/favorite', [StatusPostController::class, 'favorite'])->whereNumber('postId');

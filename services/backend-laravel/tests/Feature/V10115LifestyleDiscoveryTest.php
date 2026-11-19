@@ -2,10 +2,17 @@
 
 namespace Tests\Feature;
 
+use App\Models\QuestionnaireAnswer;
+use App\Models\QuestionnaireQuestion;
 use App\Models\User;
 use App\Services\LifestyleDiscoveryService;
+use App\Services\MatchingInputService;
+use App\Services\MatchingRoundService;
+use App\Services\MatchingRunService;
+use App\Services\ProfileReadinessService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -21,6 +28,7 @@ final class V10115LifestyleDiscoveryTest extends TestCase
         parent::setUp();
         config(['restoration.enabled' => true]);
         Sanctum::actingAs(User::factory()->create(['phone' => (string) Str::uuid(), 'disabled' => false]));
+        $this->authorizeTestParticipation(auth()->user());
     }
 
     private function command(string $action, int $revision, array $extra = []): array
@@ -102,18 +110,18 @@ final class V10115LifestyleDiscoveryTest extends TestCase
         $user = auth()->user();
         $user->update(['verify_status' => 'approved']);
         config(['questionnaire.required_answer_count' => 1, 'matching.foundation.digest_key' => 'b1-test-key']);
-        app(\App\Services\MatchingInputService::class)->save($user->id, [
+        app(MatchingInputService::class)->save($user->id, [
             'revision' => 0, 'confirm' => true, 'birthday' => '1995-01-02', 'gender' => 'male',
             'city_key' => '上海', 'relationship_goal' => 'marriage', 'age_mode' => 'adult_any',
             'age_min' => null, 'age_max' => null, 'region_mode' => 'same_city',
         ]);
-        $question = \App\Models\QuestionnaireQuestion::create(['question_key' => 'b1-fixture',
+        $question = QuestionnaireQuestion::create(['question_key' => 'b1-fixture',
             'category' => 'test', 'content' => 'Fixture', 'question_type' => 'single_choice',
             'options' => [['option_id' => 'A']], 'enabled' => true, 'version' => 1]);
-        \App\Models\QuestionnaireAnswer::create(['user_id' => $user->id,
+        QuestionnaireAnswer::create(['user_id' => $user->id,
             'questionnaire_question_id' => $question->id, 'answer_payload' => ['selected_answer' => ['A']], 'version' => 1]);
-        $round = app(\App\Services\MatchingRoundService::class)->prepare('default', 'b1-test', now(), now()->addHour(), 'test', null);
-        $runs = app(\App\Services\MatchingRunService::class);
+        $round = app(MatchingRoundService::class)->prepare('default', 'b1-test', now(), now()->addHour(), 'test', null);
+        $runs = app(MatchingRunService::class);
         $runs->request($round, 'b1-run', 'test', null);
         $run = $runs->claimNext('b1-worker', 120);
         try {
@@ -128,11 +136,11 @@ final class V10115LifestyleDiscoveryTest extends TestCase
                 'scene_id' => $scene['id'], 'option_id' => $scene['options'][0]['id']]))->assertOk();
         }
         $this->putJson('/api/v1/journey/participation', ['action' => 'opt_in', 'revision' => 0, 'intent' => 'QA'])->assertOk();
-        $this->assertTrue(app(\App\Services\ProfileReadinessService::class)->eligibleUsersQuery()->whereKey($user->id)->exists());
+        $this->assertTrue(app(ProfileReadinessService::class)->eligibleUsersQuery()->whereKey($user->id)->exists());
         $runs->freezeCandidates($run, collect([$user->fresh()]), 'b1-worker', $run->fencing_token);
         $this->putJson(self::URL, $this->command('reset', 5))->assertOk();
-        $this->assertFalse(app(\App\Services\ProfileReadinessService::class)->eligibleUsersQuery()->whereKey($user->id)->exists());
-        $this->assertTrue(app(\App\Services\ProfileReadinessService::class)->forUser($user->fresh())['matching_eligibility']['eligible']);
+        $this->assertFalse(app(ProfileReadinessService::class)->eligibleUsersQuery()->whereKey($user->id)->exists());
+        $this->assertTrue(app(ProfileReadinessService::class)->forUser($user->fresh())['matching_eligibility']['eligible']);
         $this->assertFalse($runs->revealInputsCurrent($run->fresh(), collect([$user->fresh()])->keyBy('id')));
         try {
             $runs->finalize($run->fresh(), 'b1-worker', $run->fencing_token, [$user->id], []);
@@ -150,7 +158,7 @@ final class V10115LifestyleDiscoveryTest extends TestCase
         $migration = require database_path('migrations/2026_11_15_190000_create_lifestyle_discoveries.php');
         $migration->down();
         $this->assertDatabaseHas('users', ['id' => $userId]);
-        $this->assertTrue(\Illuminate\Support\Facades\Schema::hasTable('match_proposals'));
+        $this->assertTrue(Schema::hasTable('match_proposals'));
         $migration->up();
         $this->getJson(self::URL)->assertOk()->assertJsonPath('revision', 0);
     }

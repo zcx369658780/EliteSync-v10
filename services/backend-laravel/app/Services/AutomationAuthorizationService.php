@@ -12,13 +12,16 @@ final class AutomationAuthorizationService
 
     public function effectiveState(?object $row): string
     {
-        if (! $row) { return 'OFF'; }
+        if (! $row) {
+            return 'OFF';
+        }
         if (in_array($row->state, ['ACTIVE', 'PAUSED'], true)
             && ($row->policy_version !== config('user_automation.policy_version')
                 || $row->consent_version !== config('user_automation.consent_version')
                 || ($row->expires_at && CarbonImmutable::parse($row->expires_at)->lte(now())))) {
             return 'EXPIRED';
         }
+
         return $row->state;
     }
 
@@ -32,6 +35,7 @@ final class AutomationAuthorizationService
     {
         $row = $this->row($userId, DB::transactionLevel() > 0);
         $task = DB::table('automation_tasks')->where('user_id', $userId)->orderByDesc('updated_at')->orderByDesc('id')->first();
+
         return [
             'code' => $this->effectiveState($row), 'scope_key' => self::SCOPE,
             'policy_version' => config('user_automation.policy_version'),
@@ -56,6 +60,7 @@ final class AutomationAuthorizationService
             return 'LIFESTYLE_INCOMPLETE';
         }
         $readiness = app(ProfileReadinessService::class)->forUser($user)['matching_eligibility'];
+
         return $readiness['eligible'] ? null : $readiness['reason_code'];
     }
 
@@ -65,14 +70,19 @@ final class AutomationAuthorizationService
             && $data['consent_version'] === config('user_automation.consent_version'), 422, 'automation policy changed');
         $hash = hash('sha256', json_encode([$data['action'], (int) $data['expected_revision'],
             $data['policy_version'], $data['consent_version'], $data['expires_at'] ?? null], JSON_THROW_ON_ERROR));
+
         return DB::transaction(function () use ($actor, $data, $hash) {
             app(CurrentQuestionnaire::class)->lock();
             app(JourneyStore::class)->users([(int) $actor->id]);
             $user = User::findOrFail($actor->id);
+            if (in_array($data['action'], ['grant', 'resume'], true)) {
+                app(TrustedIdentityService::class)->requireParticipation((int) $user->id);
+            }
             $row = $this->row((int) $user->id, true);
             $old = DB::table('automation_commands')->where('user_id', $user->id)->where('request_key', $data['request_key'])->lockForUpdate()->first();
             if ($old) {
                 abort_unless(hash_equals($old->request_hash, $hash), 409, 'automation request key reused');
+
                 return $this->read((int) $user->id);
             }
             $revision = (int) ($row->revision ?? 0);
@@ -105,10 +115,13 @@ final class AutomationAuthorizationService
                 'created_at' => $row->created_at ?? now(), 'updated_at' => now(),
             ]);
             $this->cancelTasks((int) $user->id, $state === 'EXPIRED' ? 'EXPIRED' : 'CANCELLED');
-            if (in_array($state, ['PAUSED', 'REVOKED'], true)) { $this->pauseParticipation((int) $user->id, (int) $row->id); }
+            if (in_array($state, ['PAUSED', 'REVOKED'], true)) {
+                $this->pauseParticipation((int) $user->id, (int) $row->id);
+            }
             DB::table('automation_commands')->insert(['user_id' => $user->id, 'request_key' => $data['request_key'],
                 'request_hash' => $hash, 'action' => $action, 'applied_revision' => $revision + 1, 'created_at' => now()]);
             $this->audit((int) $user->id, null, 'AUTHORIZATION_'.strtoupper($action));
+
             return $this->read((int) $user->id);
         });
     }
@@ -134,9 +147,13 @@ final class AutomationAuthorizationService
     public function suspendFromParticipation(int $userId, string $action): void
     {
         $row = $this->row($userId, true);
-        if (! $row || ! in_array($row->state, ['ACTIVE', 'PAUSED'], true)) { return; }
+        if (! $row || ! in_array($row->state, ['ACTIVE', 'PAUSED'], true)) {
+            return;
+        }
         $state = $action === 'exit' ? 'REVOKED' : 'PAUSED';
-        if ($row->state === $state) { return; }
+        if ($row->state === $state) {
+            return;
+        }
         DB::table('automation_authorizations')->where('id', $row->id)->update([
             'state' => $state, 'revision' => $row->revision + 1,
             'paused_at' => $state === 'PAUSED' ? now() : $row->paused_at,
@@ -148,8 +165,11 @@ final class AutomationAuthorizationService
 
     public function delegatedParticipationAllowed(object $participation): bool
     {
-        if (! ($participation->automation_authorization_id ?? null)) { return true; }
+        if (! ($participation->automation_authorization_id ?? null)) {
+            return true;
+        }
         $row = $this->row((int) $participation->user_id, DB::transactionLevel() > 0);
+
         return $row && (int) $row->id === (int) $participation->automation_authorization_id
             && (int) $row->revision === (int) $participation->automation_authorization_revision
             && $this->effectiveState($row) === 'ACTIVE';
@@ -159,6 +179,7 @@ final class AutomationAuthorizationService
     {
         $participation = DB::table('matching_participations')->where('user_id', $userId)
             ->when(DB::transactionLevel() > 0, fn ($query) => $query->lockForUpdate())->first();
+
         return ! ($participation->automation_authorization_id ?? null)
             || ((int) $participation->automation_round_id === $roundId && $this->delegatedParticipationAllowed($participation));
     }

@@ -16,6 +16,7 @@ final class LifestyleDiscoveryService
     {
         $bank = $this->bank();
         $row = DB::table('lifestyle_discoveries')->where('user_id', $userId)->when(DB::transactionLevel() > 0, fn ($query) => $query->lockForUpdate())->first();
+
         return [
             'questionnaire_version' => $row->questionnaire_version ?? $bank['questionnaire_version'],
             'preference_projection_version' => $row->preference_projection_version ?? $bank['preference_projection_version'],
@@ -37,6 +38,31 @@ final class LifestyleDiscoveryService
             ->when($current, fn ($query) => $query->lockForUpdate())->first() !== null;
     }
 
+    private function commandHash(array $command): string
+    {
+        return hash('sha256', json_encode([$command['action'], $command['questionnaire_version'],
+            $command['expected_revision'], $command['scene_id'] ?? null, $command['option_id'] ?? null], JSON_THROW_ON_ERROR));
+    }
+
+    /** User lock serializes this read with the original command; no mutation or replay. */
+    public function commandResult(int $userId, array $command): array
+    {
+        return DB::transaction(function () use ($userId, $command) {
+            app(JourneyStore::class)->users([$userId]);
+            $current = $this->read($userId);
+            $receipt = DB::table('lifestyle_discovery_commands')->where('user_id', $userId)
+                ->where('request_key', $command['request_key'])->lockForUpdate()->first();
+            if ($receipt) {
+                abort_unless(hash_equals($receipt->request_hash, $this->commandHash($command)), 409, 'lifestyle request key reused');
+            }
+            $sameVersion = $command['questionnaire_version'] === $this->bank()['questionnaire_version'];
+            $status = $receipt ? 'APPLIED' : ($sameVersion && $current['revision'] === $command['expected_revision'] ? 'NOT_APPLIED' : 'CONFLICT');
+
+            return ['command_status' => $status, 'request_key' => $command['request_key'],
+                'applied_revision' => $receipt ? (int) $receipt->applied_revision : null, 'current' => $current];
+        });
+    }
+
     public function command(int $userId, array $command): array
     {
         $bank = $this->bank();
@@ -50,8 +76,7 @@ final class LifestyleDiscoveryService
             abort_unless($scene && $option, 422, 'unknown lifestyle option');
         }
         // Canonical shape prevents client key ordering from changing retry identity.
-        $hash = hash('sha256', json_encode([$action, $command['questionnaire_version'],
-            $command['expected_revision'], $command['scene_id'] ?? null, $command['option_id'] ?? null], JSON_THROW_ON_ERROR));
+        $hash = $this->commandHash($command);
 
         return DB::transaction(function () use ($userId, $command, $action, $bank, $scene, $option, $hash) {
             // Also serializes against sorted User locks held by weekly run writers.
@@ -60,6 +85,7 @@ final class LifestyleDiscoveryService
                 ->where('request_key', $command['request_key'])->lockForUpdate()->first();
             if ($receipt) {
                 abort_unless(hash_equals($receipt->request_hash, $hash), 409, 'lifestyle request key reused');
+
                 return $this->read($userId);
             }
             $row = DB::table('lifestyle_discoveries')->where('user_id', $userId)->lockForUpdate()->first();
@@ -75,7 +101,9 @@ final class LifestyleDiscoveryService
             $derived = [];
             foreach ($bank['scenes'] as $question) {
                 $answer = $answers[$question['id']] ?? null;
-                if (! $answer) { continue; }
+                if (! $answer) {
+                    continue;
+                }
                 $selected = collect($question['options'])->firstWhere('id', $answer['option_id']);
                 $derived[$question['dimension']] = [
                     'dimension_label' => $question['dimension_label'], 'value' => $selected['value'],
@@ -104,6 +132,7 @@ final class LifestyleDiscoveryService
             DB::table('lifestyle_discovery_commands')->insert(['user_id' => $userId,
                 'request_key' => $command['request_key'], 'request_hash' => $hash,
                 'action' => $action, 'applied_revision' => $revision + 1, 'created_at' => now()]);
+
             return $this->read($userId);
         });
     }

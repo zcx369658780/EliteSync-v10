@@ -146,6 +146,7 @@ class MatchingRunService
             }
             foreach ($currentUsers as $user) {
                 $id = (int) $user->id;
+                app(TrustedIdentityService::class)->requireParticipation($id);
                 if (! app(LifestyleDiscoveryService::class)->completed($id, true)) {
                     throw new \DomainException('lifestyle_discovery_incomplete');
                 }
@@ -223,7 +224,9 @@ class MatchingRunService
                 if ($a === $b || ! in_array($a, $frozenIds, true) || ! in_array($b, $frozenIds, true)) {
                     throw new \DomainException('pair_outside_frozen_candidates');
                 }
-                if (! app(SocialPolicy::class)->pairAllowed($a, $b)) { throw new \DomainException('pair_blocked'); }
+                if (! app(SocialPolicy::class)->pairAllowed($a, $b)) {
+                    throw new \DomainException('pair_blocked');
+                }
                 if (! app(MatchingInputService::class)->pairAllowed($currentUsers[$a], $currentUsers[$b])) {
                     throw new \DomainException('pair_preferences_changed');
                 }
@@ -313,6 +316,7 @@ class MatchingRunService
         if (DB::table('match_proposal_slots')->whereIn('user_id', $users->keys())->exists()) {
             return false;
         }
+
         return true;
     }
 

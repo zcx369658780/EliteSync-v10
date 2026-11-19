@@ -2,13 +2,20 @@
 
 namespace Tests\Feature;
 
+use App\Models\DatingMatch;
+use App\Models\QuestionnaireAnswer;
+use App\Models\QuestionnaireQuestion;
 use App\Models\User;
 use App\Services\AutomationService;
+use App\Services\MatchingInputService;
 use App\Services\MatchingRoundService;
+use App\Services\SlowDatingService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\Sanctum;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 final class V10116UserStateAutomationTest extends TestCase
@@ -27,18 +34,20 @@ final class V10116UserStateAutomationTest extends TestCase
     private function ready(): User
     {
         $user = auth()->user();
+        $this->authorizeTestParticipation($user);
         $user->update(['verify_status' => 'approved']);
-        app(\App\Services\MatchingInputService::class)->save($user->id, [
+        app(MatchingInputService::class)->save($user->id, [
             'revision' => 0, 'confirm' => true, 'birthday' => '1995-01-02', 'gender' => 'male',
             'city_key' => '上海', 'relationship_goal' => 'marriage', 'age_mode' => 'adult_any',
             'age_min' => null, 'age_max' => null, 'region_mode' => 'same_city',
         ]);
-        $q = \App\Models\QuestionnaireQuestion::create(['question_key' => 'b2-fixture',
+        $q = QuestionnaireQuestion::create(['question_key' => 'b2-fixture',
             'category' => 'test', 'content' => 'Fixture', 'question_type' => 'single_choice',
             'options' => [['option_id' => 'A']], 'enabled' => true, 'version' => 1]);
-        \App\Models\QuestionnaireAnswer::create(['user_id' => $user->id,
+        QuestionnaireAnswer::create(['user_id' => $user->id,
             'questionnaire_question_id' => $q->id, 'answer_payload' => ['selected_answer' => ['A']], 'version' => 1]);
         $this->completeLifestyleFixture($user->id);
+
         return $user->fresh();
     }
 
@@ -53,13 +62,14 @@ final class V10116UserStateAutomationTest extends TestCase
     private function proposalFixture(User $user, object $round, mixed $expiresAt): string
     {
         $peer = User::factory()->create(['phone' => 'b2-peer-'.Str::lower(Str::random(16)), 'name' => 'PEER_PRIVATE_B2']);
+        $this->authorizeTestParticipation($peer);
         $run = DB::table('matching_runs')->insertGetId(['round_id' => $round->id,
             'run_key' => (string) Str::uuid(), 'idempotency_key' => (string) Str::uuid(),
             'correlation_id' => (string) Str::uuid(), 'attempt_no' => 1, 'state' => 'succeeded',
             'trigger_source' => 'controlled-fixture', 'actor_type' => 'test',
             'eligibility_cutoff_at' => now(), 'algorithm_version' => 'fixture', 'config_version' => 'fixture',
             'created_at' => now(), 'updated_at' => now()]);
-        $match = \App\Models\DatingMatch::create(['round_id' => $round->id, 'matching_run_id' => $run,
+        $match = DatingMatch::create(['round_id' => $round->id, 'matching_run_id' => $run,
             'week_tag' => 'b2-fixture', 'user_a' => $user->id, 'user_b' => $peer->id, 'drop_released' => true]);
         $id = (string) Str::uuid();
         DB::table('match_proposals')->insert(['id' => $id, 'dating_match_id' => $match->id,
@@ -68,6 +78,7 @@ final class V10116UserStateAutomationTest extends TestCase
             'decision_b' => 'PENDING', 'revision' => 1, 'revealed_at' => now(), 'expires_at' => $expiresAt,
             'created_at' => now(), 'updated_at' => now()]);
         DB::table('match_proposal_slots')->insert(['user_id' => $user->id, 'proposal_id' => $id]);
+
         return $id;
     }
 
@@ -99,7 +110,7 @@ final class V10116UserStateAutomationTest extends TestCase
     public function test_authorization_default_off_cas_retry_and_lifecycle(): void
     {
         $this->getJson('/api/v1/automations')->assertOk()->assertJsonPath('code', 'OFF');
-        $this->putJson(self::URL, $this->command('grant', 0))->assertUnprocessable();
+        $this->putJson(self::URL, $this->command('grant', 0))->assertForbidden();
         $this->ready();
         $body = $this->command('grant', 0);
         $this->putJson(self::URL, $body)->assertOk()->assertJsonPath('code', 'ACTIVE')
@@ -187,14 +198,14 @@ final class V10116UserStateAutomationTest extends TestCase
         $this->putJson(self::URL, $this->command('grant', 0, ['expires_at' => now()->addMinute()->toISOString()]))->assertOk();
         app(MatchingRoundService::class)->prepare('default', 'b2-expiry-fixture', now(), now()->addHour(), 'test', null);
         app(AutomationService::class)->tick('worker', 10);
-        $this->assertTrue(app(\App\Services\SlowDatingService::class)->enrolled($user->id));
+        $this->assertTrue(app(SlowDatingService::class)->enrolled($user->id));
         $this->travel(2)->minutes();
-        $this->assertFalse(app(\App\Services\SlowDatingService::class)->enrolled($user->id));
+        $this->assertFalse(app(SlowDatingService::class)->enrolled($user->id));
         $this->getJson('/api/v1/automations')->assertJsonPath('code', 'EXPIRED');
         app(AutomationService::class)->tick('worker', 10);
         $this->assertDatabaseHas('matching_participations', ['user_id' => $user->id, 'state' => 'PAUSED']);
         $this->putJson(self::URL, $this->command('grant', 2))->assertOk();
-        app(\App\Services\SlowDatingService::class)->participate($user->id, 'pause', 3, '');
+        app(SlowDatingService::class)->participate($user->id, 'pause', 3, '');
         $this->getJson('/api/v1/automations')->assertJsonPath('code', 'PAUSED');
     }
 
@@ -204,13 +215,13 @@ final class V10116UserStateAutomationTest extends TestCase
         $this->putJson(self::URL, $this->command('grant', 0, ['expires_at' => now()->addMinute()->toISOString()]))->assertOk();
         app(MatchingRoundService::class)->prepare('default', 'draft-binding', now(), now()->addHour(), 'test', null);
         app(AutomationService::class)->tick('worker', 10);
-        app(\App\Services\SlowDatingService::class)->participate($user->id, 'draft', 2, 'Private intent');
+        app(SlowDatingService::class)->participate($user->id, 'draft', 2, 'Private intent');
         $this->assertNotNull(DB::table('matching_participations')->where('user_id', $user->id)->value('automation_authorization_id'));
         $this->travel(2)->minutes();
-        $this->assertFalse(app(\App\Services\SlowDatingService::class)->enrolled($user->id));
+        $this->assertFalse(app(SlowDatingService::class)->enrolled($user->id));
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('acknowledgements')]
+    #[DataProvider('acknowledgements')]
     public function test_same_cycle_resume_recoordinates_current_authority_once(bool $acknowledged): void
     {
         $user = $this->ready();
@@ -220,7 +231,9 @@ final class V10116UserStateAutomationTest extends TestCase
         $service->schedule(10);
         $claim = $service->claim('worker');
         $service->apply($claim);
-        if ($acknowledged) { $service->complete($claim); }
+        if ($acknowledged) {
+            $service->complete($claim);
+        }
         $this->putJson(self::URL, $this->command('pause', 1))->assertOk();
         $this->putJson(self::URL, $this->command('resume', 2))->assertOk();
         $service->tick('resumed-worker', 10);
@@ -233,7 +246,10 @@ final class V10116UserStateAutomationTest extends TestCase
         $this->assertSame(5, DB::table('matching_participations')->where('user_id', $user->id)->value('revision'));
     }
 
-    public static function acknowledgements(): array { return [[true], [false]]; }
+    public static function acknowledgements(): array
+    {
+        return [[true], [false]];
+    }
 
     public function test_unknown_without_effect_reconciles_before_bounded_retry_and_fences_old_worker(): void
     {
@@ -302,14 +318,14 @@ final class V10116UserStateAutomationTest extends TestCase
         DB::table('dating_rounds')->where('id', $old->id)->update(['state' => 'closed']);
         DB::table('dating_round_channels')->where('channel_key', 'default')->update(['active_round_id' => null]);
         $next = app(MatchingRoundService::class)->prepare('default', 'b2-next-cycle', now(), now()->addHour(), 'test', null);
-        $this->assertFalse(app(\App\Services\SlowDatingService::class)->enrolled($user->id));
+        $this->assertFalse(app(SlowDatingService::class)->enrolled($user->id));
         $service->tick('second-worker', 10);
         $this->assertDatabaseHas('automation_tasks', ['round_id' => $next->id, 'state' => 'SKIPPED', 'result_code' => 'EXISTING_PROPOSAL']);
         $this->travel(2)->minutes();
         $service->tick('deadline-worker', 10);
         $this->assertDatabaseHas('match_proposals', ['id' => $proposal, 'state' => 'EXPIRED']);
         $this->assertDatabaseHas('automation_tasks', ['round_id' => $next->id, 'state' => 'SUCCEEDED']);
-        $this->assertTrue(app(\App\Services\SlowDatingService::class)->enrolled($user->id));
+        $this->assertTrue(app(SlowDatingService::class)->enrolled($user->id));
         $this->assertDatabaseCount('automation_effects', 2);
         $this->assertDatabaseCount('matching_runs', 1);
     }
@@ -317,11 +333,11 @@ final class V10116UserStateAutomationTest extends TestCase
     public function test_existing_manual_participant_stays_off_across_migration_rollback_and_upgrade(): void
     {
         $user = $this->ready();
-        app(\App\Services\SlowDatingService::class)->participate($user->id, 'opt_in', 0, 'Fictional intent');
-        $before = app(\App\Services\SlowDatingService::class)->participation($user->id);
+        app(SlowDatingService::class)->participate($user->id, 'opt_in', 0, 'Fictional intent');
+        $before = app(SlowDatingService::class)->participation($user->id);
         $migration = require database_path('migrations/2026_11_15_220000_create_user_automation.php');
         $migration->down();
-        $this->assertFalse(\Illuminate\Support\Facades\Schema::hasTable('automation_authorizations'));
+        $this->assertFalse(Schema::hasTable('automation_authorizations'));
         $migration->up();
         $this->getJson('/api/v1/user-state')->assertOk()->assertJsonPath('domains.automation.code', 'OFF')
             ->assertJsonPath('domains.participation.code', 'ACTIVE')
@@ -329,7 +345,7 @@ final class V10116UserStateAutomationTest extends TestCase
         app(AutomationService::class)->tick('legacy-worker', 10);
         $this->assertDatabaseCount('automation_authorizations', 0);
         $this->assertDatabaseCount('automation_tasks', 0);
-        $this->assertEquals($before, app(\App\Services\SlowDatingService::class)->participation($user->id));
+        $this->assertEquals($before, app(SlowDatingService::class)->participation($user->id));
     }
 
     public function test_changed_qualification_is_checked_after_claim_before_effect(): void
@@ -372,7 +388,7 @@ final class V10116UserStateAutomationTest extends TestCase
         $this->assertEquals($before, DB::table('match_proposals')->where('id', $proposal)->first());
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('r1StopActions')]
+    #[DataProvider('r1StopActions')]
     public function test_r1_unbound_manual_participation_survives_authorization_stop(string $action): void
     {
         $user = $this->ready();
@@ -386,7 +402,9 @@ final class V10116UserStateAutomationTest extends TestCase
         if (in_array($action, ['pause', 'revoke'], true)) {
             $this->putJson(self::URL, $this->command($action, 1))->assertOk();
         } else {
-            if ($action === 'policy') { config(['user_automation.policy_version' => 'weekly_participation_v2']); }
+            if ($action === 'policy') {
+                config(['user_automation.policy_version' => 'weekly_participation_v2']);
+            }
             app(AutomationService::class)->tick('r1-manual-expiry', 10);
             $this->getJson('/api/v1/automations')->assertJsonPath('code', 'EXPIRED');
         }
@@ -398,7 +416,7 @@ final class V10116UserStateAutomationTest extends TestCase
             ->assertJsonPath('domains.participation.source_revision', $before->revision);
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('r1StopActions')]
+    #[DataProvider('r1StopActions')]
     public function test_r1_bound_participation_stops_but_preserves_proposal(string $action): void
     {
         $user = $this->ready();
@@ -412,13 +430,13 @@ final class V10116UserStateAutomationTest extends TestCase
         $proposal = $this->proposalFixture($user, $round, now()->addHour());
         $peer = User::findOrFail(DB::table('match_proposals')->where('id', $proposal)->value('user_b'));
         $peer->update(['verify_status' => 'approved']);
-        app(\App\Services\MatchingInputService::class)->save($peer->id, [
+        app(MatchingInputService::class)->save($peer->id, [
             'revision' => 0, 'confirm' => true, 'birthday' => '1995-01-02', 'gender' => 'female',
             'city_key' => '上海', 'relationship_goal' => 'marriage', 'age_mode' => 'adult_any',
             'age_min' => null, 'age_max' => null, 'region_mode' => 'same_city',
         ]);
-        $question = \App\Models\QuestionnaireQuestion::where('question_key', 'b2-fixture')->firstOrFail();
-        \App\Models\QuestionnaireAnswer::create(['user_id' => $peer->id, 'questionnaire_question_id' => $question->id,
+        $question = QuestionnaireQuestion::where('question_key', 'b2-fixture')->firstOrFail();
+        QuestionnaireAnswer::create(['user_id' => $peer->id, 'questionnaire_question_id' => $question->id,
             'answer_payload' => ['selected_answer' => ['A']], 'version' => 1]);
         $this->completeLifestyleFixture($peer->id);
         DB::table('matching_participations')->insert(['user_id' => $peer->id, 'state' => 'ACTIVE',
@@ -431,7 +449,9 @@ final class V10116UserStateAutomationTest extends TestCase
         if (in_array($action, ['pause', 'revoke'], true)) {
             $this->putJson(self::URL, $this->command($action, 1))->assertOk();
         } else {
-            if ($action === 'policy') { config(['user_automation.policy_version' => 'weekly_participation_v2']); }
+            if ($action === 'policy') {
+                config(['user_automation.policy_version' => 'weekly_participation_v2']);
+            }
             $service->tick('r1-bound-expiry', 10);
         }
         $after = DB::table('matching_participations')->where('user_id', $user->id)->first();

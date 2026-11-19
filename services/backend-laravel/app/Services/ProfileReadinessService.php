@@ -2,23 +2,23 @@
 
 namespace App\Services;
 
-use App\Models\QuestionnaireAnswer;
 use App\Models\QuestionnaireQuestion;
 use App\Models\User;
 use App\Models\UserProfileShowcaseDraft;
 use App\Models\UserProfileShowcasePublication;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class ProfileReadinessService
 {
     public function eligibleUsersQuery(): Builder
     {
         $required = $this->requiredAnswerCount();
-        $query = User::query()->where('disabled',false)
-            ->where('verify_status','approved')->where('moderation_status','normal')
-            ->where('account_status','active')->where('is_match_eligible',true);
+        $query = User::query()->where('disabled', false)
+            ->where('verify_status', 'approved')->where('moderation_status', 'normal')
+            ->where('account_status', 'active')->where('is_match_eligible', true);
         $ids = (clone $query)->get()->filter(function (User $user) use ($required) {
-            if (($user->is_synthetic && ! app(TrustedIdentityService::class)->registered((int) $user->id))
+            if (! app(TrustedIdentityService::class)->participationAllowed((int) $user->id)
                 || app(CurrentQuestionnaire::class)->validCount((int) $user->id) < $required
                 || app(MatchingInputService::class)->readinessReason($user) !== null
                 || ! app(SlowDatingService::class)->enrolled((int) $user->id)
@@ -27,16 +27,18 @@ class ProfileReadinessService
             }
             // Reading the current proposal reconciles expiry/withdrawal before excluding its slot.
             app(SlowDatingService::class)->proposal((int) $user->id);
-            return ! \Illuminate\Support\Facades\DB::table('match_proposal_slots')->where('user_id', $user->id)->exists();
+
+            return ! DB::table('match_proposal_slots')->where('user_id', $user->id)->exists();
         })->pluck('id');
-        return $query->whereIn('id',$ids);
+
+        return $query->whereIn('id', $ids);
 
     }
 
     public function forUser(User $user): array
     {
         $required = $this->requiredAnswerCount();
-        $answered = app(CurrentQuestionnaire::class)->validCount((int)$user->id);
+        $answered = app(CurrentQuestionnaire::class)->validCount((int) $user->id);
         $enabledQuestions = QuestionnaireQuestion::query()->where('enabled', true)->count();
 
         $inputReason = app(MatchingInputService::class)->readinessReason($user);
@@ -46,6 +48,7 @@ class ProfileReadinessService
             ($user->moderation_status ?? '') !== 'normal' || ($user->account_status ?? '') !== 'active' => [false, 'account_state_unavailable', 'contact_support'],
             ! (bool) $user->is_match_eligible => [false, 'matching_participation_excluded', 'contact_support'],
             ($user->verify_status ?? 'pending') !== 'approved' => [false, 'operational_review_'.($user->verify_status ?? 'pending'), 'wait_for_review'],
+            ! app(TrustedIdentityService::class)->participationAllowed((int) $user->id) => [false, 'real_identity_unavailable', 'wait_for_service'],
             (bool) $user->is_synthetic && ! app(TrustedIdentityService::class)->registered((int) $user->id) => [false, 'synthetic_account_excluded', 'contact_support'],
             $enabledQuestions === 0 => [false, 'questionnaire_unavailable', 'wait_for_service'],
             $inputReason !== null => [false, $inputReason, 'complete_matching_inputs'],
@@ -70,7 +73,7 @@ class ProfileReadinessService
         return [
             'contract_version' => 'profile_readiness_v1017',
             'matching_input_revision' => app(MatchingInputService::class)->read($user)['revision'],
-            'operational_review' => ['status'=>$user->verify_status ?? 'pending','reason'=>$user->verify_reason ?? '', 'revision'=>(int)$user->verify_revision,'scope'=>'运营参与资格，非实名认证'],
+            'operational_review' => ['status' => $user->verify_status ?? 'pending', 'reason' => $user->verify_reason ?? '', 'revision' => (int) $user->verify_revision, 'scope' => '运营参与资格，非实名认证'],
             'matching_eligibility' => [
                 'eligible' => $eligible,
                 'reason_code' => $reasonCode,

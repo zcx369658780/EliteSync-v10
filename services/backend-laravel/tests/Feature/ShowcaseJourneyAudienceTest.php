@@ -2,10 +2,14 @@
 
 namespace Tests\Feature;
 
+use App\Models\QuestionnaireAnswer;
+use App\Models\QuestionnaireQuestion;
 use App\Models\User;
 use App\Models\UserBlock;
 use App\Models\UserProfileShowcaseDraft;
 use App\Models\UserProfileShowcasePublication;
+use App\Services\MatchingInputService;
+use App\Services\ProfileShowcase\CandidateShowcaseSnapshot;
 use App\Services\TrustedIdentityService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
@@ -28,8 +32,13 @@ class ShowcaseJourneyAudienceTest extends TestCase
 
     private function subjects(): array
     {
-        return [User::factory()->create(['phone' => 'r1-showcase-owner']),
+        $users = [User::factory()->create(['phone' => 'r1-showcase-owner']),
             User::factory()->create(['phone' => 'r1-showcase-viewer'])];
+        foreach ($users as $user) {
+            $this->authorizeTestParticipation($user);
+        }
+
+        return $users;
     }
 
     private function publication(User $owner, array $audiences): UserProfileShowcasePublication
@@ -37,7 +46,10 @@ class ShowcaseJourneyAudienceTest extends TestCase
         $payload = ['self_intro' => 'Published fixture introduction', 'interest_tags' => ['fixture reading'],
             'lifestyle_tags' => ['fixture walking'], 'audiences' => $audiences];
         $draft = UserProfileShowcaseDraft::create(['user_id' => $owner->id] + $payload);
-        return UserProfileShowcasePublication::create(['user_id' => $owner->id, 'source_draft_id' => $draft->id,
+        $source = DB::table('profile_showcase_submissions')->insertGetId(['user_id' => $owner->id, 'draft_id' => $draft->id,
+            'content_revision' => $draft->revision, 'snapshot' => json_encode($payload), 'state' => 'approved', 'created_at' => now(), 'updated_at' => now()]);
+
+        return UserProfileShowcasePublication::create(['source_submission_id' => $source, 'source_revision' => $draft->revision, 'user_id' => $owner->id, 'source_draft_id' => $draft->id,
             'source_moderation_status' => 'approved', 'published_payload' => $payload,
             'publication_status' => 'published', 'public_display_eligible' => true,
             'matching_scoring_eligible' => false, 'revision' => 1, 'published_at' => now()]);
@@ -47,14 +59,14 @@ class ShowcaseJourneyAudienceTest extends TestCase
     {
         // v10.1.7 adds explicit private-input confirmation to the pending-proposal fixture.
         config(['questionnaire.required_answer_count' => 1]);
-        $question = \App\Models\QuestionnaireQuestion::firstOrCreate(['question_key' => 'r1-current-input'],
+        $question = QuestionnaireQuestion::firstOrCreate(['question_key' => 'r1-current-input'],
             ['category' => 'lifestyle', 'content' => 'Fixture', 'question_type' => 'single_choice',
                 'options' => [['option_id' => 'A']], 'enabled' => true, 'version' => 1]);
         foreach ([$owner, $viewer] as $index => $user) {
             $user->forceFill(['verify_status' => 'approved'])->save();
-            \App\Models\QuestionnaireAnswer::create(['user_id' => $user->id, 'questionnaire_question_id' => $question->id,
+            QuestionnaireAnswer::create(['user_id' => $user->id, 'questionnaire_question_id' => $question->id,
                 'answer_payload' => ['selected_answer' => ['A']], 'version' => 1]);
-            app(\App\Services\MatchingInputService::class)->save($user->id, [
+            app(MatchingInputService::class)->save($user->id, [
                 'revision' => 0, 'confirm' => true, 'birthday' => '1995-01-01',
                 'gender' => $index === 0 ? 'male' : 'female', 'city_key' => 'fixture_city',
                 'relationship_goal' => 'marriage', 'age_mode' => 'adult_any', 'region_mode' => 'same_city',
@@ -83,8 +95,12 @@ class ShowcaseJourneyAudienceTest extends TestCase
                 'state' => 'revealed', 'dating_match_id' => $match] + $stamp);
             DB::table('matching_participations')->insert(['user_id' => $user->id, 'state' => 'ACTIVE',
                 'generation' => 1, 'revision' => 1, 'opted_in_at' => now()] + $stamp);
-            if (! $mutual) DB::table('match_proposal_slots')->insert(['user_id' => $user->id, 'proposal_id' => $id]);
+            if (! $mutual) {
+                DB::table('match_proposal_slots')->insert(['user_id' => $user->id, 'proposal_id' => $id]);
+            }
         }
+        app(CandidateShowcaseSnapshot::class)->capture(DB::table('match_proposals')->where('id', $id)->first());
+
         return $id;
     }
 
@@ -147,8 +163,8 @@ class ShowcaseJourneyAudienceTest extends TestCase
     {
         [$owner, $viewer] = $this->subjects();
         $publication = $this->publication($owner, ['friends']);
-        $id = $this->proposal($owner, $viewer, false);
         $this->friends($owner, $viewer);
+        $id = $this->proposal($owner, $viewer, false);
         UserProfileShowcaseDraft::where('user_id', $owner->id)->update(['self_intro' => 'Private new draft']);
         $this->journey($viewer)->assertJsonPath('proposal.showcase.summary', 'Published fixture introduction')
             ->assertJsonPath('proposal.showcase.interest_tags.0', 'fixture reading')->assertJsonPath('round.state', 'revealed');
@@ -158,8 +174,8 @@ class ShowcaseJourneyAudienceTest extends TestCase
         $this->accept($viewer, $id, 2, 'viewer-accept')->assertJsonPath('showcase.summary', 'Published fixture introduction');
         $publication->update(['published_payload' => array_replace($publication->published_payload, ['audiences' => ['contacts']])]);
         DB::table('friendships')->update(['state' => 'REVOKED']);
-        $this->journey($viewer)->assertJsonPath('proposal.showcase.summary', 'Published fixture introduction');
-        $this->getJson('/api/v1/profile/showcase/'.$owner->id)->assertOk();
+        $this->journey($viewer)->assertJsonPath('proposal.showcase', null);
+        $this->getJson('/api/v1/profile/showcase/'.$owner->id)->assertNotFound();
     }
 
     public function test_replay_rechecks_audience_withdrawal_and_friendship_without_duplicate_decisions(): void
@@ -168,12 +184,12 @@ class ShowcaseJourneyAudienceTest extends TestCase
         $publication = $this->publication($owner, ['contacts']);
         $id = $this->proposal($owner, $viewer, false);
         $this->accept($owner, $id, 1, 'owner-accept');
-        $this->accept($viewer, $id, 2, 'viewer-accept')->assertJsonPath('showcase.summary', 'Published fixture introduction');
+        $this->accept($viewer, $id, 2, 'viewer-accept')->assertJsonPath('showcase', null);
         $counts = [DB::table('journey_commands')->count(), DB::table('journey_audits')->count()];
         $publication->update(['published_payload' => array_replace($publication->published_payload, ['audiences' => ['friends']])]);
         $this->accept($viewer, $id, 2, 'viewer-accept')->assertJsonPath('showcase', null)->assertJsonPath('state', 'MUTUALLY_ACCEPTED');
         $this->friends($owner, $viewer);
-        $this->accept($viewer, $id, 2, 'viewer-accept')->assertJsonPath('showcase.summary', 'Published fixture introduction');
+        $this->accept($viewer, $id, 2, 'viewer-accept')->assertJsonPath('showcase', null);
         $publication->update(['publication_status' => 'withdrawn']);
         $this->accept($viewer, $id, 2, 'viewer-accept')->assertJsonPath('showcase', null);
         $publication->update(['publication_status' => 'published']);

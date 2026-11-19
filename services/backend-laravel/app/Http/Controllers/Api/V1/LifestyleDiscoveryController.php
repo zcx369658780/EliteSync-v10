@@ -15,6 +15,16 @@ final class LifestyleDiscoveryController extends Controller
 
     public function update(Request $request, LifestyleDiscoveryService $service)
     {
+        return response()->json($service->command((int) $request->user()->id, $this->commandData($request)));
+    }
+
+    public function commandResult(Request $request, LifestyleDiscoveryService $service)
+    {
+        return response()->json($service->commandResult((int) $request->user()->id, $this->commandData($request)));
+    }
+
+    private function commandData(Request $request): array
+    {
         $allowed = ['action', 'expected_revision', 'questionnaire_version', 'request_key', 'scene_id', 'option_id'];
         abort_if(array_diff(array_keys($request->all()), $allowed), 422, 'unknown lifestyle fields');
         $data = $request->validate([
@@ -26,6 +36,7 @@ final class LifestyleDiscoveryController extends Controller
             'option_id' => 'required_if:action,answer|prohibited_unless:action,answer|string|max:50',
         ]);
         $data['expected_revision'] = (int) $data['expected_revision'];
-        return response()->json($service->command((int) $request->user()->id, $data));
+
+        return $data;
     }
 }
