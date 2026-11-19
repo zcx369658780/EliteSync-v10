@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：HIS-D1/D2方案A获Owner认可；RET历史保留、删除请求与用途撤销草案待审
+
+**`HIS_D1_A_HIS_D2_A_OWNER_CONCEPT_ACCEPTED / RET_D1_D2_ADVISOR_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- [Owner HIS-D1/HIS-D2决定](../decisions/OWNER_V2_HIS_D1_D2_HISTORICAL_ACCESS_AND_SNAPSHOTS_20261119.md)：受众再次扩大时历史评论/附件仅在当前作品读权与原受众/其它当前条件交集内合法再现，不能核实则隐藏；原匹配旧快照对仍合法候选不自动升级版本，失权即隐藏敏感内容，业务页有权才可保留不泄密的中性状态。该规则没有确认物理删除或零延迟撤权。
+- [RET-D1/D2顾问草案](../product/ELITESYNC_V2_HISTORY_RETENTION_DELETION_PURPOSE_REVOCATION_V0_1_20261119.md)已建立、**尚待Owner审阅**。建议清楚区分撤销当前用途/阅读权、删除请求已获真实受理、删除已核实完成的范围；按作品/第三方评论/形象快照/派生结果/通知/反馈对象及合法独立用途分开决策，**不创造全部数据统一删除期限或不存在的受理接口**。
+- S01–S16四批八组具名增量及CMT-T1已Owner概念认可；真实身份核验供应商/真实Push未接入，旧`10.1.18-dev / 1011804`和历史NOT_RUN/UNKNOWN不变，43份原PNG远端仍`PENDING_BINARY_UPLOAD`。治理分支文档不代表Owner本地工程已同步。
+- **A6正式UI会议继续暂缓，本地Codex无新的V2实施授权**：不修改APP/API/Web/DB、不运行设备/模拟器、不建APK、不合main、不发布、不接真实供应商。
+
+---
+
 # 当前入口 2026-11-19：CMT-T1方案A获Owner接受；历史评论与旧发布快照权限草案待审
 
 **`CMT_T1_OPTION_A_OWNER_CONCEPT_ACCEPTED / HIS_D1_D2_ADVISOR_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
