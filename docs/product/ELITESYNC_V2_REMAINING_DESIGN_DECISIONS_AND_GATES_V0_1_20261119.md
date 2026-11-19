@@ -1,3 +1,11 @@
+# 2026-11-19 最新增量：O01方案A及O02历史媒体/引用保护获Owner确认；转O11顾问讨论
+
+- [O01/O02补充Owner决定](../decisions/OWNER_V2_O01_DEFAULT_COMMENTS_O02_MEDIA_REFERENCES_20261119.md)现已确认：新用户作品默认`FRIENDS`，评论默认`FRIENDS_ONLY`；扩大作品到`PUBLIC_AUTHENTICATED`不自动改为`ALL_ELIGIBLE`。历史好友评论的正文、附件、媒体缩略图及引用均保持原有受众/Block边界，不能通过直链、缓存或预览泄漏。具体SELF默认评论、媒体URL时效、历史保留期限仍OPEN。
+- [O11官方精选/用户公开作品/转载授权顾问草案](ELITESYNC_V2_O11_EDITORIAL_RECOMMENDATION_REPOST_GOVERNANCE_V0_1_20261119.md)已出稿、**待Owner审阅**：建议官方访客可读内容与用户仅登录可读作品分域；平台转载须另取具名授权；初期排序避免参与度最大化。不要把O11新提案写成Owner已经接受。
+- 下方原“下一轮优先处理O01默认评论及O02历史附件”属于当时的规划快照；现在具名部分已确认，尚未消除全部媒体技术与O11产品规则OPEN。当前仍`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`。
+
+---
+
 # EliteSync V2｜O09确认后的剩余产品决定与设计收口门槛 V0.1
 
 日期：2026-11-19（Asia/Singapore）  
