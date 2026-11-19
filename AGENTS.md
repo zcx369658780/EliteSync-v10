@@ -1,3 +1,11 @@
+# 2026-11-19 最新S1-A补充授权：唯一审计工程根与固定GitHub治理文档只读
+
+- Owner在已批准S1-A后，**又明确确认**本次R1–R5唯一审阅根为`D:\EliteSync-v10-product-v1015-20261101`，并允许现有Codex会话通过只读GitHub连接器/受控GET访问固定治理提交中的文本文档。新具名决定：[OWNER_V2_S1A_ROOT_AND_REMOTE_GOVERNANCE_READ_SUPPLEMENT_20261119.md](docs/decisions/OWNER_V2_S1A_ROOT_AND_REMOTE_GOVERNANCE_READ_SUPPLEMENT_20261119.md)；[新的Codex单次启动Prompt](docs/workflow/V2_S1A_ROOT_PINNED_CODEX_RESTART_PROMPT_20261119.md)。固定Owner补充授权证据commit：`6af426b14cf6571c2de1d24281b03ca24e03c634`。
+- 上次本地Codex报告`IDENTITY_UNRESOLVED`：会话原目录`D:\EliteSync-v10`（main、43未暂存、213未跟踪）**不是**本次R1–R5审阅目标；选定根当时分支`codex/ui-current-state-audit-20261116`、HEAD`1d8b485bf4f314d42431bb62a293a3fef9e9c8af`、1未跟踪。Codex必须对目标**重新只读核Git身份**，勿因治理HEAD不同而误认本地代码错误，勿切分支/fetch/pull/clone或改动任何工作树。
+- 当前仅`S1_READ_ONLY_AUTHORIZED / ROOT_PINNED / GITHUB_GOVERNANCE_READ_ONLY_AUTHORIZED / S1_NOT_YET_RESUMED / V2_IMPLEMENTATION_NOT_AUTHORIZED / A6_MEETING_DEFERRED`。静态源码审阅可行，但项目代码执行、测试、构建、DB/设备/供应商、改码、main与发布仍禁止。原历史禁令按时间/除S1外解释。网页GPT已保存启动指令，**没有实际运行Codex**；G01–G10动态NOT_RUN保持。
+
+---
+
 # 2026-11-19 最新有限授权：Owner S1-A只读工程差距核查，不含实施/动态测试
 
 - Owner明确批准**现有EliteSync本地Codex项目会话**一次性执行`S1-A`受限**只读**静态源码/产品合同差距核查（R1–R5一份脱敏报告）。独立决定：[Owner S1-A授权](docs/decisions/OWNER_V2_S1A_BOUNDED_READ_ONLY_CODEX_GAP_AUDIT_AUTHORIZATION_20261119.md)；可由Owner转给现有会话的单次[Codex核查Prompt](docs/workflow/V2_S1A_CODEX_EXISTING_SESSION_ONE_SHOT_READ_ONLY_HANDOFF_20261119.md)。必须先只读确认当前实际工程根/仓库/branch/HEAD/dirty状态，路径有冲突或身份无法唯一确定即停止，不盲切换工作树。
