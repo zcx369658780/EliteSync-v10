@@ -1,3 +1,26 @@
+# EliteSync-v10 当前工程约定
+
+2026-11-20 生效。新会话从 [ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md) 顶部、[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md) 和当期 Owner 授权起步。先核实际 Git 根、origin、分支、HEAD、工作区和暂存区。阶段 A 已交付并获顾问限定接受，Owner 终验 PENDING。继续工作时读取 [阶段 A 交接](docs/workflow/SESSION_HANDOFF_20261120_ELITESYNC_V2_PHASE_A_REVIEW.md) 和 [集中工程报告](https://github.com/zcx369658780/EliteSync-v10/blob/07b51a6de9695f5358b6bea2a59acd5be24ab6c2/docs/versions/v2/phase-a-20261119/PHASE_A_ENGINEERING_REPORT.md)；下方历史任务与权限按发生时点理解，适用的通用约定继续遵循。
+
+## 模型与专用角色
+
+[项目配置](.codex/config.toml) 按当前全局默认设置 GPT-6.2 Sol / high，通用子代理默认继承。简单查询可用 low。复杂科研、架构或高风险审查可按当期任务明确选择 GPT-6.2 Astra / high。专用角色使用全局已定义的角色配置。
+
+| 角色 | 模型和推理强度 | 责任 |
+|---|---|---|
+| `code_mapper`、`docs_reader`、`docs_writer` | GPT-6 Luna / medium | 分别负责代码定位、文档读取、常规文档写作 |
+| `impl_worker` | GPT-6.2 Sol / medium | 仅做界定范围内的低风险实现 |
+| `code_reviewer` | GPT-6.2 Sol / high | 非作者代码审查及必要复核 |
+| `planner_high` | GPT-6.2 Astra / high | 复杂规划与风险分析，保持只读 |
+
+仅在 Owner、适用任务规则或技能明确要求分工时委派。默认同时最多两个助手、一级委派。主代理先拆清任务，对写入助手指定互斥文件范围，保留授权判断、产品决策、集成、Git、验收和最终裁决。子代理不得再委派，不执行受保护操作。需要 Astra 独立审查时，按任务指示使用明确选模的通用助手，避免套用固定 Sol 的审查角色。任务中的禁用标记仍优先。Zotero 项目专属强制并行规则与本项目无关。
+
+## 当前的执行边界
+
+Owner 已批准阶段 A 并要求完成后集中交付。本轮进度保存与配置同步由当前会话执行。阶段 A 的隔离测试结论只在具名覆盖内有效。B–D 未启动，Owner 决定是否进入 B。真机、模拟器、真实供应商、真实数据、生产或共享数据库、正式 A6、main 合并和发布各沿原授权边界。保持原脏 main 和 S1 工作树。
+
+---
+
 # 2026-11-19 当前最新授权：V2四阶段路线图获Owner接受，阶段A工程可执行
 
 - Owner明确“上述路线图审阅完毕，我认为非常完善，并且授权你开始执行”。[Owner路线图接受及阶段A工程授权](docs/decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md)现为最新权威：A安全基础阶段**允许原有本地Codex修改相关Flutter/Laravel/必要安全schema定义并运行本地隔离测试**；它是新的独立工程授权，不是S1一次性只读权限复活。阶段B/C/D纳入Owner已接受路线图但未启动。

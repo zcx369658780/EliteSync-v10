@@ -1,3 +1,14 @@
+# 2026-11-20｜阶段 A 集中交付已齐，顾问限定接受，等待 Owner 终验
+
+- [Owner 正式决定](https://github.com/zcx369658780/EliteSync-v10/blob/8f528e6dc1df3d52ba931e65d8ce5658cfaf11f7/docs/decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md) 接受四阶段路线图并独立授权 A1–A4。此次明确授权文档归档与项目配置更新。开发分支产品源码 `4e6a5be6`，固定测试与报告 `07b51a6d`。详见 [阶段 A 集中报告](https://github.com/zcx369658780/EliteSync-v10/blob/07b51a6de9695f5358b6bea2a59acd5be24ab6c2/docs/versions/v2/phase-a-20261119/PHASE_A_ENGINEERING_REPORT.md) 与 [会话交接](SESSION_HANDOFF_20261120_ELITESYNC_V2_PHASE_A_REVIEW.md)。
+- Local-first 分工继续有效。Owner 管方向、保留事项和终验，顾问管路线图及阶段审阅，本地 Codex 自主拆解、实施、自验、常规 Git 与记录。阶段完成时集中交付一份证据包。GitHub 用于治理和脱敏备份。验收结论按自测、非作者工程复核、顾问审阅和 Owner 接受分别记录。
+- 最新模型默认 GPT-6.2 Sol / high。专用角色以 [项目 AGENTS](../../AGENTS.md) 对照全局角色设置。委派须有当前适用的明确依据，通常最多两个低风险助手并行。书面分配责任和互斥文件范围，主代理负责集成、Git、保护边界及终判。
+- 按变更风险做定向验证。阶段 A 已通过 PHP 110 项、Flutter 140 项。原始失败与未知留存，当前保存任务只需核对文档、配置、提交与远端回读。进入 B、设备、真实服务、生产数据库、正式 A6、main 合并及发布须各有相应授权。
+
+- 顾问已限定接受阶段 A 的具名自动化范围，Owner 终验待定。PHP 8.4 与 MariaDB 并发及迁移是待补环境证据。后续环境操作按 Owner 的具名授权执行。详见 [顾问限定验收](https://github.com/zcx369658780/EliteSync-v10/blob/c97bc6c343f667413a489eeef9dc89f6af023a82/docs/workflow/V2_PHASE_A_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)。
+
+---
+
 # 2026-11-20｜阶段A网页顾问限定验收完成，待Owner终验/阶段B决定
 
 - 基于Codex工程交付`07b51a6de9695f5358b6bea2a59acd5be24ab6c2`、产品源码`4e6a5be6...`与[网页顾问限定验收](V2_PHASE_A_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)，A1–A4在**报告的指定自动化范围内**`ACCEPTED_WITH_RESERVATIONS`：GitHub独立源码抽样支持关键门禁，但PHP/Flutter运行结果是Codex报告与本地原始日志哈希，网页顾问未直接复跑。

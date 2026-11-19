@@ -1,0 +1,7 @@
+# Project defaults. Named roles are maintained in the user's Codex agent settings.
+model = "gpt-6.2-sol"
+model_reasoning_effort = "high"
+
+[agents]
+# Keep delegation at one level. AGENTS.md documents the project concurrency convention.
+max_depth = 1
