@@ -1,3 +1,12 @@
+# 2026-11-19 NEW-PC-01方案A已获Owner明确接受；NEW-PC-03待审（最新增量）
+
+- [Owner NEW-PC-01方案A独立决定](../decisions/OWNER_V2_NEW_PC01_COMMENT_AUTHOR_WITHDRAWAL_OPTION_A_DIRECTION_ACCEPTANCE_20261119.md)：评论作者可撤回**本人评论当前作品内对外展示**；不自动物理删除原始评论、合法必要记录或第三方独立回复。回复树、恢复、申诉、媒体、真实接口与动态QA仍OPEN。
+- [Owner NEW-PC-02方向性接受](../decisions/OWNER_V2_NEW_PC02_AUTHOR_CONTROL_THIRD_PARTY_COMMENT_DISPLAY_DIRECTION_ACCEPTANCE_20261119.md)继续独立有效：作品作者管理自己作品内第三方评论的展示，不代表删除评论者原件。
+- [NEW-PC-03首期删除请求入口范围顾问V0.1](ELITESYNC_V2_NEW_PC03_INITIAL_DELETION_REQUEST_ENTRY_SCOPE_CONCEPT_REVIEW_V0_1_20261119.md)为`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，未获批准；不因评论撤回A自动推断已允许物理删除、已具备申请受理API或首期工程启动。下方旧NEW-PC-01待审只代表先前时点。
+- 仍保持`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`及全部原始QA/供应商/资产OPEN。
+
+---
+
 # 2026-11-19 NEW-PC-02方向性接受与NEW-PC-01待审（最新增量）
 
 - [Owner NEW-PC-02方向性接受](../decisions/OWNER_V2_NEW_PC02_AUTHOR_CONTROL_THIRD_PARTY_COMMENT_DISPLAY_DIRECTION_ACCEPTANCE_20261119.md)：作品作者可管理自己作品内第三方评论的展示，但不获得评论者原件删除权；安全复核与申诉原则保留。隐藏范围、恢复、通知、申诉细节及实现证据仍`OPEN`，**不是整套单评论管理合同或软件已实现**。
