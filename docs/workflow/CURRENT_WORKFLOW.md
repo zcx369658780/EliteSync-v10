@@ -1,3 +1,11 @@
+# 2026-11-19：RET-D1/D2概念确认，转P0未决产品合同与证据边界整理
+
+- [Owner RET-D1/D2确认](../decisions/OWNER_V2_RET_D1_D2_REVOCATION_DELETION_CONCEPT_ACCEPTANCE_20261119.md)已生效：撤销、真实受理的删除请求、可核实删除完成严格区别；各对象/用途/第三方权利及合法例外分开处理。不代表任何具体期限、实际后台API或已完成删除。
+- 当前顾问入口：[P0剩余产品合同/证据依赖V0.1](../product/ELITESYNC_V2_REMAINING_P0_PRODUCT_CONTRACT_AND_EVIDENCE_HANDOFF_V0_1_20261119.md)，`ADVISOR_CONSOLIDATION_DRAFT / OWNER_REVIEW_PENDING`；下一项建议OBJ-D1（作者撤下/删除作品与第三方评论附件权限分流）未确认。减少循环重复已获认可的概念条款，技术/法律/供应商依赖保持OPEN。
+- **DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED**：不得发布V2开发任务、不改APP/API/Web/DB、不运行设备/模拟器、不建APK、不合main、不发布。实人核验/Push未接入、旧1011804 NOT_RUN/UNKNOWN与43 PNG原件远端缺口保留。
+
+---
+
 # 2026-11-19：HIS-D1/D2概念认可，转RET历史留存/删除请求治理咨询
 
 - [HIS-D1/D2 Owner确认](../decisions/OWNER_V2_HIS_D1_D2_HISTORICAL_ACCESS_AND_SNAPSHOTS_20261119.md)已生效；历史评论可读交集与旧候选失权隐藏规则不代表具体数据删除/保存期限、后端真实清理。
