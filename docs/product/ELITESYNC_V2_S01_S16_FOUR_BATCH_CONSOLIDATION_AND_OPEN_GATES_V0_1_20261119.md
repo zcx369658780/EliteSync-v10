@@ -1,3 +1,11 @@
+# 2026-11-19 最新澄清：普通作品好友可评论；SELF仅自己可读，默认OFF是受众特例
+
+- [Owner SELF/好友评论澄清决定](../decisions/OWNER_V2_SELF_COMMENT_DEFAULT_CLARIFICATION_20261119.md)：Owner同意仅自己可见SELF的默认评论OFF建议，**并强调普通新作品不应默认完全禁止评论**。现行普通新作品仍`FRIENDS + FRIENDS_ONLY`（好友可读可评，陌生人默认不能评论）；`SELF`只有作者本人可读，好友不可因评论策略跨越作品受众。不能将SELF特例误写成所有作品默认OFF。
+- [受众×评论联动/切换V0.1](ELITESYNC_V2_SELF_FRIENDS_COMMENT_AUDIENCE_TRANSITIONS_V0_1_20261119.md)为顾问新草案，`CMT-T1` SELF→FRIENDS时如何恢复FRIENDS_ONLY并尊重作者明确OFF，仍`OWNER_REVIEW_PENDING`。历史评论可读范围、留存/删除、旧作品迁移/权限快照和服务器实现继续OPEN。
+- 下方P0-02/S15中“SELF默认评论仍OPEN”属于本增量之前的快照：**SELF默认OFF的具名概念意图已澄清，真正仍OPEN的是切换/显式覆盖/历史与技术处理**。A6正式会议和Codex新V2实施依然暂停。
+
+---
+
 # EliteSync V2｜S01–S16 四批逐屏审阅汇总与仍OPEN事项 V0.1
 
 日期：2026-11-19（Asia/Singapore）  
