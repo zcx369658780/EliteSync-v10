@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问最新入口：OBJ-D1已接受，DATA-D1/D2待Owner概念审阅
+
+- [OBJ-D1 Owner决定](docs/decisions/OWNER_V2_OBJ_D1_POST_TAKEDOWN_THIRD_PARTY_COMMENTS_ACCEPTANCE_20261119.md)正式确认作品撤下/收窄的受保护内容对失权用户隐藏、作者删除作品不代替第三方评论者的独立数据删除权，也不假称已经全量物理删除。历史留存与真实接口仍OPEN。
+- 当前顾问文件：[DATA-D1/D2事实来源×具名用途×外显快照V0.1](docs/product/ELITESYNC_V2_SOURCE_PURPOSE_PUBLICATION_CONTRACT_REVIEW_V0_1_20261119.md)，`ADVISOR_PRODUCT_CONTRACT_DRAFT / OWNER_REVIEW_PENDING`，不可将新两项提议当Owner已确认。以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)及[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为当前权威入口。
+- A6正式UI会议继续暂缓、Codex无新V2工程实施授权。不改APP/API/Web/DB，不操作设备/模拟器、构建APK、main/发布；真实核验/Push未接入、历史NOT_RUN/UNKNOWN及43原PNG GitHub备份缺口不变。
+
+---
+
 # 2026-11-19 GPT顾问现行入口：RET-D1/D2已接受，P0剩余合同/证据梳理待审
 
 - [RET-D1/D2 Owner正式决定](docs/decisions/OWNER_V2_RET_D1_D2_REVOCATION_DELETION_CONCEPT_ACCEPTANCE_20261119.md)已认可权限撤销/删除受理/可核实删除完成三种状态及按对象、用途、主体/第三方权利、合法例外处理。仍OPEN具体留存时长/技术清理机制/适用法律合同与实施。
