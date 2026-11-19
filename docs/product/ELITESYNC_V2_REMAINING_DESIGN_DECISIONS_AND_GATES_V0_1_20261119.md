@@ -1,3 +1,11 @@
+# 2026-11-19 最新增量：S01–S16四批具名增量概念审阅完成，剩余OPEN清单另设当前入口
+
+- [S15-D1/S16-D2 Owner接受](../decisions/OWNER_V2_S15_D1_S16_D2_ACCEPTANCE_20261119.md)及此前三批具名Owner决定均已记录。现行唯一更完整的静态汇总入口：[S01–S16四批审阅与OPEN Gate V0.1](ELITESYNC_V2_S01_S16_FOUR_BATCH_CONSOLIDATION_AND_OPEN_GATES_V0_1_20261119.md)，逐屏区分已确认业务、建议与实际OPEN，并分P0/P1/P2/Gate。
+- 下方旧“下一轮先审O01默认评论、O11与O10/O12”等均为历史快照；具名已确认部分不再OPEN。**仍OPEN**：SELF评论默认、旧评论隔离与留存、字段来源/用途/发布版本映射、真实核验供应商、UNKNOWN的实际幂等接口、视觉精确值与动态可用性QA等。
+- 四批仅“八组具名交互概念接受”，不宣称16屏逐像素冻结、Implementation Contract Ready、运行时PASS或本地源码同步。Codex仍停止，A6正式会议继续暂缓。
+
+---
+
 # 2026-11-19 最新增量：S01–S16检查框架已接受，首批S01–S04逐屏待审
 
 - [框架Owner决策](../decisions/OWNER_V2_S01_S16_REVIEW_FRAMEWORK_ACCEPTANCE_20261119.md)：框架方法获得正式认可，不代表16类页面布局或全部产品合同获批。7项检查按目的、当前事实、主次操作、权威依据、返回与恢复执行。
