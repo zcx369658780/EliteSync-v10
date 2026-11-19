@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问最新入口：评论默认权限Owner澄清，切换规则待审
+
+- [Owner评论默认与SELF特例澄清](docs/decisions/OWNER_V2_SELF_COMMENT_DEFAULT_CLARIFICATION_20261119.md)：普通用户新作品默认`FRIENDS + FRIENDS_ONLY`，好友在当前有权时能评论，陌生人不能；`SELF`作品只有作者可读、默认OFF仅用于该特例，不可借评论设置突破SELF受众。
+- [SELF↔FRIENDS评论设置切换设计V0.1](docs/product/ELITESYNC_V2_SELF_FRIENDS_COMMENT_AUDIENCE_TRANSITIONS_V0_1_20261119.md)仍`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，不可提前把CMT-T1写为Owner已确认。以[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)与[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部为当前入口；S01–S16四批已获得的具名概念接受仍有效。
+- **仅设计与文档**，A6正式UI会议暂缓，Codex停止新V2实施。不改APP/API/Web/DB，不启设备/模拟器、APK、main或发布；真实实人核验/Push未接入，旧NOT_RUN/UNKNOWN及43份原PNG远端备份缺口不变。
+
+---
+
 # 2026-11-19 GPT顾问最新入口：S01–S16四批具名交互已审，OPEN清单汇总完成
 
 - [第四批S15-D1/S16-D2 Owner决策](docs/decisions/OWNER_V2_S15_D1_S16_D2_ACCEPTANCE_20261119.md)及前三批具名决定已在治理分支归档。四批各两组、共八组具名交互概念认可，但**并未逐项冻结16页全部细节**。
