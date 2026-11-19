@@ -1,3 +1,12 @@
+# 2026-11-19 GPT顾问当前权威入口：静态设计审计首轮PARTIAL，Codex/A6继续暂停
+
+- [Owner静态审计授权范围](docs/decisions/OWNER_V2_STATIC_DESIGN_AUDIT_SCOPE_AUTHORIZATION_20261119.md)：仅保存已认可决策、现有设计及对GitHub治理分支的文档/设计合同静态检查，不授予本地Codex、APP/API/DB、设备/模拟器或A6正式UI会议权限。
+- 先读：[Owner接受决策与设计现行目录](docs/product/ELITESYNC_V2_OWNER_ACCEPTED_SOURCE_INDEX_AND_AUDIT_SNAPSHOT_20261119.md)、[DESIGN-AUDIT-01静态首轮报告](docs/workflow/V2_STATIC_DESIGN_CONTRACT_AUDIT_20261119.md)、[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)与[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部。报告为`STATIC_PARTIAL`；不得把文件覆盖PASS翻译为运行时PASS或所有页面已冻结。
+- 审计已静态确认S01–S16覆盖、四批八组具名交互来源、G01–G10安全场景全部NOT_RUN；旧草案中的`OWNER_REVIEW_PENDING`历史描述不能覆盖更新后的独立Owner确认。供应商、合法留存、原43 PNG备份和历史工程UNKNOWN/NOT_RUN仍OPEN。
+- **坚持`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**：不派新V2工程任务，不运行/改动APP/API/Web/数据库或设备模拟器、APK、main、发布，不接真实服务。
+
+---
+
 # 2026-11-19 GPT顾问最新入口：DATA-D1/D2已确认，P0静态安全阻断矩阵待Owner阅知
 
 - [DATA-D1/D2 Owner决定](docs/decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)具名已接受；未批准真实授权数据模型、依赖重算、外部版本同步或动态PASS。
