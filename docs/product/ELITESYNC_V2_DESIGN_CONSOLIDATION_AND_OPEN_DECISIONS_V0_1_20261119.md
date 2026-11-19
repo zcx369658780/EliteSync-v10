@@ -1,3 +1,10 @@
+# 2026-11-19 CMT-T1方案A接受后新讨论入口
+
+- [Owner CMT-T1方案A](../decisions/OWNER_V2_CMT_T1_SELF_TO_FRIENDS_COMMENTS_20261119.md)已接受，按SELF隐式OFF可建议恢复仅好友评论/显式OFF保留/无法区分保守保留，且需作者明确确认受众变化。普通作品FRIENDS+FRIENDS_ONLY保持不变。
+- [历史评论合法再展示与旧快照撤权草案](ELITESYNC_V2_HISTORY_RESURFACING_AND_REVOKED_SNAPSHOTS_V0_1_20261119.md)提出HIS-D1/HIS-D2两个新候选，**待Owner审阅**，不推断历史保留/删除、服务器版本或动态测试已完成。工作流仍DESIGN_ONLY。
+
+---
+
 # 2026-11-19 Owner“默认好友可评论”澄清增量
 
 - [Owner SELF与FRIENDS评论范围澄清](../decisions/OWNER_V2_SELF_COMMENT_DEFAULT_CLARIFICATION_20261119.md)：默认新作品FRIENDS可见+FRIENDS_ONLY评论、陌生人默认不可评论；仅在作者选SELF（作品只由作者可读）时评论默认OFF，不允许好友评论突破SELF阅读权限。
