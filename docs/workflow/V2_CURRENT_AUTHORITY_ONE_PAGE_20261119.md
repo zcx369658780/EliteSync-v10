@@ -5,6 +5,12 @@
 当前治理分支：`governance/home-matching-product-freeze-20261117`  
 本页是**导航摘要**，不代替独立具名Owner决定、当期完整审计证据或最终发布合同。具体审计见[DESIGN-AUDIT-01](V2_STATIC_DESIGN_CONTRACT_AUDIT_20261119.md)与[DESIGN-AUDIT-02](V2_STATIC_DESIGN_CONTRACT_AUDIT_02_P0_EVIDENCE_LEDGER_20261119.md)。
 
+## 最新：S1一次性只读差距审计授权草案已经准备（仍未授权）
+
+- [S1受限只读工程差距核查授权草案V0.1](V2_S1_BOUNDED_READ_ONLY_GAP_AUDIT_AUTHORIZATION_PROPOSAL_20261119.md)已将G01–G10合并成R1–R5五组**未来拟核事实**、真实本地工作树身份要求、只读/禁止操作边界及一份脱敏总报告的验收口径。只供Owner以后**一次性明确决定**，不是Codex任务、也未得到S1授权。
+- 只有Owner将来明确指定受授权者、实际唯一工程根及只读权限后才可以开始S1；目前`S1_NOT_AUTHORIZED / CODEX_NOT_AUTHORIZED`，没有任何源码读取、工程运行、设备或供应商行为。外部/法律、运行时、实施与A6仍各自独立保留STOP。
+- 文档准备已就绪但没有新实证；F-01`READABILITY_PARTIAL`、G01–G10`NOT_RUN`、原PNG记录`PENDING_BINARY_UPLOAD`、旧1011804历史UNKNOWN不变。
+
 ## 最新证据准备入口：集中未来核查要求，不启动工程（2026-11-19）
 
 - [V2未来工程/外部/法域/原件集中证据准备包V0.1](V2_CONSOLIDATED_FUTURE_EVIDENCE_READINESS_DOSSIER_V0_1_20261119.md)已为G01–G10整理**统一证据类别、可核证材料、保守阻断、结果登记格式与未来独立授权范围**。状态为`DOCUMENT_READINESS_PREPARED / EVIDENCE_NOT_COLLECTED`：**没有新增真实供应商、工程、法律或二进制/运行时证据**。
