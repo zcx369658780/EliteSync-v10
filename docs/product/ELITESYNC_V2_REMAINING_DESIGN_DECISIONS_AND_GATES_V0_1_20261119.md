@@ -1,3 +1,11 @@
+# 2026-11-19 评论默认值补充澄清：FRIENDS与SELF不能混为同一受众
+
+- [Owner最新澄清](../decisions/OWNER_V2_SELF_COMMENT_DEFAULT_CLARIFICATION_20261119.md)：Owner强调普通新作品必须能让有权好友评论、拒绝陌生人默认评论；此前已确认`FRIENDS + FRIENDS_ONLY`保持不变。`SELF`仅作者有阅读权，接受`OFF`作为SELF特例默认，而非“全局默认关闭评论”。
+- [SELF/FRIENDS切换顾问提案](ELITESYNC_V2_SELF_FRIENDS_COMMENT_AUDIENCE_TRANSITIONS_V0_1_20261119.md)：隐式SELF默认OFF与作者明确OFF的区别、SELF改FRIENDS后的评论设置、旧评论保存与引用受众仍是待审新细节，不自动获得Owner接受。
+- 下方原SELF默认OPEN及先建议OFF为该时点记录；当前以新Owner澄清与最新S01–S16汇总顶部为准。继续DESIGN_ONLY，不实施、不跑设备。
+
+---
+
 # 2026-11-19 最新增量：S01–S16四批具名增量概念审阅完成，剩余OPEN清单另设当前入口
 
 - [S15-D1/S16-D2 Owner接受](../decisions/OWNER_V2_S15_D1_S16_D2_ACCEPTANCE_20261119.md)及此前三批具名Owner决定均已记录。现行唯一更完整的静态汇总入口：[S01–S16四批审阅与OPEN Gate V0.1](ELITESYNC_V2_S01_S16_FOUR_BATCH_CONSOLIDATION_AND_OPEN_GATES_V0_1_20261119.md)，逐屏区分已确认业务、建议与实际OPEN，并分P0/P1/P2/Gate。
