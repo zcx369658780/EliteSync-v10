@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：S01–S16四批具名设计审阅完成；全局汇总与仍OPEN事项已整理
+
+**`S01_S16_FRAMEWORK_OWNER_ACCEPTED / FOUR_SCREEN_REVIEW_BATCHES_EIGHT_NAMED_INCREMENTAL_DECISIONS_OWNER_ACCEPTED / CONSOLIDATION_ADVISOR_REPORT / DETAILS_OPEN / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- [Owner第四批S15-D1/S16-D2正式决定](../decisions/OWNER_V2_S15_D1_S16_D2_ACCEPTANCE_20261119.md)：作品发布前显示受众/评论影响摘要，主动扩大受众须独立确认、旧好友评论与附件/引用不自动公开；官方/用户作品明确标来源，编辑推荐只到原受控作品，正式转载是独立具名授权动作。此前三批具名增量仍有效。
+- **当前总览**：[S01–S16四批具名设计审阅汇总与OPEN Gate V0.1](../product/ELITESYNC_V2_S01_S16_FOUR_BATCH_CONSOLIDATION_AND_OPEN_GATES_V0_1_20261119.md)。框架和八组增量概念已获Owner接受；**不是16屏所有UI细节/合同冻结**。顾问已将16屏分别映射已认可原则、细节OPEN、未来QA；新增总结未获Owner对全部P0/P1/P2建议的批准。建议未来优先处理SELF作品默认评论和高风险权限/资料/留存合同。
+- 不变缺口：真实实人核验供应商未接入→真实匹配不可报名；真实Push未接入；旧`10.1.18-dev / 1011804`、UI-AUDIT-01以及历史`NOT_RUN/UNKNOWN`不自动改判；43份原始PNG仍`PENDING_BINARY_UPLOAD`，远端治理资料不证明Owner本地代码已同步。
+- **A6正式UI会议继续暂缓、本地Codex无新V2实施授权**：不改APP/API/Web/DB、不运行设备/模拟器、不建APK、不合main、不发布、不接入真实供应商。下一步仍是Owner与网页GPT仅对真正OPEN的产品事项做必要咨询。
+
+---
+
 # 当前入口 2026-11-19：S09-D1、S11-D2已接受；S13–S16第四批逐屏草案待Owner审阅
 
 **`S09_D1_S11_D2_OWNER_CONCEPT_ACCEPTED / S13_S16_ADVISOR_PER_SCREEN_OWNER_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
