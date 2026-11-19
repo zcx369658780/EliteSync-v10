@@ -35,6 +35,12 @@
 | 43份原PNG远端二进制备份 | 依据现行文档仍`PENDING_BINARY_UPLOAD`；本轮未逐份核查 |
 | 固定旧软件`10.1.18-dev / 1011804`与UI-AUDIT-01 | 原`NOT_RUN/UNKNOWN`维持，不改判 |
 
+## DESIGN-AUDIT-03：评论撤回/隐藏后的异常场景静态审阅（新增）
+
+- [DESIGN-AUDIT-03静态报告](V2_STATIC_COMMENT_EXCEPTION_AUDIT_03_20261119.md)基于NEW-PC-01/02/03与HIS/RET/OBJ/O06/O08/O09/S15对**12个异常场景**做了文本规则核查，未在指定具名Owner原则范围内发现直接冲突；但回复树、通知、恢复/申诉和媒体真实隔离仍`OPEN`，**所有动态QA继续`NOT_RUN`**。
+- 新增仅顾问提案：`EDGE-D1`父评论撤回或被隐藏后独立回复的展示策略（建议安全条件下保留、不可证实则折叠）；`EDGE-D2`评论者获知隐藏与申诉的最小状态（建议有权且不泄密才提供中性说明）。两项均`ADVISOR_PROPOSAL / OWNER_REVIEW_PENDING`，建议只先请Owner审`EDGE-D1`。不将此前接受的NEW-PC-01/02/03升级为精确完整实现合同。
+- F-01仍`READABILITY_PARTIAL`，DESIGN-AUDIT-01/02历史`STATIC_PARTIAL`，工程/合法外部证据缺口仍在。`DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`不变。
+
 ## 2026-11-19最新Owner决定：NEW-PC-03 A接受；三项内容权利概念收口
 
 - [NEW-PC-03 Owner方案A](../decisions/OWNER_V2_NEW_PC03_INITIAL_OBJECT_LEVEL_DELETION_REQUEST_ENTRY_OPTION_A_ACCEPTANCE_20261119.md)明确首期**优先规划**本人作品、本人评论的对象级删除请求入口，不与受众收窄/评论撤回/具名用途撤销混用；只有真实合法受理/删除完成的权威证据才能显示对应事实。并未批准API、期限、物理删除、账号级清除或首期上线。
