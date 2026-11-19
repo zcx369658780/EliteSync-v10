@@ -1,3 +1,12 @@
+# 2026-11-19｜S1-A身份未决补充授权已确认，现有Codex会话可依新Prompt启动
+
+- Owner确认`D:\EliteSync-v10-product-v1015-20261101`为此次**唯一S1只读R1–R5审阅根**，并确认读取GitHub固定治理快照文档的**只读权限**。前次工作树身份核查`IDENTITY_UNRESOLVED`是有效停止，现应按[新Owner根/文档读取决定](../decisions/OWNER_V2_S1A_ROOT_AND_REMOTE_GOVERNANCE_READ_SUPPLEMENT_20261119.md)及[新启动Prompt](V2_S1A_ROOT_PINNED_CODEX_RESTART_PROMPT_20261119.md)在**同一个已有Codex项目会话**继续；无需切换到原`D:\EliteSync-v10` main工作树，也无需下载到本地或pull治理文档。
+- 实际核查前用只读`git -C`先确认目标root、repo、分支/HEAD、dirty/index；前次报告的目标分支与HEAD是当时快照，不自动假设未变。若真实根或remote身份不符/无法解释的重大漂移就STOP，避免覆盖现有未提交内容。
+- 允许固定GitHub治理文件只读访问，不允许git fetch/pull/clone、切分支、改文件、项目执行、测试、设备/数据库/供应商或写入报告。最终仅Codex会话返回一份R1–R5综合源码证据报告；**本地尚未执行新一轮源码核查**。A6仍DEFERRED、V2实施与动态QA仍未授权，G01–G10动态仍NOT_RUN。
+- 该补充授权不是新版本任务单、更不是通用工程放行；旧`CODEX_NOT_AUTHORIZED`只对S1授权前或S1以外的行动仍有效。
+
+---
+
 # 2026-11-19｜Owner授予S1-A单次只读Codex例外，工程开发仍STOP
 
 - Owner明确回复“我同意授权，请继续”，承接顾问提出的`S1-A`单次受限**只读工程差距核查**。授权的正式边界见[Owner S1-A具名决定](../decisions/OWNER_V2_S1A_BOUNDED_READ_ONLY_CODEX_GAP_AUDIT_AUTHORIZATION_20261119.md)；现有EliteSync本地Codex会话**一次性**可在确认唯一活动根后只读静态定位源码，合并R1–R5形成一份去敏报告。GitHub治理文档和历史路径不是本地实际工作树证明。
