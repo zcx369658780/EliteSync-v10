@@ -1,3 +1,11 @@
+# 2026-11-19 GPT顾问最新入口：DATA-D1/D2接受，P0三分流待Owner阅知
+
+- [DATA-D1/D2 Owner决定](docs/decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)已确认跨具名用途缺有效许可时的最小独立授权及纠错实际受影响派生结果的新发布限制，未授权具体schema、实际计算、自动新版传播或动态验收。
+- 当前顾问总览：[P0未决三分流](docs/product/ELITESYNC_V2_P0_OPEN_TRIAGE_PRODUCT_EXTERNAL_ENGINEERING_V0_1_20261119.md)，`ADVISOR_CONSOLIDATION / OWNER_REVIEW_PENDING_FOR_TRIAGE`，工程/供应商/合法依据缺口仍OPEN。权威治理现行入口见[ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md)与[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md)顶部。
+- A6正式UI会议继续暂缓，Codex无新V2工程授权。不修改APP/API/Web/数据库，不运行手机/模拟器，不建APK、不合main、不发布；真实核验/Push未接入、历史NOT_RUN/UNKNOWN及原43份PNG远端备份缺口不变。
+
+---
+
 # 2026-11-19 GPT顾问最新入口：OBJ-D1已接受，DATA-D1/D2待Owner概念审阅
 
 - [OBJ-D1 Owner决定](docs/decisions/OWNER_V2_OBJ_D1_POST_TAKEDOWN_THIRD_PARTY_COMMENTS_ACCEPTANCE_20261119.md)正式确认作品撤下/收窄的受保护内容对失权用户隐藏、作者删除作品不代替第三方评论者的独立数据删除权，也不假称已经全量物理删除。历史留存与真实接口仍OPEN。
