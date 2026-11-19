@@ -1,3 +1,11 @@
+# 2026-11-19 HIS-D1/D2最新接受与历史保留/删除合同仍OPEN
+
+- [Owner HIS-D1/D2正式确认](../decisions/OWNER_V2_HIS_D1_D2_HISTORICAL_ACCESS_AND_SNAPSHOTS_20261119.md)：原有评论只有当前作品读权、旧评论原受众与仍适用权限同时满足才可重新显示；匹配旧快照对仍合法既有候选按旧版可读，失权隐藏，业务入口本身仍合法才能显示不泄密中性状态。上述是读权/展示策略，不构成留存或物理删除政策。
+- [RET-D1/D2历史保留/删除/用途撤销顾问草案](ELITESYNC_V2_HISTORY_RETENTION_DELETION_PURPOSE_REVOCATION_V0_1_20261119.md)已建立，但**Owner尚未审阅**。建议分离当前撤权、真实删除请求受理、可证实删除完成，并按对象/主体及合法例外区别处理。不预设保存期限/数据库/后台状态能力。
+- 下方原“历史评论再展示仍待审”属于当时快照，当前以具名HIS Owner文件为准；P0/P1中的真实留存、删除权限和技术实现依旧OPEN。
+
+---
+
 # 2026-11-19 CMT-T1方案A Owner确认后最新澄清
 
 - [CMT-T1 Owner决定](../decisions/OWNER_V2_CMT_T1_SELF_TO_FRIENDS_COMMENTS_20261119.md)正式接受SELF→FRIENDS评论策略建议：隐式SELF默认OFF且未显式关闭时发布前推荐FRIENDS_ONLY供作者确认，明确OFF继续保留，无法区分则保留OFF并可手动开启。普通FRIENDS默认FRIENDS_ONLY仍有效。
