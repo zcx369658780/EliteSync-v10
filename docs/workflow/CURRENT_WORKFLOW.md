@@ -1,3 +1,11 @@
+# 2026-11-19：DATA-D1/D2已接受，后续以P0三类OPEN分类推进纯设计咨询
+
+- [Owner DATA-D1/D2决定](../decisions/OWNER_V2_DATA_D1_D2_PURPOSE_REUSE_CORRECTION_PUBLICATION_ACCEPTANCE_20261119.md)确认当前用途未许可时的最小明确许可、已获准事实合法复用，及纠错后仅受影响待核查结果禁止作为有效内容新外显。真实依赖图、字段/授权版本和发布能力依旧需要未来证据。
+- 当前阅读入口：[P0未决三分流V0.1](../product/ELITESYNC_V2_P0_OPEN_TRIAGE_PRODUCT_EXTERNAL_ENGINEERING_V0_1_20261119.md)，`ADVISOR_CONSOLIDATION / OWNER_REVIEW_PENDING_FOR_TRIAGE`；仅区分产品合同取舍、真实供应商/合规依据和未来工程核查，不许据此派单。下一步建议形成“当前缺真实依赖时应禁用什么/怎么安全返回/未来凭什么验收”的静态表，不要求重复确认原O04/O05/O07原则。
+- **DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED**：不派新V2开发、不改APP/API/Web/DB、不操作设备/模拟器、不建APK、不合main、不发布。真实核验与Push未接入、旧1011804 NOT_RUN/UNKNOWN、43份原PNG备份缺口保持。
+
+---
+
 # 2026-11-19：OBJ-D1已明确接受，进入DATA来源/用途/外显版本概念审阅
 
 - [Owner OBJ-D1确认](../decisions/OWNER_V2_OBJ_D1_POST_TAKEDOWN_THIRD_PARTY_COMMENTS_ACCEPTANCE_20261119.md)已接受撤下作品后的第三方评论阅读阻断、作者删除请求与第三方评论者权利分开，不代表真实删除/保留合同已具备。
