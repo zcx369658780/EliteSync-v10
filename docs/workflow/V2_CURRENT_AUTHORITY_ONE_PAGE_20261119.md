@@ -29,7 +29,7 @@
 |---|---|
 | 16屏编号与四批覆盖、八组具名Owner来源 | `PASS_STATIC_SCOPED` |
 | G01–G10设计安全场景与文档授权一致性 | `DESIGN_ALIGNED_IN_REVIEWED_SCOPE`，不是实际权限测试 |
-| 旧草案`OWNER_REVIEW_PENDING`快照与已确认Owner记录并列 | `READABILITY_PARTIAL`；以具名Owner决策+本页+最新ACTIVE_STATE顶部优先 |
+| 旧草案`OWNER_REVIEW_PENDING`快照与已确认Owner记录并列 | `INDEX_MITIGATION_ADDED / READABILITY_PARTIAL`；[F-01逐批时态索引](V2_F01_HISTORICAL_SNAPSHOT_READABILITY_AUDIT_03_20261119.md)已建立，仍以具名Owner决策+本页+最新ACTIVE_STATE顶部优先 |
 | 实际真实身份核验/Push、用户公开域、历史媒体权限、授权版本/派生依赖、删除、幂等/缓存传播 | `OPEN / EXTERNAL_OR_ENGINEERING_EVIDENCE_REQUIRED` |
 | G01–G10及新V2动态测试 | **全部`NOT_RUN`** |
 | 43份原PNG远端二进制备份 | 依据现行文档仍`PENDING_BINARY_UPLOAD`；本轮未逐份核查 |
@@ -38,8 +38,8 @@
 ## 4. 立即接续的仅设计工作
 
 1. 使用本页、[具名Owner源索引](../product/ELITESYNC_V2_OWNER_ACCEPTED_SOURCE_INDEX_AND_AUDIT_SNAPSHOT_20261119.md)和两份静态审计报告复核当前事实，不递归加载全部历史快照。
-2. 在不改变原文的情况下，提出针对`F-01`长文档旧待审状态的**只读索引或文档瘦身方案**；真正的删除、移动、批量归档等不可逆治理操作应单独获Owner批准。
-3. 对G01–G10**仅形成文字版未来证据需求/失败关闭策略**，明确哪些需要合法/供应商证据、哪些未来需Codex获Owner授权后检查；不能发给Codex实际执行。
+2. 已新增[F-01历史状态快照限定范围静态核查与索引](V2_F01_HISTORICAL_SNAPSHOT_READABILITY_AUDIT_03_20261119.md)：四批原稿旧`OWNER_REVIEW_PENDING`按具名Owner接受消歧，**只缓解而不关单**；原文不改，移动/删除/批量归档仍须Owner批准。
+3. [G01–G10未来证据登记模板](V2_G01_G10_FUTURE_EVIDENCE_INTAKE_TEMPLATE_20261119.md)仅作静态顾问产物：区分产品OPEN、外部/合法依据及未来获授权的工程证据；**全部动态QA仍`NOT_RUN`**，不能交给Codex实际执行。
 4. 仅对确有新增实质产品取舍的OPEN点请求Owner决策；不要把已批准的八组/S01–S16全框架重新要求一揽子确认。
 
 交接源：[SESSION_HANDOFF_20261119_V2_DESIGN_AUDIT02_STATIC_ONLY.md](SESSION_HANDOFF_20261119_V2_DESIGN_AUDIT02_STATIC_ONLY.md)。
