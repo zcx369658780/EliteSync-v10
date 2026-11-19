@@ -1,3 +1,14 @@
+# 当前入口 2026-11-19：OBJ-D1方案A获Owner认可；DATA-D1/D2数据用途与新发布门禁顾问稿待审
+
+**`OBJ_D1_OPTION_A_OWNER_CONCEPT_ACCEPTED / DATA_D1_D2_ADVISOR_OWNER_REVIEW_PENDING / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
+
+- [Owner OBJ-D1方案A决策](../decisions/OWNER_V2_OBJ_D1_POST_TAKEDOWN_THIRD_PARTY_COMMENTS_ACCEPTANCE_20261119.md)已生效：作者撤下或收窄作品时失权用户不得经旧评论/媒体/引用继续读取；作者申请删除作品不等于代其他评论者删除其独立原始材料，不假称物理删除完成；具体留存、撤回请求和真实删除接口继续OPEN。
+- [DATA-D1/D2顾问数据合同草案V0.1](../product/ELITESYNC_V2_SOURCE_PURPOSE_PUBLICATION_CONTRACT_REVIEW_V0_1_20261119.md)已出稿、**Owner尚未审阅**：DATA-D1建议跨具名用途复用旧资料但缺许可时只申请当前目的必要字段的独立许可、不重复输入或捆绑其它工具；DATA-D2建议确实受来源纠错影响且待核查的派生结果不作为已验证结果新外显，未影响内容不全局禁用。既有O04/O05/O07不被改写，实际源/用途/版本/schema和计算依赖需未来证据。
+- S01–S16四批八组具名增量、CMT-T1、HIS、RET均有Owner概念接受；但工程`10.1.18-dev / 1011804`与旧`NOT_RUN/UNKNOWN`不因网页设计改判。真实身份核验供应商/Push未接入，43原PNG仍`PENDING_BINARY_UPLOAD`。治理分支不是Owner本地代码同步证明。
+- **A6正式UI会议继续暂缓，本地Codex没有新V2实施授权**：不改APP/API/Web/数据库、不运行设备/模拟器、不构建APK、不合main、不发布、不接真实供应商。仅产品顾问设计讨论与治理文档归档。
+
+---
+
 # 当前入口 2026-11-19：RET-D1/D2方案A获Owner接受；剩余P0产品合同与证据分类草案待审
 
 **`RET_D1_A_RET_D2_A_OWNER_CONCEPT_ACCEPTED / P0_REMAINING_CONTRACT_ADVISOR_DRAFT / DESIGN_ONLY / CODEX_NOT_AUTHORIZED / A6_MEETING_DEFERRED`**
