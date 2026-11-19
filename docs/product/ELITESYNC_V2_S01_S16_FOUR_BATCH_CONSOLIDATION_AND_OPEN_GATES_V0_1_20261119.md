@@ -1,3 +1,11 @@
+# 2026-11-19 OBJ-D1 Owner认可后：历史作品/评论权限动作分流已确认；P0-B/C顾问稿待审
+
+- [Owner OBJ-D1 A](../decisions/OWNER_V2_OBJ_D1_POST_TAKEDOWN_THIRD_PARTY_COMMENTS_ACCEPTANCE_20261119.md)明确作品撤下/收窄导致失权时评论及附件等不能继续向无权用户展示，申请删除作品不等于作者代第三方评论者请求删除其原始材料或永久删除所有关联记录；具体合法保留与真实物理删除仍OPEN。
+- [DATA-D1/D2新顾问审查](ELITESYNC_V2_SOURCE_PURPOSE_PUBLICATION_CONTRACT_REVIEW_V0_1_20261119.md)仍`OWNER_REVIEW_PENDING`：首次跨用途且无现行许可时如何集中说明必要字段/当前目的/拒绝与明确授权，以及纠错后待核查的真实依赖结果能否向新受众发布。O04/O05/O07已接受的事实/用途/受众/版本隔离仍有效；不要将新建议冒充Owner已认可。
+- 下方P0-A内旧“OBJ-D1等待讨论”的建议按形成时点解释。其余P0真实数据、身份供应商、Push和完整动态QA依旧未获工程实现证据。
+
+---
+
 # 2026-11-19 最新：RET-D1/D2获Owner认可，仍需合同/证据的部分继续OPEN
 
 - [RET-D1/D2 Owner确认](../decisions/OWNER_V2_RET_D1_D2_REVOCATION_DELETION_CONCEPT_ACCEPTANCE_20261119.md)：撤销当前许可/阅读权、删除请求真实受理和可核实范围删除完成是三个不同状态；请求依对象、用途、请求权主体、第三方权利及合法必要留存例外区别判断。不能用“界面隐藏”伪称“全部删除完成”，亦不虚构实际API。
