@@ -1,3 +1,11 @@
+# 2026-11-19 Owner OBJ-D1方案A正式接受；下阶段转数据来源/具名用途/外显版本合同
+
+- [Owner OBJ-D1决定](../decisions/OWNER_V2_OBJ_D1_POST_TAKEDOWN_THIRD_PARTY_COMMENTS_ACCEPTANCE_20261119.md)已确认：作者撤下/收窄作品即不得继续让无当前读权用户读取作品及依附的第三方评论/媒体；作者请求删除作品不自动代表第三方评论者原始数据及必要记录都已物理删除；保留与删除按RET-D1/D2实际对象、权利、合法例外和核实结果区分。
+- 当前新顾问稿：[DATA-D1/D2来源事实×具名用途×外显发布合同审阅V0.1](ELITESYNC_V2_SOURCE_PURPOSE_PUBLICATION_CONTRACT_REVIEW_V0_1_20261119.md)，`ADVISOR_PRODUCT_CONTRACT_DRAFT / OWNER_REVIEW_PENDING`，提出缺少具名用途许可时的最小明确授权UI、纠错后仅受影响且待核查派生结果的新发布门禁。**这两项新增细节尚非Owner决定**。
+- 下方`OBJ-D1 A`仍为待确认建议是本稿早先时点。实际历史保留/删除期限、字段源/授权/版本的实现映射、合法依据与API证据继续OPEN。工作流仍DESIGN_ONLY，Codex和A6会议未获授权。
+
+---
+
 # EliteSync V2｜RET确认后的P0剩余产品合同与证据依赖梳理 V0.1
 
 日期：2026-11-19（Asia/Singapore）  
