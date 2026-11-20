@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\UserAstroProfile;
 use App\Services\Accounts\AccountClosure;
 use App\Services\Accounts\DeviceSessions;
 use App\Services\ChineseZodiacService;
@@ -42,28 +41,12 @@ class AuthController extends Controller
         }
     }
 
-    private function resolveBirthTime(User $user): ?string
-    {
-        $profile = UserAstroProfile::query()
-            ->where('user_id', (int) $user->id)
-            ->first();
-
-        return $profile?->birth_time;
-    }
-
     /**
      * @return array<string, mixed>
      */
     private function userPayload(User $user): array
     {
-        $profile = UserAstroProfile::query()
-            ->where('user_id', (int) $user->id)
-            ->first();
-
-        $birthPlace = $this->normalizeBirthPlace($user->private_birth_place)
-            ?? $this->normalizeBirthPlace($profile?->birth_place);
-        $birthLat = $user->private_birth_lat ?? $profile?->birth_lat;
-        $birthLng = $user->private_birth_lng ?? $profile?->birth_lng;
+        $birthPlace = $this->normalizeBirthPlace($user->private_birth_place);
 
         return [
             'id' => $user->id,
@@ -71,17 +54,17 @@ class AuthController extends Controller
             'name' => $user->name,
             'role' => $user->role ?? 'user',
             'birthday' => optional($user->birthday)->format('Y-m-d'),
-            'birth_time' => $this->resolveBirthTime($user),
+            'birth_time' => $user->private_birth_time,
             'zodiac_animal' => $user->zodiac_animal,
             'gender' => $user->gender,
             'city' => $user->city,
             'relationship_goal' => $user->relationship_goal,
             'birth_place' => $birthPlace,
             'private_birth_place' => $birthPlace,
-            'birth_lat' => $birthLat,
-            'private_birth_lat' => $birthLat,
-            'birth_lng' => $birthLng,
-            'private_birth_lng' => $birthLng,
+            'birth_lat' => $user->private_birth_lat,
+            'private_birth_lat' => $user->private_birth_lat,
+            'birth_lng' => $user->private_birth_lng,
+            'private_birth_lng' => $user->private_birth_lng,
             'realname_verified' => false,
             'identity_provider' => 'NOT_CONFIGURED',
             'identity_status' => 'NOT_VERIFIED',

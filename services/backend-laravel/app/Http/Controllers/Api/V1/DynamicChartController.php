@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserDynamicChart;
 use App\Models\UserToolRevision;
+use App\Services\DataPurposeService;
 use App\Services\DynamicChartService;
+use App\Services\JourneyStore;
 use App\Services\ToolRevisionHistory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -43,7 +45,7 @@ class DynamicChartController extends Controller
     {
         return $this->respond(function () use ($request, $service, $id) {
             $user = $this->owner($request);
-            return ['chart' => $service->view($user, $this->row($user, $id))];
+            return ['chart' => $this->view($user, $id, $service)];
         });
     }
 
@@ -52,10 +54,19 @@ class DynamicChartController extends Controller
         $request->validate(['request_key' => 'sometimes|uuid']);
         return $this->respond(function () use ($request, $service, $id) {
             $body = $request->json()->all();
-            [$row, $prepared, $cached] = DB::transaction(function () use ($request, $service, $id, $body) {
+            $purpose = app(DataPurposeService::class);
+            $usesNatal = $purpose->dynamicUsesNatal($body);
+            $sourceBody = $usesNatal ? array_diff_key($body, ['expected_purpose_revision' => true]) : $body;
+            [$row, $prepared, $cached, $purposeRevision] = DB::transaction(function () use (
+                $request, $service, $id, $body, $purpose, $usesNatal, $sourceBody
+            ) {
                 $user = $this->owner($request, true);
                 $row = $id === null ? null : $this->row($user, $id, true);
-                $prepared = $service->prepare($user, $body);
+                $purposeRevision = $usesNatal ? $purpose->dynamicRevision((int) $user->id) : null;
+                abort_if($usesNatal && $purposeRevision === null, 409, 'PURPOSE_PERMISSION_REQUIRED');
+                abort_if($usesNatal && ($body['expected_purpose_revision'] ?? null) !== $purposeRevision,
+                    409, 'PURPOSE_CHANGED_REFRESH_REQUIRED');
+                $prepared = $service->prepare($user, $sourceBody);
                 $key = $body['request_key'] ?? null;
                 $hash = hash('sha256', json_encode($body, JSON_THROW_ON_ERROR));
                 $replay = $key === null ? null : DB::table('dynamic_chart_commands')->where('user_id', $user->id)
@@ -71,12 +82,15 @@ class DynamicChartController extends Controller
                     if ($current->input_revision != $replay->input_revision) {
                         throw new HttpException(409, 'dynamic_command_superseded');
                     }
-                    return [$current, $prepared, $current->status === 'COMPUTED_UNVERIFIED'];
+                    abort_unless(($current->prepared['_purpose_grant_revision'] ?? null) === $purposeRevision,
+                        409, 'PURPOSE_CHANGED_REFRESH_REQUIRED');
+                    return [$current, $prepared, $current->status === 'COMPUTED_UNVERIFIED', $purposeRevision];
                 }
                 if (($row?->input_revision ?? 0) !== $body['expected_revision']) {
                     throw new HttpException(409, 'dynamic_input_revision_conflict');
                 }
-                if ($row && hash_equals($row->input_signature, $prepared['input_signature'])
+                $samePurpose = $row && ($row->prepared['_purpose_grant_revision'] ?? null) === $purposeRevision;
+                if ($samePurpose && hash_equals($row->input_signature, $prepared['input_signature'])
                     && $row->status === 'COMPUTED_UNVERIFIED' && $row->result_revision === $row->input_revision) {
                     if (array_key_exists('selected_event_index', $body)) {
                         $selection = $service->selectEvent($row->results, $body['selected_event_index']);
@@ -91,10 +105,10 @@ class DynamicChartController extends Controller
                         }
                     }
                     $this->rememberCommand($user, $row, $key, $hash);
-                    return [$row, $prepared, true];
+                    return [$row, $prepared, true, $purposeRevision];
                 }
                 // Trusted persisted first chart only: user-supplied caches are never admitted.
-                if ($row && $row->status === 'COMPUTED_UNVERIFIED'
+                if ($samePurpose && $row->status === 'COMPUTED_UNVERIFIED'
                     && $row->result_revision === $row->input_revision
                     && ($row->prepared['_first_context_signature'] ?? null) === $prepared['first_context_signature']
                     && is_array($row->results['first'] ?? null)) {
@@ -107,13 +121,14 @@ class DynamicChartController extends Controller
                 $row ??= new UserDynamicChart(['user_id' => $user->id]);
                 $storedPrepared = $prepared['payload'];
                 unset($storedPrepared['first_calculated']);
+                $storedPrepared['_purpose_grant_revision'] = $purposeRevision;
                 $storedPrepared['_first_context_signature'] = $prepared['first_context_signature'];
                 $row->fill(['chart_type' => $body['chart_type'], 'request' => $prepared['request'],
                     'settings' => $prepared['settings'], 'prepared' => $storedPrepared,
                     'input_signature' => $prepared['input_signature'], 'input_revision' => $revision,
                     'selected_event_index' => null, 'result_revision' => null, 'results' => null, 'status' => 'COMPUTING'])->save();
                 $this->rememberCommand($user, $row, $key, $hash);
-                return [$row, $prepared, false];
+                return [$row, $prepared, false, $purposeRevision];
             });
             if (! $cached) {
                 try {
@@ -132,16 +147,20 @@ class DynamicChartController extends Controller
                         ->update(['status' => 'FAILED', 'results' => null, 'result_revision' => null]);
                     throw $exception;
                 }
-                DB::transaction(function () use ($request, $service, $row, $body, $prepared, $results, $selection) {
+                DB::transaction(function () use ($request, $service, $row, $sourceBody, $prepared, $results, $selection, $purposeRevision) {
                     // The same owner lock serializes both natal and derived writes, including first inserts.
                     $user = $this->owner($request, true);
                     $current = $this->row($user, $row->id, true);
+                    if ($purposeRevision !== null
+                        && app(DataPurposeService::class)->dynamicRevision((int) $user->id) !== $purposeRevision) {
+                        throw new HttpException(409, 'PURPOSE_CHANGED_REFRESH_REQUIRED');
+                    }
                     if ($current->input_revision !== $row->input_revision
                         || ! hash_equals($current->input_signature, $prepared['input_signature'])) {
                         throw new HttpException(409, 'dynamic_result_superseded');
                     }
                     try {
-                        $latest = $service->prepare($user, $body);
+                        $latest = $service->prepare($user, $sourceBody);
                         $same = hash_equals($latest['input_signature'], $prepared['input_signature']);
                     } catch (Throwable) {
                         $same = false;
@@ -158,8 +177,17 @@ class DynamicChartController extends Controller
                 });
             }
             $user = $this->owner($request);
-            return ['chart' => $service->view($user, $this->row($user, $row->id))];
+            return ['chart' => $this->view($user, $row->id, $service)];
         });
+    }
+
+    private function view(User $user, int $id, DynamicChartService $service): array
+    {
+        return DB::transaction(function () use ($user, $id, $service) {
+            app(JourneyStore::class)->users([(int) $user->id]);
+
+            return app(DataPurposeService::class)->dynamicView($user, $this->row($user, $id, true), $service);
+        }, 3);
     }
 
     public function destroy(Request $request, int $id): JsonResponse
@@ -194,6 +222,9 @@ class DynamicChartController extends Controller
         }
         if ($user->disabled) {
             throw new HttpException(403, 'account_disabled');
+        }
+        if ($lock) {
+            app(JourneyStore::class)->users([(int) $user->id]);
         }
         return $user;
     }

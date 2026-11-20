@@ -288,7 +288,7 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
                 ? null
                 : () => Navigator.of(context).push(
                     MaterialPageRoute<void>(
-                      builder: (_) => const ShowcasePurposePage(),
+                      builder: (_) => const DataPurposePage(),
                     ),
                   ),
             child: const Text('复用资料与用途许可'),

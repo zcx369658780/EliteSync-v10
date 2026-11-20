@@ -9,6 +9,7 @@ import '../widgets/natal_restoration_charts.dart';
 import '../widgets/dynamic_chart_wheel.dart';
 import '../widgets/tool_revision_history.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
+import 'data_rights_page.dart';
 
 class DynamicChartPage extends ConsumerStatefulWidget {
   const DynamicChartPage({super.key});
@@ -31,6 +32,7 @@ class _Input {
   };
   String source = 'manual', precision = 'unknown', fold = 'unspecified';
   int? ownRevision;
+  int? purposeRevision;
   void clear() {
     for (final c in fields.values) {
       c.clear();
@@ -39,6 +41,7 @@ class _Input {
     precision = 'unknown';
     fold = 'unspecified';
     ownRevision = null;
+    purposeRevision = null;
   }
 
   void dispose() {
@@ -66,10 +69,11 @@ class _Input {
   Map<String, dynamic> payload() => source == 'own_natal'
       ? {'source': source, 'revision': ownRevision}
       : {'source': source, 'input': input()};
-  void load(Map<String, dynamic> data, {bool event = false}) {
+  void load(Map<String, dynamic> data, {bool event = false, int? grant}) {
     clear();
     source = event ? 'manual' : data['source']?.toString() ?? 'manual';
     ownRevision = (data['revision'] as num?)?.toInt();
+    if (source == 'own_natal') purposeRevision = grant;
     final i = event ? data : natalMap(data['input']);
     for (final e in fields.entries) {
       e.value.text = i[e.key]?.toString() ?? '';
@@ -100,6 +104,7 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
   dynamic _id;
   int? _selected;
   int? _nextHistoryId;
+  int _historyGeneration = 0;
   bool _busy = false, _dirty = false, _conflict = false;
   String? _error;
   bool get _dual => _type == 'synastry' || _type == 'comparison';
@@ -277,8 +282,9 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
           request['chart_type']?.toString() ??
           row['type']?.toString() ??
           _type;
-      _first.load(natalMap(request['first']));
-      _second.load(natalMap(request['second']));
+      final grant = (row['purpose_revision'] as num?)?.toInt();
+      _first.load(natalMap(request['first']), grant: grant);
+      _second.load(natalMap(request['second']), grant: grant);
       _event.load(natalMap(request['event']), event: true);
       final settings = natalMap(request['settings'] ?? row['settings']);
       for (final k in _settings.keys) {
@@ -300,23 +306,28 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
     setState(() {
       _busy = true;
       _error = null;
+      target.ownRevision = null;
+      target.purposeRevision = null;
       _edited();
     });
     try {
       final response = await ref
           .read(apiClientProvider)
           .get(
-            '/api/v1/profile/natal',
+            '/api/v1/data-rights/dynamic-natal',
             options: natalSessionOptions(() => _current(session, epoch, op)),
           );
       if (!_current(session, epoch, op)) return;
-      final profile = natalProfileFromResponse(response);
-      if (profile == null || profile['input_revision'] is! num) {
-        throw const NatalRequestException('尚无本人已确认快照');
+      final scope = _body(response);
+      if (scope['state'] != 'GRANTED' ||
+          scope['source_revision'] is! int ||
+          scope['revision'] is! int) {
+        throw const NatalRequestException('当前用途许可或本人快照尚不可用');
       }
       setState(() {
         target.source = 'own_natal';
-        target.ownRevision = (profile['input_revision'] as num).toInt();
+        target.ownRevision = scope['source_revision'] as int;
+        target.purposeRevision = scope['revision'] as int;
       });
     } catch (error) {
       if (_current(session, epoch, op)) {
@@ -327,6 +338,23 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
     }
   }
 
+  void _openPurpose() {
+    setState(() {
+      _historyGeneration++;
+      if (_first.source == 'own_natal' ||
+          (_dual && _second.source == 'own_natal')) {
+        _edited();
+        _first.ownRevision = _second.ownRevision = null;
+        _first.purposeRevision = _second.purposeRevision = null;
+      }
+    });
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => const DataPurposePage(forDynamic: true),
+      ),
+    );
+  }
+
   Future<void> _save({int? eventIndex}) async {
     if (_busy ||
         _conflict ||
@@ -335,6 +363,16 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
     }
     final session = _session, epoch = _epoch, op = ++_operation;
     if (session == null || !_current(session, epoch, op)) return;
+    final grants = [
+      if (_first.source == 'own_natal') _first.purposeRevision,
+      if (_dual && _second.source == 'own_natal') _second.purposeRevision,
+    ];
+    if (_pendingBody == null &&
+        grants.isNotEmpty &&
+        (grants.first == null || grants.toSet().length != 1)) {
+      setState(() => _error = '请重新选择当前许可下的本人快照。');
+      return;
+    }
     final body =
         _pendingBody ??
         <String, dynamic>{
@@ -345,6 +383,7 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
           if (!_dual) 'event': _event.input(solar: _type == 'solar_return'),
           'settings': Map<String, String>.from(_settings),
           'expected_revision': _revision,
+          if (grants.isNotEmpty) 'expected_purpose_revision': grants.first,
           'selected_event_index': eventIndex ?? _selected,
         };
     _pendingBody = body;
@@ -549,9 +588,16 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
                 (v) {
                   input.source = v;
                   input.ownRevision = null;
+                  input.purposeRevision = null;
                 },
               ),
               if (input.source == 'own_natal') ...[
+                TextButton(
+                  onPressed: _busy || _pendingBody != null
+                      ? null
+                      : _openPurpose,
+                  child: const Text('本命快照复用许可'),
+                ),
                 Text('仅当前账号资料；已选择版本 ${input.ownRevision ?? '未读取'}'),
                 OutlinedButton(
                   onPressed: _busy || _pendingBody != null
@@ -783,7 +829,9 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
                       child: const Text('删除当前盘及历史'),
                     ),
                     ToolRevisionHistory(
-                      key: ValueKey('dynamic-revisions:$_id:$_revision'),
+                      key: ValueKey(
+                        'dynamic-revisions:$_id:$_revision:$_historyGeneration',
+                      ),
                       endpoint: '/api/v1/profile/dynamic/$_id/history',
                       detailKey: 'chart',
                     ),

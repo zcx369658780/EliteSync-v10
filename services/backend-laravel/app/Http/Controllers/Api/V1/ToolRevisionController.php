@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\UserDynamicChart;
 use App\Models\UserNatalProfile;
 use App\Models\UserToolRevision;
+use App\Services\DataPurposeService;
 use App\Services\DynamicChartService;
+use App\Services\JourneyStore;
 use App\Services\NatalProfileView;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ToolRevisionController extends Controller
 {
@@ -36,12 +39,17 @@ class ToolRevisionController extends Controller
 
     public function dynamicShow(Request $request, int $id, int $archive): JsonResponse
     {
-        $this->ownedChart($request, $id);
-        $row = $this->query($request, 'dynamic', $id)->findOrFail($archive);
-        $snapshot = (new UserDynamicChart)->forceFill($row->snapshot);
-        return response()->json(['historical' => true, 'archived_at' => $row->created_at->toIso8601String(),
-            'chart' => app(DynamicChartService::class)->view($request->user(), $snapshot)])
-            ->header('Cache-Control', 'no-store, private');
+        return DB::transaction(function () use ($request, $id, $archive) {
+            $owner = $request->user();
+            app(JourneyStore::class)->users([(int) $owner->id]);
+            $this->ownedChart($request, $id);
+            $row = $this->query($request, 'dynamic', $id)->findOrFail($archive);
+            $snapshot = (new UserDynamicChart)->forceFill($row->snapshot);
+
+            return response()->json(['historical' => true, 'archived_at' => $row->created_at->toIso8601String(),
+                'chart' => app(DataPurposeService::class)->dynamicView($owner, $snapshot, app(DynamicChartService::class))])
+                ->header('Cache-Control', 'no-store, private');
+        }, 3);
     }
 
     private function ownedChart(Request $request, int $id): void

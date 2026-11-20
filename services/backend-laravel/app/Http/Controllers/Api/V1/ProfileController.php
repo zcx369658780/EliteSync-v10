@@ -97,13 +97,16 @@ class ProfileController extends Controller
             'city' => ['required', 'string', 'max:64'],
         ]);
 
-        $user = $request->user();
-        $user->city = trim((string) $data['city']);
-        $user->save();
+        $id = (int) $request->user()->id;
+        $city = trim((string) $data['city']);
+        return DB::transaction(function () use ($id, $city) {
+            app(JourneyStore::class)->users([$id]);
+            $user = User::findOrFail($id);
+            $user->city = $city;
+            $user->save();
 
-        return response()->json([
-            'ok' => true,
-            'city' => $user->city,
-        ]);
+            return response()->json(['ok' => true, 'city' => $city])
+                ->header('Cache-Control', 'private, no-store');
+        }, 3);
     }
 }

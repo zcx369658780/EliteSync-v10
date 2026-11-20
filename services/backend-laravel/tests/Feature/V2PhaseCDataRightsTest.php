@@ -3,10 +3,12 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use App\Models\UserAstroProfile;
 use App\Services\ObjectDataRequestService;
 use App\Services\ProfileShowcase\ShowcaseWorkflow;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
@@ -143,6 +145,19 @@ final class V2PhaseCDataRightsTest extends TestCase
         $this->assertDatabaseCount('user_astro_profiles', 0);
         $this->assertDatabaseCount('user_natal_profiles', 0);
     }
+
+    public function test_login_reads_only_confirmed_account_birth_details(): void
+    {
+        $owner = $this->account();
+        $password = 'Synthetic-local-2026';
+        $owner->forceFill(['phone' => '19920261120', 'password' => Hash::make($password), 'private_birth_time' => '09:55'])->save();
+        UserAstroProfile::create(['user_id' => $owner->id, 'birth_time' => '12:00', 'birth_place' => 'Legacy derived',
+            'birth_lat' => 1.0, 'birth_lng' => 2.0, 'sun_sign' => 'legacy']);
+        $this->postJson('/api/v1/auth/login', ['phone' => $owner->phone, 'password' => $password])
+            ->assertOk()->assertJsonPath('user.birth_time', '09:55')->assertJsonPath('user.birth_place', null)
+            ->assertJsonPath('user.birth_lat', null)->assertJsonPath('user.birth_lng', null);
+    }
+
     public function test_legacy_calculation_reuse_unverified_and_test_only_permission_expire(): void
     {
         $owner = $this->account(true);
@@ -174,6 +189,40 @@ final class V2PhaseCDataRightsTest extends TestCase
         $this->postJson($url, ['request_key' => (string) Str::uuid(), 'confirm' => true, 'expected_version' => '1-withdrawn'])
             ->assertOk()->assertJsonPath('state', 'REQUESTED_TEST_ONLY');
         $this->assertDatabaseHas('status_post_comments', ['id' => $comment, 'body' => 'Independent material']);
+    }
+
+    public function test_dynamic_natal_permission_is_independent_and_revocation_hides_saved_and_archived_results(): void
+    {
+        config(['dynamic_charts.enabled' => true]);
+        $owner = $this->account(true);
+        $this->actingAs($owner, 'sanctum');
+        $first = ['source' => 'own_natal', 'revision' => 7];
+        $request = ['first' => $first, 'chart_type' => 'transit'];
+        $this->putJson('/api/v1/data-rights/showcase-city', ['state' => 'GRANTED',
+            'expected_revision' => 0, 'confirm' => true])->assertOk();
+        $this->postJson('/api/v1/profile/dynamic', $request)->assertConflict()
+            ->assertJsonPath('code', 'PURPOSE_PERMISSION_REQUIRED');
+        $purpose = '/api/v1/data-rights/dynamic-natal';
+        $this->putJson($purpose, ['state' => 'GRANTED', 'expected_revision' => 0, 'confirm' => true])
+            ->assertOk()->assertJsonPath('audience', 'SELF_ONLY');
+        $chart = \App\Models\UserDynamicChart::create([
+            'user_id' => $owner->id, 'chart_type' => 'transit', 'request' => $request,
+            'settings' => [], 'prepared' => ['_purpose_grant_revision' => 1], 'input_signature' => str_repeat('1', 64),
+            'input_revision' => 1, 'result_revision' => 1, 'results' => ['sample' => 'Synthetic old result'],
+            'status' => 'COMPUTED_UNVERIFIED',
+        ]);
+        // Missing natal revision is independently stale even while the purpose is valid.
+        $url = "/api/v1/profile/dynamic/$chart->id";
+        $this->getJson($url)->assertOk()->assertJsonPath('chart.status', 'STALE_RECALCULATION_REQUIRED')
+            ->assertJsonPath('chart.results', null);
+        app(\App\Services\ToolRevisionHistory::class)->archive($chart, 'dynamic');
+        $archive = DB::table('user_tool_revisions')->where('user_id', $owner->id)->value('id');
+        $this->putJson($purpose, ['state' => 'REVOKED', 'expected_revision' => 1, 'confirm' => true])->assertOk();
+        $this->getJson($url)->assertOk()->assertJsonPath('chart.status', 'PURPOSE_UNAVAILABLE')->assertJsonPath('chart.results', null);
+        $this->getJson("$url/history/$archive")->assertOk()->assertJsonPath('chart.status', 'PURPOSE_UNAVAILABLE')
+            ->assertJsonMissingPath('chart.request');
+        $this->putJson($purpose, ['state' => 'GRANTED', 'expected_revision' => 2, 'confirm' => true])->assertOk();
+        $this->getJson($url)->assertOk()->assertJsonPath('chart.status', 'PURPOSE_UNAVAILABLE');
     }
 
 }

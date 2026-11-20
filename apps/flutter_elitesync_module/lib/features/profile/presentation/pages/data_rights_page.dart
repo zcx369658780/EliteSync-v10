@@ -5,16 +5,20 @@ import 'package:uuid/uuid.dart';
 import '../../../relationships_v1011/relationship_api.dart';
 import '../../../relationships_v1011/session_bound_page.dart';
 
-class ShowcasePurposePage extends ConsumerStatefulWidget {
-  const ShowcasePurposePage({super.key});
+class DataPurposePage extends ConsumerStatefulWidget {
+  const DataPurposePage({super.key, this.forDynamic = false});
+
+  final bool forDynamic;
 
   @override
-  ConsumerState<ShowcasePurposePage> createState() => _ShowcasePurposeState();
+  ConsumerState<DataPurposePage> createState() => _DataPurposeState();
 }
 
-class _ShowcasePurposeState extends SessionBoundPage<ShowcasePurposePage> {
+class _DataPurposeState extends SessionBoundPage<DataPurposePage> {
   @override
-  String get resource => '/data-rights/showcase-city';
+  String get resource => widget.forDynamic
+      ? '/data-rights/dynamic-natal'
+      : '/data-rights/showcase-city';
 
   Future<void> _decide(String state, int revision) async {
     final label = switch (state) {
@@ -22,7 +26,10 @@ class _ShowcasePurposeState extends SessionBoundPage<ShowcasePurposePage> {
       'REVOKED' => '撤销用途许可',
       _ => '拒绝复用',
     };
-    if (await confirm(label, '此决定仅用于展示草稿中的现居城市。发布受众仍需单独确认。')) {
+    final detail = widget.forDynamic
+        ? '此决定仅允许本人动态盘复用本人指定本命快照。'
+        : '此决定仅用于展示草稿中的现居城市。发布受众仍需单独确认。';
+    if (await confirm(label, detail)) {
       await mutate('PUT', resource, {
         'state': state,
         'expected_revision': revision,
@@ -48,10 +55,17 @@ class _ShowcasePurposeState extends SessionBoundPage<ShowcasePurposePage> {
     final state = current?['state'];
     final revision = current?['revision'];
     final draft = current?['draft_revision'];
-    return frame('展示草稿的资料用途', [
-      const Text('字段为现居城市。用途是填写本人展示草稿。发布时另行确认受众。'),
+    return frame(widget.forDynamic ? '动态盘的资料用途' : '展示草稿的资料用途', [
+      if (widget.forDynamic)
+        const Text('动态盘可使用本人本命快照的日期、时间、时区、地点和计算参数，结果仅本人可读。')
+      else
+        const Text('字段为现居城市。用途是填写本人展示草稿。发布时另行确认受众。'),
       if (state == 'LEGAL_BASIS_UNVERIFIED')
-        const Text('目前缺少可核实的处理依据，暂不能复用账号资料。你仍可直接编辑展示草稿。'),
+        Text(
+          widget.forDynamic
+              ? '本命快照复用缺少可核实的处理依据。你仍可手填本次动态盘输入。'
+              : '目前缺少可核实的处理依据，暂不能复用账号资料。你仍可直接编辑展示草稿。',
+        ),
       if (eligible) ...[
         const Text('仅隔离测试'),
         Text(switch (state) {

@@ -51,6 +51,7 @@ Map<String, dynamic> _chart({int id = 7, int revision = 1}) => {
   'id': id,
   'chart_type': 'comparison',
   'input_revision': revision,
+  'purpose_revision': 1,
   'result_revision': revision,
   'status': 'COMPUTED_UNVERIFIED',
   'request': {
@@ -200,7 +201,8 @@ Future<void> _tap(WidgetTester tester, String text) async {
     400,
     scrollable: find.byType(Scrollable).first,
   );
-  await tester.ensureVisible(finder);
+  await Scrollable.ensureVisible(tester.element(finder), alignment: 0.5);
+  await tester.pumpAndSettle();
   await tester.tap(finder);
   await tester.pumpAndSettle();
 }

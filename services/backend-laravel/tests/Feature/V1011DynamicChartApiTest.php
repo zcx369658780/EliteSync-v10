@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Models\UserDynamicChart;
 use App\Services\DynamicChartService;
+use App\Services\NatalCalculationService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -67,12 +68,22 @@ class V1011DynamicChartApiTest extends TestCase
 
     public function test_unknown_identity_fields_and_unowned_natal_source_are_rejected(): void
     {
-        Sanctum::actingAs($this->owner());
+        $owner = $this->owner();
+        Sanctum::actingAs($owner);
         $this->postJson('/api/v1/profile/dynamic', [...$this->payload(), 'peer_id' => 2])
             ->assertUnprocessable()->assertHeader('Cache-Control', 'no-store, private');
         $body = $this->payload();
         $body['second'] = ['source' => 'own_natal', 'revision' => 1];
-        $this->postJson('/api/v1/profile/dynamic', $body)->assertUnprocessable();
+        $this->postJson('/api/v1/profile/dynamic', $body)->assertConflict()
+            ->assertJsonPath('code', 'PURPOSE_PERMISSION_REQUIRED');
+        $this->authorizeTestParticipation($owner);
+        $this->putJson('/api/v1/data-rights/dynamic-natal', [
+            'state' => 'GRANTED', 'expected_revision' => 0, 'confirm' => true,
+        ])->assertOk();
+        $this->postJson('/api/v1/profile/dynamic', $body)->assertConflict()
+            ->assertJsonPath('code', 'PURPOSE_CHANGED_REFRESH_REQUIRED');
+        $this->postJson('/api/v1/profile/dynamic', [...$body, 'expected_purpose_revision' => 1])
+            ->assertUnprocessable()->assertJsonPath('code', 'own_natal_revision_unavailable');
         $body = $this->payload();
         $body['settings'] = ['target_year' => null];
         $this->postJson('/api/v1/profile/dynamic', $body)->assertUnprocessable();
@@ -92,6 +103,49 @@ class V1011DynamicChartApiTest extends TestCase
         $changed['second']['input']['civil_time'] = '12:01';
         $this->postJson('/api/v1/profile/dynamic/'.$id, $changed)->assertOk()
             ->assertJsonPath('chart.input_revision', 2)->assertJsonPath('chart.result_revision', 2);
+    }
+
+    public function test_natal_reuse_cannot_publish_a_late_result_or_reuse_an_old_grant(): void
+    {
+        $owner = $this->owner();
+        $this->authorizeTestParticipation($owner);
+        Sanctum::actingAs($owner);
+        $this->mock(NatalCalculationService::class, fn ($mock) => $mock->shouldReceive('compute')
+            ->andReturn(['western' => ['calculation_status' => 'CALCULATED', 'oracle_status' => 'UNVERIFIED']]));
+        $body = $this->payload();
+        $this->postJson('/api/v1/profile/natal', [
+            'input' => $body['first']['input'], 'settings' => [], 'expected_revision' => 0,
+        ])->assertOk()->assertJsonPath('profile.input_revision', 1);
+        $purpose = '/api/v1/data-rights/dynamic-natal';
+        $this->putJson($purpose, ['state' => 'GRANTED', 'expected_revision' => 0, 'confirm' => true])->assertOk();
+        $this->getJson($purpose)->assertOk()->assertJsonPath('source_revision', 1)
+            ->assertJsonMissingPath('input');
+        $body['first'] = ['source' => 'own_natal', 'revision' => 1];
+        $body['expected_purpose_revision'] = 1;
+        $calls = 0;
+        $this->calculator(function () use ($owner, &$calls) {
+            if (++$calls === 2) {
+                app(\App\Services\DataPurposeService::class)->decide($owner->id, 'REVOKED', 1,
+                    \App\Services\DataPurposeService::NATAL_IN_DYNAMIC);
+            }
+            return ['status' => 'CALCULATED', 'oracle_status' => 'UNVERIFIED'];
+        });
+        $dynamic = '/api/v1/profile/dynamic';
+        $id = $this->postJson($dynamic, $body)->assertOk()->assertJsonPath('chart.purpose_revision', 1)
+            ->assertJsonPath('chart.result_revision', 1)->json('chart.id');
+        $body['expected_revision'] = 1;
+        $body['second']['input']['civil_time'] = '12:01';
+        $this->postJson("$dynamic/$id", $body)->assertConflict()
+            ->assertJsonPath('code', 'PURPOSE_CHANGED_REFRESH_REQUIRED');
+        $this->assertDatabaseHas('user_dynamic_charts', ['id' => $id, 'input_revision' => 2,
+            'result_revision' => null, 'results' => null]);
+        $this->putJson($purpose, ['state' => 'GRANTED', 'expected_revision' => 2, 'confirm' => true])->assertOk();
+        $this->getJson("$dynamic/$id")->assertOk()->assertJsonPath('chart.status', 'PURPOSE_UNAVAILABLE')
+            ->assertJsonMissingPath('chart.request');
+        $body['expected_revision'] = 2;
+        $this->postJson("$dynamic/$id", $body)->assertConflict()
+            ->assertJsonPath('code', 'PURPOSE_CHANGED_REFRESH_REQUIRED');
+        $this->assertSame(2, $calls);
     }
 
     public function test_failure_and_superseded_result_never_become_cached_success(): void

@@ -31,6 +31,7 @@ Map<String, dynamic> _row({String type = 'solar_return'}) => {
   'id': 7,
   'chart_type': type,
   'input_revision': 1,
+  'purpose_revision': 3,
   'result_revision': 1,
   'status': 'COMPUTED_UNVERIFIED',
   'settings': {},
@@ -202,6 +203,7 @@ void main() {
       expect(api.writes, hasLength(1));
       expect(api.writes.single['selected_event_index'], 1);
       expect(api.writes.single['expected_revision'], 1);
+      expect(api.writes.single['expected_purpose_revision'], 3);
       expect(api.writes.single['chart_type'], 'solar_return');
       expect(find.textContaining('输入版本 2'), findsOneWidget);
     },

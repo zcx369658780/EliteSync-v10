@@ -109,6 +109,8 @@ Route::prefix('v1')->group(function () {
         $rights = \App\Http\Controllers\Api\V1\DataRightsController::class;
         Route::get('/showcase-city', [$rights, 'purpose']);
         Route::put('/showcase-city', [$rights, 'decide'])->middleware('throttle:10,1');
+        Route::get('/dynamic-natal', [$rights, 'dynamicPurpose']);
+        Route::put('/dynamic-natal', [$rights, 'decideDynamicPurpose'])->middleware('throttle:10,1');
         Route::post('/showcase-city/reuse', [$rights, 'reuseCity'])->middleware('throttle:10,1');
         Route::get('/objects', [$rights, 'owned']);
         Route::get('/objects/{type}/{key}', [$rights, 'object']);

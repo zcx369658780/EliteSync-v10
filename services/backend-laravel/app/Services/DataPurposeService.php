@@ -3,11 +3,14 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\UserDynamicChart;
 use Illuminate\Support\Facades\DB;
 
 final class DataPurposeService
 {
     public const CITY_IN_SHOWCASE = 'showcase_city';
+    public const NATAL_IN_DYNAMIC = 'dynamic_own_natal';
+
     private const BASIS = 'ISOLATED_TEST_ONLY';
 
     /** The only configured basis is a signed synthetic identity in isolated memory. */
@@ -16,10 +19,10 @@ final class DataPurposeService
         return app(TrustedIdentityService::class)->participationAllowed($owner);
     }
 
-    private function grant(int $owner): ?object
+    private function grant(int $owner, string $purpose = self::CITY_IN_SHOWCASE): ?object
     {
         return DB::table('data_purpose_grants')->where('user_id', $owner)
-            ->where('purpose', self::CITY_IN_SHOWCASE)->lockForUpdate()->first();
+            ->where('purpose', $purpose)->lockForUpdate()->first();
     }
 
     private function isCurrent(?object $grant): bool
@@ -29,14 +32,17 @@ final class DataPurposeService
     }
 
     /** The controller and the showcase workflow hold the owner lock. */
-    public function status(int $owner): array
+    public function status(int $owner, string $purpose = self::CITY_IN_SHOWCASE): array
     {
         $mode = $this->testOnly($owner);
-        $grant = $mode ? $this->grant($owner) : null;
+        $grant = $mode ? $this->grant($owner, $purpose) : null;
+        $city = $purpose === self::CITY_IN_SHOWCASE;
 
         return [
-            'purpose' => self::CITY_IN_SHOWCASE, 'source' => 'profile.current_city',
-            'fields' => ['current_city'], 'audience' => 'SELF_PREVIEW_UNTIL_SEPARATE_PUBLICATION',
+            'purpose' => $purpose, 'source' => $city ? 'profile.current_city' : 'private_natal.input_revision',
+            'fields' => $city ? ['current_city'] : ['civil_date', 'civil_time', 'time_precision',
+                'timezone', 'location', 'algorithm_parameters'],
+            'audience' => $city ? 'SELF_PREVIEW_UNTIL_SEPARATE_PUBLICATION' : 'SELF_ONLY',
             'available' => $mode, 'test_only' => $mode,
             'state' => match (true) {
                 ! $mode => 'LEGAL_BASIS_UNVERIFIED',
@@ -49,18 +55,45 @@ final class DataPurposeService
         ];
     }
 
-    public function decide(int $owner, string $state, int $expected): array
+    public function decide(int $owner, string $state, int $expected, string $purpose = self::CITY_IN_SHOWCASE): array
     {
         abort_unless($this->testOnly($owner), 409, 'LEGAL_BASIS_UNVERIFIED');
-        $grant = $this->grant($owner);
+        $grant = $this->grant($owner, $purpose);
         abort_unless((int) ($grant->revision ?? 0) === $expected, 409, 'PURPOSE_CHANGED_REFRESH_REQUIRED');
-        DB::table('data_purpose_grants')->updateOrInsert(['user_id' => $owner, 'purpose' => self::CITY_IN_SHOWCASE], [
+        DB::table('data_purpose_grants')->updateOrInsert(['user_id' => $owner, 'purpose' => $purpose], [
             'state' => $state, 'basis' => self::BASIS, 'revision' => $expected + 1,
             'expires_at' => $state === 'GRANTED' ? now()->addHour() : null,
             'created_at' => $grant->created_at ?? now(), 'updated_at' => now(),
         ]);
 
-        return $this->status($owner);
+        return $this->status($owner, $purpose);
+    }
+
+    public function dynamicUsesNatal(array $request): bool
+    {
+        return data_get($request, 'first.source') === 'own_natal'
+            || data_get($request, 'second.source') === 'own_natal';
+    }
+
+    public function dynamicRevision(int $owner): ?int
+    {
+        $grant = $this->testOnly($owner) ? $this->grant($owner, self::NATAL_IN_DYNAMIC) : null;
+
+        return $this->isCurrent($grant) ? (int) $grant->revision : null;
+    }
+
+    public function dynamicView(User $owner, UserDynamicChart $row, DynamicChartService $service): array
+    {
+        if (! $this->dynamicUsesNatal($row->request)) {
+            return $service->view($owner, $row);
+        }
+        $revision = $this->dynamicRevision((int) $owner->id);
+        if ($revision === null || ($row->prepared['_purpose_grant_revision'] ?? null) !== $revision) {
+            return ['id' => $row->id, 'chart_type' => $row->chart_type, 'input_revision' => $row->input_revision,
+                'result_revision' => null, 'results' => null, 'status' => 'PURPOSE_UNAVAILABLE'];
+        }
+
+        return $service->view($owner, $row) + ['purpose_revision' => $revision];
     }
 
     private function currentCity(int $owner): string

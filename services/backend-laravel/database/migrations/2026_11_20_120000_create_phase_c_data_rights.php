@@ -42,6 +42,12 @@ return new class extends Migration
 
     public function down(): void
     {
+        if (DB::table('user_dynamic_charts')->whereNotNull('prepared->_purpose_grant_revision')->exists()
+            || DB::table('user_tool_revisions')->where('tool', 'dynamic')
+                ->whereNotNull('snapshot->prepared->_purpose_grant_revision')->exists()) {
+            throw new RuntimeException('Purpose-bound dynamic history requires a safe downgrade plan.');
+        }
+
         // Downgrading to readers without purpose checks must not expose a
         // publication that had been dependent on a C-stage purpose.
         DB::table('user_profile_showcase_publications')

@@ -31,9 +31,7 @@ class PrivacySettingsPage extends StatelessWidget {
           ListTile(
             title: const Text('管理展示草稿的资料用途'),
             onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const ShowcasePurposePage(),
-              ),
+              MaterialPageRoute<void>(builder: (_) => const DataPurposePage()),
             ),
           ),
           for (final item in [('work', '本人作品的数据删除'), ('comment', '本人评论的数据删除')])

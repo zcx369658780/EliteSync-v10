@@ -45,6 +45,28 @@ final class DataRightsController extends Controller
         return $this->authorized($request, fn ($owner) => $service->decide($owner, $data['state'], (int) $data['expected_revision']));
     }
 
+    public function dynamicPurpose(Request $request, DataPurposeService $service): JsonResponse
+    {
+        return $this->authorized($request, function (int $owner) use ($service) {
+            $status = $service->status($owner, DataPurposeService::NATAL_IN_DYNAMIC);
+            $source = $status['state'] === 'GRANTED'
+                ? \App\Models\UserNatalProfile::where('user_id', $owner)->lockForUpdate()->first() : null;
+            $current = $source && $source->status === 'COMPUTED_UNVERIFIED'
+                && $source->result_revision === $source->input_revision;
+
+            return $status + ['source_revision' => $current ? $source->input_revision : null];
+        });
+    }
+
+    public function decideDynamicPurpose(Request $request, DataPurposeService $service): JsonResponse
+    {
+        $data = $request->validate(['state' => 'required|in:GRANTED,DECLINED,REVOKED',
+            'expected_revision' => 'required|integer|min:0', 'confirm' => 'required|accepted']);
+
+        return $this->authorized($request, fn ($owner) => $service->decide($owner, $data['state'],
+            (int) $data['expected_revision'], DataPurposeService::NATAL_IN_DYNAMIC));
+    }
+
     public function reuseCity(Request $request, ShowcaseWorkflow $workflow): JsonResponse
     {
         $data = $request->validate(['expected_revision' => 'required|integer|min:0', 'confirm' => 'required|accepted']);
