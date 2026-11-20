@@ -1,3 +1,11 @@
+# 2026-11-20 最新Owner工程推进：B阶段限定终验正式接受、C阶段获准启动
+
+- [Owner最新具名决议](../decisions/OWNER_V2_PHASE_B_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_C_ENGINEERING_AUTHORIZATION_20261120.md)：正式接受B1–B4限定自动化范围的工程交付，并授权阶段C C1–C4修改代码/隔离自动化测试。阶段A/B已获**各自限域**Owner接受；不等于PHP/Flutter全量测试及真实环境全通过。
+- [阶段C合并工程合同](../versions/v2/V2_PHASE_C_DATA_RIGHTS_AND_PURPOSE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)和[现有Codex会话启动Prompt](../workflow/V2_PHASE_C_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)为当前工作入口。此前同一文件中“C仅规划/未授权”的表述是本次Owner决定形成前的历史快照；**阶段D仍未授权**。真实KYC/Push、法域/第三方合法保留、生产DB与个人数据删除、真机、正式A6及main/发布仍STOP。
+- 实际C阶段未被网页GPT运行或验收；B具名PHP149/1,936与Flutter226有Codex报告，PHP全量81errors/108failures、Flutter扩围3fails仍FAIL，PHP8.4/MariaDB/设备等仍OPEN/NOT_RUN。
+
+---
+
 # 2026-11-20 Owner最新阶段权限：A限定终验接受、B工程正式授权
 
 - [Owner阶段A最终限定接受及阶段B授权](../decisions/OWNER_V2_PHASE_A_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_B_ENGINEERING_AUTHORIZATION_20261120.md)已生效。A的PHP/Flutter具名自动化结论可正式记`OWNER_SCOPED_ACCEPTED`，但PHP8.4/MariaDB/设备/真实供应商限制保留；B1–B4按本路线图正式开放**本地Codex工程修改与隔离测试**，阶段C/D未启动。
