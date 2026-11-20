@@ -1,3 +1,12 @@
+# 2026-11-20｜网页GPT顾问会话交接已封存；Local-first阶段C继续、最新报告待新会话审
+
+- Owner明确要求立即在GitHub与可下载本地副本保存任务/决定/工作流并交接；[完整交接文件](SESSION_HANDOFF_20261120_V2_PHASE_C_AUTHORIZED_AWAITING_DELIVERY.md)已保存（包含新会话简短首读和验收Prompt）。**网页GPT不能直接写Owner Windows本地目录**，本地镜像必须由Owner手动复制或Codex安全只读获取/校验后回报；无本地回执不可写`LOCAL_SYNC_DONE`。
+- 不改变最新Owner决议：阶段A/B在**限定自动化范围**已获最终接受，阶段C现有本地Codex可自治C1–C4实施/隔离测试；C结果待其交付，新网页GPT会话审查。此前所有`PHASE_C_NOT_AUTHORIZED`是历史，阶段D仍无权限。不要借交接恢复GitHub派单中心或让Owner逐项转发小任务。
+- 最小接续顺序：固定交接→ACTIVE_STATE顶部CURRENT ENTRY→具名B接受/C授权→阶段C唯一任务单；Owner发来C固定源码/报告以后再做一次集中源码/运行证据验收。继续保护PHP全量旧FAIL、Flutter扩围3FAIL、PHP8.4/MariaDB/设备/真实服务/合法受理OPEN及原43PNG/F-01历史。
+- 安全停止：不操作旧main脏工作树、S1原树/当前项目未提交内容，不自动执行阶段D/真机/模拟器/外部供应商/生产DB/不可逆删除/正式A6/main发布；不得凭代码和TEST_ONLY伪造真实删改法律完成或已上线。
+
+---
+
 # 2026-11-20｜阶段B限定终验已获Owner正式接受，阶段C本地Codex自治执行获授权
 
 - [最新Owner具名决定](../decisions/OWNER_V2_PHASE_B_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_C_ENGINEERING_AUTHORIZATION_20261120.md)确认阶段B的**具名隔离自动化范围**最终通过，并授权C1–C4本地软件修改与安全隔离测试；先前`PHASE_C_NOT_AUTHORIZED`属历史时点。阶段B遗留PHP全量`FAIL 81 errors/108 failures`、Flutter扩围`FAIL 3`和PHP8.4/MariaDB/设备/真实服务`NOT_RUN`不因Owner接受而倒改。
