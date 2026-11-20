@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-20：阶段B B1–B4获网页顾问限定验收，Owner最终决定待定
+
+**`PHASE_B_SCOPED_ACCEPTED_WITH_RESERVATIONS / OWNER_FINAL_ACCEPTANCE_PENDING / PHASE_C_NOT_AUTHORIZED / A6_MEETING_DEFERRED / MAIN_MERGE_RELEASE_NOT_AUTHORIZED`**
+
+- 阶段B固定工程分支`codex/v2-phase-b-home-content-audience-20261120`远端HEAD已核为`1780f6add9a439c109f527eb7f58c2f96ab8bfa5`；A交付`07b51a6d...`→B产品`f20f25ac...`有5次提交及前后端/schema/测试变化，之后有通知测试夹具修正`789764f9...`、最终报告`1780f6ad...`。已由网页顾问[集中限定验收](V2_PHASE_B_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)并独立抽样核实B1官方访客/用户隔离、B2默认受众/评论策略、B3分主体撤回/隐藏与保守独立回复、B4媒体实际字节/深链/通知及原受众保护。
+- **具名自动化限域验收`ACCEPTED_WITH_RESERVATIONS`**：PHP149项/1,936断言、Flutter226项和17份Dart静态分析0问题为Codex报告/源码测试断言佐证，不是网页顾问复跑。PHP全量仍`FAIL`：A 1,477项、81 errors/109 failures；B 1,487项、81 errors/108 failures，0新增/恢复1旧案为Codex报告的逐例对照。Flutter扩围仍`FAIL`：65通过、3失败，报告称A基线可复现，网页顾问未独立回读本地原始日志。
+- **继续OPEN/NOT_RUN**：PHP8.4（交付PHP8.5.3）、MariaDB并发/实际迁移、真机/跨设备、真实KYC/Push/RTC、访客官方真实获准正文（`public_editorial=[]`）、第三方素材/法域、F-01及原43PNG。仅阶段B具名子项有证据，G02/G03/G08整体仍PARTIAL，旧1011804失败/UNKNOWN/NOT_RUN不改变。
+- 阶段B成果可供Owner在限定范围最终接受，但未获Owner终验；阶段C/D并未获实施授权，A6正式UI会议仍DEFERRED，无main合并/生产发布。原历史CURRENT ENTRY仅按当时时点解释，不能覆盖这一条。
+
+---
+
 # CURRENT ENTRY 2026-11-20：Owner阶段A限定范围正式验收，并独立授权阶段B工程启动
 
 **`OWNER_PHASE_A_FINAL_SCOPED_ACCEPTED / PHASE_B_ENGINEERING_AUTHORIZED / PHASE_B_CODEX_HANDOFF_READY / PHASE_B_NOT_YET_EXECUTED_BY_WEB / PHASE_C_D_NOT_STARTED / A6_MEETING_DEFERRED / MAIN_MERGE_RELEASE_NOT_AUTHORIZED`**
