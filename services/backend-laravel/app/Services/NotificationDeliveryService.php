@@ -113,7 +113,8 @@ final class NotificationDeliveryService
         if (! $original) {
             return $this->suppressed();
         }
-        $ids = [(int) $original->user_id];
+        $notifications = app(NotificationService::class);
+        $ids = [(int) $original->user_id, ...$notifications->businessParticipants($original)];
         $pointer = (array) ($original->payload ?? []);
         if ($original->kind === 'message' && ($pointer['message_id'] ?? null)) {
             $message = ChatMessage::find($pointer['message_id']);
@@ -138,10 +139,14 @@ final class NotificationDeliveryService
             }
         }
 
-        return DB::transaction(function () use ($original, $deviceId, $ids) {
+        return DB::transaction(function () use ($original, $deviceId, $ids, $notifications) {
+            if ($notifications->usesProposalAuthority($original)) {
+                app(CurrentQuestionnaire::class)->lock();
+            }
             $users = User::whereIn('id', array_unique($ids))->orderBy('id')->lockForUpdate()->get()->keyBy('id');
             $notice = AppNotificationItem::query()->lockForUpdate()->find($original->id);
-            if (! $notice) {
+            if (! $notice || $notice->user_id !== $original->user_id || $notice->kind !== $original->kind
+                || $notice->source_event_key !== $original->source_event_key || $notice->payload !== $original->payload) {
                 return $this->suppressed();
             }
             $device = DB::table('notification_devices')->where('device_id', $deviceId)
@@ -160,8 +165,8 @@ final class NotificationDeliveryService
                 if (app(DeviceSessions::class)->onlineDeadline($family)->lessThanOrEqualTo(now('UTC'))) {
                     return $this->suppressed();
                 }
-                $presentation = app(NotificationService::class)->presentationForUser($notice, (int) $notice->user_id);
-                if (! ($presentation['available'] ?? true) || $presentation['title'] === '通知已不可用') {
+                $presentation = $notifications->presentationForUser($notice, (int) $notice->user_id);
+                if (! $notifications->isAvailable($presentation)) {
                     return $this->suppressed();
                 }
             } catch (\Throwable) {

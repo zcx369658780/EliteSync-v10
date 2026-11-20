@@ -41,6 +41,12 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
   bool _hasOlder = false;
   bool _loadingOlder = false;
   String? _olderError;
+  String _channel = 'current';
+
+  FutureProvider<List<NotificationItemEntity>> get _activeList =>
+      _channel == 'current'
+      ? notificationListProvider
+      : notificationChannelProvider(_channel);
 
   void _resetHistory() {
     _historyGeneration++;
@@ -83,6 +89,7 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
     }
     final generation = _historyGeneration;
     final firstPage = _firstPage;
+    final channel = _channel;
     final identity = ref.read(sessionProvider).asData?.value.accessToken;
     final epoch = ref.read(relationshipAuthorityEpochProvider);
     bool current() =>
@@ -95,9 +102,10 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
       _olderError = null;
     });
     try {
-      final page = await ref
-          .read(notificationRemoteDataSourceProvider)
-          .fetchOlderNotifications(before);
+      final source = ref.read(notificationRemoteDataSourceProvider);
+      final page = channel == 'current'
+          ? await source.fetchOlderNotifications(before)
+          : await source.fetchChannel(channel, beforeId: before);
       if (!current()) return;
       final older = page
           .where((item) => item.id > 0 && item.id < before)
@@ -180,25 +188,33 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
 
   Future<void> _refresh() async {
     setState(_resetHistory);
-    ref.invalidate(notificationListProvider);
+    final active = _activeList;
+    ref.invalidate(active);
     ref.invalidate(notificationUnreadCountProvider);
     try {
-      await ref.read(notificationListProvider.future);
+      await ref.read(active.future);
     } catch (_) {
       // The provider keeps the failed read visible until the user retries.
     }
   }
 
   Future<void> _markAllRead() async {
+    final identity = ref.read(sessionProvider).asData?.value.accessToken;
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
+    if (!_currentControlledIntent(identity, epoch)) return;
     final unread = ref.read(notificationUnreadCountProvider).asData?.value;
     try {
       await ref.read(notificationRemoteDataSourceProvider).markAllRead();
     } catch (_) {
-      if (mounted) {
-        AppFeedback.showInfo(context, '操作未完成，请稍后重试');
+      if (_currentControlledIntent(identity, epoch)) {
+        await _refresh();
+        if (mounted && _currentControlledIntent(identity, epoch)) {
+          AppFeedback.showInfo(context, '批量已读结果尚未确认，请核对当前通知');
+        }
       }
       return;
     }
+    if (!_currentControlledIntent(identity, epoch)) return;
     ref
         .read(frontendTelemetryProvider)
         .notificationAllRead(
@@ -206,6 +222,7 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
           unreadCount: unread,
         );
     ref.invalidate(notificationListProvider);
+    ref.invalidate(notificationChannelProvider);
     ref.invalidate(notificationUnreadCountProvider);
     if (!mounted) return;
     AppFeedback.showInfo(context, '已全部标记为已读');
@@ -213,14 +230,26 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
 
   Future<bool> _markRead(NotificationItemEntity item) async {
     if (item.isRead) return true;
+    final identity = ref.read(sessionProvider).asData?.value.accessToken;
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
+    if (!_currentControlledIntent(identity, epoch)) return false;
+    final source = ref.read(notificationRemoteDataSourceProvider);
     try {
-      await ref.read(notificationRemoteDataSourceProvider).markRead(item.id);
+      await source.markRead(item.id);
     } catch (_) {
-      if (mounted) {
-        AppFeedback.showInfo(context, '操作未完成，请稍后重试');
+      if (!_currentControlledIntent(identity, epoch)) return false;
+      try {
+        final latest = await source.fetchNotification(item.id);
+        if (!_currentControlledIntent(identity, epoch)) return false;
+        if (!latest.isRead) throw StateError('Read status not applied');
+      } catch (_) {
+        if (mounted && _currentControlledIntent(identity, epoch)) {
+          AppFeedback.showInfo(context, '已读结果尚未确认，请刷新通知');
+        }
+        return false;
       }
-      return false;
     }
+    if (!_currentControlledIntent(identity, epoch)) return false;
     ref
         .read(frontendTelemetryProvider)
         .notificationItemOpened(
@@ -228,6 +257,7 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
           kind: item.kind,
         );
     ref.invalidate(notificationListProvider);
+    ref.invalidate(notificationChannelProvider);
     ref.invalidate(notificationUnreadCountProvider);
     return true;
   }
@@ -404,6 +434,11 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
   }
 
   Future<bool> _openNotification(NotificationItemEntity item) async {
+    if (item.isHistorical) {
+      _refresh();
+      AppFeedback.showInfo(context, '这条通知已失效');
+      return false;
+    }
     final controlledTarget = _controlledTarget(item);
     if (controlledTarget != null) {
       return _openControlledNotification(item, controlledTarget);
@@ -482,6 +517,20 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
       context.go(AppRouteNames.questionnaireHistory);
       return true;
     }
+    if (routeName == 'journey_task') {
+      final proposalId = item.routeArgs['proposal_id'];
+      if (item.todoKind == 'proposal_response') {
+        if (proposalId is! String ||
+            !RegExp(r'^[0-9a-fA-F-]{36}$').hasMatch(proposalId)) {
+          return false;
+        }
+        _openTaskPage(Uri(path: AppRouteNames.progressMatch,
+          queryParameters: {'proposalId': proposalId}).toString());
+      } else {
+        _openTaskPage(AppRouteNames.progressMatch);
+      }
+      return true;
+    }
     if (routeName == 'content_detail') {
       final contentId = (item.routeArgs['content_id'] ?? '').toString();
       if (contentId.isNotEmpty) {
@@ -494,7 +543,7 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
     if (routeName == 'connection_current') {
       final peer = _intRouteArg('peer_id', item);
       if (peer <= 0) return false;
-      context.push('/live-connection?peerId=$peer');
+      _openTaskPage('/live-connection?peerId=$peer');
       return true;
     }
     if (routeName == 'showcase_current') {
@@ -539,11 +588,20 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
       return true;
     }
     if (routeName == 'social_baseline') {
-      context.push(AppRouteNames.socialBaseline);
+      _openTaskPage(AppRouteNames.socialBaseline);
       return true;
     }
     AppFeedback.showInfo(context, '暂无法打开该通知');
     return false;
+  }
+
+  Future<void> _openTaskPage(String path) async {
+    final identity = ref.read(sessionProvider).asData?.value.accessToken;
+    await context.push(path);
+    if (mounted &&
+        identity == ref.read(sessionProvider).asData?.value.accessToken) {
+      await _refresh();
+    }
   }
 
   Future<void> _openAndMarkRead(NotificationItemEntity item) async {
@@ -583,10 +641,6 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
     await _openAndMarkRead(item);
   }
 
-  void _handleLater(NotificationItemEntity item) {
-    AppFeedback.showInfo(context, '已保留在通知中心，稍后可继续处理');
-  }
-
   String _formatTime(String raw) {
     if (raw.isEmpty) return '刚刚';
     final time = DateTime.tryParse(raw);
@@ -600,6 +654,12 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
   }
 
   Widget _buildNotificationCard(NotificationItemEntity item, dynamic t) {
+    if (item.isHistorical) {
+      return ListTile(
+        key: ValueKey('notification-card-${item.id}'),
+        title: const Text('通知已不可用'),
+      );
+    }
     final privacyPresentation = NotificationPrivacyContract.inAppPreviewFor(
       item,
     );
@@ -678,14 +738,14 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
                   ),
                 ],
                 SizedBox(height: t.spacing.xs),
-                Row(
+                Wrap(
+                  spacing: t.spacing.xs,
                   children: [
                     AppChoiceChip(
                       label: privacyPresentation.categoryLabel,
                       selected: !item.isRead,
                       onTap: null,
                     ),
-                    SizedBox(width: t.spacing.xs),
                     Text(
                       _formatTime(item.createdAt),
                       style: Theme.of(
@@ -694,6 +754,10 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
                     ),
                   ],
                 ),
+                if (item.todoDueAt case final deadline?)
+                  Text('待处理 · 截止 ${_formatDeadline(deadline)}')
+                else if (item.todoKind != null)
+                  const Text('待处理'),
                 SizedBox(height: t.spacing.xs),
                 Wrap(
                   spacing: t.spacing.xs,
@@ -711,11 +775,6 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
                             ? '仅标记已读'
                             : privacyPresentation.actionLabel,
                       ),
-                    ),
-                    OutlinedButton.icon(
-                      onPressed: () => _handleLater(item),
-                      icon: const Icon(Icons.schedule_outlined),
-                      label: const Text('稍后处理'),
                     ),
                     if (!item.isRead)
                       OutlinedButton.icon(
@@ -735,7 +794,8 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(notificationListProvider, (previous, next) {
+    final active = _activeList;
+    ref.listen(active, (previous, next) {
       if (next.isLoading || next.hasError) setState(_resetHistory);
     });
     ref.listen(sessionProvider, (previous, next) {
@@ -749,27 +809,54 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
       relationshipAuthorityEpochProvider,
       (_, next) => setState(_resetHistory),
     );
-    final listAsync = ref.watch(notificationListProvider);
+    final listAsync = ref.watch(active);
     final unreadAsync = ref.watch(notificationUnreadCountProvider);
     final t = context.appTokens;
 
     return Scaffold(
       backgroundColor: t.browseBackground,
       body: BrowseScaffold(
-        header: Row(
+        header: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Text(
-                '通知中心',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  color: t.textPrimary,
-                  fontWeight: FontWeight.w800,
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    '通知中心',
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      color: t.textPrimary,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
                 ),
-              ),
+                IconButton(
+                  tooltip: '刷新通知',
+                  onPressed: _refresh,
+                  icon: Icon(Icons.refresh_rounded, color: t.textSecondary),
+                ),
+              ],
             ),
-            IconButton(
-              onPressed: _refresh,
-              icon: Icon(Icons.refresh_rounded, color: t.textSecondary),
+            Wrap(
+              spacing: 8,
+              children: [
+                for (final (value, label) in [
+                  ('current', '通知'),
+                  ('todo', '待办'),
+                  ('history', '历史'),
+                ])
+                  ChoiceChip(
+                    label: Text(label),
+                    selected: _channel == value,
+                    onSelected: (selected) {
+                      if (!selected) return;
+                      setState(() {
+                        _channel = value;
+                        _resetHistory();
+                      });
+                    },
+                  ),
+              ],
             ),
             IconButton(
               tooltip: '通知设置',
@@ -858,30 +945,31 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
                 key: ValueKey('notification-list-$_historyGeneration'),
                 padding: EdgeInsets.only(bottom: t.spacing.huge),
                 children: [
-                  AppInfoSectionCard(
-                    title: '站内提醒',
-                    subtitle: '匹配、消息与资料提醒',
-                    leadingIcon: Icons.notifications_active_outlined,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            _unreadSummaryText(unread),
-                            style: Theme.of(context).textTheme.titleMedium
-                                ?.copyWith(
-                                  color: t.textPrimary,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                  if (_channel == 'current')
+                    AppInfoSectionCard(
+                      title: '站内提醒',
+                      subtitle: '匹配、消息与资料提醒',
+                      leadingIcon: Icons.notifications_active_outlined,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              _unreadSummaryText(unread),
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(
+                                    color: t.textPrimary,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                            ),
                           ),
-                        ),
-                        AppChoiceChip(
-                          label: '全部已读',
-                          leading: const Icon(Icons.done_all_rounded),
-                          onTap: _markAllRead,
-                        ),
-                      ],
+                          AppChoiceChip(
+                            label: '全部已读',
+                            leading: const Icon(Icons.done_all_rounded),
+                            onTap: _markAllRead,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
                   SizedBox(height: t.spacing.sm),
                   SizedBox(height: t.spacing.md),
                   ...items.map(
@@ -904,4 +992,11 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
 String _unreadSummaryText(int unread) {
   if (unread > 20) return '有未读提醒';
   return '未读 $unread 条';
+}
+
+String _formatDeadline(DateTime deadline) {
+  final local = deadline.toLocal();
+  String two(int value) => value.toString().padLeft(2, '0');
+  return '${local.year}-${two(local.month)}-${two(local.day)} '
+      '${two(local.hour)}:${two(local.minute)}（本机时区）';
 }

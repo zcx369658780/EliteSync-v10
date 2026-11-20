@@ -187,12 +187,22 @@ class _LifestylePageState extends ConsumerState<LifestyleDiscoveryPage>
                                 ? null
                                 : () async {
                                     if (controller.pending != null) {
-                                      await controller.retry();
+                                      final saved = await controller.retry();
+                                      if (saved &&
+                                          mounted &&
+                                          controller == _loaded) {
+                                        setState(() {
+                                          _positioned = false;
+                                          _index = -1;
+                                        });
+                                      }
                                     } else {
                                       await controller.load();
                                     }
                                   },
-                            child: const Text('重试'),
+                            child: Text(
+                              controller.pending == null ? '重新读取' : '核对后重试原操作',
+                            ),
                           ),
                         TextButton(
                           onPressed: _exit,

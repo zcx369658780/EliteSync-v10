@@ -15,6 +15,10 @@ class SectionReveal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.disableAnimationsOf(context) ||
+        MediaQuery.accessibleNavigationOf(context)) {
+      return child;
+    }
     final t = context.appTokens;
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0, end: 1),

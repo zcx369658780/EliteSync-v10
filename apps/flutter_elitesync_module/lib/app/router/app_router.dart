@@ -511,9 +511,17 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                 routes: [
                   GoRoute(
                     path: AppRouteNames.progressMatchSegment,
-                    builder: (context, state) => env.restorationLocalBuild
-                        ? const SlowDatingJourneyPage()
-                        : const MatchShellPage(),
+                    redirect: (_, state) =>
+                        !env.restorationLocalBuild &&
+                            state.uri.queryParameters.containsKey('proposalId')
+                        ? AppRouteNames.progress
+                        : null,
+                    builder: (context, state) {
+                      final proposalId = state.uri.queryParameters['proposalId'];
+                      return env.restorationLocalBuild
+                          ? SlowDatingJourneyPage(expectedProposalId: proposalId)
+                          : const MatchShellPage();
+                    },
                   ),
                   GoRoute(
                     path: AppRouteNames.progressConnectionSegment,

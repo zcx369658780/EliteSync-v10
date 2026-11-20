@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uuid/uuid.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'relationship_api.dart';
 
@@ -116,6 +117,72 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
         data = null;
         onAuthorityChanged();
         error = '操作结果尚未确认，请先刷新当前状态核对。';
+      },
+    );
+    if (result != null) {
+      ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+    }
+  }
+
+  Future<void> decideProposal(String id, int revision, String action) async {
+    final label = switch (action) {
+      'accept' => '接受候选',
+      'decline' => '拒绝候选',
+      _ => '撤回提案',
+    };
+    if (!await confirm(label, '请确认是否提交这次提案回应。')) return;
+    final body = {
+      'action': action,
+      'revision': revision,
+      'idempotency_key': const Uuid().v4(),
+    };
+    final path = '/journey/proposals/$id';
+    final query = Uri(
+      queryParameters: {
+        for (final entry in body.entries) entry.key: entry.value.toString(),
+      },
+    ).query;
+    final generation = _generation;
+    final result = await run(
+      () async {
+        final api = ref.read(relationshipApiProvider);
+        Future<Map<String, dynamic>> write() =>
+            api.call('POST', '$path/decision', body);
+        Future<Map<String, dynamic>> readResult() =>
+            api.call('GET', '$path/decision-result?$query');
+        try {
+          return await write();
+        } catch (failure) {
+          if (!mounted ||
+              generation != _generation ||
+              (failure is RelationshipFailure &&
+                  (failure.statusCode ?? 500) < 500 &&
+                  failure.statusCode != 408)) {
+            rethrow;
+          }
+          final receipt = await readResult();
+          if (!mounted || generation != _generation) rethrow;
+          if (receipt['command_status'] == 'APPLIED') return receipt;
+          if (receipt['command_status'] == 'NOT_APPLIED') {
+            if (!await confirm('重试原回应', '服务端尚未确认原操作。可用同一编号重试。')) {
+              return receipt;
+            }
+            try {
+              return await write();
+            } catch (_) {
+              if (!mounted || generation != _generation) rethrow;
+              final checked = await readResult();
+              if (checked['command_status'] == 'APPLIED') return checked;
+              rethrow;
+            }
+          }
+          rethrow;
+        }
+      },
+      onFailure: (_) {
+        data = null;
+        onAuthorityChanged();
+        error = '回应结果尚未确认，请刷新当前状态核对。';
       },
     );
     if (result != null) {

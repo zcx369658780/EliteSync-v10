@@ -306,6 +306,7 @@ void main() {
               'revision': 4,
               'state': 'PENDING',
               'decision_available': true,
+              'accept_available': true,
               'withdraw_available': true,
               'peer_id': 2,
               'showcase': {'public_id': 'ES-2'},
@@ -321,6 +322,9 @@ void main() {
       );
       await tester.ensureVisible(find.byKey(const ValueKey('proposal-accept')));
       await tester.tap(find.byKey(const ValueKey('proposal-accept')));
+      await tester.pumpAndSettle();
+      expect(sent, isNull);
+      await tester.tap(find.text('确认'));
       await tester.pumpAndSettle();
       expect(decisionPath, '/journey/proposals/22/decision');
       expect(sent?['action'], 'accept');
@@ -351,6 +355,71 @@ void main() {
       expect(find.text('连接与消息许可'), findsNothing);
     },
   );
+
+  testWidgets(
+    'lost proposal response is queried before an explicit same-key retry',
+    (tester) async {
+      final writes = <Map<String, dynamic>>[];
+      String? readKey;
+      final proposal = {
+        'id': '11111111-1111-4111-8111-111111111111',
+        'revision': 4,
+        'state': 'PENDING',
+        'accept_available': true,
+      };
+      await mount(
+        tester,
+        const SlowDatingJourneyPage(),
+        FakeApi((method, path, body) async {
+          if (method == 'POST') {
+            writes.add(Map.of(body!));
+            if (writes.length == 1) {
+              throw const RelationshipFailure(
+                'synthetic lost response',
+                statusCode: 503,
+              );
+            }
+          }
+          if (path.contains('/decision-result?')) {
+            readKey = Uri.parse(path).queryParameters['idempotency_key'];
+            return {'command_status': 'NOT_APPLIED'};
+          }
+          return journey(proposal: proposal);
+        }),
+      );
+      final accept = find.byKey(const ValueKey('proposal-accept'));
+      await tester.ensureVisible(accept);
+      await tester.tap(accept);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('确认'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(find.text('重试原回应'), findsOneWidget);
+      expect(writes, hasLength(1));
+      expect(readKey, writes.single['idempotency_key']);
+      await tester.tap(find.text('确认'));
+      await tester.pumpAndSettle();
+      expect(writes, hasLength(2));
+      expect(writes.last, writes.first);
+    },
+  );
+
+  testWidgets('a task locator cannot open a replacement proposal', (tester) async {
+    await mount(
+      tester,
+      const SlowDatingJourneyPage(expectedProposalId: 'old-proposal'),
+      FakeApi((_, _, _) async => journey(proposal: {
+        'id': 'different-current-proposal',
+        'revision': 1,
+        'state': 'PENDING',
+        'accept_available': true,
+        'showcase': {'display_name': 'UNRELATED_PROPOSAL'},
+      })),
+    );
+    expect(find.text('这项提案已不在当前待办。'), findsOneWidget);
+    expect(find.textContaining('UNRELATED_PROPOSAL'), findsNothing);
+    expect(find.byKey(const ValueKey('proposal-accept')), findsNothing);
+  });
 
   testWidgets('late old account journey response and intent are discarded', (
     tester,

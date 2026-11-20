@@ -34,6 +34,17 @@ final notificationUnreadCountProvider = FutureProvider<int>((ref) async {
   return ref.read(notificationRemoteDataSourceProvider).fetchUnreadCount();
 }, retry: (_, _) => null);
 
+final notificationChannelProvider = FutureProvider.autoDispose
+    .family<List<NotificationItemEntity>, String>((ref, channel) async {
+      ref.watch(relationshipAuthorityEpochProvider);
+      if (ref.watch(sessionProvider).asData?.value.isLoggedIn != true) {
+        return [];
+      }
+      return ref
+          .read(notificationRemoteDataSourceProvider)
+          .fetchChannel(channel);
+    }, retry: (_, _) => null);
+
 final notificationPreferencesProvider = FutureProvider<bool>((ref) async {
   final local = ref.read(localStorageProvider);
   return await local.getBool(CacheKeys.pushNotificationEnabled) ?? true;

@@ -194,6 +194,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/journey/history/{id}', [$journey, 'historyDetail'])->whereUuid('id');
         Route::put('/journey/participation', [$journey, 'participate']);
         Route::post('/journey/proposals/{id}/decision', [$journey, 'decision'])->whereUuid('id');
+        Route::get('/journey/proposals/{id}/decision-result', [$journey, 'decisionResult'])->whereUuid('id')->middleware('throttle:30,1');
         Route::get('/formal-relationships', [$journey, 'relationships']);
         Route::post('/formal-relationships', [$journey, 'requestRelationship'])->middleware('throttle:10,1');
         Route::post('/formal-relationships/{id}/actions', [$journey, 'relationshipAction'])->whereUuid('id');

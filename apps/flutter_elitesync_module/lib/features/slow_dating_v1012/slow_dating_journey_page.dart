@@ -14,7 +14,8 @@ import 'formal_relationship_page.dart';
 import 'journey_components.dart';
 
 class SlowDatingJourneyPage extends ConsumerStatefulWidget {
-  const SlowDatingJourneyPage({super.key});
+  const SlowDatingJourneyPage({super.key, this.expectedProposalId});
+  final String? expectedProposalId;
   @override
   ConsumerState<SlowDatingJourneyPage> createState() => _JourneyState();
 }
@@ -60,6 +61,19 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
     final participation = objectMap(data?['participation']);
     final readiness = objectMap(data?['readiness']);
     final proposal = objectMap(data?['proposal']);
+    if (widget.expectedProposalId != null) {
+      if (data == null) return frame('提案回应', []);
+      if (proposal['id'] != widget.expectedProposalId ||
+          !proposalActionAvailable(proposal, 'accept')) {
+        return frame('提案回应', [
+          const Text('这项提案已不在当前待办。'),
+          OutlinedButton(
+            onPressed: () => Navigator.of(context).maybePop(),
+            child: const Text('返回'),
+          ),
+        ]);
+      }
+    }
     final roundEnvelope = objectMap(data?['round']);
     final round = roundEnvelope['data'] is Map
         ? objectMap(roundEnvelope['data'])
@@ -276,22 +290,15 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
               spacing: 8,
               children: [
                 for (final action in ['accept', 'decline', 'withdraw'])
-                  if ((action == 'withdraw' &&
-                          proposal['withdraw_available'] == true) ||
-                      (action != 'withdraw' &&
-                          proposal['decision_available'] == true))
+                  if (proposalActionAvailable(proposal, action))
                     OutlinedButton(
                       key: ValueKey('proposal-$action'),
                       onPressed: busy
                           ? null
-                          : () => mutate(
-                              'POST',
-                              '/journey/proposals/${proposal['id']}/decision',
-                              {
-                                'action': action,
-                                'revision': proposal['revision'],
-                                'idempotency_key': requestKey(),
-                              },
+                          : () => decideProposal(
+                              proposal['id'].toString(),
+                              proposal['revision'] as int,
+                              action,
                             ),
                       child: Text(
                         {

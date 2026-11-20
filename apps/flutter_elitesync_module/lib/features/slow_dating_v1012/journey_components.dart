@@ -82,3 +82,10 @@ String preparationReasonLabel(Object? reason) => switch ('$reason') {
   'operational_review_rejected' => '参与资格未通过，请查看结果',
   _ => '暂时无法确认参与资格，请刷新',
 };
+bool proposalActionAvailable(Map<String, dynamic> proposal, String action) =>
+    switch (action) {
+      'accept' => proposal['accept_available'] == true,
+      'decline' => proposal['decision_available'] == true,
+      'withdraw' => proposal['withdraw_available'] == true,
+      _ => false,
+    };

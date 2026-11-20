@@ -144,6 +144,20 @@ class LifestyleController extends ChangeNotifier {
       }
       final latest = await send(body);
       if (!current) return false;
+      final before = body['expected_revision'];
+      final revision = latest['revision'];
+      final answers = latest['answers'];
+      final answer = answers is Map ? answers[body['scene_id']] : null;
+      if (before is! int ||
+          revision != before + 1 ||
+          latest['questionnaire_version'] != body['questionnaire_version'] ||
+          (body['action'] == 'answer' &&
+              (answer is! Map ||
+                  answer['option_id'] != body['option_id'] ||
+                  answer['answer_revision'] != revision))) {
+        error = '回执未确认本次保存，请先查询保存结果。';
+        return false;
+      }
       data = latest;
       // A lost local receipt is recovered through the read-only command query.
       final cleared = await writeDraft({});

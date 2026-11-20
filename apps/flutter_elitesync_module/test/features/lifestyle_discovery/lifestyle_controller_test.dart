@@ -82,7 +82,12 @@ void main() {
           expect(draft?['pending'], body);
           sent.add(Map.of(body));
           if (sent.length == 1) throw const RelationshipFailure('offline');
-          return snapshot(1);
+          return {
+            ...snapshot(1),
+            'answers': {
+              'home_atmosphere': {'option_id': 'quiet', 'answer_revision': 1},
+            },
+          };
         },
         readDraft: () async => draft,
         writeDraft: (value) async {

@@ -11,6 +11,9 @@ class NotificationItemEntity {
     required this.createdAt,
     this.readAt,
     this.expiresAt,
+    this.isHistorical = false,
+    this.todoKind,
+    this.todoDueAt,
   });
 
   final int id;
@@ -24,20 +27,43 @@ class NotificationItemEntity {
   final String createdAt;
   final String? readAt;
   final String? expiresAt;
+  final bool isHistorical;
+  final String? todoKind;
+  final DateTime? todoDueAt;
 
   static Map<String, dynamic> _mapFromJson(dynamic value) {
     if (value is Map<String, dynamic>) {
       return Map<String, dynamic>.from(value);
     }
     if (value is Map) {
-      return value.map(
-        (key, dynamic item) => MapEntry(key.toString(), item),
-      );
+      return value.map((key, dynamic item) => MapEntry(key.toString(), item));
     }
     return const {};
   }
 
   factory NotificationItemEntity.fromJson(Map<String, dynamic> json) {
+    if (json['availability'] == 'history') {
+      return NotificationItemEntity(
+        id: (json['id'] as num?)?.toInt() ?? 0,
+        kind: '',
+        title: '通知已不可用',
+        body: '',
+        payload: const {},
+        routeName: '',
+        routeArgs: const {},
+        isRead: json['is_read'] == true,
+        createdAt: '',
+        isHistorical: true,
+      );
+    }
+    final todo = _mapFromJson(json['todo']);
+    final kind = todo['kind'];
+    final task =
+        json['availability'] == 'current' &&
+        (kind == 'proposal_response' ||
+            kind == 'social_request' ||
+            kind == 'connection_response' ||
+            kind == 'consent_response');
     final payload = _mapFromJson(json['payload']);
     final routeArgs = _mapFromJson(payload['route_args']);
     return NotificationItemEntity(
@@ -52,6 +78,10 @@ class NotificationItemEntity {
       createdAt: (json['created_at'] ?? '').toString(),
       readAt: json['read_at']?.toString(),
       expiresAt: json['expires_at']?.toString(),
+      todoKind: task ? kind as String : null,
+      todoDueAt: task
+          ? DateTime.tryParse(todo['due_at']?.toString() ?? '')
+          : null,
     );
   }
 }

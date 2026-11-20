@@ -301,6 +301,94 @@ void _expectNoD7CForbiddenVisibleCopy() {
 }
 
 void main() {
+  testWidgets(
+    'read task shows the server deadline then Back returns to its channel',
+    (tester) async {
+      tester.view.physicalSize = const Size(400, 820);
+      tester.view.devicePixelRatio = 1;
+      tester.platformDispatcher.textScaleFactorTestValue = 2;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+      final semantics = tester.ensureSemantics();
+      final task = NotificationItemEntity.fromJson({
+        'id': 45,
+      'kind': 'matching_round',
+        'title': '待回应提案',
+        'is_read': true,
+        'availability': 'current',
+        'todo': {'kind': 'proposal_response', 'due_at': '2026-11-23T12:30:00Z'},
+      'payload': {
+        'route_name': 'journey_task',
+        'route_args': {'proposal_id': _controlledId},
+      },
+      });
+      var done = false;
+      final notices = FakeNotificationRemoteDataSource()
+        ..lookup = (_) async => task;
+      final router = GoRouter(
+        routes: [
+          GoRoute(path: '/', builder: (_, _) => const NotificationCenterPage()),
+          GoRoute(
+            path: AppRouteNames.progressMatch,
+          builder: (_, state) {
+            expect(state.uri.queryParameters['proposalId'], _controlledId);
+              done = true;
+              return const Scaffold(body: Text('当前提案页面'));
+            },
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            sessionProvider.overrideWith(_CurrentSession.new),
+            frontendTelemetryProvider.overrideWithValue(
+              FrontendTelemetry(telemetry: FakeAppTelemetryService()),
+            ),
+            notificationRemoteDataSourceProvider.overrideWithValue(notices),
+            notificationListProvider.overrideWith((ref) async => [task]),
+            notificationUnreadCountProvider.overrideWith((ref) async => 0),
+            notificationChannelProvider.overrideWith(
+              (ref, channel) async => channel == 'todo' && !done ? [task] : [],
+            ),
+          ],
+          child: _SessionHarness(
+            child: MaterialApp.router(
+              theme: AppTheme.light,
+              routerConfig: router,
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(ChoiceChip, '待办'));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('待处理 · 截止'), findsOneWidget);
+      expect(find.text('全部已读'), findsNothing);
+      final action = find.descendant(
+        of: find.byKey(const ValueKey('notification-card-45')),
+        matching: find.byType(OutlinedButton),
+      );
+      await tester.ensureVisible(action);
+      await tester.tap(action);
+      await tester.pumpAndSettle();
+      expect(find.text('当前提案页面'), findsOneWidget);
+      await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<ChoiceChip>(find.widgetWithText(ChoiceChip, '待办'))
+            .selected,
+        isTrue,
+      );
+      expect(find.byKey(const ValueKey('notification-card-45')), findsNothing);
+      expect(tester.takeException(), isNull);
+    semantics.dispose();
+    },
+  );
+
   testWidgets('Platform account change blocks late 404 result fallback', (
     tester,
   ) async {
@@ -1004,7 +1092,7 @@ void main() {
     expect(find.textContaining('重新核验当前权限与状态'), findsNothing);
     expect(find.text('消息'), findsOneWidget);
     expect(find.text('查看当前状态'), findsOneWidget);
-    expect(find.text('稍后处理'), findsOneWidget);
+    expect(find.text('稍后处理'), findsNothing);
     expect(find.text('标记已读'), findsOneWidget);
     expect(find.text('打开后重新核验当前权限与状态。'), findsNothing);
     expect(find.text('提醒内容示例'), findsNothing);
@@ -1255,7 +1343,7 @@ void main() {
     await tester.tap(action);
     await tester.pumpAndSettle();
 
-    expect(find.text('操作未完成，请稍后重试'), findsOneWidget);
+    expect(find.text('已读结果尚未确认，请刷新通知'), findsOneWidget);
     expect(find.text('已标记为已读'), findsNothing);
     expect(find.textContaining('raw mark-one failure'), findsNothing);
     expect(notifications.markReadAttempts, 1);
@@ -1316,7 +1404,7 @@ void main() {
     await tester.tap(action);
     await tester.pumpAndSettle();
 
-    expect(find.text('操作未完成，请稍后重试'), findsOneWidget);
+    expect(find.text('批量已读结果尚未确认，请核对当前通知'), findsOneWidget);
     expect(find.text('已全部标记为已读'), findsNothing);
     expect(find.textContaining('raw mark-all failure'), findsNothing);
     expect(notifications.markAllReadAttempts, 1);
@@ -1488,7 +1576,7 @@ void main() {
       findsNothing,
     );
     expect(find.widgetWithText(OutlinedButton, '查看当前状态'), findsOneWidget);
-    expect(find.widgetWithText(OutlinedButton, '稍后处理'), findsOneWidget);
+    expect(find.widgetWithText(OutlinedButton, '稍后处理'), findsNothing);
     expect(find.widgetWithText(OutlinedButton, '标记已读'), findsOneWidget);
   });
 

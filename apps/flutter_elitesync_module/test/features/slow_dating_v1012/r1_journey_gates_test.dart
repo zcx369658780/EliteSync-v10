@@ -73,6 +73,9 @@ void main() {
       await tester.ensureVisible(withdraw);
       await tester.tap(withdraw);
       await tester.pumpAndSettle();
+      expect(writes, isEmpty);
+      await tester.tap(find.text('确认'));
+      await tester.pumpAndSettle();
       expect(writes, hasLength(1));
       expect(writes.single['action'], 'withdraw');
       expect(writes.single['revision'], 4);

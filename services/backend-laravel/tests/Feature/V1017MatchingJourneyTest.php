@@ -111,6 +111,64 @@ class V1017MatchingJourneyTest extends TestCase
         }
     }
 
+    public function test_phase_d_due_task_read_state_receipt_and_expiry_are_independent(): void
+    {
+        $a = $this->subject('male');
+        $b = $this->subject('female');
+        [$round] = $this->generate($a, $b);
+        $this->reveal($round);
+        $proposal = app(SlowDatingService::class)->proposal($a->id);
+        $id = $proposal['id'];
+        $endpoint = "/api/v1/journey/proposals/$id/decision";
+        $body = ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'fictional-phase-d-key'];
+        $receipt = "$endpoint-result?".http_build_query($body);
+        $this->actingAs($a, 'sanctum');
+
+        $aItem = $this->getJson('/api/v1/notifications?channel=todo')->assertOk()
+            ->assertJsonCount(1, 'items')->assertJsonPath('items.0.is_read', false)
+            ->assertJsonPath('items.0.todo.kind', 'proposal_response')
+            ->assertJsonPath('items.0.todo.due_at', \Illuminate\Support\Carbon::parse($proposal['expires_at'], 'UTC')->toISOString())
+            ->assertJsonMissingPath('items.0.payload.proposal_id')->json('items.0.id');
+        $this->postJson("/api/v1/notifications/$aItem/read")->assertOk();
+        $firstRead = $this->getJson("/api/v1/notifications/$aItem")->assertOk()->json('item.read_at');
+        $this->assertNotNull($firstRead);
+        $this->travel(1)->minutes();
+        $this->postJson("/api/v1/notifications/$aItem/read")->assertOk();
+        $this->getJson("/api/v1/notifications/$aItem")->assertOk()->assertJsonPath('item.read_at', $firstRead);
+        $this->getJson('/api/v1/notifications?channel=todo')->assertOk()
+            ->assertJsonPath('items.0.id', $aItem)->assertJsonPath('items.0.is_read', true);
+        $this->getJson($receipt)->assertOk()->assertJsonPath('command_status', 'NOT_APPLIED');
+        $this->postJson($endpoint, $body)->assertOk()->assertJsonPath('state', 'ACCEPTED_BY_ONE');
+        $this->getJson($receipt)->assertOk()->assertJsonPath('command_status', 'APPLIED')
+            ->assertJsonMissingPath('peer_id');
+        $this->getJson("$endpoint-result?".http_build_query(array_replace($body, ['action' => 'decline'])))
+            ->assertOk()->assertJsonPath('command_status', 'CONFLICT');
+        $this->getJson("$endpoint-result?".http_build_query(array_replace($body, ['idempotency_key' => 'unknown-key'])))
+            ->assertOk()->assertJsonPath('command_status', 'UNKNOWN');
+        $this->postJson($endpoint, $body)->assertOk()->assertJsonPath('revision', 2);
+        $this->getJson('/api/v1/notifications?channel=todo')->assertOk()->assertJsonCount(0, 'items');
+        $this->getJson("/api/v1/notifications/$aItem")->assertOk()
+            ->assertJsonPath('item.availability', 'history')->assertJsonPath('item.route_name', '');
+        $this->assertDatabaseCount('product_connections', 0);
+        $this->assertDatabaseCount('messaging_consents', 0);
+
+        $this->actingAs($b, 'sanctum');
+        $this->getJson("/api/v1/notifications/$aItem")->assertNotFound();
+        $bItem = $this->getJson('/api/v1/notifications?channel=todo')->assertOk()
+            ->assertJsonPath('items.0.is_read', false)->json('items.0.id');
+        $this->travelTo(\Illuminate\Support\Carbon::parse($proposal['expires_at'], 'UTC')->addSecond());
+        $this->getJson("$endpoint-result?".http_build_query(array_replace($body, ['revision' => 2])))
+            ->assertOk()->assertJsonPath('command_status', 'UNKNOWN');
+        $this->getJson("/api/v1/notifications/$bItem")->assertOk()->assertJsonPath('item.availability', 'history')
+            ->assertJsonPath('item.is_read', false)->assertJsonPath('item.todo', null)
+            ->assertJsonPath('item.payload', [])->assertJsonMissingPath('item.expires_at');
+        $this->getJson('/api/v1/notifications?channel=history')->assertOk()->assertJsonFragment(['id' => $bItem]);
+        $this->getJson('/api/v1/notifications?channel=todo')->assertOk()->assertJsonCount(0, 'items');
+
+        $outsider = User::factory()->create(['phone' => 'fictional-d-receipt-outsider']);
+        $this->actingAs($outsider, 'sanctum')->getJson($receipt)->assertNotFound();
+    }
+
     public function test_lifestyle_reset_after_reveal_preserves_existing_proposal_and_consents(): void
     {
         $a = $this->subject('male');

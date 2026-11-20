@@ -46,13 +46,20 @@ class NotificationRemoteDataSource {
     int limit = 50,
   }) => _fetchPage(beforeId: beforeId, limit: limit);
 
-  Future<NotificationPage> _fetchPage({int? beforeId, int limit = 50}) async {
+  Future<NotificationPage> fetchChannel(String channel, {int? beforeId}) =>
+      _fetchPage(channel: channel, beforeId: beforeId);
+
+  Future<NotificationPage> _fetchPage({
+    String? channel,
+    int? beforeId,
+    int limit = 50,
+  }) async {
     if (useMock) return NotificationPage(const [], hasMore: false);
     final started = identity?.call();
     final result = await apiClient
         .get(
           '/api/v1/notifications',
-          query: {'limit': limit, 'before_id': ?beforeId},
+          query: {'limit': limit, 'before_id': ?beforeId, 'channel': ?channel},
           options: _options(),
         )
         .timeout(_requestTimeout);

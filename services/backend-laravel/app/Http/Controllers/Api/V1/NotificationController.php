@@ -17,6 +17,18 @@ class NotificationController extends Controller
     private function shapeNotification(AppNotificationItem $notification, int $viewerId, NotificationService $notifications): array
     {
         $presentation = $notifications->presentationForUser($notification, $viewerId);
+        if (! $notifications->isAvailable($presentation)) {
+            return [
+                'id' => (int) $notification->id,
+                'title' => NotificationService::UNAVAILABLE_TITLE,
+                'body' => '',
+                'payload' => [],
+                'route_name' => '',
+                'is_read' => $notification->read_at !== null,
+                'availability' => 'history',
+                'todo' => null,
+            ];
+        }
         $payload = $presentation['payload'];
 
         return [
@@ -32,6 +44,8 @@ class NotificationController extends Controller
             'created_at' => optional($notification->created_at)?->toISOString(),
             'updated_at' => optional($notification->updated_at)?->toISOString(),
             'is_read' => $notification->read_at !== null,
+            'availability' => 'current',
+            'todo' => $presentation['todo'] ?? null,
         ];
     }
 
@@ -40,20 +54,30 @@ class NotificationController extends Controller
         $data = $request->validate([
             'limit' => ['sometimes', 'integer', 'min:1', 'max:100'],
             'before_id' => ['sometimes', 'integer', 'min:1'],
+            'channel' => ['sometimes', 'in:current,todo,history'],
         ]);
         $limit = (int) ($data['limit'] ?? 50);
         $page = $notifications->pageForUser(
             (int) $request->user()->id,
             $limit,
             isset($data['before_id']) ? (int) $data['before_id'] : null,
+            $data['channel'] ?? 'current',
         );
         $items = $page['items'];
 
+        $viewer = (int) $request->user()->id;
+        $channel = $data['channel'] ?? 'current';
+        $shaped = $items->map(fn (AppNotificationItem $item) => $this->shapeNotification($item, $viewer, $notifications))
+            ->filter(fn (array $item) => match ($channel) {
+                'history' => $item['availability'] === 'history',
+                'todo' => $item['todo'] !== null,
+                default => $item['availability'] === 'current',
+            })->values();
         return response()->json([
             'ok' => true,
-            'items' => $items->map(fn (AppNotificationItem $item) => $this->shapeNotification($item, (int) $request->user()->id, $notifications))->values(),
-            'total' => $items->count(),
-            'unread_total' => $items->whereNull('read_at')->count(),
+            'items' => $shaped,
+            'total' => $shaped->count(),
+            'unread_total' => $shaped->where('is_read', false)->count(),
             'has_more' => $page['has_more'],
             'next_before_id' => $page['next_before_id'],
         ]);
@@ -83,8 +107,6 @@ class NotificationController extends Controller
         if (! $notification) {
             return response()->json(['message' => 'notification not found'], 404);
         }
-
-        $notification->forceFill(['read_at' => now()])->save();
 
         Log::info('notification_marked_read', [
             'notification_id' => (int) $notification->id,

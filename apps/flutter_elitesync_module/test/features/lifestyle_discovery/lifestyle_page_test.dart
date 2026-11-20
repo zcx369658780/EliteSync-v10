@@ -35,6 +35,7 @@ void main() {
         if (body['action'] == 'answer') {
           (data['answers'] as Map)[body['scene_id']] = {
             'option_id': body['option_id'],
+            'answer_revision': data['revision'],
           };
         }
         return Map.of(data);
@@ -196,9 +197,35 @@ void main() {
           .onPressed,
       isNull,
     );
-    reply.complete({...data, 'revision': 1});
+    reply.complete({
+      ...data,
+      'revision': 1,
+      'answers': {
+        'home_atmosphere': {'option_id': 'quiet', 'answer_revision': 1},
+      },
+    });
     await tester.pumpAndSettle();
     expect(find.text('去一个新地方走走，你喜欢怎样安排？'), findsOneWidget);
+  });
+
+  testWidgets('an incomplete save receipt stays on the current scene', (
+    tester,
+  ) async {
+    controller.dispose();
+    data['status'] = 'in_progress';
+    controller = LifestyleController(
+      read: () async => Map.of(data),
+      send: (_) async => {...data, 'revision': 1},
+      readDraft: () async => null,
+      writeDraft: (_) async => true,
+      isCurrent: () => true,
+    );
+    await mount(tester, reduced: true);
+    await tester.tap(find.byKey(const Key('option-quiet')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('option-quiet')), findsOneWidget);
+    expect(controller.pending, isNotNull);
+    expect(find.textContaining('回执未确认'), findsOneWidget);
   });
 
   testWidgets(

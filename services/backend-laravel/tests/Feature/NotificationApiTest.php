@@ -5,15 +5,53 @@ namespace Tests\Feature;
 use App\Models\AppNotificationItem;
 use App\Models\DatingMatch;
 use App\Models\User;
+use App\Models\UserBlock;
 use App\Services\NotificationService;
 use App\Http\Middleware\DenyUnverifiedMessagingLiveAccess;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class NotificationApiTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function test_connection_and_message_todos_require_distinct_current_requests(): void
+    {
+        config(['restoration.enabled' => true]);
+        $a = User::factory()->create(['phone' => 'fictional-d-connection-a']);
+        $b = User::factory()->create(['phone' => 'fictional-d-connection-b']);
+        DB::table('friendships')->insert(['user_a' => $a->id, 'user_b' => $b->id,
+            'state' => 'ACTIVE', 'revision' => 1, 'created_at' => now(), 'updated_at' => now()]);
+        $todo = '/api/v1/notifications?channel=todo';
+        $this->actingAs($a, 'sanctum')->postJson("/api/v1/connections/$b->id/connection", [
+            'action' => 'request', 'expected_revision' => 0,
+        ])->assertOk()->assertJsonPath('gates.live_read_allowed', false);
+        $this->getJson($todo)->assertOk()->assertJsonCount(0, 'items');
+        $cnTask = $this->actingAs($b, 'sanctum')->getJson($todo)->assertOk()
+            ->assertJsonCount(1, 'items')->assertJsonPath('items.0.todo.kind', 'connection_response')
+            ->assertJsonPath('items.0.todo.due_at', null)->json('items.0.id');
+        $this->postJson("/api/v1/connections/$a->id/connection", [
+            'action' => 'accept', 'expected_revision' => 1,
+        ])->assertOk()->assertJsonPath('gates.live_read_allowed', false);
+        $this->getJson("/api/v1/notifications/$cnTask")->assertOk()
+            ->assertJsonPath('item.availability', 'history')->assertJsonMissingPath('item.route_args');
+        $this->getJson($todo)->assertOk()->assertJsonCount(0, 'items');
+
+        $this->actingAs($a, 'sanctum')->postJson("/api/v1/connections/$b->id/consent", [
+            'action' => 'request', 'expected_revision' => 0,
+        ])->assertOk()->assertJsonPath('gates.live_read_allowed', false);
+        $mcTask = $this->actingAs($b, 'sanctum')->getJson($todo)->assertOk()
+            ->assertJsonCount(1, 'items')->assertJsonPath('items.0.todo.kind', 'consent_response')->json('items.0.id');
+        UserBlock::create(['blocker_id' => $a->id, 'blocked_user_id' => $b->id]);
+        $this->getJson($todo)->assertOk()->assertJsonCount(0, 'items');
+        $this->getJson("/api/v1/notifications/$mcTask")->assertOk()
+            ->assertJsonPath('item.availability', 'history')->assertJsonPath('item.payload', []);
+        $this->postJson("/api/v1/connections/$a->id/consent", [
+            'action' => 'accept', 'expected_revision' => 1,
+        ])->assertNotFound();
+    }
 
     public function test_unversioned_legacy_sources_preserve_later_events(): void
     {

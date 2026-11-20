@@ -162,10 +162,7 @@ final class SlowDatingService
         if (! $p || ! in_array($p->state, ['PENDING', 'ACCEPTED_BY_ONE'], true)) {
             return;
         }
-        $a = $this->participation((int) $p->user_a);
-        $b = $this->participation((int) $p->user_b);
-        if ($a['state'] === 'EXITED' || $b['state'] === 'EXITED'
-            || $a['generation'] !== (int) $p->generation_a || $b['generation'] !== (int) $p->generation_b) {
+        if ($this->participationInvalidatesPending($p)) {
             $this->finish($p, 'WITHDRAWN');
             app(JourneyStore::class)->audit(null, $p->id, 'PARTICIPATION_AUTHORITY_INVALIDATED', ['state' => 'WITHDRAWN', 'reason' => 'exit_or_generation_changed', 'revision' => $p->revision]);
         } elseif (! $this->currentEligibilityAllowed($p)) {
@@ -191,10 +188,44 @@ final class SlowDatingService
         return true;
     }
 
+    private function participationInvalidatesPending(object $proposal): bool
+    {
+        $a = $this->participation((int) $proposal->user_a);
+        $b = $this->participation((int) $proposal->user_b);
+        return $a['state'] === 'EXITED' || $b['state'] === 'EXITED'
+            || $a['generation'] !== (int) $proposal->generation_a || $b['generation'] !== (int) $proposal->generation_b;
+    }
+
     public function proposalContextActive(object $p): bool
     {
         return $this->enrolled((int) $p->user_a, (int) $p->generation_a)
             && $this->enrolled((int) $p->user_b, (int) $p->generation_b);
+    }
+
+    /** Read current authority without changing the proposal or reading its private snapshot. */
+    public function notificationContext(int $actor, string $id): ?array
+    {
+        $hint = DB::table('match_proposals')->where('id', $id)->first();
+        if (! $hint || ! in_array($actor, [(int) $hint->user_a, (int) $hint->user_b], true)) {
+            return null;
+        }
+        return DB::transaction(function () use ($actor, $hint) {
+            app(CurrentQuestionnaire::class)->lock();
+            app(JourneyStore::class)->users([(int) $hint->user_a, (int) $hint->user_b]);
+            $proposal = DB::table('match_proposals')->where('id', $hint->id)->lockForUpdate()->first();
+            if (! $proposal || $proposal->user_a !== $hint->user_a || $proposal->user_b !== $hint->user_b
+                || ! in_array($proposal->state, ['PENDING', 'ACCEPTED_BY_ONE', 'MUTUALLY_ACCEPTED'], true)
+                || Carbon::parse($proposal->expires_at, 'UTC')->lte(now('UTC'))
+                || ! $this->proposalContextActive($proposal) || ! $this->currentEligibilityAllowed($proposal)) {
+                return null;
+            }
+            app(TrustedIdentityService::class)->requireParticipation((int) $proposal->user_a, (int) $proposal->user_b);
+
+            $ownDecision = $actor === (int) $proposal->user_a ? $proposal->decision_a : $proposal->decision_b;
+            return ['todo' => $ownDecision === 'PENDING'
+                ? ['kind' => 'proposal_response', 'due_at' => Carbon::parse($proposal->expires_at, 'UTC')->toISOString()]
+                : null];
+        }, 3);
     }
 
     public function proposal(int $actor, ?string $id = null): ?array
@@ -226,13 +257,17 @@ final class SlowDatingService
         $out = ['id' => $p->id, 'match_id' => (int) $p->dating_match_id, 'round_id' => (int) $p->round_id, 'run_id' => (int) $p->run_id, 'revision' => (int) $p->revision, 'state' => $p->state, 'decision_me' => $isA ? $p->decision_a : $p->decision_b, 'decision_peer' => $isA ? $p->decision_b : $p->decision_a, 'peer_id' => $peer, 'revealed_at' => $p->revealed_at, 'expires_at' => $p->expires_at, 'showcase' => null, 'explanation' => null, 'connection_eligible' => false];
         $pending = in_array($p->state, ['PENDING', 'ACCEPTED_BY_ONE'], true);
         $current = $this->proposalContextActive($p);
-        $out += ['decision_available' => $pending && $current, 'withdraw_available' => $pending, 'availability_reason' => $current ? null : 'participation_paused_or_changed', 'candidate_available' => false];
+        $out += ['decision_available' => $pending && $current, 'accept_available' => false,
+            'withdraw_available' => $pending, 'availability_reason' => $current ? null : 'participation_paused_or_changed', 'candidate_available' => false];
         $allowed = app(SocialPolicy::class)->pairAllowed($actor, $peer)
             && User::whereIn('id', [$actor, $peer])->where('disabled', false)->where('account_status', 'active')->where('moderation_status', 'normal')->count() === 2;
         if (! $allowed || ! $current || Carbon::parse($p->expires_at, 'UTC')->lte(now()->utc()) || ! in_array($p->state, ['PENDING', 'ACCEPTED_BY_ONE', 'MUTUALLY_ACCEPTED'], true)) {
             return $out;
         }
         $out['candidate_available'] = true;
+        $identity = app(TrustedIdentityService::class);
+        $out['accept_available'] = $out['decision_available'] && $out['decision_me'] === 'PENDING'
+            && $identity->participationAllowed($actor) && $identity->participationAllowed($peer);
         $out['showcase'] = app(CandidateShowcaseSnapshot::class)->read($p, $actor, $peer);
         $out['explanation'] = ['categories' => ['questionnaire_preferences'], 'source' => 'existing_matching_run', 'uncertainty' => '候选来自有限自填输入，不保证相处效果', 'non_goals' => ['不构成实人认证或恋爱事实', '不授予连接、消息或通话同意']];
         $out['connection_eligible'] = $p->state === 'MUTUALLY_ACCEPTED';
@@ -290,6 +325,45 @@ final class SlowDatingService
         });
     }
 
+    public function decisionResult(int $actor, string $id, string $action, int $revision, string $key): array
+    {
+        $hint = DB::table('match_proposals')->where('id', $id)->first();
+        abort_unless($hint && in_array($actor, [(int) $hint->user_a, (int) $hint->user_b], true), 404, 'unavailable');
+        return DB::transaction(function () use ($actor, $id, $action, $revision, $key, $hint) {
+            app(CurrentQuestionnaire::class)->lock();
+            $a = (int) $hint->user_a;
+            $b = (int) $hint->user_b;
+            app(JourneyStore::class)->users([$a, $b], true);
+            $proposal = DB::table('match_proposals')->where('id', $id)->lockForUpdate()->first();
+            abort_unless($proposal && $proposal->user_a === $hint->user_a && $proposal->user_b === $hint->user_b, 404, 'unavailable');
+            $receipt = DB::table('journey_commands')->where('actor_id', $actor)
+                ->where('idempotency_key', $key)->lockForUpdate()->first();
+            $fingerprint = hash('sha256', json_encode(['proposal_decision', $id, $action, $revision], JSON_THROW_ON_ERROR));
+            if ($receipt) {
+                return ['command_status' => hash_equals($receipt->fingerprint, $fingerprint) ? 'APPLIED' : 'CONFLICT'];
+            }
+
+            if ((int) $proposal->revision !== $revision
+                || ! in_array($proposal->state, ['PENDING', 'ACCEPTED_BY_ONE'], true)
+                || Carbon::parse($proposal->expires_at, 'UTC')->lte(now('UTC'))
+                || ! app(SocialPolicy::class)->pairAllowed($a, $b)
+                || User::whereIn('id', [$a, $b])->where('account_status', 'active')
+                    ->where('moderation_status', 'normal')->lockForUpdate()->get(['id'])->count() !== 2
+                || $this->participationInvalidatesPending($proposal)
+                || ! $this->currentEligibilityAllowed($proposal)
+                || ($action !== 'withdraw' && ! $this->proposalContextActive($proposal))) {
+                return ['command_status' => 'UNKNOWN'];
+            }
+            $identity = app(TrustedIdentityService::class);
+            if ($action === 'accept' && (($actor === $a ? $proposal->decision_a : $proposal->decision_b) !== 'PENDING'
+                || ! $identity->participationAllowed($a) || ! $identity->participationAllowed($b))) {
+                return ['command_status' => 'UNKNOWN'];
+            }
+
+            return ['command_status' => 'NOT_APPLIED'];
+        }, 3);
+    }
+
     public function history(int $actor, int $page, int $perPage): array
     {
         $rows = DB::table('match_proposals')->where(fn ($query) => $query->where('user_a', $actor)->orWhere('user_b', $actor))
@@ -307,6 +381,7 @@ final class SlowDatingService
         $projection = $this->proposal($actor, $id);
         // History is always read-only, including a still-current proposal displayed in the list.
         $projection['decision_available'] = false;
+        $projection['accept_available'] = false;
         $projection['withdraw_available'] = false;
         $projection['created_at'] = $row->created_at;
         $projection['updated_at'] = DB::table('match_proposals')->where('id', $id)->value('updated_at');

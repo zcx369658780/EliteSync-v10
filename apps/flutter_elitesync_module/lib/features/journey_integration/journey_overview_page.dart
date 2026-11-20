@@ -271,21 +271,15 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
                     for (final action in ['accept', 'decline', 'withdraw'])
                       if (proposal['revision'] is int &&
                           proposal['id'] is String &&
-                          (action == 'withdraw'
-                              ? proposal['withdraw_available'] == true
-                              : proposal['decision_available'] == true))
+                          proposalActionAvailable(proposal, action))
                         OutlinedButton(
                           key: Key('overview-proposal-$action'),
                           onPressed: busy
                               ? null
-                              : () => mutate(
-                                  'POST',
-                                  '/journey/proposals/${proposal['id']}/decision',
-                                  {
-                                    'action': action,
-                                    'revision': proposal['revision'],
-                                    'idempotency_key': requestKey(),
-                                  },
+                              : () => decideProposal(
+                                  proposal['id'] as String,
+                                  proposal['revision'] as int,
+                                  action,
                                 ),
                           child: Text(switch (action) {
                             'accept' => '接受候选',
@@ -323,7 +317,10 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
         ),
       _link(
         '连接与消息许可',
-        peer is int && peer > 0
+        pair.isNotEmpty &&
+                pair['_unavailable'] != true &&
+                peer is int &&
+                peer > 0
             ? '/live-connection?peerId=$peer'
             : AppRouteNames.progressConnection,
       ),

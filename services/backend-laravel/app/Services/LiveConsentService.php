@@ -225,6 +225,7 @@ final class LiveConsentService
                     'requester_id' => $actor, 'state' => CN::STATE_NONE, 'revision' => 0, 'created_at' => now(), 'updated_at' => now()]);
                 $cn = DB::table('product_connections')->where('id', $id)->first();
             }
+            $requestConsentId = null;
             if ($kind === 'connection') {
                 abort_unless((int) $cn->revision === $expected, 409, 'stale revision');
                 $next = match ($action) {
@@ -295,6 +296,9 @@ final class LiveConsentService
                     $t += ['consent_identity' => $c['consent_identity'], 'connection_identity' => $c['connection_identity'], 'purpose' => $purpose, 'actor' => 'user:'.$actor];
                     abort_unless(MC::evaluateTransition($c, $this->identity($cn), [$this->connectionEvidence($cn)], [$s], [$t])['classification'] === MC::TRANSITION_ADMISSIBLE, 409, 'consent transition rejected');
                     DB::table('messaging_consents')->where('id', $mc->id)->update(['state' => $next, 'revision' => $expected + 1, 'updated_at' => now()]);
+                    if ($action === 'request' && $purpose === MC::PURPOSE_LIVE_READ) {
+                        $requestConsentId = (int) $mc->id;
+                    }
                 }
             }
             $eventId = DB::table('live_consent_events')->insertGetId(['connection_id' => $cn->id, 'kind' => $kind, 'actor_id' => $actor, 'from_state' => $from, 'to_state' => $next, 'revision' => $expected + 1, 'created_at' => now()]);
@@ -302,7 +306,8 @@ final class LiveConsentService
             app(NotificationService::class)->createForUser($peer,
                 $kind === 'connection' ? 'consent_connection' : 'consent_message',
                 '连接或消息同意有更新', '请在应用中查看当前状态',
-                ['connection_id' => (int) $cn->id],
+                ['connection_id' => (int) $cn->id,
+                    'request_consent_id' => $requestConsentId],
                 sourceEventKey: 'consent-event:'.$eventId);
 
             return $this->current($actor, $peer);
