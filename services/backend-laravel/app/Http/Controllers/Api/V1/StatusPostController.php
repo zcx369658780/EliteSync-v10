@@ -590,11 +590,12 @@ class StatusPostController extends Controller
                 return response()->json(['message' => 'status post not found'], 404);
             }
 
+            $newLike = false;
             if ($liked) {
-                StatusPostLike::query()->firstOrCreate([
+                $newLike = StatusPostLike::query()->firstOrCreate([
                     'status_post_id' => (int) $post->id,
                     'user_id' => $viewerId,
-                ]);
+                ])->wasRecentlyCreated;
             } else {
                 StatusPostLike::query()
                     ->where('status_post_id', (int) $post->id)
@@ -614,7 +615,7 @@ class StatusPostController extends Controller
                 ]
             );
 
-            if ($liked && (int) $post->author_user_id !== $viewerId) {
+            if ($newLike && (int) $post->author_user_id !== $viewerId) {
                 $actorName = 'ES-'.$user->id;
                 $notifications->createForUser(
                     userId: (int) $post->author_user_id,

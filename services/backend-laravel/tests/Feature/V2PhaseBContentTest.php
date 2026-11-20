@@ -184,6 +184,8 @@ final class V2PhaseBContentTest extends TestCase
             ->assertJsonPath('item.cover_media_asset_id', null)->assertJsonPath('item.media', []);
         $this->get($bytes)->assertNotFound();
         $this->postJson("$url/likes")->assertOk();
+        $this->postJson("$url/likes")->assertOk();
+        $this->assertSame(1, AppNotificationItem::where('kind', 'status_like')->count());
         $newLike = AppNotificationItem::where('kind', 'status_like')->firstOrFail();
         $this->actingAs($owner, 'sanctum')->getJson("/api/v1/notifications/$newLike->id")
             ->assertOk()->assertJsonPath('item.payload.status_post_id', $postId);

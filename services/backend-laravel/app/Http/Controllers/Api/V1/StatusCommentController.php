@@ -98,6 +98,9 @@ class StatusCommentController extends Controller
                     $items[] = $item;
                 }
             }
+            // A concurrent revocation can invalidate the selected window.
+            // Ask for a new read instead of reporting a false last page.
+            abort_unless(count($items) === $selected->count(), 409, 'comments changed; refresh');
             $more = count($items) > 20;
 
             return response()->json([
