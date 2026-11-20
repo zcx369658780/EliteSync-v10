@@ -4,6 +4,14 @@
 
 ---
 
+# 2026-11-20 最新授权：阶段A限定工程成果Owner接受，阶段B实施已开放
+
+- Owner在[具名新决定](../decisions/OWNER_V2_PHASE_A_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_B_ENGINEERING_AUTHORIZATION_20261120.md)中确认阶段A已在具名自动化范围内正式终验，并明确允许现有Codex推进B1–B4。**以这条最新Owner决定和ACTIVE_STATE顶部为现行权限**；下方任何`PHASE_B_NOT_AUTHORIZED`与`OWNER_FINAL_PENDING`只属旧时点快照。
+- [B阶段合并任务书](../versions/v2/V2_PHASE_B_HOME_CONTENT_AUDIENCE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)及[原Codex会话Prompt](V2_PHASE_B_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)已备；阶段B可在安全隔离的本地工作树修改代码、测试，但网页GPT目前未亲自执行Windows Codex或产生B运行证据。
+- A未测PHP8.4/MariaDB/真实身份与Push/设备仍OPEN；C/D、生产/共享DB、真实外部供应商、正式A6会议、main合并与发布仍未授权。阶段B完成集中一包验收，不重复拆小审批。
+
+---
+
 # EliteSync V2｜网页GPT顾问当前权威一页入口（2026-11-19）
 
 状态：`OWNER_ROADMAP_ACCEPTED / PHASE_A_ENGINEERING_AUTHORIZED / PHASE_A_HANDOFF_PENDING / A6_MEETING_DEFERRED / NO_PRODUCTION_RELEASE / HISTORICAL_RUNTIME_NOT_RUN`  
