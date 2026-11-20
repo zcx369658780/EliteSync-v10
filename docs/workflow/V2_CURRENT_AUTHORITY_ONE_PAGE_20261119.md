@@ -1,3 +1,10 @@
+# CURRENT AUTHORITY 2026-11-20｜阶段C网页顾问交接归档，待新会话集中验收
+
+- 最新[交接文件](SESSION_HANDOFF_20261120_V2_PHASE_C_AUTHORIZED_AWAITING_DELIVERY.md)包含Owner A/B限域最终接受、C1–C4已授权执行而尚无C实际交付验收、全部FAIL/NOT_RUN/隐私硬边界、固定代码/治理身份、新会话首读与本地同步办法。当前`PHASE_C_ENGINEERING_AUTHORIZED / PHASE_C_DELIVERY_NOT_YET_VERIFIED / PHASE_D_NOT_AUTHORIZED`。
+- Github治理封存≠Windows本地文件已同步：Owner下载或原有Codex只读复制并校验后才可证明本地保存。网页GPT不执行本地Codex日常工程，新会话在Owner提供C报告后按任务书做**一次**综合阶段验收。正式A6/真实服务/生产DB/不可逆删除/main及发布仍未授权。
+
+---
+
 # CURRENT AUTHORITY 2026-11-20｜阶段B已获Owner限定终验，阶段C工程已授权
 
 **`OWNER_PHASE_B_SCOPED_FINAL_ACCEPTED / PHASE_C_ENGINEERING_AUTHORIZED / PHASE_C_CODEX_HANDOFF_READY / PHASE_D_NOT_AUTHORIZED / A6_MEETING_DEFERRED / NO_MAIN_MERGE_OR_RELEASE`**
