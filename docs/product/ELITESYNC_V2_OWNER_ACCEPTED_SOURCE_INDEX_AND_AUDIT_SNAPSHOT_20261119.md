@@ -1,3 +1,11 @@
+# 2026-11-20 最新Owner阶段验收/授权：A限定通过，B工程可以启动
+
+- [具名Owner决定](../decisions/OWNER_V2_PHASE_A_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_B_ENGINEERING_AUTHORIZATION_20261120.md)正式接受A阶段在报告具名自动化覆盖内的工程交付，并同意启动B阶段。顾问A限定验收报告仍指出PHP8.4、MariaDB、供应商、设备/跨端等OPEN，不因Owner终验而抹除。
+- [B1–B4合并工程合同](../versions/v2/V2_PHASE_B_HOME_CONTENT_AUDIENCE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)与[现有Codex启动指令](../workflow/V2_PHASE_B_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)分别保存，不把旧顾问UX草案或未定法律协议当完整Owner权利。B授权含首页内容分域、受众/评论策略、评论不同主体权利与合法独立回复/媒体安全；阶段C/D及真实供应商/main/发布仍未授权。
+- 上文所有更早`PHASE_B_NOT_AUTHORIZED`是形成时点，不再代表当前；S1与A固定源码的静态/运行身份继续独立。
+
+---
+
 # 2026-11-19 Owner正式接受路线图并授权阶段A（最新增量）
 
 - [具名路线图接受/阶段A授权](../decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md)：A→B→C→D与E1–E3总体方向获认可；首批A安全底线**正式获得工程实施与隔离测试权限**，由原有本地Codex自治，报告集中交Owner复核。阶段B–D尚未启动，KYC/Push、法域、设备/模拟器、A6、main及发布仍单独保留权限。
