@@ -1,3 +1,10 @@
+# 2026-11-20 Owner最新阶段权限：A限定终验接受、B工程正式授权
+
+- [Owner阶段A最终限定接受及阶段B授权](../decisions/OWNER_V2_PHASE_A_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_B_ENGINEERING_AUTHORIZATION_20261120.md)已生效。A的PHP/Flutter具名自动化结论可正式记`OWNER_SCOPED_ACCEPTED`，但PHP8.4/MariaDB/设备/真实供应商限制保留；B1–B4按本路线图正式开放**本地Codex工程修改与隔离测试**，阶段C/D未启动。
+- [阶段B合并任务单](../versions/v2/V2_PHASE_B_HOME_CONTENT_AUDIENCE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)及[Codex启动Prompt](../workflow/V2_PHASE_B_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)为当前执行范围。下方“阶段B尚未获授权”的旧字样仅历史时点，不是当前有效STOP；A6、真实供应商/生产数据、main/发布仍STOP。
+
+---
+
 # 最新Owner授权增量（2026-11-19）：路线图已接受，阶段A获启动权限
 
 - Owner对本路线图表示“上述路线图审阅完毕，我认为非常完善，并且授权你开始执行”。具名授权：[路线图方向接受与阶段A启动](../decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md)，当前结论为`OWNER_ROADMAP_V0_1_ACCEPTED / PHASE_A_ENGINEERING_AUTHORIZED`，本文件下方“顾问提案/尚未批准工程”的原始章节均为**此授权前时间快照**。
