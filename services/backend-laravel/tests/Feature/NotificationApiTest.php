@@ -113,18 +113,10 @@ class NotificationApiTest extends TestCase
         Sanctum::actingAs($other);
         $this->postJson('/api/v1/messages',['receiver_id'=>$user->id,'content'=>'synthetic notification flow','client_message_id'=>(string)\Illuminate\Support\Str::uuid()])->assertOk();
         $post=\App\Models\StatusPost::create(['author_user_id'=>$user->id,'title'=>'synthetic','body'=>'synthetic','visibility'=>'public','audience'=>'FRIENDS','is_deleted'=>false]);
-        AppNotificationItem::query()->create([
-            'user_id' => $user->id,
-            'kind' => 'status_like',
-            'title' => 'Peer 赞了你的动态',
-            'body' => 'nice',
-            'payload' => [
-                'actor_user_id'=>$other->id,'status_post_id'=>$post->id,
-                'route_name' => 'status_author',
-                'route_args' => ['user_id' => $other->id],
-            ],
-            'read_at' => now(),
-        ]);
+        // Keep one real, already-read like notification beside the unread message.
+        $this->postJson("/api/v1/status/posts/{$post->id}/likes")->assertOk();
+        AppNotificationItem::where('user_id', $user->id)->where('kind', 'status_like')
+            ->firstOrFail()->update(['read_at' => now()]);
 
         Sanctum::actingAs($user);
 
