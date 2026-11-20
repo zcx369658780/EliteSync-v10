@@ -1,3 +1,15 @@
+# CURRENT ENTRY 2026-11-20：Owner阶段D限定终验接受，V2-Q集成质量和产品决策收口获授权
+
+**`OWNER_PHASE_A_D_SCOPED_FINAL_ACCEPTED_WITH_RESERVATIONS / V2_Q_INTEGRATION_QUALITY_AUTHORIZED / Q_DELIVERY_PENDING / ASTRO_LEGACY_OWNER_CHOICE_PENDING / INTERNAL_CANDIDATE_PARTIAL / PRODUCTION_NO_GO / A6_MEETING_DEFERRED / NO_MAIN_MERGE_OR_RELEASE`**
+
+- Owner在[阶段D顾问验收](V2_PHASE_D_ADVISOR_SCOPED_ACCEPTANCE_WITH_RESERVATIONS_20261120.md)之后明确“好的我同意，请继续V2集成质量与产品决策收口”。依据[Owner阶段D限域终验与V2-Q授权](../decisions/OWNER_V2_PHASE_D_FINAL_SCOPED_ACCEPTANCE_AND_INTEGRATION_QUALITY_AUTHORIZATION_20261120.md)，阶段D具名成果由Owner最终接受但**顾问限定结论、全量失败及生产NO_GO不变**。V2-Q不是第五个功能扩张阶段，现有本地Codex可依[Q集中任务书](../versions/v2/V2_Q_INTEGRATION_QUALITY_AND_PRODUCT_DECISION_CONSOLIDATED_BRIEF_20261120.md)自治质量修复/安全隔离测试，完工集中交一包；[启动Prompt](V2_Q_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)。网页GPT只保存治理材料，并未实际启动Windows Codex。
+- Q真实安全参考工程为D固定交付`40ba853a3e9fed9062e8527b22c0b8ca9471e9ce`，C固定`15b45a0068c65615dd600b314037965e31244584`。D报告具名PHP175项/2,265断言、Flutter383项及额外31项、Dart22文件0问题**仅Codex运行报告+顾问GitHub源码抽样**；PHP全量**83 errors/131 failures=214条**（阶段B189、C新增25、D新增0报告对照），Flutter扩围**3 FAIL**、Flutter全仓NOT_RUN。旧25兼容与全部历史失败保留，不能重标PASS。
+- [旧排盘产品策略A/B/C备选](../product/V2_Q_LEGACY_ASTRO_COMPATIBILITY_OWNER_DECISION_OPTIONS_20261120.md)仍是`ADVISOR_RECOMMENDATION / OWNER_CHOICE_PENDING`：在Owner选定前旧自动POST继续合法依据不足时409、独立手填路径保留，不恢复跨用途联算，不退役旧核心功能。此问题的重大产品取舍与法律/外部处理仍须Owner具名决定，其他安全工程可继续。
+- PHP8.4、MariaDB实际并发/迁移、设备、真实KYC/Push/RTC、真实用途法律依据/删除受理、官方访客正文、43原PNG、F-01、旧UI-AUDIT-01及历史FAIL/UNKNOWN/NOT_RUN继续各按证据记账。Q可在已明确安全隔离条件下补定向验证；**不授权**真实供应商/数据/生产或共享DB/不可逆删除、真机/模拟器、正式A6、系统提权、main合并、公开内测或发布。
+- 工作流为Local-first：本机真实Git根/HEAD/index/dirty需Codex开工重新核验，旧脏main、S1和治理独立树不得清理或强制同步；GitHub只是当前治理及去敏备份。旧CURRENT ENTRY是形成当时历史快照，遇分隔线停止。
+
+---
+
 # CURRENT ENTRY 2026-11-20：阶段D工程交付获网页顾问限定验收，等待Owner最终裁决
 
 **`PHASE_D_ADVISOR_SCOPED_ACCEPTED_WITH_RESERVATIONS / OWNER_PHASE_D_FINAL_PENDING / INTERNAL_CANDIDATE_PARTIAL / PRODUCTION_NO_GO / C_COMPATIBILITY_25_OPEN / A6_MEETING_DEFERRED / NO_MAIN_MERGE_OR_RELEASE`**
