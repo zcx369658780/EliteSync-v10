@@ -7,6 +7,19 @@ import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'natal_restoration_provider.dart';
 
+Map<String, dynamic>? _readProfile(Map<String, dynamic> data) {
+  if (data['status'] == 'LEGAL_BASIS_UNVERIFIED') {
+    throw const AstroProfileApiException(
+      message: '保存基础资料不会自动生成排盘。可在本命工具中手填本次输入。',
+      code: 'LEGAL_BASIS_UNVERIFIED',
+    );
+  }
+  final profile = data['profile'];
+  return data['exists'] == true && profile is Map<String, dynamic>
+      ? profile
+      : null;
+}
+
 Future<Map<String, dynamic>?> _fetchAstroProfile(
   Ref ref, {
   required String path,
@@ -56,11 +69,7 @@ Future<Map<String, dynamic>?> _fetchAstroProfile(
   NetworkResult<Map<String, dynamic>> result = await request(path, query);
   requireCurrent();
   if (result is NetworkSuccess<Map<String, dynamic>>) {
-    final exists = result.data['exists'] == true;
-    if (!exists) return null;
-    final profile = result.data['profile'];
-    if (profile is Map<String, dynamic>) return profile;
-    return null;
+    return _readProfile(result.data);
   }
 
   var failure = result as NetworkFailure<Map<String, dynamic>>;
@@ -68,11 +77,7 @@ Future<Map<String, dynamic>?> _fetchAstroProfile(
     result = await request(fallbackPath, fallbackQuery);
     requireCurrent();
     if (result is NetworkSuccess<Map<String, dynamic>>) {
-      final exists = result.data['exists'] == true;
-      if (!exists) return null;
-      final profile = result.data['profile'];
-      if (profile is Map<String, dynamic>) return profile;
-      return null;
+      return _readProfile(result.data);
     }
     failure = result as NetworkFailure<Map<String, dynamic>>;
   }
@@ -96,7 +101,15 @@ final astroSummaryProvider = FutureProvider<Map<String, dynamic>?>((ref) async {
     fallbackPath: '/api/v1/profile/astro',
     fallbackQuery: {'include_chart': 0, 'route_mode': routeMode},
   );
-});
+}, retry: _astroReadRetry);
+
+Duration? _astroReadRetry(int attempt, Object error) {
+  if (error is AstroProfileApiException &&
+      error.code == 'LEGAL_BASIS_UNVERIFIED') {
+    return null;
+  }
+  return ProviderContainer.defaultRetry(attempt, error);
+}
 
 final astroNatalChartProvider = FutureProvider<Map<String, dynamic>?>((
   ref,
@@ -109,7 +122,7 @@ final astroNatalChartProvider = FutureProvider<Map<String, dynamic>?>((
     fallbackPath: '/api/v1/profile/astro',
     fallbackQuery: {'route_mode': routeMode},
   );
-});
+}, retry: _astroReadRetry);
 
 final astroChartPreviewProvider = FutureProvider<String?>((ref) async {
   final profile = await ref.watch(astroNatalChartProvider.future);

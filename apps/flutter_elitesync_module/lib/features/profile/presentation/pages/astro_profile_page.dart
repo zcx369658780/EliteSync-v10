@@ -88,7 +88,7 @@ class _AstroProfilePageState extends ConsumerState<AstroProfilePage>
                 ref.invalidate(astroNatalChartProvider);
               },
               icon: const Icon(Icons.auto_awesome),
-              label: const Text('三盘本命 · 输入与排盘'),
+              label: const Text('三盘本命 · 手填与排盘'),
             ),
           ),
           SectionReveal(
@@ -96,7 +96,7 @@ class _AstroProfilePageState extends ConsumerState<AstroProfilePage>
               title: '星座 / 星盘 / 八字画像',
               subtitle: astroAsync.asData?.value?.containsKey('natal') == true
                   ? '私有本命计算镜像，计算与核验状态分别记录'
-                  : '用于匹配结果中的过程与结论解释，先看生活化摘要',
+                  : '查看本人独立排盘结果',
             ),
           ),
           SizedBox(height: t.spacing.sm),

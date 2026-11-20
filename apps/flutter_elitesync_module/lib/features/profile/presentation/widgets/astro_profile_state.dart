@@ -26,7 +26,7 @@ AstroProfileStateSpec astroProfileLoadingSpec(String moduleName) {
 AstroProfileStateSpec astroProfileEmptySpec(String moduleName) {
   return AstroProfileStateSpec(
     title: '暂无$moduleName数据',
-    description: '请先保存基础资料并完成一次计算后再查看$moduleName。',
+    description: '可在本命工具中手填本次输入并保存计算结果。',
     icon: Icons.inbox_outlined,
     actionLabel: '重新加载',
   );
@@ -34,6 +34,13 @@ AstroProfileStateSpec astroProfileEmptySpec(String moduleName) {
 
 AstroProfileStateSpec astroProfileErrorSpec(String moduleName, Object error) {
   if (error is AstroProfileApiException) {
+    if (error.code == 'LEGAL_BASIS_UNVERIFIED') {
+      return const AstroProfileStateSpec(
+        title: '旧排盘资料暂不可复用',
+        description: '可打开本命工具，手填本次计算所需的资料。',
+        icon: Icons.lock_outline_rounded,
+      );
+    }
     if (error.isUnauthorized) {
       return AstroProfileStateSpec(
         title: '$moduleName登录已失效',
@@ -46,7 +53,7 @@ AstroProfileStateSpec astroProfileErrorSpec(String moduleName, Object error) {
     if (error.isNotFound) {
       return AstroProfileStateSpec(
         title: '服务端暂无$moduleName',
-        description: '当前账号没有可用的$moduleName记录，请先保存资料并重新计算。',
+        description: '当前账号没有可用记录。可在本命工具中手填本次输入。',
         icon: Icons.inbox_outlined,
         actionLabel: '重新加载',
       );
@@ -90,7 +97,7 @@ AstroProfileStateSpec astroProfileErrorSpec(String moduleName, Object error) {
   if (text.contains('Not found')) {
     return AstroProfileStateSpec(
       title: '服务端暂无$moduleName',
-      description: '当前账号没有可用的$moduleName记录，请先保存资料并重新计算。',
+      description: '当前账号没有可用记录。可在本命工具中手填本次输入。',
       icon: Icons.inbox_outlined,
       actionLabel: '重新加载',
     );

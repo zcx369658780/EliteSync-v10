@@ -6,6 +6,7 @@ import 'package:flutter_elitesync_module/design_system/components/bars/app_top_b
 import 'package:flutter_elitesync_module/design_system/components/layout/app_scaffold.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/providers/astro_profile_provider.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/providers/astro_profile_errors.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/astro_overview_components.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/astro_profile_sections.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/astro_profile_state.dart';
@@ -43,6 +44,19 @@ class AstroOverviewPage extends ConsumerWidget {
               ),
               error: (e, _) {
                 final spec = astroProfileErrorSpec('星盘关系参考', e);
+                if (e is AstroProfileApiException &&
+                    e.code == 'LEGAL_BASIS_UNVERIFIED') {
+                  return Column(
+                    children: [
+                      AstroProfileStateView(spec: spec),
+                      FilledButton(
+                        onPressed: () =>
+                            context.push(AppRouteNames.astroProfile),
+                        child: const Text('打开本命手填工具'),
+                      ),
+                    ],
+                  );
+                }
                 return AstroProfileStateView(
                   spec: spec,
                   onAction: spec.actionLabel == '去登录'

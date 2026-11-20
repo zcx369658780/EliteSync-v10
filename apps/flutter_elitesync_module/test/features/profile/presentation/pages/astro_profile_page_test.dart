@@ -13,9 +13,43 @@ import 'package:flutter_elitesync_module/features/profile/presentation/pages/ast
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_profile_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/astro_ziwei_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/providers/astro_profile_provider.dart';
+import 'package:flutter_elitesync_module/features/profile/presentation/providers/astro_profile_errors.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/widgets/astro_overview_components.dart';
 
 void main() {
+  testWidgets('legacy purpose denial offers the existing manual natal route', (tester) async {
+    final router = GoRouter(
+      routes: [
+        GoRoute(path: '/', builder: (_, _) => const AstroOverviewPage()),
+        GoRoute(
+          path: AppRouteNames.astroProfile,
+          builder: (_, _) => const AstroProfilePage(),
+        ),
+      ],
+    );
+    addTearDown(router.dispose);
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          astroSummaryProvider.overrideWith((ref) async =>
+              throw const AstroProfileApiException(
+                message: 'Legacy purpose unavailable',
+                code: 'LEGAL_BASIS_UNVERIFIED',
+              )),
+        ],
+        child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('旧排盘资料暂不可复用'), findsOneWidget);
+    final entry = find.text('打开本命手填工具');
+    await tester.ensureVisible(entry);
+    await tester.tap(entry);
+    await tester.pumpAndSettle();
+    expect(find.text('三盘本命 · 手填与排盘'), findsOneWidget);
+    expect(find.textContaining('先保存基础资料'), findsNothing);
+  });
+
   testWidgets('AstroOverviewPage presents visual relationship reading cards', (
     tester,
   ) async {
