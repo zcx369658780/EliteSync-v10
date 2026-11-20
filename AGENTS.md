@@ -1,3 +1,12 @@
+# 2026-11-20 最新Owner授权：阶段A限定终验通过，阶段B工程启动
+
+- Owner明确“我同意正式接受阶段A在限定自动化范围内的工程交付，请继续阶段B”。最新具名授权：[Owner阶段A验收/阶段B开发](docs/decisions/OWNER_V2_PHASE_A_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_B_ENGINEERING_AUTHORIZATION_20261120.md)。阶段A`OWNER_SCOPED_FINAL_ACCEPTED`，顾问原限制继续有效；B1–B4**由现有本地EliteSync Codex自治工程实施与隔离自动化测试**。此前“OWNER_FINAL_PENDING/PHASE_B_NOT_AUTHORIZED”均是授权前的历史快照。
+- 唯一阶段B工程入口：[合并任务单](docs/versions/v2/V2_PHASE_B_HOME_CONTENT_AUDIENCE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)和[Codex启动Prompt](docs/workflow/V2_PHASE_B_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)。B1首页双内容域、B2作品及评论默认、B3评论作者撤回/作品作者隐藏/条件独立回复、B4媒体/通知/深链/缓存跨通道安全。需保留A旧候选绑定、正式身份fail-closed、UNKNOWN先查、原评论受众保护，不重启旧脏main，不直接从S1旧HEAD继续开发。
+- **不得**在本授权下实施C/D，接入/采购真实KYC、Push等供应商，操作生产/共享数据库与真实用户数据，使用手机/模拟器，召开正式A6会议，合main或发布。非生产自动化与必要安全迁移定义可在已确认合法隔离环境执行；超界或环境身份不明确先阻断高风险动作。
+- A阶段遗留PHP`~8.4.0`与实测PHP8.5.3不一致，MariaDB及真实KYC/Push/设备仍有`NOT_RUN/OPEN`；2026-11-20前旧1011804与UI-AUDIT-01失败/UNKNOWN、F-01及原43PNG也不改判。网页GPT没有直接启动Windows Codex，B等待Owner转交现有会话。
+
+---
+
 # EliteSync-v10 当前工程约定
 
 2026-11-20 生效。新会话从 [ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md) 顶部、[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md) 和当期 Owner 授权起步。先核实际 Git 根、origin、分支、HEAD、工作区和暂存区。阶段 A 已交付并获顾问限定接受，Owner 终验 PENDING。继续工作时读取 [阶段 A 交接](docs/workflow/SESSION_HANDOFF_20261120_ELITESYNC_V2_PHASE_A_REVIEW.md) 和 [集中工程报告](https://github.com/zcx369658780/EliteSync-v10/blob/07b51a6de9695f5358b6bea2a59acd5be24ab6c2/docs/versions/v2/phase-a-20261119/PHASE_A_ENGINEERING_REPORT.md)；下方历史任务与权限按发生时点理解，适用的通用约定继续遵循。
