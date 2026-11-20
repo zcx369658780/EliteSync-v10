@@ -1,3 +1,12 @@
+# 2026-11-20 当前最新Owner权威：阶段C限域终验接受，阶段D工程已授权
+
+- [Owner正式决定](docs/decisions/OWNER_V2_PHASE_C_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_D_ENGINEERING_AUTHORIZATION_20261120.md)：接受C**具名隔离工程成果但保留全部限制**，并启动D1–D4（附D0兼容债务安全收尾）。最新授权优于下方历史“D未授权”的旧时点。此前[顾问C限域审查](docs/workflow/V2_PHASE_C_ADVISOR_INDEPENDENT_SCOPED_REVIEW_20261120.md)仍是`PHASE_C_ADVISOR_PARTIAL`；Owner终验不等于修复25个新增PHP FAIL，不等于环境全PASS。
+- 现有本地Codex会话以[阶段D合并工程任务书](docs/versions/v2/V2_PHASE_D_JOURNEY_NOTIFICATION_EXPERIENCE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)和[一次性启动Prompt](docs/workflow/V2_PHASE_D_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)为当期具名工作入口。C固定源码交付`15b45a0068c65615dd600b314037965e31244584`，需重新核本机Git真实身份/工作区，保护旧脏main、S1和治理树；不盲重置/切换或复制覆盖。
+- C已报告PHP具名167项/2140断言、Flutter243项；PHP全量83 errors/131 failures（25新增）、Flutter扩围3 FAIL；PHP8.4/MariaDB/设备/真实KYC/Push/RTC、法律用途与删除仍OPEN/NOT_RUN；43PNG/F-01旧缺口不变。禁止用TEST_ONLY称真实受理、真实匹配或推送。
+- 当前D仅许安全隔离、本地日常工程和非main脱敏备份；不许真机/模拟器、正式A6会议、供应商接入采购、生产/共享DB、真实个人数据/不可逆删除、系统提权、main合并或发布。D结束集中报告交Owner/网页顾问。本轮网页GPT尚未实际在Windows启动Codex。
+
+---
+
 # 2026-11-20 最新会话交接入口：阶段C获授权，工程报告待新顾问会话验收
 
 - Owner本会话因长度达到管理阈值要求立即进行GitHub/本地交接，并准备新网页GPT顾问会话。已归档[SESSION_HANDOFF_20261120_V2_PHASE_C_AUTHORIZED_AWAITING_DELIVERY.md](docs/workflow/SESSION_HANDOFF_20261120_V2_PHASE_C_AUTHORIZED_AWAITING_DELIVERY.md)，按本文第1节首读，禁止递归历史。**本次只是交接，没有Owner新增阶段D/生产/设备权限**。
