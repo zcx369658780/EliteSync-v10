@@ -1,3 +1,15 @@
+# CURRENT ENTRY 2026-11-20：Owner阶段A限定范围正式验收，并独立授权阶段B工程启动
+
+**`OWNER_PHASE_A_FINAL_SCOPED_ACCEPTED / PHASE_B_ENGINEERING_AUTHORIZED / PHASE_B_CODEX_HANDOFF_READY / PHASE_B_NOT_YET_EXECUTED_BY_WEB / PHASE_C_D_NOT_STARTED / A6_MEETING_DEFERRED / MAIN_MERGE_RELEASE_NOT_AUTHORIZED`**
+
+- Owner明确“我同意正式接受阶段A在限定自动化范围内的工程交付，请继续阶段B”。[独立具名Owner决定](../decisions/OWNER_V2_PHASE_A_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_B_ENGINEERING_AUTHORIZATION_20261120.md)确认**阶段A A1–A4定向自动化成果正式Owner接受**；顾问此前`ACCEPTED_WITH_RESERVATIONS`仍是准确限定。阶段A产品源码`4e6a5be6dcb7095438fb0a815c7831b14ffb561b`，交付`07b51a6de9695f5358b6bea2a59acd5be24ab6c2`。Codex PHP110/1,429、Flutter140及8个Dart文件分析0问题为具名范围自验，原始日志本地保留，网页顾问未重新执行。
+- 阶段B **B1首页官方访客/登录用户内容分域、B2普通FRIENDS+FRIENDS_ONLY与SELF/CMT-T1及受众影响、B3分主体评论撤回/隐藏与条件独立回复/中性状态、B4全通道媒体/深链/通知/缓存权限**现获实施与隔离测试授权；[合并任务单](../versions/v2/V2_PHASE_B_HOME_CONTENT_AUDIENCE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)及[现有Codex会话启动Prompt](V2_PHASE_B_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)已存。**尚未从网页GPT直连/启动本地Windows Codex，阶段B仍无实际执行结果。**
+- 本地Codex需从可核实包含阶段A保护的实际工程源码安全隔离开分支/工作树；保护旧`D:\EliteSync-v10`脏main和S1/阶段A已有资料，不自动以治理HEAD为工程HEAD。由Codex自治执行B并一包自验、顾问阶段审核、Owner最终决定；不得跨阶段自动启动C/D。
+- A保留条件依然OPEN：根PHP约束`~8.4.0`而A在PHP8.5.3测试，PHP8.4与MariaDB真实驱动/并发/迁移、真实KYC/Push、真机/跨端仍`NOT_RUN`或欠证；阶段A仅G01/G02/G03/G06/G08的部分子场景有证据，非整体G项PASS。旧1011804失败/UNKNOWN、F-01`READABILITY_PARTIAL`与43原PNG`PENDING_BINARY_UPLOAD`保持。
+- 阶段C/D、生产/共享DB、真实供应商、正式A6 UI会议、main合并与发布仍未授权。最新本CURRENT ENTRY优于下文旧“Owner阶段A待终验/阶段B未授权”历史时点段落，不改写历史报告。
+
+---
+
 # CURRENT ENTRY 2026-11-20｜V2 阶段 A 工程交付获顾问限定接受，待 Owner 终验
 
 **`PHASE_A_A1_A4_IMPLEMENTED / NAMED_AUTOMATED_QA_PASS / ADVISOR_ACCEPTED_WITH_RESERVATIONS / OWNER_FINAL_ACCEPTANCE_PENDING / PHASE_B_NOT_AUTHORIZED`**
