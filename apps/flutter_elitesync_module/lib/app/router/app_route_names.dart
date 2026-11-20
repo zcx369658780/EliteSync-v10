@@ -48,6 +48,8 @@ abstract class AppRouteNames {
 
   static const chatRoom = '/messages/chat';
   static const statusSquare = '/status/square';
+  static const statusDetail = '/status/post';
+  static const publicEditorial = '/editorial';
   static const statusAuthor = '/status/author';
   static const rtcCall = '/rtc/call';
   static const rtcIncomingCall = '/rtc/incoming';

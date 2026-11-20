@@ -20,6 +20,20 @@ class StatusPostPage {
   final bool hasMore;
 }
 
+class StatusAudiencePreview {
+  const StatusAudiencePreview({
+    required this.revision,
+    required this.commentPolicy,
+    required this.keepsCoverAudience,
+    required this.coverOwnerOnly,
+  });
+
+  final int revision;
+  final String commentPolicy;
+  final bool keepsCoverAudience;
+  final bool coverOwnerOnly;
+}
+
 class StatusRemoteDataSource {
   static const Duration _requestTimeout = Duration(seconds: 4);
 
@@ -48,6 +62,8 @@ class StatusRemoteDataSource {
   Future<StatusPostPage> fetchStatusPage({
     int limit = 20,
     String? cursor,
+    String? channel,
+    String? query,
   }) async {
     final pageLimit = limit.clamp(1, 20);
     final offset = cursor == null ? 0 : int.tryParse(cursor);
@@ -70,7 +86,12 @@ class StatusRemoteDataSource {
     final result = await apiClient
         .get(
           '/api/v1/status/posts',
-          query: {'limit': pageLimit, 'cursor': ?cursor},
+          query: {
+            'limit': pageLimit,
+            'cursor': ?cursor,
+            'channel': ?channel,
+            'q': ?query,
+          },
           options: _options,
         )
         .timeout(_requestTimeout);
@@ -106,7 +127,10 @@ class StatusRemoteDataSource {
     required String body,
     String? locationName,
     String visibility = 'public',
-    String audience = 'SELF',
+    String audience = 'FRIENDS',
+    String? commentPolicy,
+    String? requestKey,
+    bool confirm = false,
     int? coverMediaAssetId,
   }) async {
     if (useMock) {
@@ -117,6 +141,8 @@ class StatusRemoteDataSource {
         'location_name': locationName ?? '同城',
         'visibility': visibility,
         'audience': audience,
+        'comment_policy':
+            commentPolicy ?? (audience == 'SELF' ? 'OFF' : 'FRIENDS_ONLY'),
         'can_delete': true,
         'likes_count': 0,
         'liked_by_viewer': false,
@@ -149,6 +175,9 @@ class StatusRemoteDataSource {
               'location_name': locationName.trim(),
             'visibility': visibility,
             'audience': audience,
+            'comment_policy': ?commentPolicy,
+            'request_key': ?requestKey,
+            if (confirm) 'confirm': true,
             if (coverMediaAssetId != null && coverMediaAssetId > 0)
               'cover_media_asset_id': coverMediaAssetId,
           },
@@ -163,15 +192,92 @@ class StatusRemoteDataSource {
     throw Exception(failure.message);
   }
 
-  Future<void> updateAudience(int postId, String audience) async {
-    final result = await apiClient.put(
-      '/api/v1/status/posts/$postId/audience',
-      body: {'audience': audience},
-      options: _options,
-    );
-    if (result is NetworkFailure<Map<String, dynamic>>) {
-      throw Exception(result.message);
+  Future<Map<String, dynamic>> _currentRead(
+    String path, {
+    Map<String, dynamic>? query,
+  }) async {
+    final startedIdentity = identity?.call();
+    final result = await apiClient
+        .get(path, query: query, options: _options)
+        .timeout(_requestTimeout);
+    if (identity != null && identity!() != startedIdentity) {
+      throw StateError('Current account or audience changed');
     }
+    if (result is NetworkSuccess<Map<String, dynamic>>) return result.data;
+    throw StateError((result as NetworkFailure<Map<String, dynamic>>).message);
+  }
+
+  Future<StatusAudiencePreview> previewAudience(
+    int postId,
+    String audience, {
+    String? commentPolicy,
+  }) async {
+    final data = await _currentRead(
+      '/api/v1/status/posts/$postId/audience',
+      query: {'audience': audience, 'comment_policy': ?commentPolicy},
+    );
+    final revision = data['audience_revision'];
+    final policy = data['comment_policy'];
+    if (revision is! int ||
+        data['id'] != postId ||
+        data['audience'] != audience ||
+        policy is! String) {
+      throw StateError('The server did not confirm this preview');
+    }
+    return StatusAudiencePreview(
+      revision: revision,
+      commentPolicy: policy,
+      keepsCoverAudience: data['cover_keeps_original_audience'] == true,
+      coverOwnerOnly: data['cover_owner_only'] == true,
+    );
+  }
+
+  Future<void> updateAudience(
+    int postId,
+    String audience, {
+    required int revision,
+    String? commentPolicy,
+  }) async {
+    final result = await apiClient
+        .put(
+          '/api/v1/status/posts/$postId/audience',
+          body: {
+            'audience': audience,
+            'comment_policy': ?commentPolicy,
+            'expected_revision': revision,
+            'confirm': true,
+          },
+          options: _options,
+        )
+        .timeout(_requestTimeout);
+    if (result is NetworkFailure<Map<String, dynamic>>) {
+      throw StateError(result.message);
+    }
+  }
+
+  Future<String> publicationResult(String requestKey) async {
+    final result = await _currentRead(
+      '/api/v1/status/posts/command-result/$requestKey',
+    );
+    return switch (result['state']) {
+      'APPLIED' when result['id'] is int => 'APPLIED',
+      'NOT_APPLIED' => 'NOT_APPLIED',
+      'UNAVAILABLE' => 'UNAVAILABLE',
+      _ => 'UNKNOWN',
+    };
+  }
+
+  Future<List<Map<String, dynamic>>> fetchEditorial() async {
+    final result = await _currentRead('/api/v1/home/editorial');
+    return (result['items'] as List? ?? const [])
+        .whereType<Map<String, dynamic>>()
+        .where(
+          (item) =>
+              item['id'] is String &&
+              item['title'] is String &&
+              item['body'] is String,
+        )
+        .toList(growable: false);
   }
 
   Future<StatusPostEntity> fetchStatusPost(int postId) async {
@@ -182,15 +288,12 @@ class StatusRemoteDataSource {
       );
       return StatusPostEntity.fromJson(Map<String, dynamic>.from(match));
     }
-    final result = await apiClient
-        .get('/api/v1/status/posts/$postId', options: _options)
-        .timeout(_requestTimeout);
-    if (result is NetworkSuccess<Map<String, dynamic>>) {
-      final item = result.data['item'] as Map<String, dynamic>? ?? const {};
-      return StatusPostEntity.fromJson(item);
+    final result = await _currentRead('/api/v1/status/posts/$postId');
+    final item = result['item'];
+    if (item is! Map<String, dynamic> || item['id'] != postId) {
+      throw StateError('Current work is unavailable');
     }
-    final failure = result as NetworkFailure<Map<String, dynamic>>;
-    throw Exception(failure.message);
+    return StatusPostEntity.fromJson(item);
   }
 
   Future<List<StatusPostEntity>> fetchAuthorStatuses(int userId) async {

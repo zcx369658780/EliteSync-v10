@@ -245,7 +245,7 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
         return id;
       }
     }
-    if (item.kind == 'status_comment') {
+    if (item.kind == 'status_comment' || item.kind == 'status_like') {
       final id = int.tryParse(item.payload['status_post_id']?.toString() ?? '');
       if (id != null && id > 0) return '$id';
     }
@@ -375,10 +375,14 @@ class _NotificationCenterPageState extends ConsumerState<NotificationCenterPage>
           AppFeedback.showInfo(context, '当前动态已不可访问，请刷新当前状态');
           return false;
         }
+        if (item.kind == 'status_like') {
+          context.push('${AppRouteNames.statusDetail}/$id');
+          return true;
+        }
         Navigator.of(context).push(
           MaterialPageRoute<void>(
             builder: (_) => Scaffold(
-              appBar: AppBar(title: const Text('好友动态评论')),
+              appBar: AppBar(title: const Text('作品评论')),
               body: SingleChildScrollView(
                 padding: const EdgeInsets.all(16),
                 child: CommentPanel(postId: int.parse(id)),

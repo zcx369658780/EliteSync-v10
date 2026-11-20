@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_elitesync_module/core/network/api_client.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
@@ -25,7 +26,7 @@ SessionState session(int id) => SessionState(
 
 class Sessions extends SessionNotifier {
   @override
-  Future<SessionState> build() async => session(1);
+  SessionState build() => session(1);
   void change() => state = AsyncData(session(2));
 }
 
@@ -286,6 +287,68 @@ void main() {
       await tester.tap(find.text('返回首页'));
       await tester.pumpAndSettle();
       expect(find.text('HOME'), findsOneWidget);
+    },
+  );
+  testWidgets(
+    'saved publication key checks the original result without issuing a POST',
+    (tester) async {
+      const key = 'a6e38502-1721-4589-b02a-2dd382478812';
+      const pending = 'status_publication_pending_v2_1';
+      SharedPreferences.setMockInitialValues({pending: key});
+      tester.view.physicalSize = const Size(900, 2400);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final calls = <String>[];
+      final dio = Dio(BaseOptions(baseUrl: 'https://fixture.invalid'));
+      addTearDown(dio.close);
+      dio.interceptors.add(
+        InterceptorsWrapper(
+          onRequest: (request, flow) {
+            calls.add('${request.method} ${request.path}');
+            flow.resolve(
+              Response(
+                requestOptions: request,
+                statusCode: 200,
+                data: request.path.endsWith(key)
+                    ? {'state': 'APPLIED', 'id': 8}
+                    : page(1),
+              ),
+            );
+          },
+        ),
+      );
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            sessionProvider.overrideWith(Sessions.new),
+            profileProvider.overrideWith((ref) async => const ProfileUiState()),
+            statusRemoteDataSourceProvider.overrideWithValue(
+              StatusRemoteDataSource(
+                apiClient: ApiClient(dio: dio),
+                useMock: false,
+              ),
+            ),
+          ],
+          child: MaterialApp(
+            theme: AppTheme.light,
+            home: const StatusSquarePage(),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final check = find.text('核对上次发布');
+      await tester.ensureVisible(check);
+      await tester.tap(check);
+      await tester.pumpAndSettle();
+      expect(calls.where((call) => call.contains('command-result')), [
+        'GET /api/v1/status/posts/command-result/$key',
+      ]);
+      expect(calls.where((call) => call.startsWith('POST')), isEmpty);
+      expect(
+        (await SharedPreferences.getInstance()).getString(pending),
+        isNull,
+      );
     },
   );
 }

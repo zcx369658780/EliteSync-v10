@@ -32,6 +32,8 @@ import 'package:flutter_elitesync_module/features/feedback/presentation/pages/in
 import 'package:flutter_elitesync_module/features/debug/presentation/pages/local_only_visual_fixture_page.dart';
 import 'package:flutter_elitesync_module/features/home/domain/entities/home_feed_entity.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/pages/content_detail_page.dart';
+import 'package:flutter_elitesync_module/features/home/presentation/widgets/home_content_channels.dart';
+import 'package:flutter_elitesync_module/features/status/presentation/pages/status_post_detail_page.dart';
 import 'package:flutter_elitesync_module/features/notification/presentation/pages/notification_center_page.dart';
 import 'package:flutter_elitesync_module/features/social/presentation/pages/social_baseline_page.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/pages/rtc_call_page.dart';
@@ -88,7 +90,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       final isDevFixtureRoute =
           env.isDev && path == AppRouteNames.localOnlyVisualFixture;
       final isPublic =
-          path == AppRouteNames.splash || isAuthPage || isDevFixtureRoute;
+          path == AppRouteNames.splash ||
+          path == AppRouteNames.publicEditorial ||
+          isAuthPage ||
+          isDevFixtureRoute;
 
       if (nav.isBootstrapLoading) return AppRouteNames.splash;
 
@@ -268,6 +273,19 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                     conversationId: storedConversationId,
                   ),
           );
+        },
+      ),
+      GoRoute(
+        path: AppRouteNames.publicEditorial,
+        builder: (context, state) => const PublicEditorialPage(),
+      ),
+      GoRoute(
+        path: '${AppRouteNames.statusDetail}/:id',
+        builder: (context, state) {
+          final id = int.tryParse(state.pathParameters['id'] ?? '');
+          return id == null || id < 1
+              ? const InvalidRouteRecoveryPage()
+              : StatusPostDetailPage(key: ValueKey(id), postId: id);
         },
       ),
       GoRoute(

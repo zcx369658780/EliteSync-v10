@@ -189,6 +189,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         onPressed: () => context.push(AppRouteNames.register),
                       ),
                       TextButton(
+                        onPressed: () =>
+                            context.push(AppRouteNames.publicEditorial),
+                        child: const Text('以访客身份阅读官方专题'),
+                      ),
+                      TextButton(
                         onPressed: () => Navigator.of(context).push(
                           MaterialPageRoute<void>(
                             builder: (_) => const AccountRecoveryHelpPage(),

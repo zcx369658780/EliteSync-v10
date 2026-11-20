@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:uuid/uuid.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
 import 'package:flutter_elitesync_module/core/telemetry/frontend_telemetry.dart';
@@ -44,7 +45,8 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
   final TextEditingController _bodyController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   final ImagePicker _imagePicker = ImagePicker();
-  String _audience = 'SELF';
+  String _audience = 'FRIENDS';
+  String? _commentPolicy;
   bool _submitting = false;
   bool _prefilledLocation = false;
   bool _feedUnavailable = false;
@@ -69,7 +71,8 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     _locationController.clear();
     _clearCoverImage();
     setState(() {
-      _audience = 'SELF';
+      _audience = 'FRIENDS';
+      _commentPolicy = null;
       _submitting = false;
       _prefilledLocation = false;
       _feedUnavailable = false;
@@ -84,63 +87,128 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     super.dispose();
   }
 
-  Future<void> _publish() async {
+  Future<void> _publish({bool checkOnly = false}) async {
     final title = _titleController.text.trim();
     final body = _bodyController.text.trim();
-    if (title.isEmpty || body.isEmpty) {
-      AppFeedback.showInfo(context, '请先填写标题和内容');
-      return;
-    }
-    if (_coverStage == _CoverUploadStage.uploading) {
-      AppFeedback.showInfo(context, '媒体正在上传，请稍后再发布');
-      return;
-    }
-    if (_coverImagePath != null && _coverStage != _CoverUploadStage.ready) {
-      AppFeedback.showInfo(context, '媒体尚未就绪，请重试或清除后再发布');
-      return;
-    }
-
+    final session = ref.read(sessionProvider).asData?.value;
+    final userId = session?.user?.id;
+    if (session?.isLoggedIn != true || userId == null) return;
+    final token = session?.accessToken;
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
+    bool current() =>
+        token == ref.read(sessionProvider).asData?.value.accessToken &&
+        epoch == ref.read(relationshipAuthorityEpochProvider);
     setState(() => _submitting = true);
-    final token = ref.read(sessionProvider).asData?.value.accessToken;
+    final target = _audience;
+    final comments = _commentPolicy;
+    final cover = _coverStage == _CoverUploadStage.ready
+        ? _coverMediaAssetId
+        : null;
+    final location = _locationController.text.trim();
+    final storage = ref.read(localStorageProvider);
+    final remote = ref.read(statusRemoteDataSourceProvider);
+    // Store only the opaque command identifier. The draft is never persisted here.
+    final storageKey = 'status_publication_pending_v2_$userId';
     try {
-      final item = await ref
-          .read(statusRemoteDataSourceProvider)
-          .createStatusPost(
-            title: title,
-            body: body,
-            locationName: _locationController.text.trim().isEmpty
-                ? null
-                : _locationController.text.trim(),
-            visibility: 'private',
-            audience: _audience,
-            coverMediaAssetId: _coverStage == _CoverUploadStage.ready
-                ? _coverMediaAssetId
-                : null,
-          );
-      if (!mounted ||
-          token != ref.read(sessionProvider).asData?.value.accessToken) {
+      final pending = await storage.getString(storageKey);
+      if (!mounted || !current()) return;
+      if (pending != null) {
+        final outcome = await remote.publicationResult(pending);
+        if (!mounted || !current()) return;
+        if (outcome == 'APPLIED' || outcome == 'UNAVAILABLE') {
+          if (!await storage.remove(storageKey)) {
+            throw StateError('receipt storage');
+          }
+          if (!mounted || !current()) return;
+          if (outcome == 'APPLIED') {
+            _finishPublication();
+          } else {
+            AppFeedback.showInfo(context, '原请求已处理，作品当前不可读取。请刷新后再继续。');
+          }
+          return;
+        }
+        if (outcome != 'NOT_APPLIED') {
+          AppFeedback.showInfo(context, '发布结果仍无法核实，请稍后核对。');
+          return;
+        }
+      }
+      if (checkOnly) {
+        AppFeedback.showInfo(
+          context,
+          pending == null ? '当前没有待核对的发布。' : '服务端尚未记录原请求，可确认后继续。',
+        );
         return;
       }
+      if (title.isEmpty || body.isEmpty) {
+        AppFeedback.showInfo(context, '请先填写标题和内容');
+        return;
+      }
+      if (_coverStage == _CoverUploadStage.uploading) {
+        AppFeedback.showInfo(context, '媒体正在上传，请稍后再发布');
+        return;
+      }
+      if (_coverImagePath != null && _coverStage != _CoverUploadStage.ready) {
+        AppFeedback.showInfo(context, '媒体尚未就绪，请重试或清除后再发布');
+        return;
+      }
+
+      final policy = comments ?? (target == 'SELF' ? 'OFF' : 'FRIENDS_ONLY');
+      final confirmed = pending != null || target == 'PUBLIC_AUTHENTICATED'
+          ? await AppConfirmDialog.show(
+              context,
+              title: pending == null ? '确认向登录用户发布' : '确认继续原发布请求',
+              message: [
+                '作品：${statusAudienceLabel(target)}',
+                '评论：${statusCommentPolicyLabel(policy)}',
+                if (cover != null && target == 'PUBLIC_AUTHENTICATED')
+                  '封面仍只向当前双向好友开放。',
+              ].join('\n'),
+              confirmLabel: '确认发布',
+              cancelLabel: '取消',
+            )
+          : true;
+      if (!confirmed || !mounted || !current()) return;
+      final key = pending ?? const Uuid().v4();
+      if (pending == null && !await storage.setString(storageKey, key)) {
+        throw StateError('receipt storage');
+      }
+      if (!mounted || !current()) return;
+      final item = await remote.createStatusPost(
+        title: title,
+        body: body,
+        locationName: location.isEmpty ? null : location,
+        visibility: 'private',
+        audience: target,
+        commentPolicy: comments,
+        requestKey: key,
+        confirm: confirmed,
+        coverMediaAssetId: cover,
+      );
+      if (!mounted || !current()) return;
+      if (item.id <= 0 || !await storage.remove(storageKey)) {
+        throw StateError('receipt unavailable');
+      }
+      if (!mounted || !current()) return;
       ref
           .read(frontendTelemetryProvider)
           .statusPostPublished(sourcePage: 'status_square', postId: item.id);
-      _titleController.clear();
-      _bodyController.clear();
-      _clearCoverImage();
+      _finishPublication();
+    } catch (_) {
+      if (!mounted || !current()) return;
       _refreshPosts(firstPage: true);
-      if (!mounted) return;
-      AppFeedback.showSuccess(
-        context,
-        '状态已发布：${item.locationName.isEmpty ? '同城' : item.locationName}',
-      );
-    } catch (e) {
-      if (!mounted) return;
-      AppFeedback.showError(context, '发布失败：$e');
+      AppFeedback.showInfo(context, '发布结果尚未确认。再次操作会先核对原请求，不会自动重发。');
     } finally {
-      if (mounted) {
-        setState(() => _submitting = false);
-      }
+      if (mounted && current()) setState(() => _submitting = false);
     }
+  }
+
+  void _finishPublication() {
+    _titleController.clear();
+    _bodyController.clear();
+    _clearCoverImage();
+    _refreshPosts(firstPage: true);
+    ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+    AppFeedback.showSuccess(context, '作品已发布');
   }
 
   Future<void> _deletePost(StatusPostEntity post) async {
@@ -166,42 +234,120 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
 
   Future<void> _changeAudience(StatusPostEntity post) async {
     final token = ref.read(sessionProvider).asData?.value.accessToken;
-    final audience = await showDialog<String>(
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
+    bool current() =>
+        token == ref.read(sessionProvider).asData?.value.accessToken &&
+        epoch == ref.read(relationshipAuthorityEpochProvider);
+    var audience = post.audience;
+    String? policy;
+    final choice = await showDialog<(String, String?)>(
       context: context,
-      builder: (context) => SimpleDialog(
-        title: const Text('修改这条动态的受众'),
-        children: [
-          SimpleDialogOption(
-            onPressed: () => Navigator.pop(context, 'SELF'),
-            child: const Text('仅自己'),
-          ),
-          SimpleDialogOption(
-            onPressed: () => Navigator.pop(context, 'FRIENDS'),
-            child: const Text('双向好友'),
-          ),
-        ],
+      builder: (dialog) => StatefulBuilder(
+        builder: (context, update) {
+          return AlertDialog(
+            title: const Text('修改作品受众和评论'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                DropdownButton<String>(
+                  isExpanded: true,
+                  value: audience,
+                  items: [
+                    for (final value in [
+                      'SELF',
+                      'FRIENDS',
+                      'PUBLIC_AUTHENTICATED',
+                    ])
+                      DropdownMenuItem(
+                        value: value,
+                        child: Text(statusAudienceLabel(value)),
+                      ),
+                  ],
+                  onChanged: (value) {
+                    if (value == null) return;
+                    update(() {
+                      audience = value;
+                      if (value == 'SELF' && policy != 'OFF') policy = null;
+                    });
+                  },
+                ),
+                DropdownButton<String>(
+                  isExpanded: true,
+                  value: policy ?? 'KEEP',
+                  items: [
+                    const DropdownMenuItem(
+                      value: 'KEEP',
+                      child: Text('按当前评论设置预览'),
+                    ),
+                    for (final value in [
+                      'OFF',
+                      if (audience != 'SELF') ...[
+                        'FRIENDS_ONLY',
+                        'ALL_ELIGIBLE',
+                      ],
+                    ])
+                      DropdownMenuItem(
+                        value: value,
+                        child: Text(statusCommentPolicyLabel(value)),
+                      ),
+                  ],
+                  onChanged: (value) =>
+                      update(() => policy = value == 'KEEP' ? null : value),
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(dialog),
+                child: const Text('取消'),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.pop(dialog, (audience, policy)),
+                child: const Text('查看影响'),
+              ),
+            ],
+          );
+        },
       ),
     );
-    if (audience == null ||
-        !mounted ||
-        token != ref.read(sessionProvider).asData?.value.accessToken) {
-      return;
-    }
+    if (choice == null || !mounted || !current()) return;
+    final remote = ref.read(statusRemoteDataSourceProvider);
     try {
-      await ref
-          .read(statusRemoteDataSourceProvider)
-          .updateAudience(post.id, audience);
-      if (!mounted ||
-          token != ref.read(sessionProvider).asData?.value.accessToken) {
-        return;
-      }
+      final preview = await remote.previewAudience(
+        post.id,
+        choice.$1,
+        commentPolicy: choice.$2,
+      );
+      if (!mounted || !current()) return;
+      final confirm = await AppConfirmDialog.show(
+        context,
+        title: '确认作品权限',
+        message: [
+          '作品：${statusAudienceLabel(choice.$1)}',
+          '评论：${statusCommentPolicyLabel(preview.commentPolicy)}',
+          '历史评论保留原受众限制。',
+          if (preview.coverOwnerOnly)
+            '封面仅自己可见。'
+          else if (preview.keepsCoverAudience)
+            '封面保留原受众上限。',
+        ].join('\n'),
+        confirmLabel: '保存',
+        cancelLabel: '取消',
+      );
+      if (!confirm || !mounted || !current()) return;
+      await remote.updateAudience(
+        post.id,
+        choice.$1,
+        revision: preview.revision,
+        commentPolicy: choice.$2,
+      );
+      if (!mounted || !current()) return;
       ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
-      AppFeedback.showSuccess(context, '受众已保存');
-    } catch (e) {
-      if (mounted &&
-          token == ref.read(sessionProvider).asData?.value.accessToken) {
-        AppFeedback.showError(context, '受众未修改：$e');
-      }
+      AppFeedback.showSuccess(context, '作品权限已保存');
+    } catch (_) {
+      if (!mounted || !current()) return;
+      ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+      AppFeedback.showInfo(context, '结果尚未确认，正在重新读取当前作品权限。');
     }
   }
 
@@ -568,7 +714,12 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     ref.listen(relationshipAuthorityEpochProvider, (previous, next) {
       // Peer authority refresh clears/reloads the feed through its providers.
       // An unpublished, owner-only draft and upload keep their session guard.
-      if (previous != next) setState(() => _feedUnavailable = false);
+      if (previous != next) {
+        setState(() {
+          _feedUnavailable = false;
+          _submitting = false;
+        });
+      }
     });
     final t = context.appTokens;
     final postsAsync = ref.watch(statusPostPageProvider);
@@ -647,7 +798,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
             SizedBox(height: t.spacing.md),
             AppInfoSectionCard(
               title: '发布状态',
-              subtitle: '仅自己或当前双向好友，按你选择的受众发布',
+              subtitle: '默认向双向好友发布，评论也仅向双向好友开放',
               leadingIcon: Icons.publish_rounded,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -687,11 +838,50 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                       AppChoiceChip(
                         label: '仅自己',
                         selected: _audience == 'SELF',
-                        onTap: () => setState(() => _audience = 'SELF'),
+                        onTap: () => setState(() {
+                          _audience = 'SELF';
+                          if (_commentPolicy != 'OFF') _commentPolicy = null;
+                        }),
+                      ),
+                      AppChoiceChip(
+                        label: '登录用户',
+                        selected: _audience == 'PUBLIC_AUTHENTICATED',
+                        onTap: () =>
+                            setState(() => _audience = 'PUBLIC_AUTHENTICATED'),
                       ),
                     ],
                   ),
                   SizedBox(height: t.spacing.sm),
+                  DropdownButton<String>(
+                    value: _commentPolicy ?? 'DEFAULT',
+                    isExpanded: true,
+                    items: [
+                      DropdownMenuItem(
+                        value: 'DEFAULT',
+                        child: Text(
+                          _audience == 'SELF' ? '默认关闭评论' : '默认仅双向好友可评论',
+                        ),
+                      ),
+                      for (final value in [
+                        'OFF',
+                        if (_audience != 'SELF') ...[
+                          'FRIENDS_ONLY',
+                          'ALL_ELIGIBLE',
+                        ],
+                      ])
+                        DropdownMenuItem(
+                          value: value,
+                          child: Text(statusCommentPolicyLabel(value)),
+                        ),
+                    ],
+                    onChanged: _submitting
+                        ? null
+                        : (value) => setState(
+                            () => _commentPolicy = value == 'DEFAULT'
+                                ? null
+                                : value,
+                          ),
+                  ),
                   _buildCoverPreview(context),
                   SizedBox(height: t.spacing.sm),
                   FilledButton.icon(
@@ -704,6 +894,12 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                           )
                         : const Icon(Icons.send_rounded),
                     label: Text(_submitting ? '发布中...' : '发布状态'),
+                  ),
+                  TextButton(
+                    onPressed: _submitting
+                        ? null
+                        : () => _publish(checkOnly: true),
+                    child: const Text('核对上次发布'),
                   ),
                 ],
               ),

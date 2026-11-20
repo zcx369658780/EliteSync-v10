@@ -157,7 +157,7 @@ class StatusPostCard extends ConsumerWidget {
               onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute<void>(
                   builder: (_) => Scaffold(
-                    appBar: AppBar(title: const Text('好友动态评论')),
+                    appBar: AppBar(title: const Text('作品评论')),
                     body: SingleChildScrollView(
                       padding: const EdgeInsets.all(16),
                       child: CommentPanel(postId: post.id),
@@ -165,7 +165,7 @@ class StatusPostCard extends ConsumerWidget {
                   ),
                 ),
               ),
-              child: const Text('一级评论'),
+              child: const Text('查看评论'),
             ),
             if (showReturnflowActions) ...[
               SizedBox(height: t.spacing.sm),
@@ -323,11 +323,13 @@ class AuthenticatedStatusImage extends ConsumerStatefulWidget {
 }
 
 class _AuthenticatedStatusImageState
-    extends ConsumerState<AuthenticatedStatusImage> {
+    extends ConsumerState<AuthenticatedStatusImage>
+    with WidgetsBindingObserver {
   MemoryImage? _image;
   CancelToken? _cancel;
   int _generation = 0;
   bool _loading = false;
+  bool _foreground = true;
   late final ProviderSubscription<AsyncValue<SessionState>>
   _sessionSubscription;
   late final ProviderSubscription<int> _authoritySubscription;
@@ -344,6 +346,7 @@ class _AuthenticatedStatusImageState
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _sessionSubscription = ref.listenManual(
       sessionProvider,
       (_, next) => _reload(),
@@ -363,6 +366,7 @@ class _AuthenticatedStatusImageState
     final epoch = ref.read(relationshipAuthorityEpochProvider);
     final token = session?.accessToken;
     final eligible =
+        _foreground &&
         session?.isLoggedIn == true &&
         token != null &&
         token.isNotEmpty &&
@@ -409,7 +413,14 @@ class _AuthenticatedStatusImageState
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    _foreground = state == AppLifecycleState.resumed;
+    _reload();
+  }
+
+  @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _sessionSubscription.close();
     _authoritySubscription.close();
     _clear();

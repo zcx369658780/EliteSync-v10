@@ -1,3 +1,15 @@
+String statusAudienceLabel(String audience) => switch (audience) {
+  'FRIENDS' => '双向好友可见',
+  'PUBLIC_AUTHENTICATED' => '登录用户可见',
+  _ => '仅自己可见',
+};
+
+String statusCommentPolicyLabel(String policy) => switch (policy) {
+  'FRIENDS_ONLY' => '仅双向好友可评论',
+  'ALL_ELIGIBLE' => '有权阅读的登录用户可评论',
+  _ => '关闭评论',
+};
+
 class StatusPostEntity {
   const StatusPostEntity({
     required this.id,
@@ -16,6 +28,8 @@ class StatusPostEntity {
     required this.locationName,
     required this.visibility,
     this.audience = 'SELF',
+    this.commentPolicy = 'OFF',
+    this.editorRecommended = false,
     required this.canDelete,
     required this.likesCount,
     required this.likedByViewer,
@@ -43,6 +57,8 @@ class StatusPostEntity {
   final String locationName;
   final String visibility;
   final String audience;
+  final String commentPolicy;
+  final bool editorRecommended;
   final bool canDelete;
   final int likesCount;
   final bool likedByViewer;
@@ -119,7 +135,13 @@ class StatusPostEntity {
       ).map((e) => e.toString()).where((e) => e.isNotEmpty).toList(),
       locationName: (json['location_name'] ?? '').toString(),
       visibility: (json['visibility'] ?? 'public').toString(),
-      audience: json['audience'] == 'FRIENDS' ? 'FRIENDS' : 'SELF',
+      audience: switch (json['audience']) {
+        'FRIENDS' => 'FRIENDS',
+        'PUBLIC_AUTHENTICATED' => 'PUBLIC_AUTHENTICATED',
+        _ => 'SELF',
+      },
+      commentPolicy: (json['comment_policy'] as String?) ?? 'OFF',
+      editorRecommended: json['editor_recommended'] == true,
       canDelete: parseBool(json['can_delete']),
       likesCount: parseInt(json['likes_count']),
       likedByViewer: parseBool(json['liked_by_viewer']),
@@ -145,9 +167,7 @@ class StatusPostEntity {
 
   bool get isPublic => visibility == 'public' || visibility == 'square';
 
-  String get visibilityLabel {
-    return audience == 'FRIENDS' ? '双向好友可见' : '仅自己可见';
-  }
+  String get visibilityLabel => statusAudienceLabel(audience);
 
   String get visibilityTierLabel {
     return switch (visibility) {
@@ -183,6 +203,8 @@ class StatusPostEntity {
       'location_name': locationName,
       'visibility': visibility,
       'audience': audience,
+      'comment_policy': commentPolicy,
+      'editor_recommended': editorRecommended,
       'is_deleted': isDeleted,
       'can_delete': canDelete,
       'likes_count': likesCount,

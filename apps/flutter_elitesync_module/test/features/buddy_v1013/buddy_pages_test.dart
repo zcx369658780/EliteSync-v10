@@ -379,6 +379,7 @@ void main() {
       _Api((m, p, b) async {
         if (m == 'POST') throw const RelationshipFailure('audience revoked');
         return {
+          'can_comment': true,
           'items': [
             {
               'id': 'comment-one',
@@ -399,6 +400,54 @@ void main() {
     expect(find.byKey(const Key('comments-error')), findsOneWidget);
     expect(find.byKey(const Key('comment-submit')), findsNothing);
   });
+
+  testWidgets(
+    'an uncertain comment is looked up before an explicit same-key retry',
+    (tester) async {
+      final writes = <Object?>[];
+      var reads = 0;
+      await _mount(
+        tester,
+        const Scaffold(
+          body: SingleChildScrollView(child: CommentPanel(postId: 1)),
+        ),
+        _Api((method, path, body) async {
+          if (method == 'POST') {
+            writes.add(body?['idempotency_key']);
+            if (writes.length == 1) {
+              throw const RelationshipFailure('response lost');
+            }
+            return {'state': 'ACTIVE'};
+          }
+          if (path.contains('/command-result?request_key=')) {
+            reads++;
+            expect(
+              Uri.parse(path).queryParameters['request_key'],
+              writes.single,
+            );
+            return {'state': 'NOT_APPLIED'};
+          }
+          return {
+            'can_comment': true,
+            'items': <Map<String, dynamic>>[],
+            'meta': {'has_more': false},
+          };
+        }),
+      );
+      await tester.enterText(find.byKey(const Key('comment-draft')), '需要核对的评论');
+      await tester.tap(find.byKey(const Key('comment-submit')));
+      await tester.pumpAndSettle();
+      expect(writes, hasLength(1));
+      expect(find.text('重试原请求'), findsNothing);
+      await tester.tap(find.text('核对上次评论提交'));
+      await tester.pumpAndSettle();
+      expect(reads, 1);
+      expect(writes, hasLength(1));
+      await tester.tap(find.text('重试原请求'));
+      await tester.pumpAndSettle();
+      expect(writes, [writes.first, writes.first]);
+    },
+  );
 
   testWidgets('switching post ids clears an older comments projection', (
     tester,

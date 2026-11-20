@@ -11,8 +11,13 @@ import '../slow_dating_v1012/matching_history_page.dart';
 /// A current projection of existing authorities. All decisions remain commands
 /// to their original services; opening this page never submits a command.
 class JourneyOverviewPage extends ConsumerStatefulWidget {
-  const JourneyOverviewPage({super.key, this.detailed = false});
+  const JourneyOverviewPage({
+    super.key,
+    this.detailed = false,
+    this.homeContent,
+  });
   final bool detailed;
+  final Widget? homeContent;
 
   @override
   ConsumerState<JourneyOverviewPage> createState() => _JourneyOverviewState();
@@ -399,6 +404,8 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 112),
         children: [
+          if (_routeActive && _foreground && widget.homeContent != null)
+            widget.homeContent!,
           if (busy) const LinearProgressIndicator(),
           if (error != null)
             const Text('暂时无法加载，请刷新重试', key: Key('server-error')),
