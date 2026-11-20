@@ -1,3 +1,12 @@
+# 2026-11-20｜Owner正式限定接受阶段C并授权D1–D4本地工程
+
+- 最新有效[Owner C终验与D授权](../decisions/OWNER_V2_PHASE_C_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_D_ENGINEERING_AUTHORIZATION_20261120.md)；[阶段D合并任务书](../versions/v2/V2_PHASE_D_JOURNEY_NOTIFICATION_EXPERIENCE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)；[原Codex会话启动Prompt](V2_PHASE_D_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)。本地Codex负责日常自治、实施和安全隔离测试，网页顾问阶段审查，Owner最终产品/生产裁决；网页GPT只提交治理文档，尚未直接启动Windows Codex。
+- C工程基线`15b45a0068c65615dd600b314037965e31244584`，顾问`PHASE_C_ADVISOR_PARTIAL`不被追认成全面PASS；Owner接受范围有保留：具名PHP167/2140与Flutter243是Codex运行报告，PHP全量83 errors/131 failures含新增25、Flutter扩围3 FAIL。C遗留兼容处理并入D0且不阻断其它安全开发；旧能力退役/新隐私重大取舍仍留Owner。
+- D范围仅D1关系旅程、D2站内通知、D3现有UI/无障碍、D4条件性隔离联测、D0旧兼容安全收尾。正式匹配/KYC与真实Push/RTC、法律对象删除受理均不能用测试代替。未经额外授权不可使用真机/模拟器、真实供应商、生产/共享DB、真实数据及不可逆删除，不进行正式A6会议、main合并及发布。
+- Codex起步先核真实Git根、origin、分支/HEAD、dirty/index并保护脏main/S1树和独立治理树；GitHub固定C提交只是远端验收身份，不强制变更本地实际工程。一次阶段D综合自验报告结束后停Owner集中验收。旧会话交接已由Codex报告`LOCAL_SYNC_DONE`，不是网页GPT直接本机验真。
+
+---
+
 # 2026-11-20｜网页GPT顾问会话交接已封存；Local-first阶段C继续、最新报告待新会话审
 
 - Owner明确要求立即在GitHub与可下载本地副本保存任务/决定/工作流并交接；[完整交接文件](SESSION_HANDOFF_20261120_V2_PHASE_C_AUTHORIZED_AWAITING_DELIVERY.md)已保存（包含新会话简短首读和验收Prompt）。**网页GPT不能直接写Owner Windows本地目录**，本地镜像必须由Owner手动复制或Codex安全只读获取/校验后回报；无本地回执不可写`LOCAL_SYNC_DONE`。
