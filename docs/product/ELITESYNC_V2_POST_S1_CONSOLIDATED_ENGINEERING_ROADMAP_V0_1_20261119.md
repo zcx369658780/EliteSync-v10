@@ -1,3 +1,10 @@
+# 2026-11-20 当前路线图完成状态：A–D均Owner限定接受，转V2-Q质量/产品决策收口
+
+- [Owner阶段D终验/V2-Q授权](../decisions/OWNER_V2_PHASE_D_FINAL_SCOPED_ACCEPTANCE_AND_INTEGRATION_QUALITY_AUTHORIZATION_20261120.md)：四阶段A→B→C→D均已获得**具名工程范围的Owner限定接受**，不是整体自动化或生产PASS；当前执行工作为[集成质量/产品取舍集中任务](../versions/v2/V2_Q_INTEGRATION_QUALITY_AND_PRODUCT_DECISION_CONSOLIDATED_BRIEF_20261120.md)，不是新功能阶段或正式发布路线启动。
+- D固定`40ba853a3e9fed9062e8527b22c0b8ca9471e9ce`，内部候选PARTIAL，生产NO_GO；PHP全量83errors/131failures与Flutter扩围3FAIL、真实PHP8.4/MariaDB/设备/供应商/合法受理均保留。旧排盘A/B/C产品取舍依[Owner待决选项](V2_Q_LEGACY_ASTRO_COMPATIBILITY_OWNER_DECISION_OPTIONS_20261120.md)另行确认。正式A6、真实数据/设备、main合并和发布未授权。
+
+---
+
 # 2026-11-20 最新阶段权限：Owner接受C限域成果并批准D本地工程
 
 - [具名Owner决定](../decisions/OWNER_V2_PHASE_C_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_D_ENGINEERING_AUTHORIZATION_20261120.md)正式接受C在当前**具名软件范围内的保留成果**并授权[阶段D D1–D4集中工程](../versions/v2/V2_PHASE_D_JOURNEY_NOTIFICATION_EXPERIENCE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)及D0已披露的安全兼容债务处理。C顾问`PARTIAL`保留，25条新增PHP失败与历史FAIL、外部NOT_RUN均不改成PASS；阶段D由现有Codex会话安全隔离自治工程/自验，一包报告给Owner顾问复审。旧节中“D尚未授权”仅是历史时点。
