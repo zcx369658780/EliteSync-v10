@@ -1,3 +1,11 @@
+# 2026-11-20 最新Owner决定：阶段D限定终验接受，V2-Q工程已获安全收口授权
+
+- 最新权威为[Owner阶段D终验/V2-Q启动](docs/decisions/OWNER_V2_PHASE_D_FINAL_SCOPED_ACCEPTANCE_AND_INTEGRATION_QUALITY_AUTHORIZATION_20261120.md)。A–D均为Owner具名工程范围内的限定接受，D顾问原`SCOPED_ACCEPTED_WITH_RESERVATIONS`不等于全量PASS；当前V2-Q不是新增功能阶段，允许原本地Codex会话实施[集中质量任务](docs/versions/v2/V2_Q_INTEGRATION_QUALITY_AND_PRODUCT_DECISION_CONSOLIDATED_BRIEF_20261120.md)，只按需回归并集中报告。启动指令见[现有Codex Prompt](docs/workflow/V2_Q_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)。
+- 真实D固定交付`40ba853a3e9fed9062e8527b22c0b8ca9471e9ce`；PHP全量83errors/131failures（阶段B189+C新增25，D对照新零条仅Codex报告）、Flutter扩围3FAIL；PHP8.4/MariaDB/真实设备/供应商/合法用途及对象删除均OPEN/NOT_RUN；访客正文空、43PNG/F-01旧缺口不改判。旧星盘产品策略A/B/C[待Owner选择](docs/product/V2_Q_LEGACY_ASTRO_COMPATIBILITY_OWNER_DECISION_OPTIONS_20261120.md)，未授权弃用核心功能，也不能恢复无许可自动算盘/资料回填。
+- Local-first不变：Codex先核本机实际root/origin/branch/HEAD/index/dirty，保护原脏main、S1、治理树；常规工程自治、非main脱敏备份，网页GPT战略及集中审查、Owner最终决策。Github不替代本地实时工程。Q阶段不得使用真机/模拟器、正式A6、真实供应商、生产/共享DB与真实个人数据/不可逆删除、系统提权、main合并、公开内测与正式发布。本次网页顾问尚未启动本机Codex。
+
+---
+
 # 2026-11-20 当前最新Owner权威：阶段C限域终验接受，阶段D工程已授权
 
 - [Owner正式决定](docs/decisions/OWNER_V2_PHASE_C_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_D_ENGINEERING_AUTHORIZATION_20261120.md)：接受C**具名隔离工程成果但保留全部限制**，并启动D1–D4（附D0兼容债务安全收尾）。最新授权优于下方历史“D未授权”的旧时点。此前[顾问C限域审查](docs/workflow/V2_PHASE_C_ADVISOR_INDEPENDENT_SCOPED_REVIEW_20261120.md)仍是`PHASE_C_ADVISOR_PARTIAL`；Owner终验不等于修复25个新增PHP FAIL，不等于环境全PASS。
