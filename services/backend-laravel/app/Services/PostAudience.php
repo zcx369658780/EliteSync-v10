@@ -47,11 +47,11 @@ final class PostAudience
     public function coverAllowedLocked(StatusPost $post, int $viewer): bool
     {
         $owner = (int) $post->author_user_id;
-        $basis = $post->cover_audience ?? $post->audience;
+        $basis = $post->cover_audience;
 
         return $this->allowedLocked($post, $viewer) && ($viewer === $owner
             || ($basis === self::FRIENDS
-                && ($post->cover_audience === null || in_array($viewer, $post->cover_original_viewer_ids ?? [], true))
+                && in_array($viewer, $post->cover_original_viewer_ids ?? [], true)
                 && app(SocialPolicy::class)->friendship($viewer, $owner)));
     }
 

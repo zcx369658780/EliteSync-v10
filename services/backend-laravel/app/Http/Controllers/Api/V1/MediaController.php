@@ -232,9 +232,13 @@ class MediaController extends Controller
             }
             $allowed = $linked->isEmpty() && (int) $viewer->id === $owner;
             if (app(SocialPolicy::class)->pairAllowed((int) $viewer->id, $owner)) {
-                $post = StatusPost::where('cover_media_asset_id', $id)->where('author_user_id', $owner)->where('is_deleted', false)->first();
-                if ($post && app(\App\Services\PostAudience::class)->coverAllowedLocked($post, (int) $viewer->id)) {
-                    $allowed = true;
+                $posts = StatusPost::where('cover_media_asset_id', $id)->where('author_user_id', $owner)
+                    ->where('is_deleted', false)->orderBy('id')->lockForUpdate()->get();
+                foreach ($posts as $post) {
+                    if (app(\App\Services\PostAudience::class)->coverAllowedLocked($post, (int) $viewer->id)) {
+                        $allowed = true;
+                        break;
+                    }
                 }
             }
 

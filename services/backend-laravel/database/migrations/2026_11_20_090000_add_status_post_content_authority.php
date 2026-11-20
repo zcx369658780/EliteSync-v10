@@ -32,7 +32,7 @@ return new class extends Migration
             ->update(['audience' => 'SELF']);
         DB::table('status_post_comments')->where('original_audience', 'PUBLIC_AUTHENTICATED')
             ->update(['original_viewer_ids' => null]);
-        DB::table('status_posts')->whereNotNull('cover_audience')
+        DB::table('status_posts')->whereNotNull('cover_media_asset_id')
             ->where('audience', 'FRIENDS')->update(['audience' => 'SELF']);
         Schema::table('status_posts', function (Blueprint $table) {
             $table->dropIndex('status_posts_audience_feed_idx');

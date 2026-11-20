@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\MediaAsset;
-use App\Models\StatusPost;
 use App\Models\User;
 use App\Models\UserBlock;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -99,8 +98,9 @@ final class V10114StatusVideoTest extends TestCase
             'user_b' => max($author->id, $friend->id), 'state' => 'ACTIVE', 'revision' => 1,
             'created_at' => now(), 'updated_at' => now()]);
         $asset = $this->asset($author);
-        StatusPost::create(['author_user_id' => $author->id, 'cover_media_asset_id' => $asset->id,
-            'title' => 'QA', 'body' => 'QA', 'audience' => 'FRIENDS', 'visibility' => 'private']);
+        Sanctum::actingAs($author);
+        $this->postJson('/api/v1/status/posts', ['cover_media_asset_id' => $asset->id,
+            'title' => 'QA', 'body' => 'QA', 'audience' => 'FRIENDS'])->assertCreated();
         Sanctum::actingAs($friend);
         $this->get('/api/v1/media/'.$asset->id.'/content', ['Range' => 'bytes=0-3'])->assertStatus(206);
         $block = UserBlock::create(['blocker_id' => $author->id, 'blocked_user_id' => $friend->id]);

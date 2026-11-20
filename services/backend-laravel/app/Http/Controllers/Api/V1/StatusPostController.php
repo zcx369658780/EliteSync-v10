@@ -525,7 +525,7 @@ class StatusPostController extends Controller
                 'cover_keeps_original_audience' => (bool) $post->cover_media_asset_id,
                 'cover_owner_only' => $post->cover_media_asset_id && ($target === PostAudience::SELF
                     || $post->cover_audience === PostAudience::SELF
-                    || ($post->cover_audience === null && $target !== $post->audience)),
+                    || $post->cover_audience === null),
             ];
             if ($request->isMethod('GET')) {
                 return response()->json($preview);
@@ -630,6 +630,7 @@ class StatusPostController extends Controller
                         'status_post_id' => (int) $post->id,
                         'actor_user_id' => $viewerId,
                         'source' => 'status_like',
+                        'audience_basis' => $post->audience,
                     ]
                 );
             }

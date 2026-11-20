@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\StatusPost;
+use App\Services\JourneyStore;
 use App\Services\NotificationService;
 use App\Services\PostAudience;
 use App\Services\StatusCommentAudience;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -37,7 +39,7 @@ class StatusCommentController extends Controller
             'author_id' => (int) $row->author_id, 'body' => $row->body,
             'can_withdraw' => $authorMayAct, 'can_hide' => $ownerMayAct,
             'can_report' => ! $own,
-            'can_reply' => $row->parent_id === null,
+            'can_reply' => $row->parent_id === null && $this->posts->mayCommentLocked($post, $viewer),
             'created_at' => $row->created_at,
         ] + $context;
     }
@@ -52,28 +54,48 @@ class StatusCommentController extends Controller
     {
         $actor = $this->actor($request);
         $offset = max(0, (int) $request->query('cursor', 0));
-        $candidates = DB::table('status_post_comments as comment')
+        $query = DB::table('status_post_comments as comment')
             ->leftJoin('status_post_comments as parent', fn ($join) => $join->on('parent.id', '=', 'comment.parent_id')
                 ->on('parent.status_post_id', '=', 'comment.status_post_id'))
             ->where('comment.status_post_id', $postId)->whereJsonContains('comment.original_viewer_ids', $actor)
             ->where(fn ($query) => $query->where(fn ($visible) => $visible->where('comment.state', 'ACTIVE')
                 ->where('comment.withdrawn', false)->where('comment.hidden_by_owner', false))
-                ->orWhere(fn ($own) => $own->where('comment.author_id', $actor)->whereNull('comment.parent_id')))
+                ->orWhere('comment.author_id', $actor))
             ->orderBy('comment.created_at')->orderBy('comment.id')
-            ->get(['comment.id', 'comment.author_id', 'parent.author_id as parent_author_id']);
-        $authors = $candidates->flatMap(fn ($row) => [(int) $row->author_id, (int) $row->parent_author_id])->filter()->unique()->all();
+            ->select('comment.id', 'comment.author_id', 'parent.author_id as parent_author_id');
 
-        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $offset, $candidates) {
+        // The visible cursor never counts a hidden row. Scan candidates in
+        // bounded transactions, then revalidate the page together before
+        // returning bodies or indicating that another authorized item exists.
+        $selected = collect();
+        $visible = 0;
+        $query->chunk(40, function ($batch) use ($actor, $postId, $offset, &$visible, $selected) {
+            $eligible = $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $batch) {
+                return $batch->filter(function ($candidate) use ($actor, $post) {
+                    $row = $this->row((int) $post->id, $candidate->id);
+
+                    return $row && $this->projection($post, $row, $actor) !== null;
+                });
+            }, $this->authors($batch));
+            foreach ($eligible as $candidate) {
+                if ($visible++ >= $offset) {
+                    $selected->push($candidate);
+                    if ($selected->count() > 20) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        });
+
+        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $offset, $selected) {
             $items = [];
-            $visible = 0;
-            foreach ($candidates as $candidate) {
+            foreach ($selected as $candidate) {
                 $row = $this->row((int) $post->id, $candidate->id);
                 $item = $row ? $this->projection($post, $row, $actor) : null;
-                if ($item !== null && $visible++ >= $offset) {
+                if ($item !== null) {
                     $items[] = $item;
-                    if (count($items) > 20) {
-                        break;
-                    }
                 }
             }
             $more = count($items) > 20;
@@ -83,7 +105,13 @@ class StatusCommentController extends Controller
                 'can_comment' => $this->posts->mayCommentLocked($post, $actor),
                 'meta' => ['next_cursor' => $more ? (string) ($offset + 20) : null, 'has_more' => $more],
             ]);
-        }, $authors);
+        }, $this->authors($selected));
+    }
+
+    private function authors(Collection $candidates): array
+    {
+        return $candidates->flatMap(fn ($row) => [(int) $row->author_id, (int) $row->parent_author_id])
+            ->filter()->unique()->all();
     }
 
     private function projection(StatusPost $post, object $row, int $actor): ?array
@@ -91,9 +119,9 @@ class StatusCommentController extends Controller
         if ($this->comments->displayed($row) && ($context = $this->comments->presentation($post, $row, $actor)) !== null) {
             return $this->shape($post, $row, $actor, $context);
         }
-        if ((int) $row->author_id === $actor && $row->parent_id === null
-            && $this->comments->contextAllows($post, $row, $actor)) {
-            return ['id' => $row->id, 'state' => 'UNAVAILABLE', 'revision' => (int) $row->revision];
+        if ((int) $row->author_id === $actor && $this->comments->contextAllows($post, $row, $actor)) {
+            return ['id' => $row->id, 'state' => 'UNAVAILABLE', 'revision' => (int) $row->revision,
+                'can_withdraw' => ! $row->withdrawn];
         }
 
         return null;
@@ -204,24 +232,42 @@ class StatusCommentController extends Controller
         $actor = $this->actor($request);
         $data = $request->validate(['revision' => 'required|integer|min:1',
             'action' => $legacy ? 'prohibited' : 'required|in:WITHDRAW,HIDE']);
+        $action = $data['action'] ?? (DB::table('status_post_comments')->where('status_post_id', $postId)
+            ->where('id', $commentId)->where('author_id', $actor)->exists() ? 'WITHDRAW' : 'HIDE');
+        $revision = (int) $data['revision'];
+        if ($action === 'WITHDRAW') {
+            // The author controls their own display even after losing post read
+            // access. This never grants access to the post, parent or reply.
+            return DB::transaction(function () use ($actor, $postId, $commentId, $revision) {
+                app(JourneyStore::class)->users([$actor]);
+                $row = DB::table('status_post_comments')->where('status_post_id', $postId)->where('id', $commentId)
+                    ->where('author_id', $actor)->lockForUpdate()->first();
+                abort_unless($row, 404, 'unavailable');
+
+                return $this->saveDisplayControl($row, 'withdrawn', $revision);
+            }, 3);
+        }
+
         $authors = $this->comments->commentAuthors($postId, $commentId);
         abort_if($authors === [], 404, 'unavailable');
 
-        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $commentId, $data) {
+        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $commentId, $revision) {
             $row = $this->row((int) $post->id, $commentId);
-            abort_unless($row && $this->comments->contextAllows($post, $row, $actor), 404, 'unavailable');
-            $own = $actor === (int) $row->author_id;
-            $owner = $actor === (int) $post->author_user_id;
-            $action = $data['action'] ?? ($own ? 'WITHDRAW' : 'HIDE');
-            abort_unless($action === 'WITHDRAW' ? $own : ($owner && ! $own), 404, 'unavailable');
-            abort_if($row->parent_id && $this->comments->presentation($post, $row, $actor) === null, 404, 'unavailable');
-            $field = $action === 'WITHDRAW' ? 'withdrawn' : 'hidden_by_owner';
-            abort_unless($row->state === 'ACTIVE' && ! $row->$field && (int) $row->revision === (int) $data['revision'], 409, 'stale comment');
-            DB::table('status_post_comments')->where('id', $commentId)
-                ->update([$field => true, 'revision' => $row->revision + 1, 'updated_at' => now()]);
+            abort_unless($row && $actor === (int) $post->author_user_id && $actor !== (int) $row->author_id
+                && $this->comments->contextAllows($post, $row, $actor), 404, 'unavailable');
+            abort_unless($row->state === 'ACTIVE', 409, 'stale comment');
 
-            return response()->json(['id' => $commentId, 'state' => 'UNAVAILABLE', 'revision' => $row->revision + 1]);
+            return $this->saveDisplayControl($row, 'hidden_by_owner', $revision);
         }, $authors);
+    }
+
+    private function saveDisplayControl(object $row, string $field, int $revision)
+    {
+        abort_unless(! $row->$field && (int) $row->revision === $revision, 409, 'stale comment');
+        DB::table('status_post_comments')->where('id', $row->id)
+            ->update([$field => true, 'revision' => $revision + 1, 'updated_at' => now()]);
+
+        return response()->json(['id' => $row->id, 'state' => 'UNAVAILABLE', 'revision' => $revision + 1]);
     }
 
     public function report(Request $request, int $postId, string $commentId)

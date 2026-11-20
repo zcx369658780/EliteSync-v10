@@ -57,7 +57,7 @@ class NotificationService
             $comments = app(StatusCommentAudience::class);
             $authors = $commentId !== '' ? $comments->commentAuthors($postId, $commentId) : [];
             try {
-                $safe = $actor ? app(PostAudience::class)->run($viewerId, $postId, function (StatusPost $post) use ($viewerId, $actor, $commentId, $notification, $comments) {
+                $safe = $actor ? app(PostAudience::class)->run($viewerId, $postId, function (StatusPost $post) use ($viewerId, $actor, $commentId, $notification, $comments, $payload) {
                     $posts = app(PostAudience::class);
                     if ((int) $post->author_user_id !== $viewerId || $post->audience === PostAudience::SELF
                         || ! $posts->allowedLocked($post, $actor)) {
@@ -69,10 +69,14 @@ class NotificationService
                         if (! $comment || ! $comments->displayed($comment) || $comments->presentation($post, $comment, $viewerId) === null) {
                             return null;
                         }
-                    } elseif (! app(SocialPolicy::class)->friendship($viewerId, $actor)
-                        || ! DB::table('status_post_likes')->where('status_post_id', $post->id)->where('user_id', $actor)->lockForUpdate()->exists()) {
+                    } else {
                         // Legacy likes were delivered under the friends grant.
-                        return null;
+                        $publicWhenLiked = ($payload['audience_basis'] ?? null) === PostAudience::PUBLIC_AUTHENTICATED;
+                        if ((! $publicWhenLiked && ! app(SocialPolicy::class)->friendship($viewerId, $actor))
+                            || ! DB::table('status_post_likes')->where('status_post_id', $post->id)
+                                ->where('user_id', $actor)->lockForUpdate()->exists()) {
+                            return null;
+                        }
                     }
 
                     return ['title' => '动态有新互动', 'body' => '请在当前权限允许时查看',
