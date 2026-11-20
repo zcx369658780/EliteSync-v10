@@ -1,3 +1,11 @@
+# 2026-11-20 当前最新入口：阶段B工程交付获顾问限定验收，Owner终验待定
+
+- [阶段B顾问限定验收](docs/workflow/V2_PHASE_B_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)核实B1–B4固定工程代码与若干测试设计，最终交付`1780f6add9a439c109f527eb7f58c2f96ab8bfa5`。结论仅`PHASE_B_SCOPED_ACCEPTED_WITH_RESERVATIONS / OWNER_FINAL_PENDING`；B1–B4定向自动化PHP149/1,936、Flutter226、17份Dart分析零问题是Codex报告，没有网页GPT本地复跑。PHP全量仍有81errors/108failures，Flutter扩围有3旧基线报告失败，不能冒充全面PASS。
+- 阶段B交付在集中验收点已停，**不自动进入C/D**；若Owner正式接受限定成果并明确启动C，再由现有Codex按真实工程身份开展下一阶段。正式A6、真机/模拟器、真实KYC/Push/RTC、生产DB和真实个人数据、main合并及发布仍需各自合法授权。
+- 本轮没有新实机/MariaDB/PHP8.4证据；真实访客官方专题未上架具名正文、原43PNG与F-01缺口不变。此前B工程开发许可为历史执行阶段，不得复用为C新权限。
+
+---
+
 # 2026-11-20 最新Owner授权：阶段A限定终验通过，阶段B工程启动
 
 - Owner明确“我同意正式接受阶段A在限定自动化范围内的工程交付，请继续阶段B”。最新具名授权：[Owner阶段A验收/阶段B开发](docs/decisions/OWNER_V2_PHASE_A_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_B_ENGINEERING_AUTHORIZATION_20261120.md)。阶段A`OWNER_SCOPED_FINAL_ACCEPTED`，顾问原限制继续有效；B1–B4**由现有本地EliteSync Codex自治工程实施与隔离自动化测试**。此前“OWNER_FINAL_PENDING/PHASE_B_NOT_AUTHORIZED”均是授权前的历史快照。
