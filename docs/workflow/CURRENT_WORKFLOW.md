@@ -1,3 +1,12 @@
+# 2026-11-20｜阶段D Owner限定接受；V2-Q安全质量收口实施中继授权
+
+- [本次Owner决定](../decisions/OWNER_V2_PHASE_D_FINAL_SCOPED_ACCEPTANCE_AND_INTEGRATION_QUALITY_AUTHORIZATION_20261120.md)明确阶段D具名终验接受并启动V2-Q质量/产品取舍收口；[集中任务](../versions/v2/V2_Q_INTEGRATION_QUALITY_AND_PRODUCT_DECISION_CONSOLIDATED_BRIEF_20261120.md)、[旧排盘产品选择备选](../product/V2_Q_LEGACY_ASTRO_COMPATIBILITY_OWNER_DECISION_OPTIONS_20261120.md)、[原Codex会话单次启动Prompt](V2_Q_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)均已归档。**网页GPT不直接运行本机Codex**，Owner仍保留产品大取舍和真实发布权限，不恢复网页端碎任务派发。
+- 安全工程参考起点为D完整源码/报告交付`40ba853a3e9fed9062e8527b22c0b8ca9471e9ce`。当前Windows工作树实时origin/HEAD/dirty/index需Codex首查；保护原脏main/S1/独立治理树，不将GitHub治理HEAD当实时代码。日常诊断、权利不变的Bug修复、定向安全隔离测试和非main脱敏备份归本地Codex自治。
+- PHP全量83errors/131failures（其中25始于C）、Flutter扩围3FAIL、Flutter全仓NOT_RUN、PHP8.4/MariaDB/设备/合法用途/真实KYC/Push/RTC均各自保留未完成证据。旧星盘大取舍`OWNER_CHOICE_PENDING`，无新决定不得恢复无许可自动联算或退休核心API。Q收口结束一包报告交网页顾问/Owner集中复核。
+- 未经新授权仍不许真机/模拟器、正式A6、供应商联系采购集成、真实个人数据/生产共享DB/不可逆删除、系统提权、main合并、公开内测及发布。内部候选PARTIAL、生产NO_GO不可自动改变。
+
+---
+
 # 2026-11-20｜Owner正式限定接受阶段C并授权D1–D4本地工程
 
 - 最新有效[Owner C终验与D授权](../decisions/OWNER_V2_PHASE_C_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_D_ENGINEERING_AUTHORIZATION_20261120.md)；[阶段D合并任务书](../versions/v2/V2_PHASE_D_JOURNEY_NOTIFICATION_EXPERIENCE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)；[原Codex会话启动Prompt](V2_PHASE_D_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)。本地Codex负责日常自治、实施和安全隔离测试，网页顾问阶段审查，Owner最终产品/生产裁决；网页GPT只提交治理文档，尚未直接启动Windows Codex。
