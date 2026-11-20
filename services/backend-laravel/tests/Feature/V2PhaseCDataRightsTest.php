@@ -217,12 +217,18 @@ final class V2PhaseCDataRightsTest extends TestCase
             ->assertJsonPath('chart.results', null);
         app(\App\Services\ToolRevisionHistory::class)->archive($chart, 'dynamic');
         $archive = DB::table('user_tool_revisions')->where('user_id', $owner->id)->value('id');
+        $this->getJson("$url/history/$archive")->assertOk()->assertJsonPath('chart.purpose_revision', 1)
+            ->assertJsonPath('chart.status', 'STALE_RECALCULATION_REQUIRED')->assertJsonPath('chart.results', null);
         $this->putJson($purpose, ['state' => 'REVOKED', 'expected_revision' => 1, 'confirm' => true])->assertOk();
         $this->getJson($url)->assertOk()->assertJsonPath('chart.status', 'PURPOSE_UNAVAILABLE')->assertJsonPath('chart.results', null);
         $this->getJson("$url/history/$archive")->assertOk()->assertJsonPath('chart.status', 'PURPOSE_UNAVAILABLE')
             ->assertJsonMissingPath('chart.request');
         $this->putJson($purpose, ['state' => 'GRANTED', 'expected_revision' => 2, 'confirm' => true])->assertOk();
         $this->getJson($url)->assertOk()->assertJsonPath('chart.status', 'PURPOSE_UNAVAILABLE');
+        $chart->update(['request' => ['first' => ['source' => 'manual']], 'prepared' => []]);
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Dynamic natal reuse requires a safe downgrade plan.');
+        (require database_path('migrations/2026_11_20_120000_create_phase_c_data_rights.php'))->down();
     }
 
 }

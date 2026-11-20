@@ -13,10 +13,14 @@ final class ToolRevisionHistory
         $fields = $tool === 'natal'
             ? ['input', 'settings', 'context']
             : ['chart_type', 'request', 'settings', 'selected_event_index'];
+        $snapshot = $row->only([...$fields, 'id', 'user_id', 'input_revision',
+            'result_revision', 'input_signature', 'status', 'results', 'created_at', 'updated_at']);
+        if ($tool === 'dynamic' && is_int($grant = $row->prepared['_purpose_grant_revision'] ?? null)) {
+            $snapshot['prepared'] = ['_purpose_grant_revision' => $grant];
+        }
         UserToolRevision::firstOrCreate([
             'user_id' => $row->user_id, 'tool' => $tool, 'record_id' => $row->id,
             'input_revision' => $row->input_revision,
-        ], ['snapshot' => $row->only([...$fields, 'id', 'user_id', 'input_revision',
-            'result_revision', 'input_signature', 'status', 'results', 'created_at', 'updated_at'])]);
+        ], ['snapshot' => $snapshot]);
     }
 }
