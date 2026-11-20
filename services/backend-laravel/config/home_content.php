@@ -1,6 +1,9 @@
 <?php
 
 return [
+    // Editorial rows need an approved source_ref and explicit guest approval.
+    'public_editorial' => [],
+    'editor_recommendations' => [],
     'ranker' => [
         // true: use weighted ranking; false: keep insertion order.
         'enabled' => true,

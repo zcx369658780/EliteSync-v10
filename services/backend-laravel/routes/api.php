@@ -80,6 +80,9 @@ Route::prefix('v1')->group(function () {
         Route::get('/version/check', [AppVersionController::class, 'check']);
     });
 
+    Route::get('/home/editorial/{article?}', [HomeController::class, 'publicEditorial'])
+        ->where('article', '[a-zA-Z0-9_-]{1,80}');
+
     Route::get('/media/{assetId}/content', [MediaController::class, 'content'])
         ->whereNumber('assetId')->middleware(['auth:sanctum', 'account.active']);
 
@@ -138,6 +141,8 @@ Route::prefix('v1')->group(function () {
             Route::get('/status-posts/{postId}/comments', [$comments, 'index'])->whereNumber('postId');
             Route::get('/status-posts/{postId}/comments/{commentId}', [$comments, 'show'])->whereNumber('postId')->whereUuid('commentId');
             Route::post('/status-posts/{postId}/comments', [$comments, 'store'])->whereNumber('postId')->middleware('throttle:10,1');
+            Route::get('/status-posts/{postId}/comments/command-result', [$comments, 'commandResult'])->whereNumber('postId');
+            Route::match(['PATCH', 'PUT'], '/status-posts/{postId}/comments/{commentId}/display', [$comments, 'display'])->whereNumber('postId')->whereUuid('commentId');
             Route::delete('/status-posts/{postId}/comments/{commentId}', [$comments, 'destroy'])->whereNumber('postId')->whereUuid('commentId');
             Route::post('/status-posts/{postId}/comments/{commentId}/report', [$comments, 'report'])->whereNumber('postId')->whereUuid('commentId')->middleware('throttle:10,1');
         });
@@ -312,7 +317,7 @@ Route::prefix('v1')->group(function () {
             Route::post('', [RelationshipController::class, 'store'])->middleware('throttle:relationships');
         });
 
-        Route::prefix('notifications')->middleware('account.active')->group(function () {
+        Route::prefix('notifications')->middleware(['account.active', JourneyPrivateResponse::class])->group(function () {
             Route::get('', [NotificationController::class, 'index'])->middleware('throttle:notifications');
             Route::get('/unread-count', [NotificationController::class, 'unreadCount'])->middleware('throttle:notifications');
             Route::get('/{notificationId}', [NotificationController::class, 'show'])->whereNumber('notificationId')->middleware('throttle:notifications');
@@ -388,9 +393,11 @@ Route::prefix('v1')->group(function () {
             Route::get('/posts', [StatusPostController::class, 'index']);
             Route::get('/favorites', [StatusPostController::class, 'favorites']);
             Route::put('/posts/{postId}/favorite', [StatusPostController::class, 'favorite'])->whereNumber('postId');
+            Route::get('/posts/command-result/{key}', [StatusPostController::class, 'publicationResult'])->whereUuid('key');
             Route::get('/posts/{postId}', [StatusPostController::class, 'show'])
                 ->whereNumber('postId');
             Route::post('/posts', [StatusPostController::class, 'store']);
+            Route::get('/posts/{id}/audience', [StatusPostController::class, 'audience'])->whereNumber('id');
             Route::put('/posts/{id}/audience', [StatusPostController::class, 'audience'])->whereNumber('id');
             Route::post('/posts/{postId}/likes', [StatusPostController::class, 'like'])
                 ->whereNumber('postId');

@@ -64,7 +64,10 @@ final class V10114StatusVideoTest extends TestCase
         Sanctum::actingAs($friend);
         $this->get('/api/v1/media/'.$asset->id.'/content', ['Range' => 'bytes=0-3'])->assertNotFound();
         Sanctum::actingAs($author);
-        $this->putJson('/api/v1/status/posts/'.$postId.'/audience', ['audience' => 'FRIENDS'])->assertOk();
+        $permissions = '/api/v1/status/posts/'.$postId.'/audience';
+        $this->putJson($permissions, ['audience' => 'FRIENDS'])->assertConflict();
+        $revision = $this->getJson($permissions.'?audience=FRIENDS')->assertOk()->json('audience_revision');
+        $this->putJson($permissions, ['audience' => 'FRIENDS', 'expected_revision' => $revision, 'confirm' => true])->assertOk();
         Sanctum::actingAs($friend);
         $this->get('/api/v1/media/'.$asset->id.'/content', ['Range' => 'bytes=0-3'])->assertStatus(206);
         Sanctum::actingAs($author);

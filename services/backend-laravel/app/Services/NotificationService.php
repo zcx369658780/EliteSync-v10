@@ -50,10 +50,41 @@ class NotificationService
             } catch (Throwable) {}
             return ['title'=>'通知已不可用','body'=>'','payload'=>[]];
         }
-        if (in_array($notification->kind,['status_like','status_comment'],true)) {
-            $actor=(int)($payload['actor_user_id']??0);$postId=(int)($payload['status_post_id']??0);
-            try {$safe=app(PostAudience::class)->run($viewerId,$postId,function($p)use($viewerId,$actor,$payload,$notification){if((int)$p->author_user_id!==$viewerId||$p->audience!=='FRIENDS'||!$actor||!app(SocialPolicy::class)->pairAllowed($viewerId,$actor)||!app(SocialPolicy::class)->friendship($viewerId,$actor))return null;if($notification->kind==='status_comment'){$c=DB::table('status_post_comments')->where('id',$payload['status_comment_id']??'')->where('status_post_id',$p->id)->where('author_id',$actor)->where('state','ACTIVE')->lockForUpdate()->first();if(!$c)return null;}return ['title'=>'好友动态有新互动','body'=>'请在当前权限允许时查看','payload'=>['status_post_id'=>$p->id]];},$actor?[$actor]:[],true);if($safe)return $safe;}catch(Throwable){}
-            return ['title'=>'通知已不可用','body'=>'','payload'=>[]];
+        if (in_array($notification->kind, ['status_like', 'status_comment'], true)) {
+            $actor = (int) ($payload['actor_user_id'] ?? 0);
+            $postId = (int) ($payload['status_post_id'] ?? 0);
+            $commentId = (string) ($payload['status_comment_id'] ?? '');
+            $comments = app(StatusCommentAudience::class);
+            $authors = $commentId !== '' ? $comments->commentAuthors($postId, $commentId) : [];
+            try {
+                $safe = $actor ? app(PostAudience::class)->run($viewerId, $postId, function (StatusPost $post) use ($viewerId, $actor, $commentId, $notification, $comments) {
+                    $posts = app(PostAudience::class);
+                    if ((int) $post->author_user_id !== $viewerId || $post->audience === PostAudience::SELF
+                        || ! $posts->allowedLocked($post, $actor)) {
+                        return null;
+                    }
+                    if ($notification->kind === 'status_comment') {
+                        $comment = DB::table('status_post_comments')->where('id', $commentId)->where('status_post_id', $post->id)
+                            ->where('author_id', $actor)->lockForUpdate()->first();
+                        if (! $comment || ! $comments->displayed($comment) || $comments->presentation($post, $comment, $viewerId) === null) {
+                            return null;
+                        }
+                    } elseif (! app(SocialPolicy::class)->friendship($viewerId, $actor)
+                        || ! DB::table('status_post_likes')->where('status_post_id', $post->id)->where('user_id', $actor)->lockForUpdate()->exists()) {
+                        // Legacy likes were delivered under the friends grant.
+                        return null;
+                    }
+
+                    return ['title' => '动态有新互动', 'body' => '请在当前权限允许时查看',
+                        'payload' => ['status_post_id' => $post->id]];
+                }, [$actor, ...$authors], true) : null;
+                if ($safe !== null) {
+                    return $safe;
+                }
+            } catch (Throwable) {
+            }
+
+            return ['title' => '通知已不可用', 'body' => '', 'payload' => [], 'available' => false];
         }
         if ($notification->kind === 'social_request') {
             $row = DB::table('social_requests')->find((int) ($payload['social_request_id'] ?? 0));
@@ -103,26 +134,13 @@ class NotificationService
             return $safe;
         }
 
-        if ($notification->kind === 'status_like') {
-            $post = StatusPost::find((int) ($payload['status_post_id'] ?? 0));
-            if (! $post || $post->is_deleted || $post->audience !== 'FRIENDS' || (int) $post->author_user_id !== $viewerId) {
-                return ['title' => '通知已不可用', 'body' => '', 'payload' => []];
-            }
-            $actor = (int) ($payload['actor_user_id'] ?? 0);
-            if (! $actor || ! app(SocialPolicy::class)->pairAllowed($viewerId, $actor) || ! app(SocialPolicy::class)->friendship($viewerId, $actor)) {
-                return ['title' => '通知已不可用', 'body' => '', 'payload' => []];
-            }
-
-            return ['title' => '动态收到赞', 'body' => '请在当前权限允许时查看', 'payload' => ['status_post_id' => $payload['status_post_id'] ?? null]];
-        }
         if (($payload['actor_user_id'] ?? null) && ! app(SocialPolicy::class)->pairAllowed($viewerId, (int) $payload['actor_user_id'])) {
             return ['title' => '通知已不可用', 'body' => '', 'payload' => []];
         }
-        if (($payload['status_post_id'] ?? null)) {
-            $post = StatusPost::find($payload['status_post_id']);
-            if (! $post || $post->is_deleted || ! app(SocialPolicy::class)->pairAllowed($viewerId, (int) $post->author_user_id) || ((int) $post->author_user_id !== $viewerId && ($post->audience !== 'FRIENDS' || ! app(SocialPolicy::class)->friendship($viewerId, (int) $post->author_user_id)))) {
-                return ['title' => '通知已不可用', 'body' => '', 'payload' => []];
-            }
+        if (array_key_exists('status_post_id', $payload) || array_key_exists('status_comment_id', $payload)
+            || ($payload['route_name'] ?? '') === 'status_author') {
+            // Other old notification shapes cannot safely establish content authority.
+            return ['title' => '通知已不可用', 'body' => '', 'payload' => [], 'available' => false];
         }
         if (! $this->isPrivateMessage((string) $notification->kind, $payload)) {
             return ['title' => $notification->title, 'body' => $notification->body ?? '', 'payload' => $payload];

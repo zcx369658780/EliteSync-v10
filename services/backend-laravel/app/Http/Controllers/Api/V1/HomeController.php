@@ -8,6 +8,30 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function publicEditorial(?string $article = null): JsonResponse
+    {
+        $items = [];
+        foreach (config('home_content.public_editorial', []) as $id => $entry) {
+            if (! is_string($id) || ! preg_match('/\A[a-zA-Z0-9_-]{1,80}\z/', $id)
+                || ! is_array($entry) || ($entry['guest_read_approved'] ?? null) !== true
+                || ($entry['audience'] ?? null) !== 'PUBLIC_EDITORIAL') {
+                continue;
+            }
+            foreach (['title', 'body', 'source_ref'] as $field) {
+                if (! is_string($entry[$field] ?? null) || trim($entry[$field]) === '') {
+                    continue 2;
+                }
+            }
+            $items[$id] = [
+                'id' => $id, 'title' => $entry['title'], 'body' => $entry['body'],
+            ];
+        }
+        abort_if($article !== null && ! isset($items[$article]), 404, 'unavailable');
+
+        return response()->json($article === null ? ['items' => array_values($items)] : ['item' => $items[$article]])
+            ->header('Cache-Control', 'no-store');
+    }
+
     public function banner(): JsonResponse
     {
         return response()->json([

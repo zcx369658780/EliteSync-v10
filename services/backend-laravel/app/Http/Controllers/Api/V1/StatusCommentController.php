@@ -3,140 +3,248 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\StatusPost;
 use App\Services\NotificationService;
 use App\Services\PostAudience;
-use App\Services\SocialPolicy;
+use App\Services\StatusCommentAudience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
-final class StatusCommentController extends Controller
+class StatusCommentController extends Controller
 {
-    private function actor(Request $r): int
+    public function __construct(private PostAudience $posts, private StatusCommentAudience $comments) {}
+
+    private function actor(Request $request): int
     {
-        foreach (['actor_id', 'author_id', 'user_id', 'parent_id', 'reply_to', 'attachment', 'attachments', 'media', 'media_id'] as $k) {
-            abort_if($r->exists($k), 422, 'unsupported comment field');
+        foreach (['actor_id', 'author_id', 'user_id', 'reply_to', 'quote', 'attachment', 'attachments', 'media', 'media_id'] as $key) {
+            abort_if($request->exists($key), 422, 'unsupported comment field');
         }
 
-return (int) $r->user()->id;
+        return (int) $request->user()->id;
     }
 
-    private function readable(object $c, int $viewer): bool
+    private function shape(StatusPost $post, object $row, int $viewer, array $context): array
     {
-        return in_array($viewer, json_decode($c->original_viewer_ids ?? '[]', true) ?? [], true) && $c->state === 'ACTIVE' && User::whereKey($c->author_id)->where('disabled', false)->where('account_status', 'active')->where('moderation_status', 'normal')->lockForUpdate()->exists() && app(SocialPolicy::class)->pairAllowed($viewer, (int) $c->author_id);
+        $own = (int) $row->author_id === $viewer;
+        $owner = (int) $post->author_user_id === $viewer;
+        $authorMayAct = $own && ! $row->withdrawn;
+        $ownerMayAct = $owner && ! $own && ! $row->hidden_by_owner;
+
+        return [
+            'id' => $row->id, 'state' => 'ACTIVE', 'revision' => (int) $row->revision,
+            'author_id' => (int) $row->author_id, 'body' => $row->body,
+            'can_withdraw' => $authorMayAct, 'can_hide' => $ownerMayAct,
+            'can_report' => ! $own,
+            'can_reply' => $row->parent_id === null,
+            'created_at' => $row->created_at,
+        ] + $context;
     }
 
-    private function shape(object $c, int $viewer, int $owner): array
+    private function row(int $post, string $id): ?object
     {
-        $active = $this->readable($c, $viewer);
-
-        return ['id' => $c->id, 'state' => $active ? 'ACTIVE' : 'UNAVAILABLE', 'revision' => (int) $c->revision, 'author_id' => $active ? (int) $c->author_id : null, 'body' => $active ? $c->body : null, 'can_delete' => $active && in_array($viewer, [(int) $c->author_id, $owner], true), 'can_report' => $active && (int) $c->author_id !== $viewer, 'created_at' => $c->created_at];
+        return DB::table('status_post_comments')->where('status_post_id', $post)->where('id', $id)
+            ->lockForUpdate()->first();
     }
 
-    private function authorizedComments(int $actor, int $postId)
+    public function index(Request $request, int $postId)
     {
-        return DB::table('status_post_comments')->where('status_post_id', $postId)
-            ->whereJsonContains('original_viewer_ids', $actor)->where('state', 'ACTIVE')
-            ->whereExists(function ($q) {
-                $q->selectRaw('1')->from('users')->whereColumn('users.id', 'status_post_comments.author_id')->where('disabled', false)->where('account_status', 'active')->where('moderation_status', 'normal');
-            })
-            ->whereNotExists(function ($q) use ($actor) {
-                $q->selectRaw('1')->from('user_blocks')->where(fn ($pair) => $pair->where(fn ($one) => $one->where('blocker_id', $actor)->whereColumn('blocked_user_id', 'status_post_comments.author_id'))->orWhere(fn ($two) => $two->where('blocked_user_id', $actor)->whereColumn('blocker_id', 'status_post_comments.author_id')));
-            });
-    }
+        $actor = $this->actor($request);
+        $offset = max(0, (int) $request->query('cursor', 0));
+        $candidates = DB::table('status_post_comments as comment')
+            ->leftJoin('status_post_comments as parent', fn ($join) => $join->on('parent.id', '=', 'comment.parent_id')
+                ->on('parent.status_post_id', '=', 'comment.status_post_id'))
+            ->where('comment.status_post_id', $postId)->whereJsonContains('comment.original_viewer_ids', $actor)
+            ->where(fn ($query) => $query->where(fn ($visible) => $visible->where('comment.state', 'ACTIVE')
+                ->where('comment.withdrawn', false)->where('comment.hidden_by_owner', false))
+                ->orWhere(fn ($own) => $own->where('comment.author_id', $actor)->whereNull('comment.parent_id')))
+            ->orderBy('comment.created_at')->orderBy('comment.id')
+            ->get(['comment.id', 'comment.author_id', 'parent.author_id as parent_author_id']);
+        $authors = $candidates->flatMap(fn ($row) => [(int) $row->author_id, (int) $row->parent_author_id])->filter()->unique()->all();
 
-    public function index(Request $r, int $postId, PostAudience $policy)
-    {
-        $actor = $this->actor($r);
-        $cursor = max(0, (int) $r->query('cursor', 0));
-        $ids = $this->authorizedComments($actor, $postId)->orderBy('created_at')->orderBy('id')->skip($cursor)->take(20)->get(['id', 'author_id']);
-
-        return $policy->run($actor, $postId, function ($p) use ($actor, $cursor, $ids) {
-            $comments = $this->authorizedComments($actor, (int) $p->id)->whereIn('id', $ids->pluck('id'))->orderBy('created_at')->orderBy('id')->lockForUpdate()->get();
+        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $offset, $candidates) {
             $items = [];
-            foreach ($comments as $c) {
-                $candidate = $ids->firstWhere('id', $c->id);
-                if ($candidate && (int) $c->author_id === (int) $candidate->author_id && $this->readable($c, $actor)) {
-                    $items[] = $this->shape($c, $actor, (int) $p->author_user_id);
+            $visible = 0;
+            foreach ($candidates as $candidate) {
+                $row = $this->row((int) $post->id, $candidate->id);
+                $item = $row ? $this->projection($post, $row, $actor) : null;
+                if ($item !== null && $visible++ >= $offset) {
+                    $items[] = $item;
+                    if (count($items) > 20) {
+                        break;
+                    }
                 }
             }
-            $count = $this->authorizedComments($actor, (int) $p->id)->count();
-            $next = $cursor + $ids->count();
+            $more = count($items) > 20;
 
-            return response()->json(['items' => $items, 'meta' => ['next_cursor' => $next < $count ? (string) $next : null, 'has_more' => $next < $count]]);
-        }, $ids->pluck('author_id')->map(fn ($id) => (int) $id)->unique()->all());
+            return response()->json([
+                'items' => array_slice($items, 0, 20),
+                'can_comment' => $this->posts->mayCommentLocked($post, $actor),
+                'meta' => ['next_cursor' => $more ? (string) ($offset + 20) : null, 'has_more' => $more],
+            ]);
+        }, $authors);
     }
 
-    public function show(Request $r, int $postId, string $commentId, PostAudience $policy)
+    private function projection(StatusPost $post, object $row, int $actor): ?array
     {
-        $actor = $this->actor($r);
-        $candidate = DB::table('status_post_comments')->where('id', $commentId)->where('status_post_id', $postId)->first(['author_id']);
-        abort_unless($candidate, 404, 'unavailable');
+        if ($this->comments->displayed($row) && ($context = $this->comments->presentation($post, $row, $actor)) !== null) {
+            return $this->shape($post, $row, $actor, $context);
+        }
+        if ((int) $row->author_id === $actor && $row->parent_id === null
+            && $this->comments->contextAllows($post, $row, $actor)) {
+            return ['id' => $row->id, 'state' => 'UNAVAILABLE', 'revision' => (int) $row->revision];
+        }
 
-        return $policy->run($actor, $postId, function ($p) use ($actor, $commentId, $candidate) {
-            $c = DB::table('status_post_comments')->where('id', $commentId)->where('status_post_id', $p->id)->lockForUpdate()->first();
-            abort_unless($c && (int) $c->author_id === (int) $candidate->author_id && $this->readable($c, $actor), 404, 'unavailable');
-
-            return response()->json($this->shape($c, $actor, (int) $p->author_user_id));
-        }, [(int) $candidate->author_id]);
+        return null;
     }
 
-    public function store(Request $r, int $postId, PostAudience $policy)
+    public function show(Request $request, int $postId, string $commentId)
     {
-        $actor = $this->actor($r);
-        $d = $r->validate(['body' => 'required|string|max:280', 'idempotency_key' => 'required|string|max:80']);
-        $body = trim($d['body']);
-        abort_if($body === '' || preg_match('/https?:|www\.|@|\d{5,}|微信|手机号|身份证|wechat/i', $body), 422, 'comments do not support links or contact details');
+        $actor = $this->actor($request);
+        $authors = $this->comments->commentAuthors($postId, $commentId);
+        abort_if($authors === [], 404, 'unavailable');
 
-        return $policy->run($actor, $postId, function ($p) use ($actor, $d, $body) {
-            $old = DB::table('status_post_comments')->where('author_id', $actor)->where('idempotency_key', $d['idempotency_key'])->lockForUpdate()->first();
-            if ($old) {
-                abort_unless((int) $old->status_post_id === (int) $p->id && $old->body === $body && $old->state === 'ACTIVE' && $this->readable($old, $actor), 409, 'idempotency conflict');
+        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $commentId) {
+            $row = $this->row((int) $post->id, $commentId);
+            $projection = $row ? $this->projection($post, $row, $actor) : null;
+            abort_unless($projection, 404, 'unavailable');
 
-                return response()->json($this->shape($old, $actor, (int) $p->author_user_id));
-            }abort_if(DB::table('status_post_comments')->where('author_id', $actor)->where('created_at', '>', now()->subMinutes(10))->count() >= 5, 429, 'comment limit');
-            $id = (string) Str::uuid();
-            DB::table('status_post_comments')->insert(['id' => $id, 'status_post_id' => $p->id, 'author_id' => $actor, 'body' => $body, 'original_viewer_ids' => json_encode(app(PostAudience::class)->commentViewersLocked($p), JSON_THROW_ON_ERROR), 'state' => 'ACTIVE', 'revision' => 1, 'idempotency_key' => $d['idempotency_key'], 'created_at' => now(), 'updated_at' => now()]);
-            if ((int) $p->author_user_id !== $actor) {
-                app(NotificationService::class)->createForUser((int) $p->author_user_id, 'status_comment', '好友动态有新互动', '请在当前权限允许时查看', ['status_post_id' => $p->id, 'status_comment_id' => $id, 'actor_user_id' => $actor]);
-            }
+            return response()->json($projection);
+        }, $authors);
+    }
 
-return response()->json($this->shape(DB::table('status_post_comments')->find($id), $actor, (int) $p->author_user_id), 201);
+    public function commandResult(Request $request, int $postId)
+    {
+        $actor = $this->actor($request);
+        $data = $request->validate(['request_key' => 'required|string|max:80']);
+
+        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $data) {
+            $applied = DB::table('status_post_comments')->where('status_post_id', $post->id)
+                ->where('author_id', $actor)->where('idempotency_key', $data['request_key'])->lockForUpdate()->exists();
+
+            return response()->json(['state' => $applied ? 'APPLIED' : 'NOT_APPLIED']);
         });
     }
 
-    public function destroy(Request $r, int $postId, string $commentId, PostAudience $policy)
+    public function store(Request $request, int $postId)
     {
-        $actor = $this->actor($r);
-        $revision = $r->validate(['revision' => 'required|integer|min:1'])['revision'];
-        $c = DB::table('status_post_comments')->where('id', $commentId)->where('status_post_id', $postId)->first(['author_id']);
-        abort_unless($c, 404, 'unavailable');
+        $actor = $this->actor($request);
+        $data = $request->validate([
+            'body' => 'required_without:independent_response|prohibits:independent_response|string|max:280',
+            'parent_id' => 'required_with:independent_response|uuid',
+            'independent_response' => ['sometimes', Rule::in(array_keys(StatusCommentAudience::INDEPENDENT_RESPONSES))],
+            'idempotency_key' => 'required|string|max:80',
+        ]);
+        $parentId = $data['parent_id'] ?? null;
+        $independent = $data['independent_response'] ?? null;
+        $body = trim($independent ? StatusCommentAudience::INDEPENDENT_RESPONSES[$independent] : $data['body']);
+        abort_if($body === '' || preg_match('/https?:|www\.|@|\d{5,}|微信|手机号|身份证|wechat/i', $body), 422, 'comments do not support links or contact details');
+        $authors = $parentId ? $this->comments->commentAuthors($postId, $parentId) : [];
 
-        return $policy->run($actor, $postId, function ($p) use ($actor, $commentId, $revision, $c) {
-            $row = DB::table('status_post_comments')->where('id', $commentId)->where('status_post_id', $p->id)->lockForUpdate()->first();
-            abort_unless($row && (int) $row->author_id === (int) $c->author_id && in_array($actor, [(int) $row->author_id, (int) $p->author_user_id], true), 404, 'unavailable');
-            abort_unless($row->state === 'ACTIVE' && (int) $row->revision === $revision, 409, 'stale comment');
-            DB::table('status_post_comments')->where('id', $commentId)->update(['state' => 'DELETED', 'revision' => $revision + 1, 'updated_at' => now()]);
+        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $data, $body, $parentId, $independent) {
+            abort_unless($this->posts->mayCommentLocked($post, $actor), 403, 'comments are closed for this viewer');
+            $parent = $parentId ? $this->row((int) $post->id, $parentId) : null;
+            if ($parentId) {
+                abort_unless($parent && ! $parent->parent_id && $this->comments->displayed($parent)
+                    && $this->comments->contextAllows($post, $parent, $actor), 404, 'unavailable');
+            }
 
-            return response()->json(['id' => $commentId, 'state' => 'DELETED', 'revision' => $revision + 1, 'body' => null]);
-        }, [(int) $c->author_id]);
+            $existing = DB::table('status_post_comments')->where('author_id', $actor)
+                ->where('idempotency_key', $data['idempotency_key'])->lockForUpdate()->first();
+            if ($existing) {
+                abort_unless((int) $existing->status_post_id === (int) $post->id && $existing->body === $body
+                    && $existing->parent_id === $parentId && $existing->independent_response === $independent
+                    && $this->comments->displayed($existing)
+                    && ($context = $this->comments->presentation($post, $existing, $actor)) !== null, 409, 'idempotency conflict');
+
+                return response()->json($this->shape($post, $existing, $actor, $context));
+            }
+            abort_if(DB::table('status_post_comments')->where('author_id', $actor)
+                ->where('created_at', '>', now()->subMinutes(10))->count() >= 5, 429, 'comment limit');
+
+            $viewers = $this->posts->commentViewersLocked($post, $actor);
+            if ($parent) {
+                $viewers = array_values(array_intersect($viewers, json_decode($parent->original_viewer_ids, true)));
+            }
+            abort_unless(in_array($actor, $viewers, true), 404, 'unavailable');
+            $id = (string) Str::uuid();
+            DB::table('status_post_comments')->insert([
+                'id' => $id, 'status_post_id' => $post->id, 'author_id' => $actor, 'body' => $body,
+                'original_viewer_ids' => json_encode($viewers, JSON_THROW_ON_ERROR),
+                'original_audience' => $this->posts->commentAudience($post),
+                'parent_id' => $parentId, 'independent_response' => $independent,
+                'state' => 'ACTIVE', 'revision' => 1, 'idempotency_key' => $data['idempotency_key'],
+                'created_at' => now(), 'updated_at' => now(),
+            ]);
+            $owner = (int) $post->author_user_id;
+            if ($owner !== $actor && in_array($owner, $viewers, true) && ! $parentId) {
+                app(NotificationService::class)->createForUser($owner, 'status_comment', '动态有新互动',
+                    '请在当前权限允许时查看', ['status_post_id' => $post->id, 'status_comment_id' => $id, 'actor_user_id' => $actor]);
+            }
+            $row = $this->row((int) $post->id, $id);
+
+            return response()->json($this->shape($post, $row, $actor,
+                ['parent_id' => $parentId, 'thread_context' => $parentId ? 'REPLY' : null]), 201);
+        }, $authors);
     }
 
-    public function report(Request $r, int $postId, string $commentId, PostAudience $policy)
+    public function destroy(Request $request, int $postId, string $commentId)
     {
-        $actor = $this->actor($r);
-        $d = $r->validate(['reason_code' => 'required|string|max:64', 'detail' => 'nullable|string|max:1000']);
-        $c = DB::table('status_post_comments')->where('id', $commentId)->where('status_post_id', $postId)->first(['author_id']);
-        abort_unless($c, 404, 'unavailable');
+        return $this->changeDisplay($request, $postId, $commentId, true);
+    }
 
-        return $policy->run($actor, $postId, function ($p) use ($actor, $commentId, $c, $d) {
-            $row = DB::table('status_post_comments')->where('id', $commentId)->where('status_post_id', $p->id)->lockForUpdate()->first();
-            abort_unless($row && (int) $row->author_id === (int) $c->author_id && $this->readable($row, $actor) && (int) $row->author_id !== $actor, 404, 'unavailable');
-            $old = DB::table('moderation_reports')->where('reporter_id', $actor)->where('target_status_comment_id',$commentId)->where('status','new')->first();
-            $id = $old?->id ?? DB::table('moderation_reports')->insertGetId(['reporter_id' => $actor, 'target_user_id' => $row->author_id, 'target_status_post_id' => $p->id, 'target_status_comment_id' => $commentId, 'category' => 'status_comment', 'reason_code' => $d['reason_code'], 'detail' => $d['detail'] ?? null, 'status' => 'new', 'appeal_status' => 'none', 'created_at' => now(), 'updated_at' => now()]);
+    public function display(Request $request, int $postId, string $commentId)
+    {
+        return $this->changeDisplay($request, $postId, $commentId, false);
+    }
+
+    private function changeDisplay(Request $request, int $postId, string $commentId, bool $legacy)
+    {
+        $actor = $this->actor($request);
+        $data = $request->validate(['revision' => 'required|integer|min:1',
+            'action' => $legacy ? 'prohibited' : 'required|in:WITHDRAW,HIDE']);
+        $authors = $this->comments->commentAuthors($postId, $commentId);
+        abort_if($authors === [], 404, 'unavailable');
+
+        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $commentId, $data) {
+            $row = $this->row((int) $post->id, $commentId);
+            abort_unless($row && $this->comments->contextAllows($post, $row, $actor), 404, 'unavailable');
+            $own = $actor === (int) $row->author_id;
+            $owner = $actor === (int) $post->author_user_id;
+            $action = $data['action'] ?? ($own ? 'WITHDRAW' : 'HIDE');
+            abort_unless($action === 'WITHDRAW' ? $own : ($owner && ! $own), 404, 'unavailable');
+            abort_if($row->parent_id && $this->comments->presentation($post, $row, $actor) === null, 404, 'unavailable');
+            $field = $action === 'WITHDRAW' ? 'withdrawn' : 'hidden_by_owner';
+            abort_unless($row->state === 'ACTIVE' && ! $row->$field && (int) $row->revision === (int) $data['revision'], 409, 'stale comment');
+            DB::table('status_post_comments')->where('id', $commentId)
+                ->update([$field => true, 'revision' => $row->revision + 1, 'updated_at' => now()]);
+
+            return response()->json(['id' => $commentId, 'state' => 'UNAVAILABLE', 'revision' => $row->revision + 1]);
+        }, $authors);
+    }
+
+    public function report(Request $request, int $postId, string $commentId)
+    {
+        $actor = $this->actor($request);
+        $data = $request->validate(['reason_code' => 'required|string|max:64', 'detail' => 'nullable|string|max:1000']);
+        $authors = $this->comments->commentAuthors($postId, $commentId);
+        abort_if($authors === [], 404, 'unavailable');
+
+        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $commentId, $data) {
+            $row = $this->row((int) $post->id, $commentId);
+            abort_unless($row && $this->comments->displayed($row) && (int) $row->author_id !== $actor
+                && $this->comments->presentation($post, $row, $actor) !== null, 404, 'unavailable');
+            $old = DB::table('moderation_reports')->where('reporter_id', $actor)
+                ->where('target_status_comment_id', $commentId)->where('status', 'new')->first();
+            $id = $old?->id ?? DB::table('moderation_reports')->insertGetId([
+                'reporter_id' => $actor, 'target_user_id' => $row->author_id, 'target_status_post_id' => $post->id,
+                'target_status_comment_id' => $commentId, 'category' => 'status_comment', 'reason_code' => $data['reason_code'],
+                'detail' => $data['detail'] ?? null, 'status' => 'new', 'appeal_status' => 'none',
+                'created_at' => now(), 'updated_at' => now(),
+            ]);
 
             return response()->json(['id' => $id, 'status' => 'new']);
-        }, [(int) $c->author_id]);
+        }, $authors);
     }
 }

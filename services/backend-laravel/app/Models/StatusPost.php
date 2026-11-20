@@ -22,6 +22,13 @@ class StatusPost extends Model
         'location_name',
         'visibility',
         'audience',
+        'comment_policy',
+        'comment_policy_source',
+        'audience_revision',
+        'cover_audience',
+        'cover_original_viewer_ids',
+        'request_key',
+        'request_hash',
         'is_deleted',
         'deleted_by_user_id',
         'deleted_at',
@@ -34,6 +41,7 @@ class StatusPost extends Model
     {
         return [
             'is_deleted' => 'boolean',
+            'cover_original_viewer_ids' => 'array',
             'deleted_at' => 'datetime',
         ];
     }
