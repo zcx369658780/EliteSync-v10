@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/profile/presentation/pages/data_rights_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -27,6 +28,23 @@ class PrivacySettingsPage extends StatelessWidget {
               ),
             ),
           ),
+          ListTile(
+            title: const Text('管理展示草稿的资料用途'),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const ShowcasePurposePage(),
+              ),
+            ),
+          ),
+          for (final item in [('work', '本人作品的数据删除'), ('comment', '本人评论的数据删除')])
+            ListTile(
+              title: Text(item.$2),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => OwnedDataRightsPage(type: item.$1),
+                ),
+              ),
+            ),
           const Divider(),
           _Explanation(
             title: '匹配与每周慢约',

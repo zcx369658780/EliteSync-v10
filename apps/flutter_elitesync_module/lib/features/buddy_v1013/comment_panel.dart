@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/profile/presentation/pages/data_rights_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../relationships_v1011/relationship_api.dart';
@@ -207,6 +208,18 @@ class _CommentsState extends SessionBoundPage<_CommentBody>
                                 ? null
                                 : () => _changeDisplay(comment, 'WITHDRAW'),
                             child: const Text('撤回我的评论'),
+                          ),
+                        if (comment['is_mine'] == true &&
+                            comment['id'] is String)
+                          TextButton(
+                            onPressed: busy
+                                ? null
+                                : () => openObjectDataRights(
+                                    context,
+                                    'comment',
+                                    comment['id'] as String,
+                                  ),
+                            child: const Text('申请删除评论数据'),
                           ),
                         if (comment['can_hide'] == true &&
                             comment['id'] is String &&

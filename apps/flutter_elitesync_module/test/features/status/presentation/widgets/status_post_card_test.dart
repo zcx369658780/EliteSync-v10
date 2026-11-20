@@ -108,7 +108,7 @@ void main() {
       expect(find.text('3 喜欢'), findsOneWidget);
       expect(find.text('取消喜欢'), findsOneWidget);
       expect(find.text('举报'), findsOneWidget);
-      expect(find.text('删除'), findsOneWidget);
+      expect(find.text('撤下'), findsOneWidget);
 
       await tester.tap(find.text('test1'));
       await tester.pump();
@@ -122,7 +122,7 @@ void main() {
       await tester.pump();
       expect(reported, isTrue);
 
-      await tester.tap(find.text('删除'));
+      await tester.tap(find.text('撤下'));
       await tester.pump();
       expect(deleted, isTrue);
     },

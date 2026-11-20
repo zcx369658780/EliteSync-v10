@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'data_rights_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/design_system/components/bars/app_top_bar.dart';
 import 'package:flutter_elitesync_module/design_system/components/buttons/app_ghost_button.dart';
@@ -282,6 +283,16 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
             onChanged: (_) => _markDirty(),
           ),
           SizedBox(height: t.spacing.sm),
+          TextButton(
+            onPressed: busy || draftState?.dirty == true
+                ? null
+                : () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const ShowcasePurposePage(),
+                    ),
+                  ),
+            child: const Text('复用资料与用途许可'),
+          ),
           AppTextField(
             controller: _city,
             label: '展示城市',
@@ -537,7 +548,7 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
   void _syncControllers(ProfileShowcaseDraftUiState? draftState) {
     if (draftState == null || draftState.dirty) return;
     final draft = draftState.serverDraft;
-    final key = (draft?.id, draft?.revision, draft?.updatedAt);
+    final key = (draft?.id, draft?.revision, draft?.updatedAt, draft?.city);
     if (_lastAppliedDraftKey == key) return;
     _lastAppliedDraftKey = key;
     final input = draft?.toInput() ?? _seedFromSnapshot(widget.snapshot);

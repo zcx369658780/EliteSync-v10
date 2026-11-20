@@ -22,6 +22,7 @@ class StatusPostCard extends ConsumerWidget {
     this.onLikeToggle,
     this.onReport,
     this.onDelete,
+    this.onRequestDataDeletion,
     this.onChangeAudience,
     this.onContinueUnderstand,
     this.onViewProfile,
@@ -35,6 +36,7 @@ class StatusPostCard extends ConsumerWidget {
   final VoidCallback? onLikeToggle;
   final VoidCallback? onReport;
   final VoidCallback? onDelete;
+  final VoidCallback? onRequestDataDeletion;
   final VoidCallback? onChangeAudience;
   final VoidCallback? onContinueUnderstand;
   final VoidCallback? onViewProfile;
@@ -50,6 +52,7 @@ class StatusPostCard extends ConsumerWidget {
         onLikeToggle != null ||
         onReport != null ||
         onDelete != null ||
+        onRequestDataDeletion != null ||
         onChangeAudience != null;
     final showReturnflowActions =
         onContinueUnderstand != null ||
@@ -261,11 +264,16 @@ class StatusPostCard extends ConsumerWidget {
                       onPressed: onChangeAudience,
                       child: const Text('修改受众'),
                     ),
+                  if (onRequestDataDeletion != null)
+                    TextButton(
+                      onPressed: onRequestDataDeletion,
+                      child: const Text('申请删除作品数据'),
+                    ),
                   if (onDelete != null)
                     OutlinedButton.icon(
                       onPressed: onDelete,
                       icon: const Icon(Icons.delete_outline_rounded),
-                      label: const Text('删除'),
+                      label: const Text('撤下'),
                     ),
                 ],
               ),

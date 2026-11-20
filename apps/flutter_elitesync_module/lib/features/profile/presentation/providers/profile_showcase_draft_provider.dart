@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
@@ -14,9 +15,11 @@ import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 
 bool Function() _sessionGuard(Ref ref) {
+  final epoch = ref.watch(relationshipAuthorityEpochProvider);
   final session = ref.watch(sessionProvider).asData?.value;
   return () =>
       ref.mounted &&
+      epoch == ref.read(relationshipAuthorityEpochProvider) &&
       identical(session, ref.read(sessionProvider).asData?.value);
 }
 

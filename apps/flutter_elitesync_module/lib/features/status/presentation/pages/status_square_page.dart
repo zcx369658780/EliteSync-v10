@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter_elitesync_module/features/profile/presentation/pages/data_rights_page.dart';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -214,9 +216,9 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
   Future<void> _deletePost(StatusPostEntity post) async {
     final confirmed = await AppConfirmDialog.show(
       context,
-      title: '删除状态',
-      message: '确认删除这条动态吗？删除后当前受众将无法重新读取。',
-      confirmLabel: '删除',
+      title: '撤下作品',
+      message: '确认撤下这条作品吗？撤下后当前受众将无法读取。',
+      confirmLabel: '撤下',
       cancelLabel: '取消',
       destructive: true,
     );
@@ -225,10 +227,10 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
       await ref.read(statusRemoteDataSourceProvider).deleteStatusPost(post.id);
       _refreshPosts();
       if (!mounted) return;
-      AppFeedback.showSuccess(context, '状态已删除');
+      AppFeedback.showSuccess(context, '作品已撤下');
     } catch (e) {
       if (!mounted) return;
-      AppFeedback.showError(context, '删除失败：$e');
+      AppFeedback.showError(context, '撤下失败：$e');
     }
   }
 
@@ -969,6 +971,13 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                                 : () => _reportPost(post),
                             onChangeAudience: post.canDelete
                                 ? () => _changeAudience(post)
+                                : null,
+                            onRequestDataDeletion: post.canDelete
+                                ? () => openObjectDataRights(
+                                    context,
+                                    'work',
+                                    post.id.toString(),
+                                  )
                                 : null,
                             onDelete: post.canDelete
                                 ? () => _deletePost(post)
