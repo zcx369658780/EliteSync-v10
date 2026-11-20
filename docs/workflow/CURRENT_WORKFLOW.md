@@ -1,3 +1,12 @@
+# 2026-11-20｜阶段A限定Owner终验完成；阶段B本地Codex自治实施获授权
+
+- Owner明确接受阶段A在**具名自动化范围**的交付并批准继续阶段B，详见[Owner具名决定](../decisions/OWNER_V2_PHASE_A_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_B_ENGINEERING_AUTHORIZATION_20261120.md)。阶段A环境/供应商限制保留，不因Owner接受而把PHP8.4/MariaDB/设备/真实身份/Push标PASS。
+- [B1–B4阶段B合并任务单](../versions/v2/V2_PHASE_B_HOME_CONTENT_AUDIENCE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)及[现有Codex会话启动Prompt](V2_PHASE_B_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)已归档。本地Codex在核实安全阶段A基线及非生产环境后可自治开发、隔离自验、非main脱敏备份，最后一份综合阶段报告；GitHub仅治理/备份，Owner非日常消息总线，网页GPT不逐小任务验收。
+- **新许可仅到B**。真实业务/共享数据库与个人资料不可逆操作、KYC/Push/RTC供应商、真机/模拟器、正式A6会议、main合并和发布、阶段C/D仍STOP；潜在正式转载不能以O11编辑推荐名义绕过素材/用途/受众许可。
+- 阶段A已经由Owner限定验收，不再让Codex重跑全部A作先决条件；阶段B应对涉及的A1–A4安全能力做受影响定向回归。旧历史仍保留原时态，最新权威为ACTIVE_STATE顶部/独立Owner决定。
+
+---
+
 # 2026-11-20｜阶段 A 集中交付已齐，顾问限定接受，等待 Owner 终验
 
 - [Owner 正式决定](https://github.com/zcx369658780/EliteSync-v10/blob/8f528e6dc1df3d52ba931e65d8ce5658cfaf11f7/docs/decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md) 接受四阶段路线图并独立授权 A1–A4。此次明确授权文档归档与项目配置更新。开发分支产品源码 `4e6a5be6`，固定测试与报告 `07b51a6d`。详见 [阶段 A 集中报告](https://github.com/zcx369658780/EliteSync-v10/blob/07b51a6de9695f5358b6bea2a59acd5be24ab6c2/docs/versions/v2/phase-a-20261119/PHASE_A_ENGINEERING_REPORT.md) 与 [会话交接](SESSION_HANDOFF_20261120_ELITESYNC_V2_PHASE_A_REVIEW.md)。
