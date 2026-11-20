@@ -1,3 +1,12 @@
+# 2026-11-20 最新Owner决定：阶段B限定终验接受，阶段C工程可以启动
+
+- Owner明确“我确认正式接受阶段B的限定验收，并授权继续阶段C工程实施”。当前具名权威：[阶段B正式接受与阶段C授权](docs/decisions/OWNER_V2_PHASE_B_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_C_ENGINEERING_AUTHORIZATION_20261120.md)。阶段B`OWNER_SCOPED_FINAL_ACCEPTED`仅对具名A+B自动化范围生效，**不是**PHP全量/Flutter扩围、PHP8.4/MariaDB、真实KYC/Push/设备及发布PASS；B交付`1780f6add9a439c109f527eb7f58c2f96ab8bfa5`包含A+B可追溯安全实现。
+- 现在由**已有本地EliteSync Codex项目会话**自治执行C1–C4：[阶段C集中工程任务书](docs/versions/v2/V2_PHASE_C_DATA_RIGHTS_AND_PURPOSE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)和[Codex单次启动Prompt](docs/workflow/V2_PHASE_C_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)。C1事实来源/具名用途，C2纠错影响/新外显，C3**本人作品/评论对象级删除请求技术合同**，C4历史/当前权限及A+B回归。阶段C工程修改/安全隔离测试可执行；旧`PHASE_C_NOT_AUTHORIZED`是Owner此决定前的历史，不得阻断新工作。
+- **强制保留**：未有真实合法删除受理、备份/第三方权利依据时禁止假工单/假回执/假完成或真实不可逆删除；不对未经许可敏感跨用途信息做计算/外显；不因C阶段自行扩大旧候选/历史评论受众。依本地实际Git身份从含B交付的安全起点新建隔离阶段C工程，保护`D:\EliteSync-v10`旧脏main和S1工作树，git治理HEAD不等于工程HEAD。
+- 阶段D、真实供应商/生产/共享DB/用户个人资料、真机/模拟器、正式A6、main合并与Release均另需授权。阶段B PHP全量`81 errors/108 failures`、Flutter扩围`3 failures`保留FAIL，PHP8.4/MariaDB/跨设备仍NOT_RUN；43份PNG`PENDING_BINARY_UPLOAD`、F-01`READABILITY_PARTIAL`、旧1011804历史失败保持。**网页GPT未实际启动本地C工程**。
+
+---
+
 # 2026-11-20 当前最新入口：阶段B工程交付获顾问限定验收，Owner终验待定
 
 - [阶段B顾问限定验收](docs/workflow/V2_PHASE_B_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)核实B1–B4固定工程代码与若干测试设计，最终交付`1780f6add9a439c109f527eb7f58c2f96ab8bfa5`。结论仅`PHASE_B_SCOPED_ACCEPTED_WITH_RESERVATIONS / OWNER_FINAL_PENDING`；B1–B4定向自动化PHP149/1,936、Flutter226、17份Dart分析零问题是Codex报告，没有网页GPT本地复跑。PHP全量仍有81errors/108failures，Flutter扩围有3旧基线报告失败，不能冒充全面PASS。
