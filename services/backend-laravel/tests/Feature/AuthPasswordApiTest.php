@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Models\UserAstroProfile;
 use App\Services\Accounts\AccountClosure;
+use App\Services\Accounts\DeviceSessions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -25,9 +26,9 @@ class AuthPasswordApiTest extends TestCase
             'private_birth_lng' => 114.0579,
         ]);
 
-        Sanctum::actingAs($user);
+        $accessToken = app(DeviceSessions::class)->issue($user, 'test password change')['access_token'];
 
-        $this->postJson('/api/v1/auth/password', [
+        $this->withToken($accessToken)->postJson('/api/v1/auth/password', [
             'current_password' => 'secret123',
             'new_password' => 'newpass123',
             'new_password_confirmation' => 'newpass123',
@@ -235,9 +236,9 @@ class AuthPasswordApiTest extends TestCase
             'password' => 'secret123',
         ]);
 
-        Sanctum::actingAs($user);
+        $accessToken = app(DeviceSessions::class)->issue($user, 'test password change')['access_token'];
 
-        $this->postJson('/api/v1/auth/password', [
+        $this->withToken($accessToken)->postJson('/api/v1/auth/password', [
             'current_password' => 'wrong123',
             'new_password' => 'newpass123',
             'new_password_confirmation' => 'newpass123',
@@ -256,9 +257,9 @@ class AuthPasswordApiTest extends TestCase
         $malformedHash = substr($hash, 0, 20);
         DB::table('users')->where('id', $user->id)->update(['password' => $malformedHash]);
         $user->refresh();
-        Sanctum::actingAs($user);
+        $accessToken = app(DeviceSessions::class)->issue($user, 'test password change')['access_token'];
 
-        $response = $this->postJson('/api/v1/auth/password', [
+        $response = $this->withToken($accessToken)->postJson('/api/v1/auth/password', [
             'current_password' => 'syntheticCorrect123',
             'new_password' => 'syntheticNew123',
             'new_password_confirmation' => 'syntheticNew123',

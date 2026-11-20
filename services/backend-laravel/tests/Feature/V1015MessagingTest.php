@@ -28,41 +28,52 @@ class V1015MessagingTest extends TestCase
         $this->app['auth']->forgetGuards();
         return app(DeviceSessions::class)->issue($user,'V1015',true)['access_token'];
     }
+    private function assertOneMessageNotification(User $receiver, int $expectedTotal): void
+    {
+        $this->assertDatabaseCount('notifications', $expectedTotal);
+        $this->assertSame(1, DB::table('notifications')->where('kind', 'message')->count());
+        $this->assertDatabaseHas('notifications', ['kind' => 'message', 'user_id' => $receiver->id]);
+    }
+
     public function test_replay_is_exactly_once_conflicting_payload_rejected_and_readback_retains_idempotency_identity(): void
     {
         [$a,$b]=$this->pair(); $ta=$this->token($a);
+        $notificationsBefore = DB::table('notifications')->count();
         $body=['receiver_id'=>$b->id,'content'=>'fictional body','client_message_id'=>(string)Str::uuid()];
         $first=$this->withToken($ta)->postJson('/api/v1/messages',$body)->assertOk()->json();
         $this->withToken($ta)->postJson('/api/v1/messages',$body)->assertOk()->assertJsonPath('id',$first['id'])->assertJsonPath('idempotent_replay',true);
         $this->withToken($ta)->postJson('/api/v1/messages',array_replace($body,['content'=>'changed']))->assertConflict();
-        $this->assertDatabaseCount('chat_messages',1); $this->assertDatabaseCount('notifications',1);
+        $this->assertDatabaseCount('chat_messages',1); $this->assertOneMessageNotification($b, $notificationsBefore + 1);
         $tb=$this->token($b);
         $this->withToken($tb)->getJson('/api/v1/messages?peer_id='.$a->id)->assertOk()->assertJsonPath('items.0.client_message_id',$body['client_message_id']);
     }
     public function test_committed_block_denies_even_same_key_replay_and_private_reader_without_new_side_effects(): void
     {
         [$a,$b]=$this->pair(); $ta=$this->token($a);
+        $notificationsBefore = DB::table('notifications')->count();
         $body=['receiver_id'=>$b->id,'content'=>'fictional body','client_message_id'=>(string)Str::uuid()];
         $this->withToken($ta)->postJson('/api/v1/messages',$body)->assertOk();
         UserBlock::create(['blocker_id'=>$b->id,'blocked_user_id'=>$a->id]);
         $this->withToken($ta)->postJson('/api/v1/messages',$body)->assertNotFound();
         $this->withToken($ta)->getJson('/api/v1/messages?peer_id='.$b->id)->assertNotFound();
-        $this->assertDatabaseCount('chat_messages',1); $this->assertDatabaseCount('notifications',1);
+        $this->assertDatabaseCount('chat_messages',1); $this->assertOneMessageNotification($b, $notificationsBefore + 1);
     }
     public function test_departed_member_cannot_replay_a_committed_message(): void
     {
         [$a,$b]=$this->pair(); $ta=$this->token($a);
+        $notificationsBefore = DB::table('notifications')->count();
         $body=['receiver_id'=>$b->id,'content'=>'synthetic','client_message_id'=>(string)Str::uuid()];
         $first=$this->withToken($ta)->postJson('/api/v1/messages',$body)->assertOk()->json();
         DB::table('conversation_members')->where('conversation_id',$first['conversation_id'])->where('user_id',$b->id)->update(['left_at'=>now()]);
         $this->withToken($ta)->postJson('/api/v1/messages',$body)->assertNotFound();
         $this->assertDatabaseCount('chat_messages',1);
-        $this->assertDatabaseCount('notifications',1);
+        $this->assertOneMessageNotification($b, $notificationsBefore + 1);
     }
 
     public function test_hiding_keeps_authorized_history_readable_but_cn_close_does_not(): void
     {
         [$a, $b] = $this->pair();
+        $notificationsBefore = DB::table('notifications')->count();
         $token = $this->token($a);
         $body = ['receiver_id' => $b->id, 'content' => 'fictional retained history', 'client_message_id' => (string) Str::uuid()];
         $sent = $this->withToken($token)->postJson('/api/v1/messages', $body)->assertOk()->json();
@@ -75,17 +86,19 @@ class V1015MessagingTest extends TestCase
         $this->assertFalse(app(\App\Services\ConversationVisibility::class)->visible($a->id, $sent['conversation_id'], $b->id));
         $this->withToken($token)->getJson('/api/v1/messages?peer_id='.$b->id)
             ->assertOk()->assertJsonPath('items.0.id', $sent['id'])->assertJsonPath('items.0.content', $body['content']);
+        $this->assertOneMessageNotification($b, $notificationsBefore + 1);
         app(LiveConsentService::class)->transition($a->id, $b->id, 'connection', 'close', 2);
         $this->withToken($token)->getJson('/api/v1/messages?peer_id='.$b->id)->assertNotFound();
         $this->withToken($token)->postJson('/api/v1/messages', $body)->assertNotFound();
         $this->assertDatabaseCount('chat_messages', 1);
-        $this->assertDatabaseCount('notifications', 1);
+        $this->assertOneMessageNotification($b, $notificationsBefore + 2);
         $this->assertSame($body['content'], $message->fresh()->content);
         $this->assertSame($ciphertext, $message->fresh()->getRawOriginal('content'));
     }
     public function test_committed_attachment_state_change_does_not_hide_same_key_result_or_conflict(): void
     {
         [$a,$b]=$this->pair(); $ta=$this->token($a);
+        $notificationsBefore = DB::table('notifications')->count();
         $asset=\App\Models\MediaAsset::create(['owner_user_id'=>$a->id,'media_type'=>'image','storage_provider'=>'local',
             'storage_disk'=>'v1011_relationship','storage_key'=>'synthetic-not-read.png','original_name'=>'synthetic.png',
             'mime_type'=>'image/png','size_bytes'=>1,'status'=>'ready']);
@@ -96,7 +109,7 @@ class V1015MessagingTest extends TestCase
         $this->withToken($ta)->postJson('/api/v1/messages',array_replace($body,['content'=>'different']))->assertConflict();
         $this->assertDatabaseCount('chat_messages',1);
         $this->assertDatabaseCount('message_attachments',1);
-        $this->assertDatabaseCount('notifications',1);
+        $this->assertOneMessageNotification($b, $notificationsBefore + 1);
     }
 
 }
