@@ -10,6 +10,43 @@ final class V1013BuddyCommunityTest extends TestCase {
  private function open(User $a):array {$this->enabled($a);return $this->action($a,$this->draft($a),'open');}
  private function friend(User $a,User $b):void {DB::table('friendships')->insert(['user_a'=>min($a->id,$b->id),'user_b'=>max($a->id,$b->id),'state'=>'ACTIVE','revision'=>1,'created_at'=>now(),'updated_at'=>now()]);}
  private function postFixture(User $a,string $audience='FRIENDS'):StatusPost {return StatusPost::create(['author_user_id'=>$a->id,'title'=>'私有合成帖子','body'=>'PRIVATE_POST_SENTINEL','audience'=>$audience,'visibility'=>'private','is_deleted'=>false]);}
+ public function test_create_result_is_read_only_and_scoped_to_the_active_account(): void
+ {
+     [$owner, $other] = $this->people();
+     $route = '/api/v1/buddy/activities/create-result?idempotency_key=synthetic-create';
+     $this->getJson($route)->assertUnauthorized();
+     $this->actingAs($owner, 'sanctum')->getJson($route)
+         ->assertOk()->assertExactJson(['command_status' => 'NOT_APPLIED']);
+     $payload = [
+         'type' => 'STUDY',
+         'subject' => '一起学习',
+         'place_kind' => 'ONLINE',
+         'budget_band' => 'LOW',
+         'start_at' => now()->addHour()->toIso8601String(),
+         'end_at' => now()->addHours(2)->toIso8601String(),
+         'idempotency_key' => 'synthetic-create',
+     ];
+     $draft = $this->postJson('/api/v1/buddy/activities', $payload)->assertCreated()->json();
+     $receipt = $this->getJson($route)->assertOk()->assertExactJson(['command_status' => 'APPLIED']);
+     $this->assertStringContainsString('no-store', $receipt->headers->get('Cache-Control'));
+     $this->getJson($route.'&actor_id='.$other->id)->assertUnprocessable();
+
+     $this->enabled($owner);
+     $this->postJson('/api/v1/buddy/'.$draft['id'].'/actions', [
+         'action' => 'open', 'revision' => $draft['revision'], 'idempotency_key' => 'synthetic-open',
+     ])->assertOk();
+     $this->getJson(str_replace('synthetic-create', 'synthetic-open', $route))
+         ->assertOk()->assertExactJson(['command_status' => 'CONFLICT']);
+     $this->getJson($route)->assertOk()->assertExactJson(['command_status' => 'APPLIED']);
+
+     $this->actingAs($other, 'sanctum')->getJson($route)
+         ->assertOk()->assertExactJson(['command_status' => 'NOT_APPLIED']);
+     $owner->update(['disabled' => true]);
+     $this->actingAs($owner->fresh(), 'sanctum')->getJson($route)->assertForbidden();
+     $this->assertDatabaseCount('buddy_activities', 1);
+     $this->assertDatabaseCount('buddy_commands', 2);
+ }
+
  public function test_non_romantic_token_buddy_completes_without_creating_any_other_consent():void {[$a,$b]=$this->people();$activity=$this->open($a);$this->enabled($b);$issued=$this->actingAs($a,'sanctum')->postJson('/api/v1/buddy/'.$activity['id'].'/tokens',['revision'=>$activity['revision'],'idempotency_key'=>'issue'])->assertOk()->json();$this->assertMatchesRegularExpression('/^[a-f0-9]{64}$/',$issued['token']);$r=$this->actingAs($b,'sanctum')->postJson('/api/v1/buddy/redeem',['token'=>$issued['token'],'idempotency_key'=>'redeem'])->assertOk()->json();$this->assertSame('REQUESTED',$r['state']);$this->postJson('/api/v1/buddy/redeem',['token'=>$issued['token'],'idempotency_key'=>'replay'])->assertNotFound();$r=$this->action($a,$r,'confirm');$r=$this->action($b,$r,'complete');$this->assertSame('COMPLETED',$r['state']);$this->assertDatabaseCount('buddy_slots',0);foreach(['dating_matches','matching_participations','friendships','product_connections','messaging_consents','formal_relationships','conversations'] as $t)$this->assertDatabaseCount($t,0);$this->assertDatabaseCount('buddy_audits',6);}
  public function test_friend_invite_permission_decline_blocks_same_lifecycle_reinvitation():void {[$a,$b,$c]=$this->people();$activity=$this->open($a);$this->friend($a,$b);$this->actingAs($a,'sanctum')->postJson('/api/v1/buddy/'.$activity['id'].'/invites',['recipient_id'=>$b->id,'revision'=>$activity['revision'],'idempotency_key'=>'closed'])->assertNotFound();$this->enabled($b);$activity=$this->actingAs($a,'sanctum')->postJson('/api/v1/buddy/'.$activity['id'].'/invites',['recipient_id'=>$b->id,'revision'=>$activity['revision'],'idempotency_key'=>'invite'])->assertOk()->json();$this->actingAs($c,'sanctum')->getJson('/api/v1/buddy/'.$activity['id'])->assertNotFound();$v=$this->actingAs($b,'sanctum')->getJson('/api/v1/buddy/'.$activity['id'])->assertOk()->json();$this->assertContains('request',$v['allowed_actions']);$v=$this->action($b,$v,'decline_invite');$before=AppNotificationItem::count();$this->actingAs($a,'sanctum')->postJson('/api/v1/buddy/'.$activity['id'].'/invites',['recipient_id'=>$b->id,'revision'=>$v['revision'],'idempotency_key'=>'reinvite'])->assertStatus(409);$this->assertSame($before,AppNotificationItem::count());}
  public function test_three_active_slots_expire_without_needing_a_prior_get():void {[$a]=$this->people();for($i=0;$i<3;$i++)$this->draft($a);$this->actingAs($a,'sanctum')->postJson('/api/v1/buddy/activities',['type'=>'MEAL','subject'=>'一起吃饭','place_kind'=>'ONLINE','budget_band'=>'UNSPECIFIED','start_at'=>now()->addHour()->toIso8601String(),'end_at'=>now()->addHours(2)->toIso8601String(),'idempotency_key'=>'fourth'])->assertStatus(409);$this->assertDatabaseCount('buddy_activities',3);DB::table('buddy_activities')->update(['end_at'=>now()->subMinute()]);$this->draft($a);$this->assertDatabaseCount('buddy_slots',1);$this->assertSame(3,DB::table('buddy_activities')->where('state','EXPIRED')->count());}

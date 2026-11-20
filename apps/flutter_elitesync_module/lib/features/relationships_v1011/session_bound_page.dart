@@ -256,7 +256,10 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
   }
 }
 
+const buddyDiscoveryUnavailable = '搭子发现当前不可用，请重新检查搭子许可。';
+
 String relationshipErrorLabel(String error) {
+  if (error == buddyDiscoveryUnavailable) return buddyDiscoveryUnavailable;
   if (error.contains('enable Buddy')) return '请先开启搭子请求，再继续操作';
   if (error.contains('分享授权已撤回')) return '分享授权已撤回，请重新确认访问权限';
   if (error == 'Forbidden' || error == 'Forbidden.') {

@@ -335,13 +335,24 @@ void main() {
     'create retains draft and immutable command after lost response',
     (tester) async {
       final requests = <Map<String, dynamic>>[];
+      final calls = <String>[];
       final api = _Api((method, path, body) async {
+        if (path.startsWith('/buddy/activities/create-result?')) {
+          calls.add('check');
+          expect(method, 'GET');
+          expect(
+            Uri.parse(path).queryParameters['idempotency_key'],
+            requests.single['idempotency_key'],
+          );
+          return {'command_status': 'NOT_APPLIED'};
+        }
         if (method == 'GET') {
           return {
             'preferences': {'enabled': true, 'revision': 1},
             'activities': [],
           };
         }
+        calls.add('write');
         requests.add(Map<String, dynamic>.from(body!));
         if (requests.length == 1) {
           throw const RelationshipFailure('response lost');
@@ -386,17 +397,72 @@ void main() {
         tester.binding.handleAppLifecycleStateChanged(state);
       }
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(const Key('buddy-create-form')));
-      await tester.pumpAndSettle();
       expect(find.text('一起学习'), findsOneWidget);
       await tester.ensureVisible(find.byKey(const Key('buddy-retry-pending')));
       await tester.tap(find.byKey(const Key('buddy-retry-pending')));
       await tester.pumpAndSettle();
       expect(requests, hasLength(2));
       expect(requests[1], requests[0]);
+      expect(calls, ['write', 'check', 'write']);
       expect(DateTime.parse(requests[0]['start_at'] as String).isUtc, isTrue);
     },
   );
+
+  for (final receipt in ['APPLIED', 'CONFLICT', 'UNKNOWN', 'DENIED', 'LATE']) {
+    testWidgets('create receipt $receipt cannot send another write', (
+      tester,
+    ) async {
+      var writes = 0;
+      var checks = 0;
+      final pendingReceipt = Completer<Map<String, dynamic>>();
+      final api = _Api((method, path, body) async {
+        if (path.startsWith('/buddy/activities/create-result?')) {
+          checks++;
+          if (receipt == 'LATE') return pendingReceipt.future;
+          if (receipt == 'DENIED') {
+            throw const RelationshipFailure('Forbidden', statusCode: 403);
+          }
+          return {'command_status': receipt};
+        }
+        if (method == 'POST') {
+          writes++;
+          throw const RelationshipFailure('response lost');
+        }
+        return {
+          'preferences': {'enabled': true, 'revision': 1},
+          'activities': [],
+        };
+      });
+      await _mount(tester, const BuddyPage(), api);
+      await tester.tap(find.byKey(const Key('buddy-create-form')));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byKey(const Key('buddy-subject')), '一起学习');
+      await tester.ensureVisible(find.byKey(const Key('buddy-create')));
+      await tester.tap(find.byKey(const Key('buddy-create')));
+      await tester.pumpAndSettle();
+      final retry = find.byKey(const Key('buddy-retry-pending'));
+      await tester.ensureVisible(retry);
+      await tester.tap(retry);
+      if (receipt == 'LATE') {
+        await tester.pump();
+        final container = ProviderScope.containerOf(
+          tester.element(find.byType(BuddyPage)),
+        );
+        container
+            .read(relationshipAuthorityEpochProvider.notifier)
+            .invalidate();
+        pendingReceipt.complete({'command_status': 'NOT_APPLIED'});
+      }
+      await tester.pumpAndSettle();
+      expect(checks, 1);
+      expect(writes, 1);
+      final pending = receipt == 'UNKNOWN' || receipt == 'CONFLICT';
+      expect(retry, pending ? findsOneWidget : findsNothing);
+      if (receipt == 'DENIED' || receipt == 'LATE') {
+        expect(find.text('一起学习'), findsNothing);
+      }
+    });
+  }
 
   testWidgets(
     'discovery pagination retains submitted city and application key',

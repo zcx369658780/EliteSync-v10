@@ -94,6 +94,23 @@ final class BuddyService {
  public function preferences(int $actor,bool $enabled,int $revision):array {return DB::transaction(function()use($actor,$enabled,$revision){$this->users([$actor]);$p=$this->pref($actor);abort_unless((int)$p->revision===$revision,409,'stale revision');$next=$revision+((bool)$p->enabled!==$enabled?1:0);DB::table('buddy_preferences')->updateOrInsert(['user_id'=>$actor],['enabled'=>$enabled,'revision'=>$next,'created_at'=>now(),'updated_at'=>now()]);if(!$enabled){foreach(DB::table('buddy_activities')->whereIn('state',self::LIVE)->where(fn($q)=>$q->where('owner_id',$actor)->orWhere('guest_id',$actor))->orderBy('id')->lockForUpdate()->get() as $a)$this->state($a,'WITHDRAWN',$actor,'PREFERENCE_WITHDRAWAL');}return ['enabled'=>$enabled,'revision'=>$next];},3);}
  private function replay(int $actor,string $key,array $input,?object $a=null):?array {$old=DB::table('buddy_commands')->where('actor_id',$actor)->where('idempotency_key',$key)->lockForUpdate()->first();if(!$old)return null;abort_unless(hash_equals($old->fingerprint,hash('sha256',json_encode($input))),409,'idempotency conflict');abort_if($old->kind==='token',409,'token issued; revoke and request a new token if delivery was lost');$a??=DB::table('buddy_activities')->where('id',$old->activity_id)->lockForUpdate()->first();abort_unless($a&&(int)$a->revision===(int)$old->result_revision,409,'superseded command');return $this->card($a,$actor)??abort(404,'unavailable');}
  private function command(int $actor,string $key,array $input,object $a,string $kind):void {DB::table('buddy_commands')->insert(['actor_id'=>$actor,'idempotency_key'=>$key,'fingerprint'=>hash('sha256',json_encode($input)),'activity_id'=>$a->id,'result_revision'=>$a->revision,'kind'=>$kind,'created_at'=>now(),'updated_at'=>now()]);}
+ public function createResult(int $actor, string $key): array
+ {
+     return DB::transaction(function () use ($actor, $key) {
+         $this->users([$actor]);
+         abort_unless($this->available($actor), 404, 'unavailable');
+
+         $kind = DB::table('buddy_commands')->where('actor_id', $actor)
+             ->where('idempotency_key', $key)->lockForUpdate()->value('kind');
+
+         return ['command_status' => match ($kind) {
+             null => 'NOT_APPLIED',
+             'create' => 'APPLIED',
+             default => 'CONFLICT',
+         }];
+     }, 3);
+ }
+
  public function create(int $actor,array $d):array {return DB::transaction(function()use($actor,$d){$this->users([$actor]);abort_unless($this->available($actor),404,'unavailable');$input=['create',$d];if($old=$this->replay($actor,$d['idempotency_key'],$input))return $old;$id=(string)Str::uuid();$a=(object)(array_diff_key($d,array_flip(['idempotency_key']))+['id'=>$id,'owner_id'=>$actor,'guest_id'=>null,'state'=>'DRAFT','revision'=>1,'source_invite_id'=>null,'created_at'=>now(),'updated_at'=>now()]);DB::table('buddy_activities')->insert((array)$a);$this->slot($id,$actor,'CREATOR');$this->audit($a,$actor,'CREATE');$this->command($actor,$d['idempotency_key'],$input,$a,'create');return $this->card($a,$actor);},3);}
  public function action(int $actor,string $id,string $action,int $revision,string $key):array {return $this->locked($actor,$id,function($a)use($actor,$action,$revision,$key){$input=[$a->id,$action,$revision];$card=$this->card($a,$actor);abort_unless($card,404,'unavailable');if($old=$this->replay($actor,$key,$input,$a))return $old;abort_unless($a->revision===$revision,409,'stale revision');abort_unless(in_array($action,$card['allowed_actions'],true),409,'action unavailable');
   if($action==='open'){abort_unless($this->pref($actor)->enabled,409,'enable Buddy requests first');$this->state($a,'OPEN',$actor,'OPEN');}

@@ -7,6 +7,7 @@ import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/features/buddy_v1013/buddy_page.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/providers/calm_home_projection_provider.dart';
+import 'package:flutter_elitesync_module/features/home/presentation/state/calm_home_projection.dart';
 import 'package:flutter_elitesync_module/features/progress/presentation/pages/progress_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/providers/profile_providers.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/state/profile_ui_state.dart';
@@ -20,7 +21,7 @@ import 'package:flutter_elitesync_module/shared/providers/session_provider.dart'
 
 class Sessions extends SessionNotifier {
   @override
-  Future<SessionState> build() async => SessionState(
+  SessionState build() => SessionState(
     status: AuthStatus.authenticated,
     accessToken: 'synthetic-no-dating-profile',
     user: UserSummary(id: 1, phone: ''),
@@ -50,8 +51,8 @@ class Api extends RelationshipApi {
 }
 
 void main() {
-  test('test is compiled with the real v1013 build gate', () {
-    expect(const bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD'), isTrue);
+  const v1013 = bool.fromEnvironment('ELITESYNC_V1013_LOCAL_BUILD');
+  test('v1013 navigation tests do not use the v1012 build gate', () {
     expect(const bool.fromEnvironment('ELITESYNC_V1012_LOCAL_BUILD'), isFalse);
   });
   for (final home in [true, false]) {
@@ -64,16 +65,36 @@ void main() {
           addTearDown(tester.view.resetPhysicalSize);
           addTearDown(tester.view.resetDevicePixelRatio);
           final api = Api();
+          final fixture = Dio(BaseOptions(baseUrl: 'https://fixture.invalid'));
+          addTearDown(fixture.close);
+          fixture.interceptors.add(
+            InterceptorsWrapper(
+              onRequest: (request, handler) {
+                expect(request.path, '/api/v1/status/posts');
+                handler.resolve(
+                  Response(requestOptions: request, data: {'items': []}),
+                );
+              },
+            ),
+          );
           var communityReads = 0;
           await tester.pumpWidget(
             ProviderScope(
               overrides: [
                 sessionProvider.overrideWith(Sessions.new),
                 relationshipApiProvider.overrideWithValue(api),
-                calmHomeProjectionProvider.overrideWith(
-                  (ref) => throw StateError(
-                    'Legacy dating readiness projection must not be required',
+                statusRemoteDataSourceProvider.overrideWithValue(
+                  StatusRemoteDataSource(
+                    apiClient: ApiClient(dio: fixture),
+                    useMock: false,
                   ),
+                ),
+                calmHomeProjectionProvider.overrideWith(
+                  (ref) => v1013
+                      ? throw StateError(
+                          'Legacy dating readiness must not be required',
+                        )
+                      : CalmHomeProjection.current,
                 ),
                 profileProvider.overrideWith(
                   (ref) async => const ProfileUiState(),
@@ -85,11 +106,25 @@ void main() {
               ],
               child: MaterialApp(
                 theme: AppTheme.light,
-                home: home ? const HomePage() : const ProgressPage(),
+                home: home
+                    ? const Scaffold(body: HomePage())
+                    : const ProgressPage(),
               ),
             ),
           );
           await tester.pumpAndSettle();
+          if (!v1013) {
+            expect(find.text('独立吃饭 / 学习搭子'), findsNothing);
+            expect(find.text('好友可见社区'), findsNothing);
+            expect(api.paths, isEmpty);
+            expect(communityReads, 0);
+            expect(tester.takeException(), isNull);
+            return;
+          }
+          if (!home) {
+            await tester.tap(find.text('活动与社区'));
+            await tester.pumpAndSettle();
+          }
           expect(find.text('独立吃饭 / 学习搭子'), findsOneWidget);
           expect(find.text('好友可见社区'), findsOneWidget);
           expect(find.text('三阶段只读摘要'), findsNothing);

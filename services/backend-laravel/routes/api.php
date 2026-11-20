@@ -179,6 +179,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/buddy', [$buddy, 'index']);
             Route::put('/buddy/preferences', [$buddy, 'preferences']);
             Route::post('/buddy/activities', [$buddy, 'store']);
+            Route::get('/buddy/activities/create-result', [$buddy, 'createResult']);
             Route::post('/buddy/redeem', [$buddy, 'redeem']);
             Route::get('/buddy/{id}', [$buddy, 'show'])->whereUuid('id');
             Route::post('/buddy/{id}/actions', [$buddy, 'action'])->whereUuid('id');

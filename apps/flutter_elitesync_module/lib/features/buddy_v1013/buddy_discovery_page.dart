@@ -111,7 +111,7 @@ class _BuddyDiscoveryPageState extends SessionBoundPage<BuddyDiscoveryPage>
           _cursor = null;
           _hasMore = false;
           data = null;
-          error = '搭子发现当前不可用，请重新检查搭子许可。';
+          error = buddyDiscoveryUnavailable;
         }
       },
     );

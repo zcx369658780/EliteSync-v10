@@ -30,6 +30,8 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
   String? _pendingPath;
   Map<String, dynamic>? _pendingBody;
   bool _pendingExposesToken = false;
+  bool _createExpanded = false;
+  bool get _pendingCreate => _pendingPath == '/buddy/activities';
   bool get _blocked => busy || _pendingBody != null;
   String _type = 'MEAL';
   String _place = 'ONLINE';
@@ -73,6 +75,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
     _pendingPath = null;
     _pendingBody = null;
     _pendingExposesToken = false;
+    _createExpanded = false;
     _type = 'MEAL';
     _place = 'ONLINE';
     _budget = 'UNSPECIFIED';
@@ -108,7 +111,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
     _pendingPath = path;
     _pendingBody = Map<String, dynamic>.unmodifiable(body);
     _pendingExposesToken = exposesToken;
-    await _retryPending();
+    await _submitPending();
   }
 
   @override
@@ -116,24 +119,51 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
     final generation = _localGeneration;
     final result = await run(
       () => ref.read(relationshipApiProvider).call('GET', resource),
+      onFailure: _clearOnDenial,
     );
     if (!mounted || generation != _localGeneration) return;
     setState(() => data = result);
   }
 
-  Future<void> _retryPending() async {
-    if (busy || _pendingBody == null) return;
+  void _clearOnDenial(Object failure) {
+    if (failure is RelationshipFailure &&
+        const {401, 403, 404}.contains(failure.statusCode)) {
+      data = null;
+      _clearSensitive();
+    }
+  }
+
+  Future<void> _retryPending() => _submitPending(checkCreateResult: true);
+
+  Future<void> _submitPending({bool checkCreateResult = false}) async {
+    final body = _pendingBody;
+    if (busy || body == null) return;
     final generation = _localGeneration;
+    final method = _pendingMethod!;
+    final path = _pendingPath!;
     final exposesToken = _pendingExposesToken;
-    final result = await run(
-      () => ref
-          .read(relationshipApiProvider)
-          .call(_pendingMethod!, _pendingPath!, _pendingBody!),
-    );
+    final check = checkCreateResult && _pendingCreate;
+    final result = await run(() async {
+      final api = ref.read(relationshipApiProvider);
+      if (check) {
+        final query = Uri(
+          queryParameters: {
+            'idempotency_key': body['idempotency_key'] as String,
+          },
+        ).query;
+        final receipt = await api.call('GET', '$path/create-result?$query');
+        if (!mounted || generation != _localGeneration) return receipt;
+        if (receipt['command_status'] == 'APPLIED') return receipt;
+        if (receipt['command_status'] != 'NOT_APPLIED') {
+          throw const RelationshipFailure('create result unconfirmed');
+        }
+      }
+      return api.call(method, path, body);
+    }, onFailure: _pendingCreate ? _clearOnDenial : null);
     if (!mounted || generation != _localGeneration) return;
     if (result == null) {
       setState(() {
-        data = {'preferences': <String, dynamic>{}, 'activities': <Object>[]};
+        data = null;
         _issuedToken = null;
         _tokenExpiry = null;
         _issuedActivityId = null;
@@ -558,9 +588,12 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
           if (_tokenExpiry != null)
             Text('服务器到期时间：${buddyLocalTime(_tokenExpiry)}'),
         ],
-        const Divider(),
+      ],
+      if (data != null || _pendingCreate)
         ExpansionTile(
           key: const Key('buddy-create-form'),
+          initiallyExpanded: _createExpanded,
+          onExpansionChanged: (expanded) => _createExpanded = expanded,
           title: const Text('创建搭子草稿'),
           children: [
             _choice('搭子类型', _type, const {
@@ -618,6 +651,8 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
             ),
           ],
         ),
+      if (data != null) ...[
+        const Divider(),
         ExpansionTile(
           key: const Key('buddy-redeem-form'),
           title: const Text('手动兑换一次性邀请'),
