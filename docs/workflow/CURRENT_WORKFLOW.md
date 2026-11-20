@@ -1,3 +1,12 @@
+# 2026-11-20｜阶段B限定终验已获Owner正式接受，阶段C本地Codex自治执行获授权
+
+- [最新Owner具名决定](../decisions/OWNER_V2_PHASE_B_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_C_ENGINEERING_AUTHORIZATION_20261120.md)确认阶段B的**具名隔离自动化范围**最终通过，并授权C1–C4本地软件修改与安全隔离测试；先前`PHASE_C_NOT_AUTHORIZED`属历史时点。阶段B遗留PHP全量`FAIL 81 errors/108 failures`、Flutter扩围`FAIL 3`和PHP8.4/MariaDB/设备/真实服务`NOT_RUN`不因Owner接受而倒改。
+- [阶段C合并任务](../versions/v2/V2_PHASE_C_DATA_RIGHTS_AND_PURPOSE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)和[现有Codex启动Prompt](V2_PHASE_C_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)已备。GitHub仍为治理/脱敏备份，本地Codex在确认包含A+B真实工程基线、保护老main和S1资料后自治拆分开发、自验，一份阶段C综合报告回Owner及网页顾问；不是按G04–G08五份小任务分别审批。
+- C3删除请求只在确有真实合法受理渠道时可对用户宣称`ACCEPTED/COMPLETED`；实际法域、第三方权利、备份与必要留存依据没有具名证据时保持保守、拒绝假受理/假完成。C不能借权限执行生产/共享数据库迁移、真实个人资料不可逆删除、连接KYC/Push/RTC、真机/模拟器、正式A6、main合并、发布或阶段D。
+- 网页GPT目前没有直接启动Windows Codex；C已授权、转交待执行。受影响A+B安全回归与PHP8.4/MariaDB隔离补证建议合并验收，实际无安全环境标`NOT_RUN`。
+
+---
+
 # 2026-11-20｜阶段B集中交付顾问限定验收完成，待Owner终验/阶段C决定
 
 - Owner此前已正式接受阶段A限定工程交付并授权阶段B。Codex的B工程提交`1780f6add9a439c109f527eb7f58c2f96ab8bfa5`已由网页顾问按[阶段B限定验收](V2_PHASE_B_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)抽样审阅，状态`PHASE_B_SCOPED_ACCEPTED_WITH_RESERVATIONS / OWNER_FINAL_PENDING`，非V2全量上线PASS。
