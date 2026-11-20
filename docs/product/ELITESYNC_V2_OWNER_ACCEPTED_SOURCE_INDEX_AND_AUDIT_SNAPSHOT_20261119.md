@@ -1,3 +1,11 @@
+# 2026-11-20 当前Owner权威：阶段B限定终验通过，阶段C实施已获许可
+
+- [最新具名Owner接受/授权文件](../decisions/OWNER_V2_PHASE_B_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_C_ENGINEERING_AUTHORIZATION_20261120.md)正式接受B具名自动化限域工程结果并允许C1–C4本地安全软件实施。C按[阶段C唯一合并工程任务书](../versions/v2/V2_PHASE_C_DATA_RIGHTS_AND_PURPOSE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)与[原Codex会话Prompt](../workflow/V2_PHASE_C_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)推进。旧本索引中C仍未授权的文字属于历史时点。
+- C1以O04/DATA-D1具名用途独立许可为准，C2以DATA-D2局部纠错/派生/新发布为准，C3以NEW-PC-03/RET/OBJ仅已批准的**规划入口与真实性边界**为准，C4继承O09/A+B。顾问稿中未被独立Owner决定接受的新增权利或具体法律期限不因本授权自动有效。
+- B PHP全量81errors/108failures、Flutter扩围3 fails继续FAIL；PHP8.4/MariaDB/真机/真实KYC/Push/合法删改仍OPEN/NOT_RUN；阶段D/A6/main/正式发布未授权。
+
+---
+
 # 2026-11-20 最新Owner阶段验收/授权：A限定通过，B工程可以启动
 
 - [具名Owner决定](../decisions/OWNER_V2_PHASE_A_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_B_ENGINEERING_AUTHORIZATION_20261120.md)正式接受A阶段在报告具名自动化覆盖内的工程交付，并同意启动B阶段。顾问A限定验收报告仍指出PHP8.4、MariaDB、供应商、设备/跨端等OPEN，不因Owner终验而抹除。
