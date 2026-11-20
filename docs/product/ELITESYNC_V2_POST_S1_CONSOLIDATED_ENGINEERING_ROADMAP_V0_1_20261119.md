@@ -1,3 +1,10 @@
+# 2026-11-20 最新阶段权限：Owner接受C限域成果并批准D本地工程
+
+- [具名Owner决定](../decisions/OWNER_V2_PHASE_C_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_D_ENGINEERING_AUTHORIZATION_20261120.md)正式接受C在当前**具名软件范围内的保留成果**并授权[阶段D D1–D4集中工程](../versions/v2/V2_PHASE_D_JOURNEY_NOTIFICATION_EXPERIENCE_CONSOLIDATED_EXECUTION_BRIEF_20261120.md)及D0已披露的安全兼容债务处理。C顾问`PARTIAL`保留，25条新增PHP失败与历史FAIL、外部NOT_RUN均不改成PASS；阶段D由现有Codex会话安全隔离自治工程/自验，一包报告给Owner顾问复审。旧节中“D尚未授权”仅是历史时点。
+- 正式A6、真机/模拟器、真实KYC/Push/RTC供应商、真实合法删除、共享/生产数据迁移、main和发布未获本决定授权。
+
+---
+
 # 2026-11-20 最新Owner工程推进：B阶段限定终验正式接受、C阶段获准启动
 
 - [Owner最新具名决议](../decisions/OWNER_V2_PHASE_B_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_C_ENGINEERING_AUTHORIZATION_20261120.md)：正式接受B1–B4限定自动化范围的工程交付，并授权阶段C C1–C4修改代码/隔离自动化测试。阶段A/B已获**各自限域**Owner接受；不等于PHP/Flutter全量测试及真实环境全通过。
