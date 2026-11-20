@@ -105,6 +105,17 @@ Route::prefix('v1')->group(function () {
         Route::put('/automations/{scope}', [$controller, 'update']);
     });
 
+    Route::prefix('data-rights')->middleware(['auth:sanctum', 'account.active'])->group(function () {
+        $rights = \App\Http\Controllers\Api\V1\DataRightsController::class;
+        Route::get('/showcase-city', [$rights, 'purpose']);
+        Route::put('/showcase-city', [$rights, 'decide'])->middleware('throttle:10,1');
+        Route::post('/showcase-city/reuse', [$rights, 'reuseCity'])->middleware('throttle:10,1');
+        Route::get('/objects', [$rights, 'owned']);
+        Route::get('/objects/{type}/{key}', [$rights, 'object']);
+        Route::post('/objects/{type}/{key}', [$rights, 'submit'])->middleware('throttle:10,1');
+        Route::get('/objects/{type}/{key}/result', [$rights, 'result']);
+    });
+
     Route::get('/profile/lifestyle-discovery/command-result', [LifestyleDiscoveryController::class, 'commandResult'])->middleware(['auth:sanctum', 'account.active', JourneyPrivateResponse::class]);
     Route::get('/profile/lifestyle-discovery', [LifestyleDiscoveryController::class, 'show'])->middleware(['auth:sanctum', 'account.active', JourneyPrivateResponse::class]);
     Route::put('/profile/lifestyle-discovery', [LifestyleDiscoveryController::class, 'update'])->middleware(['auth:sanctum', 'account.active', JourneyPrivateResponse::class]);
@@ -264,8 +275,8 @@ Route::prefix('v1')->group(function () {
             Route::post('/showcase/photos', [ProfileShowcasePhotoController::class, 'store'])->middleware('throttle:10,1');
             Route::get('/showcase/{owner}/photos/{photo}', [ProfileShowcasePhotoController::class, 'content'])->whereNumber('owner')->whereNumber('photo');
             Route::get('/showcase/{owner}', [ProfileShowcasePublicationController::class, 'detail'])->whereNumber('owner');
-            Route::get('/astro/summary', [AstroProfileController::class, 'showSummary']);
-            Route::get('/astro/chart', [AstroProfileController::class, 'showChart']);
+            Route::get('/astro/summary', [AstroProfileController::class, 'show']);
+            Route::get('/astro/chart', [AstroProfileController::class, 'show']);
             Route::get('/astro', [AstroProfileController::class, 'show']);
             Route::post('/astro', [AstroProfileController::class, 'save']);
             Route::post('/astro/pair', [AstroProfileController::class, 'pair']);

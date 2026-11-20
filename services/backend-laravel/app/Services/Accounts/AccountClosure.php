@@ -165,7 +165,7 @@ final class AccountClosure
             'password' => Hash::make(Str::random(64)), 'remember_token' => null, 'realname_verified' => false];
         foreach (['birthday', 'zodiac_animal', 'gender', 'city', 'relationship_goal', 'public_zodiac_sign',
             'public_mbti', 'public_personality', 'private_bazi', 'private_natal_chart', 'private_ziwei',
-            'private_birth_place', 'private_birth_lat', 'private_birth_lng'] as $column) {
+            'private_birth_place', 'private_birth_lat', 'private_birth_lng', 'private_birth_time'] as $column) {
             if (Schema::hasColumn('users', $column)) {
                 $values[$column] = null;
             }

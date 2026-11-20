@@ -24,7 +24,7 @@ final class NatalProfileView
             'input_signature' => $row->input_signature, 'status' => $status];
     }
 
-    public function legacyProjection(UserNatalProfile $row, mixed $canonicalBirthday): array
+    public function legacyProjection(UserNatalProfile $row): array
     {
         $natal = $this->profile($row);
         $western = $natal['results']['western'] ?? [];
@@ -37,7 +37,6 @@ final class NatalProfileView
         $asc = $western['axes']['ascendant'] ?? null;
         return [
             'natal' => $natal, 'source' => 'private_calculation_mirror',
-            'canonical_birthday' => $canonicalBirthday?->format('Y-m-d'),
             'birthday' => $row->context['civil_date'], 'birth_time' => $row->context['civil_time'],
             'birth_place' => $row->context['location_label'],
             'birth_lat' => $row->context['latitude'], 'birth_lng' => $row->context['longitude'],

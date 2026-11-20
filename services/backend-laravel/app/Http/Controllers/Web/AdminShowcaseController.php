@@ -30,7 +30,9 @@ final class AdminShowcaseController extends Controller
             abort_unless($record, 404);
             app(UserGovernance::class)->target($request->user(), (int) $record->user_id);
             $draft = UserProfileShowcaseDraft::where('user_id', $record->user_id)->lockForUpdate()->first();
-            $snapshot = json_decode($record->snapshot, true, 512, JSON_THROW_ON_ERROR);
+            $snapshot = app(ShowcaseWorkflow::class)->purposeFilteredSnapshot(
+                (int) $record->user_id, (int) $record->content_revision,
+                json_decode($record->snapshot, true, 512, JSON_THROW_ON_ERROR));
             $current = $draft && (int) $draft->revision === (int) $record->content_revision;
             return compact('record', 'snapshot', 'current');
         });

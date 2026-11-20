@@ -8,6 +8,7 @@ use App\Models\UserProfileShowcaseDraft;
 use App\Models\UserProfileShowcasePublication;
 use App\Models\UserProfileShowcasePublicationAudit;
 use App\Services\Admin\UserGovernance;
+use App\Services\DataPurposeService;
 use App\Services\FormalRelationshipService;
 use App\Services\JourneyStore;
 use App\Services\LiveConsentService;
@@ -52,9 +53,18 @@ final class ShowcaseWorkflow
             $moderationStatus = in_array($draft?->moderation_status, ['not_submitted', 'pending', 'approved', 'rejected', 'needs_revision', 'manual_review_required'], true)
                 ? $draft->moderation_status : ($draft ? 'error' : 'not_submitted');
 
+            $fields = $visible ? $this->snapshot($draft) : [];
+            $purpose = app(DataPurposeService::class);
+            $source = $visible ? $purpose->dependency($owner, $draft->revision) : null;
+            $state = $source ? $purpose->derivationState($owner, $source) : 'INDEPENDENT';
+            if ($state === 'PURPOSE_UNAVAILABLE') {
+                $fields['city'] = null;
+            }
+
             return [
                 'ok' => true,
-                'draft' => $visible ? $this->snapshot($draft) + [
+                'draft' => $visible ? $fields + [
+                    'city_derivation_state' => $state,
                     'id' => $draft->id, 'revision' => $draft->revision,
                     'moderation_status' => $moderationStatus,
                     'draft_status' => 'draft', 'visibility_intent' => 'private_draft',
@@ -72,14 +82,18 @@ final class ShowcaseWorkflow
 
     private function submissionPayload(object $submission): array
     {
-        return ['id' => $submission->id, 'revision' => (int) $submission->content_revision,
+        $snapshot = json_decode($submission->snapshot, true, 512, JSON_THROW_ON_ERROR);
+        $owner = (int) $submission->user_id;
+        $revision = (int) $submission->content_revision;
+
+        return ['id' => $submission->id, 'revision' => $revision,
             'state' => $submission->state, 'feedback' => $submission->reason,
-            'snapshot' => json_decode($submission->snapshot, true), 'reviewed_at' => $submission->reviewed_at];
+            'snapshot' => $this->purposeFilteredSnapshot($owner, $revision, $snapshot), 'reviewed_at' => $submission->reviewed_at];
     }
 
-    public function saveDraft(int $owner, array $data, int $expected): array
+    public function saveDraft(int $owner, array $data, int $expected, ?array $citySource = null): array
     {
-        return DB::transaction(function () use ($owner, $data, $expected) {
+        return DB::transaction(function () use ($owner, $data, $expected, $citySource) {
             app(JourneyStore::class)->users([$owner]);
             $draft = $this->draft($owner);
             $fields = [];
@@ -93,7 +107,15 @@ final class ShowcaseWorkflow
                 }
             }
             $this->validatePhotos($owner, $fields['photo_ids']);
-            $same = $draft && $draft->draft_status !== 'cleared' && $this->snapshot($draft) === $fields;
+            $purpose = app(DataPurposeService::class);
+            $previous = $draft ? $purpose->dependency($owner, $draft->revision) : null;
+            if ($citySource === null && $previous && $draft->city === $fields['city']) {
+                $citySource = ['grant_revision' => (int) $previous->grant_revision, 'source_digest' => $previous->source_digest];
+            }
+            $sameSource = $citySource === null ? ! $previous : ($previous
+                && $citySource['grant_revision'] === (int) $previous->grant_revision
+                && hash_equals($citySource['source_digest'], $previous->source_digest));
+            $same = $sameSource && $draft && $draft->draft_status !== 'cleared' && $this->snapshot($draft) === $fields;
             // A reply lost after a completed save can safely read the same version.
             if ($same && in_array($expected, [$draft->revision, $draft->revision - 1], true)) {
                 return $this->ownerPayload($owner, 'saved_private_draft');
@@ -103,9 +125,46 @@ final class ShowcaseWorkflow
             $draft->fill($fields + ['revision' => $expected + 1, 'draft_status' => 'draft',
                 'moderation_status' => 'not_submitted', 'visibility_intent' => 'private_draft',
                 'source_type' => 'user_confirmed', 'public_display_eligible' => false, 'matching_scoring_eligible' => false])->save();
+            if ($citySource !== null) {
+                $purpose->recordDependency($owner, $draft->revision, $citySource);
+            }
 
             return $this->ownerPayload($owner, 'saved_private_draft');
         });
+    }
+
+    public function reuseCity(int $owner, int $expected): array
+    {
+        return DB::transaction(function () use ($owner, $expected) {
+            app(JourneyStore::class)->users([$owner]);
+            $draft = $this->draft($owner);
+            [$city, $source] = app(DataPurposeService::class)->reuseCity($owner);
+            $fields = $draft ? $this->snapshot($draft) : [];
+            $fields['city'] = $city;
+
+            return $this->saveDraft($owner, $fields, $expected, $source);
+        });
+    }
+
+    private function requireCurrentDerivation(int $owner, int $revision): void
+    {
+        $purpose = app(DataPurposeService::class);
+        $source = $purpose->dependency($owner, $revision);
+        if ($source) {
+            $state = $purpose->derivationState($owner, $source);
+            abort_unless($state === 'CURRENT', 409, $state);
+        }
+    }
+
+    public function purposeFilteredSnapshot(int $owner, int $revision, array $snapshot): array
+    {
+        $purpose = app(DataPurposeService::class);
+        $source = $purpose->dependency($owner, $revision);
+        if ($source && ! $purpose->permitsSnapshot($owner, $source)) {
+            unset($snapshot['city']);
+        }
+
+        return $snapshot;
     }
 
     public function clearDraft(int $owner, int $expected): array
@@ -134,6 +193,7 @@ final class ShowcaseWorkflow
             $draft = $this->draft($owner);
             abort_unless($draft && $draft->draft_status !== 'cleared', 422, 'private_draft_required');
             abort_unless($draft->revision === $expected, 409, 'SHOWCASE_CHANGED_REFRESH_REQUIRED');
+            $this->requireCurrentDerivation($owner, $expected);
             abort_unless(count($draft->audiences ?? []) > 0, 422, '请选择展示范围。');
             $this->validatePhotos($owner, $draft->photo_ids ?? []);
             $existing = DB::table('profile_showcase_submissions')->where('draft_id', $draft->id)->where('content_revision', $expected)->first();
@@ -177,7 +237,9 @@ final class ShowcaseWorkflow
             'publication_status' => $publication->publication_status, 'source_revision' => $publication->source_revision,
             'source_draft_id' => $publication->source_draft_id, 'moderation_status' => 'approved',
             'public_display_eligible' => (bool) $publication->public_display_eligible, 'matching_scoring_eligible' => false,
-            'public_fields' => $this->decorateSnapshot((int) $publication->user_id, $publication->published_payload ?? [], $publication->revision),
+            'public_fields' => $this->decorateSnapshot((int) $publication->user_id,
+                $this->purposeFilteredSnapshot((int) $publication->user_id, (int) $publication->source_revision,
+                    $publication->published_payload ?? []), $publication->revision),
             'published_at' => $publication->published_at?->toIso8601String(), 'updated_at' => $publication->updated_at?->toIso8601String(),
         ] : null, 'copy_state' => ['publication_status' => $publication?->publication_status ?? 'not_published',
             'public_display_eligible' => (bool) $publication?->public_display_eligible, 'matching_scoring_eligible' => false]];
@@ -205,6 +267,7 @@ final class ShowcaseWorkflow
                 return $this->publicationPayload($publication);
             }
             abort_unless((int) ($publication?->revision ?? 0) === $publicationRevision, 409, '发布状态已变化，请刷新。');
+            $this->requireCurrentDerivation($owner, $draftRevision);
             $snapshot = json_decode($submission->snapshot, true, 512, JSON_THROW_ON_ERROR);
             $this->validatePhotos($owner, $snapshot['photo_ids'] ?? []);
             $before = $publication?->publication_status ?? 'not_published';

@@ -38,6 +38,7 @@ class StatusCommentController extends Controller
             'id' => $row->id, 'state' => 'ACTIVE', 'revision' => (int) $row->revision,
             'author_id' => (int) $row->author_id, 'body' => $row->body,
             'can_withdraw' => $authorMayAct, 'can_hide' => $ownerMayAct,
+            'is_mine' => $own,
             'can_report' => ! $own,
             'can_reply' => $row->parent_id === null && $this->posts->mayCommentLocked($post, $viewer),
             'created_at' => $row->created_at,
