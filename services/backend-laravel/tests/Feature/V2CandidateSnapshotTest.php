@@ -208,6 +208,39 @@ class V2CandidateSnapshotTest extends TestCase
         self::assertNull($snapshots->read($proposal, (int) $viewer->id, (int) $owner->id));
     }
 
+    public function test_legacy_match_reads_do_not_project_unbound_or_blocked_content(): void
+    {
+        $owner = $this->account();
+        $viewer = $this->account();
+        DB::table('dating_matches')->insert([
+            'week_tag' => 'legacy-match-fixture',
+            'user_a' => $owner->id, 'user_b' => $viewer->id,
+            'drop_released' => true,
+            'match_reasons' => json_encode(['fixture_hidden' => 'unbound legacy explanation']),
+            'created_at' => now(), 'updated_at' => now(),
+        ]);
+        $this->actingAs($viewer, 'sanctum')->getJson('/api/v1/match/current')
+            ->assertOk()->assertJsonPath('proposal', null)->assertJsonMissingPath('match_reasons');
+        $this->getJson('/api/v1/match/history')->assertOk()
+            ->assertJsonPath('data', [])->assertJsonPath('total', 0);
+
+        $this->friends($owner, $viewer);
+        $this->publish($owner, 'Blocked fixture summary');
+        $proposal = $this->proposal($owner, $viewer);
+        app(CandidateShowcaseSnapshot::class)->capture($proposal);
+        UserBlock::create(['blocker_id' => $owner->id, 'blocked_user_id' => $viewer->id]);
+
+        $this->getJson('/api/v1/match/current')->assertOk()
+            ->assertJsonPath('proposal.id', $proposal->id)
+            ->assertJsonPath('proposal.showcase', null)
+            ->assertJsonPath('proposal.explanation', null)
+            ->assertJsonPath('proposal.accept_available', false);
+        $this->getJson('/api/v1/match/history')->assertOk()
+            ->assertJsonPath('data.0.showcase', null)
+            ->assertJsonPath('data.0.explanation', null)
+            ->assertJsonPath('data.0.decision_available', false);
+    }
+
     public function test_candidate_snapshot_is_not_readable_by_a_nonparticipant(): void
     {
         $owner = $this->account();

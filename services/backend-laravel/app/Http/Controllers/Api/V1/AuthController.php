@@ -92,7 +92,7 @@ class AuthController extends Controller
                 'password' => Hash::make($data['password']),
             ]);
 
-            $tokens = app(DeviceSessions::class)->issue($user, 'Mobile', true, $data['device_id'] ?? null);
+            $tokens = app(DeviceSessions::class)->issue($user, deviceId: $data['device_id'] ?? null);
 
             return response()->json([
                 'user' => $this->userPayload($user),

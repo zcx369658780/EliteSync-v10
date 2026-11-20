@@ -6,12 +6,15 @@ use App\Http\Controllers\Api\V1\ConversationController;
 use App\Models\User;
 use App\Services\ConversationCapabilityService;
 use App\Services\ConversationDomainService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Mockery;
 use Tests\TestCase;
 
 final class ConversationListPeerFilterTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_list_excludes_invalid_and_denied_peers_without_recovering_identity_from_id(): void
     {
         $actor = new User();

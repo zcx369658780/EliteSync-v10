@@ -54,6 +54,7 @@ app(\App\Services\SlowDatingService::class)->participate((int)$u->id,'opt_in',0,
             '--path' => [
                 'database/migrations/2026_07_12_000100_create_match_round_foundation_tables.php',
                 'database/migrations/2026_07_12_000200_add_round_run_linkage_to_dating_matches.php',
+                'database/migrations/2026_11_13_181000_scope_match_pairs_to_execution_attempt.php',
             ],
             '--force' => true,
         ])->assertSuccessful();
@@ -64,6 +65,7 @@ app(\App\Services\SlowDatingService::class)->participate((int)$u->id,'opt_in',0,
         $this->assertTrue(Schema::hasTable('user_profile_showcase_publications'));
         $this->artisan('migrate', ['--force' => true])->assertSuccessful();
         $this->assertDatabaseHas('dating_matches', ['id' => $legacyId, 'round_id' => null]);
+        $this->assertTrue(Schema::hasIndex('dating_matches', ['matching_run_id', 'pair_key'], 'unique'));
     }
 
     public function test_prepare_request_claim_heartbeat_finalize_and_idempotent_replay(): void
