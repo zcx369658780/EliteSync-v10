@@ -1,3 +1,12 @@
+# CURRENT AUTHORITY 2026-11-20｜阶段B顾问限定验收已完成，Owner终验/阶段C授权待定
+
+**`PHASE_B_SCOPED_ACCEPTED_WITH_RESERVATIONS / OWNER_FINAL_ACCEPTANCE_PENDING / PHASE_C_NOT_AUTHORIZED / A6_MEETING_DEFERRED / MAIN_MERGE_RELEASE_NOT_AUTHORIZED`**
+
+- [网页GPT阶段B集中限定验收](V2_PHASE_B_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)记录固定工程提交`1780f6ad...`、B1–B4源码独立抽查与定向自动化Codex报告；PHP149项/1,936断言、Flutter226项、17份Dart分析0问题不等于网页GPT复跑或全量PASS。PHP全量`81 errors/108 failures`、Flutter扩围`3 failures`仍未关闭；Codex报告称在A基线复现，原始日志尚未由顾问复核。
+- 真实访客官方正文目前`public_editorial=[]`；PHP8.4/MariaDB/跨设备、真实供应商及授权/第三方权利保持`OPEN/NOT_RUN`。阶段A`OWNER_SCOPED_FINAL_ACCEPTED`不改。**阶段B尚待Owner正式接受，C未授权**，A6/main/release继续STOP；下方更早“阶段B待开发”均为历史时间快照。
+
+---
+
 # CURRENT AUTHORITY 2026-11-20｜阶段A获Owner限定终验；阶段B工程已授权
 
 **`OWNER_PHASE_A_SCOPED_FINAL_ACCEPTED / PHASE_B_ENGINEERING_AUTHORIZED / PHASE_B_HANDOFF_READY / PHASE_C_D_NOT_STARTED / A6_MEETING_DEFERRED / NO_MAIN_MERGE_OR_RELEASE`**
