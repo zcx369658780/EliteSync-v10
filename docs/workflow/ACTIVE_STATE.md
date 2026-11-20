@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-20：V2-Q交付完成顾问集中限定验收；Owner终验和两项产品合同待决
+
+**`V2_Q_ADVISOR_SCOPED_ACCEPTED_WITH_RESERVATIONS / OWNER_Q_FINAL_PENDING / EXPANDED_INTERNAL_CANDIDATE_PARTIAL / PRODUCTION_NO_GO / ASTRO_LEGACY_OWNER_CHOICE_PENDING / REGISTER_T0_P1_OWNER_DECISION_PENDING / NO_MAIN_MERGE_OR_RELEASE`**
+
+- 本次网页顾问已直接核对Q固定交付`b35f6d0aa43a80e648143a30fbb17a91c2bf922a`（分支`codex/v2-q-integration-quality-20261120`）与D`40ba853a3e9fed9062e8527b22c0b8ca9471e9ce`的祖先关系：ahead5/behind0；Q最终源码`5e457fb0fd21c5978864f146d78120cc9a7d025b`至报告仅新增文档。详见[独立顾问Q集中验收](V2_Q_ADVISOR_SCOPED_ACCEPTANCE_WITH_RESERVATIONS_20261120.md)与[Codex固定报告](https://github.com/zcx369658780/EliteSync-v10/blob/b35f6d0aa43a80e648143a30fbb17a91c2bf922a/docs/versions/v2/q-20261120/V2_Q_ENGINEERING_REPORT.md)。网页顾问审查GitHub源码/部分测试、没有复跑Windows测试或独立回算本地JUnit日志。
+- Q具名PHP190/2402、Flutter396、扩围77、两构建条件5及31、Dart26文件0问题为Codex运行报告；顾问抽查关键Buddy幂等、403失权、切号与PHP测试夹具。PHP全量仍**46 errors/122 failures**、扩围Flutter旧3条据报告已收口、Flutter全仓NOT_RUN；Q报告附录214条可在文档内独立核对为B189+C25，Q恢复36条归档环境前置+10条测试夹具/断言，余168未关闭。旧星盘25仍FAIL，策略A/B/C由Owner决定。
+- 顾问直接核实Q最终`AuthController::register`调用`DeviceSessions::issue(..., true, ...)`从而生成可信`trusted_login_at`与session retention；旧`v10.1.5`冻结B4和`V1015TrustedLoginTest`要求注册不生成离线T0，形成**P1产品安全合同冲突待Owner具名裁决**，不因此声称已实机泄密或已经修复；当前Q自验在注册专项9项有1失败，不得改PASS。
+- 生产仍NO_GO：PHP8.4、MariaDB、设备/跨端、真实身份/Push/RTC、合法用途与对象删除真实受理、正式A6、43PNG/F-01、官方访客内容等OPEN/NOT_RUN。现有Owner A–D限定接受不倒改，Q只有**顾问**限定验收，等待Owner最终决定。本轮不授权新的工程阶段、main/发布、真实供应商或设备。旧时点CURRENT ENTRY留在首个历史分隔线以下。
+
+---
+
 # CURRENT ENTRY 2026-11-20：Owner阶段D限定终验接受，V2-Q集成质量和产品决策收口获授权
 
 **`OWNER_PHASE_A_D_SCOPED_FINAL_ACCEPTED_WITH_RESERVATIONS / V2_Q_INTEGRATION_QUALITY_AUTHORIZED / Q_DELIVERY_PENDING / ASTRO_LEGACY_OWNER_CHOICE_PENDING / INTERNAL_CANDIDATE_PARTIAL / PRODUCTION_NO_GO / A6_MEETING_DEFERRED / NO_MAIN_MERGE_OR_RELEASE`**
