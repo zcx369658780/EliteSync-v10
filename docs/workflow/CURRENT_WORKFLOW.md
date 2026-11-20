@@ -1,3 +1,11 @@
+# 2026-11-20｜阶段B集中交付顾问限定验收完成，待Owner终验/阶段C决定
+
+- Owner此前已正式接受阶段A限定工程交付并授权阶段B。Codex的B工程提交`1780f6add9a439c109f527eb7f58c2f96ab8bfa5`已由网页顾问按[阶段B限定验收](V2_PHASE_B_ADVISOR_SCOPED_ACCEPTANCE_20261120.md)抽样审阅，状态`PHASE_B_SCOPED_ACCEPTED_WITH_RESERVATIONS / OWNER_FINAL_PENDING`，非V2全量上线PASS。
+- 实际前后端、三份安全迁移与定向测试源码可追溯；PHP149/1,936、Flutter226、17份Dart分析0问题是**Codex报告的具名运行范围**，网页GPT未复跑。PHP全量仍81errors/108failures，Flutter扩围仍3fails（报告称均为旧基线），原始日志本地私有未独立复核；不得混称全量绿测。
+- 访客正式编辑正文当前为空，KYC/Push与第三方素材合法授权、PHP8.4/MariaDB/设备/跨端行为仍未具备真实验收。阶段C、正式A6、main合并与发布仍需Owner**新的明确授权**；本轮顾问只提出一次集中的B限定验收与是否进入C的Owner选择，不拆B1–B4微型补单。
+
+---
+
 # 2026-11-20｜阶段A限定Owner终验完成；阶段B本地Codex自治实施获授权
 
 - Owner明确接受阶段A在**具名自动化范围**的交付并批准继续阶段B，详见[Owner具名决定](../decisions/OWNER_V2_PHASE_A_FINAL_SCOPED_ACCEPTANCE_AND_PHASE_B_ENGINEERING_AUTHORIZATION_20261120.md)。阶段A环境/供应商限制保留，不因Owner接受而把PHP8.4/MariaDB/设备/真实身份/Push标PASS。
