@@ -1,0 +1,110 @@
+name: elitesync-v2-cloud-r0
+
+x-application: &application
+  image: ${R0_APP_IMAGE:?Set the isolated image reference}
+  environment:
+    APP_ENV: staging
+    APP_DEBUG: 'false'
+    APP_URL: ${R0_HTTPS_ORIGIN:?Set the isolated HTTPS origin}
+    SECURITY_ENFORCE_HTTPS: 'true'
+    APP_DB_CONNECTION: mariadb
+    DB_CONNECTION: mariadb
+    DB_URL: ''
+    DB_HOST: r0-db
+    DB_PORT: '3306'
+    DB_DATABASE: elitesync_v2_r0
+    DB_USERNAME: elitesync_r0_app
+    APP_CACHE_STORE: database
+    APP_SESSION_DRIVER: database
+    APP_SESSION_CONNECTION: mariadb
+    SESSION_SECURE_COOKIE: 'true'
+    QUEUE_CONNECTION: database
+    DB_QUEUE_CONNECTION: mariadb
+    DB_QUEUE_RETRY_AFTER: '220'
+    MAIL_MAILER: array
+    LOG_CHANNEL: stderr
+    V1007_LOCAL_RESTORATION: 'false'
+    V1009_RTC_ENABLED: 'false'
+    V1012_TEST_ISSUER_ENABLED: 'false'
+    ADMIN_PHONES: ${R0_ADMIN_PHONES:-}
+    NATAL_PYTHON: /opt/elitesync-natal/bin/python
+    NATAL_NODE: /usr/local/bin/node
+    NATAL_JPL_KERNEL: /opt/elitesync-data/de440s.bsp
+  networks: [data]
+  secrets: [r0_app_key, r0_db_password]
+  volumes:
+    - r0-storage:/var/www/html/storage
+    - type: bind
+      source: ${R0_KERNEL_FILE:?Set the approved DE440s absolute path}
+      target: /opt/elitesync-data/de440s.bsp
+      read_only: true
+      bind:
+        create_host_path: false
+  depends_on:
+    r0-db:
+      condition: service_healthy
+
+services:
+  r0-db:
+    image: mariadb:10.11@sha256:5d60ca6129f939453472f4ed385c54820ec57f3aa384a8646619f9bc0e3b5eab
+    command: ["--server-id=2621111"]
+    environment:
+      MARIADB_DATABASE: elitesync_v2_r0
+      MARIADB_USER: elitesync_r0_app
+      MARIADB_PASSWORD_FILE: /run/secrets/r0_db_password
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/r0_db_root_password
+    secrets: [r0_db_password, r0_db_root_password]
+    networks: [data]
+    volumes:
+      - r0-dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 3s
+      timeout: 4s
+      retries: 25
+      start_period: 10s
+
+  r0-app:
+    <<: *application
+
+  r0-worker:
+    <<: *application
+    command: ["php", "artisan", "queue:work", "database", "--sleep=2", "--tries=1", "--timeout=180"]
+    stop_grace_period: 190s
+    profiles: [worker]
+
+  r0-edge:
+    image: nginx:1.28-alpine@sha256:0dcc88822d45581e65ae329f8be769762bf628d3b2bb7d2a077d4aa5c98b30e3
+    networks: [edge, data]
+    depends_on: [r0-app]
+    ports:
+      - "127.0.0.1:${R0_HTTPS_PORT:?Set a dedicated local port}:8443"
+    secrets: [r0_tls_certificate, r0_tls_key]
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+        bind:
+          create_host_path: false
+
+networks:
+  edge:
+  data:
+    internal: true
+
+volumes:
+  r0-dbdata:
+  r0-storage:
+
+secrets:
+  r0_app_key:
+    file: ${R0_SECRET_DIR:?Set a dedicated secret directory}/app.key
+  r0_db_password:
+    file: ${R0_SECRET_DIR:?Set a dedicated secret directory}/db-app
+  r0_db_root_password:
+    file: ${R0_SECRET_DIR:?Set a dedicated secret directory}/db-root
+  r0_tls_certificate:
+    file: ${R0_SECRET_DIR:?Set a dedicated secret directory}/tls.crt
+  r0_tls_key:
+    file: ${R0_SECRET_DIR:?Set a dedicated secret directory}/tls.key
