@@ -1,3 +1,12 @@
+# 2026-11-21｜Owner功能优先工作流（覆盖此前云端Staging推进优先级）
+
+- 新Owner[具名决定](../decisions/OWNER_V2_FUNCTION_COMPLETENESS_BEFORE_SOFTWARE_COPYRIGHT_AND_CLOSED_BETA_20261121.md)：“先完成功能开发→整理软件著作权资料→功能具备后封闭内测→再评估更换服务器”。原云恢复任务与G0/G0b证据保留为历史已完成/未完事项，**不得每次开启Codex都要求先继续云端费用选择/备份恢复**。
+- 本地Codex使用[唯一功能闭环任务](../versions/v2/V2_FUNCTION_COMPLETION_TO_SOFTCOPYRIGHT_AND_CLOSED_BETA_CONSOLIDATED_BRIEF_20261121.md)，现有合规隔离PHP8.4/MariaDB和Flutter/Android源码，自治补足既定慢约、Connection/双向消息同意、三盘、社区、Buddy、通知和独立Web后台，维护用户可见状态及安全门禁；提交一份功能矩阵/具名测试/软著资料准备与内测准入报告。网页顾问只在Owner请求时集中复核，不担任日常阻断者。
+- 本轮G0b本地报告尚未由网页顾问直接读到；其Owner转述不是独立文件验收，保留`G0B_REPORT_PENDING_SOURCE_REVIEW`但**不阻断普通开发**。现时阿里云旧库、LiveKit、旧服务/备份不动，不运行新SSH、真实数据迁移、采购或云写入。
+- 所有新功能必须遵守现行法律用途/受众/Block/身份门禁；旧排盘A/B/C、注册可信离线T0重大产品选择仍Owner待决，测试模拟不能宣称真实身份/Push/RTC/法律受理PASS。内测真人、真实软著提交、正式A6、main合并、对外发布另需具名许可。
+
+---
+
 # 2026-11-20｜阶段D Owner限定接受；V2-Q安全质量收口实施中继授权
 
 - [本次Owner决定](../decisions/OWNER_V2_PHASE_D_FINAL_SCOPED_ACCEPTANCE_AND_INTEGRATION_QUALITY_AUTHORIZATION_20261120.md)明确阶段D具名终验接受并启动V2-Q质量/产品取舍收口；[集中任务](../versions/v2/V2_Q_INTEGRATION_QUALITY_AND_PRODUCT_DECISION_CONSOLIDATED_BRIEF_20261120.md)、[旧排盘产品选择备选](../product/V2_Q_LEGACY_ASTRO_COMPATIBILITY_OWNER_DECISION_OPTIONS_20261120.md)、[原Codex会话单次启动Prompt](V2_Q_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)均已归档。**网页GPT不直接运行本机Codex**，Owner仍保留产品大取舍和真实发布权限，不恢复网页端碎任务派发。
