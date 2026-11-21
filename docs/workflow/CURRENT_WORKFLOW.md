@@ -1,3 +1,13 @@
+# 2026-11-21｜P0.4.1实机PARTIAL；先修复解除Block后旧代消息重见，再收口媒体与网络
+
+- 固定P0.4.1报告`e4d1588acee62d8f8f166042c328e26cc951c14a`，1011806在原Android设备安装成功并保留1011805；报告提交只含实机报告和手册，无产品源码变更。顾问验收见[V2_P0_4_1_ANDROID_1011806_ADVISOR_SCOPED_ACCEPTANCE_20261121.md](V2_P0_4_1_ANDROID_1011806_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- P0隐私FAIL：第1代Connection/MC因Block被关闭/撤销；新第2代Connection/MC建立后旧第1代消息重新显示。Owner D-03要求关闭/撤销后历史默认不可读，除非独立history authority。当前pair room_key稳定、Conversation复用、message list按pair room_id取全部历史，缺generation/history scope隔离。
+- 下一任务：[P0.4.2会话代际历史隔离与设备缺口收口](../versions/v2/V2_P0_4_2_CONVERSATION_GENERATION_HISTORY_ISOLATION_AND_DEVICE_GAP_CLOSURE_TASK_20261121.md)。保留旧数据但默认不展示；新代只读新代内容；旧代消息、附件、通知、预览、搜索、回复引用和旧链接均需测试。
+- P0.4.1其它缺口：Photo Picker仅打开、未选图上传；历史媒体新好友/退出好友/缩略图缓存未完整验证；WLAN关闭但USB reverse仍在线，四个真实无线故障窗口NOT_RUN；外部URI过期/独立跨账号对象待验。不要把USB断开当Wi-Fi测试。
+- 新APK安装需Owner另行授权；1011805/1011806保留。共享HTTPS未部署、真实管理员未恢复，仍是封闭内测硬门；当前不访问阿里云、不真实数据迁移、不采购、不合main、不启动内测。
+
+---
+
 # 2026-11-21｜Owner已授权1011806单设备安装，直接执行P0.4实机验收
 
 - Owner已明确授权在此前1011805实测的同一台Android16实体设备上安装1011806并完成P0.4实机测试；不再询问是否授权。记录：[Owner授权](../decisions/OWNER_V2_ANDROID_1011806_DEVICE_INSTALL_AND_P0_4_TEST_AUTHORIZATION_20261121.md)。
