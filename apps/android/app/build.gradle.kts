@@ -52,6 +52,10 @@ val requestedDartDefineValues = requestedFlutterDartDefines.split(Regex("[;,]"))
     .map { it.trim() }.filter { it.isNotEmpty() }
 val functionCertificatePath = providers.gradleProperty("elitesyncFunctionCertificate").orNull
 val isFunctionCandidateBuild = functionCertificatePath != null
+val isFunctionR1CandidateBuild = providers.gradleProperty("elitesyncFunctionR1Candidate").orNull == "true"
+require(!isFunctionR1CandidateBuild || isFunctionCandidateBuild) {
+    "The P0.4.2 R1 candidate requires the V2 function certificate build option"
+}
 val functionOrigin = "https://127.0.0.1:18444/"
 val functionCertificate = functionCertificatePath?.let { path ->
     val file = rootProject.file(path)
@@ -199,8 +203,8 @@ android {
         targetSdk = 35
         // Versioning rule: major.minor.patch[alpha suffix]
         // versionCode uses an expanded numeric form to keep suffix releases ordered.
-        versionCode = if (isFunctionCandidateBuild) 1011806 else if (isV1018LocalBuild) 1011804 else if (isV1017LocalBuild) 1011703 else if (isV1015LocalBuild) 1011601 else if (isV1014LocalBuild) 1010401 else if (isV1013LocalBuild) 1010301 else if (isV1012LocalBuild) 1010201 else if (isRelationshipDevBuild) 1010101 else 80400
-        versionName = if (isFunctionCandidateBuild) "10.1.18-v2-function-p04" else if (isV1018LocalBuild) "10.1.18-dev" else if (isV1017LocalBuild) "10.1.17-dev" else if (isV1015LocalBuild) "10.1.16-dev" else if (isV1014LocalBuild) "10.1.4-dev" else if (isV1013LocalBuild) "10.1.3-dev" else if (isV1012LocalBuild) "10.1.2-dev" else if (isRelationshipDevBuild) "10.1.1-dev" else "0.08.04"
+        versionCode = if (isFunctionR1CandidateBuild) 1011807 else if (isFunctionCandidateBuild) 1011806 else if (isV1018LocalBuild) 1011804 else if (isV1017LocalBuild) 1011703 else if (isV1015LocalBuild) 1011601 else if (isV1014LocalBuild) 1010401 else if (isV1013LocalBuild) 1010301 else if (isV1012LocalBuild) 1010201 else if (isRelationshipDevBuild) 1010101 else 80400
+        versionName = if (isFunctionR1CandidateBuild) "10.1.18-v2-function-p042-r1" else if (isFunctionCandidateBuild) "10.1.18-v2-function-p04" else if (isV1018LocalBuild) "10.1.18-dev" else if (isV1017LocalBuild) "10.1.17-dev" else if (isV1015LocalBuild) "10.1.16-dev" else if (isV1014LocalBuild) "10.1.4-dev" else if (isV1013LocalBuild) "10.1.3-dev" else if (isV1012LocalBuild) "10.1.2-dev" else if (isRelationshipDevBuild) "10.1.1-dev" else "0.08.04"
         manifestPlaceholders["flutterPlatformDeepLinks"] = if (isFunctionCandidateBuild) "false" else "true"
         ndk {
             // Google Play 16KB page-size compliance: avoid x86_64 native libs from third-party SDKs.
@@ -239,7 +243,7 @@ android {
             if (isV1014LocalBuild) { applicationIdSuffix = ".v1014dev" }
             if (isV1012LocalBuild) { applicationIdSuffix = ".v1012dev" }
             if (isFunctionCandidateBuild) {
-                applicationIdSuffix = ".v2functionp04"
+                applicationIdSuffix = if (isFunctionR1CandidateBuild) ".v2functionp042r1" else ".v2functionp04"
             } else if (isV1018LocalBuild) { applicationIdSuffix = ".v1018dev" }
             else if (isV1017LocalBuild) { applicationIdSuffix = ".v1017dev" }
             else if (isV1015LocalBuild) { applicationIdSuffix = ".v1015dev" }
