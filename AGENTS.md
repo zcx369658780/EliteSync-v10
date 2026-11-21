@@ -1,3 +1,13 @@
+# 2026-11-21最新Owner决定：V2功能优先；P0.2已验收，1011805单台实体Android实机已获Owner授权
+
+- 当前开发主线仍是**完成功能→软著材料准备→Owner另行批准封闭内测→之后考虑服务器更换**。服务器迁移、阿里云旧管理员恢复、G0b采购/备份补证、PC清理不再阻断本地功能开发。见[Owner功能优先决定](docs/decisions/OWNER_V2_FUNCTION_COMPLETENESS_BEFORE_SOFTWARE_COPYRIGHT_AND_CLOSED_BETA_20261121.md)。
+- P0.2 MariaDB TEST_ONLY关系闭环和定向127项PHP回归由顾问限定接受；报告`daa96756f96fb6fd62845323ebd3c53d2b2438d2`、源码`362abd618a1f670e313b365b60b5dfe1f6ab71b8`。真实KYC/真实用户/生产不通过，核心PARTIAL，封闭内测NO_GO。详见[顾问验收](docs/workflow/V2_FUNCTION_P0_2_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- **Owner已于2026-11-21明确授权下一轮在一台指定实体Android设备上安装/实测1011805，设备就绪。不得重复询问是否授权。** 依[Owner授权记录](docs/decisions/OWNER_V2_ANDROID_1011805_SINGLE_DEVICE_TEST_AUTHORIZATION_20261121.md)及[P0.3任务](docs/versions/v2/V2_FUNCTION_P0_3_ANDROID_1011805_SINGLE_DEVICE_E2E_CLOSURE_BRIEF_20261121.md)执行；先枚举USB设备，只有多台实体机才问Owner选择哪台。禁止读取私人照片/联系人/短信/其它App，禁止卸载/清数据/覆盖已有包；仅移除本轮新建ADB reverse映射。
+- 保持原脏main/IP13I/S1/治理树和Docker卷。仅使用专用本地`elitesync-v2-function`MariaDB/HTTPS，不连阿里云；不执行`down -v`、volume prune、main合并或公开发布。Android1011805为Debug测试包，不是公网内测发行包。
+- 旧排盘A/B/C、注册可信离线T0仍Owner待决；真实KYC、Push、RTC、法定删除受理仍外部门。软著手册目前只接受为初稿，真实同版截图/权属确认/正式登记未完成。
+
+---
+
 # 2026-11-21 最新Owner优先级：先完成V2核心功能，再准备软著和封闭内测；云端迁移后置
 
 - **当前最新Owner权威**：[功能优先正式决定](docs/decisions/OWNER_V2_FUNCTION_COMPLETENESS_BEFORE_SOFTWARE_COPYRIGHT_AND_CLOSED_BETA_20261121.md)。既有Codex在A–D/R1/R0安全工程范围内自主补齐APP/API/Web/独立MariaDB的现有产品核心功能、定向验证和集中交付，唯一任务见[功能闭环集中任务](docs/versions/v2/V2_FUNCTION_COMPLETION_TO_SOFTCOPYRIGHT_AND_CLOSED_BETA_CONSOLIDATED_BRIEF_20261121.md)；不复活逐步网页派单。**服务器扩容/更换与真实管理员旧数据恢复不再是当前开发前置条件**，考虑放在功能候选及封闭内测之后。
