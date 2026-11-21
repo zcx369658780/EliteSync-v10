@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-21：R1远端身份核验通过，顾问限定接受；本地PC清理等逐路径审查
+
+**`V2_Q_R1_ADVISOR_SCOPED_ACCEPTED_WITH_RESERVATIONS / R1_ENGINEERING_PARTIAL / PHONE_RETEST_PENDING / CLEANUP_DELETION_NOT_AUTHORIZED / SUPPLEMENT_LOCAL_ONLY_UNREAD / PRODUCTION_NO_GO / NO_MAIN_MERGE_OR_RELEASE`**
+
+- R1固定开发分支`codex/v2-q-r1-phone-cloud-readiness-20261121`远端HEAD`585a8c21aeab103daac166338f881ef343c8af99`；继承Q完整交付`b35f6d0aa43a80e648143a30fbb17a91c2bf922a` ahead2/behind0。网页顾问已读固定[R1工程报告](https://github.com/zcx369658780/EliteSync-v10/blob/585a8c21aeab103daac166338f881ef343c8af99/docs/versions/v2/q-20261120/V2_Q_R1_ENGINEERING_REPORT_20261121.md)，并直接抽查PHP/Flutter变更。详情见[R1独立顾问限定验收与本地清理门禁](V2_Q_R1_ADVISOR_SCOPED_REVIEW_AND_LOCAL_CLEANUP_DECISION_20261121.md)。
+- 资料页两构建文案及负面测试具名修复；本命HTTP+SQLite隔离计算、持久读回与503有限分类具有`CODEX_REPORTED_ISOLATED_PASS`，旧手机HTTP503根因仍`UNKNOWN`、本轮手机复测`NOT_RUN`。PHP29项/346断言、Flutter8项、Dart3文件0问题为Codex执行回执；Flutter扩围5 FAIL（报告称固定Q原同一组，顾问尚未独立复算私有日志），PHP全量46errors/122failures及旧盘25、T0 P1未关闭。容器FPM/MariaDB、Docker Linux引擎、云部署与旧管理员恢复均未运行。
+- Owner所述本地补充`V2_Q_R1_QUALITY_CLEANUP_SUPPLEMENT_20261121.md`**未上传或远端去敏备份，顾问未能读取13项精确路径**。Owner转发dry-run分类为8项SAFE 877,771,457 bytes，4项NEEDS_ARCHIVE 804,189,485 bytes，1项PROTECTED 101,251,543 bytes，合计13项1,783,212,485 bytes，已清理0；当前只进入逐路径证据复核，**不授权物理删除或通配符清理**。尤其脏main下未跟踪旧IP13I为PROTECTED，不能用旧工作树清理建议覆盖其身份。
+- 当前`V2_Q_R1_PARTIAL / PRODUCTION_NO_GO`。不合main、不碰原脏main/S1/治理树、不执行阿里云真实部署、管理员恢复、生产/共享库变更或正式发布。旧Owner A–D限定接受保持。旧CURRENT ENTRY均为历史时点快照。
+
+---
+
 # CURRENT ENTRY 2026-11-20：V2-Q交付完成顾问集中限定验收；Owner终验和两项产品合同待决
 
 **`V2_Q_ADVISOR_SCOPED_ACCEPTED_WITH_RESERVATIONS / OWNER_Q_FINAL_PENDING / EXPANDED_INTERNAL_CANDIDATE_PARTIAL / PRODUCTION_NO_GO / ASTRO_LEGACY_OWNER_CHOICE_PENDING / REGISTER_T0_P1_OWNER_DECISION_PENDING / NO_MAIN_MERGE_OR_RELEASE`**
