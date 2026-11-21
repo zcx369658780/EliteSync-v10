@@ -24,6 +24,11 @@ final class TrustedIdentityService
 
     public function registered(int $id): bool
     {
+        return $this->legacyRegistered($id) || app(MariaDbFixtureIdentity::class)->credential($id) !== null;
+    }
+
+    private function legacyRegistered(int $id): bool
+    {
         return $this->sandbox() && User::whereKey($id)->where('is_synthetic', true)->when(DB::transactionLevel() > 0, fn ($q) => $q->lockForUpdate())->exists()
             && DB::table('development_identity_subjects')->where('user_id', $id)->where('dataset', config('journey.dataset'))->when(DB::transactionLevel() > 0, fn ($q) => $q->lockForUpdate())->exists();
     }
@@ -49,7 +54,7 @@ final class TrustedIdentityService
 
         return DB::transaction(function () use ($id, $nonce, $minutes) {
             app(JourneyStore::class)->users([$id]);
-            abort_unless($this->registered($id) && $minutes > 0 && $minutes <= 1440, 403, 'test subject unavailable');
+            abort_unless($this->legacyRegistered($id) && $minutes > 0 && $minutes <= 1440, 403, 'test subject unavailable');
             abort_if(DB::table('identity_assertions')->where('nonce', $nonce)->exists(), 409, 'assertion replay');
             $row = (object) ['id' => (string) Str::uuid(), 'user_id' => $id, 'issuer' => 'V1012_LOCAL_TEST_ONLY', 'dataset' => config('journey.dataset'), 'nonce' => $nonce, 'revision' => 1, 'valid_from' => now()->utc()->format('Y-m-d H:i:s'), 'expires_at' => now()->utc()->addMinutes($minutes)->format('Y-m-d H:i:s')];
             DB::table('identity_assertions')->insert((array) $row + ['signature' => $this->signature($row), 'created_at' => now(), 'updated_at' => now()]);
@@ -61,8 +66,8 @@ final class TrustedIdentityService
 
     public function valid(int $id, ?string $credential = null): bool
     {
-        if (! $this->registered($id)) {
-            return false;
+        if (! $this->legacyRegistered($id)) {
+            return app(MariaDbFixtureIdentity::class)->credential($id, $credential) !== null;
         }
         // Locking reads stay current even in an outer RR transaction with an older snapshot.
         $rows = DB::table('identity_assertions')->where('user_id', $id)->when($credential !== null, fn ($q) => $q->where('id', $credential))->whereNull('revoked_at')->where('valid_from', '<=', now()->utc())->where('expires_at', '>', now()->utc())->lockForUpdate()->get();
@@ -72,8 +77,8 @@ final class TrustedIdentityService
 
     public function credential(int $id): ?string
     {
-        if (! $this->registered($id)) {
-            return null;
+        if (! $this->legacyRegistered($id)) {
+            return app(MariaDbFixtureIdentity::class)->credential($id);
         }
         foreach (DB::table('identity_assertions')->where('user_id', $id)->orderByDesc('created_at')->orderByDesc('id')->lockForUpdate()->get() as $r) {
             if ($this->valid($id, $r->id)) {
@@ -91,13 +96,17 @@ final class TrustedIdentityService
         return ['status' => $valid ? 'DEV_SYNTHETIC_VERIFIED' : 'PROVIDER_NOT_CONFIGURED', 'test_only' => $valid, 'real_provider' => 'PENDING', 'activation_available' => $this->participationAllowed($id), 'formal_participation_available' => false];
     }
 
-    /** No real provider exists. The only business exception is signed, synthetic, process-local QA. */
+    /** Only the two signed QA issuers can exercise participation. No real provider is configured. */
     public function participationAllowed(int $id): bool
     {
         $db = DB::connection();
 
-        return app()->environment('testing') && $db->getDriverName() === 'sqlite'
-            && $db->getDatabaseName() === ':memory:' && ! $db->getConfig('url') && $this->valid($id);
+        if (app()->environment('testing') && $db->getDriverName() === 'sqlite'
+            && $db->getDatabaseName() === ':memory:' && ! $db->getConfig('url')) {
+            return $this->valid($id);
+        }
+
+        return app(MariaDbFixtureIdentity::class)->credential($id) !== null;
     }
 
     public function requireParticipation(int ...$ids): void

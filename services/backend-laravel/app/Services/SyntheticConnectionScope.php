@@ -30,17 +30,23 @@ final class SyntheticConnectionScope
 
     public function enabled(): bool
     {
-        if (! config('restoration.synthetic_connection_enabled') || ! $this->targetsFixtureRuntime()) {
+        return (bool) config('restoration.synthetic_connection_enabled') && $this->matchesDatabase();
+    }
+
+    public function matchesDatabase(): bool
+    {
+        if (! $this->targetsFixtureRuntime()) {
             return false;
         }
 
         try {
-            $identity = DB::selectOne('SELECT DATABASE() AS db_name, @@server_id AS server_id, VERSION() AS db_version', [], false);
+            $identity = DB::selectOne("SELECT DATABASE() AS db_name, @@server_id AS server_id, VERSION() AS db_version, SUBSTRING_INDEX(CURRENT_USER(), '@', 1) AS db_user", [], false);
         } catch (QueryException) {
             return false;
         }
 
-        return $identity->db_name === self::DATABASE && (int) $identity->server_id === self::SERVER_ID
+        return $identity->db_name === self::DATABASE && $identity->db_user === 'elitesync_function_app'
+            && (int) $identity->server_id === self::SERVER_ID
             && preg_match('/^10\.11\..*MariaDB/i', $identity->db_version) === 1;
     }
 

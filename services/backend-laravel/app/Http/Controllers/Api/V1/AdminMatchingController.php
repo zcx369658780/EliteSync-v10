@@ -11,6 +11,7 @@ use App\Jobs\ExecuteMatchingRun;
 use App\Models\DatingRound;
 use App\Models\MatchingOperationAudit;
 use App\Models\MatchingRun;
+use App\Services\MariaDbFixtureIdentity;
 use App\Services\MatchingRoundService;
 use App\Services\MatchingRunService;
 use Illuminate\Http\JsonResponse;
@@ -65,7 +66,7 @@ class AdminMatchingController extends Controller
         if ($replay = $this->runReplay($round, OperationAction::Execute, $idempotencyKey, 202)) {
             return $replay;
         }
-        if (! (bool) config('matching.c2.manual_consumer_configured', false)) {
+        if (! config('matching.c2.manual_consumer_configured', false) && ! app(MariaDbFixtureIdentity::class)->enabled()) {
             return response()->json(['message' => 'manual local consumer is not configured', 'error_code' => 'manual_consumer_not_configured', 'retry_safe' => true], 503);
         }
         if ((int) $round->state_version !== (int) $data['state_version']) {

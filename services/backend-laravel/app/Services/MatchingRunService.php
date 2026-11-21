@@ -157,7 +157,7 @@ class MatchingRunService
                 MatchingRunCandidate::query()->updateOrCreate(['matching_run_id' => $locked->id, 'user_id' => $id], ['eligibility_version_at' => $eligibilityVersion, 'profile_version_at' => $profileVersion, 'participation_generation' => app(SlowDatingService::class)->participation($id)['generation'], 'matching_input_digest' => app(MatchingInputService::class)->sourceDigest($user)]);
             }
             sort($ids, SORT_NUMERIC);
-            $key = (string) config('matching.foundation.digest_key');
+            $key = $this->digestKey();
             if ($key === '') {
                 throw new \RuntimeException('matching foundation digest key is not configured');
             }
@@ -187,7 +187,7 @@ class MatchingRunService
             if ($frozenIds !== $suppliedIds) {
                 throw new \DomainException('input_changed');
             }
-            $key = (string) config('matching.foundation.digest_key');
+            $key = $this->digestKey();
             if ($key === '' || ! hash_equals((string) $locked->candidate_digest, hash_hmac('sha256', implode(',', $frozenIds), $key))) {
                 throw new \DomainException('input_changed');
             }
@@ -343,6 +343,11 @@ class MatchingRunService
         }
 
         return Carbon::parse($left)->equalTo(Carbon::parse($right));
+    }
+
+    private function digestKey(): string
+    {
+        return (string) (config('matching.foundation.digest_key') ?: app(MariaDbFixtureIdentity::class)->matchingDigestKey());
     }
 
     private function inputFingerprint(): string

@@ -20,7 +20,7 @@ class ConversationCapabilityService
         $blocked = UserBlock::query()->where(fn ($q) => $q->where('blocker_id', $actorId)->where('blocked_user_id', $peerId))
             ->orWhere(fn ($q) => $q->where('blocker_id', $peerId)->where('blocked_user_id', $actorId))->exists();
         $syntheticDenied = $inFixture
-            ? ! $scope->allowsPair($actorId, $peerId)
+            ? ! $live->enabledForPair($actorId, $peerId)
             : (! app(MatchingDebugModeService::class)->includeSyntheticUsers()
                 && (bool) User::query()->whereKey($peerId)->value('is_synthetic'));
         $conversation = Conversation::query()
@@ -80,10 +80,13 @@ class ConversationCapabilityService
         if ($requiredMatchId !== null) {
             $releasedMatchQuery->whereKey($requiredMatchId);
         }
-        $releasedMatch = (! $inFixture && $releasedMatchQuery->exists())
+        $fixtureMatch = $inFixture ? $live->match($actorId, $peerId) : null;
+        $releasedMatch = ($inFixture
+            ? ($fixtureMatch !== null && ($requiredMatchId === null || $fixtureMatch->id === $requiredMatchId))
+            : $releasedMatchQuery->exists())
             || ($requiredMatchId === null && $live->connection($actorId, $peerId) !== null);
         $syntheticDenied = $inFixture
-            ? ! $scope->allowsPair($actorId, $peerId)
+            ? ! $live->enabledForPair($actorId, $peerId)
             : (! app(MatchingDebugModeService::class)->includeSyntheticUsers()
                 && (bool) User::query()->whereKey($peerId)->value('is_synthetic'));
 

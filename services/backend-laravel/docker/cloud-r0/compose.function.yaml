@@ -13,7 +13,14 @@ services:
       DB_USERNAME: elitesync_function_app
       V2_SYNTHETIC_CONNECTION_ENABLED: 'true'
       MEDIA_STORAGE_DISK: v1011_relationship
+      V2_FUNCTION_RUNTIME: local-v2-function
+      V2_FUNCTION_MARIADB_IDENTITY_ENABLED: 'true'
+    secrets: [v2_function_identity_key]
   r0-worker:
     environment:
       DB_DATABASE: elitesync_v2_function
       DB_USERNAME: elitesync_function_app
+
+secrets:
+  v2_function_identity_key:
+    file: ${R0_SECRET_DIR:?Set the local function secret directory}/mariadb-fixture-identity.hex

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\QuestionnaireQuestion;
+use App\Services\MariaDbFixtureIdentity;
 use App\Services\MatchingEngineService;
 use App\Services\MatchingRunService;
 use App\Services\PersonalityProfileService;
@@ -16,7 +17,7 @@ class ExecutePendingMatchingRunCommand extends Command
 
     public function handle(MatchingRunService $runs, PersonalityProfileService $profiles, MatchingEngineService $engine, ProfileReadinessService $readiness): int
     {
-        if (!(bool) config('matching.foundation.execution_enabled', false)) {
+        if (! config('matching.foundation.execution_enabled', false) && ! app(MariaDbFixtureIdentity::class)->enabled()) {
             $this->error('Matching foundation execution is disabled.');
             return self::FAILURE;
         }
