@@ -1,0 +1,23 @@
+{
+  "classification": "CODEX_REPORTED",
+  "source_commit_local": "a3bab896dd2f8bfa95f610ada75a166d7a93a56a",
+  "source_tree": "df29b911c8ef339650faeca1ca37331129f2795b",
+  "dart_analysis": {"status": "PASS", "files": 7, "exit": 0},
+  "dart_policy_probe": {"status": "PASS", "checks": ["existing_offline_grant", "online_separate", "cold_context_denied", "known_revocation_denied", "account_switch_denied", "day_30_denied_and_due"]},
+  "flutter_widget": {
+    "status": "NOT_RUN",
+    "runner_exit": -1073741816,
+    "tester": "flutter_tester",
+    "transport": "IPv4 localhost WebSocket",
+    "socket_errno": 10057,
+    "loaded": 0,
+    "files": ["live_chat_history_test.dart", "conversation_revalidation_gate_test.dart", "notification_center_page_test.dart", "live_conversation_private_cache_test.dart", "private_cache_service_test.dart"]
+  },
+  "minimal_loopback_probe": {"bind": "PASS", "connect": "FAIL", "native_code": 10013, "socket_error": "AccessDenied"},
+  "php_84": {"status": "NOT_RUN", "path_cli_version": "8.5.3"},
+  "mariadb": {"status": "NOT_RUN", "docker_linux_engine_pipe": "unavailable", "wsl": "E_ACCESSDENIED"},
+  "sqlite_p042_baseline": {"status": "PASS_REPORTED", "focused_tests": 3, "focused_assertions": 216, "expanded_pass": 56, "expanded_total": 57, "known_failure_expected_http": 409, "known_failure_actual_http": 200},
+  "workerman_real_socket": {"status": "NOT_RUN"},
+  "apk": {"status": "NOT_BUILT", "physical_install": "NOT_AUTHORIZED"},
+  "device_wifi_windows": {"status": "NOT_RUN", "windows": 4}
+}
