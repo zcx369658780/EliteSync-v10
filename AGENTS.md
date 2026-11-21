@@ -1,3 +1,13 @@
+# 2026-11-21最新Owner决定：旧管理员身份恢复是封闭内测硬门，同事沿用旧账号标识无需重新注册
+
+- Owner明确同意将阿里云旧管理员身份恢复列为**封闭内测准备阶段必须完成的门禁**，原因是同事将在外地使用既有管理员账号登录V2，不应被迫重新注册重复账号。详见[Owner决定](docs/decisions/OWNER_V2_LEGACY_ADMIN_ACCOUNT_RECOVERY_REQUIRED_FOR_CLOSED_BETA_20261121.md)和[综合任务书](docs/versions/v2/V2_BETA_PREP_SHARED_BACKEND_AND_LEGACY_ADMIN_RECOVERY_CONSOLIDATED_TASK_20261121.md)。
+- 目标是保留经持有人确认的手机号登录标识、分配V2新user ID并发新V2激活/密码；不迁移旧密码hash/token/session/MFA/API key。V2实际`AdminAccess`要求enabled+role=admin+服务器私有`ADMIN_PHONES`名单。不得导入全部旧admin、不得将admin身份当真实KYC。
+- 旧管理员真实数据提取/解密/导入和阿里云云端写入仍须既有Owner数据/云写门；本轮新增决定是**内测前必须完成**，不是授权马上读取真实行或自动采购/开公网。先本地合成迁移CLI、幂等/回滚、激活凭据和权限测试；真实账号候选与字段白名单形成单次Owner数据授权包。
+- 外地同事测试还需要共享受限V2 HTTPS环境；本地1011805的127.0.0.1/ADB reverse不是共享服务。现有阿里云2vCPU/2GiB且旧Laravel/MariaDB/Redis/LiveKit运行，不能假定可直接并行部署。优先评估现有服务器，费用/公网写入/旧服务变更另需Owner批准；内测后考虑更换服务器的总体优先级不变。
+- P0.3已完成部分Android旅程，P0.4端上Block/媒体/深链/UNKNOWN恢复继续当前本地功能主线；管理员迁移工具与合成演练可并行准备。真实KYC/Push/RTC/法定删除、旧排盘A/B/C和注册T0仍保留原状态；封闭内测和生产继续NO_GO。
+
+---
+
 # 2026-11-21最新Owner/顾问状态：P0.3实机限定接受；阿里云未打通，旧管理员未恢复
 
 - P0.3固定报告`651f3dea30cb6744d6a3863e5d9f7a921ca7ae43`，源码未变，报告提交只增加实机报告、手册、哈希索引。Android16实体机实际安装1011805，拉回APK复核SHA/签名；本地MariaDB+USB reverse旅程部分通过，整体`DEVICE_E2E_PARTIAL`。顾问限定验收见[报告](docs/workflow/V2_FUNCTION_P0_3_ANDROID_DEVICE_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
