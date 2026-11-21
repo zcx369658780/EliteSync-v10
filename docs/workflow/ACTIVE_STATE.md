@@ -1,3 +1,18 @@
+# CURRENT ENTRY 2026-11-21：P0.4.1 1011806安装限定接受；解除Block后第1代私信历史在第2代重新出现，P0隐私FAIL
+
+**`1011806_INSTALL_PASS_ON_AUTHORIZED_RETRY / DEVICE_E2E_PARTIAL_WITH_P0_HISTORY_PRIVACY_FAIL / OWNER_D03_HISTORY_DEFAULT_FAIL_CLOSED / PHOTO_PICKER_UPLOAD_NOT_RUN / REAL_WIRELESS_OUTAGE_NOT_RUN / SHARED_HTTPS_NOT_DEPLOYED / REAL_ADMIN_NOT_RESTORED / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
+
+- Codex固定报告：[P0.4.1 Android 1011806实机与共享HTTPS回执](https://github.com/zcx369658780/EliteSync-v10/blob/e4d1588acee62d8f8f166042c328e26cc951c14a/docs/versions/v2/cloud-r0-20261121/V2_P0_4_1_ANDROID_1011806_DEVICE_AND_SHARED_HTTPS_REPORT_20261121.md)，提交`e4d1588acee62d8f8f166042c328e26cc951c14a`，开发分支HEAD与报告一致；相对实机源码`00ca46f6b020afa25ce472509c2fd3227f74c461`ahead3/behind0。该提交只新增实机报告并修订手册，无产品源码变化；145项哈希表按报告行数核对，顾问未重算本机原件。顾问报告见[V2_P0_4_1_ANDROID_1011806_ADVISOR_SCOPED_ACCEPTANCE_20261121.md](V2_P0_4_1_ANDROID_1011806_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- 1011806已在此前Android16设备重试安装成功，PackageManager同时保留1011805；拉回APK身份/签名/SHA由Codex报告记录。P0.4.1整体`DEVICE_E2E_PARTIAL`。登录切号、资料、三盘持久读回、消息UNKNOWN、Block生效期间撤权通过（Codex报告证据）；慢约/Connection/关系/Buddy正向链仍部分NOT_RUN；Photo Picker仅打开未收到选图返回，手机上传未跑。
+- **P0隐私FAIL：**第1代Connection/MC消息被Block关闭后，解除Block并新建第2代Connection及双方新MC，手机重新显示第1代4条旧消息。Owner接受的D-03规定Connection关闭/MC撤销后历史默认不可读，除非另建独立history authority。源码抽查：`SocialPolicy::revokePair()`将CN关闭、MC撤销；`ConversationDomainService::roomKey()`只按pair用户ID生成稳定room key并复用同一Conversation；`MessageController::listAuthorized()`只验证当前canRead后按pair room_id查询全部消息，没有按Connection generation或history authority过滤。故新live MC误打开旧代历史。不得按“重新同意”接受。详见[Owner D-03](https://github.com/zcx369658780/EliteSync-v10/blob/main/docs/architecture/ELITESYNC_V10_CONVERSATION_DATA_RIGHTS_DECISION_CLOSURE_OWNER_ACCEPTANCE_V0_1.md)和[顾问验收](V2_P0_4_1_ANDROID_1011806_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- P0.4.1报告记载WLAN关闭期间USB ADB reverse仍可访问本机HTTPS18444，GET messages仍200。因此真实手机到后端无线断链未验证；请求前/提交前/提交后响应丢失/读取中四窗口NOT_RUN。USB reverse故障注入不能替代Wi-Fi断链。
+- A10主机合成PNG的SELF/FRIENDS和Block后旧URL有主机证据，但手机Photo Picker返回、手机发起上传、完整历史受众、新好友/退出好友、缩略图缓存未完成。A12外部URI过期/独立跨账号对象仍待。W01–W04未采集。手册为1011805主文+1011806独立附页，仍是登记准备稿。
+- 共享HTTPS未部署；1011806 endpoint仍本机`127.0.0.1:18444`+USB reverse。旧上海机容量未批，独立资源实际上海结算价未知；本轮云支出0。真实旧管理员候选/数据读取/迁移/本人异地登录仍NOT_RUN，封闭内测硬门不变。
+- 下一任务：[P0.4.2 会话代际历史隔离与实机缺口收口](../versions/v2/V2_P0_4_2_CONVERSATION_GENERATION_HISTORY_ISOLATION_AND_DEVICE_GAP_CLOSURE_TASK_20261121.md)：保持历史行，不删除/不声称擦除；第2代新live会话只可读第2代消息，旧代消息/媒体/通知/预览/搜索/回复引用默认不可读，除非未来另有显式history authority。补API/PHP/MariaDB/Flutter回归，再完成Photo Picker和历史受众。1011805/1011806均保留；任何新APK安装需Owner新授权。无云写、无真实管理员数据、无main合并。
+- Owner旧管理员恢复仍是封闭内测硬门；共享HTTPS及所有指定管理员本人异地登录仍待。旧盘A/B/C、注册可信离线T0、真实KYC/Push/RTC/删除受理及历史PHP/Flutter FAIL账不变。封闭内测NO_GO，生产NO_GO。
+
+---
+
 # CURRENT ENTRY 2026-11-21：Owner已授权此前Android实体设备安装1011806；P0.4实机测试可直接执行
 
 **`P0_4_LOCAL_SCOPED_ACCEPTED / OWNER_AUTHORIZED_1011806_INSTALL_ON_PREVIOUSLY_USED_DEVICE / DEVICE_E2E_PENDING / REAL_ADMIN_DATA_NOT_AUTHORIZED / SHARED_HTTPS_NOT_DEPLOYED / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
