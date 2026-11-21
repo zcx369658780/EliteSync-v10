@@ -1,3 +1,18 @@
+# CURRENT ENTRY 2026-11-21：P0.3 Android 1011805实机限定接受；阿里云V2未打通，旧管理员未恢复
+
+**`P0_3_DEVICE_E2E_PARTIAL_ADVISOR_SCOPED_ACCEPTED / LOCAL_LOOPBACK_BACKEND_ONLY / ALIYUN_V2_BACKEND_NOT_CONNECTED / REAL_LEGACY_ADMIN_ACCOUNTS_NOT_RESTORED / CORE_FUNCTIONS_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
+
+- P0.3 Codex固定报告：[实机报告](https://github.com/zcx369658780/EliteSync-v10/blob/651f3dea30cb6744d6a3863e5d9f7a921ca7ae43/docs/versions/v2/cloud-r0-20261121/V2_FUNCTION_P0_3_ANDROID_1011805_SINGLE_DEVICE_REPORT_20261121.md)，提交`651f3dea30cb6744d6a3863e5d9f7a921ca7ae43`，开发分支`codex/v2-function-completion-20261121`回读HEAD一致；相对P0.2`daa96756f96fb6fd62845323ebd3c53d2b2438d2`ahead1/behind0，提交仅增加实机报告、同版手册修订和SHA索引，没有产品源码或云端部署代码变化。顾问直接阅读报告/手册/hash索引/P0.2及CLOUD-R0报告；未自行连接设备或重算本机证据。详细见[顾问限定验收](V2_FUNCTION_P0_3_ANDROID_DEVICE_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- Android 16实体设备安装1011805成功，实际从手机拉回base.apk复核包名`com.elitesync.v2functionp0`、versionCode1011805、209,094,024字节、APK SHA256`d6064498bac327f40f2b2df9c5ed9664c819b29dfaffa916eaf6f6df7b649c05`及Debug v2签名证书。native+Dart endpoint均为`https://127.0.0.1:18444/`，固定TLS；ADB reverse已撤销。使用本机专用WSL Docker`elitesync-v2-function`和MariaDB10.11.19 schema`elitesync_v2_function`/server_id2621121，三容器保留运行，两个专属卷保留。
+- 设备实测限定PASS：登录/切号/昵称、三盘未知与精确到分、已公布TEST_ONLY候选双方接受、Connection/独立消息同意、文本私信/已读、TEST_ONLY正式关系双确认、Buddy发布→申请→确认→退出；Block后旧消息正文清除/旧读404、旧通知变历史、冷启动未恢复会话；关闭本轮USB reverse约38秒后冷启动无私密内容，恢复后登录验证和首页恢复。完整UI/API/MariaDB证据见固定报告与[同版截图/哈希索引](https://github.com/zcx369658780/EliteSync-v10/blob/651f3dea30cb6744d6a3863e5d9f7a921ca7ae43/docs/versions/v2/cloud-r0-20261121/V2_FUNCTION_P0_3_EVIDENCE_SHA256_20261121.md)。
+- P0.3缺口：手机端Block写入入口未找到，Block由主机API施加；撤权后发送/媒体控件仍显示；社区图片/头像/媒体受众、外部URI深链、写入途中断网/UNKNOWN恢复未跑；A10仅文字，W01–W04未采集；正式关系UI“已参与”语义需修订；telemetry事件422根因UNKNOWN；证据索引A05映射文件名疑似`A04-matching.png`错位待核。旧排盘A/B/C、注册可信离线T0仍Owner待决。
+- **明确回答Owner：阿里云V2后端没有打通；旧的真实管理员账号没有恢复。** P0.3手机访问的是本机`127.0.0.1:18444`，USB ADB reverse转发到本机Docker/MariaDB，不是云端。CLOUD-R0报告`9baa82aa0cdf947dcc4996d2a584c92e4f4535f1`明确G1云Staging NOT_RUN、G2真实管理员恢复NOT_RUN、G3云端Android NOT_RUN。历史备份仅元数据关联，真实SQL解压/恢复NOT_RUN；旧密码hash/session/MFA/key及真实管理员资料没有进入合成演练。合成管理员登录通过不等于旧管理员恢复。
+- **会议测试可用范围**：可在原测试电脑启动本地专用后端，重新建立本轮已用的USB reverse，让已授权手机用A/B虚构账号演示已通过旅程；本地回环不是共享服务器，同事的其它设备/电脑不能直接访问。若需多设备/远程同事共同测试，需要另行准备受限共享Staging/安全转发和测试账号范围；不能宣称阿里云已可用。
+- 下一轮唯一工程任务：[P0.4端上Block/媒体/深链/UNKNOWN恢复](../versions/v2/V2_FUNCTION_P0_4_DEVICE_PRIVACY_MEDIA_AND_RECOVERY_CLOSURE_BRIEF_20261121.md)。不重做P0.3通过项；优先端上Block写入与撤权控件、社区图片和历史媒体受众、外部URI深链、写入途中断网/幂等恢复、telemetry422与状态文案、A05截图索引核对。新源码需新APK时，先完成本地验证并固定工件；未经Owner对新包具名许可，不覆盖/卸载当前1011805。
+- 手册`ELITESYNC_V2_OPERATION_MANUAL_DRAFT_20261121.md`已按P0.3修订，接受为同版证据草稿；A10媒体版、A12外部URI、W01–W04、许可逐项复核/权属确认仍待。封闭内测NO_GO，生产NO_GO。云迁移和真实管理员恢复按Owner功能优先原则后置，不自动main合并、软著申报或公开发布。
+
+---
+
 # CURRENT ENTRY 2026-11-21：P0.2 MariaDB TEST_ONLY关系链限定验收通过；Owner已授权1011805单台实体Android实测
 
 **`P0_2_MARIADB_TEST_ONLY_E2E_ADVISOR_SCOPED_ACCEPTED / PHP_TARGETED_127_PASS_CODEX_REPORTED / ANDROID_HOST_PREFLIGHT_CODEX_REPORTED_PASS / OWNER_AUTHORIZED_SINGLE_DEVICE / DEVICE_REVERSE_INSTALL_AND_E2E_PENDING / MANUAL_DRAFT_ACCEPTED / CORE_FUNCTIONS_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
