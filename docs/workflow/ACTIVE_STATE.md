@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-21：V2-CLOUD-R0已交付且顾问限定验收，云实例核身待Owner登录
+
+**`V2_CLOUD_R0_ADVISOR_SCOPED_ACCEPTED_WITH_RESERVATIONS / LOCAL_STAGING_SCOPED_PASS / ALIYUN_INSTANCE_IDENTITY_BLOCKED_LOGIN_REQUIRED / REAL_ADMIN_RECOVERY_NOT_RUN / CLOUD_PHONE_RETEST_NOT_RUN / CONNECTION_STAGING_QUALIFICATION_PENDING_OWNER / PRODUCTION_NO_GO`**
+
+- 原工程R1 `585a8c21aeab103daac166338f881ef343c8af99`，R0源码 `4c255a0915ecc792b083f94798c40216ec870f07`，R0[固定报告](https://github.com/zcx369658780/EliteSync-v10/blob/e431e0c9fca2be95fd1481d6afdcbaefac9cb6c0/docs/versions/v2/cloud-r0-20261121/V2_CLOUD_R0_ENGINEERING_REPORT_20261121.md) `e431e0c9fca2be95fd1481d6afdcbaefac9cb6c0`。GitHub R1→R0 ahead2/behind0，源码→报告ahead1/behind0，真实工程分支回读指向交付SHA。网页顾问直接审阅Compose/Dockerfile/db-preflight/local-smoke/LiveConsentService/AdminAccess；Windows WSL Docker运行和私有回执为CODEX_REPORTED。顾问[独立验收](V2_CLOUD_R0_ADVISOR_INDEPENDENT_SCOPED_ACCEPTANCE_20261121.md)限域接受本地软件成果，不声称云端或真实管理员已PASS。
+- G0阿里云**BLOCKED**：Owner受控控制台登录门未过，现时实例/旧站服务、备份来源及可信SSH身份UNKNOWN。G1本地PHP8.4.28/Laravel13.39、MariaDB10.11.19、91迁移/115表、重启+回滚、Python/Node/DE440s三盘HTTP正反、worker、Lifestyle/Buddy/私有媒体Block据Codex报告通过；云端Staging仍NOT_RUN，Nginx仅回环TLS。G2五月3份gzip+sidecar和另一组2份GPG只有不透明字节检查，合成管理员通过但**真实备份来源和最小身份迁移NOT_RUN**。G3云端独立APK、手机测试均NOT_RUN。
+- 当前Staging Connection返回404是`LiveConsentService::enabled()`限定环境的fail-closed，不是已证明Connection核心代码错误；不自动全局打开。旧排盘A/B/C、注册T0仍Owner待决；旧PHP全量46errors/122failures与25旧排盘失败保留。下一步四门及建议见[Owner集中决策包](../decisions/V2_CLOUD_R0_OWNER_NEXT_GATE_DECISION_PACKET_20261121.md)：先本人控制台登录并只读核目标、旧业务与成本，再提交有据Staging写入/管理员真实数据/Connection合成资格与手机授权。**本次顾问未获得也未执行云写入、真管理员恢复或设备操作**。
+- PC清理13项已正式结束，白名单0，删除0；原脏main/IP13I/S1/治理树、历史备份与唯一APK/JUnit不变。生产、main合并、公开内测仍NO_GO。
+
+---
+
 # CURRENT ENTRY 2026-11-21：Owner同意阿里云真实服务器渐进恢复、旧管理员最小恢复与实机联测
 
 **`OWNER_GRADUAL_CLOUD_RECOVERY_APPROVED / LOCAL_CLEANUP_CLOSED_ZERO_DELETED / CLOUD_R0_CONSOLIDATED_TASK_ISSUED / CLOUD_INSTANCE_IDENTITY_PENDING / ISOLATED_STAGING_ONLY / LEGACY_ADMIN_RECOVERY_DATA_GATE / PHONE_CLOUD_RETEST_PENDING / PRODUCTION_NO_GO / NO_MAIN_MERGE`**
