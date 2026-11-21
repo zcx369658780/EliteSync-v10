@@ -1,3 +1,16 @@
+# CURRENT ENTRY 2026-11-21：Owner正式切换为功能完善优先，软著材料与封闭内测准备在后，服务器迁移后置
+
+**`OWNER_FUNCTION_FIRST_PRIORITY / V2_DEFINED_SCOPE_FEATURE_COMPLETION_AUTHORIZED / CLOUD_MIGRATION_DEFERRED_UNTIL_AFTER_CLOSED_BETA_CONSIDERATION / G0B_REPORT_LOCAL_ONLY_NOT_INDEPENDENTLY_READ / PRODUCTION_NO_GO`**
+
+- Owner新决定：“在内测之后会考虑更换服务器，但是现在让我们先完成功能开发，这样才能推进到注册软件著作权并且开启内测阶段。”生效[具名Owner决定](../decisions/OWNER_V2_FUNCTION_COMPLETENESS_BEFORE_SOFTWARE_COPYRIGHT_AND_CLOSED_BETA_20261121.md)，日常工程现有Codex按[唯一功能闭环任务](../versions/v2/V2_FUNCTION_COMPLETION_TO_SOFTCOPYRIGHT_AND_CLOSED_BETA_CONSOLIDATED_BRIEF_20261121.md)自主推进。**不得继续将新阿里云Staging费用、5月备份恢复和真实管理员迁移当作核心功能开发门禁**。
+- G0旧实例核实仍有固定工程`9baa82aa0cdf947dcc4996d2a584c92e4f4535f1`，历史旧Laravel/DB、LiveKit/卷和SSH只读补证有效但不代表云迁移完成。本地R0 PHP8.4、MariaDB10.11、三盘Docker测试成果可复用；旧服务器2GiB容量风险和备份可恢复性未证。云资源采购/实例创建/外网发布、旧管理员真实资料读取暂停，旧站原状保护。
+- Owner本轮报告G0b已保存本地`D:/EliteSync/development/v2-cloud-r0-local-runtime-20261121/evidence/V2_CLOUD_R1_G0B_DECISION_REPORT_20261121.md`，称备份元数据和2vCPU/4GiB候选独立Staging对照完成，本轮没有新增SSH或写入；**网页顾问查找当前会话与GitHub未取得该报告原文，故不是顾问独立验收PASS，仅OWNER_FORWARDED_CODEX_REPORT，需实际文件可读后再作原文验收**。不因文件未同步阻断新的功能开发。
+- 开发优先：APP/Home/Progress/Messages/Me及独立Explore，登录资料/三盘本命、慢约Match→Connection→双方同意→Conversation/Relationship合法链、好友社区/搭子/通知及Web管理，按S01–S16/G01–G10单表补缺；保留Match≠Connection≠Messaging Consent≠Conversation≠Relationship和Block/隐私门禁。Connection staging 404是当前受信环境拒绝，不可全局改权限以冒充正链；先在完全合成隔离环境设计有限测试资格。现实KYC/Push/RTC及合法对象删除渠道不得伪造完成。
+- 功能P0具名完成后固定源码/截图/说明及软著材料准备，再向Owner提交封闭内测准入包；内测、登记实际递交、真实用户、main/正式发布仍需要Owner授权。旧排盘A/B/C和注册可信T0安全合同仍PENDING，Q/R1历史全量失败不倒改。PC清理13项白名单0且正式关闭。
+- 之前“优先部署云Staging”“继续G0b备份/费用核实”的CURRENT ENTRY属于新Owner决定**之前的时点快照**，不得据此强迫现有Codex切回服务器任务。
+
+---
+
 # CURRENT ENTRY 2026-11-21：V2-CLOUD-R0 G0严格SSH与旧MariaDB/备份目录限定核验通过；云部署仍NO_GO
 
 **`G0_SSH_READONLY_SCOPED_ACCEPTED / G0_INSTANCE_AND_OLD_DB_IDENTITY_VERIFIED / G0_BACKUP_METADATA_LINK_VERIFIED / BACKUP_RECOVERY_NOT_RUN / OLD_HOST_CAPACITY_UNPROVEN / CLOUD_STAGING_NOT_DEPLOYED / ADMIN_REAL_RECOVERY_NOT_RUN / CLOUD_PHONE_NOT_RUN / PRODUCTION_NO_GO`**
