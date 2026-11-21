@@ -74,6 +74,8 @@ class _Api extends ApiClient {
   bool reject = false;
   bool noMatch = false;
   bool failMatch = false;
+  bool unavailable = false;
+  bool chatAllowed = false;
   Map<String, dynamic> currentMatch = _proposalEnvelope();
   int matchReads = 0;
   final List<String> connectionPaths = [];
@@ -105,6 +107,9 @@ class _Api extends ApiClient {
     }
     reads++;
     connectionPaths.add(path);
+    if (unavailable) {
+      return const NetworkFailure(message: 'unavailable', statusCode: 404);
+    }
     return NetworkSuccess({
       'peer_id': 2,
       'connection': {
@@ -119,7 +124,10 @@ class _Api extends ApiClient {
         'revision': revision,
         'requester_id': requester,
       },
-      'gates': {'live_read_allowed': false, 'live_send_allowed': false},
+      'gates': {
+        'live_read_allowed': chatAllowed,
+        'live_send_allowed': chatAllowed,
+      },
     });
   }
 
@@ -163,6 +171,42 @@ Future<void> _show(WidgetTester tester, ApiClient api, {int? peerId}) async {
 }
 
 void main() {
+  testWidgets('refresh of inferred peer rechecks the current proposal', (
+    tester,
+  ) async {
+    final api = _Api();
+    await _show(tester, api);
+    api.noMatch = true;
+    await tester.tap(find.text('刷新当前状态'));
+    await tester.pumpAndSettle();
+    expect(api.matchReads, 2);
+    expect(api.connectionPaths, ['/api/v1/connections/2']);
+    expect(find.text('请求连接'), findsNothing);
+    expect(find.textContaining('暂无已发布的匹配对象'), findsOneWidget);
+  });
+
+  testWidgets('foreground rechecks revoked peer before showing chat access', (
+    tester,
+  ) async {
+    final api = _Api()
+      ..connection = 'CN_ACTIVE'
+      ..consent = 'MC_ACTIVE'
+      ..chatAllowed = true;
+    await _show(tester, api, peerId: 2);
+    final chat = find.widgetWithText(FilledButton, '进入消息');
+    expect(tester.widget<FilledButton>(chat).onPressed, isNotNull);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    await tester.pump();
+    expect(tester.widget<FilledButton>(chat).onPressed, isNull);
+    api.unavailable = true;
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pumpAndSettle();
+    expect(api.reads, 2);
+    expect(api.posts, 0);
+    expect(tester.widget<FilledButton>(chat).onPressed, isNull);
+    expect(find.textContaining('当前连接不可用'), findsOneWidget);
+  });
+
   testWidgets(
     'current proposal envelope reaches connection request and readback',
     (tester) async {

@@ -16,26 +16,61 @@ class LiveConnectionPage extends ConsumerStatefulWidget {
   ConsumerState<LiveConnectionPage> createState() => _LiveConnectionPageState();
 }
 
-class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
+class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage>
+    with WidgetsBindingObserver {
   SessionState? _session;
   int? _peer;
   Map<String, dynamic>? _server;
   String? _error;
   String? _connectionUnavailableMessage;
   bool _busy = false;
+  bool _foreground = true;
   int _epoch = 0;
   CancelToken _requestCancellation = CancelToken();
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     Future.microtask(_refresh);
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _requestCancellation.cancel('Page disposed');
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant LiveConnectionPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.peerId != widget.peerId) {
+      _clearProjection();
+      Future.microtask(_refresh);
+    }
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final foreground = state == AppLifecycleState.resumed;
+    if (_foreground == foreground) return;
+    setState(() {
+      _foreground = foreground;
+      _clearProjection();
+    });
+    if (foreground) Future.microtask(_refresh);
+  }
+
+  void _clearProjection() {
+    _requestCancellation.cancel('Connection projection invalidated');
+    _epoch++;
+    _session = null;
+    _peer = null;
+    _server = null;
+    _error = null;
+    _connectionUnavailableMessage = null;
+    _busy = false;
   }
 
   Options _options(SessionState session, int epoch) =>
@@ -47,6 +82,7 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
     throw StateError(switch (failure.statusCode) {
       401 => '登录已失效，请重新登录后重试。',
       403 => '当前无权操作此连接，请刷新确认权限。',
+      404 => '当前连接不可用，消息入口已关闭。',
       409 => '连接状态已变化，请刷新后重试。',
       _ => '暂时无法读取或更新连接，请稍后刷新重试。',
     });
@@ -57,9 +93,13 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
       epoch == _epoch &&
       identical(ref.read(sessionProvider).asData?.value, session);
 
-  Future<void> _read(SessionState session, int epoch) async {
+  Future<void> _read(
+    SessionState session,
+    int epoch, {
+    bool confirmWrittenPeer = false,
+  }) async {
     final client = ref.read(apiClientProvider);
-    int? peer = _peer ?? widget.peerId;
+    int? peer = confirmWrittenPeer ? _peer : widget.peerId;
     if (peer == null) {
       final match = _data(
         await client.get(
@@ -139,11 +179,11 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
           ),
     );
     if (!_current(session, epoch)) return;
-    await _read(session, epoch);
+    await _read(session, epoch, confirmWrittenPeer: true);
   });
 
   Future<void> _request(Future<void> Function(SessionState, int) action) async {
-    if (!mounted || _busy) return;
+    if (!mounted || !_foreground || _busy) return;
     _requestCancellation.cancel('Previous request completed');
     _requestCancellation = CancelToken();
     final epoch = _epoch;
@@ -251,21 +291,14 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
     ref.listen(sessionProvider, (previous, next) {
       final current = next.asData?.value;
       if (_session != null && !identical(_session, current)) {
-        setState(() {
-          _requestCancellation.cancel('Request session invalidated');
-          _epoch++;
-          _session = null;
-          _peer = null;
-          _server = null;
-          _error = null;
-          _connectionUnavailableMessage = null;
-          _busy = false;
-        });
+        setState(_clearProjection);
       }
     });
     final session = ref.watch(sessionProvider).asData?.value;
     final confirmed =
-        session?.isLoggedIn == true && identical(session, _session);
+        _foreground &&
+        session?.isLoggedIn == true &&
+        identical(session, _session);
     final data = confirmed ? _server : null;
     final gates = data?['gates'] as Map?;
     final canChat =
@@ -301,7 +334,7 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage> {
             ),
           ],
           OutlinedButton(
-            onPressed: _busy ? null : _refresh,
+            onPressed: !_foreground || _busy ? null : _refresh,
             child: const Text('刷新当前状态'),
           ),
           FilledButton(

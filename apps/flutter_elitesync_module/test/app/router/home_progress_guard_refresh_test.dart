@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/app/router/app_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_shell.dart';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
+import 'package:flutter_elitesync_module/core/network/api_client.dart';
 import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
 import 'package:flutter_elitesync_module/design_system/components/brand/floating_dock_bottom_bar.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
@@ -24,6 +26,8 @@ import 'package:flutter_elitesync_module/features/match/domain/entities/match_ro
 import 'package:flutter_elitesync_module/features/match/presentation/providers/match_providers.dart';
 import 'package:flutter_elitesync_module/features/me/presentation/pages/me_purpose_pages.dart';
 import 'package:flutter_elitesync_module/features/progress/presentation/pages/progress_page.dart';
+import 'package:flutter_elitesync_module/features/status/data/datasource/status_remote_data_source.dart';
+import 'package:flutter_elitesync_module/features/status/presentation/providers/status_posts_provider.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:flutter_elitesync_module/shared/enums/match_status.dart';
 import 'package:flutter_elitesync_module/shared/enums/questionnaire_status.dart';
@@ -162,6 +166,31 @@ class _Harness {
         ),
         matchRoundProjectionProvider.overrideWith((ref) => ref.watch(_match)),
         homeProvider.overrideWith(_UnusedHomeFeed.new),
+        statusRemoteDataSourceProvider.overrideWith((ref) {
+          final dio = Dio(BaseOptions(baseUrl: 'https://synthetic.invalid'));
+          ref.onDispose(dio.close);
+          dio.interceptors.add(
+            InterceptorsWrapper(
+              onRequest: (request, handler) {
+                if (request.method != 'GET' ||
+                    request.path != '/api/v1/status/posts') {
+                  forbidden('home channel ${request.method} ${request.path}');
+                }
+                handler.resolve(
+                  Response<Map<String, dynamic>>(
+                    requestOptions: request,
+                    statusCode: 200,
+                    data: {'items': <Object>[]},
+                  ),
+                );
+              },
+            ),
+          );
+          return StatusRemoteDataSource(
+            apiClient: ApiClient(dio: dio),
+            useMock: false,
+          );
+        }),
       ],
     );
     if (guard != null) update(guard);
@@ -227,6 +256,11 @@ void main() {
   setUp(() => network = _NoNetwork());
   void isolatedTest(String description, WidgetTesterCallback body) {
     testWidgets(description, (tester) async {
+      // Include the dual-channel section and the decision card in the viewport.
+      tester.view.devicePixelRatio = 1;
+      tester.view.physicalSize = const Size(800, 1200);
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
       await HttpOverrides.runZoned(() async {
         // Flutter's test binding has a zonal override. A global override alone
         // would not intercept it: prove this inner sentinel owns HttpClient.

@@ -179,7 +179,6 @@ def relation(f, actors, normal_id, normal_token):
     at, bt, ct = [f.login(actors[k]["phone"])["access_token"] for k in ("alpha", "beta", "gamma")]
     friendship(f, at, bt)
     friendship(f, at, ct)
-    friendship(f, at, normal_token)
     require(f.call("other-account-cannot-see-natal", "GET", "/profile/natal", 200, at)["exists"] is False,
             "private natal account scope")
     f.call("ungranted-friend", "GET", f"/connections/{b}", 404, at,
@@ -188,7 +187,6 @@ def relation(f, actors, normal_id, normal_token):
     f.pair("grant", a, b)
     f.pair("grant", a, c)
     f.call("ungranted-third-party", "GET", f"/connections/{c}", 404, bt)
-    f.call("non-fixture-friend", "GET", f"/connections/{a}", 404, normal_token)
 
     def activate(peer, receiver, message):
         def change(actor, target, kind, action, rev, status=200):
@@ -231,10 +229,21 @@ def relation(f, actors, normal_id, normal_token):
     post = f.call("publish-friends-post", "POST", "/status/posts", 201, at,
                   {"title": "Fixture", "body": "Fictional friends post", "audience": "FRIENDS"})["item"]["id"]
     f.call("friend-post-visible", "GET", f"/status/posts/{post}", 200, ct)
+    comments = f"/status-posts/{post}/comments"
+    note = f.call("friend-comment", "POST", comments, 201, ct,
+                  {"body": "Fictional prior audience", "idempotency_key": str(uuid4())})
+    comment_path = f'{comments}/{note["id"]}'
+    require(f.call("post-owner-can-read-comment", "GET", comment_path, 200, at)["body"]
+            == "Fictional prior audience", "original comment audience")
+    friendship(f, at, normal_token)
+    f.call("non-fixture-friend", "GET", f"/connections/{a}", 404, normal_token)
+    f.call("new-friend-can-read-post", "GET", f"/status/posts/{post}", 200, normal_token)
+    f.call("new-friend-cannot-read-old-comment", "GET", comment_path, 404, normal_token)
     f.call("block-peer", "POST", "/moderation/blocks", 200, at, {"blocked_user_id": c})
     f.call("block-hides-conversation", "GET", f"/conversations/{block_convo}", 404, ct)
     f.call("block-prevents-replay", "POST", "/messages", 404, at, second)
     f.call("block-hides-friends-post", "GET", f"/status/posts/{post}", 404, ct)
+    f.call("block-hides-old-comment", "GET", comment_path, 404, ct)
     after = f.call("old-notice-after-block", "GET", f"/notifications/{block_notice}", 200, ct)["item"]
     require(after["availability"] == "history" and not after["payload"], "blocked notice route")
 
@@ -250,7 +259,7 @@ def relation(f, actors, normal_id, normal_token):
     return at
 
 
-def buddy(f, auth):
+def buddy(f, auth, guest):
     f.call("buddy-opt-in", "PUT", "/buddy/preferences", 200, auth, {"enabled": True, "revision": 0})
     start = datetime.now(timezone.utc) + timedelta(days=2)
     payload = {"type": "STUDY", "subject": "Fictional reading", "place_kind": "ONLINE", "budget_band": "LOW",
@@ -262,6 +271,45 @@ def buddy(f, auth):
     require(f.call("buddy-applied", "GET", url, 200, auth)["command_status"] == "APPLIED", "Buddy saved receipt")
     require(f.call("buddy-dedup", "POST", "/buddy/activities", 201, auth, payload)["id"] == item["id"],
             "Buddy same-key retry")
+    activity = f"/buddy/{item['id']}"
+    discovery = "/buddy/discovery?" + urlencode({"city": "线上", "type": "STUDY"})
+    f.call("buddy-opt-in-required", "GET", discovery, 403, guest)
+    preference = f.call("buddy-guest-opt-in", "PUT", "/buddy/preferences", 200, guest,
+                        {"enabled": True, "revision": 0})
+    f.call("buddy-draft-private", "GET", activity, 404, guest)
+
+    def action(label, name, revision):
+        return f.call(label, "POST", activity + "/actions", 200, auth,
+                      {"action": name, "revision": revision, "idempotency_key": str(uuid4())})
+
+    opened = action("buddy-open", "open", item["revision"])
+    published = f.call("buddy-publish-discovery", "POST", activity + "/discovery", 200, auth,
+                       {"action": "publish", "revision": opened["revision"], "author_label": "Fixture host",
+                        "idempotency_key": str(uuid4())})
+    publication = published["discovery"]
+    cards = f.call("buddy-discover", "GET", discovery, 200, guest)["items"]
+    card = next(row for row in cards if row["publication_id"] == publication["publication_id"])
+    require(card["author_label"] == "Fixture host" and "owner_id" not in card and card["avatar"] is None,
+            "minimal Buddy card")
+    apply_path = f"/buddy/discovery/{publication['publication_id']}/apply"
+    application = {"generation": publication["generation"], "revision": published["revision"],
+                   "idempotency_key": str(uuid4())}
+    applied = f.call("buddy-apply", "POST", apply_path, 200, guest, application)
+    require(applied["state"] == "REQUESTED" and applied["participation_source"] == "DISCOVERY",
+            "Buddy request state")
+    require(action("buddy-confirm", "confirm", applied["revision"])["state"] == "CONFIRMED",
+            "Buddy owner confirmation")
+    require(f.call("buddy-apply-replay", "POST", apply_path, 200, guest, application)["state"] == "CONFIRMED",
+            "Buddy replays current authorized state")
+    require(f.php(f"""echo json_encode([
+      DB::table('buddy_activities')->where('id',{json.dumps(item['id'])})->value('state'),
+      DB::table('buddy_commands')->where('idempotency_key',{json.dumps(application['idempotency_key'])})->count(),
+    ]), PHP_EOL;""") == ["CONFIRMED", 1], "Buddy state and single application commit")
+    f.call("buddy-guest-opt-out", "PUT", "/buddy/preferences", 200, guest,
+           {"enabled": False, "revision": preference["revision"]})
+    f.call("buddy-discovery-lost-access", "GET", discovery, 403, guest)
+    projection = f.call("buddy-terminal-projection", "GET", activity, 200, guest)
+    require(projection["state"] == "WITHDRAWN" and "subject" not in projection, "Buddy terminal exposure")
 
 
 def admin(f, actors, target_id, target_token):
@@ -288,6 +336,35 @@ def admin(f, actors, target_id, target_token):
     web("web-admin-users", "GET", "/admin", 200, allowed)
     web("web-showcase-queue", "GET", "/admin/showcase", 200, allowed)
     web("web-report-queue", "GET", "/admin/reports", 200, allowed)
+    reporter = f.login(actors["beta"]["phone"])["access_token"]
+    report = f.call("submit-user-report", "POST", "/moderation/reports", 200, reporter,
+                    {"target_user_id": target_id, "category": "user", "reason_code": "fixture",
+                     "detail": "Fictional report"})["report"]
+    report_id = int(report["id"])
+    report_path = f"/admin/reports/{report_id}"
+    web("web-report-guest-denied", "GET", report_path, 302, denied)
+    triage = {"_token": csrf("web-report-detail", report_path, allowed), "action": "triage", "confirm": "1",
+              "reason": "Fictional triage", "expected_revision": 0, "expected_user_revision": 0}
+    web("web-report-triage", "POST", report_path, 302, allowed, triage)
+    web("web-report-stale-triage", "POST", report_path, 409, allowed, triage)
+    draft = f.call("save-private-showcase", "PUT", "/profile/showcase/draft", 200, target_token,
+                   {"expected_revision": 0, "display_name": "Fictional showcase",
+                    "self_intro": "Locally reviewed introduction", "audiences": ["friends"]})
+    publication = {"expected_revision": draft["revision"], "publication_revision": 0, "confirm_public_display": True}
+    f.call("unreviewed-showcase-cannot-publish", "POST", "/profile/showcase/publication", 409, target_token, publication)
+    submission = f.call("submit-showcase", "POST", "/profile/showcase/draft/submit-review", 200, target_token,
+                        {"expected_revision": draft["revision"]})["submission"]
+    review_path = f'/admin/showcase/{submission["id"]}'
+    review = {"_token": csrf("web-showcase-review-form", review_path, allowed),
+              "result": "approved", "reason": "Fictional review", "confirm": "1",
+              "expected_revision": submission["revision"]}
+    web("web-showcase-approve", "POST", review_path, 302, allowed, review)
+    web("web-showcase-stale-approve", "POST", review_path, 409, allowed, review)
+    require(f.call("review-does-not-publish", "GET", "/profile/showcase/publication", 200, target_token)["publication"]
+            is None, "review is separate from publish")
+    published = f.call("owner-confirms-showcase-publication", "POST", "/profile/showcase/publication",
+                       200, target_token, publication)["publication"]
+    require(published["publication_status"] == "published", "published snapshot")
     web("web-disable-user", "POST", f"/admin/users/{target_id}/disable", 302, allowed,
         {"_token": csrf("web-user-detail", f"/admin/users/{target_id}", allowed),
          "expected_revision": "0", "reason": "Fictional integration test", "confirm_disable": "1"})
@@ -295,7 +372,11 @@ def admin(f, actors, target_id, target_token):
       (bool) User::findOrFail({int(target_id)})->disabled,
       DB::table('admin_operation_audits')->where('target_id', (string){int(target_id)})
           ->where('action','user.banned')->count(),
-    ]), PHP_EOL;""") == [True, 1], "moderation and audit commit")
+      DB::table('profile_showcase_submissions')->where('user_id',{int(target_id)})->where('state','approved')->count(),
+      DB::table('user_profile_showcase_publications')->where('user_id',{int(target_id)})->count(),
+      DB::table('moderation_reports')->where('id',{report_id})->value('status'),
+      DB::table('admin_operation_audits')->where('target_id',(string){report_id})->where('action','report.triage')->count(),
+    ]), PHP_EOL;""") == [True, 1, 1, 1, "triaged", 1], "moderation, showcase and audit commit")
     f.call("disabled-user-loses-session", "GET", "/profile/basic", 401, target_token)
     web("web-audit-view", "GET", "/admin/audits", 200, allowed)
     web("web-logout", "POST", "/admin/logout", 302, allowed,
@@ -309,6 +390,6 @@ if __name__ == "__main__":
     fixture = Fixture(parser.parse_args().compose_folder)
     people = seed(fixture)
     uid, bearer = account_and_natal(fixture)
-    buddy(fixture, relation(fixture, people, uid, bearer))
+    buddy(fixture, relation(fixture, people, uid, bearer), bearer)
     admin(fixture, people, uid, bearer)
     print("function fixture: PASS", flush=True)
