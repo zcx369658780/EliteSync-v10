@@ -1,3 +1,13 @@
+# 2026-11-21｜功能优先工作流：P0.2已接受，Owner已授权1011805单机实测
+
+- Owner最新顺序：既定功能完整→软著资料准备→另行批准封闭内测→之后考虑更换服务器。云端迁移、真实管理员恢复、PC清理及G0b费用/备份不再阻断当前本地工程。
+- P0.2固定源码`362abd618a1f670e313b365b60b5dfe1f6ab71b8`和报告`daa96756f96fb6fd62845323ebd3c53d2b2438d2`已顾问限定接受：MariaDB TEST_ONLY完整匹配/关系链、撤销与Block、独立重启持久化通过；PHP定向127项PASS；核心仍PARTIAL、内测NO_GO。详见[顾问验收](V2_FUNCTION_P0_2_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- **Owner已明确授权一台实体Android手机安装和实测1011805**，不再问“是否授权”。只在检测到多台实体手机时问选哪台。授权范围和保护要求见[Owner决定](../decisions/OWNER_V2_ANDROID_1011805_SINGLE_DEVICE_TEST_AUTHORIZATION_20261121.md)，执行唯一任务见[P0.3集中任务](../versions/v2/V2_FUNCTION_P0_3_ANDROID_1011805_SINGLE_DEVICE_E2E_CLOSURE_BRIEF_20261121.md)。
+- 当前Codex应启动专用本地`elitesync-v2-function`服务、核DB/卷/证书后执行Host→Reverse→Install和APP旅程。APK 1011805固定Debug包仅连本机HTTPS18444；不得访问云端、清空设备/应用数据、读取私人媒体/联系人/短信/其它App。只移除本轮创建的ADB reverse。
+- 手册已接受为草稿，待真实同版截图和页面实测后修订。旧排盘A/B/C与注册可信离线T0仍Owner待决；真实KYC/Push/RTC/法律删除仍外部阻断。不得将TEST_ONLY等同真实认证，不得自动软著申报/开测/合main/发布。
+
+---
+
 # 2026-11-21｜Owner功能优先工作流（覆盖此前云端Staging推进优先级）
 
 - 新Owner[具名决定](../decisions/OWNER_V2_FUNCTION_COMPLETENESS_BEFORE_SOFTWARE_COPYRIGHT_AND_CLOSED_BETA_20261121.md)：“先完成功能开发→整理软件著作权资料→功能具备后封闭内测→再评估更换服务器”。原云恢复任务与G0/G0b证据保留为历史已完成/未完事项，**不得每次开启Codex都要求先继续云端费用选择/备份恢复**。
