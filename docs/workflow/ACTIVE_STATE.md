@@ -1,3 +1,15 @@
+# CURRENT ENTRY 2026-11-21：V2-CLOUD-R0 G0严格SSH与旧MariaDB/备份目录限定核验通过；云部署仍NO_GO
+
+**`G0_SSH_READONLY_SCOPED_ACCEPTED / G0_INSTANCE_AND_OLD_DB_IDENTITY_VERIFIED / G0_BACKUP_METADATA_LINK_VERIFIED / BACKUP_RECOVERY_NOT_RUN / OLD_HOST_CAPACITY_UNPROVEN / CLOUD_STAGING_NOT_DEPLOYED / ADMIN_REAL_RECOVERY_NOT_RUN / CLOUD_PHONE_NOT_RUN / PRODUCTION_NO_GO`**
+
+- Codex最新工程补证固定[报告](https://github.com/zcx369658780/EliteSync-v10/blob/9baa82aa0cdf947dcc4996d2a584c92e4f4535f1/docs/versions/v2/cloud-r0-20261121/V2_CLOUD_R0_ENGINEERING_REPORT_20261121.md) `9baa82aa0cdf947dcc4996d2a584c92e4f4535f1`，开发分支`codex/v2-cloud-r0-gradual-staging-20261121`HEAD核实一致；相对原R0交付`e431e0c9fca2be95fd1481d6afdcbaefac9cb6c0` ahead3/behind0，仅工程报告变化，无代码变更。网页顾问直接读取最新报告和GitHub对比，未独立执行SSH或读取原始云数据。详细限定验收见[SSH/DB/备份目录顾问核验](V2_CLOUD_R0_G0_SSH_DATABASE_BACKUP_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- Owner更正SSH密钥后，Codex报告严格RSA主机密钥检验+root公钥认证成功，**两轮只读盘点均exit0**；此前另一历史密钥认证失败exit255保留。当前目标为上海轻量应用服务器`Ubuntu-zlxh`；旧Laravel与PHP8.4 FPM通过Nginx80/回环8088共用旧服务和本机MariaDB10.11.14（mysql回环3306），Redis回环。Docker仅现有LiveKit host网络容器，命名卷0，不代表全机无持久业务。
+- 远端历史备份目录21组manifest/gzip/sidecar，gzip合计8,386,152字节；本地五月三份与远端声明哈希/大小/schema/端口匹配。**远端原gzip哈希未重算、实际独立恢复未演练、真实管理员范围未知**。另一组GPG来源独立，不能默认合并。旧数据库/备份原件保持不动；真实管理员资料解密/导入需另有数据门。
+- 当前旧机2vCPU/2GiB内存，采样available约627–628MiB、swap0、根盘约24GiB剩余；现有LiveKit+Laravel+MariaDB/Redis仍运行，**无法证明并行第二套MariaDB、FPM和worker的容量与回滚**。优先建议独立阿里云受限Staging，须Owner选择费用上限及具名实例后实施。新SSH读、云创建/公网配置、生产端口变更、真实数据恢复与手机操作均不可据上轮SSH成功自动扩大权限。最小下一任务见[G0b备份/容量/隔离资源选择任务](../versions/v2/V2_CLOUD_R1_G0B_BACKUP_CAPACITY_AND_STAGING_CHOICE_BRIEF_20261121.md)。
+- R0本地PHP8.4/MariaDB10.11/三盘Linux HTTPS已限定接受，仍非云端；G1云真实部署NOT_RUN，G2真实管理员NOT_RUN，G3云手机NOT_RUN。Connection受信环境资格404、旧排盘A/B/C、注册可信离线T0及PHP全量旧失败保持。PC清理13项白名单0、删除0且正式结束；不合main、不正式发布，`PRODUCTION_NO_GO`。
+
+---
+
 # CURRENT ENTRY 2026-11-21：V2-CLOUD-R0已交付且顾问限定验收，云实例核身待Owner登录
 
 **`V2_CLOUD_R0_ADVISOR_SCOPED_ACCEPTED_WITH_RESERVATIONS / LOCAL_STAGING_SCOPED_PASS / ALIYUN_INSTANCE_IDENTITY_BLOCKED_LOGIN_REQUIRED / REAL_ADMIN_RECOVERY_NOT_RUN / CLOUD_PHONE_RETEST_NOT_RUN / CONNECTION_STAGING_QUALIFICATION_PENDING_OWNER / PRODUCTION_NO_GO`**
