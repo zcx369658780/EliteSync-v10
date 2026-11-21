@@ -1,3 +1,11 @@
+# 2026-11-21 最新Owner优先级：先完成V2核心功能，再准备软著和封闭内测；云端迁移后置
+
+- **当前最新Owner权威**：[功能优先正式决定](docs/decisions/OWNER_V2_FUNCTION_COMPLETENESS_BEFORE_SOFTWARE_COPYRIGHT_AND_CLOSED_BETA_20261121.md)。既有Codex在A–D/R1/R0安全工程范围内自主补齐APP/API/Web/独立MariaDB的现有产品核心功能、定向验证和集中交付，唯一任务见[功能闭环集中任务](docs/versions/v2/V2_FUNCTION_COMPLETION_TO_SOFTCOPYRIGHT_AND_CLOSED_BETA_CONSOLIDATED_BRIEF_20261121.md)；不复活逐步网页派单。**服务器扩容/更换与真实管理员旧数据恢复不再是当前开发前置条件**，考虑放在功能候选及封闭内测之后。
+- G0已核的阿里云SSH、旧Laravel/MariaDB/LiveKit与备份元数据、R0本地Linux PHP8.4/MariaDB三盘验证均保留。G0b报告本轮只提供本机路径及Owner转述，未向网页顾问开放原文，故独立验收待实际文件；不影响功能自主实施。无新SSH、云资源采购、生产写入、真实管理员个人信息迁移；PC清理白名单0，全部保留。
+- Match/Connection/消息同意/Conversation/Relationship、Block、读权、合法用途、人工认证分离；功能闭环不等于解除旧排盘A/B/C和注册离线T0 Owner待决，不得启用无许可自动排盘、假KYC/Push/RTC/真实删除处理。软件著作权材料可准备，真实申请/公开内测/正式A6/main/发布仍留Owner具名授权。
+
+---
+
 # 2026-11-21 当前最新Owner决定：阿里云渐进恢复与管理员最小恢复、后续实机联测
 
 - 本轮Owner明确PC清理结束（13项白名单0、实际删除0），并决定先渐进恢复阿里云真实后端、在证据门内恢复已有管理员身份、然后单台手机复测。**最新权威**见[Owner决定](docs/decisions/OWNER_V2_GRADUAL_ALIYUN_RESTORE_AND_ADMIN_ACCOUNT_RECOVERY_AUTHORIZATION_20261121.md)和[单一综合任务](docs/versions/v2/V2_CLOUD_R0_GRADUAL_BACKEND_ADMIN_AND_PHONE_CONSOLIDATED_TASK_20261121.md)，现有本地Codex使用[启动指令](docs/workflow/V2_CLOUD_R0_EXISTING_CODEX_SESSION_KICKOFF_20261121.md)。下方“不得进行云端准备/设备”等旧时点约束按发生日期理解；新阶段仅在已确认的有限云身份/隔离/敏感数据门内具名推进。
