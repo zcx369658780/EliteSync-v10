@@ -77,13 +77,24 @@ class _Api extends ApiClient {
 class _UnknownSendApi extends ApiClient {
   _UnknownSendApi() : super(dio: Dio());
   final bodies = <Map<String, dynamic>>[];
+  bool committed = false;
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
     String path, {
     CancelToken? cancelToken,
     Map<String, dynamic>? query,
     Options? options,
-  }) async => const NetworkSuccess({'items': <dynamic>[]});
+  }) async => NetworkSuccess({
+    'items': [
+      if (committed && bodies.isNotEmpty)
+        {
+          'id': 41,
+          'sender_id': 1,
+          'content': bodies.first['content'],
+          'client_message_id': bodies.first['client_message_id'],
+        },
+    ],
+  });
   @override
   Future<NetworkResult<Map<String, dynamic>>> post(
     String path, {
@@ -422,6 +433,45 @@ class _PendingAckApi extends _MediaApi {
   }
 }
 
+class _BlockApi extends _MediaApi {
+  int blockPosts = 0;
+  int blockReads = 0;
+  bool readable = false;
+
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> get(
+    String path, {
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
+    if (path != '/api/v1/moderation/blocks') {
+      return super.get(path, cancelToken: cancelToken, query: query, options: options);
+    }
+    blockReads++;
+    return readable
+        ? const NetworkSuccess({'items': [{'blocked_user_id': 2}]})
+        : const NetworkFailure(message: 'unavailable', statusCode: 503);
+  }
+
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> post(
+    String path, {
+    Object? body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
+    if (path != '/api/v1/moderation/blocks') {
+      return super.post(path, body: body, cancelToken: cancelToken, query: query, options: options);
+    }
+    expect(body, containsPair('blocked_user_id', 2));
+    blockPosts++;
+    denied = true;
+    return const NetworkFailure(message: 'response lost', statusCode: 502);
+  }
+}
+
 Future<void> _show(
   WidgetTester tester,
   ApiClient api, {
@@ -463,6 +513,42 @@ Future<void> _show(
 }
 
 void main() {
+  testWidgets('Block with an unknown result reads authority before allowing another write', (
+    tester,
+  ) async {
+    final api = _BlockApi();
+    await _show(tester, api);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('拉黑账号'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('取消'));
+    await tester.pumpAndSettle();
+    expect(api.blockPosts, 0);
+    await tester.tap(find.byTooltip('拉黑账号'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('确认拉黑'));
+    await tester.pumpAndSettle();
+    expect(api.blockPosts, 1);
+    expect(api.blockReads, 1);
+    expect(find.text('拉黑结果尚未确认，请先核对服务器记录。'), findsOneWidget);
+    final picture = find.byWidgetPredicate(
+      (widget) => widget is IconButton && widget.tooltip == '发送图片',
+    );
+    expect(tester.widget<IconButton>(picture).onPressed, isNull);
+    expect(tester.widget<TextButton>(find.widgetWithText(TextButton, '发送')).onPressed, isNull);
+    api.readable = true;
+    await tester.tap(find.text('核对拉黑结果'));
+    await tester.pumpAndSettle();
+    expect(api.blockPosts, 1);
+    expect(api.blockReads, 2);
+    expect(find.text('已拉黑，当前无法读取或继续此对话。'), findsOneWidget);
+    final video = find.byWidgetPredicate(
+      (widget) => widget is IconButton && widget.tooltip == '发送短视频',
+    );
+    expect(tester.widget<IconButton>(video).onPressed, isNull);
+    await tester.pumpWidget(const SizedBox());
+  });
+
   testWidgets(
     'Narrow large-text chat keeps title and all five actions reachable',
     (tester) async {
@@ -1483,6 +1569,23 @@ void main() {
       api.bodies[0]['client_message_id'],
     );
     expect(api.bodies[1]['content'], api.bodies[0]['content']);
+    await tester.pumpWidget(const SizedBox());
+  });
+  testWidgets('committed message is recovered by readback without a second POST', (
+    tester,
+  ) async {
+    final api = _UnknownSendApi();
+    await _show(tester, api);
+    await tester.enterText(find.byType(TextField), 'fixture already committed');
+    await tester.tap(find.text('发送'));
+    await tester.pumpAndSettle();
+    expect(api.bodies, hasLength(1));
+    api.committed = true;
+    await tester.tap(find.text('使用原消息编号重试'));
+    await tester.pumpAndSettle();
+    expect(api.bodies, hasLength(1));
+    expect(find.text('服务器已持久化此消息'), findsOneWidget);
+    expect(find.text('使用原消息编号重试'), findsNothing);
     await tester.pumpWidget(const SizedBox());
   });
   testWidgets(

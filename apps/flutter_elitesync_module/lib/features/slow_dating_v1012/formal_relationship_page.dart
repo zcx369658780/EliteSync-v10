@@ -73,7 +73,7 @@ class _FormalState extends SessionBoundPage<FormalRelationshipPage> {
         Text('与 ES-${relation['peer_id']} 的正式关系'),
         if (relation['test_only'] == true)
           const Text('TEST_ONLY · 合成开发关系，非真实身份核验'),
-        Text('关系状态：${journeyStateLabel(relation['state'])}'),
+        Text('关系状态：${formalRelationshipStateLabel(relation['state'])}'),
         Text(
           '本人确认：${relation['confirmed_me'] == true ? '已确认' : '尚未确认'}；对方确认：${relation['confirmed_peer'] == true ? '已确认' : '尚未确认'}',
         ),

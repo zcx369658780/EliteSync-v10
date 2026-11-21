@@ -83,6 +83,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   bool _busy = false;
   bool _loading = false;
   bool _loadingOlder = false;
+  bool _blockBusy = false;
+  bool _blockNeedsReadback = false;
+  bool get _writeControlsAvailable =>
+      _error == null && !_offline && !_blockNeedsReadback;
   int? _queuedHistoryEpoch;
   bool _hasOlder = false;
   bool _historyExpanded = false;
@@ -141,6 +145,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     if (oldWidget.peerId == widget.peerId) return;
     _peerEpoch++;
     _picking = false;
+    _blockBusy = false;
+    _blockNeedsReadback = false;
     _reject('正在加载对话。');
     _session = null;
     _offline = false;
@@ -305,7 +311,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 ))) {
           throw const FormatException('Submission changed.');
         }
-        _attempt = attempt;
+        _attempt ??= attempt;
         _text.text = attempt.content;
         _retryAsset = attempt.attachmentIds.firstOrNull;
         _replyId = attempt.replyToMessageId;
@@ -394,6 +400,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   Future<void> _load() async {
     if (_loading ||
         _loadingOlder ||
+        _blockNeedsReadback ||
         !mounted ||
         !_foreground ||
         _sessionChanged ||
@@ -599,6 +606,118 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         }
       }
     }
+  }
+
+  Future<void> _confirmBlock() async {
+    final session = _session;
+    final epoch = _epoch;
+    if (session == null ||
+        !_current(session, epoch) ||
+        !_writeControlsAvailable ||
+        _busy ||
+        _draftBusy ||
+        _blockBusy) {
+      return;
+    }
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('拉黑这个账号？'),
+        content: const Text('拉黑会停止双方交流并撤销当前分享权限。'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('取消'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('确认拉黑'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true ||
+        !_current(session, epoch) ||
+        !_writeControlsAvailable ||
+        _busy ||
+        _draftBusy) {
+      return;
+    }
+    _blockNeedsReadback = true;
+    _cache.revokeObject(_cacheKey);
+    _reject('正在核对拉黑结果。');
+    await _resolveBlock(session, submit: true);
+  }
+
+  Future<void> _resolveBlock(
+    SessionState session, {
+    required bool submit,
+  }) async {
+    final epoch = _epoch;
+    final peerEpoch = _peerEpoch;
+    if (_blockBusy || !_blockNeedsReadback || !_current(session, epoch)) return;
+    setState(() => _blockBusy = true);
+    final api = ref.read(apiClientProvider);
+    final options = Options(
+      headers: {'X-Source-Page': 'live_chat'},
+      extra: {requestSessionGuardKey: () => _current(session, epoch)},
+    );
+    try {
+      if (submit) {
+        final response = await api.post(
+          '/api/v1/moderation/blocks',
+          body: {'blocked_user_id': widget.peerId, 'reason_code': 'chat_menu'},
+          cancelToken: _uploadCancellation,
+          options: options,
+        );
+        if (!_current(session, epoch)) return;
+        if (response is NetworkSuccess<Map<String, dynamic>> &&
+            response.data['block'] is Map &&
+            response.data['block']['blocked_user_id'] == widget.peerId) {
+          _finishBlock();
+          return;
+        }
+      }
+      final response = await api.get(
+        '/api/v1/moderation/blocks',
+        cancelToken: _uploadCancellation,
+        options: options,
+      );
+      if (!_current(session, epoch)) return;
+      if (response is NetworkSuccess<Map<String, dynamic>> &&
+          response.data['items'] is List) {
+        final items = response.data['items'] as List;
+        if (items.any(
+          (item) => item is Map && item['blocked_user_id'] == widget.peerId,
+        )) {
+          _finishBlock();
+        } else {
+          setState(() {
+            _blockNeedsReadback = false;
+            _error = '服务器当前没有该拉黑记录。';
+          });
+          unawaited(_load());
+        }
+        return;
+      }
+      setState(() => _error = '拉黑结果尚未确认，请先核对服务器记录。');
+    } catch (_) {
+      if (_current(session, epoch)) {
+        setState(() => _error = '拉黑结果尚未确认，请先核对服务器记录。');
+      }
+    } finally {
+      if (mounted && peerEpoch == _peerEpoch) {
+        setState(() => _blockBusy = false);
+      }
+    }
+  }
+
+  void _finishBlock() {
+    _blockNeedsReadback = false;
+    _cache.revokeObject(_cacheKey);
+    _cache.revokeObject(_draftKey);
+    ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+    _reject('已拉黑，当前无法读取或继续此对话。');
   }
 
   List<Map<String, dynamic>> _mergeMessages(
@@ -881,6 +1000,41 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _reject('服务器确认身份不符，不能标记已发送；请按原编号重试。', preserveAttempt: true);
       return false;
     }
+    return _acknowledgeConfirmedSend(session, epoch);
+  }
+
+  Future<void> _retryUnconfirmedMessage() async {
+    final session = _session;
+    final attempt = _attempt;
+    final epoch = _epoch;
+    if (session == null ||
+        attempt == null ||
+        !_current(session, epoch) ||
+        _busy ||
+        _draftBusy ||
+        _offline ||
+        _blockNeedsReadback) {
+      return;
+    }
+    await _load();
+    if (!_current(session, epoch) || !_writeControlsAvailable ||
+        !identical(_attempt, attempt)) {
+      return;
+    }
+    if (_messages.any(
+      (row) =>
+        row['client_message_id'] == attempt.clientMessageId &&
+        row['sender_id'] == session.user?.id,
+    )) {
+      await _acknowledgeConfirmedSend(session, epoch);
+      return;
+    }
+    // The newest window cannot rule out an older commit. Reuse the immutable
+    // server-deduplicated key only after this explicit retry and current read.
+    await _send(asset: _retryAsset);
+  }
+
+  Future<bool> _acknowledgeConfirmedSend(SessionState session, int epoch) async {
     _attempt = null;
     _retryAsset = null;
     setState(() {
@@ -913,7 +1067,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     if (_busy ||
         _draftBusy ||
         !mounted ||
-        _offline ||
+        !_writeControlsAvailable ||
         !_foreground ||
         _sessionChanged ||
         _timeLocked) {
@@ -963,7 +1117,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _attempt != null ||
         !mounted ||
         !_foreground ||
-        _offline ||
+        !_writeControlsAvailable ||
         _sessionChanged ||
         _timeLocked) {
       return;
@@ -1097,7 +1251,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         !session.isLoggedIn ||
         _busy ||
         _draftBusy ||
-        _offline ||
+        !_writeControlsAvailable ||
         _timeLocked ||
         _sessionChanged) {
       return;
@@ -1218,6 +1372,19 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     }
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            tooltip: '拉黑账号',
+            onPressed: _writeControlsAvailable &&
+                    !_blockBusy &&
+                    !_busy &&
+                    !_draftBusy &&
+                    _draftLoaded
+                ? _confirmBlock
+                : null,
+            icon: const Icon(Icons.block),
+          ),
+        ],
         title: Row(
           children: [
             if (_error == null && !_offline)
@@ -1274,12 +1441,16 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 icon: const Icon(Icons.refresh),
               ),
               IconButton(
-                onPressed: _busy || _draftBusy ? null : () => _call('voice'),
+                onPressed: _busy || _draftBusy || !_writeControlsAvailable
+                    ? null
+                    : () => _call('voice'),
                 tooltip: '语音通话',
                 icon: const Icon(Icons.call_outlined),
               ),
               IconButton(
-                onPressed: _busy || _draftBusy ? null : () => _call('video'),
+                onPressed: _busy || _draftBusy || !_writeControlsAvailable
+                    ? null
+                    : () => _call('video'),
                 tooltip: '视频通话',
                 icon: const Icon(Icons.videocam_outlined),
               ),
@@ -1291,16 +1462,26 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         children: [
           if (_error != null)
             Padding(padding: const EdgeInsets.all(12), child: Text(_error!)),
+          if (_blockNeedsReadback && _session != null)
+            TextButton(
+              onPressed: _blockBusy
+                  ? null
+                  : () {
+                      final session = _session;
+                      if (session != null) _resolveBlock(session, submit: false);
+                    },
+              child: const Text('核对拉黑结果'),
+            ),
           if (_sendStatus != null)
             Padding(
               padding: const EdgeInsets.all(8),
               child: Semantics(liveRegion: true, child: Text(_sendStatus!)),
             ),
-          if (_attempt != null && !_offline)
+          if (_attempt != null && !_offline && !_blockNeedsReadback)
             TextButton(
               onPressed: _busy || _draftBusy
                   ? null
-                  : () => _send(asset: _retryAsset),
+                  : _retryUnconfirmedMessage,
               child: const Text('使用原消息编号重试'),
             ),
           if (_uploadStatus != null)
@@ -1312,7 +1493,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                   if (_pendingMedia != null &&
                       !_busy &&
                       !_draftBusy &&
-                      !_offline &&
+                      _writeControlsAvailable &&
                       _attempt == null)
                     Wrap(
                       alignment: WrapAlignment.center,
@@ -1517,7 +1698,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                         _draftBusy ||
                         _busy ||
                         _attempt != null ||
-                        _offline ||
+                        !_writeControlsAvailable ||
                         _timeLocked
                     ? null
                     : () => _saveDraft(),
@@ -1529,7 +1710,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                         _draftBusy ||
                         _busy ||
                         _attempt != null ||
-                        _offline ||
+                        !_writeControlsAvailable ||
                         _timeLocked
                     ? null
                     : () => _saveDraft(clear: true),
@@ -1548,7 +1729,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                             _draftBusy ||
                             _attempt != null ||
                             _pendingMedia != null ||
-                            _offline ||
+                            !_writeControlsAvailable ||
                             _timeLocked
                         ? null
                         : _picture,
@@ -1561,7 +1742,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                             _draftBusy ||
                             _attempt != null ||
                             _pendingMedia != null ||
-                            _offline ||
+                            !_writeControlsAvailable ||
                             _timeLocked
                         ? null
                         : _video,
@@ -1574,7 +1755,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                           _busy ||
                           _draftBusy ||
                           _attempt != null ||
-                          _offline ||
+                          !_writeControlsAvailable ||
                           _timeLocked,
                       controller: _text,
                       minLines: 1,
@@ -1597,7 +1778,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                             _draftBusy ||
                             _attempt != null ||
                             _pendingMedia != null ||
-                            _offline ||
+                            !_writeControlsAvailable ||
                             _timeLocked
                         ? null
                         : () => _send(),

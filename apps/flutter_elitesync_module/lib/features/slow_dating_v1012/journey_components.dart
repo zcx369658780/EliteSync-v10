@@ -62,6 +62,11 @@ String journeyStateLabel(Object? state) => switch ('$state'.toUpperCase()) {
   _ => '状态暂未确认',
 };
 
+String formalRelationshipStateLabel(Object? state) => switch ('$state') {
+  'ACTIVE' => '正式关系已建立',
+  _ => journeyStateLabel(state),
+};
+
 String decisionLabel(Object? decision) => switch ('$decision') {
   'ACCEPTED' => '已接受',
   'DECLINED' => '已拒绝',
