@@ -1,7 +1,7 @@
 # 2026-11-21｜会话交接停点：P0.4.1限定验收完成，等待P0.4.2集中验收
 
 - 会话交接：[SESSION_HANDOFF_20261121_V2_P0_4_1_ADVISOR_ACCEPTANCE_P0_4_2_PENDING.md](SESSION_HANDOFF_20261121_V2_P0_4_1_ADVISOR_ACCEPTANCE_P0_4_2_PENDING.md)。新会话先读该文件全文及ACTIVE_STATE顶部CURRENT ENTRY，再读顾问验收和P0.4.2任务单。
-- P0.4.1固定报告 e4d1588acee62d8f8f166042c328e26cc951c14a，实机源码 00ca46f6b020afa25ce472509c2fd3227f74c461；1011806安装成功，1011805保留；整体DEVICE_E2E_PARTIAL。
+- P0.4.1固定报告 e4d1588acee62d8f8f166042c328e26cc951c14a，实机源码 00ca46f6b020afa25ce472509c2fd3227f74c461；开发分支远端HEAD为9fd84d2f2fd27d7226e8eb792de5d8cc829e9e82，额外提交仅修改开发分支交接文档，无产品源码；其旧ADVISOR_REVIEW_PENDING状态已被治理分支当前顾问验收覆盖。1011806安装成功，1011805保留；整体DEVICE_E2E_PARTIAL。
 - P0隐私FAIL：第1代CN/MC被Block关闭/撤销后，新第2代CN/MC不应获得第1代历史；当前pair room_key和Conversation复用，messages list按pair room_id取全量旧消息。Owner D-03要求历史默认不可读，除非独立history authority。
 - 唯一下一任务：[P0.4.2会话代际历史隔离与实机缺口收口](../versions/v2/V2_P0_4_2_CONVERSATION_GENERATION_HISTORY_ISOLATION_AND_DEVICE_GAP_CLOSURE_TASK_20261121.md)。先修复服务端历史代际隔离，再补Photo Picker/上传/媒体受众/缓存/URI/真实无线断链；旧消息保留不删除。
 - 1011805/1011806均保留；新APK安装需要Owner新授权。真实旧管理员恢复和共享HTTPS仍未完成且是内测硬门；不访问阿里云、不迁移真实管理员、不采购、不合main、不申报软著、不启动封闭内测。
