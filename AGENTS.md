@@ -1,3 +1,11 @@
+# 2026-11-21 当前最新Owner决定：阿里云渐进恢复与管理员最小恢复、后续实机联测
+
+- 本轮Owner明确PC清理结束（13项白名单0、实际删除0），并决定先渐进恢复阿里云真实后端、在证据门内恢复已有管理员身份、然后单台手机复测。**最新权威**见[Owner决定](docs/decisions/OWNER_V2_GRADUAL_ALIYUN_RESTORE_AND_ADMIN_ACCOUNT_RECOVERY_AUTHORIZATION_20261121.md)和[单一综合任务](docs/versions/v2/V2_CLOUD_R0_GRADUAL_BACKEND_ADMIN_AND_PHONE_CONSOLIDATED_TASK_20261121.md)，现有本地Codex使用[启动指令](docs/workflow/V2_CLOUD_R0_EXISTING_CODEX_SESSION_KICKOFF_20261121.md)。下方“不得进行云端准备/设备”等旧时点约束按发生日期理解；新阶段仅在已确认的有限云身份/隔离/敏感数据门内具名推进。
+- **不得误解为生产GO**：原历史目标是上海轻量应用服务器而非已证ECS；现时实例身份/旧服务与管理员备份可恢复性未证。云资源与账号恢复采取G0～G3逐门：先只读核资源/备份→隔离V2 Staging的PHP8.4/MariaDB+三盘Linux运行身份→旧管理员最小字段合成演练/真实数据独立Owner门→已授权手机连云实测。保留旧站、旧DB/卷/备份、所有PC工程；不重置系统、不全库恢复、不赋旧token/密码、不自动开公网/买资源/合main。
+- 工程锚R1`585a8c21aeab103daac166338f881ef343c8af99`，清理证据`716e74d92c7b9e9a10f6dc474e8300a222f0357b`。既有R1`PARTIAL / PRODUCTION_NO_GO`不变，旧盘A/B/C与注册可信离线T0 P1仍待Owner选择；真实合规/供应商/对外发布NOT_RUN。网页顾问无本地Windows/阿里云会话执行权，只已签治理任务，须由Owner转交现有Codex实施。
+
+---
+
 # 2026-11-20 最新Owner决定：阶段D限定终验接受，V2-Q工程已获安全收口授权
 
 - 最新权威为[Owner阶段D终验/V2-Q启动](docs/decisions/OWNER_V2_PHASE_D_FINAL_SCOPED_ACCEPTANCE_AND_INTEGRATION_QUALITY_AUTHORIZATION_20261120.md)。A–D均为Owner具名工程范围内的限定接受，D顾问原`SCOPED_ACCEPTED_WITH_RESERVATIONS`不等于全量PASS；当前V2-Q不是新增功能阶段，允许原本地Codex会话实施[集中质量任务](docs/versions/v2/V2_Q_INTEGRATION_QUALITY_AND_PRODUCT_DECISION_CONSOLIDATED_BRIEF_20261120.md)，只按需回归并集中报告。启动指令见[现有Codex Prompt](docs/workflow/V2_Q_CODEX_EXISTING_SESSION_KICKOFF_PROMPT_20261120.md)。
