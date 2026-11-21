@@ -1,3 +1,14 @@
+# 2026-11-21｜P0.4本地加固已限定接受；下一步1011806实机验收与共享Beta环境选项准备
+
+- P0.4固定报告`f41f25bb8c237f8479b998e82e843f528397e1fa`：Flutter72项通过、Dart分析无问题；PHP扩围60/61，单一V1011历史基线FAIL保留。顾问验收见[V2_P0_4_HARDENING_AND_BETA_AUTHORIZATION_ADVISOR_ACCEPTANCE_20261121.md](V2_P0_4_HARDENING_AND_BETA_AUTHORIZATION_ADVISOR_ACCEPTANCE_20261121.md)。
+- 消息UNKNOWN现在用独立fresh GET，切号/Block/后台/读取失败不重发；服务端同sender/client_message_id唯一索引和payload fingerprint保障同key幂等。双向Block、媒体受众、旧链接撤权及提交后响应丢失已有本地MariaDB HTTPS证据，但手机Photo Picker/缓存/外部URI/真实无线弱网仍NOT_RUN。
+- 两名虚构管理员Ed25519签名恢复和回滚限定通过，PHP管理员定向12项/123断言（Codex回执）。真实候选0，真实数据授权/迁移/本人异地登录仍NOT_RUN。封闭内测硬门不变。
+- 下一步先完成1011806身份复核和设备预检；安装需Owner对1011806新包具名授权。授权后作为独立包并行安装，不卸载/覆盖1011805、不清数据。1011806仍固定本机回环地址，不是共享服务器。
+- 同时准备上海旧机同驻风险与独立2vCPU/4GiB/50–60GiB方案的真实价格/计费项；当前不SSH、不部署、不采购、不开放公网。真实管理员数据读写、云写/费用另需Owner分别批准。
+- 唯一下一任务见[V2_P0_4_1011806_DEVICE_ACCEPTANCE_AND_SHARED_BETA_ENVIRONMENT_DECISION_TASK_20261121.md](../versions/v2/V2_P0_4_1011806_DEVICE_ACCEPTANCE_AND_SHARED_BETA_ENVIRONMENT_DECISION_TASK_20261121.md)。封闭内测/生产仍NO_GO，不合main、不正式申报软著。
+
+---
+
 # 2026-11-21｜P0.4剩余功能与Beta旧管理员恢复加固并行
 
 - 本轮报告`0fd75198db3067782241b6777054050ac2af6918`顾问限定接受：两名虚构管理员通过本地MariaDB/HTTPS恢复CLI、APP API、Web后台、激活码、allowlist和回滚；PHP定向10项/100断言。真实管理员数据未授权/未读取/未写入。
