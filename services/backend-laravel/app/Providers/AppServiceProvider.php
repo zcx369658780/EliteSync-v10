@@ -65,6 +65,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        RateLimiter::for('legacy-admin-activation', fn (Request $request) =>
+            Limit::perMinute(5)->by((string) $request->ip()));
+
         RateLimiter::for('auth', function (Request $request) {
             $phone = (string) $request->input('phone', '');
             $ip = (string) $request->ip();

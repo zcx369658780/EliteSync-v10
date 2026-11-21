@@ -6,12 +6,16 @@ use App\Http\Controllers\Web\AdminMatchingWebController;
 use App\Http\Controllers\Web\AdminOperationsController;
 use App\Http\Controllers\Web\AdminQuestionController;
 use App\Http\Controllers\Web\AdminReleaseController;
+use App\Http\Controllers\Web\LegacyAdminActivationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => view('welcome'));
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminController::class, 'login'])->name('login');
     Route::post('/login', [AdminController::class, 'authenticate'])->middleware('throttle:10,1')->name('authenticate');
+    Route::get('/legacy-activate', [LegacyAdminActivationController::class, 'show'])->name('legacy-activate');
+    Route::post('/legacy-activate', [LegacyAdminActivationController::class, 'activate'])
+        ->middleware('throttle:legacy-admin-activation')->name('legacy-activate.submit');
     Route::middleware(['auth:web', 'account.active', 'admin.phone'])->group(function () {
         Route::get('/', [AdminController::class, 'users'])->name('users');
         Route::get('/users/{id}', [AdminOperationsController::class, 'user'])->whereNumber('id')->name('user');
