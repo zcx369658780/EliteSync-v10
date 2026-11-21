@@ -1,3 +1,15 @@
+# CURRENT ENTRY 2026-11-21：V2功能闭环批次已顾问限定接受；正式匹配与当前Android仍阻断内测候选
+
+**`V2_FUNCTION_LOCAL_E2E_ADVISOR_SCOPED_ACCEPTED_WITH_RESERVATIONS / CORE_FUNCTIONS_PARTIAL / PHP_SELECTED_12_FAIL / ANDROID_CURRENT_BUILD_NOT_RUN / COPYRIGHT_INDEX_ONLY / CLOSED_BETA_CANDIDATE_NO_GO / CLOUD_MIGRATION_DEFERRED / PRODUCTION_NO_GO`**
+
+- 最新固定工程：[源码`63a2bbf24c4dff9b892ef94ba99dd34d0888f226`](https://github.com/zcx369658780/EliteSync-v10/commit/63a2bbf24c4dff9b892ef94ba99dd34d0888f226)、[综合报告`3b42dfe4328fc2fe520cab1fe9561830fcb8ca56`](https://github.com/zcx369658780/EliteSync-v10/blob/3b42dfe4328fc2fe520cab1fe9561830fcb8ca56/docs/versions/v2/cloud-r0-20261121/V2_FUNCTION_COMPLETION_QUALITY_REPORT_20261121.md)。实开发分支`codex/v2-function-completion-20261121`回读为报告SHA；相对R0补证`9baa82aa0cdf947dcc4996d2a584c92e4f4535f1` ahead4/behind0；源码至报告ahead1/behind0只增加报告。网页顾问直接抽检Flutter真实router+HTTPS测试及合成资格/授权/消息/通知/迁移/Compose，未在Windows执行原始日志。独立限定验收见[顾问报告](V2_FUNCTION_COMPLETION_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- 本地PHP8.4/MariaDB10.11+Flutter测试宿主的**合成Connection→双方同意→双端文本消息→撤销及旧链接404**据Codex具名报告通过；Web管理员的登录/CSRF/形象审核/举报/停用/审计、Buddy管理/发现和社区旧受众也有跨层片段。合成权限限固定数据库、开关、双虚构用户、TTL并可撤销，**不等于正式身份Match、Relationship或真实Android整机**。
+- 本批Flutter定向39项PASS、Dart4文件分析0问题、Flutter单项HTTPS真实router、API/Web 126条HTTP状态回执均为`CODEX_REPORTED`（126不是126测试用例）；PHP精选46项120断言**12 FAIL**，报告称与R0同名同签名，仅Codex对照，顾问未独立查本地JUnit。旧Q全量46 errors/122 failures（含旧排盘25）、旧R1 Flutter扩围5 FAIL及设备/真供应商NOT_RUN均保留。
+- 当前关键缺口：正式慢约报名/候选/Relationship的正向与撤权仍受真实KYC和可信测试条件限制；当前APK真实手机、双端端点/证书固定、媒体/跨设备、通知待办链仍缺；旧排盘A/B/C与注册离线T0产品合同Owner未决。版权/软著仅源码/依赖/功能目录索引，同版截图/手册/权属未齐，正式登记、封闭内测和生产均NO_GO。
+- Owner仍要求**功能完成→软著材料准备→封闭内测→之后再评估服务器替换**；此批仅本地功能限定验收，不重新启动G0b/新阿里云采购/真实旧管理员恢复/PC清理。下阶段建议使用[单一P0候选收口任务](../versions/v2/V2_FUNCTION_P0_CANDIDATE_CLOSURE_CONSOLIDATED_BRIEF_20261121.md)，在原长期允许的本地工程范围持续实施，针对外部/设备/重大业务分支遵守Owner门。无需对已有功能重复启大规模重做，也不自动合main或发行。
+
+---
+
 # CURRENT ENTRY 2026-11-21：Owner正式切换为功能完善优先，软著材料与封闭内测准备在后，服务器迁移后置
 
 **`OWNER_FUNCTION_FIRST_PRIORITY / V2_DEFINED_SCOPE_FEATURE_COMPLETION_AUTHORIZED / CLOUD_MIGRATION_DEFERRED_UNTIL_AFTER_CLOSED_BETA_CONSIDERATION / G0B_REPORT_LOCAL_ONLY_NOT_INDEPENDENTLY_READ / PRODUCTION_NO_GO`**
