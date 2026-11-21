@@ -254,7 +254,7 @@ class NotificationService
         $safe = ['title' => self::MESSAGE_TITLE, 'body' => self::MESSAGE_BODY, 'payload' => [], 'available' => false];
         $messageId = filter_var($payload['message_id'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
         $authority = app(LiveConsentService::class);
-        if ((int) $notification->user_id !== $viewerId || ! $messageId || ! $authority->enabled()) {
+        if ((int) $notification->user_id !== $viewerId || ! $messageId || ! $authority->availableForActor($viewerId)) {
             return $safe;
         }
         try {
