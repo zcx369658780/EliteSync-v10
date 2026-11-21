@@ -1,3 +1,13 @@
+# 2026-11-21最新状态：P0.4.1实机PARTIAL，解除Block后旧私信历史重新出现为P0隐私FAIL
+
+- P0.4.1固定实机报告`e4d1588acee62d8f8f166042c328e26cc951c14a`，实机源码`00ca46f6b020afa25ce472509c2fd3227f74c461`，报告提交仅增加报告/手册，无产品源码变化。1011806安装成功、保留1011805；冷启动/登录切号/资料/三盘/消息UNKNOWN/Block生效期间撤权为Codex报告限定证据。整体`DEVICE_E2E_PARTIAL`。
+- **P0隐私FAIL：**Block关闭第1代Connection并撤销MC后，解除Block建立第2代CN/MC，手机仍读到第1代4条旧消息。Owner接受D-03：CN关闭/MC撤销后历史默认不可读，除非单独history authority。源码抽查发现pair稳定room_key+复用Conversation，messages list只按pair room_id查全部行，未按Connection generation/history authority过滤。新live授权不得恢复旧代历史。顾问报告：[P0.4.1验收](docs/workflow/V2_P0_4_1_ANDROID_1011806_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- 下一任务：[P0.4.2会话代际历史隔离](docs/versions/v2/V2_P0_4_2_CONVERSATION_GENERATION_HISTORY_ISOLATION_AND_DEVICE_GAP_CLOSURE_TASK_20261121.md)。保留旧DB消息，不删除、不声称擦除；第2代只读第2代内容，旧代消息/媒体/通知/预览/搜索/回复引用默认不可读。补服务端和设备回归。
+- Photo Picker打开但选图返回/上传未跑；完整媒体历史受众未完成；WLAN关闭时USB reverse仍可达本机后端，真实无线故障窗口NOT_RUN。1011806回环APK不是共享Beta包。新APK安装需Owner另行授权，1011805/1011806都保留。
+- 阿里云V2共享HTTPS未部署，真实旧管理员未恢复，封闭内测/生产NO_GO。不得云写/读取真实管理员数据/采购/开公网/main合并。
+
+---
+
 # 2026-11-21最新Owner决定：已授权此前Android设备并行安装1011806并执行P0.4实机测试
 
 - **1011806安装授权已经明确生效，不得再次询问Owner。** Owner原话：“好的我同意授权Codex在此前那台Android设备上安装1011806，并完成上述P0.4实机测试。”详见[Owner授权决定](docs/decisions/OWNER_V2_ANDROID_1011806_DEVICE_INSTALL_AND_P0_4_TEST_AUTHORIZATION_20261121.md)和[更新后的任务书](docs/versions/v2/V2_P0_4_1011806_DEVICE_ACCEPTANCE_AND_SHARED_BETA_ENVIRONMENT_DECISION_TASK_20261121.md)。
