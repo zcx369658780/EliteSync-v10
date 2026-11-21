@@ -1,3 +1,16 @@
+# CURRENT ENTRY 2026-11-21：P0候选收口已顾问限定接受；MariaDB正式关系正向与Android单机仍待验
+
+**`P0_LOCAL_ENGINEERING_DELIVERY_ADVISOR_SCOPED_ACCEPTED_WITH_RESERVATIONS / CORE_FUNCTIONS_PARTIAL / PHP_SELECTED_46_PASS / FLUTTER_128_CODEX_REPORTED_PASS / ANDROID_1011805_FIXED_DEVICE_NOT_RUN / MARIADB_FORMAL_RELATIONSHIP_TEST_ONLY_POSITIVE_NOT_RUN / COPYRIGHT_PREPARATION_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
+
+- 固定本批源码`36ae37206f482109e0bfc7a0f95335fc056da323`、[P0候选收口报告](https://github.com/zcx369658780/EliteSync-v10/blob/6e3f52522033da04bc84d0c291d11d13f2dff36d/docs/versions/v2/cloud-r0-20261121/V2_FUNCTION_P0_CANDIDATE_CLOSURE_REPORT_20261121.md) `6e3f52522033da04bc84d0c291d11d13f2dff36d`。开发分支`codex/v2-function-completion-20261121`远端HEAD已回读为报告SHA；源码相对上批`63a2bbf24c4dff9b892ef94ba99dd34d0888f226`ahead3/behind0；报告相对源码ahead1/behind0且仅增加报告。顾问抽查源码/测试但未执行原始Windows日志/下载APK。详情见[独立顾问复核](V2_FUNCTION_P0_CANDIDATE_CLOSURE_ADVISOR_REVIEW_20261121.md)。
+- Codex回执PHP精选46/401断言0失败，扩围117/1496（与精选有重叠）、头像10/91，Flutter128，Dart8文件无问题，HTTPS80条具名状态/持久化。12条PHP旧精选FAIL全部有本轮PASS回执；相关测试保留，helper补完整合成资格/问卷/当前输入，非删测放宽门。上述运行PASS均为`CODEX_REPORTED`，全量PHP/Flutter本轮NOT_RUN，历史Q PHP46errors/122failures、旧盘25及R1扩围5 FAIL继续保留。
+- 慢约轮次/执行/候选/双方接受/Connection/Relationship双边确认/Block结束在**PHP+SQLite :memory: HMAC TEST_ONLY**正向测试中通过；`TrustedIdentityService::participationAllowed()`仅允许testing+SQLite内存签名测试主体。MariaDB HTTP现有证据是请求pending、真实provider缺失时confirm403，保持fail-closed。故`MARIADB_FORMAL_RELATIONSHIP_SYNTHETIC_POSITIVE_NOT_RUN`，真实KYC/真实Relationship激活不PASS。MariaDB multipart私有封面/头像、好友读字节、后加好友旧封面404、Block后封面/头像/作品404有`CODEX_REPORTED_LOCAL_API_PASS`；当前APK选图、视频和聊天附件仍未验。
+- APK报告身份：`com.elitesync.v2functionp0`，version`10.1.18-v2-function-p0`/1011805，arm64，209,094,024 bytes，SHA256`d6064498bac327f40f2b2df9c5ed9664c819b29dfaffa916eaf6f6df7b649c05`，Android Debug签名证书SHA256`9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09`。native+Dart均指向`https://127.0.0.1:18444/`及固定TLS证书；适用本机USB/ADB reverse，不是公网内测包。顾问未下载APK重算hash，安装/设备旅程仍`DEVICE_OWNER_GATE/NOT_RUN`。
+- 软著当前仅源码/功能/依赖许可索引，手册正文、同版真机截图、权利主体/委托与素材权属确认待完成。旧盘A/B/C、注册可信离线T0仍Owner待决；Push/RTC/真实KYC/删除受理外部依赖未通过。**封闭内测候选NO_GO，生产NO_GO**。Owner功能优先继续有效：不重启G0b/服务器迁移/PC清理，不恢复真实管理员，不合main。
+- 下一批唯一工程重点见[P0.2 MariaDB TEST_ONLY关系正向与Android单设备任务](../versions/v2/V2_FUNCTION_P0_2_MARIADB_RELATIONSHIP_AND_ANDROID_DEVICE_CLOSURE_BRIEF_20261121.md)：用严格DB identity + CLI/HMAC/短时/可撤销/仅合成账号的MariaDB测试资格补齐真实HTTP+持久化关系正向；Android 1011805仅在Owner具名授权单台设备后安装，ADB reverse本机18444，完成真实APP旅程；同步准备软著手册和同版截图索引。没有设备授权则不安装，继续其它本地工作。
+
+---
+
 # CURRENT ENTRY 2026-11-21：V2功能闭环批次已顾问限定接受；正式匹配与当前Android仍阻断内测候选
 
 **`V2_FUNCTION_LOCAL_E2E_ADVISOR_SCOPED_ACCEPTED_WITH_RESERVATIONS / CORE_FUNCTIONS_PARTIAL / PHP_SELECTED_12_FAIL / ANDROID_CURRENT_BUILD_NOT_RUN / COPYRIGHT_INDEX_ONLY / CLOSED_BETA_CANDIDATE_NO_GO / CLOUD_MIGRATION_DEFERRED / PRODUCTION_NO_GO`**
