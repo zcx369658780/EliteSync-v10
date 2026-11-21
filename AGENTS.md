@@ -1,7 +1,7 @@
 # 2026-11-21会话交接：P0.4.1限定验收完成，P0.4.2等待Codex交付
 
 - 固定交接：[SESSION_HANDOFF_20261121_V2_P0_4_1_ADVISOR_ACCEPTANCE_P0_4_2_PENDING.md](docs/workflow/SESSION_HANDOFF_20261121_V2_P0_4_1_ADVISOR_ACCEPTANCE_P0_4_2_PENDING.md)。新会话固定首读交接全文、ACTIVE_STATE顶部CURRENT ENTRY、P0.4.1顾问验收、P0.4.2任务单；不递归历史handoff。
-- P0.4.1实机报告 e4d1588acee62d8f8f166042c328e26cc951c14a，实机源码 00ca46f6b020afa25ce472509c2fd3227f74c461。1011806安装成功并保留1011805；整体DEVICE_E2E_PARTIAL。
+- P0.4.1实机报告 e4d1588acee62d8f8f166042c328e26cc951c14a，实机源码 00ca46f6b020afa25ce472509c2fd3227f74c461。开发分支远端HEAD另有文档交接提交 9fd84d2f2fd27d7226e8eb792de5d8cc829e9e82（ahead1，仅文档变更，无产品源码）；其ADVISOR_REVIEW_PENDING旧状态由治理分支当前顾问验收覆盖。1011806安装成功并保留1011805；整体DEVICE_E2E_PARTIAL。
 - P0隐私FAIL：Block关闭第1代CN/MC后，解除Block建立第2代CN/MC，旧第1代4条私信重新显示。Owner D-03规定历史默认不可读，除非独立history authority。稳定pair room_key/Conversation复用和按pair room_id读取全部消息是已抽查的根因路径。
 - 唯一下一工程任务为[P0.4.2会话代际历史隔离与设备缺口收口](docs/versions/v2/V2_P0_4_2_CONVERSATION_GENERATION_HISTORY_ISOLATION_AND_DEVICE_GAP_CLOSURE_TASK_20261121.md)。旧数据保留不删除；新代只读新代；覆盖消息/媒体/通知/预览/搜索/未读/回复引用和设备缺口。
 - Codex可本地开发、迁移、测试和构建候选；新APK安装需Owner另行明确授权。保留1011805/1011806。不得访问真实管理员/阿里云、云写/采购/开公网、合main、启动内测或生产。
