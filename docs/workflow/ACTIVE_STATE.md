@@ -1,3 +1,16 @@
+# CURRENT ENTRY 2026-11-21：Owner确认旧管理员身份恢复为封闭内测硬门；同事沿用原登录标识，不需重新注册
+
+**`OWNER_LEGACY_ADMIN_IDENTITY_CONTINUITY_REQUIRED_BEFORE_CLOSED_BETA / BETA_SHARED_REMOTE_V2_BACKEND_REQUIRED / LEGACY_ADMIN_REAL_DATA_GATE_PENDING / CLOUD_WRITE_AND_COST_GATE_PENDING / P0_3_DEVICE_E2E_PARTIAL_ACCEPTED / P0_4_FUNCTION_REMEDIATION_CONTINUES / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
+
+- Owner最新决定：旧阿里云管理员账号恢复必须作为封闭内测准备阶段的明确硬门；同事应沿用已存在账号身份/手机号登录标识，不应重新走V2公开注册创建重复账号。具体[Owner决定](../decisions/OWNER_V2_LEGACY_ADMIN_ACCOUNT_RECOVERY_REQUIRED_FOR_CLOSED_BETA_20261121.md)，[Beta共享后端与旧管理员恢复综合任务](../versions/v2/V2_BETA_PREP_SHARED_BACKEND_AND_LEGACY_ADMIN_RECOVERY_CONSOLIDATED_TASK_20261121.md)。
+- V2按现行`AdminAccess::allows()`要求账号存在、未禁用、role=admin、手机号精确命中服务器私有`ADMIN_PHONES`名单。旧手机号作为登录标识可在本人确认后保留，V2分配新user ID；旧密码hash、token/session、MFA secret/API key不迁移，改发一次性V2激活/重设凭据。不能导入全部旧admin或将admin角色推断成真实KYC verified。
+- 此决定将旧管理员身份恢复提升为**封闭内测准入硬门**，但不代表当前立刻读取/解密旧MariaDB真实行、备份SQL、写入阿里云、开放公网或购买云资源。原Owner数据门仍有效：先本地CLI/映射/幂等/回滚的虚构管理员演练；真实来源、被批准账号、字段白名单、隔离目标和操作者整理成单次Owner数据授权包，批准后才做真实恢复。旧主机2vCPU/2GiB/低可用内存和旧Laravel/MariaDB/Redis/LiveKit仍保护；现有阿里云优先候选但必须容量/隔离核准。外地同事必须有共享受限V2 HTTPS环境，本地127.0.0.1/ADB reverse不够。
+- P0.3固定实机报告`651f3dea30cb6744d6a3863e5d9f7a921ca7ae43`，整体`DEVICE_E2E_PARTIAL`；1011805仅通过本机USB reverse访问本机MariaDB，不是云端。阿里云V2后端仍未打通，真实旧管理员尚未恢复。P0.4端上Block、媒体、深链和写入UNKNOWN恢复继续是当前本地功能主线；本任务可并行做CLI设计/合成演练，不重启服务器采购主线。
+- Beta准备阶段须完成共享远程V2后端、Owner指定旧管理员最小身份迁移、每位同事本人从外地用新V2凭据登录APP/获准后台，管理员role/allowlist/session/CSRF/audit正反回归。**所有指定旧管理员身份恢复是内测硬门**；任何账户来源/持有人无法核实则明确BLOCKED并不放行该内测范围。
+- PC清理已关闭，13项零删除。真实KYC/Push/RTC/删除受理、旧排盘A/B/C、注册可信离线T0仍按原状态；软著申报、封闭内测、main、生产均NO_GO。
+
+---
+
 # CURRENT ENTRY 2026-11-21：P0.3 Android 1011805实机限定接受；阿里云V2未打通，旧管理员未恢复
 
 **`P0_3_DEVICE_E2E_PARTIAL_ADVISOR_SCOPED_ACCEPTED / LOCAL_LOOPBACK_BACKEND_ONLY / ALIYUN_V2_BACKEND_NOT_CONNECTED / REAL_LEGACY_ADMIN_ACCOUNTS_NOT_RESTORED / CORE_FUNCTIONS_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
