@@ -1,3 +1,13 @@
+# 2026-11-21最新Owner/顾问状态：P0.3实机限定接受；阿里云未打通，旧管理员未恢复
+
+- P0.3固定报告`651f3dea30cb6744d6a3863e5d9f7a921ca7ae43`，源码未变，报告提交只增加实机报告、手册、哈希索引。Android16实体机实际安装1011805，拉回APK复核SHA/签名；本地MariaDB+USB reverse旅程部分通过，整体`DEVICE_E2E_PARTIAL`。顾问限定验收见[报告](docs/workflow/V2_FUNCTION_P0_3_ANDROID_DEVICE_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- **重要：阿里云V2后端尚未打通；真实旧管理员账号没有恢复。** 1011805 endpoint是本机`127.0.0.1:18444`，通过USB ADB reverse接本机专用Docker/MariaDB。CLOUD-R0 G1云Staging、G2真实管理员恢复、G3云端Android均NOT_RUN。历史备份仅元数据核对；真实SQL/管理员数据未解密或迁移；合成管理员不等于旧账号。
+- 当前本机专用容器仍运行、数据卷保留；PC清理已结束。会议可在原测试PC重新启动USB reverse后用虚构账号演示已通过旅程，但不是共享服务端，同事其他设备不能直接访问。
+- 下一任务见[P0.4](docs/versions/v2/V2_FUNCTION_P0_4_DEVICE_PRIVACY_MEDIA_AND_RECOVERY_CLOSURE_BRIEF_20261121.md)：手机Block写入口/撤权控件、图片媒体和历史受众、外部URI、写入途中断网/UNKNOWN恢复、telemetry422、关系状态文案及截图索引。新APK替换1011805需另行Owner授权；本轮旧APK授权不能当作覆盖/卸载新包许可。
+- 旧盘A/B/C、注册离线T0仍Owner待决；真实KYC/Push/RTC/删除受理未通过。核心PARTIAL、封闭内测NO_GO、生产NO_GO；服务器迁移/真实管理员恢复后置。
+
+---
+
 # 2026-11-21最新Owner决定：V2功能优先；P0.2已验收，1011805单台实体Android实机已获Owner授权
 
 - 当前开发主线仍是**完成功能→软著材料准备→Owner另行批准封闭内测→之后考虑服务器更换**。服务器迁移、阿里云旧管理员恢复、G0b采购/备份补证、PC清理不再阻断本地功能开发。见[Owner功能优先决定](docs/decisions/OWNER_V2_FUNCTION_COMPLETENESS_BEFORE_SOFTWARE_COPYRIGHT_AND_CLOSED_BETA_20261121.md)。
