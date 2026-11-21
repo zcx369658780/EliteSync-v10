@@ -1,3 +1,17 @@
+# CURRENT ENTRY 2026-11-21：Beta准备本地合成管理员恢复限定接受；真实管理员与共享HTTPS仍阻断，P0.4并发读回待修
+
+**`LOCAL_SYNTHETIC_LEGACY_ADMIN_RESTORE_SCOPED_PASS / P0_4_FLUTTER_SCOPED_PASS_WITH_READBACK_CONCURRENCY_FIX_REQUIRED / REAL_ADMIN_DATA_NOT_AUTHORIZED / SHARED_HTTPS_CAPACITY_AND_CLOUD_WRITE_BLOCKED / CORE_FUNCTIONS_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
+
+- Codex固定报告：[Beta准备与旧管理员综合报告`0fd75198db3067782241b6777054050ac2af6918`](https://github.com/zcx369658780/EliteSync-v10/blob/0fd75198db3067782241b6777054050ac2af6918/docs/versions/v2/cloud-r0-20261121/V2_BETA_PREP_LEGACY_ADMIN_AND_SHARED_HTTPS_REPORT_20261121.md)，开发分支`codex/v2-function-completion-20261121`远端HEAD一致，相对P0.3`651f3dea30cb6744d6a3863e5d9f7a921ca7ae43`ahead3/behind0。顾问抽查恢复CLI/服务/激活页/迁移/权限合同/P0.4聊天源码和测试，未在本机重跑测试。详见[顾问限定验收](V2_BETA_PREP_LEGACY_ADMIN_AND_SHARED_HTTPS_ADVISOR_REVIEW_20261121.md)。
+- 本地合成恢复接受：两名虚构管理员，保留原手机号、新V2 ID、禁用初始状态、30分钟一次性激活码、新V2密码；APP登录API与实际Web后台、ADMIN_PHONES缺失拒绝、重签/过期/重用拒绝、幂等apply、回滚后令牌/设备/数据库会话/Web管理员会话撤销通过。PHP定向10项/100断言为Codex回执。真实管理员候选、旧行读取、备份解密、真实V2库写入、同事本人异地登录仍`NOT_RUN/BLOCKED_OWNER_DATA_GATE`。
+- **真实数据迁移前必须补强**：`LegacyAdminTarget`目前未完整核验实际DB username/port/`CURRENT_USER()`；Manifest批准主要是短引用与私有配置值匹配，没有独立Owner签名验证及每候选持有人原号码控制/旧admin allowlist命中证明。不得把本轮合成PASS扩大为真实恢复许可。现行V2合同仍是enabled+role=admin+私有ADMIN_PHONES。
+- P0.4 Flutter定向67项通过，端上Block入口/失权控件/关系ACTIVE文案已有代码；**消息UNKNOWN重试存在并发读回缺口**：`_retryUnconfirmedMessage()`等待的普通`_load()`可能因`_loading`等状态直接return，不能保证fresh GET后才重发。下批须显式序列化权威读回；读取失败保持UNKNOWN不重发。新APK/实机媒体/历史受众/外部URI均未验。1011805仍是P0.3旧源码包，新包安装覆盖须Owner另行授权。
+- 共享HTTPS报告`BLOCKED_CAPACITY_AND_OWNER_GATE`：旧上海机历史2vCPU/2GiB、空闲约627–628MiB、swap0，旧Laravel/MariaDB/Redis/LiveKit共驻；本轮新增云支出0、无新SSH/云写。现有本机`127.0.0.1`/ADB reverse不是异地共享服务。真实旧管理员和共享HTTPS都是封闭内测硬门，内测仍NO_GO。
+- 下一任务：[P0.4剩余功能+Beta管理员恢复工具加固](../versions/v2/V2_P0_4_AND_BETA_ADMIN_RECOVERY_HARDENING_CONSOLIDATED_TASK_20261121.md)：修复消息UNKNOWN并发读回；完成端上Block/媒体/深链/断网测试；增强恢复目标DB身份校验与Owner签名/候选持有人证明；准备不含真实PII的单次Owner数据授权包；给出共享HTTPS容量/费用选项。真实旧行读取/备份解密/真实V2写入/阿里云SSH部署/采购/公网变更均不在当前授权内。
+- Owner要求：旧管理员恢复是内测硬门，同事沿用原手机号登录标识，不需重复注册；V2新ID/新密码。Owner功能优先顺序继续有效：P0.4功能→软著材料→另行批准内测→再评估服务器替换。PC清理13项0删除维持关闭。旧盘A/B/C、注册可信离线T0、真实KYC/Push/RTC/法定删除、历史Q PHP46 errors/122 failures、旧盘25、R1 Flutter扩围5 FAIL均保留原状态。
+
+---
+
 # CURRENT ENTRY 2026-11-21：Owner确认旧管理员身份恢复为封闭内测硬门；同事沿用原登录标识，不需重新注册
 
 **`OWNER_LEGACY_ADMIN_IDENTITY_CONTINUITY_REQUIRED_BEFORE_CLOSED_BETA / BETA_SHARED_REMOTE_V2_BACKEND_REQUIRED / LEGACY_ADMIN_REAL_DATA_GATE_PENDING / CLOUD_WRITE_AND_COST_GATE_PENDING / P0_3_DEVICE_E2E_PARTIAL_ACCEPTED / P0_4_FUNCTION_REMEDIATION_CONTINUES / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
