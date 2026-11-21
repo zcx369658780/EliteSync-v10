@@ -26,7 +26,7 @@ Owner于2026-11-21在当前会话明确授权：
 授权正式记录：[Owner 1011806单设备安装与实机测试授权](../../decisions/OWNER_V2_ANDROID_1011806_DEVICE_INSTALL_AND_P0_4_TEST_AUTHORIZATION_20261121.md)。
 
 因此：
-- 状态从`WAITING_OWNER_EXPLICIT_1011806_INSTALL_APPROVAL`更新为`OWNER_AUTHORIZED / DEVICE_EXECUTION_PENDING`。
+- 当前有效状态为`OWNER_AUTHORIZED / DEVICE_EXECUTION_PENDING`；不再保留安装等待门。
 - Codex不得再次询问是否允许安装1011806或执行本任务。
 - 仅允许此前安装并测试1011805的同一台实体Android设备（上一轮记录Android16/API36）。用本机私有ADB记录核对原设备serial；完整serial不得写入GitHub。若设备不在线/身份无法核对/多台无法唯一匹配，停止安装并提出最小设备识别问题，不换设备或模拟器。
 - 安装前核实APK实际文件、209,094,076字节、SHA256、签名、包名、versionCode、native/Dart endpoint和TLS证书与本任务第0节固定值一致；任一不符STOP。
