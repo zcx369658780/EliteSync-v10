@@ -1,3 +1,13 @@
+# 2026-11-21｜当前V2工作流：P0.4功能收口 + Beta准备旧管理员身份恢复工具
+
+- Owner已明确：旧阿里云管理员身份恢复是封闭内测前的**强制准备门**，同事在外地使用原有管理员账号身份/手机号标识登录，不重新注册。权威[Owner决定](../decisions/OWNER_V2_LEGACY_ADMIN_ACCOUNT_RECOVERY_REQUIRED_FOR_CLOSED_BETA_20261121.md)，唯一综合任务[共享V2后端与旧管理员恢复](../versions/v2/V2_BETA_PREP_SHARED_BACKEND_AND_LEGACY_ADMIN_RECOVERY_CONSOLIDATED_TASK_20261121.md)。
+- 现行V2 AdminAccess合同：enabled+role=admin+服务器私有ADMIN_PHONES allowlist三条件；保留Owner确认的原登录标识，V2分配新ID并重设新密码/激活凭据；不迁移旧hash/token/session/MFA/API key，不导入所有admin，不把admin当KYC verified。
+- 当前Codex可并行准备恢复CLI、dry-run、幂等/回滚、一次性激活和合成管理员正反演练；**真实旧账号记录读取/解密/导入**必须在来源、持有人、字段、隔离目标和操作者列明后取得Owner具名数据门。阿里云部署、公网/费用/旧服务变更另过云写门。
+- 异地同事需共享受限HTTPS后端，本机127.0.0.1/ADB reverse无法满足。优先评估现有上海阿里云实例，但2GiB/低可用内存和旧Laravel/MariaDB/Redis/LiveKit使并行容量未证明；不自行采购或改生产。
+- 当前仍以P0.4端上Block/媒体/深链/写入UNKNOWN恢复为本地功能主线；云迁移和真实账号导入是Beta准备阶段工作，不阻断本地修复。P0.3实机整体PARTIAL；软著资料/封闭内测/生产状态按ACTIVE_STATE，内测须另经Owner批准。
+
+---
+
 # 2026-11-21｜P0.3实机限定验收完成；P0.4修复端上Block、媒体与恢复
 
 - P0.3报告`651f3dea30cb6744d6a3863e5d9f7a921ca7ae43`：1011805实际安装并核对拉回APK身份，Android16单机本地USB reverse到本机`127.0.0.1:18444`，登录/切号/三盘/TEST_ONLY候选、Connection/消息同意/文本私信/TEST_ONLY关系、Buddy和服务端Block后失权投影部分通过。整体`DEVICE_E2E_PARTIAL`，不是全功能PASS。顾问报告见[V2_FUNCTION_P0_3_ANDROID_DEVICE_ADVISOR_SCOPED_ACCEPTANCE_20261121.md](V2_FUNCTION_P0_3_ANDROID_DEVICE_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
