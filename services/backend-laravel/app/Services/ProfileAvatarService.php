@@ -79,7 +79,7 @@ final class ProfileAvatarService
 
     public function replace(User $owner, UploadedFile $input, int $expected): array
     {
-        abort_unless(app(LiveConsentService::class)->enabled(), 503, 'private avatar storage unavailable');
+        abort_unless(app(LiveConsentService::class)->availableForActor((int) $owner->id), 503, 'private avatar storage unavailable');
         DB::transaction(fn () => $this->requireRevisionLocked((int) $owner->id, $expected));
         $asset = app(PrivateProfileImageService::class)->store($owner, $input, 'profile_avatar', 'v1011_relationship');
         // Storage registration is independent: a failed concurrent pointer swap

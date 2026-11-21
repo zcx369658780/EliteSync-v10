@@ -38,6 +38,9 @@ final class V1007R1NotificationPrivacyTest extends TestCase
         $s->transition($this->recipient->id, $this->sender->id, 'connection', 'accept', 1);
         $s->transition($this->sender->id, $this->recipient->id, 'consent', 'request', 0);
         $s->transition($this->recipient->id, $this->sender->id, 'consent', 'accept', 1);
+        // Mark the preparation receipts before asserting unread message counts.
+        Sanctum::actingAs($this->recipient);
+        $this->postJson('/api/v1/notifications/read-all')->assertOk();
         Sanctum::actingAs($this->sender);
         $r = $this->postJson('/api/v1/messages', ['receiver_id' => $this->recipient->id, 'content' => 'PRIVATE MESSAGE BODY NEVER IN NOTIFICATIONS', 'client_message_id' => '423e4567-e89b-42d3-a456-426614174001'])->assertOk();
         $this->messageId = (int) $r->json('id');
@@ -54,25 +57,36 @@ final class V1007R1NotificationPrivacyTest extends TestCase
 
     private function projection(bool $allowed): void
     {
-        $r = $this->getJson('/api/v1/notifications')->assertOk();
+        $ids = AppNotificationItem::query()->where('kind', 'message')
+            ->where('user_id', $this->recipient->id)->pluck('id');
+        $this->assertNotEmpty($ids);
+        $r = $this->getJson('/api/v1/notifications?channel='.($allowed ? 'current' : 'history'))->assertOk();
         $this->assertStringNotContainsString('PRIVATE MESSAGE BODY', $r->getContent());
         $this->assertStringNotContainsString('PRIVATE SENDER IDENTITY', $r->getContent());
-        foreach ($r->json('items') as $item) {
-            $this->assertSame(NotificationService::MESSAGE_TITLE, $item['title']);
+        $messages = collect($r->json('items'))->whereIn('id', $ids);
+        $this->assertCount($ids->count(), $messages);
+        if (! $allowed) {
+            $current = $this->getJson('/api/v1/notifications')->assertOk()->json('items');
+            $this->assertEmpty(collect($current)->whereIn('id', $ids));
+        }
+        foreach ($messages as $item) {
             if ($allowed) {
+                $this->assertSame(NotificationService::MESSAGE_TITLE, $item['title']);
                 $this->assertSame('chat_room', $item['route_name']);
                 $this->assertSame((string) $this->conversationId, $item['route_args']['conversation_id']);
             } else {
+                $this->assertSame(NotificationService::UNAVAILABLE_TITLE, $item['title']);
                 $this->assertSame('', $item['route_name']);
-                $this->assertSame([], $item['route_args']);
+                $this->assertArrayNotHasKey('route_args', $item);
                 $this->assertSame([], $item['payload']);
+                $this->getJson('/api/v1/notifications/'.$item['id'])->assertOk()->assertJsonPath('item.payload', []);
             }
         }
     }
 
     public function test_new_storage_minimizes_private_content_and_legal_navigation_is_derived(): void
     {
-        $n = AppNotificationItem::firstOrFail();
+        $n = AppNotificationItem::where('kind', 'message')->sole();
         $this->assertSame(NotificationService::MESSAGE_TITLE, $n->title);
         $this->assertSame(NotificationService::MESSAGE_BODY, $n->body);
         $this->assertSame(['source' => 'message', 'message_id' => $this->messageId], $n->payload);
@@ -83,7 +97,7 @@ final class V1007R1NotificationPrivacyTest extends TestCase
         $this->getJson('/api/v1/notifications/unread-count')->assertOk()->assertJsonPath('unread_total', 1);
         $this->postJson('/api/v1/notifications/read-all')->assertOk()->assertJsonPath('affected', 1);
         $this->getJson('/api/v1/notifications/unread-count')->assertJsonPath('unread_total', 0);
-        $this->assertDatabaseCount('notifications', 2);
+        $this->assertSame(2, AppNotificationItem::where('kind', 'message')->count());
     }
 
     public function test_revoked_old_notifications_do_not_expose_content_identity_or_navigation(): void
@@ -115,13 +129,13 @@ final class V1007R1NotificationPrivacyTest extends TestCase
 
     public function test_spoofed_legacy_pointer_cannot_borrow_other_receivers_authority(): void
     {
-        AppNotificationItem::query()->delete();
         $third = User::factory()->create(['phone' => '19900000793', 'disabled' => false]);
         $n = $this->legacy();
         $n->forceFill(['user_id' => $third->id])->save();
         Sanctum::actingAs($third);
-        $this->projection(false);
+        $this->getJson('/api/v1/notifications/'.$n->id)->assertOk()->assertJsonPath('item.payload', []);
         $n->forceFill(['payload' => ['message_id' => 999999, 'route_name' => 'chat_room']])->save();
-        $this->projection(false);
+        $this->getJson('/api/v1/notifications/'.$n->id)->assertOk()->assertJsonPath('item.availability', 'history')
+            ->assertJsonPath('item.route_name', '')->assertJsonPath('item.payload', []);
     }
 }

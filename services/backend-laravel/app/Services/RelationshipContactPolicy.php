@@ -26,7 +26,8 @@ final class RelationshipContactPolicy
         $kind = 'friendship';
         if (! $source) {
             $kind = 'connection';
-            $source = DB::table('product_connections')->where($pair)->where('state', 'CN_ACTIVE')->orderByDesc('id')->lockForUpdate()->first();
+            $source = app(LiveConsentService::class)->connection($actor, $peer, true);
+            abort_unless($source?->state === 'CN_ACTIVE', 404, 'unavailable');
         }
         abort_unless($source, 404, 'unavailable');
         return ['request_source_kind' => $kind, 'request_source_id' => $source->id,
@@ -39,10 +40,16 @@ final class RelationshipContactPolicy
         $recipient = (int) $r->user_a === (int) $r->requester_id ? (int) $r->user_b : (int) $r->user_a;
         $pref = DB::table('privacy_preferences')->where('user_id', $recipient)->lockForUpdate()->first();
         if (! $pref?->requests_enabled || (int) $pref->requests_revision !== (int) $r->request_permission_revision) { return false; }
-        $table = match ($r->request_source_kind) { 'friendship' => 'friendships', 'connection' => 'product_connections', default => null };
-        if (! $table) { return false; }
-        return DB::table($table)->where('id', $r->request_source_id)->where('revision', $r->request_source_revision)
-            ->where('user_a', $r->user_a)->where('user_b', $r->user_b)->where('state', $table === 'friendships' ? 'ACTIVE' : 'CN_ACTIVE')->lockForUpdate()->exists();
+        $source = match ($r->request_source_kind) {
+            'friendship' => app(SocialPolicy::class)->friendship((int) $r->user_a, (int) $r->user_b),
+            'connection' => app(LiveConsentService::class)->connection((int) $r->user_a, (int) $r->user_b, true),
+            default => null,
+        };
+        $state = $r->request_source_kind === 'friendship' ? 'ACTIVE' : 'CN_ACTIVE';
+
+        return $source && $source->state === $state
+            && (string) $source->id === (string) $r->request_source_id
+            && (int) $source->revision === (int) $r->request_source_revision;
     }
 
     public function throttle(int $actor, int $peer): void

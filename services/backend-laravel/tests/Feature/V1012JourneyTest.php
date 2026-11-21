@@ -90,6 +90,7 @@ class V1012JourneyTest extends TestCase
         $b = User::factory()->create(['phone' => 'real-b', 'is_synthetic' => false,
             'verify_status' => 'approved', 'realname_verified' => true]);
         $r = $this->relationship($a, $b);
+        $this->assertSame(['withdraw', 'end'], $r['allowed_actions']);
         $this->action($a, $r, 'confirm', 'real-confirm')->assertForbidden();
         $this->postJson("/api/v1/formal-relationships/{$r['id']}/actions", [
             'action' => 'confirm', 'revision' => 1, 'idempotency_key' => 'forged', 'verified' => true,

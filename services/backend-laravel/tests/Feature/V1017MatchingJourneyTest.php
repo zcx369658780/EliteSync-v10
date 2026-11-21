@@ -450,6 +450,54 @@ class V1017MatchingJourneyTest extends TestCase
             ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'late-accept'])->assertConflict();
     }
 
+    public function test_revealed_round_leads_to_independent_relationship_and_block_revokes_it(): void
+    {
+        $a = $this->subject();
+        $b = $this->subject('female');
+        [$round] = $this->generate($a, $b);
+        $this->reveal($round);
+        $proposal = app(SlowDatingService::class)->proposal($a->id);
+        $decision = "/api/v1/journey/proposals/{$proposal['id']}/decision";
+        $this->actingAs($a, 'sanctum')->postJson($decision,
+            ['action' => 'accept', 'revision' => 1, 'idempotency_key' => 'round-a'])->assertOk()
+            ->assertJsonPath('connection_eligible', false);
+        $this->actingAs($b, 'sanctum')->postJson($decision,
+            ['action' => 'accept', 'revision' => 2, 'idempotency_key' => 'round-b'])->assertOk()
+            ->assertJsonPath('connection_eligible', true);
+        $this->putJson('/api/v1/journey/participation',
+            ['action' => 'opt_in', 'revision' => 0, 'intent' => 'stale'])->assertConflict();
+        $this->postJson('/api/v1/social/preferences', ['requests_enabled' => true])->assertOk();
+        $this->actingAs($a, 'sanctum')->postJson('/api/v1/formal-relationships',
+            ['peer_id' => $b->id, 'idempotency_key' => 'relationship-a'])->assertNotFound();
+        $this->postJson("/api/v1/connections/{$b->id}/connection",
+            ['action' => 'request', 'expected_revision' => 0])->assertOk();
+        $this->actingAs($b, 'sanctum')->postJson("/api/v1/connections/{$a->id}/connection",
+            ['action' => 'accept', 'expected_revision' => 1])->assertOk()
+            ->assertJsonPath('gates.live_send_allowed', false);
+        $relationship = $this->actingAs($a, 'sanctum')->postJson('/api/v1/formal-relationships',
+            ['peer_id' => $b->id, 'idempotency_key' => 'relationship-a'])->assertOk()
+            ->assertJsonPath('test_only', true)->json();
+        $actions = "/api/v1/formal-relationships/{$relationship['id']}/actions";
+        $first = ['action' => 'confirm', 'revision' => 1, 'idempotency_key' => 'relationship-confirm-a'];
+        $this->postJson($actions, $first)->assertOk()->assertJsonPath('state', 'PENDING_MUTUAL');
+        $this->postJson($actions, $first)->assertOk()->assertJsonPath('revision', 2);
+        $second = ['action' => 'confirm', 'revision' => 2, 'idempotency_key' => 'relationship-confirm-b'];
+        $this->actingAs($b, 'sanctum')->postJson($actions, $second)->assertOk()->assertJsonPath('state', 'ACTIVE');
+        $this->assertDatabaseCount('formal_relationship_slots', 2);
+        $this->assertDatabaseCount('messaging_consents', 0);
+        $this->getJson('/api/v1/messages?peer_id='.$a->id)->assertNotFound();
+
+        $this->postJson('/api/v1/moderation/blocks', ['blocked_user_id' => $a->id, 'reason_code' => 'fixture'])
+            ->assertOk();
+        $this->postJson($actions, $second)->assertConflict();
+        $this->getJson('/api/v1/formal-relationships')->assertOk()
+            ->assertJsonPath('relationships.0.state', 'ENDED')
+            ->assertJsonPath('relationships.0.allowed_actions', []);
+        $this->getJson("/api/v1/connections/{$a->id}")->assertNotFound();
+        $this->assertDatabaseCount('formal_relationship_slots', 0);
+        $this->assertDatabaseHas('match_proposals', ['id' => $proposal['id'], 'state' => 'MUTUALLY_ACCEPTED']);
+    }
+
     public function test_decline_is_independent_and_exit_releases_slot_without_peer_rejection(): void
     {
         $a = $this->subject();

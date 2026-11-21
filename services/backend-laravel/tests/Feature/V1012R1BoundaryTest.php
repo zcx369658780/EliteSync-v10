@@ -6,6 +6,8 @@ use App\Models\QuestionnaireAnswer;
 use App\Models\QuestionnaireQuestion;
 use App\Models\User;
 use App\Services\LiveConsentService;
+use App\Services\LifestyleDiscoveryService;
+use App\Services\MatchingInputService;
 use App\Services\TrustedIdentityService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +25,7 @@ class V1012R1BoundaryTest extends TestCase
         parent::setUp();
         config(['restoration.enabled' => true, 'journey.test_issuer_enabled' => true,
             'journey.test_issuer_key' => str_repeat('fixture-only-key-', 3),
+            'matching.debug.include_synthetic_users_default' => true,
             'questionnaire.required_answer_count' => 1]);
         $this->travelTo(now()->setDate(2026, 10, 21)->setTime(12, 0));
     }
@@ -86,6 +89,24 @@ class V1012R1BoundaryTest extends TestCase
         $this->assertDatabaseCount('formal_relationship_slots', 0);
         $this->assertDatabaseMissing('formal_relationships', ['id' => $r['id'], 'state' => 'ACTIVE']);
         $this->assertDatabaseMissing('journey_commands', ['idempotency_key' => 'confirm-after-off-on']);
+    }
+
+    public function test_connection_authority_loss_cannot_reuse_a_stored_active_row(): void
+    {
+        $a = $this->subject('a'); $b = $this->subject('b');
+        $this->preferences($b, true);
+        $this->connection($a, $b);
+        $r = $this->request($a, $b->id, 'cn-request')->assertOk()->json();
+
+        config(['restoration.enabled' => false]);
+        $this->request($a, $b->id, 'cn-request')->assertNotFound();
+        $this->request($a, $b->id, 'new-key')->assertNotFound();
+        $this->getJson('/api/v1/formal-relationships')->assertOk()
+            ->assertJsonPath('relationships.0.state', 'WITHDRAWN')
+            ->assertJsonPath('relationships.0.allowed_actions', []);
+        $this->assertDatabaseHas('formal_relationships', ['id' => $r['id'], 'state' => 'WITHDRAWN']);
+        $this->assertDatabaseHas('product_connections', ['state' => 'CN_ACTIVE']);
+        $this->assertDatabaseCount('formal_relationships', 1);
     }
 
     public function test_pending_request_cannot_substitute_a_new_source_or_restored_source_revision(): void
@@ -325,17 +346,30 @@ class V1012R1BoundaryTest extends TestCase
 
     private function qualify(User $u): void
     {
-        $this->completeLifestyleFixture((int) $u->id);
-        $q = QuestionnaireQuestion::create(['question_key' => 'default', 'category' => 'test',
+        if (! app(LifestyleDiscoveryService::class)->completed((int) $u->id)) {
+            $this->completeLifestyleFixture((int) $u->id);
+        }
+        $q = QuestionnaireQuestion::firstOrCreate(['question_key' => 'default'], ['category' => 'test',
             'content' => 'Synthetic preference', 'question_type' => 'single_choice',
             'options' => [['option_id' => 'A']], 'sort_order' => 0, 'enabled' => true, 'version' => 1]);
-        QuestionnaireAnswer::create(['user_id' => $u->id, 'questionnaire_question_id' => $q->id,
-            'answer_payload' => ['selected_answer' => ['A']], 'version' => 1]);
+        QuestionnaireAnswer::updateOrCreate(['user_id' => $u->id, 'questionnaire_question_id' => $q->id],
+            ['answer_payload' => ['selected_answer' => ['A']], 'selected_answer_json' => ['A'],
+                'acceptable_answers_json' => ['A'], 'version' => 1]);
     }
 
     /** Real FK parents, no matching execution or external service. */
     private function proposal(User $a, User $b): string
     {
+        $this->identities($a, $b);
+        $inputs = app(MatchingInputService::class);
+        foreach ([$a, $b] as $user) {
+            $this->qualify($user);
+            $inputs->save($user->id, [
+                'revision' => $inputs->read($user)['revision'], 'confirm' => true,
+                'birthday' => '1995-01-02', 'gender' => 'male', 'city_key' => 'QA',
+                'relationship_goal' => 'marriage', 'age_mode' => 'adult_any', 'region_mode' => 'same_city',
+            ]);
+        }
         $stamp = ['created_at' => now(), 'updated_at' => now()];
         DB::table('dating_round_channels')->insertOrIgnore(['channel_key' => 'default'] + $stamp);
         $round = DB::table('dating_rounds')->insertGetId(['round_key' => (string) Str::uuid(),

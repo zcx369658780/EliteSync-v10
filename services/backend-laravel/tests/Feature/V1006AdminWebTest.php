@@ -102,9 +102,19 @@ final class V1006AdminWebTest extends TestCase
     public function test_active_refresh_retains_response_contract(): void
     {
         $user = $this->account();
-        $token = $user->createToken('old')->plainTextToken;
-        $this->withToken($token)->postJson('/api/v1/auth/refresh')->assertOk()
-            ->assertJsonPath('user.id', $user->id)->assertJsonStructure(['access_token', 'token_type', 'user']);
+        $legacy = $user->createToken('old')->plainTextToken;
+        $this->withToken($legacy)->postJson('/api/v1/auth/refresh')->assertUnauthorized();
+        $session = $this->postJson('/api/v1/auth/login',
+            ['phone' => $user->phone, 'password' => 'fixture-password', 'device_id' => 'fixture-refresh-device'])
+            ->assertOk()->json();
+        $this->app['auth']->forgetGuards();
+        $rotated = $this->withToken($session['refresh_token'])->postJson('/api/v1/auth/refresh')->assertOk()
+            ->assertJsonPath('user.id', $user->id)
+            ->assertJsonPath('session_id', $session['session_id'])
+            ->assertJsonStructure(['access_token', 'token_type', 'user'])->json();
+        $this->assertNotSame($session['access_token'], $rotated['access_token']);
+        $this->app['auth']->forgetGuards();
+        $this->withToken($session['refresh_token'])->postJson('/api/v1/auth/refresh')->assertUnauthorized();
     }
 
     public function test_city_is_persisted_without_creating_algorithm_records_and_invalid_input_is_rejected(): void

@@ -12,6 +12,7 @@ services:
       DB_DATABASE: elitesync_v2_function
       DB_USERNAME: elitesync_function_app
       V2_SYNTHETIC_CONNECTION_ENABLED: 'true'
+      MEDIA_STORAGE_DISK: v1011_relationship
   r0-worker:
     environment:
       DB_DATABASE: elitesync_v2_function

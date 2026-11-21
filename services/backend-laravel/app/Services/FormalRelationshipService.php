@@ -93,7 +93,7 @@ final class FormalRelationshipService
                 app(TrustedIdentityService::class)->requireParticipation((int) $r->user_a, (int) $r->user_b);
             }
 
-            return app(JourneyStore::class)->command($actor, $key, ['relationship_action', $id, $action, $revision], function () use ($actor, $r, $action, $revision) {
+            app(JourneyStore::class)->command($actor, $key, ['relationship_action', $id, $action, $revision], function () use ($actor, $r, $action, $revision) {
                 abort_unless((int) $r->revision === $revision, 409, 'stale relationship revision');
                 abort_if(in_array($r->state, self::TERMINAL, true), 409, 'terminal relationship');
                 $a = (bool) $r->confirmed_a;
@@ -140,8 +140,10 @@ final class FormalRelationshipService
                 $this->change($r, $next, $a, $b);
                 app(JourneyStore::class)->audit($actor, $r->id, strtoupper($action), ['state' => $next, 'revision' => $r->revision, 'confirmation_generation' => $r->confirmation_generation]);
 
-                return $this->project($r, $actor);
+                return ['id' => $r->id, 'revision' => (int) $r->revision];
             });
+
+            return $this->project($r, $actor);
         });
     }
 
@@ -175,6 +177,12 @@ final class FormalRelationshipService
             'PAUSED', 'SUSPENDED_REVERIFY' => ['resume', 'end'],
             default => [],
         };
+        if (in_array('confirm', $actions, true) || in_array('resume', $actions, true)) {
+            $identity = app(TrustedIdentityService::class);
+            if (! $identity->participationAllowed((int) $r->user_a) || ! $identity->participationAllowed((int) $r->user_b)) {
+                $actions = array_values(array_diff($actions, ['confirm', 'resume']));
+            }
+        }
 
         return ['allowed_actions' => $actions, 'id' => $r->id, 'peer_id' => (int) ($isA ? $r->user_b : $r->user_a), 'state' => $r->state, 'revision' => (int) $r->revision, 'confirmation_generation' => (int) $r->confirmation_generation, 'confirmed_me' => (bool) ($isA ? $r->confirmed_a : $r->confirmed_b), 'confirmed_peer' => (bool) ($isA ? $r->confirmed_b : $r->confirmed_a), 'test_only' => (bool) $r->test_only];
     }

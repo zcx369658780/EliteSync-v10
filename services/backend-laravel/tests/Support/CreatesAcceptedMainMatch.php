@@ -13,8 +13,10 @@ trait CreatesAcceptedMainMatch
     {
         // Match decisions now recheck the current preparation contract. Give
         // this controlled fixture valid inputs instead of weakening that gate.
+        config(['matching.debug.include_synthetic_users_default' => true]);
         foreach ([$a, $b] as $user) {
             $user->update(['verify_status' => 'approved']);
+            $this->authorizeTestParticipation($user);
             $required = max(1, (int) config('questionnaire.required_answer_count', 10));
             for ($i = 0; $i < $required; $i++) {
                 $question = \App\Models\QuestionnaireQuestion::firstOrCreate(
@@ -25,7 +27,8 @@ trait CreatesAcceptedMainMatch
                 );
                 \App\Models\QuestionnaireAnswer::updateOrCreate(
                     ['user_id' => $user->id, 'questionnaire_question_id' => $question->id],
-                    ['answer_payload' => ['selected_answer' => ['A']], 'version' => 1],
+                    ['answer_payload' => ['selected_answer' => ['A']], 'selected_answer_json' => ['A'],
+                        'acceptable_answers_json' => ['A'], 'version' => 1],
                 );
             }
             $input = app(\App\Services\MatchingInputService::class);

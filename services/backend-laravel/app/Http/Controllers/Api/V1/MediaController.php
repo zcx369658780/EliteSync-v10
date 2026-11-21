@@ -11,6 +11,7 @@ use App\Services\LiveConsentService;
 use App\Services\MediaAssetService;
 use App\Services\PrivateVideoValidator;
 use App\Services\SocialPolicy;
+use App\Services\SyntheticConnectionScope;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,14 +40,21 @@ class MediaController extends Controller
 
     public function store(Request $request, MediaAssetService $service): JsonResponse
     {
-        if (in_array(config('media.disk'), ['v1009', 'v1011_relationship'], true)) {
-            abort_unless(app(LiveConsentService::class)->enabled(), 404);
+        $scope = app(SyntheticConnectionScope::class);
+        $fixture = $scope->targetsFixtureRuntime();
+        $private = app(LiveConsentService::class)->enabled() || $fixture;
+        $disk = config('media.disk');
+        if ($fixture) {
+            abort_unless($scope->allowsActor((int) $request->user()->id) && $disk === 'v1011_relationship', 404);
+            $request->validate(['media_type' => 'required|in:image', 'file' => 'required|mimetypes:image/png,image/jpeg']);
+        } elseif (in_array($disk, ['v1009', 'v1011_relationship'], true)) {
+            abort_unless($private, 404);
         }
-        if (app(LiveConsentService::class)->enabled()) {
-            abort_unless(in_array(config('media.disk'), ['v1007', 'v1009', 'v1011_relationship'], true), 422, 'private media configuration required');
+        if ($private) {
+            abort_unless(in_array($disk, ['v1007', 'v1009', 'v1011_relationship'], true), 422, 'private media configuration required');
             $request->validate(['media_type' => 'required|in:image,video,audio', 'file' => 'required|file', 'storage_key' => 'prohibited', 'public_url' => 'prohibited']);
             if ($request->input('media_type') === 'video') {
-                abort_unless(in_array(config('media.disk'), ['v1009', 'v1011_relationship'], true), 422, 'private video configuration required');
+                abort_unless(in_array($disk, ['v1009', 'v1011_relationship'], true), 422, 'private video configuration required');
             } elseif ($request->input('media_type') === 'image') {
                 $request->validate(['file' => 'required|image|max:5120']);
             } else {
@@ -68,19 +76,18 @@ class MediaController extends Controller
             'metadata' => ['nullable', 'array'],
         ]);
 
-        if (app(LiveConsentService::class)->enabled() && $request->input('media_type') === 'video') {
+        if ($private && $request->input('media_type') === 'video') {
             $data = array_merge($data, app(PrivateVideoValidator::class)->validate($request->file('file')));
         }
 
         if ($request->input('media_type') === 'audio') {
-            abort_unless(app(LiveConsentService::class)->enabled(), 404);
+            abort_unless($private, 404);
             $data = array_merge($data, app(\App\Services\PrivateAudioValidator::class)->validate($request->file('file')));
         }
 
         try {
             if ($request->hasFile('file')) {
                 $file = $request->file('file');
-                $private = app(LiveConsentService::class)->enabled();
                 $data['mime_type'] = $request->input('media_type') === 'audio' ? 'audio/mp4'
                     : (string) ($private ? $file?->getMimeType() : ($data['mime_type'] ?? $file?->getMimeType() ?? ''));
                 $data['size_bytes'] = (int) ($private ? $file?->getSize() : ($data['size_bytes'] ?? $file?->getSize() ?? 0));
@@ -203,7 +210,9 @@ class MediaController extends Controller
     {
         $viewer = auth('sanctum')->user();
         $service = app(LiveConsentService::class);
-        if (! $viewer || ! $service->enabled()) {
+        $scope = app(SyntheticConnectionScope::class);
+        if (! $viewer || (! $service->enabled() &&
+            (! $scope->allowsActor((int) $viewer->id) || ! $scope->allowsActor($owner)))) {
             return response()->json(['message' => 'media asset unavailable'], 404);
         }
 
@@ -213,8 +222,10 @@ class MediaController extends Controller
         $participants = $candidates->flatMap(fn ($m) => [(int) $m->sender_id, (int) $m->receiver_id])
             ->push((int) $viewer->id, $owner)->unique()->sort()->values()->all();
 
-        return DB::transaction(function () use ($viewer, $service, $id, $owner, $participants) {
+        return DB::transaction(function () use ($viewer, $service, $scope, $id, $owner, $participants) {
             app(\App\Services\JourneyStore::class)->users($participants,true);
+            abort_if($scope->targetsFixtureRuntime() &&
+                (! $scope->allowsActor((int) $viewer->id) || ! $scope->allowsActor($owner)), 404, 'unavailable');
             $users = User::whereIn('id', $participants)->orderBy('id')->lockForUpdate()->get()->keyBy('id');
             if (! $users->get($viewer->id) || $users->get($viewer->id)->disabled || ! $users->get($owner) || $users->get($owner)->disabled) {
                 return response()->json(['message' => 'media asset unavailable'], 404);

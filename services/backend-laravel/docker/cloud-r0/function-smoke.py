@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Local fixture with real HTTPS, Laravel and MariaDB. Run from the dedicated WSL only."""
 import argparse
+import base64
 from datetime import datetime, timedelta, timezone
 from html.parser import HTMLParser
 from http.cookiejar import CookieJar
@@ -79,7 +80,9 @@ class Fixture:
         if token:
             extra["Authorization"] = f"Bearer {token}"
         data = None
-        if body is not None:
+        if isinstance(body, bytes):
+            data = body
+        elif body is not None:
             extra["Content-Type"] = "application/x-www-form-urlencoded" if form else "application/json"
             data = (urlencode(body) if form else json.dumps(body)).encode()
         try:
@@ -91,7 +94,13 @@ class Fixture:
             actual = result.status
             print(f"{label} HTTP {actual}", flush=True)
             require(status == actual, f"{label} expected {status}, got {actual}")
-            data = json.loads(raw) if result.headers.get_content_type() == "application/json" else raw.decode("utf-8")
+            content_type = result.headers.get_content_type()
+            if content_type == "application/json":
+                data = json.loads(raw)
+            elif content_type.startswith("image/"):
+                data = raw
+            else:
+                data = raw.decode("utf-8")
             return data, result.headers
 
     def call(self, label, method, path, status, token=None, body=None, **kwargs):
@@ -384,12 +393,86 @@ def admin(f, actors, target_id, target_token):
     web("web-logout-revokes-page", "GET", "/admin", 302, allowed)
 
 
+def p0_media_and_session(f, actors, ordinary):
+    accounts = [actors[key] for key in ("alpha", "beta", "gamma")]
+    owner, friend, later_friend = [f.login(user["phone"]) for user in accounts]
+    at, bt, ct = [session["access_token"] for session in (owner, friend, later_friend)]
+    refresh = f.call("valid-device-refresh", "POST", "/auth/refresh", 200, owner["refresh_token"])
+    require(refresh["session_id"] == owner["session_id"] and refresh["access_token"] != at, "rotation preserves original session")
+    f.call("reused-device-refresh", "POST", "/auth/refresh", 401, owner["refresh_token"])
+    f.call("rotated-access-token-denied", "GET", "/profile/basic", 401, at)
+    at = refresh["access_token"]
+    f.call("fresh-access-token", "GET", "/profile/basic", 200, at)
+    journey = f.call("fixture-does-not-enable-formal-identity", "GET", "/journey", 200, at)
+    require(journey["identity"]["formal_participation_available"] is False, "real identity gate")
+    f.call("synthetic-formal-opt-in-denied", "PUT", "/journey/participation", 403, at,
+           {"action": "opt_in", "intent": "Fixture", "revision": 0})
+    friendship(f, at, bt)
+    relationship = f.call("existing-friend-can-request-pending", "POST", "/formal-relationships", 200, at,
+                          {"peer_id": accounts[1]["id"], "idempotency_key": str(uuid4())})
+    require(relationship["state"] == "PENDING_MUTUAL" and "confirm" not in relationship["allowed_actions"],
+            "missing qualification hides confirmation")
+    f.call("relationship-confirm-denied", "POST", f"/formal-relationships/{relationship['id']}/actions", 403, bt,
+           {"action": "confirm", "revision": relationship["revision"], "idempotency_key": str(uuid4())})
+
+    image = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a2ioAAAAASUVORK5CYII=")
+
+    def upload(label, path, token, status, fields, binary=image):
+        boundary = uuid4().hex
+        data = b"".join(
+            f'--{boundary}\r\nContent-Disposition: form-data; name="{key}"\r\n\r\n{value}\r\n'.encode()
+            for key, value in fields.items()
+        )
+        data += (f'--{boundary}\r\nContent-Disposition: form-data; name="file"; filename="fixture.png"\r\n'
+                 'Content-Type: image/png\r\n\r\n').encode() + binary + f"\r\n--{boundary}--\r\n".encode()
+        return f.call(label, "POST", path, status, token, data,
+                      headers={"Content-Type": f"multipart/form-data; boundary={boundary}"})
+
+    fields = {"media_type": "image"}
+    upload("cover-ordinary-account-denied", "/media", ordinary, 404, fields)
+    upload("cover-mime-denied", "/media", at, 422, fields, b"not-a-png")
+    upload("cover-size-denied", "/media", at, 422, fields, image + bytes(5 * 1024 * 1024))
+    cover = upload("cover-private-upload", "/media", at, 200, fields)["asset"]
+    require(cover["storage_disk"] == "v1011_relationship" and cover["status"] == "ready", "cover ready private storage")
+    avatar = upload("avatar-private-upload", "/profile/avatar", at, 200, {"expected_revision": 0})
+    avatar_path = avatar["avatar"]["content_path"].removeprefix(API)
+    upload("avatar-old-revision-denied", "/profile/avatar", at, 409, {"expected_revision": 0})
+    post = f.call("publish-with-private-cover", "POST", "/status/posts", 201, at,
+                  {"title": "Fixture with private cover", "body": "Synthetic media fixture",
+                   "audience": "FRIENDS", "cover_media_asset_id": cover["id"]})["item"]
+    cover_path = f"/media/{cover['id']}/content"
+    raw, headers = f.request("original-friend-cover-bytes", "GET", API + cover_path, 200, bt)
+    require(raw == image and "no-store" in headers["Cache-Control"], "private cover bytes and cache policy")
+    avatar_bytes, headers = f.request("friend-avatar-bytes", "GET", API + avatar_path, 200, bt)
+    require(avatar_bytes.startswith(b"\x89PNG\r\n\x1a\n") and "no-store" in headers["Cache-Control"], "private avatar bytes and cache policy")
+    f.call("third-party-avatar-denied", "GET", avatar_path, 404, ct)
+    friendship(f, at, ct)
+    f.call("new-friend-post-readable", "GET", f"/status/posts/{post['id']}", 200, ct)
+    f.call("new-friend-old-cover-denied", "GET", cover_path, 404, ct)
+    f.call("media-block-peer", "POST", "/moderation/blocks", 200, at, {"blocked_user_id": accounts[1]["id"]})
+    f.call("blocked-cover-old-link", "GET", cover_path, 404, bt)
+    f.call("blocked-avatar-old-link", "GET", avatar_path, 404, bt)
+    f.call("blocked-post-old-link", "GET", f"/status/posts/{post['id']}", 404, bt)
+    f.call("cover-owner-still-authorized", "GET", cover_path, 200, at)
+    require(f.php(f"""echo json_encode([
+      DB::table('media_assets')->where('id',{int(cover['id'])})->value('status'),
+      DB::table('user_profile_avatars')->where('user_id',{int(accounts[0]['id'])})->value('revision'),
+      DB::table('status_posts')->where('id',{int(post['id'])})->value('cover_media_asset_id'),
+      DB::table('formal_relationship_slots')->count(),
+    ]), PHP_EOL;""") == ["ready", avatar["revision"], cover["id"], 0], "media and identity persistence")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("compose_folder", type=Path)
-    fixture = Fixture(parser.parse_args().compose_folder)
+    parser.add_argument("--p0", action="store_true", help="run the P0 media, session and admin checks")
+    args = parser.parse_args()
+    fixture = Fixture(args.compose_folder)
     people = seed(fixture)
     uid, bearer = account_and_natal(fixture)
-    buddy(fixture, relation(fixture, people, uid, bearer), bearer)
+    if args.p0:
+        p0_media_and_session(fixture, people, bearer)
+    else:
+        buddy(fixture, relation(fixture, people, uid, bearer), bearer)
     admin(fixture, people, uid, bearer)
     print("function fixture: PASS", flush=True)
