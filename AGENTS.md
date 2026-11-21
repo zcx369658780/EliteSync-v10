@@ -1,3 +1,14 @@
+# 2026-11-21会话交接：P0.4.1限定验收完成，P0.4.2等待Codex交付
+
+- 固定交接：[SESSION_HANDOFF_20261121_V2_P0_4_1_ADVISOR_ACCEPTANCE_P0_4_2_PENDING.md](docs/workflow/SESSION_HANDOFF_20261121_V2_P0_4_1_ADVISOR_ACCEPTANCE_P0_4_2_PENDING.md)。新会话固定首读交接全文、ACTIVE_STATE顶部CURRENT ENTRY、P0.4.1顾问验收、P0.4.2任务单；不递归历史handoff。
+- P0.4.1实机报告 e4d1588acee62d8f8f166042c328e26cc951c14a，实机源码 00ca46f6b020afa25ce472509c2fd3227f74c461。1011806安装成功并保留1011805；整体DEVICE_E2E_PARTIAL。
+- P0隐私FAIL：Block关闭第1代CN/MC后，解除Block建立第2代CN/MC，旧第1代4条私信重新显示。Owner D-03规定历史默认不可读，除非独立history authority。稳定pair room_key/Conversation复用和按pair room_id读取全部消息是已抽查的根因路径。
+- 唯一下一工程任务为[P0.4.2会话代际历史隔离与设备缺口收口](docs/versions/v2/V2_P0_4_2_CONVERSATION_GENERATION_HISTORY_ISOLATION_AND_DEVICE_GAP_CLOSURE_TASK_20261121.md)。旧数据保留不删除；新代只读新代；覆盖消息/媒体/通知/预览/搜索/未读/回复引用和设备缺口。
+- Codex可本地开发、迁移、测试和构建候选；新APK安装需Owner另行明确授权。保留1011805/1011806。不得访问真实管理员/阿里云、云写/采购/开公网、合main、启动内测或生产。
+- 工作流不恢复网页GPT逐个小任务派单；Codex负责日常工程和自验，网页GPT收到固定报告后集中独立验收。GitHub治理分支不替代本地工程树。
+
+---
+
 # 2026-11-21最新状态：P0.4.1实机PARTIAL，解除Block后旧私信历史重新出现为P0隐私FAIL
 
 - P0.4.1固定实机报告`e4d1588acee62d8f8f166042c328e26cc951c14a`，实机源码`00ca46f6b020afa25ce472509c2fd3227f74c461`，报告提交仅增加报告/手册，无产品源码变化。1011806安装成功、保留1011805；冷启动/登录切号/资料/三盘/消息UNKNOWN/Block生效期间撤权为Codex报告限定证据。整体`DEVICE_E2E_PARTIAL`。
