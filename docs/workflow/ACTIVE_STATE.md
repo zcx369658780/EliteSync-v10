@@ -1,3 +1,16 @@
+# CURRENT ENTRY 2026-11-21：P0.2 MariaDB TEST_ONLY关系链限定验收通过；Owner已授权1011805单台实体Android实测
+
+**`P0_2_MARIADB_TEST_ONLY_E2E_ADVISOR_SCOPED_ACCEPTED / PHP_TARGETED_127_PASS_CODEX_REPORTED / ANDROID_HOST_PREFLIGHT_CODEX_REPORTED_PASS / OWNER_AUTHORIZED_SINGLE_DEVICE / DEVICE_REVERSE_INSTALL_AND_E2E_PENDING / MANUAL_DRAFT_ACCEPTED / CORE_FUNCTIONS_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
+
+- 固定本轮源码`362abd618a1f670e313b365b60b5dfe1f6ab71b8`，报告`daa96756f96fb6fd62845323ebd3c53d2b2438d2`，开发分支`codex/v2-function-completion-20261121`远端HEAD回读与报告一致。P0.2顾问限定验收：[复核报告](V2_FUNCTION_P0_2_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。顾问直接抽查MariaDB签发器/CLI/DB scope/compose/HTTPS smoke/Android PowerShell脚本/手册；未本地运行原始测试、未下载APK重算。
+- MariaDB10.11.19专用`elitesync_v2_function`、server_id2621121、专用DB账号与host、staging+固定回环HTTPS+secret、HMAC签名/nonce/TTL≤60分钟/CLI撤销/合成批次共同约束TEST_ONLY身份。Codex报告真实HTTPS匹配消费者、报名、候选、双方接受、Connection、消息同意、Relationship双边确认、撤销/Block/旧链拒绝、MariaDB独立重启持久化通过；PHP定向127项/1,587断言0失败。限定接受，不代表真实KYC/真实用户。PHP全量本轮NOT_RUN，旧Q全量46 errors/122 failures、旧排盘25、R1 Flutter扩围5 FAIL和1011804历史FAIL/UNKNOWN/NOT_RUN不变。真实Push/RTC/删除受理仍外部阻断。
+- Android固定工件1011805：`com.elitesync.v2functionp0` / `10.1.18-v2-function-p0` / arm64，209,094,024 bytes，APK SHA256`d6064498bac327f40f2b2df9c5ed9664c819b29dfaffa916eaf6f6df7b649c05`，Debug v2证书SHA256`9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09`，native+Dart固定本机HTTPS18444与TLS证书SHA256`41e6411e5257d4986ab3d9a1b61d48abc739fb9f16055673a72e0fb02fe75f96`。Codex报告Host预检exit0；ADB reverse、设备安装/读取、截图/logcat仍NOT_RUN。
+- **Owner授权已明确**：2026-11-21本对话原话“好的我确认授权，下一轮可以实机检验，设备就绪。”不再重复询问授权。完整范围见[Owner单机授权决定](../decisions/OWNER_V2_ANDROID_1011805_SINGLE_DEVICE_TEST_AUTHORIZATION_20261121.md)。仅一台Owner指定实体设备；先`adb devices -l`，恰一台实体设备则直接执行，多台才确认具体哪台；serial不进GitHub。安装前核包名/hash/签名和USB映射；如同包已安装则停止，不卸载/清数据；仅采集EliteSync应用截图/相关logcat；不读私人照片/联系人/短信/其它App。只移除本轮新建的18444映射，不用remove-all。
+- 下一唯一任务：[P0.3 Android 1011805单台实机E2E集中任务](../versions/v2/V2_FUNCTION_P0_3_ANDROID_1011805_SINGLE_DEVICE_E2E_CLOSURE_BRIEF_20261121.md)：重启本地专用Compose（不down -v、不换卷、不访问云），Host→Reverse→Install，登录/切号/三盘/慢约/Connection/双方消息同意/文本/社区图片/Buddy/通知/Block/断网恢复具名UI+API+MariaDB验证；使用合成账号/图片，修订同版手册并采集A01–A12真实截图。若只有设备未连或多台设备才提出最小问题，不能再要求授权。
+- 操作手册`ELITESYNC_V2_OPERATION_MANUAL_DRAFT_20261121.md`顾问接受为初稿，不是最终登记材料；现场页面和同版截图、许可/权属确认仍待。当前核心仍PARTIAL，封闭内测/正式软著申报/生产NO_GO。服务器迁移、真实管理员恢复、PC清理继续暂停；不合main、不公开发布。
+
+---
+
 # CURRENT ENTRY 2026-11-21：P0候选收口已顾问限定接受；MariaDB正式关系正向与Android单机仍待验
 
 **`P0_LOCAL_ENGINEERING_DELIVERY_ADVISOR_SCOPED_ACCEPTED_WITH_RESERVATIONS / CORE_FUNCTIONS_PARTIAL / PHP_SELECTED_46_PASS / FLUTTER_128_CODEX_REPORTED_PASS / ANDROID_1011805_FIXED_DEVICE_NOT_RUN / MARIADB_FORMAL_RELATIONSHIP_TEST_ONLY_POSITIVE_NOT_RUN / COPYRIGHT_PREPARATION_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
