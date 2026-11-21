@@ -1,3 +1,14 @@
+# 2026-11-21｜会话交接停点：P0.4.1限定验收完成，等待P0.4.2集中验收
+
+- 会话交接：[SESSION_HANDOFF_20261121_V2_P0_4_1_ADVISOR_ACCEPTANCE_P0_4_2_PENDING.md](SESSION_HANDOFF_20261121_V2_P0_4_1_ADVISOR_ACCEPTANCE_P0_4_2_PENDING.md)。新会话先读该文件全文及ACTIVE_STATE顶部CURRENT ENTRY，再读顾问验收和P0.4.2任务单。
+- P0.4.1固定报告 e4d1588acee62d8f8f166042c328e26cc951c14a，实机源码 00ca46f6b020afa25ce472509c2fd3227f74c461；1011806安装成功，1011805保留；整体DEVICE_E2E_PARTIAL。
+- P0隐私FAIL：第1代CN/MC被Block关闭/撤销后，新第2代CN/MC不应获得第1代历史；当前pair room_key和Conversation复用，messages list按pair room_id取全量旧消息。Owner D-03要求历史默认不可读，除非独立history authority。
+- 唯一下一任务：[P0.4.2会话代际历史隔离与实机缺口收口](../versions/v2/V2_P0_4_2_CONVERSATION_GENERATION_HISTORY_ISOLATION_AND_DEVICE_GAP_CLOSURE_TASK_20261121.md)。先修复服务端历史代际隔离，再补Photo Picker/上传/媒体受众/缓存/URI/真实无线断链；旧消息保留不删除。
+- 1011805/1011806均保留；新APK安装需要Owner新授权。真实旧管理员恢复和共享HTTPS仍未完成且是内测硬门；不访问阿里云、不迁移真实管理员、不采购、不合main、不申报软著、不启动封闭内测。
+- Codex负责日常工程/自验，网页GPT做阶段集中独立审阅；不恢复逐个小任务派单。Owner保留最终产品和重大决策权。
+
+---
+
 # 2026-11-21｜P0.4.1实机PARTIAL；先修复解除Block后旧代消息重见，再收口媒体与网络
 
 - 固定P0.4.1报告`e4d1588acee62d8f8f166042c328e26cc951c14a`，1011806在原Android设备安装成功并保留1011805；报告提交只含实机报告和手册，无产品源码变更。顾问验收见[V2_P0_4_1_ANDROID_1011806_ADVISOR_SCOPED_ACCEPTANCE_20261121.md](V2_P0_4_1_ANDROID_1011806_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
