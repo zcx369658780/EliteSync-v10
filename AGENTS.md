@@ -1,3 +1,13 @@
+# 2026-11-21最新状态：合成管理员恢复限定通过；真实管理员数据门/共享HTTPS阻断；P0.4并发读回待修
+
+- 固定Beta准备报告`0fd75198db3067782241b6777054050ac2af6918`。旧管理员恢复CLI与两名虚构管理员MariaDB/HTTPS演练、APP/Web登录、一次性激活、allowlist、回滚和PHP定向10项/100断言通过，顾问限定接受。详见[顾问验收](docs/workflow/V2_BETA_PREP_LEGACY_ADMIN_AND_SHARED_HTTPS_ADVISOR_REVIEW_20261121.md)。
+- 真实管理员候选/持有人、旧库真实行读取、备份解密、真实V2库写入及同事本人异地登录均NOT_RUN。真实数据前需补LegacyAdminTarget DB username/port/CURRENT_USER完整核验，Manifest独立Owner签名审批和每候选原号码持有人/旧allowlist证据。不得读取真实行或导入所有admin，直至Owner一次性数据授权。
+- 共享HTTPS BLOCKED：旧上海2vCPU/2GiB、空闲约627–628MiB、swap0且旧Laravel/MariaDB/Redis/LiveKit共驻，当前未批准同驻；本轮无新SSH/云写/采购。外地同事需要共享HTTPS，但本机127.0.0.1+ADB reverse不是共享环境。
+- P0.4 Flutter67项为Codex具名回执；端上Block/控件和关系文案代码已补。顾问发现消息UNKNOWN重试调用普通`_load()`可能因已有读取而直接return，不能保证fresh GET后才POST；下一轮必须显式串行权威读回，读取失败保持UNKNOWN。新APK、实机媒体/历史受众/深链仍NOT_RUN。
+- 下一任务：[P0.4+Beta管理员恢复加固](docs/versions/v2/V2_P0_4_AND_BETA_ADMIN_RECOVERY_HARDENING_CONSOLIDATED_TASK_20261121.md)。当前不触碰真实数据/云端，不安装覆盖新APK（1011805原授权不自动扩展到新包），不采购、不开放公网、不合main、不启动内测。
+
+---
+
 # 2026-11-21最新Owner决定：旧管理员身份恢复是封闭内测硬门，同事沿用旧账号标识无需重新注册
 
 - Owner明确同意将阿里云旧管理员身份恢复列为**封闭内测准备阶段必须完成的门禁**，原因是同事将在外地使用既有管理员账号登录V2，不应被迫重新注册重复账号。详见[Owner决定](docs/decisions/OWNER_V2_LEGACY_ADMIN_ACCOUNT_RECOVERY_REQUIRED_FOR_CLOSED_BETA_20261121.md)和[综合任务书](docs/versions/v2/V2_BETA_PREP_SHARED_BACKEND_AND_LEGACY_ADMIN_RECOVERY_CONSOLIDATED_TASK_20261121.md)。
