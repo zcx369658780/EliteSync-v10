@@ -40,7 +40,16 @@ Codex固定报告：
 
 顾问记录：[P0.4.1限定验收报告](V2_P0_4_1_ANDROID_1011806_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
 
-### 2.2 已报告且限定接受的设备旅程
+#### 2.1.1 开发分支最新回读补充（重要）
+
+本交接编写过程中再次读取开发分支，发现Codex已在P0.4.1报告提交之后增加一笔文档交接提交：
+- 开发分支当前GitHub远端HEAD：`9fd84d2f2fd27d7226e8eb792de5d8cc829e9e82`。
+- 相对P0.4.1报告提交`e4d1588acee62d8f8f166042c328e26cc951c14a`仅ahead 1 / behind 0。
+- 新提交`9fd84d2`只修改开发分支的`docs/workflow/ACTIVE_STATE.md`、`docs/workflow/CURRENT_WORKFLOW.md`并新增`docs/workflow/SESSION_HANDOFF_20261121_ELITESYNC_V2_P0_4_1_DEVICE_REVIEW.md`；没有产品源码修改，也没有P0.4.2实现提交。
+- 因而P0.4.1实机产品源码仍为`00ca46f6b020afa25ce472509c2fd3227f74c461`。P0.4.2任务单和顾问验收均保存在治理分支；当前治理分支的新决定已将P0.4.1限定验收完成并签发P0.4.2，覆盖开发分支较早的`ADVISOR_REVIEW_PENDING`文档状态。
+- 远端分支回读不证明本地Codex工作树此刻干净或其本地HEAD相同；新会话如需依赖本地执行状态，须先让Owner/Codex核验本地工程根、origin、branch、HEAD、工作区和暂存区。
+
+## 2.2 已报告且限定接受的设备旅程
 
 - 1011806在此前1011805实测的同一台Android 16实体手机重试安装成功；手机拉回APK的包名、versionCode、大小、签名证书和SHA-256与固定候选一致（均为Codex报告证据）。1011805及原数据保留。
 - 冷启动/登录态恢复、A/B/A切号、退出、前后台、昵称资料保存、三盘未知时刻输入和持久读回、消息UNKNOWN独立fresh GET恢复、双向Block生效期间旧内容与控件失权有具名实机证据。
