@@ -171,16 +171,24 @@ class _LiveConversationListPageState
   Map<String, dynamic> _savedItem(Map<String, dynamic> item) => {
     'peer_user_id': item['peer_user_id'],
     'conversation_id': _conversationId(item),
+    'room_key': item['room_key'],
     'name': (item['name'] ?? '会话对象').toString(),
     'last_message': (item['last_message'] ?? '').toString(),
     'unread': 0,
   };
 
-  Future<void> _showOwnedOfflineCopy(SessionState session, int epoch) async {
+  Future<void> _showOwnedOfflineCopy(
+    SessionState session,
+    int epoch,
+    int revalidation,
+  ) async {
     _cache.enterOffline();
     final purge = await _cache.purgeExpired();
     final saved = await _cache.readOffline(_cacheObject);
-    if (!_current(session, epoch)) return;
+    if (!_current(session, epoch) ||
+        revalidation != _cache.onlineRevalidationEpoch) {
+      return;
+    }
     if (!_cache.isUnlocked ||
         purge.status == PrivateCachePurgeStatus.completed ||
         purge.status == PrivateCachePurgeStatus.failed) {
@@ -250,6 +258,11 @@ class _LiveConversationListPageState
       return;
     }
     final epoch = _epoch;
+    final cache = _cache;
+    var revalidation = cache.onlineRevalidationEpoch;
+    bool current(SessionState session) =>
+        _current(session, epoch) &&
+        revalidation == cache.onlineRevalidationEpoch;
     setState(() {
       _busy = true;
       _error = null;
@@ -262,12 +275,12 @@ class _LiveConversationListPageState
     try {
       final session = await ref.read(sessionProvider.future);
       started = session;
-      if (!_current(session, epoch)) return;
+      if (!current(session)) return;
       if (!session.isLoggedIn) throw StateError('请登录后读取会话。');
       _session = session;
       if (_trustedContextLocked && !_cache.isUnlocked) return;
       final purge = await _cache.purgeExpired();
-      if (!_current(session, epoch)) return;
+      if (!current(session)) return;
       if (purge.status == PrivateCachePurgeStatus.completed ||
           purge.status == PrivateCachePurgeStatus.failed) {
         _lockDisplay(_purgeMessage(purge), purgeStatus: purge.status);
@@ -279,13 +292,13 @@ class _LiveConversationListPageState
             '/api/v1/conversations',
             query: {'hidden_only': _hiddenOnly ? 1 : 0},
             options: Options(
-              extra: {requestSessionGuardKey: () => _current(session, epoch)},
+              extra: {requestSessionGuardKey: () => current(session)},
             ),
           );
-      if (!_current(session, epoch)) return;
+      if (!current(session)) return;
       if (response is NetworkFailure<Map<String, dynamic>>) {
         if (_transportUnavailable(response)) {
-          await _showOwnedOfflineCopy(session, epoch);
+          await _showOwnedOfflineCopy(session, epoch, revalidation);
           return;
         }
         if (automatic &&
@@ -327,14 +340,23 @@ class _LiveConversationListPageState
       // An ordinary current list read authorizes this object, not a global
       // reset that can invalidate a retained foreground chat's in-flight save.
       // Actual offline recovery must still discard all old read grants.
-      if (_cache.isOffline) _cache.beginOnlineRevalidation();
+      if (cache.isOffline) {
+        cache.beginOnlineRevalidation();
+        revalidation = cache.onlineRevalidationEpoch;
+      }
+      if (_offlineReadOnly) {
+        setState(() {
+          _items = [];
+          _cacheStatus = null;
+        });
+      }
       final saved = await _cache.saveAuthorized(
         _cacheObject,
         {'items': items.map(_savedItem).toList()},
         expectedAccountId: session.user?.id,
-        isCurrent: () => _current(session, epoch),
+        isCurrent: () => current(session),
       );
-      if (!_current(session, epoch)) return;
+      if (!current(session)) return;
       if (!saved || !_cache.isUnlocked) {
         _lockDisplay('加密私有缓存未能确认保存或可信登录已失效，内容已锁定，请重新在线登录。');
         return;
@@ -347,7 +369,7 @@ class _LiveConversationListPageState
     } catch (error) {
       if (mounted &&
           epoch == _epoch &&
-          (started == null || _current(started, epoch))) {
+          (started == null || current(started))) {
         _items = [];
         _error = '会话读取未确认：$error';
       }

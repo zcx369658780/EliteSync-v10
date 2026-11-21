@@ -108,10 +108,15 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   }
 
   Future<void> _retentionTick() async {
-    if (_timeLocked || (!_hadTrustedCache && _messages.isEmpty)) return;
+    if (!_foreground ||
+        _timeLocked ||
+        (!_hadTrustedCache && _messages.isEmpty)) {
+      return;
+    }
     final epoch = _epoch;
     final session = _session;
     final cache = _cache;
+    final revalidation = cache.onlineRevalidationEpoch;
     final receipt = await cache.purgeExpired();
     if (!mounted || epoch != _epoch || !identical(_session, session)) return;
     final saved = _offline
@@ -127,6 +132,12 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       // a broken login or expired clock.
       _reject('网络已恢复，正在重新验证对话。', preserveAttempt: true);
       _offline = false;
+      return;
+    }
+    if (receipt.status == PrivateCachePurgeStatus.notDue &&
+        (_loading ||
+            _loadingOlder ||
+            revalidation != cache.onlineRevalidationEpoch)) {
       return;
     }
     if ((saved == null && (_messages.isNotEmpty || _images.isNotEmpty)) ||
@@ -206,8 +217,13 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       data['room_key'] != _roomKey &&
       (_roomKey != null || _messages.isNotEmpty);
 
+  void _invalidateRoomAuthority() {
+    _cache.beginOnlineRevalidation();
+    ref.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+  }
+
   void _reloadForNewRoom() {
-    _cache.revokeObject(_cacheKey);
+    _invalidateRoomAuthority();
     _reject('会话已更新，正在重新读取。');
     unawaited(_load());
   }
@@ -218,8 +234,15 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     if (socket != null) unawaited(socket.cancel());
   }
 
+  void _evictImages() {
+    for (final bytes in _images.values) {
+      unawaited(MemoryImage(bytes).evict());
+    }
+  }
+
   void _reject(String message, {bool preserveAttempt = false}) {
     _cancelSocket();
+    _evictImages();
     if (!mounted) return;
     setState(() {
       _epoch++;
@@ -287,10 +310,20 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         bytes += size;
       }
     }
-    return {'messages': selected.reversed.toList(), 'images': selectedImages};
+    return {
+      'room_key': _roomKey,
+      'messages': selected.reversed.toList(),
+      'images': selectedImages,
+    };
   }
 
   bool _restoreTextDraft(Map<String, dynamic>? draft, {required bool offline}) {
+    // A persisted send attempt belongs to the room where it was initiated.
+    // A plain local draft has no reply or media authority.
+    if (draft?['pending_attempt'] != null && draft?['room_key'] != _roomKey) {
+      _draftLoaded = true;
+      return true;
+    }
     if (!_cache.isUnlocked ||
         (draft != null &&
             (draft['text'] is! String ||
@@ -425,11 +458,16 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     }
     _loading = true;
     final epoch = _epoch;
+    final cache = _cache;
+    var revalidation = cache.onlineRevalidationEpoch;
+    bool current(SessionState session) =>
+        _current(session, epoch) &&
+        revalidation == cache.onlineRevalidationEpoch;
     SessionState? started;
     try {
       final session = await ref.read(sessionProvider.future);
       started = session;
-      if (!_current(session, epoch)) return;
+      if (!current(session)) return;
       if (!session.isLoggedIn) {
         _reject('当前无法读取对话，请检查登录、连接与双方消息同意。');
         return;
@@ -442,21 +480,23 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             query: {'peer_id': widget.peerId, 'limit': 100, 'latest': 1},
             cancelToken: _uploadCancellation,
             options: Options(
-              extra: {requestSessionGuardKey: () => _current(session, epoch)},
+              extra: {requestSessionGuardKey: () => current(session)},
             ),
           );
-      if (!_current(session, epoch)) return;
+      if (!current(session)) return;
       if (response is! NetworkSuccess<Map<String, dynamic>>) {
         if (response is NetworkFailure<Map<String, dynamic>> &&
             response.statusCode == null &&
             _transportUnavailable(response)) {
           _cache.enterOffline();
           final saved = await _cache.readOffline(_cacheKey);
-          if (!_current(session, epoch)) return;
-          if (saved != null) {
+          if (!current(session)) return;
+          final savedRoom = saved?['room_key'] as String?;
+          if (saved != null && (_roomKey == null || _roomKey == savedRoom)) {
+            _roomKey = savedRoom;
             if (!_draftLoaded) {
               final draft = await _cache.readOffline(_draftKey);
-              if (!_current(session, epoch)) return;
+              if (!current(session)) return;
               if (!_restoreTextDraft(draft, offline: true)) return;
             }
             setState(() {
@@ -479,7 +519,13 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             return;
           }
         }
-        _cache.revokeObject(_cacheKey);
+        if (response is NetworkFailure<Map<String, dynamic>> &&
+            const {401, 403, 404}.contains(response.statusCode) &&
+            (_roomKey != null || _messages.isNotEmpty)) {
+          _invalidateRoomAuthority();
+        } else {
+          cache.revokeObject(_cacheKey);
+        }
         _reject(
           '当前无法读取对话，请检查登录、连接与双方消息同意。',
           preserveAttempt:
@@ -500,6 +546,20 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         return;
       }
       _roomKey = response.data['room_key'] as String?;
+      // Stop using offline grants as soon as a current read succeeds, even
+      // while downloads for that read are still pending.
+      if (cache.isOffline) {
+        cache.beginOnlineRevalidation();
+        revalidation = cache.onlineRevalidationEpoch;
+      }
+      if (_offline) {
+        _evictImages();
+        setState(() {
+          _messages = [];
+          _images = {};
+          _previewImageId = null;
+        });
+      }
       final keepHistory = _historyExpanded && items.isNotEmpty;
       final additions = <Map<String, dynamic>>[];
       if (keepHistory && _messages.isNotEmpty) {
@@ -520,11 +580,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 cancelToken: _uploadCancellation,
                 options: Options(
                   extra: {
-                    requestSessionGuardKey: () => _current(session, epoch),
+                    requestSessionGuardKey: () => current(session),
                   },
                 ),
               );
-          if (!_current(session, epoch)) return;
+          if (!current(session)) return;
           if (delta is! NetworkSuccess<Map<String, dynamic>>) {
             if (delta is NetworkFailure<Map<String, dynamic>> &&
                 const {401, 403, 404}.contains(delta.statusCode)) {
@@ -553,20 +613,18 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       }
       final fresh = _mergeMessages(additions, items);
       final freshImages = await _messageImages(fresh, session, epoch);
-      if (!_current(session, epoch)) return;
+      if (!current(session)) return;
       final visible = keepHistory ? _mergeMessages(_messages, fresh) : fresh;
       final images = keepHistory ? {..._images, ...freshImages} : freshImages;
-      // Like the conversation list, recover only after this current read; an
-      // ordinary online refresh must not invalidate another page's cache write.
-      if (_cache.isOffline) _cache.beginOnlineRevalidation();
-      _hadTrustedCache = await _cache.saveAuthorized(
+      final saved = await cache.saveAuthorized(
         _cacheKey,
         _offlineSnapshot(visible, images),
         expectedAccountId: session.user?.id,
-        isCurrent: () => _current(session, epoch),
+        isCurrent: () => current(session),
       );
-      if (!_current(session, epoch)) return;
-      if (!_hadTrustedCache || !_cache.isUnlocked) {
+      if (!current(session)) return;
+      _hadTrustedCache = saved;
+      if (!saved || !cache.isUnlocked) {
         _reject('可信登录或加密保存未能核验，私密内容已锁定，请重新在线登录。');
         setState(() => _timeLocked = true);
         return;
@@ -575,9 +633,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         final draft = await _cache.readAfterCurrentAuthorization(
           _draftKey,
           expectedAccountId: session.user!.id,
-          isCurrent: () => _current(session, epoch),
+          isCurrent: () => current(session),
         );
-        if (!_current(session, epoch)) return;
+        if (!current(session)) return;
         if (!_restoreTextDraft(draft, offline: false)) return;
       }
       setState(() {
@@ -598,7 +656,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         // for the unchanged draft.
       });
       _ackPresented();
-      if (_current(session, epoch) &&
+      if (current(session) &&
           _socket == null &&
           session.accessToken?.isNotEmpty == true) {
         _socket = ref
@@ -618,15 +676,23 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             );
       }
     } catch (_) {
-      if (started != null && _current(started, epoch)) {
+      if (started != null && current(started)) {
         _reject('当前无法读取消息或附件，请检查登录、连接与双方消息同意。');
       }
     } finally {
       if (epoch == _epoch) {
         _loading = false;
+        if (mounted &&
+            _offline &&
+            !cache.isOffline &&
+            revalidation != cache.onlineRevalidationEpoch) {
+          _reject('网络已恢复，正在重新验证对话。', preserveAttempt: true);
+          _offline = false;
+          unawaited(_load());
+        }
         final queued = _queuedHistoryEpoch;
         _queuedHistoryEpoch = null;
-        if (queued == epoch && started != null && _current(started, epoch)) {
+        if (queued == epoch && started != null && current(started)) {
           unawaited(_loadOlder());
         }
       }
@@ -958,6 +1024,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _draftKey,
         {
           'text': attempt.content,
+          'room_key': _roomKey,
           'pending_attempt': {
             'client_message_id': attempt.clientMessageId,
             'peer_user_id': attempt.peerUserId,
@@ -1391,6 +1458,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     ref.listen(sessionProvider, (previous, next) {
       if (_session != null && !identical(_session, next.asData?.value)) {
         _cancelSocket();
+        _evictImages();
         setState(() {
           _epoch++;
           _uploadCancellation.cancel('Request session invalidated');

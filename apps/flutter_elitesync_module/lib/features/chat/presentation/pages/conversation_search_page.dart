@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'dart:async';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
@@ -143,6 +144,7 @@ class _ConversationSearchPageState extends ConsumerState<ConversationSearchPage>
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(relationshipAuthorityEpochProvider, (_, _) => _clear());
     ref.listen(sessionProvider, (_, next) {
       if (!identical(next.asData?.value, _session)) _clear('账号已变化，请返回。');
     });

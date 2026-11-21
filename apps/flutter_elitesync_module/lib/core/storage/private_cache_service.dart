@@ -55,11 +55,13 @@ class PrivateCacheService {
   bool _offline = false;
   bool _unlocked = false;
   int _generation = 0;
+  int _onlineRevalidationEpoch = 0;
   final _readGrants = <String>{};
   Future<void> _mutation = Future.value();
 
   bool get isUnlocked => _unlocked && _trustedNow() != null;
   bool get isOffline => _offline;
+  int get onlineRevalidationEpoch => _onlineRevalidationEpoch;
   int? get accountId => _unlocked ? _userId : null;
 
   Future<T> _serialize<T>(Future<T> Function() action) {
@@ -87,6 +89,7 @@ class PrivateCacheService {
   /// Network recovery must be followed by a fresh current-read before any data
   /// becomes visible; it cannot inherit an offline object's old authorization.
   void beginOnlineRevalidation() {
+    _onlineRevalidationEpoch++;
     _generation++;
     _offline = false;
     _readGrants.clear();

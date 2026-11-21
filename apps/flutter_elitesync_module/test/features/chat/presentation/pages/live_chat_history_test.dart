@@ -199,6 +199,122 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
+  testWidgets(
+    'remote rotation while offline revokes the first room after recovery',
+    (tester) async {
+      final api = _Api()..roomKey = 'first-room';
+      final (_, cache) = await _mount(tester, api);
+      final first = await cache.readOnlineAuthorized('live-chat:2');
+      expect(first?['room_key'], 'first-room');
+      expect(
+        await cache.saveAuthorized('live-chat:2', {
+          'room_key': 'first-room',
+          'messages': [
+            {
+              'id': 7,
+              'content': 'fictional first room body',
+              'reply': {'summary': 'fictional first room reply'},
+              'attachments': [
+                {
+                  'media_asset': {'id': 42, 'media_type': 'image'},
+                },
+              ],
+            },
+          ],
+          'images': {
+            '42': (
+              'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a2ioAAAAASUVORK5CYII=',
+            ),
+          },
+        }, expectedAccountId: 1),
+        isTrue,
+      );
+      api.unavailable = true;
+      await tester.tap(find.byIcon(Icons.refresh));
+      await tester.pumpAndSettle();
+      expect(find.text('fictional first room body'), findsOneWidget);
+      expect(find.textContaining('fictional first room reply'), findsOneWidget);
+      final thumbnail = find.byKey(const ValueKey('live-chat-image-42'));
+      expect(thumbnail, findsOneWidget);
+      await tester.tap(thumbnail);
+      await tester.pumpAndSettle();
+
+      // The server changes while the original trusted login is still offline.
+      api
+        ..roomKey = 'second-room'
+        ..count = 1
+        ..firstId = 100;
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(
+        (await cache.readOffline('live-chat:2'))?['room_key'],
+        'first-room',
+      );
+
+      api.unavailable = false;
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(find.text('fictional message 100'), findsOneWidget);
+      expect(find.text('fictional first room body'), findsNothing);
+      expect(find.textContaining('fictional first room reply'), findsNothing);
+      expect(thumbnail, findsNothing);
+      expect(find.byType(Image), findsNothing);
+      final second = await cache.readOnlineAuthorized('live-chat:2');
+      expect(second?['room_key'], 'second-room');
+      expect(second?['images'], isEmpty);
+      expect(second?['messages'], hasLength(1));
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
+  testWidgets(
+    'a late first room response cannot renew a grant after online recovery',
+    (tester) async {
+      final api = _Api()..roomKey = 'first-room';
+      final (_, cache) = await _mount(tester, api);
+      api.unavailable = true;
+      await tester.tap(find.byIcon(Icons.refresh));
+      await tester.pumpAndSettle();
+      final late = Completer<NetworkResult<Map<String, dynamic>>>();
+      api.pendingLatest = late;
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+
+      // Another retained page received a current server response first.
+      cache.beginOnlineRevalidation();
+      api
+        ..pendingLatest = null
+        ..unavailable = false
+        ..roomKey = 'second-room'
+        ..firstId = 100
+        ..count = 1;
+      late.complete(
+        const NetworkSuccess({
+          'room_key': 'first-room',
+          'items': [
+            {'id': 8, 'content': 'fictional late private body'},
+          ],
+        }),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('fictional late private body'), findsNothing);
+      expect(
+        (await cache.readOnlineAuthorized('live-chat:2'))?['room_key'],
+        isNot('first-room'),
+      );
+
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pumpAndSettle();
+      expect(find.text('fictional late private body'), findsNothing);
+      expect(find.text('fictional message 100'), findsOneWidget);
+      expect(
+        (await cache.readOnlineAuthorized('live-chat:2'))?['room_key'],
+        'second-room',
+      );
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
   testWidgets('another page recovering first does not lock the retained chat', (
     tester,
   ) async {
