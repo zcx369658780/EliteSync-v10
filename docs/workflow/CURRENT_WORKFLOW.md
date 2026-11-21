@@ -1,3 +1,13 @@
+# 2026-11-21｜Owner已授权1011806单设备安装，直接执行P0.4实机验收
+
+- Owner已明确授权在此前1011805实测的同一台Android16实体设备上安装1011806并完成P0.4实机测试；不再询问是否授权。记录：[Owner授权](../decisions/OWNER_V2_ANDROID_1011806_DEVICE_INSTALL_AND_P0_4_TEST_AUTHORIZATION_20261121.md)。
+- 1011806 APK固定身份见ACTIVE_STATE及任务书；安装前复核实际APK大小/SHA/签名/包名/version/TLS。并行安装新包，保留1011805和其数据；不得卸载/覆盖/清除旧包或设备数据。设备不在线/身份无法确认才停止并最小澄清。
+- 使用合成账号/合成图片测试端上Block、消息UNKNOWN、媒体Photo Picker和受众、历史链接、外部URI/地图回调、冷/热启动、切号、前后台和真实无线断网恢复。只采EliteSync截图和脱敏logcat，不访问私人照片/联系人/短信/其它App。
+- 本轮只连本机`127.0.0.1:18444`，只撤销本轮创建的ADB reverse；不访问阿里云、不读取/迁移真实管理员、不采购、不云写。1011806不是异地共享服务包。
+- 执行任务：[P0.4.1 1011806实机验收与共享Beta环境准备](../versions/v2/V2_P0_4_1011806_DEVICE_ACCEPTANCE_AND_SHARED_BETA_ENVIRONMENT_DECISION_TASK_20261121.md)。真实管理员数据与共享HTTPS仍待独立Owner门，封闭内测/生产NO_GO。
+
+---
+
 # 2026-11-21｜P0.4本地加固已限定接受；下一步1011806实机验收与共享Beta环境选项准备
 
 - P0.4固定报告`f41f25bb8c237f8479b998e82e843f528397e1fa`：Flutter72项通过、Dart分析无问题；PHP扩围60/61，单一V1011历史基线FAIL保留。顾问验收见[V2_P0_4_HARDENING_AND_BETA_AUTHORIZATION_ADVISOR_ACCEPTANCE_20261121.md](V2_P0_4_HARDENING_AND_BETA_AUTHORIZATION_ADVISOR_ACCEPTANCE_20261121.md)。
