@@ -1,3 +1,13 @@
+# 2026-11-21｜P0.4剩余功能与Beta旧管理员恢复加固并行
+
+- 本轮报告`0fd75198db3067782241b6777054050ac2af6918`顾问限定接受：两名虚构管理员通过本地MariaDB/HTTPS恢复CLI、APP API、Web后台、激活码、allowlist和回滚；PHP定向10项/100断言。真实管理员数据未授权/未读取/未写入。
+- 真实数据恢复前补齐DB实际username/port/CURRENT_USER identity、Owner独立签名批准、逐候选手机号控制/旧admin allowlist证明。候选真实号码与映射只留私有授权表，不进GitHub。Owner旧管理员恢复为内测硬门，不要求同事重新注册，保留原手机号、新V2 ID/新密码。
+- 共享HTTPS仍BLOCKED：旧上海机2vCPU/2GiB、约627–628MiB空闲、swap0、旧业务共驻。只准备容量/费用方案，不SSH/云写/采购/公网。外地同事需要共享远程HTTPS，不能用本机ADB reverse替代。
+- P0.4代码已有Block入口和权限控件，但消息UNKNOWN重试的普通`_load()`可能因并发读取直接return，需显式fresh authoritative read，失败保持UNKNOWN。新APK只本机准备；1011805授权不自动允许安装覆盖新版本。
+- 唯一下一任务见[V2_P0_4_AND_BETA_ADMIN_RECOVERY_HARDENING_CONSOLIDATED_TASK_20261121.md](../versions/v2/V2_P0_4_AND_BETA_ADMIN_RECOVERY_HARDENING_CONSOLIDATED_TASK_20261121.md)。P0.3实机证据保留，封闭内测NO_GO，软著准备继续，不自动申报/开测/main合并。
+
+---
+
 # 2026-11-21｜当前V2工作流：P0.4功能收口 + Beta准备旧管理员身份恢复工具
 
 - Owner已明确：旧阿里云管理员身份恢复是封闭内测前的**强制准备门**，同事在外地使用原有管理员账号身份/手机号标识登录，不重新注册。权威[Owner决定](../decisions/OWNER_V2_LEGACY_ADMIN_ACCOUNT_RECOVERY_REQUIRED_FOR_CLOSED_BETA_20261121.md)，唯一综合任务[共享V2后端与旧管理员恢复](../versions/v2/V2_BETA_PREP_SHARED_BACKEND_AND_LEGACY_ADMIN_RECOVERY_CONSOLIDATED_TASK_20261121.md)。
