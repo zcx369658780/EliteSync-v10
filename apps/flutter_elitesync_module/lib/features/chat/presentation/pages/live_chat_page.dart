@@ -14,6 +14,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_send_attempt.dart';
+import 'package:flutter_elitesync_module/features/chat/domain/offline_chat_text.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/providers/chat_providers.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 import 'package:flutter_elitesync_module/core/storage/private_cache_service.dart';
@@ -94,6 +95,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   bool _historyExpanded = false;
   String? _historyError;
   Timer? _timer;
+  Timer? _offlineExpiry;
   @override
   void initState() {
     super.initState();
@@ -120,7 +122,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     final receipt = await cache.purgeExpired();
     if (!mounted || epoch != _epoch || !identical(_session, session)) return;
     final saved = _offline
-        ? await cache.readOffline(_cacheKey)
+        ? await cache.readOfflineChatText(widget.peerId)
         : await cache.readOnlineAuthorized(_cacheKey);
     if (!mounted || epoch != _epoch || !identical(_session, session)) return;
     if (_offline &&
@@ -138,6 +140,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         (_loading ||
             _loadingOlder ||
             revalidation != cache.onlineRevalidationEpoch)) {
+      return;
+    }
+    if (_offline && saved == null && cache.isUnlocked &&
+        receipt.status == PrivateCachePurgeStatus.notDue) {
+      _expireOfflineReading();
       return;
     }
     if ((saved == null && (_messages.isNotEmpty || _images.isNotEmpty)) ||
@@ -176,6 +183,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     WidgetsBinding.instance.removeObserver(this);
     _cancelSocket();
     _timer?.cancel();
+    _offlineExpiry?.cancel();
     _uploadCancellation.cancel('Page disposed');
     _text.dispose();
     super.dispose();
@@ -234,6 +242,12 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     if (socket != null) unawaited(socket.cancel());
   }
 
+  void _expireOfflineReading() {
+    _hadTrustedCache = false;
+    _cache.revokeObject(_cacheKey);
+    _reject('离线阅读授权已到期，请联网重新核验。', preserveAttempt: true);
+  }
+
   void _evictImages() {
     for (final bytes in _images.values) {
       unawaited(MemoryImage(bytes).evict());
@@ -242,6 +256,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
 
   void _reject(String message, {bool preserveAttempt = false}) {
     _cancelSocket();
+    _offlineExpiry?.cancel();
     _evictImages();
     if (!mounted) return;
     setState(() {
@@ -282,38 +297,26 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
 
   Map<String, dynamic> _offlineSnapshot(
     List<Map<String, dynamic>> messages,
-    Map<int, Uint8List> images,
+    Object? receipt,
   ) {
-    // Offline storage is a selected copy, not a prerequisite for keeping every
-    // authorized online attachment. Leave headroom for the encrypted envelope.
     const budget = 256 * 1024;
-    var bytes = 1024;
+    final roomKey = _roomKey;
     final selected = <Map<String, dynamic>>[];
-    // The server returns ascending IDs; prefer the most recent messages.
-    for (final message in messages.reversed) {
-      final size = utf8.encode(jsonEncode(message)).length + 1;
-      if (bytes + size > budget) continue;
-      selected.add(message);
-      bytes += size;
-    }
-    final selectedImages = <String, String>{};
-    for (final message in selected) {
-      for (final attachment in (message['attachments'] as List? ?? [])) {
-        final asset = attachment['media_asset'];
-        if (asset is! Map || asset['media_type'] != 'image') continue;
-        final id = (asset['id'] as num).toInt();
-        final image = images[id];
-        if (image == null || selectedImages.containsKey('$id')) continue;
-        final size = 4 * ((image.length + 2) ~/ 3) + '$id'.length + 6;
+    if (roomKey != null && receipt is Map) {
+      var bytes = utf8.encode(jsonEncode(receipt)).length;
+      for (final message in messages.reversed) {
+        final text = OfflineChatText.project(message, roomKey);
+        if (text == null) continue;
+        final size = utf8.encode(jsonEncode(text)).length + 1;
         if (bytes + size > budget) continue;
-        selectedImages['$id'] = base64Encode(image);
+        selected.add(text);
         bytes += size;
       }
     }
     return {
-      'room_key': _roomKey,
+      'room_key': roomKey,
+      'offline_text_grant': receipt,
       'messages': selected.reversed.toList(),
-      'images': selectedImages,
     };
   }
 
@@ -489,32 +492,27 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             response.statusCode == null &&
             _transportUnavailable(response)) {
           _cache.enterOffline();
-          final saved = await _cache.readOffline(_cacheKey);
+          final saved = await cache.readOfflineChatText(widget.peerId);
           if (!current(session)) return;
-          final savedRoom = saved?['room_key'] as String?;
-          if (saved != null && (_roomKey == null || _roomKey == savedRoom)) {
-            _roomKey = savedRoom;
-            if (!_draftLoaded) {
-              final draft = await _cache.readOffline(_draftKey);
-              if (!current(session)) return;
-              if (!_restoreTextDraft(draft, offline: true)) return;
-            }
+          if (saved != null &&
+              (_roomKey == null || _roomKey == saved.roomKey)) {
+            _roomKey = saved.roomKey;
+            _evictImages();
+            _offlineExpiry?.cancel();
+            _offlineExpiry = Timer(saved.remaining, () {
+              if (_current(session, epoch) && _offline) {
+                _expireOfflineReading();
+              }
+            });
             setState(() {
-              _messages = (saved['messages'] as List)
-                  .map((e) => Map<String, dynamic>.from(e as Map))
-                  .toList();
-              _images = {
-                for (final e in (saved['images'] as Map? ?? {}).entries)
-                  int.parse(e.key.toString()): base64Decode(e.value.toString()),
-              };
-              if (!_images.containsKey(_previewImageId)) _previewImageId = null;
+              _messages = saved.messages;
+              _images = {};
+              _previewImageId = null;
               _offline = true;
-              // The selected offline copy may omit older pages to fit its
-              // storage budget. Rebuild the history boundary after reconnect.
               _historyExpanded = false;
               _hasOlder = false;
               _historyError = null;
-              _error = '离线只读：仅显示已加密保存且此前有权读取的内容，不能发送或编辑。';
+              _error = '离线只读。当前只显示已下载的本代文字消息。';
             });
             return;
           }
@@ -546,6 +544,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         return;
       }
       _roomKey = response.data['room_key'] as String?;
+      _offlineExpiry?.cancel();
       // Stop using offline grants as soon as a current read succeeds, even
       // while downloads for that read are still pending.
       if (cache.isOffline) {
@@ -618,7 +617,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       final images = keepHistory ? {..._images, ...freshImages} : freshImages;
       final saved = await cache.saveAuthorized(
         _cacheKey,
-        _offlineSnapshot(visible, images),
+        _offlineSnapshot(visible, response.data['offline_text_grant']),
         expectedAccountId: session.user?.id,
         isCurrent: () => current(session),
       );
@@ -1458,6 +1457,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     ref.listen(sessionProvider, (previous, next) {
       if (_session != null && !identical(_session, next.asData?.value)) {
         _cancelSocket();
+        _offlineExpiry?.cancel();
         _evictImages();
         setState(() {
           _epoch++;
@@ -1627,7 +1627,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                     },
               child: const Text('核对拉黑结果'),
             ),
-          if (_sendStatus != null)
+          if (!_offline && _sendStatus != null)
             Padding(
               padding: const EdgeInsets.all(8),
               child: Semantics(liveRegion: true, child: Text(_sendStatus!)),
@@ -1639,7 +1639,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                   : _retryUnconfirmedMessage,
               child: Text(_retryReadFailed ? '重新核对服务器' : '使用原消息编号重试'),
             ),
-          if (_uploadStatus != null)
+          if (!_offline && _uploadStatus != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               child: Column(
@@ -1821,7 +1821,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
               ],
             ),
           ),
-          if (_replyId != null)
+          if (!_offline && _replyId != null)
             ListTile(
               dense: true,
               title: Text(
@@ -1840,7 +1840,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                     )
                   : null,
             ),
-          if (_draftStatus != null)
+          if (!_offline && _draftStatus != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(_draftStatus!),
@@ -1912,7 +1912,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                           _attempt != null ||
                           !_writeControlsAvailable ||
                           _timeLocked,
-                      controller: _text,
+                      key: ValueKey(_offline),
+                      controller: _offline ? null : _text,
                       minLines: 1,
                       maxLines: 4,
                       decoration: const InputDecoration(

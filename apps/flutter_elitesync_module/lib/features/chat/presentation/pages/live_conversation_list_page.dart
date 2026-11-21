@@ -173,7 +173,6 @@ class _LiveConversationListPageState
     'conversation_id': _conversationId(item),
     'room_key': item['room_key'],
     'name': (item['name'] ?? '会话对象').toString(),
-    'last_message': (item['last_message'] ?? '').toString(),
     'unread': 0,
   };
 

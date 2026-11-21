@@ -28,6 +28,36 @@ class V1015MessagingTest extends TestCase
         $this->app['auth']->forgetGuards();
         return app(DeviceSessions::class)->issue($user,'V1015',true)['access_token'];
     }
+    public function test_current_room_can_issue_a_24_hour_offline_text_grant_only_to_a_trusted_device_login(): void
+    {
+        [$a, $b] = $this->pair();
+        $sessions = app(DeviceSessions::class);
+        $device = (string) Str::uuid();
+        $issued = $sessions->issue($a, 'synthetic grant test', true, $device);
+        $path = '/api/v1/messages?peer_id='.$b->id;
+        $this->withToken($issued['access_token'])->getJson($path)->assertOk()
+            ->assertJsonMissingPath('offline_text_grant');
+        $result = $this->withToken($issued['access_token'])->getJson($path.'&latest=1')->assertOk();
+        $grant = $result->json('offline_text_grant');
+        $result->assertJsonPath('offline_text_grant.scope', 'conversation_text_v1')
+            ->assertJsonPath('offline_text_grant.account_id', $a->id)
+            ->assertJsonPath('offline_text_grant.peer_id', $b->id)
+            ->assertJsonPath('offline_text_grant.session_id', $issued['session_id'])
+            ->assertJsonPath('offline_text_grant.device_id', $device)
+            ->assertJsonPath('offline_text_grant.room_key', $result->json('room_key'));
+        $this->assertSame(86400, strtotime($grant['expires_at']) - strtotime($grant['issued_at']));
+
+        $this->app['auth']->forgetGuards();
+        $untrusted = $sessions->issue($a, 'synthetic untrusted test');
+        $this->withToken($untrusted['access_token'])->getJson($path.'&latest=1')->assertOk()
+            ->assertJsonMissingPath('offline_text_grant');
+
+        $this->app['auth']->forgetGuards();
+        $sessions->revoke($a, $issued['session_id']);
+        $this->withToken($issued['access_token'])->getJson($path.'&latest=1')->assertUnauthorized()
+            ->assertJsonMissingPath('offline_text_grant');
+    }
+
     private function assertOneMessageNotification(User $receiver, int $expectedTotal): void
     {
         $this->assertDatabaseCount('notifications', $expectedTotal);

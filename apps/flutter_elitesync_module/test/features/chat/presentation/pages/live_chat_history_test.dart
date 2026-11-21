@@ -34,7 +34,7 @@ class _Api extends ApiClient {
   _Api() : super(dio: Dio());
   int count = 7;
   int firstId = 1;
-  String? roomKey;
+  String roomKey = 'fictional-room';
   bool includeSenders = false;
   bool unavailable = false;
   final deltas = <int>[];
@@ -78,8 +78,10 @@ class _Api extends ApiClient {
               count,
               (i) => <String, dynamic>{
                 'id': firstId + i,
-                if (includeSenders)
-                  'sender_id': i == 6 ? null : (i.isEven ? 2 : 1),
+                'sender_id': includeSenders && i == 6 ? null : (i.isEven ? 2 : 1),
+                'room_id': roomKey,
+                'message_type': 'text',
+                'has_attachments': false,
                 'is_read': true,
                 'content': 'fictional message ${firstId + i}',
                 'attachments': <dynamic>[],
@@ -95,7 +97,8 @@ class _Api extends ApiClient {
         ? history.take(3).toList()
         : history.skip(history.length > 3 ? history.length - 3 : 0).toList();
     return NetworkSuccess({
-      if (roomKey != null) 'room_key': roomKey,
+      'room_key': roomKey,
+      'offline_text_grant': syntheticOfflineTextGrant(roomKey),
       'items': [
         ...page,
         if (before != null && duplicateOlder && page.isNotEmpty) page.last,
@@ -209,11 +212,29 @@ void main() {
       expect(
         await cache.saveAuthorized('live-chat:2', {
           'room_key': 'first-room',
+          'offline_text_grant': first?['offline_text_grant'],
           'messages': [
             {
               'id': 7,
+              'sender_id': 2,
+              'room_id': 'first-room',
+              'message_type': 'text',
+              'has_attachments': false,
               'content': 'fictional first room body',
-              'reply': {'summary': 'fictional first room reply'},
+              'reply': {
+                'available': true,
+                'offline_text': true,
+                'summary': 'fictional first room reply',
+              },
+              'attachments': <dynamic>[],
+            },
+            {
+              'id': 8,
+              'sender_id': 2,
+              'room_id': 'first-room',
+              'message_type': 'image',
+              'has_attachments': true,
+              'content': 'fictional image caption',
               'attachments': [
                 {
                   'media_asset': {'id': 42, 'media_type': 'image'},
@@ -222,9 +243,7 @@ void main() {
             },
           ],
           'images': {
-            '42': (
-              'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a2ioAAAAASUVORK5CYII=',
-            ),
+            '42': 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a2ioAAAAASUVORK5CYII=',
           },
         }, expectedAccountId: 1),
         isTrue,
@@ -235,9 +254,8 @@ void main() {
       expect(find.text('fictional first room body'), findsOneWidget);
       expect(find.textContaining('fictional first room reply'), findsOneWidget);
       final thumbnail = find.byKey(const ValueKey('live-chat-image-42'));
-      expect(thumbnail, findsOneWidget);
-      await tester.tap(thumbnail);
-      await tester.pumpAndSettle();
+      expect(thumbnail, findsNothing);
+      expect(find.text('fictional image caption'), findsNothing);
 
       // The server changes while the original trusted login is still offline.
       api
@@ -261,7 +279,7 @@ void main() {
       expect(find.byType(Image), findsNothing);
       final second = await cache.readOnlineAuthorized('live-chat:2');
       expect(second?['room_key'], 'second-room');
-      expect(second?['images'], isEmpty);
+      expect(second?.containsKey('images'), isFalse);
       expect(second?['messages'], hasLength(1));
       await tester.pumpWidget(const SizedBox());
     },
@@ -349,16 +367,11 @@ void main() {
     await _older(tester);
     await _older(tester);
     // Offline snapshots intentionally retain a selected recent subset.
+    final fresh = (await cache.readOnlineAuthorized('live-chat:2'))!;
     expect(
       await cache.saveAuthorized('live-chat:2', {
-        'messages': [
-          {
-            'id': 7,
-            'content': 'fictional message 7',
-            'attachments': <dynamic>[],
-          },
-        ],
-        'images': <String, dynamic>{},
+        ...fresh,
+        'messages': [(fresh['messages'] as List).last],
       }, expectedAccountId: 1),
       isTrue,
     );
@@ -513,6 +526,7 @@ void main() {
     expect(api.cursors, isEmpty);
     api.pendingLatest!.complete(
       const NetworkSuccess({
+        'room_key': 'fictional-room',
         'items': [
           {
             'id': 5,

@@ -179,7 +179,7 @@ void main() {
       f.api.offline = true;
       await tester.tap(find.byTooltip('刷新会话'));
       await tester.pumpAndSettle();
-      expect(find.text('仅限测试的当前服务器内容'), findsOneWidget);
+      expect(find.text('仅限测试的当前服务器内容'), findsNothing);
       expect(find.text('离线浏览，联网后可继续聊天'), findsOneWidget);
       final row = tester.widget<ListTile>(
         find.widgetWithText(ListTile, '合成会话对象'),

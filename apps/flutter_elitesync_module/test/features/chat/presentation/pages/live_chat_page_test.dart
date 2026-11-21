@@ -170,10 +170,17 @@ class _MediaApi extends ApiClient {
           error: TimeoutException('fictional'),
         )
       : NetworkSuccess({
+          'room_key': 'fictional-room',
+          'offline_text_grant': syntheticOfflineTextGrant('fictional-room', peerId: query?['peer_id'] as int? ?? 2),
           'items': [
             for (var i = 0; i < messageCount; i++)
               {
                 'id': i + 1,
+                'room_id': 'fictional-room',
+                'sender_id': 2,
+                'is_read': true,
+                'message_type': includeImage && i == 0 ? 'image' : 'text',
+                'has_attachments': includeImage && i == 0,
                 'content': i == 0
                     ? 'retained conversation'
                     : 'later message $i',
@@ -1004,7 +1011,7 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('existing offline grant restores saved draft read only', (
+  testWidgets('offline grant limits the conversation to downloaded text', (
     tester,
   ) async {
     final secure = await syntheticPrivateLogin();
@@ -1019,7 +1026,8 @@ void main() {
     await _show(tester, api, secureStore: secure);
     await tester.pumpAndSettle();
     final field = tester.widget<TextField>(find.byType(TextField));
-    expect(field.controller!.text, 'offline saved text');
+    expect(field.controller!.text, isEmpty);
+    expect(find.text('retained conversation'), findsOneWidget);
     expect(field.readOnly, isTrue);
     for (final label in ['保存草稿', '清除草稿', '发送']) {
       expect(

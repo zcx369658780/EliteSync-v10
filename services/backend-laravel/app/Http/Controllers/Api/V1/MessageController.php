@@ -212,12 +212,44 @@ class MessageController extends Controller
             $items = $items->reverse()->values();
         }
 
+        $offlineGrant = $latest ? $this->offlineTextGrant($user, $peerId, $roomId) : null;
+
         return response()->json([
             'room_key' => $roomId,
+            ...($offlineGrant === null ? [] : ['offline_text_grant' => $offlineGrant]),
             'items' => $items->map(fn (ChatMessage $message) => $this->shapeMessage($message))->values(),
             'total' => $items->count(),
             'has_more' => $hasMore,
         ]);
+    }
+
+    private function offlineTextGrant(User $user, int $peerId, string $roomId): ?array
+    {
+        $token = $user->currentAccessToken();
+        if (! str_starts_with($roomId, 'cn:') || ! $token instanceof \Laravel\Sanctum\PersonalAccessToken
+            || ! $token->device_session_id || $token->name !== 'mobile-access') {
+            return null;
+        }
+
+        // The message reader already holds both actor locks and authorized this exact room.
+        $family = DB::table('device_sessions')->where('id', $token->device_session_id)
+            ->where('user_id', $user->id)->whereNull('revoked_at')->lockForUpdate()->first();
+        if (! $family || ! $family->trusted_login_at || ! $family->device_id) {
+            return null;
+        }
+
+        $now = now('UTC')->startOfSecond();
+
+        return [
+            'scope' => 'conversation_text_v1',
+            'account_id' => (int) $user->id,
+            'peer_id' => $peerId,
+            'session_id' => (string) $family->id,
+            'device_id' => (string) $family->device_id,
+            'room_key' => $roomId,
+            'issued_at' => $now->toISOString(),
+            'expires_at' => $now->copy()->addHours(24)->toISOString(),
+        ];
     }
 
     private function replySummary(ChatMessage $message): ?array
@@ -231,7 +263,8 @@ class MessageController extends Controller
         $summary = $type ? match ($type) {
             'image' => '[图片]', 'video' => '[视频]', 'audio' => '[语音]', default => '[附件]',
         } : mb_substr($original->content, 0, 120);
-        return ['id' => (int) $original->id, 'available' => true, 'summary' => $summary];
+        return ['id' => (int) $original->id, 'available' => true, 'summary' => $summary,
+            'offline_text' => $original->attachments->isEmpty()];
     }
 
     public function search(Request $request, ConversationCapabilityService $capabilities): JsonResponse

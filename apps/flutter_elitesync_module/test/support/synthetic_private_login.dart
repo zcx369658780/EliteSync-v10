@@ -15,3 +15,17 @@ Future<SyntheticPrivateStore> syntheticPrivateLogin() async {
  'purge_at':now.add(const Duration(days:30)).toIso8601String()});
  return secure;
 }
+
+Map<String, dynamic> syntheticOfflineTextGrant(String roomKey, {int peerId=2}) {
+  final now = DateTime.now().toUtc();
+  return {
+    'scope': 'conversation_text_v1',
+    'account_id': 1,
+    'peer_id': peerId,
+    'session_id': '1',
+    'device_id': 'synthetic-widget-device',
+    'room_key': roomKey,
+    'issued_at': now.toIso8601String(),
+    'expires_at': now.add(const Duration(hours: 24)).toIso8601String(),
+  };
+}

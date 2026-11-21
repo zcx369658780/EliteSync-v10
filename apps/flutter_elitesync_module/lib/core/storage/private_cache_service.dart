@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_elitesync_module/core/storage/secure_storage_service.dart';
+import 'package:flutter_elitesync_module/features/chat/domain/offline_chat_text.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/offline_private_retention_policy.dart';
 
 enum PrivateCachePurgeStatus { notDue, untrustedTime, completed, failed }
@@ -485,6 +486,46 @@ class PrivateCacheService {
       _read(objectKey, offline: false);
   Future<Map<String, dynamic>?> readOffline(String objectKey) =>
       _read(objectKey, offline: true);
+
+  Future<({String roomKey, Duration remaining, List<Map<String, dynamic>> messages})?>
+  readOfflineChatText(int peerId) async {
+    final generation = _generation;
+    final saved = await readOffline('live-chat:$peerId');
+    final now = _trustedNow();
+    final roomKey = saved?['room_key'];
+    final rows = saved?['messages'];
+    if (generation != _generation ||
+        !_offline ||
+        now == null ||
+        _loginAt == null ||
+        _userId == null ||
+        _deviceId == null ||
+        _sessionId == null ||
+        roomKey is! String ||
+        roomKey.isEmpty ||
+        rows is! List) {
+      return null;
+    }
+    final duration = OfflineChatText.remaining(
+      receipt: saved?['offline_text_grant'],
+      now: now,
+      loginAt: _loginAt!,
+      accountId: _userId!,
+      peerId: peerId,
+      deviceId: _deviceId!,
+      sessionId: _sessionId!,
+      roomKey: roomKey,
+    );
+    if (duration == null) return null;
+    return (
+      roomKey: roomKey,
+      remaining: duration,
+      messages: rows
+          .map((row) => OfflineChatText.project(row, roomKey))
+          .whereType<Map<String, dynamic>>()
+          .toList(),
+    );
+  }
 
   /// Index-only overwrite guard. This neither reads content nor grants access;
   /// an entry may remain after deletion. Unknown is never proof of absence.
