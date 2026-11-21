@@ -1,11 +1,12 @@
 # EliteSync V2｜P0.4.1 1011806实机验收与异地共享Beta环境决策准备
 
-日期：2026-11-21。状态：`P0_4_LOCAL_SCOPED_ACCEPTED / 1011806_DEVICE_INSTALL_OWNER_APPROVAL_REQUIRED / SHARED_HTTPS_OPTION_PACKAGE_PREP / REAL_ADMIN_DATA_GATE_PENDING / NO_CLOUD_WRITE_OR_PURCHASE / CLOSED_BETA_NO_GO`。
+日期：2026-11-21。状态：`P0_4_LOCAL_SCOPED_ACCEPTED / OWNER_AUTHORIZED_1011806_INSTALL_ON_PREVIOUSLY_USED_DEVICE / DEVICE_E2E_PENDING / SHARED_HTTPS_OPTION_PACKAGE_PREP / REAL_ADMIN_DATA_GATE_PENDING / NO_CLOUD_WRITE_OR_PURCHASE / CLOSED_BETA_NO_GO`。
 
 依据：
 - [Codex P0.4 Hardening报告](https://github.com/zcx369658780/EliteSync-v10/blob/f41f25bb8c237f8479b998e82e843f528397e1fa/docs/versions/v2/cloud-r0-20261121/V2_P0_4_HARDENING_AND_BETA_AUTHORIZATION_REPORT_20261121.md)
 - [顾问P0.4限定验收](../../workflow/V2_P0_4_HARDENING_AND_BETA_AUTHORIZATION_ADVISOR_ACCEPTANCE_20261121.md)
 - [旧管理员恢复Beta硬门决定](../../decisions/OWNER_V2_LEGACY_ADMIN_ACCOUNT_RECOVERY_REQUIRED_FOR_CLOSED_BETA_20261121.md)
+- [Owner 1011806单设备安装与实机测试授权](../../decisions/OWNER_V2_ANDROID_1011806_DEVICE_INSTALL_AND_P0_4_TEST_AUTHORIZATION_20261121.md)
 
 ## 0. 已接受与当前固定事实
 
@@ -16,17 +17,27 @@
 - 1011806候选包身份：`com.elitesync.v2functionp04`，versionCode1011806，versionName`10.1.18-v2-function-p04`，APK SHA256`3c855b8f796e7b79124d35ae2c605c3cf36574e89d569cb47d687d1f4ff4c130`，v2证书SHA256`9c3fc6b545c35a0033adfbebf6c010536a616464094caf2981321644762f4b09`，Flutter AAR SHA256`b81774a1730c0835161ee443625493c93c006543192c7b4beffe83afb36466aa`，TLS证书SHA256`41e6411e5257d4986ab3d9a1b61d48abc739fb9f16055673a72e0fb02fe75f96`。
 - 1011806 API为本机`https://127.0.0.1:18444/`，需本机ADB reverse；它不是共享Beta服务器APK。1011806包名不同于1011805，可并行安装；**此前Owner对1011805的安装授权不自动覆盖1011806**。
 
-## 1. 设备安装前准备（无需安装授权即可做）
+## 1. Owner授权状态：已授权，直接执行设备步骤
 
-1. 起手确认本地APK精确路径、文件大小、SHA-256、签名证书、包名、versionCode、native/Dart endpoint和TLS证书；报告值必须逐字一致。任何不一致立即STOP，重新构建/固定新候选，不能修改报告冒充一致。
-2. 确认目标Android设备的型号、Android版本、serial代号、当前1011805安装状态；公开报告只记脱敏设备代号。不得读取或导出设备私人照片/文件。
-3. 生成本次测试命令清单和ADB reverse端口映射，明确本地服务容器、MariaDB schema/server_id、HTTPS证书和两个合成账号。服务端/设备账号只用合成数据。
-4. 编写回滚方案：仅卸载新包`com.elitesync.v2functionp04`，不卸载/覆盖1011805、不清理共享ADB数据、不清空设备存储；恢复USB转发前确认本地服务健康。
-5. 将安装步骤标记`WAITING_OWNER_EXPLICIT_1011806_INSTALL_APPROVAL`。没有Owner明确回复授权前，不执行`adb install`、`install -r`、启动新包、清数据或设备变更。
+Owner于2026-11-21在当前会话明确授权：
 
-## 2. Owner授权后的1011806实体设备测试
+“好的我同意授权Codex在此前那台Android设备上安装1011806，并完成上述P0.4实机测试。”
 
-只在Owner明确授权安装1011806后执行。新包应作为独立并行应用安装，保留1011805及其数据。测试仅限具名设备和合成账号。
+授权正式记录：[Owner 1011806单设备安装与实机测试授权](../../decisions/OWNER_V2_ANDROID_1011806_DEVICE_INSTALL_AND_P0_4_TEST_AUTHORIZATION_20261121.md)。
+
+因此：
+- 状态从`WAITING_OWNER_EXPLICIT_1011806_INSTALL_APPROVAL`更新为`OWNER_AUTHORIZED / DEVICE_EXECUTION_PENDING`。
+- Codex不得再次询问是否允许安装1011806或执行本任务。
+- 仅允许此前安装并测试1011805的同一台实体Android设备（上一轮记录Android16/API36）。用本机私有ADB记录核对原设备serial；完整serial不得写入GitHub。若设备不在线/身份无法核对/多台无法唯一匹配，停止安装并提出最小设备识别问题，不换设备或模拟器。
+- 安装前核实APK实际文件、209,094,076字节、SHA256、签名、包名、versionCode、native/Dart endpoint和TLS证书与本任务第0节固定值一致；任一不符STOP。
+- 将`com.elitesync.v2functionp04`作为独立新包并行安装，保留1011805及其数据。不得卸载、覆盖、降级1011805，不清理设备数据。
+- 使用合成账号/合成图片。只采集EliteSync应用截图和相关脱敏logcat，不访问私人照片、联系人、短信或其它App数据。
+- 允许建立本轮ADB reverse；结束时只撤销本轮新建的映射，不用`reverse --remove-all`。
+- 本授权不包含云端访问、真实管理员数据、阿里云写入、费用采购或封闭内测。
+
+## 2. 1011806实体设备测试
+
+Owner授权已具备，无需等待新的许可。新包应作为独立并行应用安装，保留1011805及其数据。测试仅限上述同一具名实体设备和合成账号。
 
 ### 2.1 启动与基础链路
 - 安装后读取PackageManager包名/versionCode/signature并从手机拉回base.apk重算SHA256，与构建候选一致。
