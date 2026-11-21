@@ -142,6 +142,13 @@ final class V2PhaseCDataRightsTest extends TestCase
             'birth_time' => '09:55'])->assertOk()->assertJsonPath('astro_profile', null)
             ->assertJsonPath('user.birth_time', '09:55');
         $this->getJson('/api/v1/profile/basic')->assertOk()->assertJsonPath('birth_time', '09:55');
+
+        $this->postJson('/api/v1/profile/basic', ['gender' => 'female', 'city' => 'Current city',
+            'relationship_goal' => 'friendship', 'birthday' => '1995-08-12', 'birth_time' => ''])
+            ->assertOk()->assertJsonPath('recomputed_at', null)->assertJsonPath('astro_profile', null)
+            ->assertJsonPath('user.birth_time', null);
+        $this->getJson('/api/v1/profile/basic')->assertOk()->assertJsonPath('birth_time', null);
+        $this->assertNull($owner->fresh()->private_birth_time);
         $this->assertDatabaseCount('user_astro_profiles', 0);
         $this->assertDatabaseCount('user_natal_profiles', 0);
     }

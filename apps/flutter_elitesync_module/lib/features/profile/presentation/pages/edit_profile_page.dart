@@ -147,19 +147,17 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
         padding: EdgeInsets.fromLTRB(0, t.spacing.sm, 0, t.spacing.xl),
         children: [
           const SectionReveal(
-            child: PageTitleRail(title: '完善基础资料', subtitle: '资料越完整，匹配解释越准确'),
+            child: PageTitleRail(title: '完善基础资料', subtitle: '管理账户中的个人资料'),
           ),
           SizedBox(height: t.spacing.md),
           AppInfoSectionCard(
             title: '保存后会发生什么',
-            subtitle: localRestoration
-                ? '昵称与城市可独立保存；完整出生资料用于本地真实八字'
-                : '昵称与城市可独立保存；完整资料保存会刷新画像与星盘摘要',
+            subtitle: '仅保存基础资料，不会重新排盘',
             leadingIcon: Icons.sync_alt_rounded,
             child: Text(
               localRestoration
-                  ? '保存城市只更新城市并从服务端读回。出生时间采用 Asia/Shanghai（UTC+8）；其它时区需先转换。本地真实八字由服务端计算，时间缺失会明确记录默认午时降级；完整紫微与西占仍待恢复。出生地名称及坐标可手工填写，本页不调用外部地图搜索。请以各模块来源说明为准。'
-                  : '保存城市只更新城市并从服务端读回，不触发画像或星盘重算。保存并重算提交的是完整基础出生资料，不是本地展示草稿。提交后，系统会重新整理八字、紫微与星盘所需字段；出生时间和出生地会用于后续摘要刷新。本地只负责展示结果，不自行计算或改写解释结论。',
+                  ? '昵称和城市可单独保存。出生地名称与坐标可手工填写；出生时间可以留空。需要排盘时，请到“三盘本命排盘”单独填写并提交。'
+                  : '昵称和城市可单独保存。出生时间可以留空。需要排盘时，请到“三盘本命排盘”单独填写并提交。',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: t.textSecondary,
                 height: 1.5,
@@ -169,15 +167,11 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
           if (async.asData?.value.saving ?? false) ...[
             SizedBox(height: t.spacing.sm),
             AppInfoSectionCard(
-              title: '正在保存与重算',
-              subtitle: localRestoration
-                  ? '保存完成后可读取本地真实八字'
-                  : '保存完成后，会自动触发画像与星盘刷新',
+              title: '正在保存基础资料',
+              subtitle: '等待服务端确认',
               leadingIcon: Icons.sync_problem_rounded,
               child: Text(
-                localRestoration
-                    ? '当前提交正在同步完整基础资料。完整紫微与西占仍待恢复；此操作不代表完整排盘已完成。'
-                    : '当前提交正在同步基础资料。请保持网络连接，保存完成后会自动刷新资料页、画像页和星盘页的最新结果。',
+                '请保持网络连接。',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: t.textSecondary,
                   height: 1.5,
@@ -265,9 +259,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      localRestoration
-                          ? '出生时间用于本地真实八字，建议填写精确时间；完整紫微与西占待恢复'
-                          : '出生时间会影响八字 / 紫微 / 星盘计算，建议填写精确时间',
+                      '不知道准确出生时间时，可以留空。',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: t.textSecondary,
                         height: 1.35,
@@ -366,7 +358,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                   SizedBox(height: t.spacing.lg),
                   AppPrimaryButton(
                     key: const ValueKey('profile-save-full'),
-                    label: '保存并重算',
+                    label: '保存基础资料',
                     isLoading: async.asData?.value.saving ?? false,
                     onPressed: _citySaving || _nicknameSaving
                         ? null
@@ -404,14 +396,11 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                             }
                             if (birthTimeValue.isEmpty) {
                               final shouldContinue =
-                                  await _confirmSaveWithoutBirthTime(
-                                    context,
-                                    localRestoration: localRestoration,
-                                  );
+                                  await _confirmSaveWithoutBirthTime(context);
                               if (!shouldContinue || !context.mounted) return;
                             }
                             try {
-                              await ref
+                              final saved = await ref
                                   .read(editProfileProvider.notifier)
                                   .save(
                                     ProfileDetailEntity(
@@ -430,9 +419,9 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    birthTimeValue.isEmpty
-                                        ? '资料已保存；出生时间缺失，八字按保留时间或默认午时降级，请核对来源说明。完整紫微与西占待恢复。'
-                                        : '资料已保存，八字结果已刷新；完整紫微与西占待恢复，请以各模块来源说明为准',
+                                    saved.birthTime.trim().isEmpty
+                                        ? '基础资料已保存，出生时间保持未知。'
+                                        : '基础资料已保存。',
                                   ),
                                 ),
                               );
@@ -645,19 +634,12 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
   }
 }
 
-Future<bool> _confirmSaveWithoutBirthTime(
-  BuildContext context, {
-  bool localRestoration = false,
-}) async {
+Future<bool> _confirmSaveWithoutBirthTime(BuildContext context) async {
   final result = await showDialog<bool>(
     context: context,
     builder: (context) => AlertDialog(
       title: const Text('未填写出生时间'),
-      content: Text(
-        localRestoration
-            ? '出生时间影响八字计算。缺少准确时间时，相关解释可能不完整；完整紫微与西占仍待恢复。是否继续保存资料？'
-            : '出生时间会影响八字、紫微和星盘摘要。当前保存后，系统可能会使用历史值或默认值进行计算；前端不会自行补算。是否继续保存？',
-      ),
+      content: const Text('出生时间将保持未知。是否继续保存基础资料？'),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),

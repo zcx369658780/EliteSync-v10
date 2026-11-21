@@ -11,7 +11,11 @@ use App\Services\NatalInputContext;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
+use JsonException;
+use Symfony\Component\Process\Exception\ProcessTimedOutException;
+use Symfony\Component\Process\Exception\RuntimeException as ProcessException;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 use Throwable;
 
@@ -71,9 +75,27 @@ class NatalProfileController extends Controller
         }
         try {
             $results = $calculator->compute($context, $settings);
-        } catch (Throwable) {
+        } catch (Throwable $failure) {
             UserNatalProfile::whereKey($row->id)->where('input_revision', $row->input_revision)
                 ->update(['status' => 'FAILED', 'results' => null, 'result_revision' => null]);
+            // Record fixed categories without exception text, process output or birth inputs.
+            Log::warning('natal_calculation_failed', [
+                'reason' => match (true) {
+                    $failure instanceof ProcessTimedOutException => 'process_timeout',
+                    $failure instanceof ProcessException => 'process_execution_unavailable',
+                    $failure instanceof JsonException => 'invalid_process_json',
+                    default => match ($failure->getMessage()) {
+                        'natal_runtime_identity_unavailable' => 'runtime_identity_unavailable',
+                        'local_natal_executable_not_configured', 'bazi_time_executable_not_configured' => 'executable_not_configured',
+                        'local_natal_process_failed' => 'adapter_process_failed',
+                        'bazi_time_conversion_failed' => 'bazi_time_process_failed',
+                        'local_natal_result_invalid', 'bazi_time_result_invalid', 'bazi_term_identity_mismatch',
+                        'solar_context_unavailable', 'natal_time_context_unavailable',
+                        'natal_chiron_result_identity_mismatch' => 'calculation_identity_or_result_mismatch',
+                        default => 'unexpected_calculation_failure',
+                    },
+                },
+            ]);
             return response()->json(['code' => 'natal_calculation_unavailable',
                 'message' => '本地排盘暂不可用，输入已保留，请重读后重试。'], 503)->header('Cache-Control', 'no-store, private');
         }

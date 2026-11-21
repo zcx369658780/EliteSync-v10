@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Services\NatalCalculationService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -86,6 +87,7 @@ class V1010NatalApiTest extends TestCase
     public function test_calculator_failure_is_not_a_cached_success(): void
     {
         Sanctum::actingAs($this->owner());
+        Log::spy();
         $this->mock(NatalCalculationService::class, function ($mock) {
             $mock->shouldReceive('compute')->andThrow(new \RuntimeException('internal paths must not be exposed'));
         });
@@ -93,6 +95,8 @@ class V1010NatalApiTest extends TestCase
             ->assertJsonPath('code', 'natal_calculation_unavailable');
         $this->getJson('/api/v1/profile/natal')->assertOk()->assertJsonPath('profile.status', 'FAILED')
             ->assertJsonPath('profile.results', null)->assertJsonPath('profile.result_revision', null);
+        Log::shouldHaveReceived('warning')->once()->with('natal_calculation_failed',
+            ['reason' => 'unexpected_calculation_failure']);
     }
 
     public function test_superseded_inflight_result_is_not_stored(): void

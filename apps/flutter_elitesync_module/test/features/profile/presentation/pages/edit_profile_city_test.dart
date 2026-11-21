@@ -154,7 +154,7 @@ void main() {
           fail ? findsNothing : findsOneWidget,
         );
         if (fail) expect(find.textContaining('账号已禁用'), findsOneWidget);
-        final full = find.widgetWithText(AppPrimaryButton, '保存并重算');
+        final full = find.widgetWithText(AppPrimaryButton, '保存基础资料');
         await reveal(tester, full);
         await tester.tap(full);
         await tester.pumpAndSettle();
