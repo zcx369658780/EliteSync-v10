@@ -18,7 +18,9 @@ final class DenyUnverifiedMessagingLiveAccess
     {
         $service = app(LiveConsentService::class);
         $deny = fn () => response()->json(['message' => 'conversation unavailable'], 404);
-        if (! $service->enabled() || ! $request->user()) return $deny();
+        if (! $request->user() || ! $service->availableForActor((int) $request->user()->id)) {
+            return $deny();
+        }
         $actor = (int) $request->user()->id;
         $peer = (int) ($request->route('peerUserId') ?? 0);
         $domain = app(ConversationDomainService::class);

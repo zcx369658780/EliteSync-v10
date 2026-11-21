@@ -246,6 +246,9 @@ class ConversationAtomicSendService
         if ($attachmentIds === []) {
             return ['ok' => true, 'assets' => collect()];
         }
+        if (app(SyntheticConnectionScope::class)->targetsFixtureRuntime()) {
+            return ['ok' => false, 'status' => 422, 'code' => 'fixture_text_only'];
+        }
         $assets = MediaAsset::query()->whereIn('id', $attachmentIds)->lockForUpdate()->get()->keyBy('id');
         if (app(LiveConsentService::class)->enabled() && $assets->contains(fn ($asset) => ! in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true))) {
             return ['ok' => false, 'status' => 422, 'code' => 'private_attachment_required'];

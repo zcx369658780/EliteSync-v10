@@ -1,0 +1,18 @@
+# Only for the local function fixture. Compose creates separate networks and volumes.
+name: elitesync-v2-function
+
+services:
+  r0-db:
+    command: ["--server-id=2621121"]
+    environment:
+      MARIADB_DATABASE: elitesync_v2_function
+      MARIADB_USER: elitesync_function_app
+  r0-app:
+    environment:
+      DB_DATABASE: elitesync_v2_function
+      DB_USERNAME: elitesync_function_app
+      V2_SYNTHETIC_CONNECTION_ENABLED: 'true'
+  r0-worker:
+    environment:
+      DB_DATABASE: elitesync_v2_function
+      DB_USERNAME: elitesync_function_app

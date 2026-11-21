@@ -14,10 +14,15 @@ class ConversationCapabilityService
      */
     public function authorizeSend(int $actorId, int $peerId, bool $lockMatch = false): array
     {
+        $live = app(LiveConsentService::class);
+        $scope = app(SyntheticConnectionScope::class);
+        $inFixture = $scope->targetsFixtureRuntime();
         $blocked = UserBlock::query()->where(fn ($q) => $q->where('blocker_id', $actorId)->where('blocked_user_id', $peerId))
             ->orWhere(fn ($q) => $q->where('blocker_id', $peerId)->where('blocked_user_id', $actorId))->exists();
-        $syntheticDenied = ! app(MatchingDebugModeService::class)->includeSyntheticUsers()
-            && (bool) User::query()->whereKey($peerId)->value('is_synthetic');
+        $syntheticDenied = $inFixture
+            ? ! $scope->allowsPair($actorId, $peerId)
+            : (! app(MatchingDebugModeService::class)->includeSyntheticUsers()
+                && (bool) User::query()->whereKey($peerId)->value('is_synthetic'));
         $conversation = Conversation::query()
             ->where('room_key', app(ConversationDomainService::class)->roomKey($actorId, $peerId))
             ->first();
@@ -33,7 +38,7 @@ class ConversationCapabilityService
         if ($lockMatch) {
             $matchQuery->lockForUpdate();
         }
-        $match = $matchQuery->first();
+        $match = $inFixture ? $live->match($actorId, $peerId, $lockMatch) : $matchQuery->first();
 
         $departed = false;
         if ($conversation) {
@@ -43,9 +48,9 @@ class ConversationCapabilityService
                 ->exists();
         }
 
-        $allowed = ! $blocked && ! $syntheticDenied && ($match !== null || app(LiveConsentService::class)->connection($actorId, $peerId) !== null) && ! $departed;
-        if (app(LiveConsentService::class)->enabled()) {
-            $allowed = $allowed && (app(LiveConsentService::class)->gates($actorId, $peerId)['live_send_allowed'] ?? false);
+        $allowed = ! $blocked && ! $syntheticDenied && ($match !== null || $live->connection($actorId, $peerId) !== null) && ! $departed;
+        if ($inFixture || $live->enabled()) {
+            $allowed = $allowed && ($live->gates($actorId, $peerId)['live_send_allowed'] ?? false);
         }
 
         return [
@@ -62,6 +67,9 @@ class ConversationCapabilityService
 
     public function evaluate(int $actorId, int $peerId, ?int $requiredMatchId = null): array
     {
+        $live = app(LiveConsentService::class);
+        $scope = app(SyntheticConnectionScope::class);
+        $inFixture = $scope->targetsFixtureRuntime();
         $blocked = UserBlock::query()->where(fn ($q) => $q->where('blocker_id', $actorId)->where('blocked_user_id', $peerId))
             ->orWhere(fn ($q) => $q->where('blocker_id', $peerId)->where('blocked_user_id', $actorId))->exists();
         $conversation = Conversation::query()->where('room_key', app(ConversationDomainService::class)->roomKey($actorId, $peerId))
@@ -72,14 +80,17 @@ class ConversationCapabilityService
         if ($requiredMatchId !== null) {
             $releasedMatchQuery->whereKey($requiredMatchId);
         }
-        $releasedMatch = $releasedMatchQuery->exists() || ($requiredMatchId === null && app(LiveConsentService::class)->connection($actorId, $peerId) !== null);
-        $syntheticDenied = ! app(MatchingDebugModeService::class)->includeSyntheticUsers()
-            && (bool) User::query()->whereKey($peerId)->value('is_synthetic');
+        $releasedMatch = (! $inFixture && $releasedMatchQuery->exists())
+            || ($requiredMatchId === null && $live->connection($actorId, $peerId) !== null);
+        $syntheticDenied = $inFixture
+            ? ! $scope->allowsPair($actorId, $peerId)
+            : (! app(MatchingDebugModeService::class)->includeSyntheticUsers()
+                && (bool) User::query()->whereKey($peerId)->value('is_synthetic'));
 
         $canRead = ! $blocked && app(SocialPolicy::class)->pairAllowed($actorId, $peerId) && ($conversation !== null || $releasedMatch);
         $canMutate = ! $blocked && ! $syntheticDenied && $releasedMatch;
-        if (app(LiveConsentService::class)->enabled()) {
-            $gates = app(LiveConsentService::class)->gates($actorId, $peerId);
+        if ($inFixture || $live->enabled()) {
+            $gates = $live->gates($actorId, $peerId);
             $canRead = $canRead && ($gates['live_read_allowed'] ?? false);
             $canMutate = $canMutate && ($gates['live_send_allowed'] ?? false);
         }
@@ -89,7 +100,7 @@ class ConversationCapabilityService
             'can_read' => $canRead,
             'can_create' => $canMutate,
             'can_send' => $canMutate,
-            'can_ws' => $canMutate && $conversation !== null
+            'can_ws' => ! $inFixture && $canMutate && $conversation !== null
                 && $conversation->members()->where('user_id', $peerId)->whereNull('left_at')->exists(),
             'reason_code' => $blocked ? 'moderation_blocked' : ($syntheticDenied ? 'relationship_unavailable' : (! $releasedMatch ? 'relationship_unavailable' : null)),
         ];

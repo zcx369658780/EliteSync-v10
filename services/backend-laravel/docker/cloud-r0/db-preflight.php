@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Services\SyntheticConnectionScope;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Facades\DB;
 
@@ -10,21 +11,26 @@ $app = require '/var/www/html/bootstrap/app.php';
 $app->make(Kernel::class)->bootstrap();
 
 try {
+    $functionFixture = in_array('--function', $argv, true);
+    $expectedDatabase = $functionFixture ? SyntheticConnectionScope::DATABASE : 'elitesync_v2_r0';
+    $expectedUser = $functionFixture ? 'elitesync_function_app' : 'elitesync_r0_app';
+    $expectedServer = $functionFixture ? SyntheticConnectionScope::SERVER_ID : 2621111;
     $config = config('database.connections.mariadb');
     if (! $app->environment('staging') || config('database.default') !== 'mariadb'
         || $config['url'] || $config['unix_socket'] || $config['host'] !== 'r0-db'
-        || (int) $config['port'] !== 3306 || $config['database'] !== 'elitesync_v2_r0'
-        || $config['username'] !== 'elitesync_r0_app') {
+        || (int) $config['port'] !== 3306 || $config['database'] !== $expectedDatabase
+        || $config['username'] !== $expectedUser
+        || ($functionFixture && ! app(SyntheticConnectionScope::class)->targetsFixtureRuntime())) {
         throw new RuntimeException('Unexpected staging connection settings');
     }
     $identity = DB::selectOne('SELECT DATABASE() AS db_name, VERSION() AS db_version, @@server_id AS server_id');
-    if ($identity->db_name !== 'elitesync_v2_r0'
+    if ($identity->db_name !== $expectedDatabase
         || ! preg_match('/^10\.11\..*MariaDB/i', $identity->db_version)
-        || (int) $identity->server_id !== 2621111) {
+        || (int) $identity->server_id !== $expectedServer) {
         throw new RuntimeException('Unexpected database identity');
     }
     $tables = DB::selectOne('SELECT COUNT(*) AS total FROM information_schema.tables WHERE table_schema = DATABASE()');
-    $isInitial = ($argv[1] ?? '') === '--empty';
+    $isInitial = in_array('--empty', $argv, true);
     if ($isInitial && (int) $tables->total !== 0) {
         throw new RuntimeException('Database is not empty');
     }

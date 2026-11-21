@@ -35,6 +35,16 @@ final class LiveConsentService
             && ! in_array((int) $db->getConfig('port'), [3306, 43316], true);
     }
 
+    public function availableForActor(int $actor): bool
+    {
+        return $this->enabled() || app(SyntheticConnectionScope::class)->allowsActor($actor);
+    }
+
+    private function enabledForPair(int $actor, int $peer): bool
+    {
+        return $this->enabled() || app(SyntheticConnectionScope::class)->allowsPair($actor, $peer);
+    }
+
     public function match(int $actor, int $peer, bool $lock = false): ?DatingMatch
     {
         if (! $this->enabled() || $actor === $peer) {
@@ -79,7 +89,7 @@ final class LiveConsentService
 
     public function connection(int $actor, int $peer, bool $lock = false): ?object
     {
-        if (! $this->enabled() || ! app(SocialPolicy::class)->pairAllowed($actor, $peer)) {
+        if (! $this->enabledForPair($actor, $peer) || ! app(SocialPolicy::class)->pairAllowed($actor, $peer)) {
             return null;
         }
         $q = DB::table('product_connections')->where('user_a', min($actor, $peer))->where('user_b', max($actor, $peer));
@@ -97,7 +107,7 @@ final class LiveConsentService
 
     private function hasContext(int $actor, int $peer, bool $lock = false): bool
     {
-        return $this->enabled() && $actor !== $peer && app(SocialPolicy::class)->pairAllowed($actor, $peer)
+        return $actor !== $peer && $this->enabledForPair($actor, $peer) && app(SocialPolicy::class)->pairAllowed($actor, $peer)
             && ($this->match($actor, $peer, $lock) || app(SocialPolicy::class)->friendship($actor, $peer) || $this->acceptedMessage($actor, $peer) || $this->connection($actor, $peer, $lock));
     }
 
@@ -186,20 +196,22 @@ final class LiveConsentService
 
     public function current(int $actor, int $peer): array
     {
-        $context = $this->hasContext($actor, $peer);
-        abort_unless($context, 404, 'connection unavailable');
-        $cn = $this->connection($actor, $peer);
-        $mc = $cn ? DB::table('messaging_consents')->where('connection_id', $cn->id)->where('purpose', MC::PURPOSE_LIVE_READ)->orderByDesc('generation')->first() : null;
+        return DB::transaction(function () use ($actor, $peer) {
+            abort_unless($this->hasContext($actor, $peer, true), 404, 'connection unavailable');
+            $cn = $this->connection($actor, $peer, true);
+            $mc = $cn ? DB::table('messaging_consents')->where('connection_id', $cn->id)->where('purpose', MC::PURPOSE_LIVE_READ)
+                ->orderByDesc('generation')->lockForUpdate()->first() : null;
 
-        return ['connection' => ['id' => $cn->id ?? null, 'generation' => (int) ($cn->lifecycle_generation ?? 1), 'state' => $cn->state ?? CN::STATE_NONE, 'revision' => (int) ($cn->revision ?? 0), 'requester_id' => $cn->requester_id ?? null],
-            'consent' => ['id' => $mc->id ?? null, 'generation' => (int) ($mc->generation ?? 1), 'state' => $mc->state ?? MC::STATE_NONE, 'revision' => (int) ($mc->revision ?? 0), 'requester_id' => $mc->requester_id ?? null],
-            'peer_id' => $peer, 'gates' => $this->gates($actor, $peer)];
+            return ['connection' => ['id' => $cn->id ?? null, 'generation' => (int) ($cn->lifecycle_generation ?? 1), 'state' => $cn->state ?? CN::STATE_NONE, 'revision' => (int) ($cn->revision ?? 0), 'requester_id' => $cn->requester_id ?? null],
+                'consent' => ['id' => $mc->id ?? null, 'generation' => (int) ($mc->generation ?? 1), 'state' => $mc->state ?? MC::STATE_NONE, 'revision' => (int) ($mc->revision ?? 0), 'requester_id' => $mc->requester_id ?? null],
+                'peer_id' => $peer, 'gates' => $this->lockedGates($actor, $peer)];
+        });
     }
 
     public function transition(int $actor, int $peer, string $kind, string $action, int $expected, ?int $expectedConnectionId = null, ?int $expectedConsentId = null): array
     {
         return DB::transaction(function () use ($actor, $peer, $kind, $action, $expected, $expectedConnectionId, $expectedConsentId) {
-            if ($this->enabled()) {
+            if ($this->enabledForPair($actor, $peer)) {
                 app(SocialPolicy::class)->lockPair($actor, $peer);
             }
             abort_unless($this->hasContext($actor, $peer, true), 404, 'connection unavailable');
