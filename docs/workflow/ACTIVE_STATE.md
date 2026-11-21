@@ -1,3 +1,18 @@
+# CURRENT ENTRY 2026-11-21：网页GPT会话交接完成；P0.4.1限定验收，等待Codex完成P0.4.2后集中复核
+
+**P0_4_1_ADVISOR_SCOPED_ACCEPTED / P0_HISTORY_PRIVACY_FAIL / P0_4_2_TASK_FIXED / CODEX_DELIVERY_PENDING / NEW_APK_INSTALL_NOT_AUTHORIZED / REAL_ADMIN_NOT_RESTORED / SHARED_HTTPS_NOT_DEPLOYED / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 当前网页GPT会话已交接：[SESSION_HANDOFF_20261121_V2_P0_4_1_ADVISOR_ACCEPTANCE_P0_4_2_PENDING.md](SESSION_HANDOFF_20261121_V2_P0_4_1_ADVISOR_ACCEPTANCE_P0_4_2_PENDING.md)。新会话先读交接全文，再读本文件最新CURRENT ENTRY、P0.4.1顾问验收和P0.4.2任务单。
+- P0.4.1 Codex固定报告提交 e4d1588acee62d8f8f166042c328e26cc951c14a，实机源码HEAD 00ca46f6b020afa25ce472509c2fd3227f74c461；报告提交只增加实机报告/手册，没有产品源码变化。1011806已在原Android16设备重试安装成功，1011805保留；整体 DEVICE_E2E_PARTIAL。顾问限定验收见[V2_P0_4_1_ANDROID_1011806_ADVISOR_SCOPED_ACCEPTANCE_20261121.md](V2_P0_4_1_ANDROID_1011806_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- **P0隐私FAIL：**Block关闭第1代CN并撤销MC后，解除Block并建立第2代CN/MC，手机重新显示第1代4条旧消息。Owner接受D-03规定关闭/撤销后历史默认不可读，除非独立history authority。源码抽查发现pair room_key稳定、Conversation复用、messages list按pair room_id读取全部历史，缺少Connection generation/history authority过滤。
+- P0.4.2任务单已固定：[会话代际历史隔离与1011806实机缺口收口](../versions/v2/V2_P0_4_2_CONVERSATION_GENERATION_HISTORY_ISOLATION_AND_DEVICE_GAP_CLOSURE_TASK_20261121.md)。Codex可本地修改源码/迁移/测试/构建候选；旧消息必须保留、不物理删除、不声称擦除；第2代只读第2代内容；覆盖消息/媒体/通知/预览/搜索/未读/回复引用和设备缺口。
+- 1011805、1011806及其数据均保留。此前1011806安装授权已用完，不扩展至1011807或其它新APK；新APK只可本地构建，安装需Owner另行明确授权。P0.4.1 Photo Picker选图返回/手机上传、完整历史媒体受众、真实无线断链四窗口、URI过期/跨账号对象等仍部分或NOT_RUN。
+- 1011806仍使用本机127.0.0.1:18444+USB reverse，不是共享HTTPS。阿里云共享HTTPS未部署，真实旧管理员未恢复；Owner旧管理员恢复仍是内测硬门，但本轮无真实数据授权/读取/解密/迁移。无云写、无采购、无公网改动。
+- 工作流：本地Codex负责日常工程开发/版本计划/自验/交付；网页GPT负责产品合同与阶段集中独立验收，不恢复逐个小任务派单；GitHub治理分支保存治理/Owner决定/交接/脱敏报告，不替代本地工程权威。收到Codex P0.4.2固定报告和commit后再集中验收。
+- 未授权main合并、正式软著递交、封闭内测或生产发布。封闭内测NO_GO，生产NO_GO。
+
+---
+
 # CURRENT ENTRY 2026-11-21：P0.4.1 1011806安装限定接受；解除Block后第1代私信历史在第2代重新出现，P0隐私FAIL
 
 **`1011806_INSTALL_PASS_ON_AUTHORIZED_RETRY / DEVICE_E2E_PARTIAL_WITH_P0_HISTORY_PRIVACY_FAIL / OWNER_D03_HISTORY_DEFAULT_FAIL_CLOSED / PHOTO_PICKER_UPLOAD_NOT_RUN / REAL_WIRELESS_OUTAGE_NOT_RUN / SHARED_HTTPS_NOT_DEPLOYED / REAL_ADMIN_NOT_RESTORED / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
