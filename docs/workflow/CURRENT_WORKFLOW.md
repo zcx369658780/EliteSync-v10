@@ -1,3 +1,13 @@
+# 2026-11-21｜P0.3实机限定验收完成；P0.4修复端上Block、媒体与恢复
+
+- P0.3报告`651f3dea30cb6744d6a3863e5d9f7a921ca7ae43`：1011805实际安装并核对拉回APK身份，Android16单机本地USB reverse到本机`127.0.0.1:18444`，登录/切号/三盘/TEST_ONLY候选、Connection/消息同意/文本私信/TEST_ONLY关系、Buddy和服务端Block后失权投影部分通过。整体`DEVICE_E2E_PARTIAL`，不是全功能PASS。顾问报告见[V2_FUNCTION_P0_3_ANDROID_DEVICE_ADVISOR_SCOPED_ACCEPTANCE_20261121.md](V2_FUNCTION_P0_3_ANDROID_DEVICE_ADVISOR_SCOPED_ACCEPTANCE_20261121.md)。
+- **阿里云V2后端没有打通，真实旧管理员账号没有恢复。** 本机MariaDB不是云端旧MariaDB；CLOUD-R0的云Staging/真实管理员恢复/云端Android仍NOT_RUN。旧备份只有元数据关联，无实际恢复。合成管理员通过不代表真实账号恢复。
+- 当前会议可用本机测试PC+重新建立USB reverse+原手机做虚构账号演示；没有共享网络后端，同事其它设备不可直接登录。要多人/多设备另行规划受限共享Staging和授权。
+- 下一轮P0.4只补P0.3缺口：手机端Block入口及撤权控件、社区图片/媒体受众、外部URI深链、写入途中断网和UNKNOWN恢复、telemetry422、关系状态文案、A05截图索引。见[V2_FUNCTION_P0_4_DEVICE_PRIVACY_MEDIA_AND_RECOVERY_CLOSURE_BRIEF_20261121.md](../versions/v2/V2_FUNCTION_P0_4_DEVICE_PRIVACY_MEDIA_AND_RECOVERY_CLOSURE_BRIEF_20261121.md)。
+- 手册已修订为P0.3实测草稿，A10媒体、A12外部URI、W01–W04、权属/许可仍待。Owner授权仅覆盖1011805单设备本轮测试；新构建APK需要安装/覆盖时另行请求Owner许可。封闭内测/生产NO_GO，云迁移与真实管理员恢复后置。
+
+---
+
 # 2026-11-21｜功能优先工作流：P0.2已接受，Owner已授权1011805单机实测
 
 - Owner最新顺序：既定功能完整→软著资料准备→另行批准封闭内测→之后考虑更换服务器。云端迁移、真实管理员恢复、PC清理及G0b费用/备份不再阻断当前本地工程。
