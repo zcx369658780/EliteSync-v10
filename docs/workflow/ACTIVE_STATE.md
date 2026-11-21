@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-21｜P0.4.1 1011806 安装成功，实机验收 PARTIAL
+
+**开发分支工程回执 · `DEVICE_INSTALL_PASS_ON_AUTHORIZED_RETRY / DEVICE_E2E_PARTIAL / ADVISOR_REVIEW_PENDING / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`**
+
+- 1011806 在原 1011805 实测手机并行安装并完成拉回校验，首试失败保留。手机 Wi-Fi 已恢复，本轮反向转发已撤销，两版应用和原卷保留。
+- 暂停在顾问集中验收。A09 跨 Connection 生命周期历史正文重现优先待复核。手机选图上传和真实无线断链窗口仍有缺项。
+- 项目入口以本分支工程回执和治理分支最新正式决定合读。仓库、工作树、授权及证据入口见 [本次交接](SESSION_HANDOFF_20261121_ELITESYNC_V2_P0_4_1_DEVICE_REVIEW.md)。 [固定实机报告](https://github.com/zcx369658780/EliteSync-v10/blob/e4d1588acee62d8f8f166042c328e26cc951c14a/docs/versions/v2/cloud-r0-20261121/V2_P0_4_1_ANDROID_1011806_DEVICE_AND_SHARED_HTTPS_REPORT_20261121.md) · [治理状态](https://github.com/zcx369658780/EliteSync-v10/blob/00f40fb598bc5d3d73b64d942ce2871e38d59d3d/docs/workflow/ACTIVE_STATE.md)
+
+---
+
 # CURRENT ENTRY 2026-11-20｜V2 阶段 A 工程交付获顾问限定接受，待 Owner 终验
 
 **`PHASE_A_A1_A4_IMPLEMENTED / NAMED_AUTOMATED_QA_PASS / ADVISOR_ACCEPTED_WITH_RESERVATIONS / OWNER_FINAL_ACCEPTANCE_PENDING / PHASE_B_NOT_AUTHORIZED`**

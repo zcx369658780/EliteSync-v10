@@ -1,3 +1,11 @@
+# 2026-11-21｜P0.4.1 开发分支实机回执与交接
+
+- 开场只读核对合法隔离树、origin、分支、HEAD、工作树和暂存区，按治理分支顶部与具名 Owner 决定判断本轮权限。Local-first 分工及集中验收继续有效。
+- 续作从 [P0.4.1 交接](SESSION_HANDOFF_20261121_ELITESYNC_V2_P0_4_1_DEVICE_REVIEW.md) 和 [固定实机报告](https://github.com/zcx369658780/EliteSync-v10/blob/e4d1588acee62d8f8f166042c328e26cc951c14a/docs/versions/v2/cloud-r0-20261121/V2_P0_4_1_ANDROID_1011806_DEVICE_AND_SHARED_HTTPS_REPORT_20261121.md) 接起。按设备、合成主机、HTTPS、MariaDB 和真实网络分开记录结果。历史失败、未运行项和原始证据保留。
+- 本批 1011806 安装和实机测试已收尾，状态为 PARTIAL，待顾问复核。GitHub 同步仅限非 main 的脱敏文档。真实管理员数据、共享云环境写入与费用、封闭内测及发布继续走各自具名 Owner 决策。
+
+---
+
 # 2026-11-20｜阶段 A 集中交付已齐，顾问限定接受，等待 Owner 终验
 
 - [Owner 正式决定](https://github.com/zcx369658780/EliteSync-v10/blob/8f528e6dc1df3d52ba931e65d8ce5658cfaf11f7/docs/decisions/OWNER_V2_ROADMAP_ACCEPTANCE_AND_PHASE_A_ENGINEERING_KICKOFF_20261119.md) 接受四阶段路线图并独立授权 A1–A4。此次明确授权文档归档与项目配置更新。开发分支产品源码 `4e6a5be6`，固定测试与报告 `07b51a6d`。详见 [阶段 A 集中报告](https://github.com/zcx369658780/EliteSync-v10/blob/07b51a6de9695f5358b6bea2a59acd5be24ab6c2/docs/versions/v2/phase-a-20261119/PHASE_A_ENGINEERING_REPORT.md) 与 [会话交接](SESSION_HANDOFF_20261120_ELITESYNC_V2_PHASE_A_REVIEW.md)。
