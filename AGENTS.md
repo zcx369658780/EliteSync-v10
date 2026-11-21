@@ -1,3 +1,12 @@
+# 2026-11-21最新Owner决定：已授权此前Android设备并行安装1011806并执行P0.4实机测试
+
+- **1011806安装授权已经明确生效，不得再次询问Owner。** Owner原话：“好的我同意授权Codex在此前那台Android设备上安装1011806，并完成上述P0.4实机测试。”详见[Owner授权决定](docs/decisions/OWNER_V2_ANDROID_1011806_DEVICE_INSTALL_AND_P0_4_TEST_AUTHORIZATION_20261121.md)和[更新后的任务书](docs/versions/v2/V2_P0_4_1011806_DEVICE_ACCEPTANCE_AND_SHARED_BETA_ENVIRONMENT_DECISION_TASK_20261121.md)。
+- 仅限此前1011805实测的同一台Android16实体设备。先用本机私有ADB日志核对原设备身份；不在线/不匹配/多台无法唯一确认时暂停，不改用其它设备或模拟器。核验1011806 APK实际大小/SHA/签名/包名/version和TLS后并行安装；保留1011805和数据，禁止卸载/覆盖/清数据。
+- 实测只用虚构账号/合成图片，覆盖端上Block、消息UNKNOWN、Photo Picker/媒体/受众/历史链接、外部URI、冷/热启动、切号、前后台及真实无线网络中断恢复。只采集EliteSync应用截图及脱敏logcat，不访问私人照片/联系人/短信/其它App。只撤销本轮ADB reverse映射。
+- 不访问阿里云、不读取真实管理员、不写云、不采购、不开放公网；1011806仍指向本机回环服务，不是共享Beta包。真实管理员恢复与共享HTTPS仍为封闭内测硬门，NO_GO状态不变。
+
+---
+
 # 2026-11-21最新状态：P0.4本地加固限定接受；1011806实机待Owner新包授权
 
 - P0.4固定报告`f41f25bb8c237f8479b998e82e843f528397e1fa`，源代码提交`00ca46f6b020afa25ce472509c2fd3227f74c461`，报告提交`f41f25bb8c237f8479b998e82e843f528397e1fa`，开发分支相对上一报告ahead2/behind0。顾问接受P0.4本地限定范围及两名虚构管理员Ed25519签名恢复演练。详见[验收](docs/workflow/V2_P0_4_HARDENING_AND_BETA_AUTHORIZATION_ADVISOR_ACCEPTANCE_20261121.md)。
