@@ -7,14 +7,14 @@
 
 ---
 
-# 2026-11-21最新状态：P0.4本地加固限定接受；1011806实机待Owner新包授权
+# 2026-11-21历史状态条目：P0.4本地加固限定接受；1011806当时待Owner新包授权（现已由后续决定解除）
 
 - P0.4固定报告`f41f25bb8c237f8479b998e82e843f528397e1fa`，源代码提交`00ca46f6b020afa25ce472509c2fd3227f74c461`，报告提交`f41f25bb8c237f8479b998e82e843f528397e1fa`，开发分支相对上一报告ahead2/behind0。顾问接受P0.4本地限定范围及两名虚构管理员Ed25519签名恢复演练。详见[验收](docs/workflow/V2_P0_4_HARDENING_AND_BETA_AUTHORIZATION_ADVISOR_ACCEPTANCE_20261121.md)。
 - Flutter72/Dart分析通过（Codex回执）；PHP扩围60/61，唯一V1011 deep-fields失败按上批镜像复现的基线FAIL保留。不要声称全量PHP通过。
-- 1011806 APK候选包名`com.elitesync.v2functionp04`、versionCode1011806、固定hash见ACTIVE_STATE；APK未由顾问取得/重算、设备未安装。Owner此前只授权1011805，不能自动扩展到1011806。必须等Owner明确安装授权；若授权，作为独立包并行安装，不卸载/覆盖1011805、不清数据。
+- 1011806 APK候选包名`com.elitesync.v2functionp04`、versionCode1011806、固定hash见ACTIVE_STATE；APK未由顾问取得/重算，设备尚未安装。Owner已通过后续决定明确授权在此前同一台实体设备并行安装1011806；不得重复申请。保留1011805，不卸载/覆盖旧包，不清数据。
 - 真实管理员候选0，真实旧库读取/备份解密/真实V2写入/本人异地登录NOT_RUN。Ed25519签名和持有人proof代码完成合成测试不等于真实候选证据已核验。旧管理员恢复仍为封闭内测硬门。
 - 阿里云V2共享HTTPS未部署；旧上海机容量未批；独立资源价格只有公开参考，Owner账号上海结算价未知。本轮无SSH/云写/采购/新增云支出。外地同事不能用本机ADB reverse替代共享服务。
-- 下一任务：[1011806实机验收与共享Beta环境决策准备](docs/versions/v2/V2_P0_4_1011806_DEVICE_ACCEPTANCE_AND_SHARED_BETA_ENVIRONMENT_DECISION_TASK_20261121.md)。禁止未经授权安装新包、真实管理员数据读取/解密/写入、云部署/采购/公网变更、main合并、封闭内测和生产发布。
+- 下一任务：[1011806实机验收与共享Beta环境决策准备](docs/versions/v2/V2_P0_4_1011806_DEVICE_ACCEPTANCE_AND_SHARED_BETA_ENVIRONMENT_DECISION_TASK_20261121.md)。1011806安装/测试已获具名授权；其他新包仍需单独授权。真实管理员数据读取/解密/写入、云部署/采购/公网变更、main合并、封闭内测和生产发布仍禁止。
 
 ---
 
