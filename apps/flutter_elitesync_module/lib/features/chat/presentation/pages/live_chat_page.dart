@@ -189,6 +189,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   }
 
   SessionState? _session;
+  String? _roomKey;
   int _epoch = 0;
   int _avatarRefresh = 0;
   CancelToken _uploadCancellation = CancelToken();
@@ -200,6 +201,16 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       !_sessionChanged &&
       !_timeLocked &&
       identical(ref.read(sessionProvider).asData?.value, session);
+
+  bool _changedRoom(Map<String, dynamic> data) =>
+      data['room_key'] != _roomKey &&
+      (_roomKey != null || _messages.isNotEmpty);
+
+  void _reloadForNewRoom() {
+    _cache.revokeObject(_cacheKey);
+    _reject('会话已更新，正在重新读取。');
+    unawaited(_load());
+  }
 
   void _cancelSocket() {
     final socket = _socket;
@@ -217,6 +228,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _messages = [];
       _replyId = null;
       _replyLabel = null;
+      _roomKey = null;
       _acknowledged.clear();
       _ackPending.clear();
       _images = {};
@@ -483,6 +495,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       final items = (response.data['items'] as List? ?? [])
           .whereType<Map<String, dynamic>>()
           .toList();
+      if (_changedRoom(response.data)) {
+        _reloadForNewRoom();
+        return;
+      }
+      _roomKey = response.data['room_key'] as String?;
       final keepHistory = _historyExpanded && items.isNotEmpty;
       final additions = <Map<String, dynamic>>[];
       if (keepHistory && _messages.isNotEmpty) {
@@ -516,6 +533,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             } else {
               setState(() => _error = '新消息加载未完成，请刷新重试。');
             }
+            return;
+          }
+          if (_changedRoom(delta.data)) {
+            _reloadForNewRoom();
             return;
           }
           final page = (delta.data['items'] as List? ?? [])
@@ -809,6 +830,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         }
         return;
       }
+      if (_changedRoom(response.data)) {
+        _reloadForNewRoom();
+        return;
+      }
       final items = (response.data['items'] as List? ?? [])
           .whereType<Map<String, dynamic>>()
           .where((item) => (item['id'] as num).toInt() < before)
@@ -1054,6 +1079,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           _text.clear();
         }
         _showRetryReadFailed();
+        return;
+      }
+      if (_changedRoom(readback.data)) {
+        _reloadForNewRoom();
         return;
       }
       final items = (readback.data['items'] as List).cast<Map>();

@@ -3,9 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Models\ChatMessage;
+use App\Models\User;
 use App\Services\ChatWebsocketAuthorizationService;
-use App\Services\ConversationCapabilityService;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Throwable;
 use Workerman\Connection\TcpConnection;
 use Workerman\Timer;
@@ -80,6 +81,7 @@ class ChatWebsocketServerCommand extends Command
             $connection->userId = null;
             $connection->peerId = null;
             $connection->tokenId = null;
+            $connection->roomKey = null;
             $connection->lastSeenId = 0;
         };
 
@@ -90,25 +92,38 @@ class ChatWebsocketServerCommand extends Command
             $peerId = (int) ($query['peer_id'] ?? 0);
             $authorization = method_exists($request, 'header') ? (string) $request->header('authorization') : '';
 
-            $authorizationResult = $userId ? app(ChatWebsocketAuthorizationService::class)->authorize($authorization, $userId, $peerId) : null;
-            if (!$authorizationResult) {
+            if (! $userId || $peerId <= 0) {
                 $connection->close();
-
                 return;
             }
 
-            $connection->userId = $userId;
-            $connection->peerId = $peerId;
-            $connection->tokenId = (int) $authorizationResult['token_id'];
-            $connection->lastSeenId = (int) (ChatMessage::query()
-                ->where('receiver_id', $userId)->where('sender_id', $peerId)
-                ->max('id') ?? 0);
+            try {
+                DB::transaction(function () use ($connection, $userId, $peerId, $authorization) {
+                    User::whereIn('id', [$userId, $peerId])->orderBy('id')->lockForUpdate()->get(['id']);
+                    $result = app(ChatWebsocketAuthorizationService::class)->authorize($authorization, $userId, $peerId);
+                    if (! $result) {
+                        $connection->close();
+                        return;
+                    }
 
-            $connection->send(json_encode([
-                'type' => 'connected',
-                'user_id' => $userId,
-                'last_seen_id' => $connection->lastSeenId,
-            ], JSON_UNESCAPED_UNICODE));
+                    $connection->userId = $userId;
+                    $connection->peerId = $peerId;
+                    $connection->tokenId = (int) $result['token_id'];
+                    $connection->roomKey = $result['room_key'];
+                    $connection->lastSeenId = (int) (ChatMessage::query()
+                        ->where('room_id', $connection->roomKey)
+                        ->where('receiver_id', $userId)->where('sender_id', $peerId)
+                        ->max('id') ?? 0);
+
+                    $connection->send(json_encode([
+                        'type' => 'connected',
+                        'user_id' => $userId,
+                        'last_seen_id' => $connection->lastSeenId,
+                    ], JSON_UNESCAPED_UNICODE));
+                });
+            } catch (Throwable) {
+                $connection->close();
+            }
         };
 
         $gateway->onMessage = function (TcpConnection $connection, string $payload): void {
@@ -124,29 +139,39 @@ class ChatWebsocketServerCommand extends Command
                     $userId = (int) ($connection->userId ?? 0);
                     $peerId = (int) ($connection->peerId ?? 0);
                     $tokenId = (int) ($connection->tokenId ?? 0);
-                    if ($userId <= 0 || $peerId <= 0 || $tokenId <= 0 || !app(ChatWebsocketAuthorizationService::class)->reauthorize($tokenId, $userId, $peerId)) {
+                    $roomKey = $connection->roomKey ?? null;
+                    if ($userId <= 0 || $peerId <= 0 || $tokenId <= 0 || $roomKey === null) {
                         $connection->close();
                         continue;
                     }
 
                     try {
-                        $messages = ChatMessage::query()
-                            ->where('receiver_id', $userId)
-                            ->where('sender_id', $peerId)
-                            ->where('id', '>', (int) ($connection->lastSeenId ?? 0))
-                            ->orderBy('id')
-                            ->limit(50)
-                            ->get(['id']);
-                    } catch (Throwable) {
-                        continue;
-                    }
+                        DB::transaction(function () use ($connection, $userId, $peerId, $tokenId, $roomKey) {
+                            User::whereIn('id', [$userId, $peerId])->orderBy('id')->lockForUpdate()->get(['id']);
+                            if (! app(ChatWebsocketAuthorizationService::class)->reauthorize($tokenId, $userId, $peerId, $roomKey)) {
+                                $connection->close();
+                                return;
+                            }
 
-                    foreach ($messages as $message) {
-                        $connection->send(json_encode([
-                            'type' => 'conversation_changed',
-                            'id' => $message->id,
-                        ], JSON_UNESCAPED_UNICODE));
-                        $connection->lastSeenId = $message->id;
+                            $messages = ChatMessage::query()
+                                ->where('room_id', $roomKey)
+                                ->where('receiver_id', $userId)
+                                ->where('sender_id', $peerId)
+                                ->where('id', '>', (int) ($connection->lastSeenId ?? 0))
+                                ->orderBy('id')
+                                ->limit(50)
+                                ->get(['id']);
+
+                            foreach ($messages as $message) {
+                                $connection->send(json_encode([
+                                    'type' => 'conversation_changed',
+                                    'id' => $message->id,
+                                ], JSON_UNESCAPED_UNICODE));
+                                $connection->lastSeenId = $message->id;
+                            }
+                        });
+                    } catch (Throwable) {
+                        $connection->close();
                     }
                 }
             });

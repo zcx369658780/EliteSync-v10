@@ -16,7 +16,7 @@ final class ConversationVisibility
         }
 
         return app(ConversationCapabilityService::class)->canSend($actor, $peer)
-            && ChatMessage::where('room_id', app(ConversationDomainService::class)->roomKey($actor, $peer))->where('id', '>', $hidden->hidden_through_id)->where('receiver_id', $actor)->exists();
+            && ChatMessage::where('room_id', app(ConversationDomainService::class)->currentRoomKey($actor, $peer))->where('id', '>', $hidden->hidden_through_id)->where('receiver_id', $actor)->exists();
     }
 
     public function set(int $actor, int $id, bool $hidden): void

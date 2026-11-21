@@ -20,9 +20,22 @@ class ConversationDomainService
         return "{$x}_{$y}";
     }
 
+    public function currentRoomKey(int $actor, int $peer): ?string
+    {
+        $live = app(LiveConsentService::class);
+        if ($live->enabled() || app(SyntheticConnectionScope::class)->targetsFixtureRuntime()
+            || $live->enabledForPair($actor, $peer)) {
+            return $live->liveRoomKey($actor, $peer);
+        }
+
+        // A recorded lifecycle can never fall back to an unscoped legacy room.
+        return $live->hasConnectionHistory($actor, $peer) ? null : $this->roomKey($actor, $peer);
+    }
+
     public function ensureDirectConversation(int $selfId, int $peerId, ?string $title = null): Conversation
     {
-        $roomKey = $this->roomKey($selfId, $peerId);
+        $roomKey = $this->currentRoomKey($selfId, $peerId);
+        abort_if($roomKey === null, 404, 'conversation unavailable');
         $conversation = Conversation::query()->firstOrCreate(
             ['room_key' => $roomKey],
             [
@@ -58,6 +71,10 @@ class ConversationDomainService
             return;
         }
 
+        if ((string) $message->room_id !== $this->currentRoomKey($senderId, $receiverId)) {
+            return;
+        }
+
         $conversation = $this->ensureDirectConversation($senderId, $receiverId);
         $conversation->forceFill([
             'last_message_id' => (int) $message->id,
@@ -89,21 +106,33 @@ class ConversationDomainService
 
     public function findDirectConversation(int $selfId, int $peerId): ?Conversation
     {
+        $roomKey = $this->currentRoomKey($selfId, $peerId);
+        if ($roomKey === null) {
+            return null;
+        }
+
         return Conversation::query()
-            ->where('room_key', $this->roomKey($selfId, $peerId))
+            ->where('room_key', $roomKey)
             ->with(['members.user', 'creator', 'matchLinks'])
             ->first();
     }
 
     public function findConversationForParticipant(int $conversationId, int $actorId): ?Conversation
     {
-        return Conversation::query()
+        $conversation = Conversation::query()
             ->whereKey($conversationId)
             ->whereHas('members', fn ($query) => $query
                 ->where('user_id', $actorId)
                 ->whereNull('left_at'))
             ->with(['members.user', 'creator'])
             ->first();
+
+        $peer = $conversation ? $this->peerUserId($conversation, $actorId) : null;
+        if ($peer && $conversation->room_key !== $this->currentRoomKey($actorId, $peer)) {
+            return null;
+        }
+
+        return $conversation;
     }
 
     public function peerUserId(Conversation $conversation, int $viewerId): ?int
@@ -114,22 +143,42 @@ class ConversationDomainService
         return $peerMember ? (int) $peerMember->user_id : null;
     }
 
-    public function listForUser(User $user): Collection
+    public function peerIdsForUser(User $user): array
     {
-        $conversations = Conversation::query()
+        return $this->memberConversations($user)
+            ->map(fn (Conversation $conversation) => $this->peerUserId($conversation, (int) $user->id))
+            ->concat($this->fallbackFromMatches($user)->pluck('peer_user_id'))
+            ->filter()->map(fn ($id) => (int) $id)->unique()->values()->all();
+    }
+
+    private function memberConversations(User $user): Collection
+    {
+        return Conversation::query()
             ->whereHas('members', function ($query) use ($user) {
                 $query->where('user_id', $user->id)->whereNull('left_at');
             })
             ->with(['members.user', 'creator'])
             ->orderByDesc('last_message_at')
             ->get();
+    }
 
+    public function listForUser(User $user, ?array $lockedPeers = null): Collection
+    {
+        $conversations = $this->memberConversations($user)->filter(function (Conversation $conversation) use ($user, $lockedPeers) {
+            $peer = $this->peerUserId($conversation, (int) $user->id);
+            if ($lockedPeers !== null && ! in_array($peer, $lockedPeers, true)) {
+                return false;
+            }
+
+            return ! $peer || $conversation->room_key === $this->currentRoomKey((int) $user->id, $peer);
+        });
         $stored = $conversations->map(function (Conversation $conversation) use ($user) {
             return $this->summarizeConversation($conversation, (int) $user->id);
         });
         $storedPeerIds = $stored->pluck('peer_user_id')->filter()->map(fn ($id) => (int) $id)->all();
         $eligible = $this->fallbackFromMatches($user)
-            ->reject(fn (array $entry) => in_array((int) $entry['peer_user_id'], $storedPeerIds, true));
+            ->reject(fn (array $entry) => in_array((int) $entry['peer_user_id'], $storedPeerIds, true)
+                || ($lockedPeers !== null && ! in_array((int) $entry['peer_user_id'], $lockedPeers, true)));
 
         return $stored->concat($eligible)->values();
     }

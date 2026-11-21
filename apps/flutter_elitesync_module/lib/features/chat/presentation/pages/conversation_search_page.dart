@@ -22,6 +22,7 @@ class _ConversationSearchPageState extends ConsumerState<ConversationSearchPage>
   SessionState? _session;
   int _generation = 0;
   int? _cursor;
+  String? _roomKey;
   bool _more = false;
   bool _busy = false;
   bool _foreground = true;
@@ -49,6 +50,7 @@ class _ConversationSearchPageState extends ConsumerState<ConversationSearchPage>
       _generation++;
       _items.clear();
       _cursor = null;
+      _roomKey = null;
       _more = false;
       _busy = false;
       _status = status;
@@ -68,7 +70,8 @@ class _ConversationSearchPageState extends ConsumerState<ConversationSearchPage>
         );
     if (!_current(generation)) return;
     if (result is! NetworkSuccess<Map<String, dynamic>> ||
-        (result.data['gates'] as Map?)?['live_read_allowed'] != true) {
+        (result.data['gates'] as Map?)?['live_read_allowed'] != true ||
+        result.data['room_key'] != _roomKey) {
       _clear('当前读取权限未能核验，请返回会话重新验证。');
     }
   }
@@ -105,7 +108,13 @@ class _ConversationSearchPageState extends ConsumerState<ConversationSearchPage>
       _clear('搜索未完成，请检查网络和当前权限后重试。');
       return;
     }
+    final roomKey = result.data['room_key'] as String?;
+    if (older && roomKey != _roomKey) {
+      _clear();
+      return;
+    }
     setState(() {
+      _roomKey = roomKey;
       _items.addAll(
         (result.data['items'] as List? ?? []).whereType<Map<String, dynamic>>(),
       );

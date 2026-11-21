@@ -7,7 +7,6 @@ use App\Models\ChatMessage;
 use App\Models\MessageAttachment;
 use App\Models\User;
 use App\Services\ConversationAtomicSendService;
-use App\Services\ConversationDomainService;
 use App\Services\ConversationCapabilityService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -15,14 +14,6 @@ use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
-    private function roomId(int $a, int $b): string
-    {
-        $x = min($a, $b);
-        $y = max($a, $b);
-
-        return "{$x}_{$y}";
-    }
-
     /**
      * @return array<string, mixed>
      */
@@ -168,20 +159,20 @@ class MessageController extends Controller
         ]);
     }
 
-    public function list(Request $request, ConversationDomainService $conversationService, ConversationCapabilityService $capabilities): JsonResponse
+    public function list(Request $request, ConversationCapabilityService $capabilities): JsonResponse
     {
         $data = $request->validate(['peer_id' => ['required', 'integer', 'min:1']]);
-        return DB::transaction(function () use ($request, $data, $conversationService, $capabilities) {
+        return DB::transaction(function () use ($request, $data, $capabilities) {
             User::whereIn('id', [(int) $request->user()->id, (int) $data['peer_id']])->orderBy('id')->lockForUpdate()->get();
             $token = $request->user()->currentAccessToken();
             if ($token instanceof \Laravel\Sanctum\PersonalAccessToken && $token->getKey()) {
                 abort_unless(\Laravel\Sanctum\PersonalAccessToken::whereKey($token->getKey())->exists(), 401, 'SESSION_REVOKED');
             }
-            return $this->listAuthorized($request, $conversationService, $capabilities);
+            return $this->listAuthorized($request, $capabilities);
         });
     }
 
-    private function listAuthorized(Request $request, ConversationDomainService $conversationService, ConversationCapabilityService $capabilities): JsonResponse
+    private function listAuthorized(Request $request, ConversationCapabilityService $capabilities): JsonResponse
     {
         $data = $request->validate([
             'peer_id' => ['required', 'integer', 'min:1'],
@@ -194,7 +185,8 @@ class MessageController extends Controller
         $user = $request->user();
         $peerId = (int) $data['peer_id'];
 
-        if (!$capabilities->canRead((int) $user->id, $peerId)) {
+        $roomId = $capabilities->evaluate((int) $user->id, $peerId)['room_key'];
+        if ($roomId === null) {
             return response()->json(['message' => 'chat unavailable'], 404);
         }
 
@@ -203,7 +195,6 @@ class MessageController extends Controller
         $limit = (int) ($data['limit'] ?? 50);
         $latest = (bool) ($data['latest'] ?? false);
         $descending = $latest || $beforeId !== null;
-        $roomId = $this->roomId((int) $user->id, $peerId);
 
         $items = ChatMessage::query()
             ->with(['attachments.mediaAsset'])
@@ -222,6 +213,7 @@ class MessageController extends Controller
         }
 
         return response()->json([
+            'room_key' => $roomId,
             'items' => $items->map(fn (ChatMessage $message) => $this->shapeMessage($message))->values(),
             'total' => $items->count(),
             'has_more' => $hasMore,
@@ -254,8 +246,9 @@ class MessageController extends Controller
             $peer = (int) $data['peer_id'];
             User::whereIn('id', [$actor, $peer])->orderBy('id')->lockForUpdate()->get();
             $this->assertCurrentToken($request);
-            abort_unless($capabilities->canRead($actor, $peer), 404, 'chat unavailable');
-            $rows = ChatMessage::where('room_id', $this->roomId($actor, $peer))
+            $roomId = $capabilities->evaluate($actor, $peer)['room_key'];
+            abort_if($roomId === null, 404, 'chat unavailable');
+            $rows = ChatMessage::where('room_id', $roomId)
                 ->when(isset($data['before_id']), fn ($q) => $q->where('id', '<', $data['before_id']))
                 ->orderByDesc('id')->limit(201)->get();
             $hits = []; $scanned = 0; $cursor = null;
@@ -268,7 +261,7 @@ class MessageController extends Controller
                     if (count($hits) === 20) break;
                 }
             }
-            return response()->json(['items' => $hits, 'scanned' => $scanned,
+            return response()->json(['room_key' => $roomId, 'items' => $hits, 'scanned' => $scanned,
                 'has_more' => $rows->count() > $scanned, 'next_before_id' => $cursor]);
         });
     }
@@ -294,8 +287,9 @@ class MessageController extends Controller
             $actor = (int) $request->user()->id; $peer = (int) $data['peer_id'];
             User::whereIn('id', [$actor, $peer])->orderBy('id')->lockForUpdate()->get();
             $this->assertCurrentToken($request);
-            abort_unless($capabilities->canRead($actor, $peer), 404, 'chat unavailable');
-            $rows = ChatMessage::whereIn('id', $data['message_ids'])->where('room_id', $this->roomId($actor, $peer))
+            $roomId = $capabilities->evaluate($actor, $peer)['room_key'];
+            abort_if($roomId === null, 404, 'chat unavailable');
+            $rows = ChatMessage::whereIn('id', $data['message_ids'])->where('room_id', $roomId)
                 ->where('receiver_id', $actor)->where('sender_id', $peer)->lockForUpdate()->get();
             abort_unless($rows->count() === count($data['message_ids']), 404, 'message not found');
             $updated = ChatMessage::whereIn('id', $rows->modelKeys())->where('is_read', false)

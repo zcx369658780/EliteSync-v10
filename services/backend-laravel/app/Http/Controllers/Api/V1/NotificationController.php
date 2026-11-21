@@ -77,7 +77,7 @@ class NotificationController extends Controller
             'ok' => true,
             'items' => $shaped,
             'total' => $shaped->count(),
-            'unread_total' => $shaped->where('is_read', false)->count(),
+            'unread_total' => $shaped->where('availability', 'current')->where('is_read', false)->count(),
             'has_more' => $page['has_more'],
             'next_before_id' => $page['next_before_id'],
         ]);

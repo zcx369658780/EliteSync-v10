@@ -261,7 +261,7 @@ class NotificationService
             return DB::transaction(function () use ($messageId, $viewerId, $authority, $safe) {
                 $message = ChatMessage::query()->select(['id', 'sender_id', 'receiver_id', 'room_id'])->find($messageId);
                 if (! $message || (int) $message->receiver_id !== $viewerId
-                    || ! ($authority->gates($viewerId, (int) $message->sender_id)['live_read_allowed'] ?? false)) {
+                    || $message->room_id !== $authority->liveRoomKey($viewerId, (int) $message->sender_id)) {
                     return $safe;
                 }
                 $conversation = Conversation::query()->where('room_key', $message->room_id)->first(['id']);

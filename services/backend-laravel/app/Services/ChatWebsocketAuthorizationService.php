@@ -22,14 +22,16 @@ class ChatWebsocketAuthorizationService
         if (! $actor instanceof User || (int) $actor->id !== $claimedUserId || $peerId <= 0 || ! $accessToken->can('chat:ws')) {
             return null;
         }
-        if (! app(ConversationCapabilityService::class)->canWebSocket((int) $actor->id, $peerId)) {
+        $capability = app(ConversationCapabilityService::class)->evaluate((int) $actor->id, $peerId);
+        if (! $capability['can_ws'] || $capability['room_key'] === null) {
             return null;
         }
 
-        return ['actor_id' => (int) $actor->id, 'peer_id' => $peerId, 'token_id' => (int) $accessToken->id];
+        return ['actor_id' => (int) $actor->id, 'peer_id' => $peerId, 'token_id' => (int) $accessToken->id,
+            'room_key' => $capability['room_key']];
     }
 
-    public function reauthorize(int $tokenId, int $actorId, int $peerId): bool
+    public function reauthorize(int $tokenId, int $actorId, int $peerId, ?string $roomKey = null): bool
     {
         $token = PersonalAccessToken::query()->find($tokenId);
         if (! $this->tokenIsCurrent($token) || ! $token->can('chat:ws')) {
@@ -37,8 +39,13 @@ class ChatWebsocketAuthorizationService
         }
         $actor = $token->tokenable;
 
-        return $actor instanceof User && (int) $actor->id === $actorId
-            && app(ConversationCapabilityService::class)->canWebSocket($actorId, $peerId);
+        if (! $actor instanceof User || (int) $actor->id !== $actorId) {
+            return false;
+        }
+        $capability = app(ConversationCapabilityService::class)->evaluate($actorId, $peerId);
+
+        return $capability['can_ws'] && $capability['room_key'] !== null
+            && ($roomKey === null || $roomKey === $capability['room_key']);
     }
 
     private function tokenIsCurrent(?PersonalAccessToken $token): bool

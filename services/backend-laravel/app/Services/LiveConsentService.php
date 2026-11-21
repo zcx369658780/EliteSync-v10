@@ -102,6 +102,12 @@ final class LiveConsentService
         return $q->orderByDesc('id')->first();
     }
 
+    public function hasConnectionHistory(int $actor, int $peer): bool
+    {
+        return DB::table('product_connections')
+            ->where('user_a', min($actor, $peer))->where('user_b', max($actor, $peer))->exists();
+    }
+
     private function acceptedMessage(int $a, int $b): ?object
     {
         return DB::table('social_requests')->where('pair_key', min($a, $b).':'.max($a, $b))->where('purpose', 'message')->where('state', 'ACCEPTED')->orderByDesc('id')->first();
@@ -166,7 +172,14 @@ final class LiveConsentService
         return DB::transaction(fn () => $this->lockedGates($actor, $peer));
     }
 
-    private function lockedGates(int $actor, int $peer): array
+    public function liveRoomKey(int $actor, int $peer): ?string
+    {
+        $gates = DB::transaction(fn () => $this->lockedGates($actor, $peer, includeRoom: true));
+
+        return $gates['room_key'] ?? null;
+    }
+
+    private function lockedGates(int $actor, int $peer, bool $includeRoom = false): array
     {
         $denied = ['live_read_allowed' => false, 'live_send_allowed' => false];
         $context = $this->hasContext($actor, $peer, true);
@@ -193,6 +206,10 @@ final class LiveConsentService
             $result['live_send_allowed'] = false;
         }
 
+        if ($includeRoom && ($result['live_read_allowed'] ?? false)) {
+            $result['room_key'] = 'cn:'.$cn->id.':mc:'.$read->id;
+        }
+
         return $result;
     }
 
@@ -204,9 +221,13 @@ final class LiveConsentService
             $mc = $cn ? DB::table('messaging_consents')->where('connection_id', $cn->id)->where('purpose', MC::PURPOSE_LIVE_READ)
                 ->orderByDesc('generation')->lockForUpdate()->first() : null;
 
+            $gates = $this->lockedGates($actor, $peer, includeRoom: true);
+            $roomKey = $gates['room_key'] ?? null;
+            unset($gates['room_key']);
+
             return ['connection' => ['id' => $cn->id ?? null, 'generation' => (int) ($cn->lifecycle_generation ?? 1), 'state' => $cn->state ?? CN::STATE_NONE, 'revision' => (int) ($cn->revision ?? 0), 'requester_id' => $cn->requester_id ?? null],
                 'consent' => ['id' => $mc->id ?? null, 'generation' => (int) ($mc->generation ?? 1), 'state' => $mc->state ?? MC::STATE_NONE, 'revision' => (int) ($mc->revision ?? 0), 'requester_id' => $mc->requester_id ?? null],
-                'peer_id' => $peer, 'gates' => $this->lockedGates($actor, $peer)];
+                'peer_id' => $peer, 'gates' => $gates, 'room_key' => $roomKey];
         });
     }
 

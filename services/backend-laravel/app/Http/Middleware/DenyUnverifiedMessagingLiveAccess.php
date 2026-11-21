@@ -36,7 +36,7 @@ final class DenyUnverifiedMessagingLiveAccess
             $message = ChatMessage::where('receiver_id', $actor)->find((int) $request->route('messageId'));
             $peer = $message ? (int) $message->sender_id : 0;
         }
-        $peers = $inventory ? $domain->listForUser($request->user())->pluck('peer_user_id')->map(fn($id)=>(int)$id)->filter(fn($id)=>$id>0)->unique()->all() : [$peer];
+        $peers = $inventory ? $domain->peerIdsForUser($request->user()) : [$peer];
         $participants = array_values(array_unique(array_filter([$actor, ...$peers], fn($id)=>$id>0)));
         sort($participants);
         return DB::transaction(function () use ($request, $next, $service, $deny, $actor, $peer, $domain, $inventory, $peers, $participants) {
@@ -46,7 +46,7 @@ final class DenyUnverifiedMessagingLiveAccess
             // Logout may have committed while this request waited for user locks.
             return app(EnsureAccountActive::class)->handle($request, function () use ($request, $next, $service, $deny, $actor, $peer, $domain, $inventory, $peers) {
                 if ($inventory) {
-                    $items = $domain->listForUser($request->user())->filter(fn($item)=>in_array((int)$item['peer_user_id'], $peers, true));
+                    $items = $domain->listForUser($request->user(), $peers);
                     $items = $items->filter(fn($item)=>$service->gates($actor, (int)$item['peer_user_id'])['live_read_allowed'] ?? false)->values();
                     $request->attributes->set('v1007_conversation_items', $items);
                     return $items->isNotEmpty() ? $next($request) : $deny();

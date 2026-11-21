@@ -33,6 +33,8 @@ class _Session extends SessionNotifier {
 class _Api extends ApiClient {
   _Api() : super(dio: Dio());
   int count = 7;
+  int firstId = 1;
+  String? roomKey;
   bool includeSenders = false;
   bool unavailable = false;
   final deltas = <int>[];
@@ -75,11 +77,11 @@ class _Api extends ApiClient {
         List.generate(
               count,
               (i) => <String, dynamic>{
-                'id': i + 1,
+                'id': firstId + i,
                 if (includeSenders)
                   'sender_id': i == 6 ? null : (i.isEven ? 2 : 1),
                 'is_read': true,
-                'content': 'fictional message ${i + 1}',
+                'content': 'fictional message ${firstId + i}',
                 'attachments': <dynamic>[],
               },
             )
@@ -93,6 +95,7 @@ class _Api extends ApiClient {
         ? history.take(3).toList()
         : history.skip(history.length > 3 ? history.length - 3 : 0).toList();
     return NetworkSuccess({
+      if (roomKey != null) 'room_key': roomKey,
       'items': [
         ...page,
         if (before != null && duplicateOlder && page.isNotEmpty) page.last,
@@ -168,6 +171,33 @@ void main() {
       await tester.pumpWidget(const SizedBox());
     },
   );
+
+  testWidgets('a new room replaces expanded history and its offline copy', (
+    tester,
+  ) async {
+    final api = _Api()..roomKey = 'first-room';
+    await _mount(tester, api);
+    await _older(tester);
+    expect(find.text('fictional message 2'), findsOneWidget);
+
+    api
+      ..roomKey = 'second-room'
+      ..firstId = 100
+      ..count = 1;
+    await tester.tap(find.byIcon(Icons.refresh));
+    await tester.pumpAndSettle();
+    expect(find.text('fictional message 2'), findsNothing);
+    expect(find.text('fictional message 7'), findsNothing);
+    expect(find.text('fictional message 100'), findsOneWidget);
+    expect(api.deltas, isEmpty);
+
+    api.unavailable = true;
+    await tester.tap(find.byIcon(Icons.refresh));
+    await tester.pumpAndSettle();
+    expect(find.text('fictional message 7'), findsNothing);
+    expect(find.text('fictional message 100'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+  });
 
   testWidgets('another page recovering first does not lock the retained chat', (
     tester,

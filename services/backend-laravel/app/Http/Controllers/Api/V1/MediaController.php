@@ -232,7 +232,7 @@ class MediaController extends Controller
             }
             // Re-read attachment identities only after all candidate users are
             // locked. New participants require a new request, never late locks.
-            $linked = ChatMessage::whereHas('attachments', fn ($q) => $q->where('media_asset_id', $id))->get(['sender_id', 'receiver_id']);
+            $linked = ChatMessage::whereHas('attachments', fn ($q) => $q->where('media_asset_id', $id))->get(['sender_id', 'receiver_id', 'room_id']);
             $currentParticipants = $linked->flatMap(fn ($m) => [(int) $m->sender_id, (int) $m->receiver_id]);
             if ($currentParticipants->diff($participants)->isNotEmpty()) {
                 return response()->json(['message' => 'media asset unavailable'], 404);
@@ -256,7 +256,7 @@ class MediaController extends Controller
             foreach ($linked as $m) {
                 if ((int) $m->sender_id === (int) $viewer->id || (int) $m->receiver_id === (int) $viewer->id) {
                     $peer = (int) ($m->sender_id == $viewer->id ? $m->receiver_id : $m->sender_id);
-                    $allowed = $allowed || ($service->gates((int) $viewer->id, $peer)['live_read_allowed'] ?? false);
+                    $allowed = $allowed || $m->room_id === $service->liveRoomKey((int) $viewer->id, $peer);
                 }
             }
             if (! $allowed || ! $asset || ! in_array($asset->storage_disk, ['v1007', 'v1009', 'v1011_relationship'], true)

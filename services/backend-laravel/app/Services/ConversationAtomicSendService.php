@@ -16,7 +16,6 @@ class ConversationAtomicSendService
 {
     public function __construct(
         private readonly ConversationCapabilityService $capabilities,
-        private readonly ConversationDomainService $domain,
         private readonly EventLogger $events,
         private readonly NotificationService $notifications,
     ) {}
@@ -108,7 +107,13 @@ class ConversationAtomicSendService
                 return $assetsResult;
             }
 
-            $roomKey = $this->domain->roomKey((int) $sender->id, $receiverId);
+            $roomKey = $authorization['room_key'];
+            if (str_starts_with($roomKey, 'cn:') && MessageAttachment::query()
+                ->whereIn('media_asset_id', $attachmentIds)
+                ->whereHas('message', fn ($query) => $query->where('room_id', '<>', $roomKey))
+                ->exists()) {
+                return ['ok' => false, 'status' => 422, 'code' => 'attachment_unavailable'];
+            }
             if ($replyToMessageId !== null) {
                 $original = ChatMessage::whereKey($replyToMessageId)->where('room_id', $roomKey)->lockForUpdate()->first();
                 if (! $original || ! $this->capabilities->canRead((int) $sender->id, $receiverId)) {
@@ -154,7 +159,7 @@ class ConversationAtomicSendService
                     ->where('dating_match_id', $matchId)
                     ->lockForUpdate()
                     ->firstOrFail();
-                if ((int) $link->conversation_id !== (int) $conversation->id) {
+                if ((int) $link->conversation_id !== (int) $conversation->id && ! str_starts_with($roomKey, 'cn:')) {
                     throw new RuntimeException('match link conversation invariant violation');
                 }
             }
@@ -271,10 +276,11 @@ class ConversationAtomicSendService
     /** @return array<string, mixed> */
     private function replayResult(ChatMessage $message, string $fingerprint, ?int $receiverId = null): array
     {
+        $authorization = $this->capabilities->authorizeSend((int) $message->sender_id, (int) $message->receiver_id, true);
         $decision = \App\Domain\MessagingReplayContract::replayDecision(
             (int)$message->sender_id, (int)$message->receiver_id, (int)$message->sender_id,
             $receiverId ?? (int)$message->receiver_id, (string)$message->request_fingerprint, $fingerprint,
-            $this->capabilities->authorizeSend((int)$message->sender_id, (int)$message->receiver_id, true)['allowed'],
+            $authorization['allowed'] && $message->room_id === $authorization['room_key'],
         );
         if ($decision === 'UNAVAILABLE') {
             return ['ok' => false, 'status' => 404, 'code' => 'conversation_unavailable'];
