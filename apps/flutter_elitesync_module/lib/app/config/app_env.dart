@@ -23,6 +23,7 @@ class AppEnv {
     this.useMatchRoundContract = false,
     this.useAdminMatchingOperations = false,
     this.initialRoute,
+    this.functionTlsCertificate,
   });
 
   final AppFlavor flavor;
@@ -46,6 +47,7 @@ class AppEnv {
   final bool useMatchRoundContract;
   final bool useAdminMatchingOperations;
   final String? initialRoute;
+  final String? functionTlsCertificate;
 
   bool get isDev => flavor == AppFlavor.dev;
   bool get isProd => flavor == AppFlavor.prod;

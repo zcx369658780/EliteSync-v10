@@ -415,7 +415,7 @@ def p0_media_and_session(f, actors, ordinary):
     f.call("relationship-confirm-denied", "POST", f"/formal-relationships/{relationship['id']}/actions", 403, bt,
            {"action": "confirm", "revision": relationship["revision"], "idempotency_key": str(uuid4())})
 
-    image = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a2ioAAAAASUVORK5CYII=")
+    image = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAIAAADkharWAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAD0lEQVQokWNgGAWjgDoAAAJMAAFOlIxNAAAAAElFTkSuQmCC")
 
     def upload(label, path, token, status, fields, binary=image):
         boundary = uuid4().hex

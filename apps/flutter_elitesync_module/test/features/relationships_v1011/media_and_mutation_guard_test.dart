@@ -57,7 +57,7 @@ void main() {
         identity: () => identity,
       );
       final read = source.fetchNotifications();
-      final assertion = expectLater(read, throwsException);
+      final assertion = expectLater(read, throwsStateError);
       await Future<void>.delayed(Duration.zero);
       identity = 'B';
       token.complete('B-token');

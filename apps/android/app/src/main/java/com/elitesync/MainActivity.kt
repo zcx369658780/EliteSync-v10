@@ -25,7 +25,7 @@ class MainActivity : FlutterActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         voiceMemo?.discard()
-        voiceMemo = NativeVoiceMemo(this)
+        voiceMemo = if (BuildConfig.ELITESYNC_V2_FUNCTION_BUILD) null else NativeVoiceMemo(this)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "elitesync/voice_memo")
             .setMethodCallHandler(voiceMemo)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "elitesync/bootstrap")
@@ -65,6 +65,7 @@ class MainActivity : FlutterActivity() {
                                 "appVersionName" to BuildConfig.VERSION_NAME,
                                 "appVersionCode" to BuildConfig.VERSION_CODE.toString(),
                                 "debugBuild" to BuildConfig.DEBUG.toString(),
+                                "functionCertificate" to BuildConfig.ELITESYNC_V2_FUNCTION_CERTIFICATE,
                             ),
                         )
                     }

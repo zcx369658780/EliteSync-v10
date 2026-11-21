@@ -1,11 +1,103 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_elitesync_module/app/config/app_env.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
 import 'package:flutter_elitesync_module/app/config/chat_socket_endpoint.dart';
+import 'package:flutter_elitesync_module/core/network/api_transport_policy.dart';
 import 'package:flutter_elitesync_module/features/chat/data/datasource/chat_socket_data_source.dart';
 import 'package:flutter_elitesync_module/main_dev.dart' as dev;
 import 'package:flutter_elitesync_module/main_prod.dart' as prod;
 
 void main() {
+  final certificate = Platform.environment['ELITESYNC_FUNCTION_TLS_DER'];
+  test(
+    'V2 HTTPS uses the fixture trust anchor and refuses other origins',
+    () async {
+      final bound = Dio();
+      final defaults = Dio();
+      addTearDown(bound.close);
+      addTearDown(defaults.close);
+      AppEnv env(String? tls) => AppEnv(
+        flavor: AppFlavor.dev,
+        appName: 'V2 function',
+        apiBaseUrl: functionApiOrigin,
+        useMockData: false,
+        functionTlsCertificate: tls,
+      );
+      configureApiTransport(bound, env: env(certificate!));
+      configureApiTransport(defaults, env: env(null));
+      final options = Options(validateStatus: (status) => status == 401);
+      expect(
+        (await bound.get<void>(
+          '/api/v1/profile/basic',
+          options: options,
+        )).statusCode,
+        401,
+      );
+      await expectLater(
+        bound.get<void>(
+          'https://different-origin.invalid/api/v1/profile/basic',
+        ),
+        throwsA(
+          isA<DioException>().having(
+            (e) => e.type,
+            'type',
+            DioExceptionType.cancel,
+          ),
+        ),
+      );
+      await expectLater(
+        defaults.get<void>('/api/v1/profile/basic', options: options),
+        throwsA(
+          isA<DioException>().having(
+            (e) => e.response,
+            'HTTP response',
+            isNull,
+          ),
+        ),
+      );
+    },
+    skip: certificate == null,
+  );
+
+  test(
+    'V2 cold start requires the same explicit HTTPS endpoint on both sides',
+    () {
+      const fixture = 'https://127.0.0.1:18444/';
+      expect(
+        prod.resolveApiBaseUrl(
+          hostBootstrap: {'apiBaseUrl': fixture},
+          functionBuild: true,
+          compiledOrigin: fixture,
+        ),
+        fixture,
+      );
+      for (final origin in [
+        '',
+        'http://127.0.0.1:18444/',
+        'https://api.example.invalid/',
+      ]) {
+        expect(
+          () => prod.resolveApiBaseUrl(
+            hostBootstrap: {'apiBaseUrl': origin},
+            functionBuild: true,
+            compiledOrigin: fixture,
+          ),
+          throwsStateError,
+        );
+        expect(
+          () => prod.resolveApiBaseUrl(
+            hostBootstrap: {'apiBaseUrl': fixture},
+            functionBuild: true,
+            compiledOrigin: origin,
+          ),
+          throwsStateError,
+        );
+      }
+    },
+  );
   test(
     'dev file bootstrap and explicit environment wire the separate local gateway',
     () {

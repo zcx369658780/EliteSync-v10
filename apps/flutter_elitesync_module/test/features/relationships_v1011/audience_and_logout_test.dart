@@ -55,21 +55,20 @@ void main() {
       expect(secure.values.containsKey('pending_logout_token'), false);
     },
   );
-  test('new post defaults SELF and explicit FRIENDS reaches server', () async {
-    final api = _Api();
-    final source = StatusRemoteDataSource(apiClient: api, useMock: false);
-    await source.createStatusPost(title: 't', body: 'b');
-    expect((api.sent as Map)['audience'], 'SELF');
-    final result = await source.createStatusPost(
-      title: 't',
-      body: 'b',
-      audience: 'FRIENDS',
-    );
-    expect((api.sent as Map)['audience'], 'FRIENDS');
-    expect(result.visibilityLabel, '双向好友可见');
-    expect(
-      StatusPostEntity.fromJson({'visibility': 'public'}).audience,
-      'SELF',
-    );
-  });
+  test(
+    'new post defaults to FRIENDS and explicit SELF stays private',
+    () async {
+      final api = _Api();
+      final source = StatusRemoteDataSource(apiClient: api, useMock: false);
+      await source.createStatusPost(title: 't', body: 'b');
+      expect((api.sent as Map)['audience'], 'FRIENDS');
+      expect((api.sent as Map).containsKey('confirm'), isFalse);
+      await source.createStatusPost(title: 't', body: 'b', audience: 'SELF');
+      expect((api.sent as Map)['audience'], 'SELF');
+      expect(
+        StatusPostEntity.fromJson({'visibility': 'public'}).audience,
+        'SELF',
+      );
+    },
+  );
 }

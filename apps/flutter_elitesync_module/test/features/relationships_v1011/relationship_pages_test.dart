@@ -75,7 +75,8 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.textContaining('ES-PRIVATE-OLD'), findsNothing);
       expect(find.text('连接：双方已确认'), findsNothing);
-      expect(find.textContaining('404 unavailable'), findsOneWidget);
+      expect(find.text('暂时无法完成，请刷新重试'), findsOneWidget);
+      expect(find.textContaining('404 unavailable'), findsNothing);
     },
   );
   for (final terminal in ['MC_REVOKED', 'MC_DECLINED', 'MC_WITHDRAWN']) {
@@ -246,7 +247,7 @@ void main() {
     },
   );
   testWidgets(
-    'incoming request has recipient actions; rejected write stays pending',
+    'unconfirmed accept hides actions until the read confirms it is pending',
     (tester) async {
       tester.view.physicalSize = const Size(800, 1600);
       tester.view.devicePixelRatio = 1;
@@ -288,8 +289,12 @@ void main() {
       await tester.tap(find.text('接受'));
       await tester.pumpAndSettle();
       expect(calls, contains('POST /social/requests/8/accept'));
-      expect(find.textContaining('不可接受'), findsOneWidget);
+      expect(find.text('暂时无法完成，请刷新重试'), findsOneWidget);
+      expect(find.text('接受'), findsNothing);
+      await tester.tap(find.byTooltip('刷新'));
+      await tester.pumpAndSettle();
       expect(find.text('接受'), findsOneWidget);
+      expect(calls.where((call) => call.startsWith('POST')), hasLength(1));
     },
   );
   testWidgets('late account A projection never appears after account B login', (

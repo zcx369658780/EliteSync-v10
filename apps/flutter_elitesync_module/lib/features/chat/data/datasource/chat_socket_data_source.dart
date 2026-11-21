@@ -134,7 +134,9 @@ class ChatSocketDataSource {
   }
 
   Stream<MessageDto> observe(String conversationId) {
-    if (_disposed || env.useMockChat) return const Stream.empty();
+    if (_disposed || env.useMockChat || env.functionTlsCertificate != null) {
+      return const Stream.empty();
+    }
     final peerId = int.tryParse(conversationId);
     if (peerId == null || peerId <= 0) return const Stream.empty();
     late final _ChatSocketObservation observation;

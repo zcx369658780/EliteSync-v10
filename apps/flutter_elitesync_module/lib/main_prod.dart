@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_elitesync_module/app/bootstrap/app_bootstrap.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
@@ -61,8 +61,20 @@ String _firstNonEmpty(List<String> values) {
 String resolveApiBaseUrl({
   required Map<String, String> hostBootstrap,
   bool allowLocalInsecure = false,
+  bool functionBuild = const bool.fromEnvironment(
+    'ELITESYNC_V2_FUNCTION_BUILD',
+  ),
+  String compiledOrigin = const String.fromEnvironment(
+    'ELITESYNC_API_BASE_URL',
+  ),
 }) {
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
+  if (functionBuild) {
+    if (compiledOrigin != functionApiOrigin || hostOverride != compiledOrigin) {
+      throw StateError('V2 function native and Dart endpoints must match');
+    }
+    return compiledOrigin;
+  }
   if (const bool.fromEnvironment('ELITESYNC_V1015_LOCAL_BUILD')) {
     if (hostOverride != 'http://127.0.0.1:8021/') {
       throw StateError('v10.1.5 requires its isolated local host.');
@@ -126,7 +138,7 @@ String resolveApiBaseUrl({
       allowLocalInsecure: allowLocalInsecure,
     );
   }
-  final override = String.fromEnvironment('ELITESYNC_API_BASE_URL').trim();
+  final override = compiledOrigin.trim();
   if (override.isNotEmpty) {
     return validateApiBaseUrl(override, allowLocalInsecure: allowLocalInsecure);
   }
@@ -153,6 +165,25 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final hostBootstrap = await _readHostBootstrap();
+  const functionBuild = bool.fromEnvironment('ELITESYNC_V2_FUNCTION_BUILD');
+  String? functionCertificate;
+  if (functionBuild) {
+    try {
+      resolveApiBaseUrl(hostBootstrap: hostBootstrap);
+      final certificate = hostBootstrap['functionCertificate'];
+      if (certificate == null || certificate.isEmpty) {
+        throw StateError('V2 function certificate missing');
+      }
+      functionTlsContext(certificate);
+      functionCertificate = certificate;
+    } on Exception {
+      _showFunctionConfigurationError();
+      return;
+    } on StateError {
+      _showFunctionConfigurationError();
+      return;
+    }
+  }
   const internalDevPreview = bool.fromEnvironment(
     'ELITESYNC_INTERNAL_DEV_PREVIEW',
   );
@@ -205,13 +236,15 @@ Future<void> main() async {
       // Match the host's existing secure default; endpoint availability and
       // production deployment remain separate from URL validation.
       apiBaseUrl: apiBaseUrl,
-      wsBaseUrl: resolveWsBaseUrl(
-        apiBaseUrl: apiBaseUrl,
-        hostBootstrap: hostBootstrap,
-        flavor: flavor,
-      ),
+      wsBaseUrl: functionBuild
+          ? ''
+          : resolveWsBaseUrl(
+              apiBaseUrl: apiBaseUrl,
+              hostBootstrap: hostBootstrap,
+              flavor: flavor,
+            ),
       useMockData: false,
-      useLiveKitRtc: rtcRestoration || !restoration,
+      useLiveKitRtc: !functionBuild && (rtcRestoration || !restoration),
       restorationLocalBuild: restoration,
       useMockAuth: false,
       useMockQuestionnaire: false,
@@ -223,6 +256,19 @@ Future<void> main() async {
       useMatchRoundContract: internalFeatures.useMatchRoundContract,
       useAdminMatchingOperations: internalFeatures.useAdminMatchingOperations,
       initialRoute: initialRoute.isEmpty ? null : initialRoute,
+      functionTlsCertificate: functionCertificate,
+    ),
+  );
+}
+
+void _showFunctionConfigurationError() {
+  runApp(
+    const MaterialApp(
+      home: Scaffold(
+        body: SafeArea(
+          child: Center(child: Text('测试包的服务地址或证书不匹配。请使用同一次构建的安装包。')),
+        ),
+      ),
     ),
   );
 }

@@ -1,5 +1,22 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
+
+const functionApiOrigin = 'https://127.0.0.1:18444/';
+
+SecurityContext functionTlsContext(String certificate) {
+  final encoded = base64Encode(base64Decode(certificate));
+  final lines = RegExp(
+    '.{1,64}',
+  ).allMatches(encoded).map((m) => m[0]).join('\n');
+  final pem =
+      '-----BEGIN CERTIFICATE-----\n$lines\n-----END CERTIFICATE-----\n';
+  return SecurityContext(withTrustedRoots: false)
+    ..setTrustedCertificatesBytes(utf8.encode(pem));
+}
 
 String? _rawAuthority(String value) =>
     RegExp(r'^[a-zA-Z][a-zA-Z0-9+.-]*://([^/?#]*)').firstMatch(value)?.group(1);
@@ -47,6 +64,17 @@ void configureApiTransport(Dio dio, {required AppEnv env}) {
   dio.options.baseUrl = base;
   dio.options.followRedirects = false;
   dio.options.maxRedirects = 0;
+  final certificate = env.functionTlsCertificate;
+  if (certificate != null) {
+    if (base != functionApiOrigin) {
+      throw StateError('V2 function HTTPS origin mismatch');
+    }
+    final context = functionTlsContext(certificate);
+    dio.httpClientAdapter = IOHttpClientAdapter(
+      createHttpClient: () =>
+          HttpClient(context: context)..findProxy = (_) => 'DIRECT',
+    );
+  }
   dio.interceptors.removeWhere((item) => item is _ApiOriginInterceptor);
   dio.interceptors.insert(0, _ApiOriginInterceptor(Uri.parse(base)));
 }

@@ -1,5 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.File
+import java.security.cert.CertificateFactory
+import java.security.cert.X509Certificate
+import java.util.Base64
 import java.util.Properties
 
 plugins {
@@ -47,6 +50,26 @@ val requestedFlutterDartDefines = (
     .orEmpty()
 val requestedDartDefineValues = requestedFlutterDartDefines.split(Regex("[;,]"))
     .map { it.trim() }.filter { it.isNotEmpty() }
+val functionCertificatePath = providers.gradleProperty("elitesyncFunctionCertificate").orNull
+val isFunctionCandidateBuild = functionCertificatePath != null
+val functionOrigin = "https://127.0.0.1:18444/"
+val functionCertificate = functionCertificatePath?.let { path ->
+    val file = rootProject.file(path)
+    require(file.readText().trim().matches(Regex("-----BEGIN CERTIFICATE-----[\\sA-Za-z0-9+/=]+-----END CERTIFICATE-----"))) {
+        "The V2 function build requires one public PEM certificate"
+    }
+    val certificate = file.inputStream().use {
+        CertificateFactory.getInstance("X.509").generateCertificate(it) as X509Certificate
+    }
+    certificate.checkValidity()
+    require(certificate.subjectAlternativeNames.orEmpty().any { it[0] == 7 && it[1] == "127.0.0.1" }) {
+        "The certificate must cover the V2 loopback endpoint"
+    }
+    Base64.getEncoder().encodeToString(certificate.encoded)
+}.orEmpty()
+require(requestedDartDefineValues.none { it.startsWith("ELITESYNC_V2_FUNCTION_BUILD=") }) {
+    "Use the V2 function certificate build option to set the matching native and Dart configuration"
+}
 val isV1015LocalBuild = requestedDartDefineValues.contains("ELITESYNC_V1015_LOCAL_BUILD=true")
 val isV1017LocalBuild = requestedDartDefineValues.contains("ELITESYNC_V1017_LOCAL_BUILD=true")
 val isV1018LocalBuild = requestedDartDefineValues.contains("ELITESYNC_V1018_LOCAL_BUILD=true")
@@ -56,15 +79,27 @@ require(!isV1018LocalBuild || isV1017LocalBuild) {
 require(!isV1017LocalBuild || isV1015LocalBuild) {
     "v10.1.17 requires the existing local restoration runtime"
 }
+require(!isFunctionCandidateBuild || (isV1018LocalBuild && !flutterSourceDebug &&
+    requestedDartDefineValues.none {
+        it.startsWith("ELITESYNC_API_BASE_URL=") ||
+            it.startsWith("ELITESYNC_WS_BASE_URL=") || it.startsWith("ELITESYNC_SYNTHETIC_DEMO=")
+    })) {
+    "The V2 function candidate needs the integrated AAR and its fixed HTTPS endpoint"
+}
 // v10.1.5 continues the accepted v10.1.4 product routes. Carry that Dart gate
 // into the new build instead of silently returning to the legacy app entry.
-val flutterDartDefines = if (isV1015LocalBuild) {
+val integratedDartDefines = if (isV1015LocalBuild) {
     require(!requestedDartDefineValues.contains("ELITESYNC_V1014_LOCAL_BUILD=false")) {
         "v10.1.5 requires the accepted v10.1.4 product routes"
     }
     (requestedDartDefineValues + "ELITESYNC_V1014_LOCAL_BUILD=true").distinct().joinToString(";")
 } else {
     requestedFlutterDartDefines
+}
+val flutterDartDefines = if (isFunctionCandidateBuild) {
+    "$integratedDartDefines;ELITESYNC_V2_FUNCTION_BUILD=true;ELITESYNC_API_BASE_URL=$functionOrigin"
+} else {
+    integratedDartDefines
 }
 val flutterDartDefineArgs = flutterDartDefines
     .split(Regex("[;,]"))
@@ -150,12 +185,14 @@ android {
         buildConfigField("boolean", "ELITESYNC_SYNTHETIC_DEMO", "false")
         buildConfigField("boolean", "ELITESYNC_V1006_LOCAL_BUILD", "false")
         buildConfigField("boolean", "ELITESYNC_V1015_LOCAL_BUILD", "false")
+        buildConfigField("boolean", "ELITESYNC_V2_FUNCTION_BUILD", "false")
+        buildConfigField("String", "ELITESYNC_V2_FUNCTION_CERTIFICATE", "\"\"")
         minSdk = 26
         targetSdk = 35
         // Versioning rule: major.minor.patch[alpha suffix]
         // versionCode uses an expanded numeric form to keep suffix releases ordered.
-        versionCode = if (isV1018LocalBuild) 1011804 else if (isV1017LocalBuild) 1011703 else if (isV1015LocalBuild) 1011601 else if (isV1014LocalBuild) 1010401 else if (isV1013LocalBuild) 1010301 else if (isV1012LocalBuild) 1010201 else if (isRelationshipDevBuild) 1010101 else 80400
-        versionName = if (isV1018LocalBuild) "10.1.18-dev" else if (isV1017LocalBuild) "10.1.17-dev" else if (isV1015LocalBuild) "10.1.16-dev" else if (isV1014LocalBuild) "10.1.4-dev" else if (isV1013LocalBuild) "10.1.3-dev" else if (isV1012LocalBuild) "10.1.2-dev" else if (isRelationshipDevBuild) "10.1.1-dev" else "0.08.04"
+        versionCode = if (isFunctionCandidateBuild) 1011805 else if (isV1018LocalBuild) 1011804 else if (isV1017LocalBuild) 1011703 else if (isV1015LocalBuild) 1011601 else if (isV1014LocalBuild) 1010401 else if (isV1013LocalBuild) 1010301 else if (isV1012LocalBuild) 1010201 else if (isRelationshipDevBuild) 1010101 else 80400
+        versionName = if (isFunctionCandidateBuild) "10.1.18-v2-function-p0" else if (isV1018LocalBuild) "10.1.18-dev" else if (isV1017LocalBuild) "10.1.17-dev" else if (isV1015LocalBuild) "10.1.16-dev" else if (isV1014LocalBuild) "10.1.4-dev" else if (isV1013LocalBuild) "10.1.3-dev" else if (isV1012LocalBuild) "10.1.2-dev" else if (isRelationshipDevBuild) "10.1.1-dev" else "0.08.04"
         ndk {
             // Google Play 16KB page-size compliance: avoid x86_64 native libs from third-party SDKs.
             // Keep ARM ABIs for real-device testing and release publishing.
@@ -192,13 +229,21 @@ android {
             if (isV1013LocalBuild) { applicationIdSuffix = ".v1013dev" }
             if (isV1014LocalBuild) { applicationIdSuffix = ".v1014dev" }
             if (isV1012LocalBuild) { applicationIdSuffix = ".v1012dev" }
-            if (isV1018LocalBuild) { applicationIdSuffix = ".v1018dev" }
+            if (isFunctionCandidateBuild) {
+                applicationIdSuffix = ".v2functionp0"
+            } else if (isV1018LocalBuild) { applicationIdSuffix = ".v1018dev" }
             else if (isV1017LocalBuild) { applicationIdSuffix = ".v1017dev" }
             else if (isV1015LocalBuild) { applicationIdSuffix = ".v1015dev" }
             buildConfigField("boolean", "ELITESYNC_V1006_LOCAL_BUILD", isV1006LocalBuild.toString())
             buildConfigField("boolean", "ELITESYNC_V1015_LOCAL_BUILD", isV1015LocalBuild.toString())
             buildConfigField("String", "API_BASE_URL", if (isV1015LocalBuild) "\"http://127.0.0.1:8021/\"" else if (isV1014LocalBuild) "\"http://127.0.0.1:8019/\"" else if (isV1013LocalBuild) "\"http://127.0.0.1:8017/\"" else if (isV1012LocalBuild) "\"http://127.0.0.1:8015/\"" else if (isRelationshipDevBuild) "\"http://127.0.0.1:8012/\"" else if (isV1011LocalBuild) "\"http://127.0.0.1:8011/\"" else if (isV1010LocalBuild) "\"http://127.0.0.1:8010/\"" else if (isV1006LocalBuild) "\"http://127.0.0.1:8000/\"" else "\"https://slowdate.top/\"")
             buildConfigField("String", "WS_BASE_URL", if (isV1015LocalBuild) "\"ws://127.0.0.1:8022/\"" else if (isV1014LocalBuild) "\"ws://127.0.0.1:8020/\"" else if (isV1013LocalBuild) "\"ws://127.0.0.1:8018/\"" else if (isV1012LocalBuild) "\"ws://127.0.0.1:8016/\"" else if (isRelationshipDevBuild) "\"ws://127.0.0.1:8013/\"" else if (isV1006LocalBuild) "\"\"" else "\"wss://slowdate.top/\"")
+            if (isFunctionCandidateBuild) {
+                buildConfigField("boolean", "ELITESYNC_V2_FUNCTION_BUILD", "true")
+                buildConfigField("String", "ELITESYNC_V2_FUNCTION_CERTIFICATE", "\"$functionCertificate\"")
+                buildConfigField("String", "API_BASE_URL", "\"$functionOrigin\"")
+                buildConfigField("String", "WS_BASE_URL", "\"\"")
+            }
             buildConfigField("String", "BAIDU_MAP_AK", "\"$baiduAkFromProp\"")
             buildConfigField("String", "BAIDU_MAP_SECURITY_CODE", "\"$baiduSecurityCodeFromProp\"")
             buildConfigField("boolean", "ENABLE_BAIDU_NATIVE_SDK", "false")
@@ -244,6 +289,12 @@ android {
     }
 }
 
+androidComponents {
+    beforeVariants(selector().all()) {
+        if (isFunctionCandidateBuild && it.buildType != "debug") it.enable = false
+    }
+}
+
 kotlin {
     jvmToolchain(17)
     compilerOptions {
@@ -276,6 +327,10 @@ dependencies {
 
 configurations.all {
     resolutionStrategy {
+        if (isFunctionCandidateBuild) {
+            // Activity 1.12 already contains the formerly KTX-only classes.
+            force("androidx.activity:activity-ktx:1.12.4")
+        }
         force("androidx.core:core:1.13.1")
         force("androidx.core:core-ktx:1.13.1")
         force("androidx.browser:browser:1.8.0")
