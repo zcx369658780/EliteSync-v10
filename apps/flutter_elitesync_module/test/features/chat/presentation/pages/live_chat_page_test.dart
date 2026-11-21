@@ -20,6 +20,7 @@ import 'package:flutter_elitesync_module/shared/providers/session_provider.dart'
 import 'package:flutter_elitesync_module/shared/models/user_summary.dart';
 import 'package:flutter_elitesync_module/shared/enums/auth_status.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/live_chat_page.dart';
+import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/voice_memo_panel.dart';
 import 'package:flutter_elitesync_module/features/chat/data/gateway/chat_media_gateway.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
@@ -78,13 +79,23 @@ class _UnknownSendApi extends ApiClient {
   _UnknownSendApi() : super(dio: Dio());
   final bodies = <Map<String, dynamic>>[];
   bool committed = false;
+  Completer<NetworkResult<Map<String, dynamic>>>? pollingRead;
+  Completer<NetworkResult<Map<String, dynamic>>>? retryRead;
+  int retryReads = 0;
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
     String path, {
     CancelToken? cancelToken,
     Map<String, dynamic>? query,
     Options? options,
-  }) async => NetworkSuccess({
+  }) async {
+    if (options?.headers?['Cache-Control'] == 'no-cache, no-store') {
+      retryReads++;
+      if (retryRead != null) return retryRead!.future;
+    } else if (pollingRead != null) {
+      return pollingRead!.future;
+    }
+    return NetworkSuccess({
     'items': [
       if (committed && bodies.isNotEmpty)
         {
@@ -94,7 +105,8 @@ class _UnknownSendApi extends ApiClient {
           'client_message_id': bodies.first['client_message_id'],
         },
     ],
-  });
+    });
+  }
   @override
   Future<NetworkResult<Map<String, dynamic>>> post(
     String path, {
@@ -1588,6 +1600,59 @@ void main() {
     expect(find.text('使用原消息编号重试'), findsNothing);
     await tester.pumpWidget(const SizedBox());
   });
+  for (final stop in ['read failure', 'account switch', 'block', 'background']) {
+    testWidgets('fresh UNKNOWN read gates replay during $stop', (tester) async {
+      final api = _UnknownSendApi();
+      await _show(tester, api);
+      await tester.enterText(find.byType(TextField), 'immutable fixture');
+      await tester.tap(find.text('发送'));
+      await tester.pumpAndSettle();
+      expect(api.bodies, hasLength(1));
+      api.pollingRead = Completer();
+      await tester.tap(find.byTooltip('刷新对话'));
+      await tester.pump();
+      api.retryRead = Completer();
+      final retry = find.text('使用原消息编号重试');
+      await tester.tap(retry);
+      await tester.tap(retry);
+      await tester.pump();
+      expect(api.retryReads, 1);
+      expect(api.bodies, hasLength(1));
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(LiveChatPage)),
+      );
+      switch (stop) {
+        case 'account switch':
+          (container.read(sessionProvider.notifier) as _Session).relogin();
+        case 'block':
+          container.read(relationshipAuthorityEpochProvider.notifier).invalidate();
+        case 'background':
+          tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      }
+      api.retryRead!.complete(
+        stop == 'read failure'
+            ? const NetworkFailure(message: 'timeout', statusCode: 503)
+            : const NetworkSuccess({'items': []}),
+      );
+      await tester.pumpAndSettle();
+      expect(api.bodies, hasLength(1));
+      if (stop == 'read failure') {
+        expect(find.text('重新核对服务器'), findsOneWidget);
+        api.retryRead = null;
+        await tester.tap(find.text('重新核对服务器'));
+        await tester.pumpAndSettle();
+        expect(api.retryReads, 2);
+        expect(api.bodies, hasLength(2));
+        expect(api.bodies.last, api.bodies.first);
+      }
+      api.pollingRead!.complete(const NetworkSuccess({'items': []}));
+      await tester.pump();
+      await tester.pumpWidget(const SizedBox());
+      if (stop == 'background') {
+        tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      }
+    });
+  }
   testWidgets(
     'video attachment waits for real ready upload before message dispatch',
     (tester) async {

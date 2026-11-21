@@ -25,7 +25,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven(url = uri("../flutter_elitesync_module/build/host/outputs/repo"))
+        maven(url = uri(providers.gradleProperty("elitesyncPrebuiltFlutterRepo").orNull
+            ?: "../flutter_elitesync_module/build/host/outputs/repo"))
 
         val flutterStorageBaseUrl =
             System.getenv("FLUTTER_STORAGE_BASE_URL")

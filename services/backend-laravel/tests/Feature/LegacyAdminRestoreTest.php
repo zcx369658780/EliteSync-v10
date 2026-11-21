@@ -3,8 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use App\Services\Accounts\LegacyAdminApproval;
 use App\Services\Accounts\LegacyAdminManifest;
 use App\Services\Accounts\LegacyAdminRestore;
+use App\Services\Accounts\LegacyAdminTarget;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
@@ -150,5 +152,82 @@ final class LegacyAdminRestoreTest extends TestCase
         $this->assertDatabaseHas('personal_access_tokens', ['tokenable_id' => $existing->id]);
         $this->assertDatabaseHas('users', ['id' => $existing->id, 'disabled' => false]);
         $this->command($manifest, 'apply', 1);
+    }
+
+    public function test_signed_batches_bind_source_target_operator_and_proofs_and_are_consumed_once(): void
+    {
+        $now = now('UTC')->startOfSecond();
+        $keypair = sodium_crypto_sign_keypair();
+        $key = sodium_crypto_sign_secretkey($keypair);
+        $sign = static function (array $manifest) use ($key): array {
+            $manifest['signature'] = base64_encode(sodium_crypto_sign_detached(LegacyAdminApproval::message($manifest), $key));
+
+            return $manifest;
+        };
+        $manifest = $this->manifest();
+        config([
+            'legacy_admin.operator' => $manifest['operator'],
+            'legacy_admin.owner_public_key' => base64_encode(sodium_crypto_sign_publickey($keypair)),
+        ]);
+        $manifest['authorization'] = [
+            'fields' => ['legacy_user_id', 'phone', 'role', 'status'],
+            'issued_at' => $now->copy()->subMinutes(5)->format('Y-m-d\TH:i:s\Z'),
+            'expires_at' => $now->copy()->addMinutes(10)->format('Y-m-d\TH:i:s\Z'),
+            'target_binding' => LegacyAdminTarget::binding(),
+        ];
+        foreach ($manifest['candidates'] as &$row) {
+            $row['holder_proof'] = [
+                'holder_ref' => 'holder-confirmation-'.$row['candidate'],
+                'old_allowlist_ref' => 'old-allowlist-'.$row['candidate'],
+                'verified_by' => 'fictional-verifier',
+                'verified_at' => $now->copy()->subHour()->format('Y-m-d\TH:i:s\Z'),
+                'expires_at' => $now->copy()->addMinutes(8)->format('Y-m-d\TH:i:s\Z'),
+                'controls_original_phone' => true,
+                'old_allowlist_match' => true,
+                'approved_duty' => 'report-review',
+            ];
+        }
+        unset($row);
+        $signed = $sign($manifest);
+        $this->command(array_replace($signed, ['snapshot' => 'tampered-legacy-snapshot']), 'apply', 1);
+        $forged = array_replace($signed, ['signature' => base64_encode(random_bytes(64))]);
+        $this->command($forged, 'apply', 1);
+        $this->command($sign(array_replace($manifest, ['operator' => 'another-operator'])), 'apply', 1);
+        $wrongTarget = $manifest;
+        $wrongTarget['authorization']['target_binding']['port'] = 9999;
+        $this->command($sign($wrongTarget), 'dry-run', 1);
+        $missing = $manifest;
+        unset($missing['candidates'][1]['holder_proof']);
+        $this->command($sign($missing), 'apply', 1);
+        $oldAllowlist = $manifest;
+        $oldAllowlist['candidates'][1]['holder_proof']['old_allowlist_match'] = false;
+        $this->command($sign($oldAllowlist), 'apply', 1);
+        $expiredProof = $manifest;
+        $expiredProof['candidates'][1]['holder_proof']['expires_at'] = $now->copy()->subMinute()->format('Y-m-d\TH:i:s\Z');
+        $this->command($sign($expiredProof), 'apply', 1);
+        $this->assertDatabaseCount('legacy_admin_batches', 0);
+        $this->command($signed);
+        $this->assertDatabaseCount('legacy_admin_batches', 0);
+        $this->command($signed, 'apply');
+        $this->command($signed, 'apply');
+        $this->assertDatabaseCount('legacy_admin_batches', 1);
+        $this->assertDatabaseHas('legacy_admin_batches', ['owner_approval_claim' => 'synthetic-approval']);
+        $this->command($sign(array_replace($manifest, ['batch' => 'replayed-reference'])), 'apply', 1);
+        $this->assertDatabaseCount('legacy_admin_restore_audits', 2);
+        $activation = $this->issue($signed, 'fixture-a');
+        $this->travel(9)->minutes();
+        $this->claim($activation)->assertStatus(422);
+        $this->command($signed, 'apply', 1);
+        $this->command($signed, 'rollback');
+        $this->assertDatabaseCount('legacy_admin_restore_audits', 5);
+    }
+
+    public function test_beta_target_does_not_accept_a_plain_reference_in_place_of_owner_signature(): void
+    {
+        config(['legacy_admin.target' => 'beta-fixture']);
+        $manifest = array_replace($this->manifest(), ['target' => 'beta-fixture']);
+        $this->command($manifest, 'dry-run', 1);
+        $this->command($manifest, 'apply', 1);
+        $this->assertDatabaseCount('legacy_admin_batches', 0);
     }
 }

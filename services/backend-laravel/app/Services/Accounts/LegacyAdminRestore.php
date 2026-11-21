@@ -4,13 +4,14 @@ namespace App\Services\Accounts;
 
 use App\Models\User;
 use Closure;
+use DateTimeImmutable;
 use DomainException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 final class LegacyAdminRestore
 {
-    public function __construct(private LegacyAdminTarget $target) {}
+    public function __construct(private LegacyAdminTarget $target, private LegacyAdminApproval $approval) {}
 
     public function preview(array $manifest): array
     {
@@ -27,19 +28,23 @@ final class LegacyAdminRestore
 
     public function apply(array $manifest): array
     {
-        $this->checkManifest($manifest, write: true);
+        $deadline = $this->checkManifest($manifest, write: true);
 
-        return DB::transaction(function () use ($manifest) {
+        return DB::transaction(function () use ($manifest, $deadline) {
             $created = DB::table('legacy_admin_batches')->insertOrIgnore([
                 'id' => $manifest['batch'],
                 'source_system' => $manifest['source_system'],
                 'snapshot' => $manifest['snapshot'],
                 'target' => $manifest['target'],
                 'approval' => $manifest['approval'],
+                'owner_approval_claim' => isset($manifest['signature']) ? $manifest['approval'] : null,
                 'manifest_hash' => LegacyAdminManifest::fingerprint($manifest),
                 'created_at' => now(),
             ]);
             $batch = $this->batch($manifest, lock: true);
+            if (! $batch) {
+                throw new DomainException('Owner authorization has already been consumed by a different batch.');
+            }
             if ($batch->rolled_back_at !== null) {
                 throw new DomainException('Rolled-back batch cannot be restored again.');
             }
@@ -47,6 +52,7 @@ final class LegacyAdminRestore
                 return $this->states($manifest['batch']);
             }
             foreach ($manifest['candidates'] as $row) {
+                $this->assertWindowOpen($deadline);
                 if ($this->conflict($manifest, $row) !== null) {
                     throw new DomainException('Batch has a conflict or missing allowlist approval. Run dry-run.');
                 }
@@ -91,9 +97,9 @@ final class LegacyAdminRestore
 
     public function issue(array $manifest, string $candidate, Closure $deliver): void
     {
-        $this->checkManifest($manifest, write: true);
+        $deadline = $this->checkManifest($manifest, write: true);
 
-        DB::transaction(function () use ($manifest, $candidate, $deliver) {
+        DB::transaction(function () use ($manifest, $candidate, $deliver, $deadline) {
             $batch = $this->batch($manifest, lock: true);
             $mapping = DB::table('legacy_admin_mappings')->where('batch_id', $manifest['batch'])
                 ->where('candidate', $candidate)->lockForUpdate()->first();
@@ -101,10 +107,14 @@ final class LegacyAdminRestore
                 throw new DomainException('Candidate is not pending in an active restoration batch.');
             }
             $user = User::whereKey($mapping->user_id)->lockForUpdate()->firstOrFail();
+            $this->assertWindowOpen($deadline);
             if (! $this->pendingAndAllowed($user, $mapping)) {
                 throw new DomainException('Candidate no longer meets the staged-account or allowlist conditions.');
             }
             $expires = now()->addMinutes(30);
+            if ($deadline !== null && $deadline < $expires) {
+                $expires = Carbon::instance($deadline);
+            }
             $secret = bin2hex(random_bytes(32));
             DB::table('legacy_admin_mappings')->where('id', $mapping->id)->update([
                 'activation_hash' => hash('sha256', $secret),
@@ -132,6 +142,7 @@ final class LegacyAdminRestore
             }
             $batch = DB::table('legacy_admin_batches')->where('id', $mapping->batch_id)->first();
             if ($batch->target !== config('legacy_admin.target') || $batch->approval !== config('legacy_admin.approval')
+                || ($batch->target !== 'local-v2-function' && $batch->owner_approval_claim !== $batch->approval)
                 || $batch->rolled_back_at !== null) {
                 return false;
             }
@@ -156,7 +167,7 @@ final class LegacyAdminRestore
 
     public function rollback(array $manifest): array
     {
-        $this->checkManifest($manifest, write: true);
+        $this->checkManifest($manifest, write: true, rollback: true);
 
         return DB::transaction(function () use ($manifest) {
             $batch = $this->batch($manifest, lock: true);
@@ -191,7 +202,7 @@ final class LegacyAdminRestore
         });
     }
 
-    private function checkManifest(array $manifest, bool $write = false): void
+    private function checkManifest(array $manifest, bool $write = false, bool $rollback = false): ?DateTimeImmutable
     {
         $this->target->assert($manifest['target'], $write ? $manifest['approval'] : null);
         if ($manifest['target'] === 'local-v2-function') {
@@ -200,6 +211,15 @@ final class LegacyAdminRestore
                     throw new DomainException('The local function target accepts only fictional 202-555-01xx identifiers.');
                 }
             }
+        }
+
+        return $this->approval->verify($manifest, $rollback);
+    }
+
+    private function assertWindowOpen(?DateTimeImmutable $deadline): void
+    {
+        if ($deadline !== null && now()->gte($deadline)) {
+            throw new DomainException('Owner or holder authorization expired before the write.');
         }
     }
 

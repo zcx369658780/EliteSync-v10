@@ -18,7 +18,8 @@ final class LegacyAdminManifest
         }
 
         $data = json_decode($raw, true, 16, JSON_THROW_ON_ERROR);
-        self::keys($data, ['batch', 'source_system', 'snapshot', 'target', 'approval', 'operator', 'candidates']);
+        self::keys($data, ['batch', 'source_system', 'snapshot', 'target', 'approval', 'operator', 'candidates'],
+            ['authorization', 'signature']);
         foreach (['batch', 'source_system', 'snapshot', 'target', 'approval', 'operator'] as $key) {
             self::reference($data[$key]);
         }
@@ -31,7 +32,7 @@ final class LegacyAdminManifest
         $seen = ['candidate' => [], 'legacy_user_id' => [], 'phone' => []];
         $rows = [];
         foreach ($candidates as $row) {
-            self::keys($row, ['candidate', 'legacy_user_id', 'phone', 'status', 'role'], ['name']);
+            self::keys($row, ['candidate', 'legacy_user_id', 'phone', 'status', 'role'], ['name', 'holder_proof']);
             self::reference($row['candidate']);
             if (! is_int($row['legacy_user_id']) || $row['legacy_user_id'] < 1
                 || ! is_string($row['phone']) || ! preg_match('/^\+?[1-9][0-9]{6,14}$/D', $row['phone'])

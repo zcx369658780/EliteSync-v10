@@ -85,6 +85,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   bool _loadingOlder = false;
   bool _blockBusy = false;
   bool _blockNeedsReadback = false;
+  Object? _retryRead;
+  bool _retryReadFailed = false;
   bool get _writeControlsAvailable =>
       _error == null && !_offline && !_blockNeedsReadback;
   int? _queuedHistoryEpoch;
@@ -147,6 +149,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     _picking = false;
     _blockBusy = false;
     _blockNeedsReadback = false;
+    _retryRead = null;
+    _retryReadFailed = false;
     _reject('正在加载对话。');
     _session = null;
     _offline = false;
@@ -1011,27 +1015,79 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         attempt == null ||
         !_current(session, epoch) ||
         _busy ||
+        _retryRead != null ||
         _draftBusy ||
         _offline ||
         _blockNeedsReadback) {
       return;
     }
-    await _load();
-    if (!_current(session, epoch) || !_writeControlsAvailable ||
-        !identical(_attempt, attempt)) {
-      return;
+    final operation = Object();
+    final peerEpoch = _peerEpoch;
+    bool current() =>
+        _current(session, epoch) &&
+        _peerEpoch == peerEpoch &&
+        !_offline &&
+        !_blockNeedsReadback &&
+        identical(_retryRead, operation) &&
+        identical(_attempt, attempt);
+    setState(() => _retryRead = operation);
+    try {
+      // This GET is independent of the history and polling readers. Their
+      // cached projection cannot authorize the retry.
+      final readback = await ref.read(apiClientProvider).get(
+        '/api/v1/messages',
+        query: {'peer_id': attempt.peerUserId, 'latest': 1, 'limit': 100},
+        cancelToken: _uploadCancellation,
+        options: Options(
+          headers: {'Cache-Control': 'no-cache, no-store'},
+          extra: {requestSessionGuardKey: current},
+        ),
+      );
+      if (!current()) return;
+      if (readback is! NetworkSuccess<Map<String, dynamic>> ||
+          readback.data['items'] is! List ||
+          (readback.data['items'] as List).any((row) => row is! Map)) {
+        if (readback is NetworkFailure<Map<String, dynamic>> &&
+            const {401, 403, 404}.contains(readback.statusCode)) {
+          _cache.revokeObject(_cacheKey);
+          _reject('当前无法核对对话权限。', preserveAttempt: true);
+          _text.clear();
+        }
+        _showRetryReadFailed();
+        return;
+      }
+      final items = (readback.data['items'] as List).cast<Map>();
+      setState(() {
+        _retryReadFailed = false;
+        _busy = true;
+      });
+      if (items.any((row) =>
+          row['client_message_id'] == attempt.clientMessageId &&
+          row['sender_id'] == session.user?.id &&
+          row['id'] is num)) {
+        await _acknowledgeConfirmedSend(session, epoch);
+        return;
+      }
+      // An older commit may be outside this window. An explicit retry still
+      // uses the original immutable key and the server's deduplication.
+      await _post(session, epoch, asset: _retryAsset);
+    } catch (_) {
+      if (current()) _showRetryReadFailed();
+    } finally {
+      if (mounted && identical(_retryRead, operation)) {
+        setState(() {
+          _retryRead = null;
+          if (_current(session, epoch)) _busy = false;
+        });
+      }
     }
-    if (_messages.any(
-      (row) =>
-        row['client_message_id'] == attempt.clientMessageId &&
-        row['sender_id'] == session.user?.id,
-    )) {
-      await _acknowledgeConfirmedSend(session, epoch);
-      return;
-    }
-    // The newest window cannot rule out an older commit. Reuse the immutable
-    // server-deduplicated key only after this explicit retry and current read.
-    await _send(asset: _retryAsset);
+  }
+
+  void _showRetryReadFailed() {
+    setState(() {
+      _retryReadFailed = true;
+      _sendStatus = '发送结果尚未确认，请重新核对服务器。';
+    });
   }
 
   Future<bool> _acknowledgeConfirmedSend(SessionState session, int epoch) async {
@@ -1312,6 +1368,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           _uploadCancellation = CancelToken();
           _session = null;
           _sessionChanged = true;
+          _retryRead = null;
+          _retryReadFailed = false;
           _attempt = null;
           _retryAsset = null;
           _sendStatus = null;
@@ -1479,10 +1537,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             ),
           if (_attempt != null && !_offline && !_blockNeedsReadback)
             TextButton(
-              onPressed: _busy || _draftBusy
+              onPressed: _busy || _draftBusy || _retryRead != null
                   ? null
                   : _retryUnconfirmedMessage,
-              child: const Text('使用原消息编号重试'),
+              child: Text(_retryReadFailed ? '重新核对服务器' : '使用原消息编号重试'),
             ),
           if (_uploadStatus != null)
             Padding(

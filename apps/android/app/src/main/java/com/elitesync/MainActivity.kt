@@ -58,10 +58,11 @@ class MainActivity : FlutterActivity() {
                             mapOf(
                                 "apiBaseUrl" to endpoints.apiBaseUrl,
                                 "wsBaseUrl" to endpoints.wsBaseUrl,
-                                "initialRoute" to firstNonBlank(
-                                    extras?.getString("elitesync_initial_route"),
-                                    fileBootstrap["elitesync_initial_route"],
-                                ),
+                                "initialRoute" to if (BuildConfig.ELITESYNC_V2_FUNCTION_BUILD) "" else
+                                    firstNonBlank(
+                                        extras?.getString("elitesync_initial_route"),
+                                        fileBootstrap["elitesync_initial_route"],
+                                    ),
                                 "appVersionName" to BuildConfig.VERSION_NAME,
                                 "appVersionCode" to BuildConfig.VERSION_CODE.toString(),
                                 "debugBuild" to BuildConfig.DEBUG.toString(),

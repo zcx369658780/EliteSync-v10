@@ -132,9 +132,17 @@ val isC2LocalInternalBuild = flutterDartDefines
     .split(Regex("[;,]"))
     .map { it.trim() }
     .contains("ELITESYNC_C2_LOCAL_BUILD=true") || isV1006LocalBuild
-val flutterReleaseAarRepo =
-    File(flutterModuleDir, "build/host/outputs/repo/com/elitesync/flutter_elitesync_module/flutter_release/1.0")
 val isCiBuild = System.getenv("CI")?.equals("true", ignoreCase = true) == true
+val prebuiltFlutterRepo = providers.gradleProperty("elitesyncPrebuiltFlutterRepo").orNull
+val candidateBuildDir = providers.gradleProperty("elitesyncCandidateBuildDir").orNull
+require((prebuiltFlutterRepo == null && candidateBuildDir == null) || isCiBuild && isFunctionCandidateBuild) {
+    "Separate build output is limited to the offline V2 candidate build"
+}
+candidateBuildDir?.let { layout.buildDirectory.set(file(it)) }
+val flutterReleaseAarRepo = File(
+    prebuiltFlutterRepo?.let(::File) ?: File(flutterModuleDir, "build/host/outputs/repo"),
+    "com/elitesync/flutter_elitesync_module/flutter_release/1.0",
+)
 
 val syncFlutterAar by tasks.registering(Exec::class) {
     group = "build"
@@ -191,8 +199,9 @@ android {
         targetSdk = 35
         // Versioning rule: major.minor.patch[alpha suffix]
         // versionCode uses an expanded numeric form to keep suffix releases ordered.
-        versionCode = if (isFunctionCandidateBuild) 1011805 else if (isV1018LocalBuild) 1011804 else if (isV1017LocalBuild) 1011703 else if (isV1015LocalBuild) 1011601 else if (isV1014LocalBuild) 1010401 else if (isV1013LocalBuild) 1010301 else if (isV1012LocalBuild) 1010201 else if (isRelationshipDevBuild) 1010101 else 80400
-        versionName = if (isFunctionCandidateBuild) "10.1.18-v2-function-p0" else if (isV1018LocalBuild) "10.1.18-dev" else if (isV1017LocalBuild) "10.1.17-dev" else if (isV1015LocalBuild) "10.1.16-dev" else if (isV1014LocalBuild) "10.1.4-dev" else if (isV1013LocalBuild) "10.1.3-dev" else if (isV1012LocalBuild) "10.1.2-dev" else if (isRelationshipDevBuild) "10.1.1-dev" else "0.08.04"
+        versionCode = if (isFunctionCandidateBuild) 1011806 else if (isV1018LocalBuild) 1011804 else if (isV1017LocalBuild) 1011703 else if (isV1015LocalBuild) 1011601 else if (isV1014LocalBuild) 1010401 else if (isV1013LocalBuild) 1010301 else if (isV1012LocalBuild) 1010201 else if (isRelationshipDevBuild) 1010101 else 80400
+        versionName = if (isFunctionCandidateBuild) "10.1.18-v2-function-p04" else if (isV1018LocalBuild) "10.1.18-dev" else if (isV1017LocalBuild) "10.1.17-dev" else if (isV1015LocalBuild) "10.1.16-dev" else if (isV1014LocalBuild) "10.1.4-dev" else if (isV1013LocalBuild) "10.1.3-dev" else if (isV1012LocalBuild) "10.1.2-dev" else if (isRelationshipDevBuild) "10.1.1-dev" else "0.08.04"
+        manifestPlaceholders["flutterPlatformDeepLinks"] = if (isFunctionCandidateBuild) "false" else "true"
         ndk {
             // Google Play 16KB page-size compliance: avoid x86_64 native libs from third-party SDKs.
             // Keep ARM ABIs for real-device testing and release publishing.
@@ -230,7 +239,7 @@ android {
             if (isV1014LocalBuild) { applicationIdSuffix = ".v1014dev" }
             if (isV1012LocalBuild) { applicationIdSuffix = ".v1012dev" }
             if (isFunctionCandidateBuild) {
-                applicationIdSuffix = ".v2functionp0"
+                applicationIdSuffix = ".v2functionp04"
             } else if (isV1018LocalBuild) { applicationIdSuffix = ".v1018dev" }
             else if (isV1017LocalBuild) { applicationIdSuffix = ".v1017dev" }
             else if (isV1015LocalBuild) { applicationIdSuffix = ".v1015dev" }
