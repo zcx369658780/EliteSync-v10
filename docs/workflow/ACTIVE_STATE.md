@@ -1,3 +1,15 @@
+# CURRENT ENTRY 2026-11-21：Owner同意阿里云真实服务器渐进恢复、旧管理员最小恢复与实机联测
+
+**`OWNER_GRADUAL_CLOUD_RECOVERY_APPROVED / LOCAL_CLEANUP_CLOSED_ZERO_DELETED / CLOUD_R0_CONSOLIDATED_TASK_ISSUED / CLOUD_INSTANCE_IDENTITY_PENDING / ISOLATED_STAGING_ONLY / LEGACY_ADMIN_RECOVERY_DATA_GATE / PHONE_CLOUD_RETEST_PENDING / PRODUCTION_NO_GO / NO_MAIN_MERGE`**
+
+- Owner明确“清理到此为止。先尝试逐渐恢复到阿里云真实后端服务器（并且恢复已有的管理员账号信息），然后重新进行实机测试”；顾问已归档[Owner授权及边界](../decisions/OWNER_V2_GRADUAL_ALIYUN_RESTORE_AND_ADMIN_ACCOUNT_RECOVERY_AUTHORIZATION_20261121.md)、[唯一综合云恢复任务](../versions/v2/V2_CLOUD_R0_GRADUAL_BACKEND_ADMIN_AND_PHONE_CONSOLIDATED_TASK_20261121.md)和[现有Codex启动说明](V2_CLOUD_R0_EXISTING_CODEX_SESSION_KICKOFF_20261121.md)。此处属于任务**签发**，现有本地Codex尚未向本轮顾问返回现场执行证据。
+- 唯一当前工程真实交付R1`585a8c21aeab103daac166338f881ef343c8af99`；清理固定回执`716e74d92c7b9e9a10f6dc474e8300a222f0357b`。本机13项清理保持白名单0、删除0，不再派清理工作；原脏main/IP13I/S1/治理/旧9.1C及唯一APK、JUnit/备份保持保护。
+- 当前目标：先核2026-09-24历史所指的**上海轻量应用服务器**实例/现状与旧服务/备份来源，建立不覆盖旧业务的云端V2隔离Staging（Linux PHP8.4、Laravel13、MariaDB10.11、锁定Python/Node/DE440s），根据具名来源最小化恢复已有管理员并重签凭据，最后在可授权单台手机通过HTTPS接云端独立包做实测。旧Dockerfile`php:8.5.3-fpm`与Composer`~8.4.0`不符；Windows Docker Desktop daemon离线，旧备份加密及真实管理员范围没有被证明。
+- 新Owner意图支持本地安全工程及云端**只读身份核实**；不跳过云资源身份、费用、旧业务回滚和真实敏感账号数据门。不重置旧系统、覆盖原生产/共享DB/卷，不恢复旧密码/Token，不开公网管理/DB端口，不自动购新实例或新供应商；如果真实云端写入/管理员个人数据需具名证据或批准，Codex集中提出单次Owner决策包，而非猜测目标执行。
+- 本轮产品状态仍`R1_PARTIAL / PRODUCTION_NO_GO`，历史手机三盘503根因UNKNOWN、R1云端真机复测NOT_RUN，旧星盘兼容A/B/C及注册T0 P1未选；不将Staging上线误写正式发布或main整合。旧CURRENT ENTRY为历史时点快照。
+
+---
+
 # CURRENT ENTRY 2026-11-21：本机13项清理盘点顾问接受，全部保留；R1工程仍PARTIAL
 
 **`CLEANUP_INVENTORY_ADVISOR_ACCEPTED / 0_ITEMS_ELIGIBLE_FOR_DELETION / 0_BYTES_DELETED / PHYSICAL_DELETION_NOT_AUTHORIZED / R1_ADVISOR_SCOPED_ACCEPTED_WITH_RESERVATIONS / PHONE_RETEST_PENDING / PRODUCTION_NO_GO`**
