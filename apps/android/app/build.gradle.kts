@@ -53,16 +53,30 @@ val requestedFlutterDartDefines = (
 val requestedDartDefineValues = requestedFlutterDartDefines.split(Regex("[;,]"))
     .map { it.trim() }.filter { it.isNotEmpty() }
 val functionCertificatePath = providers.gradleProperty("elitesyncFunctionCertificate").orNull
-val isFunctionCandidateBuild = functionCertificatePath != null
+val remoteStagingHost = providers.gradleProperty("elitesyncRemoteStagingHost").orNull
+val isRemoteStagingBuild = remoteStagingHost != null
+val isFunctionCandidateBuild = functionCertificatePath != null || isRemoteStagingBuild
 val isFunctionR1CandidateBuild = providers.gradleProperty("elitesyncFunctionR1Candidate").orNull == "true"
 val isStagingLoginBuild = providers.gradleProperty("elitesyncStagingLoginCandidate").orNull == "true"
 require(!isFunctionR1CandidateBuild || isFunctionCandidateBuild) {
-    "The P0.4.2 R1 candidate requires the V2 function certificate build option"
+    "The P0.4.2 R1 candidate requires a local certificate or a remote Staging host"
 }
 require(!isStagingLoginBuild || isFunctionR1CandidateBuild) {
     "The Staging login candidate requires the V2 function R1 build"
 }
-val functionOrigin = if (isStagingLoginBuild) "https://127.0.0.1:18446/" else "https://127.0.0.1:18444/"
+if (remoteStagingHost != null) {
+    val dnsName = Regex("""(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}""")
+    require(isFunctionR1CandidateBuild && !isStagingLoginBuild && functionCertificatePath == null
+        && remoteStagingHost.length <= 253 && dnsName.matches(remoteStagingHost)
+        && remoteStagingHost != "slowdate.top") {
+        "Remote Staging requires a dedicated HTTPS DNS hostname and the R1 build"
+    }
+}
+val functionOrigin = when {
+    remoteStagingHost != null -> "https://$remoteStagingHost/"
+    isStagingLoginBuild -> "https://127.0.0.1:18446/"
+    else -> "https://127.0.0.1:18444/"
+}
 val functionCertificate = functionCertificatePath?.let { path ->
     val file = rootProject.file(path)
     require(file.readText().trim().matches(Regex("-----BEGIN CERTIFICATE-----[\\sA-Za-z0-9+/=]+-----END CERTIFICATE-----"))) {
@@ -85,8 +99,9 @@ val functionCertificate = functionCertificatePath?.let { path ->
 }.orEmpty()
 require(requestedDartDefineValues.none {
     it.startsWith("ELITESYNC_V2_FUNCTION_BUILD=") || it.startsWith("ELITESYNC_V2_STAGING_LOGIN_BUILD=")
+        || it.startsWith("ELITESYNC_V2_REMOTE_STAGING_BUILD=") || it.startsWith("ELITESYNC_REMOTE_STAGING_HOST=")
 }) {
-    "Use the V2 function certificate build option to set the matching native and Dart configuration"
+    "Use the dedicated V2 build options to set the matching native and Dart configuration"
 }
 val isV1015LocalBuild = requestedDartDefineValues.contains("ELITESYNC_V1015_LOCAL_BUILD=true")
 val isV1017LocalBuild = requestedDartDefineValues.contains("ELITESYNC_V1017_LOCAL_BUILD=true")
@@ -116,7 +131,8 @@ val integratedDartDefines = if (isV1015LocalBuild) {
 }
 val flutterDartDefines = if (isFunctionCandidateBuild) {
     "$integratedDartDefines;ELITESYNC_V2_FUNCTION_BUILD=true;" +
-        "ELITESYNC_V2_STAGING_LOGIN_BUILD=$isStagingLoginBuild;ELITESYNC_API_BASE_URL=$functionOrigin"
+        "ELITESYNC_V2_STAGING_LOGIN_BUILD=$isStagingLoginBuild;ELITESYNC_API_BASE_URL=$functionOrigin;" +
+        "ELITESYNC_V2_REMOTE_STAGING_BUILD=$isRemoteStagingBuild;ELITESYNC_REMOTE_STAGING_HOST=${remoteStagingHost.orEmpty()}"
 } else {
     integratedDartDefines
 }
@@ -214,6 +230,7 @@ android {
         buildConfigField("boolean", "ELITESYNC_V1015_LOCAL_BUILD", "false")
         buildConfigField("boolean", "ELITESYNC_V2_FUNCTION_BUILD", "false")
         buildConfigField("boolean", "ELITESYNC_V2_STAGING_LOGIN_BUILD", "false")
+        buildConfigField("boolean", "ELITESYNC_V2_REMOTE_STAGING_BUILD", "false")
         buildConfigField("String", "ELITESYNC_V2_FUNCTION_CERTIFICATE", "\"\"")
         minSdk = 26
         targetSdk = 35
@@ -225,8 +242,16 @@ android {
             versionCode = 1011808
             versionName = "10.1.18-v2-staging-login"
         }
-        manifestPlaceholders["appLabel"] = if (isStagingLoginBuild) "EliteSync Staging" else "EliteSync"
-        manifestPlaceholders["allowAppBackup"] = (!isStagingLoginBuild).toString()
+        if (isRemoteStagingBuild) {
+            versionCode = 1011809
+            versionName = "10.1.18-v2-remote-staging"
+        }
+        manifestPlaceholders["appLabel"] = when {
+            isRemoteStagingBuild -> "EliteSync Remote Staging"
+            isStagingLoginBuild -> "EliteSync Staging"
+            else -> "EliteSync"
+        }
+        manifestPlaceholders["allowAppBackup"] = (!isStagingLoginBuild && !isRemoteStagingBuild).toString()
         manifestPlaceholders["flutterPlatformDeepLinks"] = if (isFunctionCandidateBuild) "false" else "true"
         ndk {
             // Google Play 16KB page-size compliance: avoid x86_64 native libs from third-party SDKs.
@@ -266,6 +291,7 @@ android {
             if (isV1012LocalBuild) { applicationIdSuffix = ".v1012dev" }
             if (isFunctionCandidateBuild) {
                 applicationIdSuffix = when {
+                    isRemoteStagingBuild -> ".v2stagingremote"
                     isStagingLoginBuild -> ".v2staginglogin"
                     isFunctionR1CandidateBuild -> ".v2functionp042r1"
                     else -> ".v2functionp04"
@@ -278,9 +304,10 @@ android {
             buildConfigField("String", "API_BASE_URL", if (isV1015LocalBuild) "\"http://127.0.0.1:8021/\"" else if (isV1014LocalBuild) "\"http://127.0.0.1:8019/\"" else if (isV1013LocalBuild) "\"http://127.0.0.1:8017/\"" else if (isV1012LocalBuild) "\"http://127.0.0.1:8015/\"" else if (isRelationshipDevBuild) "\"http://127.0.0.1:8012/\"" else if (isV1011LocalBuild) "\"http://127.0.0.1:8011/\"" else if (isV1010LocalBuild) "\"http://127.0.0.1:8010/\"" else if (isV1006LocalBuild) "\"http://127.0.0.1:8000/\"" else "\"https://slowdate.top/\"")
             buildConfigField("String", "WS_BASE_URL", if (isV1015LocalBuild) "\"ws://127.0.0.1:8022/\"" else if (isV1014LocalBuild) "\"ws://127.0.0.1:8020/\"" else if (isV1013LocalBuild) "\"ws://127.0.0.1:8018/\"" else if (isV1012LocalBuild) "\"ws://127.0.0.1:8016/\"" else if (isRelationshipDevBuild) "\"ws://127.0.0.1:8013/\"" else if (isV1006LocalBuild) "\"\"" else "\"wss://slowdate.top/\"")
             if (isFunctionCandidateBuild) {
-                if (isStagingLoginBuild) isDebuggable = false
+                if (isStagingLoginBuild || isRemoteStagingBuild) isDebuggable = false
                 buildConfigField("boolean", "ELITESYNC_V2_FUNCTION_BUILD", "true")
                 buildConfigField("boolean", "ELITESYNC_V2_STAGING_LOGIN_BUILD", isStagingLoginBuild.toString())
+                buildConfigField("boolean", "ELITESYNC_V2_REMOTE_STAGING_BUILD", isRemoteStagingBuild.toString())
                 buildConfigField("String", "ELITESYNC_V2_FUNCTION_CERTIFICATE", "\"$functionCertificate\"")
                 buildConfigField("String", "API_BASE_URL", "\"$functionOrigin\"")
                 buildConfigField("String", "WS_BASE_URL", "\"\"")

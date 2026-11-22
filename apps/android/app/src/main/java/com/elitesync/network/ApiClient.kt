@@ -17,12 +17,22 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiClient {
     private const val FALLBACK_BASE_URL = "https://slowdate.top/"
     private val baseUrl = if (BuildConfig.ELITESYNC_V2_FUNCTION_BUILD) {
-        val expectedOrigin = if (BuildConfig.ELITESYNC_V2_STAGING_LOGIN_BUILD) {
-            "https://127.0.0.1:18446/"
+        if (BuildConfig.ELITESYNC_V2_REMOTE_STAGING_BUILD) {
+            BuildConfig.API_BASE_URL.also { value ->
+                val url = value.toHttpUrl()
+                check(url.isHttps && url.port == 443 && url.encodedPath == "/" && url.query == null
+                    && url.fragment == null && url.username.isEmpty() && url.password.isEmpty()
+                    && url.host != "slowdate.top" && !url.host.contains(':')
+                    && !url.host.matches(Regex("[0-9.]+")))
+            }
         } else {
-            "https://127.0.0.1:18444/"
+            val expectedOrigin = if (BuildConfig.ELITESYNC_V2_STAGING_LOGIN_BUILD) {
+                "https://127.0.0.1:18446/"
+            } else {
+                "https://127.0.0.1:18444/"
+            }
+            BuildConfig.API_BASE_URL.also { check(it == expectedOrigin) }
         }
-        BuildConfig.API_BASE_URL.also { check(it == expectedOrigin) }
     } else {
         BuildConfig.API_BASE_URL.ifBlank { FALLBACK_BASE_URL }
     }
@@ -31,18 +41,20 @@ object ApiClient {
         val builder = OkHttpClient.Builder()
         if (BuildConfig.ELITESYNC_V2_FUNCTION_BUILD) {
             val origin = baseUrl.toHttpUrl()
-            val der = Base64.decode(BuildConfig.ELITESYNC_V2_FUNCTION_CERTIFICATE, Base64.DEFAULT)
-            val certificate = CertificateFactory.getInstance("X.509").generateCertificate(der.inputStream())
-            val keys = KeyStore.getInstance(KeyStore.getDefaultType()).apply {
-                load(null, null)
-                setCertificateEntry("fixture", certificate)
+            if (!BuildConfig.ELITESYNC_V2_REMOTE_STAGING_BUILD) {
+                val der = Base64.decode(BuildConfig.ELITESYNC_V2_FUNCTION_CERTIFICATE, Base64.DEFAULT)
+                val certificate = CertificateFactory.getInstance("X.509").generateCertificate(der.inputStream())
+                val keys = KeyStore.getInstance(KeyStore.getDefaultType()).apply {
+                    load(null, null)
+                    setCertificateEntry("fixture", certificate)
+                }
+                val trust = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
+                trust.init(keys)
+                val manager = trust.trustManagers.filterIsInstance<X509TrustManager>().single()
+                val ssl = SSLContext.getInstance("TLS").apply { init(null, arrayOf(manager), null) }
+                builder.sslSocketFactory(ssl.socketFactory, manager)
             }
-            val trust = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
-            trust.init(keys)
-            val manager = trust.trustManagers.filterIsInstance<X509TrustManager>().single()
-            val ssl = SSLContext.getInstance("TLS").apply { init(null, arrayOf(manager), null) }
-            builder.sslSocketFactory(ssl.socketFactory, manager)
-                .proxy(Proxy.NO_PROXY)
+            builder.proxy(Proxy.NO_PROXY)
                 .followRedirects(false)
                 .followSslRedirects(false)
                 .addInterceptor { chain ->

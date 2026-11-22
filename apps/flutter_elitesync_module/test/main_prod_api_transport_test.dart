@@ -2,6 +2,63 @@ import 'package:flutter_elitesync_module/main_prod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  test(
+    'remote Staging requires the compiled HTTPS host and matching bootstrap',
+    () {
+      const host = 'stage.edge.test';
+      const origin = 'https://stage.edge.test/';
+      expect(
+        resolveApiBaseUrl(
+          hostBootstrap: {'apiBaseUrl': origin},
+          functionBuild: true,
+          remoteStagingBuild: true,
+          remoteStagingHost: host,
+          compiledOrigin: origin,
+        ),
+        origin,
+      );
+      for (final value in [
+        '',
+        'http://stage.edge.test/',
+        'https://other.edge.test/',
+        'https://127.0.0.1:18446/',
+      ]) {
+        expect(
+          () => resolveApiBaseUrl(
+            hostBootstrap: {'apiBaseUrl': value},
+            functionBuild: true,
+            remoteStagingBuild: true,
+            remoteStagingHost: host,
+            compiledOrigin: origin,
+          ),
+          throwsStateError,
+        );
+      }
+    },
+  );
+
+  test('remote Staging rejects unsafe hosts even when both origins agree', () {
+    for (final host in [
+      '',
+      'slowdate.top',
+      '127.0.0.1',
+      'stage.edge.test:443',
+      'stage.edge.test/path',
+    ]) {
+      final origin = 'https://$host/';
+      expect(
+        () => resolveApiBaseUrl(
+          hostBootstrap: {'apiBaseUrl': origin},
+          functionBuild: true,
+          remoteStagingBuild: true,
+          remoteStagingHost: host,
+          compiledOrigin: origin,
+        ),
+        throwsStateError,
+      );
+    }
+  });
+
   const stagingLogin = bool.fromEnvironment('ELITESYNC_V2_STAGING_LOGIN_BUILD');
   const expectedOrigin = stagingLogin
       ? 'https://127.0.0.1:18446/'

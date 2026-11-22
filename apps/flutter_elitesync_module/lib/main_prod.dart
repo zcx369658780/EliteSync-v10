@@ -64,11 +64,32 @@ String resolveApiBaseUrl({
   bool functionBuild = const bool.fromEnvironment(
     'ELITESYNC_V2_FUNCTION_BUILD',
   ),
+  bool remoteStagingBuild = const bool.fromEnvironment(
+    'ELITESYNC_V2_REMOTE_STAGING_BUILD',
+  ),
+  String remoteStagingHost = const String.fromEnvironment(
+    'ELITESYNC_REMOTE_STAGING_HOST',
+  ),
   String compiledOrigin = const String.fromEnvironment(
     'ELITESYNC_API_BASE_URL',
   ),
 }) {
   final hostOverride = _firstNonEmpty([hostBootstrap['apiBaseUrl'] ?? '']);
+  if (remoteStagingBuild) {
+    final hostname = RegExp(
+      r'^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$',
+    );
+    final origin = 'https://$remoteStagingHost/';
+    if (!functionBuild ||
+        remoteStagingHost.length > 253 ||
+        hostname.stringMatch(remoteStagingHost) != remoteStagingHost ||
+        remoteStagingHost == 'slowdate.top' ||
+        compiledOrigin != origin ||
+        hostOverride != origin) {
+      throw StateError('Remote Staging native and Dart endpoints must match');
+    }
+    return origin;
+  }
   if (functionBuild) {
     if (compiledOrigin != functionApiOrigin || hostOverride != compiledOrigin) {
       throw StateError('V2 function native and Dart endpoints must match');
@@ -166,16 +187,25 @@ Future<void> main() async {
 
   final hostBootstrap = await _readHostBootstrap();
   const functionBuild = bool.fromEnvironment('ELITESYNC_V2_FUNCTION_BUILD');
+  const remoteStagingBuild = bool.fromEnvironment(
+    'ELITESYNC_V2_REMOTE_STAGING_BUILD',
+  );
   String? functionCertificate;
-  if (functionBuild) {
+  if (functionBuild || remoteStagingBuild) {
     try {
       resolveApiBaseUrl(hostBootstrap: hostBootstrap);
       final certificate = hostBootstrap['functionCertificate'];
-      if (certificate == null || certificate.isEmpty) {
-        throw StateError('V2 function certificate missing');
+      if (remoteStagingBuild) {
+        if (certificate != null && certificate.isNotEmpty) {
+          throw StateError('Remote Staging requires system TLS trust');
+        }
+      } else {
+        if (certificate == null || certificate.isEmpty) {
+          throw StateError('V2 function certificate missing');
+        }
+        functionTlsContext(certificate);
+        functionCertificate = certificate;
       }
-      functionTlsContext(certificate);
-      functionCertificate = certificate;
     } on Exception {
       _showFunctionConfigurationError();
       return;
@@ -245,6 +275,7 @@ Future<void> main() async {
             ),
       useMockData: false,
       useLiveKitRtc: !functionBuild && (rtcRestoration || !restoration),
+      disableChatSocket: functionBuild,
       restorationLocalBuild: restoration,
       useMockAuth: false,
       useMockQuestionnaire: false,

@@ -8,6 +8,7 @@ class AppEnv {
     required this.useMockData,
     this.useLiveKitRtc = false,
     this.wsBaseUrl = '',
+    this.disableChatSocket = false,
     this.restorationLocalBuild = false,
     this.useMockAuth = false,
     this.useMockQuestionnaire = false,
@@ -30,6 +31,7 @@ class AppEnv {
   final String appName;
   final String apiBaseUrl;
   final String wsBaseUrl;
+  final bool disableChatSocket;
   final bool useMockData;
   final bool useLiveKitRtc;
   final bool restorationLocalBuild;

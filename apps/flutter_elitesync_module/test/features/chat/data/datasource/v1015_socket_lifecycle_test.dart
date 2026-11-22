@@ -61,6 +61,7 @@ class _Harness {
   late final ChatSocketDataSource source;
   _Harness({
     bool callbackOnly = false,
+    bool disableChatSocket = false,
     int retries = 2,
     Duration timeout = const Duration(seconds: 1),
     Duration delay = const Duration(milliseconds: 2),
@@ -68,11 +69,12 @@ class _Harness {
     source = ChatSocketDataSource(
       apiClient: ApiClient(dio: Dio()),
       localStorage: local,
-      env: const AppEnv(
+      env: AppEnv(
         flavor: AppFlavor.dev,
         appName: 'synthetic',
         apiBaseUrl: 'http://127.0.0.1:49572',
         wsBaseUrl: 'ws://127.0.0.1:49573',
+        disableChatSocket: disableChatSocket,
         useMockData: false,
       ),
       accessToken: () async => token,
@@ -106,6 +108,22 @@ Future<void> _tick([int milliseconds = 5]) =>
     Future<void>.delayed(Duration(milliseconds: milliseconds));
 
 void main() {
+  test(
+    'disabled socket never resolves a room or calls the connector',
+    () async {
+      final h = _Harness(disableChatSocket: true);
+      addTearDown(h.finish);
+      expect(
+        await h.source
+            .observe('2')
+            .toList()
+            .timeout(const Duration(seconds: 1)),
+        isEmpty,
+      );
+      expect(h.uris, isEmpty);
+    },
+  );
+
   test(
     'valid current connection sends scoped URI and receives invalidation',
     () async {
