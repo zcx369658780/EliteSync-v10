@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_elitesync_module/features/profile/data/dto/profile_detail_dto.dart';
 import 'package:flutter_elitesync_module/features/profile/data/dto/profile_summary_dto.dart';
 import 'package:flutter_elitesync_module/features/profile/data/mapper/profile_mapper.dart';
 
@@ -28,6 +29,53 @@ void main() {
     expect(summary.birthLng, 114.3055);
     expect(summary.birthPlace, '武汉');
   });
+
+  test('basic profile supports DECIMAL strings in summary and edit detail', () {
+    const json = <String, dynamic>{
+      'name': 'Fixture',
+      'birthday': '2001-02-03',
+      'gender': 'female',
+      'city': '当前城市',
+      'relationship_goal': 'friendship',
+      'birth_time': '08:12',
+      'birth_place': '出生地点',
+      'birth_lat': '-12.3456789',
+      'birth_lng': '0.0000000',
+    };
+
+    final summary = ProfileSummaryDto.fromJson(json);
+    final detail = ProfileDetailDto.fromJson(json);
+    expect(summary.birthLat, -12.3456789);
+    expect(summary.birthLng, 0);
+    expect(detail.birthLat, -12.3456789);
+    expect(detail.birthLng, 0);
+    expect(detail.birthday, '2001-02-03');
+    expect(detail.birthTime, '08:12');
+    expect(detail.gender, 'female');
+    expect(detail.city, '当前城市');
+    expect(detail.birthPlace, '出生地点');
+    expect(detail.target, 'friendship');
+  });
+
+  test(
+    'profile coordinates prefer canonical values and reject invalid ones',
+    () {
+      final summary = ProfileSummaryDto.fromJson({
+        'birth_lat': 0,
+        'private_birth_lat': '32.0000000',
+        'birth_lng': null,
+        'private_birth_lng': '-180.0000000',
+      });
+      expect(summary.birthLat, 0);
+      expect(summary.birthLng, -180);
+      final detail = ProfileDetailDto.fromJson({
+        'birth_lat': '90.0000001',
+        'birth_lng': 'Infinity',
+      });
+      expect(detail.birthLat, isNull);
+      expect(detail.birthLng, isNull);
+    },
+  );
 
   test(
     'profile summary dto parses canonical readiness and publication truth',

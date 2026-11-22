@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/features/profile/data/dto/profile_birth_coordinates.dart';
 import 'package:flutter_elitesync_module/features/profile/domain/entities/profile_summary_entity.dart';
 
 class ProfileSummaryDto {
@@ -44,12 +45,8 @@ class ProfileSummaryDto {
             ? null
             : (json['birth_place'] ?? json['private_birth_place'] ?? '')
                   .toString(),
-        birthLat:
-            (json['birth_lat'] as num?)?.toDouble() ??
-            (json['private_birth_lat'] as num?)?.toDouble(),
-        birthLng:
-            (json['birth_lng'] as num?)?.toDouble() ??
-            (json['private_birth_lng'] as num?)?.toDouble(),
+        birthLat: readProfileBirthLatitude(json),
+        birthLng: readProfileBirthLongitude(json),
         city: (json['city'] ?? '').toString(),
         target: (json['target'] ?? json['relationship_goal'] ?? '').toString(),
         verified:

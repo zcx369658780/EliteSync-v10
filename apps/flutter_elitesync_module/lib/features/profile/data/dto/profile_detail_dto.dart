@@ -1,3 +1,5 @@
+import 'package:flutter_elitesync_module/features/profile/data/dto/profile_birth_coordinates.dart';
+
 class ProfileDetailDto {
   const ProfileDetailDto({
     required this.nickname,
@@ -20,17 +22,22 @@ class ProfileDetailDto {
   final double? birthLat;
   final double? birthLng;
 
-  factory ProfileDetailDto.fromJson(Map<String, dynamic> json) => ProfileDetailDto(
+  factory ProfileDetailDto.fromJson(Map<String, dynamic> json) =>
+      ProfileDetailDto(
         nickname: (json['nickname'] ?? json['name'] ?? '').toString(),
         gender: (json['gender'] ?? '').toString(),
         birthday: (json['birthday'] ?? '').toString(),
         birthTime: (json['birth_time'] ?? '').toString(),
         city: (json['city'] ?? '').toString(),
         target: (json['target'] ?? json['relationship_goal'] ?? '').toString(),
-        birthPlace: (json['birth_place'] ?? json['private_birth_place'] ?? '').toString().isEmpty
+        birthPlace:
+            (json['birth_place'] ?? json['private_birth_place'] ?? '')
+                .toString()
+                .isEmpty
             ? null
-            : (json['birth_place'] ?? json['private_birth_place'] ?? '').toString(),
-        birthLat: (json['birth_lat'] as num?)?.toDouble() ?? (json['private_birth_lat'] as num?)?.toDouble(),
-        birthLng: (json['birth_lng'] as num?)?.toDouble() ?? (json['private_birth_lng'] as num?)?.toDouble(),
+            : (json['birth_place'] ?? json['private_birth_place'] ?? '')
+                  .toString(),
+        birthLat: readProfileBirthLatitude(json),
+        birthLng: readProfileBirthLongitude(json),
       );
 }

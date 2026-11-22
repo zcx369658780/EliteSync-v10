@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
+import 'package:flutter_elitesync_module/features/profile/data/dto/profile_birth_coordinates.dart';
 import 'package:flutter_elitesync_module/features/profile/data/datasource/profile_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/profile/data/mapper/profile_mapper.dart';
 import 'package:flutter_elitesync_module/features/profile/data/repository/profile_repository_impl.dart';
@@ -123,12 +124,8 @@ ProfileSummaryEntity? _summaryFromJson(Map<String, dynamic>? json) {
             .isEmpty
         ? null
         : (json['birth_place'] ?? json['private_birth_place'] ?? '').toString(),
-    birthLat:
-        (json['birth_lat'] as num?)?.toDouble() ??
-        (json['private_birth_lat'] as num?)?.toDouble(),
-    birthLng:
-        (json['birth_lng'] as num?)?.toDouble() ??
-        (json['private_birth_lng'] as num?)?.toDouble(),
+    birthLat: readProfileBirthLatitude(json),
+    birthLng: readProfileBirthLongitude(json),
     city: (json['city'] ?? '').toString(),
     target: (json['target'] ?? json['relationship_goal'] ?? '').toString(),
     verified:
@@ -161,12 +158,8 @@ ProfileDetailEntity? _detailFromJson(Map<String, dynamic>? json) {
             .isEmpty
         ? null
         : (json['birth_place'] ?? json['private_birth_place'] ?? '').toString(),
-    birthLat:
-        (json['birth_lat'] as num?)?.toDouble() ??
-        (json['private_birth_lat'] as num?)?.toDouble(),
-    birthLng:
-        (json['birth_lng'] as num?)?.toDouble() ??
-        (json['private_birth_lng'] as num?)?.toDouble(),
+    birthLat: readProfileBirthLatitude(json),
+    birthLng: readProfileBirthLongitude(json),
   );
 }
 
@@ -182,12 +175,8 @@ ProfileSummaryEntity? _summaryFromSessionJson(Map<String, dynamic>? json) {
             .isEmpty
         ? null
         : (json['birth_place'] ?? json['private_birth_place'] ?? '').toString(),
-    birthLat:
-        (json['birth_lat'] as num?)?.toDouble() ??
-        (json['private_birth_lat'] as num?)?.toDouble(),
-    birthLng:
-        (json['birth_lng'] as num?)?.toDouble() ??
-        (json['private_birth_lng'] as num?)?.toDouble(),
+    birthLat: readProfileBirthLatitude(json),
+    birthLng: readProfileBirthLongitude(json),
     city: (json['city'] ?? '').toString(),
     target: (json['relationship_goal'] ?? json['target'] ?? '').toString(),
     verified:
@@ -228,12 +217,8 @@ ProfileDetailEntity? _detailFromSessionJson(Map<String, dynamic>? json) {
             .isEmpty
         ? null
         : (json['birth_place'] ?? json['private_birth_place'] ?? '').toString(),
-    birthLat:
-        (json['birth_lat'] as num?)?.toDouble() ??
-        (json['private_birth_lat'] as num?)?.toDouble(),
-    birthLng:
-        (json['birth_lng'] as num?)?.toDouble() ??
-        (json['private_birth_lng'] as num?)?.toDouble(),
+    birthLat: readProfileBirthLatitude(json),
+    birthLng: readProfileBirthLongitude(json),
   );
 }
 
@@ -252,12 +237,8 @@ ProfileDetailEntity? _detailFromSessionUser(Map<String, dynamic>? map) {
             .isEmpty
         ? null
         : (map['birth_place'] ?? map['private_birth_place'] ?? '').toString(),
-    birthLat:
-        (map['birth_lat'] as num?)?.toDouble() ??
-        (map['private_birth_lat'] as num?)?.toDouble(),
-    birthLng:
-        (map['birth_lng'] as num?)?.toDouble() ??
-        (map['private_birth_lng'] as num?)?.toDouble(),
+    birthLat: readProfileBirthLatitude(map),
+    birthLng: readProfileBirthLongitude(map),
   );
 }
 

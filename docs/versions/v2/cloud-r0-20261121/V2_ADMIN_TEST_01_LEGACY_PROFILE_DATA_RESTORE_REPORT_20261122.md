@@ -1,6 +1,6 @@
 # EliteSync V2｜ADMIN-TEST-01 旧个人资料恢复报告
 
-2026-11-23（北京时间） · **APPLY_PASS / API_READBACK_PASS / APP_PROFILE_NOT_RUN**
+2026-11-23（北京时间） · **APPLY_PASS / API_READBACK_PASS / PROFILE_TRANSPORT_LOCAL_PASS / APP_PROFILE_NOT_RUN**
 
 仅恢复 `ADMIN-TEST-01` 的 8 个无歧义资料字段。事务提交后及 V2 应用容器重启后，资料 API 均返回 200，8 个字段逐项一致。昵称语义待核，保留 V2 原值。Owner 本人在 APP 资料页的显示验收待完成。
 
@@ -32,12 +32,14 @@ Dry-run 共 8 个 READY、1 个 SEMANTIC_UNKNOWN、0 个目标值冲突。写入
 | 核验项 | 结果 |
 | --- | --- |
 | 唯一目标用户、管理员权限、密码及受保护列 | PASS，事务前后核对 |
-| 已有 Web 与 APP 会话 | PASS，前后行内容一致 |
+| 已有 Web 与 APP 会话 | PASS，会话身份、有效性和保护列一致，正常访问时间戳不纳入对比 |
 | 恢复映射、旧恢复审计、其他用户 | PASS，前后行内容一致，其他旧来源映射 0 |
 | 旧派生资料、历史计算及缓存 | PASS，目标派生资料前后核对一致 |
 | `GET /api/v1/profile/basic` | PASS，Laravel 进程内以目标用户授权，200，8/8 |
 | 仅重启 `staging-app` 后读回 | PASS，API 200，8/8，保护项一致 |
-| Owner 本人 APP 资料页 | NOT_RUN，既有实体手机未连接；既有 1011808 本人登录证据单独保留 |
+| Owner 本人 APP 资料页 | NOT_RUN，既有实体手机未连接。1011808 的既有本人登录证据单独保留 |
+
+云端进程内 HTTP 响应的格式核对确认经纬度均为十进制 JSON 字符串。原 Flutter DTO 强转 `num?`，合成同形回执在修复前复现两项失败。Flutter 资料摘要、编辑页和会话资料回退现统一解析数字或十进制字符串，保留零值、字段别名与边界校验。资料 DTO、资料编辑及入口定向 27 项通过。扩围结果为 43 通过、6 失败，独立 `671d400d` 对照工作树复现同名 6 项，保留原日志。修复进入本轮经核对的新候选，1011808 原包保留。
 
 备份整件 SHA-256 `76068738899d7bfd81b0da28ef1345af3822cccb549306a62d3b193c8808eb77`。前态整件 SHA-256 `f86f1f7a6d88c7539c120b564f16dca713059748432e869d0e99b81f636ae49a`。核验及重启后的同一后态整件 SHA-256 `6113a6657bfdd29915c144bd27c4a2d53712ae89b805aefb8e3ed59f2d00fa54`。
 
