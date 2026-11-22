@@ -181,6 +181,15 @@ void main() {
     final api = _Api()..roomKey = 'first-room';
     await _mount(tester, api);
     await _older(tester);
+    expect(api.cursors, [5]);
+    await tester.scrollUntilVisible(
+      find.byKey(const ValueKey('live-message-2')),
+      250,
+      scrollable: find.descendant(
+        of: find.byType(ListView),
+        matching: find.byType(Scrollable),
+      ),
+    );
     expect(find.text('fictional message 2'), findsOneWidget);
 
     api

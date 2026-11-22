@@ -76,7 +76,7 @@ class ConversationAtomicSendService
     ): array {
         return DB::transaction(function () use ($sender, $receiverId, $content, $attachmentIds, $clientMessageId, $fingerprint, $appVersion, $sourcePage, $replyToMessageId) {
             // No consistent read may precede the pair lock under MariaDB RR.
-            $pair = User::whereIn('id', [(int) $sender->id, $receiverId])->orderBy('id')->lockForUpdate()->get()->keyBy('id');
+            $pair = User::lockCurrentRows([(int) $sender->id, $receiverId]);
             foreach ([(int) $sender->id, $receiverId] as $id) {
                 $current = $pair->get($id);
                 if (!$current || $current->disabled || ($current->account_status ?? 'active') !== 'active') {

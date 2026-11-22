@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,6 +14,27 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasApiTokens, HasFactory, Notifiable;
+
+    /**
+     * @param  list<int>  $ids
+     * @return Collection<int, self>
+     */
+    public static function lockCurrentRows(array $ids): Collection
+    {
+        $ids = array_unique($ids);
+        sort($ids, SORT_NUMERIC);
+        $users = new Collection();
+        foreach ($ids as $id) {
+            // Acquire each existing primary-key record in statement order. An
+            // IN query with ORDER BY only guarantees the order of returned rows.
+            $user = self::query()->lockForUpdate()->find($id);
+            if ($user !== null) {
+                $users->put($id, $user);
+            }
+        }
+
+        return $users;
+    }
 
     /**
      * @var list<string>

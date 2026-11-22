@@ -1,3 +1,12 @@
+# CURRENT ENTRY 2026-11-22｜P0.4.2 R1 修复候选进入本机复验
+
+**R1_PARTIAL / BUILDER_FIX_PREPARED / L3_SOURCE_REVIEW_COMPLETE / TARGET_RERUN_PENDING / ANDROID_BUILD_HELD / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 已纳入本机回执的 Widget 四项与 MariaDB 两方向并发异常。Builder 修复恢复时的列表刷新竞态，修正两处 Widget 取证，统一具名消息与 Block 路径按主键逐行升序加锁。独立 L3 在静态范围内未发现 P0/P1 源码问题。
+- 本会话回环 `10013`、Widget 握手 `10057`、WSL `E_ACCESSDENIED`。最短套件业务断言执行数 0，专用 MariaDB 和真实 WebSocket 等待本机同源复验。PHP `409/200` 沿用历史失败，独立结论与 Owner 待决范围见 [Builder 与 L3 回执](../versions/v2/cloud-r0-20261121/V2_P0_4_2_R1_BUILDER_L3_REVIEW_20261122.md)。1011807 构建门保持关闭。
+
+---
+
 # CURRENT ENTRY 2026-11-22｜P0.4.2 R1 续验环境阻断
 
 **R1_PARTIAL / SOURCE_TREE_MATCH / WIDGET_NOT_RUN / PHP84_MARIADB_NOT_RUN / REAL_WEBSOCKET_NOT_RUN / ANDROID_CANDIDATE_NOT_BUILT / DEVICE_RECHECK_NOT_RUN / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**

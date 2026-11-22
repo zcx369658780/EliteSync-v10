@@ -163,7 +163,7 @@ class MessageController extends Controller
     {
         $data = $request->validate(['peer_id' => ['required', 'integer', 'min:1']]);
         return DB::transaction(function () use ($request, $data, $capabilities) {
-            User::whereIn('id', [(int) $request->user()->id, (int) $data['peer_id']])->orderBy('id')->lockForUpdate()->get();
+            User::lockCurrentRows([(int) $request->user()->id, (int) $data['peer_id']]);
             $token = $request->user()->currentAccessToken();
             if ($token instanceof \Laravel\Sanctum\PersonalAccessToken && $token->getKey()) {
                 abort_unless(\Laravel\Sanctum\PersonalAccessToken::whereKey($token->getKey())->exists(), 401, 'SESSION_REVOKED');
@@ -277,7 +277,7 @@ class MessageController extends Controller
         return DB::transaction(function () use ($request, $data, $capabilities) {
             $actor = (int) $request->user()->id;
             $peer = (int) $data['peer_id'];
-            User::whereIn('id', [$actor, $peer])->orderBy('id')->lockForUpdate()->get();
+            User::lockCurrentRows([$actor, $peer]);
             $this->assertCurrentToken($request);
             $roomId = $capabilities->evaluate($actor, $peer)['room_key'];
             abort_if($roomId === null, 404, 'chat unavailable');
@@ -318,7 +318,7 @@ class MessageController extends Controller
         ]);
         return DB::transaction(function () use ($request, $data, $capabilities) {
             $actor = (int) $request->user()->id; $peer = (int) $data['peer_id'];
-            User::whereIn('id', [$actor, $peer])->orderBy('id')->lockForUpdate()->get();
+            User::lockCurrentRows([$actor, $peer]);
             $this->assertCurrentToken($request);
             $roomId = $capabilities->evaluate($actor, $peer)['room_key'];
             abort_if($roomId === null, 404, 'chat unavailable');

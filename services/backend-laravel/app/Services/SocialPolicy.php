@@ -16,9 +16,14 @@ final class SocialPolicy
             return User::whereKey($a)->where('disabled', false)->exists();
         }
 
-        return User::whereIn('id', [$a, $b])->where('disabled', false)->orderBy('id')->when(DB::transactionLevel()>0,fn($q)=>$q->lockForUpdate())->get()->count() === 2
+        $inTransaction = DB::transactionLevel() > 0;
+        $availableUsers = $inTransaction
+            ? User::lockCurrentRows([$a, $b])->filter(fn (User $user) => $user->disabled === false)->count()
+            : User::whereIn('id', [$a, $b])->where('disabled', false)->count();
+
+        return $availableUsers === 2
             && ! UserBlock::where(fn ($q) => $q->where('blocker_id', $a)->where('blocked_user_id', $b))
-                ->orWhere(fn ($q) => $q->where('blocker_id', $b)->where('blocked_user_id', $a))->when(DB::transactionLevel()>0,fn($q)=>$q->lockForUpdate())->exists();
+                ->orWhere(fn ($q) => $q->where('blocker_id', $b)->where('blocked_user_id', $a))->when($inTransaction,fn($q)=>$q->lockForUpdate())->exists();
     }
 
     public function friendship(int $a, int $b): ?object

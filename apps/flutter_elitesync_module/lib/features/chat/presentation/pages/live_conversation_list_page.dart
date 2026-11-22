@@ -89,7 +89,8 @@ class _LiveConversationListPageState
       // Its failed network read must not reuse a pre-background offline grant.
       _cache.beginOnlineRevalidation();
       setState(() => _foreground = true);
-      unawaited(_refresh());
+      // Wait for other retained routes to finish invalidating shared grants.
+      scheduleMicrotask(_refresh);
     } else {
       setState(() {
         _epoch++;

@@ -1026,7 +1026,8 @@ void main() {
     await _show(tester, api, secureStore: secure);
     await tester.pumpAndSettle();
     final field = tester.widget<TextField>(find.byType(TextField));
-    expect(field.controller!.text, isEmpty);
+    final editor = tester.widget<EditableText>(find.byType(EditableText));
+    expect(editor.controller.text, isEmpty);
     expect(find.text('retained conversation'), findsOneWidget);
     expect(field.readOnly, isTrue);
     for (final label in ['保存草稿', '清除草稿', '发送']) {

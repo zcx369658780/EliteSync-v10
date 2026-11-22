@@ -40,7 +40,9 @@ final class DenyUnverifiedMessagingLiveAccess
         $participants = array_values(array_unique(array_filter([$actor, ...$peers], fn($id)=>$id>0)));
         sort($participants);
         return DB::transaction(function () use ($request, $next, $service, $deny, $actor, $peer, $domain, $inventory, $peers, $participants) {
-            $users = User::whereIn('id', $participants)->orderBy('id')->lockForUpdate()->get()->keyBy('id');
+            $users = $inventory
+                ? User::whereIn('id', $participants)->orderBy('id')->lockForUpdate()->get()->keyBy('id')
+                : User::lockCurrentRows($participants);
             if (! $users->has($actor)) return $deny();
             $request->user()->setRawAttributes($users->get($actor)->getAttributes(), true);
             // Logout may have committed while this request waited for user locks.

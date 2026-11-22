@@ -151,7 +151,7 @@ class ModerationController extends Controller
         }
 
         $block = DB::transaction(function () use ($blockerId, $blockedUserId, $data) {
-            User::whereIn('id', [$blockerId, $blockedUserId])->orderBy('id')->lockForUpdate()->get();
+            User::lockCurrentRows([$blockerId, $blockedUserId]);
             $block = UserBlock::query()->firstOrCreate(
                 [
                     'blocker_id' => $blockerId,

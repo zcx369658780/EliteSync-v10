@@ -198,7 +198,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _foreground = true;
       _offline = false;
       _cache.beginOnlineRevalidation();
-      _load();
+      // Retained routes also invalidate shared grants during this notification.
+      // Start the read after all lifecycle observers have handled the resume.
+      scheduleMicrotask(_load);
     } else {
       _cancelSocket();
       _foreground = false;
