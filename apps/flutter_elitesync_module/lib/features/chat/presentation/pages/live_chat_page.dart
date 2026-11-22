@@ -11,6 +11,7 @@ import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/private_video_player.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_send_attempt.dart';
@@ -96,9 +97,13 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   String? _historyError;
   Timer? _timer;
   Timer? _offlineExpiry;
+  late final ValueListenable<RetainedListAuthority?> _retainedListAuthority;
+  String? _lastObservedListRoom;
   @override
   void initState() {
     super.initState();
+    _retainedListAuthority = _cache.retainedListAuthority
+      ..addListener(_handleRetainedListAuthority);
     WidgetsBinding.instance.addObserver(this);
     Future.microtask(_load);
     _timer = Timer.periodic(const Duration(seconds: 3), (_) async {
@@ -107,6 +112,26 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         await _load();
       }
     });
+  }
+
+  void _handleRetainedListAuthority() {
+    final authority = _retainedListAuthority.value;
+    if (!mounted || !_foreground || _sessionChanged || _timeLocked || authority == null) {
+      return;
+    }
+    final room = authority.rooms[widget.peerId];
+    final changedRoom = room != null &&
+        (_roomKey != null
+            ? room != _roomKey
+            : _loading && room != _lastObservedListRoom);
+    if (room != null) _lastObservedListRoom = room;
+    if (!changedRoom && (!authority.recovered || !_offline)) return;
+    _reject(
+      changedRoom ? '会话已更新，正在重新读取。' : '网络已恢复，正在重新验证对话。',
+      preserveAttempt: !changedRoom,
+    );
+    _offline = false;
+    scheduleMicrotask(_load);
   }
 
   Future<void> _retentionTick() async {
@@ -163,6 +188,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   void didUpdateWidget(covariant LiveChatPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.peerId == widget.peerId) return;
+    _lastObservedListRoom = null;
     _peerEpoch++;
     _picking = false;
     _blockBusy = false;
@@ -181,6 +207,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _retainedListAuthority.removeListener(_handleRetainedListAuthority);
     _cancelSocket();
     _timer?.cancel();
     _offlineExpiry?.cancel();
@@ -197,7 +224,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       if (_foreground) return;
       _foreground = true;
       _offline = false;
-      _cache.beginOnlineRevalidation();
+      _cache.beginForegroundRevalidation();
       // Retained routes also invalidate shared grants during this notification.
       // Start the read after all lifecycle observers have handled the resume.
       scheduleMicrotask(_load);
@@ -205,7 +232,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _cancelSocket();
       _foreground = false;
       // Cancellation does not prove that the server did not commit this POST.
-      _reject('返回应用后需联网重新验证会话。', preserveAttempt: _picking || _attempt != null);
+      _reject(
+        '返回应用后需联网重新验证会话。',
+        preserveAttempt: _picking || _attempt != null,
+        preserveRoom: true,
+      );
     }
   }
 
@@ -256,7 +287,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     }
   }
 
-  void _reject(String message, {bool preserveAttempt = false}) {
+  void _reject(
+    String message, {
+    bool preserveAttempt = false,
+    bool preserveRoom = false,
+  }) {
     _cancelSocket();
     _offlineExpiry?.cancel();
     _evictImages();
@@ -268,7 +303,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _messages = [];
       _replyId = null;
       _replyLabel = null;
-      _roomKey = null;
+      // Retain the generation for revalidation of a suspended page or send.
+      if (!preserveRoom && (!preserveAttempt || _attempt == null)) {
+        _roomKey = null;
+      }
       _acknowledged.clear();
       _ackPending.clear();
       _images = {};
@@ -323,12 +361,6 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   }
 
   bool _restoreTextDraft(Map<String, dynamic>? draft, {required bool offline}) {
-    // A persisted send attempt belongs to the room where it was initiated.
-    // A plain local draft has no reply or media authority.
-    if (draft?['pending_attempt'] != null && draft?['room_key'] != _roomKey) {
-      _draftLoaded = true;
-      return true;
-    }
     if (!_cache.isUnlocked ||
         (draft != null &&
             (draft['text'] is! String ||
@@ -337,6 +369,17 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _reject('草稿校验失败，私密内容已锁定，请重新在线登录。');
       setState(() => _timeLocked = true);
       return false;
+    }
+    // A persisted send attempt belongs to the room where it was initiated.
+    // A plain local draft has no reply or media authority.
+    if ((draft?['pending_attempt'] != null && draft?['room_key'] != _roomKey) ||
+        (draft == null && _attempt != null)) {
+      _attempt = null;
+      _retryAsset = null;
+      _sendStatus = null;
+      _text.clear();
+      _draftLoaded = true;
+      return true;
     }
     if (draft?['pending_attempt'] case final Map pending) {
       try {
@@ -489,11 +532,17 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             ),
           );
       if (!current(session)) return;
+      if (response is NetworkSuccess<Map<String, dynamic>> ||
+          (response is NetworkFailure<Map<String, dynamic>> &&
+              response.statusCode != null)) {
+        cache.observeForegroundServerResponse();
+      }
       if (response is! NetworkSuccess<Map<String, dynamic>>) {
-        if (response is NetworkFailure<Map<String, dynamic>> &&
+        final transportUnavailable =
+            response is NetworkFailure<Map<String, dynamic>> &&
             response.statusCode == null &&
-            _transportUnavailable(response)) {
-          _cache.enterOffline();
+            _transportUnavailable(response);
+        if (transportUnavailable && cache.enterOfflineForChatText(widget.peerId)) {
           final saved = await cache.readOfflineChatText(widget.peerId);
           if (!current(session)) return;
           if (saved != null &&
@@ -519,7 +568,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             return;
           }
         }
-        if (response is NetworkFailure<Map<String, dynamic>> &&
+        if (transportUnavailable) {
+          cache.revokeOfflineChatText(widget.peerId);
+        } else if (response is NetworkFailure<Map<String, dynamic>> &&
             const {401, 403, 404}.contains(response.statusCode) &&
             (_roomKey != null || _messages.isNotEmpty)) {
           _invalidateRoomAuthority();
@@ -538,6 +589,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         );
         return;
       }
+      cache.revokeOfflineChatText(widget.peerId);
       final items = (response.data['items'] as List? ?? [])
           .whereType<Map<String, dynamic>>()
           .toList();
@@ -580,9 +632,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 },
                 cancelToken: _uploadCancellation,
                 options: Options(
-                  extra: {
-                    requestSessionGuardKey: () => current(session),
-                  },
+                  extra: {requestSessionGuardKey: () => current(session)},
                 ),
               );
           if (!current(session)) return;
@@ -617,8 +667,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       if (!current(session)) return;
       final visible = keepHistory ? _mergeMessages(_messages, fresh) : fresh;
       final images = keepHistory ? {..._images, ...freshImages} : freshImages;
-      final saved = await cache.saveAuthorized(
-        _cacheKey,
+      final saved = await cache.saveAuthorizedChatText(
+        widget.peerId,
         _offlineSnapshot(visible, response.data['offline_text_grant']),
         expectedAccountId: session.user?.id,
         isCurrent: () => current(session),
@@ -1158,10 +1208,12 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _retryReadFailed = false;
         _busy = true;
       });
-      if (items.any((row) =>
-          row['client_message_id'] == attempt.clientMessageId &&
-          row['sender_id'] == session.user?.id &&
-          row['id'] is num)) {
+      if (items.any(
+        (row) =>
+            row['client_message_id'] == attempt.clientMessageId &&
+            row['sender_id'] == session.user?.id &&
+            row['id'] is num,
+      )) {
         await _acknowledgeConfirmedSend(session, epoch);
         return;
       }
@@ -1187,7 +1239,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     });
   }
 
-  Future<bool> _acknowledgeConfirmedSend(SessionState session, int epoch) async {
+  Future<bool> _acknowledgeConfirmedSend(
+    SessionState session,
+    int epoch,
+  ) async {
     _attempt = null;
     _retryAsset = null;
     setState(() {

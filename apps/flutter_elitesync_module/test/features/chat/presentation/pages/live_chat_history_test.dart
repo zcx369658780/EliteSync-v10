@@ -219,42 +219,48 @@ void main() {
       final first = await cache.readOnlineAuthorized('live-chat:2');
       expect(first?['room_key'], 'first-room');
       expect(
-        await cache.saveAuthorized('live-chat:2', {
-          'room_key': 'first-room',
-          'offline_text_grant': first?['offline_text_grant'],
-          'messages': [
-            {
-              'id': 7,
-              'sender_id': 2,
-              'room_id': 'first-room',
-              'message_type': 'text',
-              'has_attachments': false,
-              'content': 'fictional first room body',
-              'reply': {
-                'available': true,
-                'offline_text': true,
-                'summary': 'fictional first room reply',
-              },
-              'attachments': <dynamic>[],
-            },
-            {
-              'id': 8,
-              'sender_id': 2,
-              'room_id': 'first-room',
-              'message_type': 'image',
-              'has_attachments': true,
-              'content': 'fictional image caption',
-              'attachments': [
-                {
-                  'media_asset': {'id': 42, 'media_type': 'image'},
+        await cache.saveAuthorizedChatText(
+          2,
+          {
+            'room_key': 'first-room',
+            'offline_text_grant': first?['offline_text_grant'],
+            'messages': [
+              {
+                'id': 7,
+                'sender_id': 2,
+                'room_id': 'first-room',
+                'message_type': 'text',
+                'has_attachments': false,
+                'content': 'fictional first room body',
+                'reply': {
+                  'available': true,
+                  'offline_text': true,
+                  'summary': 'fictional first room reply',
                 },
-              ],
+                'attachments': <dynamic>[],
+              },
+              {
+                'id': 8,
+                'sender_id': 2,
+                'room_id': 'first-room',
+                'message_type': 'image',
+                'has_attachments': true,
+                'content': 'fictional image caption',
+                'attachments': [
+                  {
+                    'media_asset': {'id': 42, 'media_type': 'image'},
+                  },
+                ],
+              },
+            ],
+            'images': {
+              '42':
+                  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a2ioAAAAASUVORK5CYII=',
             },
-          ],
-          'images': {
-            '42': 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a2ioAAAAASUVORK5CYII=',
           },
-        }, expectedAccountId: 1),
+          expectedAccountId: 1,
+          isCurrent: () => true,
+        ),
         isTrue,
       );
       api.unavailable = true;
@@ -274,7 +280,7 @@ void main() {
       await tester.pump(const Duration(seconds: 3));
       await tester.pumpAndSettle();
       expect(
-        (await cache.readOffline('live-chat:2'))?['room_key'],
+        (await cache.readOfflineChatText(2))?.roomKey,
         'first-room',
       );
 

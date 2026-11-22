@@ -85,9 +85,9 @@ class _LiveConversationListPageState
         unawaited(_checkRetention());
         return;
       }
-      // A foreground return requires a current read, just like the chat page.
-      // Its failed network read must not reuse a pre-background offline grant.
-      _cache.beginOnlineRevalidation();
+      // The list still needs its own current read. A retained chat can use
+      // only its separately scoped receipt after a transport failure.
+      _cache.beginForegroundRevalidation();
       setState(() => _foreground = true);
       // Wait for other retained routes to finish invalidating shared grants.
       scheduleMicrotask(_refresh);
@@ -182,7 +182,7 @@ class _LiveConversationListPageState
     int epoch,
     int revalidation,
   ) async {
-    _cache.enterOffline();
+    _cache.enterOffline(cachedObject: _cacheObject);
     final purge = await _cache.purgeExpired();
     final saved = await _cache.readOffline(_cacheObject);
     if (!_current(session, epoch) ||
@@ -296,6 +296,16 @@ class _LiveConversationListPageState
             ),
           );
       if (!current(session)) return;
+      final hasServerResponse =
+          response is NetworkSuccess<Map<String, dynamic>> ||
+          (response is NetworkFailure<Map<String, dynamic>> &&
+              response.statusCode != null);
+      if (hasServerResponse &&
+          cache.observeForegroundServerResponse() &&
+          cache.isOffline) {
+        cache.beginOnlineRevalidation(recoveredFromRetainedList: true);
+        revalidation = cache.onlineRevalidationEpoch;
+      }
       if (response is NetworkFailure<Map<String, dynamic>>) {
         if (_transportUnavailable(response)) {
           await _showOwnedOfflineCopy(session, epoch, revalidation);
@@ -329,6 +339,7 @@ class _LiveConversationListPageState
         throw StateError('会话响应未确认。');
       }
       final items = <Map<String, dynamic>>[];
+      final rooms = <int, String>{};
       for (final raw in data['items'] as List) {
         if (raw is! Map ||
             raw['peer_user_id'] is! int ||
@@ -336,14 +347,19 @@ class _LiveConversationListPageState
           throw StateError('会话对象身份无效。');
         }
         items.add(Map<String, dynamic>.from(raw));
+        final room = raw['room_key'];
+        if (room is String && room.isNotEmpty) {
+          rooms[raw['peer_user_id'] as int] = room;
+        }
       }
       // An ordinary current list read authorizes this object, not a global
       // reset that can invalidate a retained foreground chat's in-flight save.
       // Actual offline recovery must still discard all old read grants.
       if (cache.isOffline) {
-        cache.beginOnlineRevalidation();
+        cache.beginOnlineRevalidation(recoveredFromRetainedList: true);
         revalidation = cache.onlineRevalidationEpoch;
       }
+      cache.observeRetainedListRooms(rooms);
       if (_offlineReadOnly) {
         setState(() {
           _items = [];

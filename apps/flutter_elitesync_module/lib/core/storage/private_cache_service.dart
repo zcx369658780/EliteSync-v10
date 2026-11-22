@@ -7,6 +7,8 @@ import 'package:flutter_elitesync_module/features/chat/domain/offline_private_re
 
 enum PrivateCachePurgeStatus { notDue, untrustedTime, completed, failed }
 
+typedef RetainedListAuthority = ({bool recovered, Map<int, String> rooms});
+
 class PrivateCachePurgeReceipt {
   const PrivateCachePurgeReceipt(this.status, {this.deletedObjects = 0});
   final PrivateCachePurgeStatus status;
@@ -55,14 +57,20 @@ class PrivateCacheService {
   int? _userId;
   bool _offline = false;
   bool _unlocked = false;
+  bool _awaitingForegroundResponse = false;
   int _generation = 0;
   int _onlineRevalidationEpoch = 0;
   final _readGrants = <String>{};
+  final _offlineChatTextGrants = <String>{};
+  final _savedChatRooms = <String, String>{};
+  final _retainedListAuthority = ValueNotifier<RetainedListAuthority?>(null);
   Future<void> _mutation = Future.value();
 
   bool get isUnlocked => _unlocked && _trustedNow() != null;
   bool get isOffline => _offline;
   int get onlineRevalidationEpoch => _onlineRevalidationEpoch;
+  ValueListenable<RetainedListAuthority?> get retainedListAuthority =>
+      _retainedListAuthority;
   int? get accountId => _unlocked ? _userId : null;
 
   Future<T> _serialize<T>(Future<T> Function() action) {
@@ -75,25 +83,84 @@ class PrivateCacheService {
     _generation++;
     _unlocked = false;
     _offline = false;
+    _awaitingForegroundResponse = false;
     _readGrants.clear();
+    _offlineChatTextGrants.clear();
+    _savedChatRooms.clear();
+    _retainedListAuthority.value = null;
   }
 
   void revokeObject(String objectKey) {
     _generation++;
     _readGrants.remove(objectKey);
+    _offlineChatTextGrants.remove(objectKey);
+    _savedChatRooms.remove(objectKey);
   }
 
-  void enterOffline() {
+  void revokeOfflineChatText(int peerId) {
+    _offlineChatTextGrants.remove('live-chat:$peerId');
+  }
+
+  void enterOffline({String? cachedObject}) {
+    if (cachedObject != null && !_readGrants.contains(cachedObject)) return;
     if (_unlocked && _trustedNow() != null) _offline = true;
+  }
+
+  bool enterOfflineForChatText(int peerId) {
+    if (!_offlineChatTextGrants.contains('live-chat:$peerId')) return false;
+    enterOffline();
+    return _offline;
   }
 
   /// Network recovery must be followed by a fresh current-read before any data
   /// becomes visible; it cannot inherit an offline object's old authorization.
-  void beginOnlineRevalidation() {
+  void beginOnlineRevalidation({bool recoveredFromRetainedList = false}) {
+    _invalidateCurrentReads();
+    _awaitingForegroundResponse = false;
+    _offlineChatTextGrants.clear();
+    _savedChatRooms.clear();
+    if (recoveredFromRetainedList) {
+      _retainedListAuthority.value = null;
+      _retainedListAuthority.value = (recovered: true, rooms: const {});
+    }
+  }
+
+  void observeRetainedListRooms(Map<int, String> rooms) {
+    if (rooms.isEmpty) return;
+    for (final entry in rooms.entries) {
+      final key = 'live-chat:${entry.key}';
+      final savedRoom = _savedChatRooms[key];
+      if (savedRoom != null && savedRoom != entry.value) {
+        _readGrants.remove(key);
+        _offlineChatTextGrants.remove(key);
+        _savedChatRooms.remove(key);
+      }
+    }
+    // A mounted chat also cancels reads for any generation the list changed.
+    _retainedListAuthority.value = (recovered: false, rooms: rooms);
+  }
+
+  /// Retire current reads immediately. A subsequent transport failure can
+  /// still use a bound text receipt in this same trusted login process.
+  void beginForegroundRevalidation() {
+    _invalidateCurrentReads();
+    _awaitingForegroundResponse = true;
+  }
+
+  void _invalidateCurrentReads() {
     _onlineRevalidationEpoch++;
     _generation++;
     _offline = false;
     _readGrants.clear();
+  }
+
+  /// Once a current request reaches the server, pre-background receipts may
+  /// no longer provide a fallback. This leaves other online saves in flight.
+  bool observeForegroundServerResponse() {
+    if (!_awaitingForegroundResponse) return false;
+    _awaitingForegroundResponse = false;
+    _offlineChatTextGrants.clear();
+    return true;
   }
 
   String _namespaceFor(int accountId, String deviceId) =>
@@ -385,6 +452,32 @@ class PrivateCacheService {
     Map<String, dynamic> value, {
     int? expectedAccountId,
     bool Function()? isCurrent,
+  }) => _saveAuthorized(
+    objectKey,
+    value,
+    expectedAccountId: expectedAccountId,
+    isCurrent: isCurrent,
+  );
+
+  Future<bool> saveAuthorizedChatText(
+    int peerId,
+    Map<String, dynamic> value, {
+    required int? expectedAccountId,
+    required bool Function() isCurrent,
+  }) => _saveAuthorized(
+    'live-chat:$peerId',
+    value,
+    expectedAccountId: expectedAccountId,
+    isCurrent: isCurrent,
+    chatText: true,
+  );
+
+  Future<bool> _saveAuthorized(
+    String objectKey,
+    Map<String, dynamic> value, {
+    int? expectedAccountId,
+    bool Function()? isCurrent,
+    bool chatText = false,
   }) {
     // Capture at invocation, not when this work eventually reaches the queue.
     // Otherwise an old account's waiting write could borrow a new login's key.
@@ -474,6 +567,17 @@ class PrivateCacheService {
           return false;
         }
         _readGrants.add(objectKey);
+        final room = value['room_key'];
+        if (chatText && room is String && room.isNotEmpty) {
+          _savedChatRooms[objectKey] = room;
+        } else {
+          _savedChatRooms.remove(objectKey);
+        }
+        if (chatText && value['offline_text_grant'] is Map) {
+          _offlineChatTextGrants.add(objectKey);
+        } else {
+          _offlineChatTextGrants.remove(objectKey);
+        }
         return true;
       } catch (_) {
         if (generation == _generation) lock();
@@ -485,16 +589,26 @@ class PrivateCacheService {
   Future<Map<String, dynamic>?> readOnlineAuthorized(String objectKey) =>
       _read(objectKey, offline: false);
   Future<Map<String, dynamic>?> readOffline(String objectKey) =>
-      _read(objectKey, offline: true);
+      objectKey.startsWith('live-chat:')
+      ? Future.value()
+      : _read(objectKey, offline: true);
 
-  Future<({String roomKey, Duration remaining, List<Map<String, dynamic>> messages})?>
+  Future<
+    ({String roomKey, Duration remaining, List<Map<String, dynamic>> messages})?
+  >
   readOfflineChatText(int peerId) async {
     final generation = _generation;
-    final saved = await readOffline('live-chat:$peerId');
+    final key = 'live-chat:$peerId';
+    final saved = await _read(
+      key,
+      offline: true,
+      grants: _offlineChatTextGrants,
+    );
     final now = _trustedNow();
     final roomKey = saved?['room_key'];
     final rows = saved?['messages'];
     if (generation != _generation ||
+        !_offlineChatTextGrants.contains(key) ||
         !_offline ||
         now == null ||
         _loginAt == null ||
@@ -588,8 +702,10 @@ class PrivateCacheService {
   Future<Map<String, dynamic>?> _read(
     String objectKey, {
     required bool offline,
+    Set<String>? grants,
   }) async {
-    if (!_canUse(offline: offline) || !_readGrants.contains(objectKey)) {
+    final readGrants = grants ?? _readGrants;
+    if (!_canUse(offline: offline) || !readGrants.contains(objectKey)) {
       return null;
     }
     final generation = _generation;
@@ -597,6 +713,7 @@ class PrivateCacheService {
       final raw = await _secure.read(_key(objectKey));
       if (raw == null ||
           generation != _generation ||
+          !readGrants.contains(objectKey) ||
           !_canUse(offline: offline)) {
         return null;
       }
@@ -623,14 +740,14 @@ class PrivateCacheService {
             isOffline: _offline,
             loggedOut: !_unlocked,
             accountChanged: false,
-            knownInvalidation: !_readGrants.contains(objectKey),
+            knownInvalidation: !readGrants.contains(objectKey),
             currentAccountId: '$_userId',
             currentDeviceId: _deviceId,
             requestedObjectId: objectKey,
             savedAccountId: '${envelope['account_id']}',
             savedDeviceId: envelope['device_id'] as String?,
             savedObjectId: envelope['object_id'] as String?,
-            offlineReadClaimValid: _readGrants.contains(objectKey),
+            offlineReadClaimValid: readGrants.contains(objectKey),
             contentSaved: true,
             ciphertextIntegrityVerified: true,
           ),
@@ -652,6 +769,8 @@ class PrivateCacheService {
     return _serialize(() async {
       if (generation != _generation || namespace != _namespace) return false;
       _readGrants.remove(objectKey);
+      _offlineChatTextGrants.remove(objectKey);
+      _savedChatRooms.remove(objectKey);
       if (_namespace == null) return false;
       await _secure.delete(key);
       if (await _secure.read(key) != null) {
