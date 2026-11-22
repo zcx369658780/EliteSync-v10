@@ -17,6 +17,10 @@
 | HTTPS/TLS | FAIL（复用入口资格）。已启用 Nginx 站点及 DevPilot 配置中未找到可直接复用的 HTTPS listener。找到的一张 Let's Encrypt 证书已于 2026-08-16 过期，近期 `certbot.service` 为 failed。未来需固定可用域名、受信证书和管理来源，或先以批准的 SSH 转发接入回环验收。 |
 | 备份和回滚 | UNKNOWN（恢复资格）。`/opt/backups` 符合只读统计口径的归档、摘要和 manifest 共 83 件，合计 382,577,591 字节，最近 mtime 2026-10-18。文件存在不能证明两套活库、配置和媒体可恢复。本轮未生成备份、未导入旧数据、未恢复快照。 |
 
+### 15:28 续接核验
+
+沿用原可信 SSH 定向复测，仍只有 LiveKit 容器、无 V2 Compose 项目，三个回环 `/up` 均为 200，未见 443 监听。实测可用内存约 637 MiB、无 swap，系统盘可用约 24 GiB。旧备份目录找到 23 份 `.sql.gz`，就其中最新可与同名 sidecar 绑定的一份进行原始字节 SHA-256 复核，2026-08-20、305,971 字节，结果 PASS。该证据只覆盖该归档与 sidecar 的字节一致性，两套旧环境的实际恢复资格仍为 UNKNOWN。控制台复查仍为登录页。
+
 ## B｜原实例升配和回滚门
 
 现机同时承担旧站及 DevPilot。可用内存 644 MiB，已签收的 4 个 FPM 子进程配置上界合计 1 GiB，另需 MariaDB、队列、运行库和三盘脚本。回环隔离仍会共享内存、I/O 和磁盘，当前资源不足以支持安全同驻。**部署停止在镜像上传前。**
@@ -41,11 +45,13 @@
 
 通过容量和恢复门后，用原可信 SSH 将归档送入新独立私有目录，云端先比对归档 SHA 再 `docker load`。传统 Docker 镜像存储的 `.Id` 可能显示 config digest；将其与归档内已验证的 manifest、平台和 revision 一起核对。不要将该差异解释为已经获得 Registry 镜像 digest。
 
-以原 [Staging Compose](../../../../services/backend-laravel/docker/shared-staging/compose.yaml) 为基础，仅为新实例绑定单独的项目、账户、网络、卷、密钥和媒体。旧预部署默认账号 `elitesync_staging_app` 和 schema 前缀不满足 `LegacyAdminTarget`，部署时需一起更新 Compose 配置和目标预检的账号、schema、`CURRENT_USER()` 断言：
+以原 [Staging Compose](../../../../services/backend-laravel/docker/shared-staging/compose.yaml) 为基础，仅为新实例绑定单独的项目、账户、网络、卷、密钥和媒体。旧预部署默认账号 `elitesync_staging_app` 和 schema 前缀不满足 `LegacyAdminTarget`，续接时已补齐 Compose 和目标预检参数，Beta 项目、库名、应用及 MariaDB 用户和 `CURRENT_USER()` 一并核对：
 
-- 待云端确认唯一性后采用 `elitesync_v2_beta_staging` 与 `elitesync_v2_beta_app`，独立 `server_id` 和实例标识。同一应用环境绑定 `APP_ENV=staging`、debug 关闭、HTTPS、Secure Cookie、MariaDB 10.11、数据库 session。先验证空库和连接身份，再迁移。
+- 待云端确认唯一性后采用独立 `elitesync-v2-shared-staging-beta` 项目、`elitesync_v2_beta_staging` 与 `elitesync_v2_beta_app`，独立 `server_id` 和实例标识。同一应用环境绑定 `APP_ENV=staging`、debug 关闭、HTTPS、Secure Cookie、MariaDB 10.11、数据库 session。先验证空库和连接身份，再迁移。
 - 新库仅内部网络可达。FPM、MariaDB、Worker 均无公网发布端口。单独的 APP_KEY 与媒体卷，使用 DB cache、queue、session。Workerman 服务定义随配置保留，profile 不启动，`MATCHING_FOUNDATION_WEBSOCKET_ENABLED=false`、`V1007_LOCAL_RESTORATION=false`，共享私信关闭。
 - 优先只启用新回环 TLS 进行基础验收。后续远端供测试人使用时，先确认合法域名、TLS 续期、管理和激活路由来源限制。若必须变动 DNS、防火墙或公网监听，提供具体差异，由 Owner 批准后执行。旧 HTTP/Nginx、LiveKit 及旧 WebSocket 不改动。
+
+本地只渲染原配置和 Beta 配置，并为预检使用合成 Docker/SQL 回执，6/6 通过，涵盖原默认配置、Beta 目标、错用户名、开启 Workerman、旧 server ID 和非空库。没有启动容器、迁移库或重复本地预部署演练。
 
 ## D｜云端基础验收清单
 
@@ -71,4 +77,4 @@
 
 **PASS**：可信 SSH 只读盘点、旧系统与独立 DevPilot 区分、现有三个 HTTP 回环健康、本机固定镜像归档与身份验证。**FAIL**：当前容量资格、可复用的受信 HTTPS。**UNKNOWN**：旧备份可恢复性、尚未核实的控制面字段、候选和持有人证明。**NOT_RUN**：原实例升配及升配后验证、镜像上传与加载、云端部署、云端业务验收、管理员候选查表／恢复和本人登录。零新增费用，旧服务、网络和数据无工程写入。
 
-本机私有证据目录末级为 `v2-existing-aliyun-readonly-20261122-151416-712`。原始 SSH 命令、退出码、归档收据、控制面证据及 SHA-256 清单按该目录查验；公开 Git 分支仅保存去敏报告。 [前置本地预部署报告](V2_BETA_PREP_SHARED_STAGING_PREDEPLOY_REPORT_20261122.md)
+本机私有证据目录末级为 `v2-existing-aliyun-readonly-20261122-151416-712`。原始 SSH 命令、退出码、归档收据和控制面证据在该目录。15:28 续接的 SSH、静态检查和 SHA-256 在 `resume-20261122-152816-767` 子目录。Git 分支只同步去敏报告及部署配置。 [前置本地预部署报告](V2_BETA_PREP_SHARED_STAGING_PREDEPLOY_REPORT_20261122.md)

@@ -33,7 +33,8 @@ Owner 私表固定 `project`、`schema`、`server_id`、`instance_id`、域名�
 ```bash
 dc=(docker compose --project-name "$project" --env-file "$env_file" -f "$ops/compose.yaml")
 guard=(python3 "$ops/verify-target.py" --compose "$ops/compose.yaml" --env "$env_file" \
-  --project "$project" --schema "$schema" --instance "$instance_id" --server-id "$server_id")
+  --project "$project" --schema "$schema" --username "${db_username:-elitesync_staging_app}" \
+  --instance "$instance_id" --server-id "$server_id")
 "${dc[@]}" config --quiet
 "${dc[@]}" create --pull never staging-app
 "${dc[@]}" up -d --wait --pull never staging-db
@@ -48,6 +49,8 @@ guard=(python3 "$ops/verify-target.py" --compose "$ops/compose.yaml" --env "$env
 
 独立边缘接入后，外层 TLS 按批准域名和证书身份校验上游回环 TLS，原样转发 HTTP/1.1 Upgrade 至相同路径，保留请求 Host，固定可信 HTTPS 转发语义。通过 VPN 或具名来源访问 API，另行限管 `/admin`、`/api/v1/admin` 及实际激活路由。配置落实后同时测试合法来源和拒绝来源，再由 Owner 决定开放具名访问。扩大来源、启运营计划任务或发布端口属于后续批准范围。
 
+阿里云 Beta 基础后端使用独立的 `elitesync-v2-shared-staging-beta` 项目。核对唯一性后设置 `STAGING_DB_SCHEMA=elitesync_v2_beta_staging` 与 `STAGING_DB_USERNAME=elitesync_v2_beta_app`，同时把该账号作为 `$db_username` 交给 guard，确认与 Docker 中的 MariaDB grant account 一致。共享 Staging 原示例使用 `elitesync_staging_app`。阿里云 Beta 保持 WebSocket profile 不启动且本地恢复标志关闭。LegacyAdminTarget 的实际 origin、库版本、独立 server ID、实例代号与 Owner 签名另由恢复流程核验。
+
 ## 3. 合成备份、恢复和回滚
 
 回滚前封掉新外层入口。停止 Staging 的 edge、app、worker 和已启用的 ws，使 DB 与媒体在一个静止窗口内一致。使用独立权限的备份目录记录实例、源 schema、时间、镜像 digest 和配套备份编号。备份失败时保留已有证据并按本次批准决定是否恢复这个 Staging 入口。
@@ -59,7 +62,7 @@ umask 077
 # 如果已启用 websocket，在同一已封流窗口用 --profile websocket 停 staging-ws。
 # 确认所有写入进程已停，再导出。
 "${dc[@]}" exec -T staging-db sh -ec \
-  'export MYSQL_PWD="$(cat /run/secrets/r0_db_password)"; exec mariadb-dump -u elitesync_staging_app --single-transaction --quick --skip-comments --skip-dump-date --order-by-primary "$MARIADB_DATABASE"' \
+  'export MYSQL_PWD="$(cat /run/secrets/r0_db_password)"; exec mariadb-dump -u "$MARIADB_USER" --single-transaction --quick --skip-comments --skip-dump-date --order-by-primary "$MARIADB_DATABASE"' \
   > "$backup/staging.sql"
 "${dc[@]}" run --rm -T --no-deps --pull never staging-app \
   tar -C /var/www/html/storage/app -cf - . > "$backup/media.tar"
@@ -74,7 +77,7 @@ umask 077
 "${dst[@]}" run --rm -T --no-deps --pull never staging-app sh -ec \
   'test -z "$(find /var/www/html/storage/app -mindepth 1 ! -type d -print -quit)"'
 "${dst[@]}" exec -T staging-db sh -ec \
-  'export MYSQL_PWD="$(cat /run/secrets/r0_db_password)"; exec mariadb -u elitesync_staging_app "$MARIADB_DATABASE"' \
+  'export MYSQL_PWD="$(cat /run/secrets/r0_db_password)"; exec mariadb -u "$MARIADB_USER" "$MARIADB_DATABASE"' \
   < "$backup/staging.sql"
 "${dst[@]}" run --rm -T --no-deps --pull never staging-app \
   tar --no-same-owner -C /var/www/html/storage/app -xf - < "$backup/media.tar"

@@ -16,7 +16,7 @@ x-application: &application
     DB_HOST: staging-db
     DB_PORT: '3306'
     DB_DATABASE: ${STAGING_DB_SCHEMA:?Set the dedicated schema}
-    DB_USERNAME: elitesync_staging_app
+    DB_USERNAME: ${STAGING_DB_USERNAME:-elitesync_staging_app}
     APP_CACHE_STORE: database
     APP_SESSION_DRIVER: database
     APP_SESSION_CONNECTION: mariadb
@@ -54,7 +54,7 @@ services:
     command: ["--server-id=${STAGING_DB_SERVER_ID:?Set the dedicated server ID}"]
     environment:
       MARIADB_DATABASE: ${STAGING_DB_SCHEMA:?Set the dedicated schema}
-      MARIADB_USER: elitesync_staging_app
+      MARIADB_USER: ${STAGING_DB_USERNAME:-elitesync_staging_app}
       MARIADB_PASSWORD_FILE: /run/secrets/r0_db_password
       MARIADB_ROOT_PASSWORD_FILE: /run/secrets/r0_db_root_password
     secrets: [r0_db_password, r0_db_root_password]
