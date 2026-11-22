@@ -54,7 +54,7 @@ limit_conn_zone $binary_remote_addr zone=es_v2_edge_connections:1m;
 
 server {
     listen 443 ssl;
-    listen [::]:443 ssl;
+    @IPV6_LISTENER@
     server_name @HOST@;
     ssl_certificate @FULLCHAIN@;
     ssl_certificate_key @KEY@;
@@ -64,8 +64,8 @@ server {
     access_log off;
     error_log /dev/null emerg;
 
-    if ($host != @HOST@) { return 421; }
-    if ($ssl_server_name != @HOST@) { return 421; }
+    @HOST_GATE@
+    @SNI_GATE@
     if ($http_upgrade != "") { return 404; }
     if ($es_v2_route = closed) { return 404; }
     if ($es_v2_source = 0) { return 403; }

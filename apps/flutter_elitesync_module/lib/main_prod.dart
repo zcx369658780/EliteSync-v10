@@ -70,6 +70,9 @@ String resolveApiBaseUrl({
   String remoteStagingHost = const String.fromEnvironment(
     'ELITESYNC_REMOTE_STAGING_HOST',
   ),
+  String remoteStagingIp = const String.fromEnvironment(
+    'ELITESYNC_REMOTE_STAGING_IP',
+  ),
   String compiledOrigin = const String.fromEnvironment(
     'ELITESYNC_API_BASE_URL',
   ),
@@ -79,13 +82,17 @@ String resolveApiBaseUrl({
     final hostname = RegExp(
       r'^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$',
     );
-    final origin = 'https://$remoteStagingHost/';
+    final hasIp = remoteStagingIp.isNotEmpty;
+    final approved = hasIp
+        ? remoteStagingHost.isEmpty && _isPublicStagingIpv4(remoteStagingIp)
+        : remoteStagingHost.length <= 253 &&
+              hostname.stringMatch(remoteStagingHost) == remoteStagingHost &&
+              remoteStagingHost != 'slowdate.top';
+    final origin = 'https://${hasIp ? remoteStagingIp : remoteStagingHost}/';
     if (!functionBuild ||
-        remoteStagingHost.length > 253 ||
-        hostname.stringMatch(remoteStagingHost) != remoteStagingHost ||
-        remoteStagingHost == 'slowdate.top' ||
+        !approved ||
         compiledOrigin != origin ||
-        hostOverride != origin) {
+        hostBootstrap['apiBaseUrl'] != origin) {
       throw StateError('Remote Staging native and Dart endpoints must match');
     }
     return origin;
@@ -164,6 +171,33 @@ String resolveApiBaseUrl({
     return validateApiBaseUrl(override, allowLocalInsecure: allowLocalInsecure);
   }
   return 'https://slowdate.top/';
+}
+
+bool _isPublicStagingIpv4(String value) {
+  final parts = value.split('.');
+  if (parts.length != 4) return false;
+  final octets = <int>[];
+  for (final part in parts) {
+    final number = int.tryParse(part);
+    if (number == null ||
+        number < 0 ||
+        number > 255 ||
+        number.toString() != part) {
+      return false;
+    }
+    octets.add(number);
+  }
+  final [a, b, c, _] = octets;
+  return switch (a) {
+    0 || 10 || 127 => false,
+    100 => b < 64 || b > 127,
+    169 => b != 254,
+    172 => b < 16 || b > 31,
+    192 => b != 168 && !(b == 0 && (c == 0 || c == 2)) && !(b == 88 && c == 99),
+    198 => b != 18 && b != 19 && !(b == 51 && c == 100),
+    203 => b != 0 || c != 113,
+    _ => a < 224,
+  };
 }
 
 @visibleForTesting

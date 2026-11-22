@@ -54,7 +54,8 @@ val requestedDartDefineValues = requestedFlutterDartDefines.split(Regex("[;,]"))
     .map { it.trim() }.filter { it.isNotEmpty() }
 val functionCertificatePath = providers.gradleProperty("elitesyncFunctionCertificate").orNull
 val remoteStagingHost = providers.gradleProperty("elitesyncRemoteStagingHost").orNull
-val isRemoteStagingBuild = remoteStagingHost != null
+val remoteStagingIp = providers.gradleProperty("elitesyncRemoteStagingIp").orNull
+val isRemoteStagingBuild = remoteStagingHost != null || remoteStagingIp != null
 val isFunctionCandidateBuild = functionCertificatePath != null || isRemoteStagingBuild
 val isFunctionR1CandidateBuild = providers.gradleProperty("elitesyncFunctionR1Candidate").orNull == "true"
 val isStagingLoginBuild = providers.gradleProperty("elitesyncStagingLoginCandidate").orNull == "true"
@@ -64,15 +65,38 @@ require(!isFunctionR1CandidateBuild || isFunctionCandidateBuild) {
 require(!isStagingLoginBuild || isFunctionR1CandidateBuild) {
     "The Staging login candidate requires the V2 function R1 build"
 }
+require(!isRemoteStagingBuild || (isFunctionR1CandidateBuild && !isStagingLoginBuild
+    && functionCertificatePath == null && (remoteStagingHost == null || remoteStagingIp == null))) {
+    "A remote Staging candidate needs one dedicated endpoint and the R1 build"
+}
 if (remoteStagingHost != null) {
     val dnsName = Regex("""(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}""")
-    require(isFunctionR1CandidateBuild && !isStagingLoginBuild && functionCertificatePath == null
-        && remoteStagingHost.length <= 253 && dnsName.matches(remoteStagingHost)
+    require(remoteStagingHost.length <= 253 && dnsName.matches(remoteStagingHost)
         && remoteStagingHost != "slowdate.top") {
         "Remote Staging requires a dedicated HTTPS DNS hostname and the R1 build"
     }
 }
+if (remoteStagingIp != null) {
+    val parts = remoteStagingIp.split('.')
+    require(parts.size == 4 && parts.all {
+        val number = it.toIntOrNull()
+        number != null && number in 0..255 && number.toString() == it
+    }) { "Remote Staging requires a canonical public IPv4 literal" }
+    val (a, b, c) = parts.map(String::toInt)
+    val specialUse = when (a) {
+        0, 10, 127 -> true
+        100 -> b in 64..127
+        169 -> b == 254
+        172 -> b in 16..31
+        192 -> b == 168 || (b == 0 && c in listOf(0, 2)) || (b == 88 && c == 99)
+        198 -> b in 18..19 || (b == 51 && c == 100)
+        203 -> b == 0 && c == 113
+        else -> a >= 224
+    }
+    require(!specialUse) { "Remote Staging requires a canonical public IPv4 literal" }
+}
 val functionOrigin = when {
+    remoteStagingIp != null -> "https://$remoteStagingIp/"
     remoteStagingHost != null -> "https://$remoteStagingHost/"
     isStagingLoginBuild -> "https://127.0.0.1:18446/"
     else -> "https://127.0.0.1:18444/"
@@ -100,6 +124,7 @@ val functionCertificate = functionCertificatePath?.let { path ->
 require(requestedDartDefineValues.none {
     it.startsWith("ELITESYNC_V2_FUNCTION_BUILD=") || it.startsWith("ELITESYNC_V2_STAGING_LOGIN_BUILD=")
         || it.startsWith("ELITESYNC_V2_REMOTE_STAGING_BUILD=") || it.startsWith("ELITESYNC_REMOTE_STAGING_HOST=")
+        || it.startsWith("ELITESYNC_REMOTE_STAGING_IP=")
 }) {
     "Use the dedicated V2 build options to set the matching native and Dart configuration"
 }
@@ -132,7 +157,8 @@ val integratedDartDefines = if (isV1015LocalBuild) {
 val flutterDartDefines = if (isFunctionCandidateBuild) {
     "$integratedDartDefines;ELITESYNC_V2_FUNCTION_BUILD=true;" +
         "ELITESYNC_V2_STAGING_LOGIN_BUILD=$isStagingLoginBuild;ELITESYNC_API_BASE_URL=$functionOrigin;" +
-        "ELITESYNC_V2_REMOTE_STAGING_BUILD=$isRemoteStagingBuild;ELITESYNC_REMOTE_STAGING_HOST=${remoteStagingHost.orEmpty()}"
+        "ELITESYNC_V2_REMOTE_STAGING_BUILD=$isRemoteStagingBuild;ELITESYNC_REMOTE_STAGING_HOST=${remoteStagingHost.orEmpty()};" +
+        "ELITESYNC_REMOTE_STAGING_IP=${remoteStagingIp.orEmpty()}"
 } else {
     integratedDartDefines
 }
@@ -231,6 +257,7 @@ android {
         buildConfigField("boolean", "ELITESYNC_V2_FUNCTION_BUILD", "false")
         buildConfigField("boolean", "ELITESYNC_V2_STAGING_LOGIN_BUILD", "false")
         buildConfigField("boolean", "ELITESYNC_V2_REMOTE_STAGING_BUILD", "false")
+        buildConfigField("String", "ELITESYNC_REMOTE_STAGING_IP", "\"\"")
         buildConfigField("String", "ELITESYNC_V2_FUNCTION_CERTIFICATE", "\"\"")
         minSdk = 26
         targetSdk = 35
@@ -308,6 +335,7 @@ android {
                 buildConfigField("boolean", "ELITESYNC_V2_FUNCTION_BUILD", "true")
                 buildConfigField("boolean", "ELITESYNC_V2_STAGING_LOGIN_BUILD", isStagingLoginBuild.toString())
                 buildConfigField("boolean", "ELITESYNC_V2_REMOTE_STAGING_BUILD", isRemoteStagingBuild.toString())
+                buildConfigField("String", "ELITESYNC_REMOTE_STAGING_IP", "\"${remoteStagingIp.orEmpty()}\"")
                 buildConfigField("String", "ELITESYNC_V2_FUNCTION_CERTIFICATE", "\"$functionCertificate\"")
                 buildConfigField("String", "API_BASE_URL", "\"$functionOrigin\"")
                 buildConfigField("String", "WS_BASE_URL", "\"\"")

@@ -22,8 +22,10 @@ object ApiClient {
                 val url = value.toHttpUrl()
                 check(url.isHttps && url.port == 443 && url.encodedPath == "/" && url.query == null
                     && url.fragment == null && url.username.isEmpty() && url.password.isEmpty()
-                    && url.host != "slowdate.top" && !url.host.contains(':')
-                    && !url.host.matches(Regex("[0-9.]+")))
+                    && url.host != "slowdate.top" && !url.host.contains(':'))
+                val boundIp = BuildConfig.ELITESYNC_REMOTE_STAGING_IP
+                check(if (boundIp.isNotEmpty()) value == "https://$boundIp/" && url.host == boundIp
+                    else !url.host.matches(Regex("[0-9.]+")))
             }
         } else {
             val expectedOrigin = if (BuildConfig.ELITESYNC_V2_STAGING_LOGIN_BUILD) {

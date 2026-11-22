@@ -59,6 +59,75 @@ void main() {
     }
   });
 
+  test('public IP Staging requires identical compiled and native origins', () {
+    const ip = '8.8.4.4';
+    const origin = 'https://8.8.4.4/';
+    String resolve(String native, String compiled, {String host = ''}) =>
+        resolveApiBaseUrl(
+          hostBootstrap: {'apiBaseUrl': native},
+          functionBuild: true,
+          remoteStagingBuild: true,
+          remoteStagingIp: ip,
+          remoteStagingHost: host,
+          compiledOrigin: compiled,
+        );
+
+    expect(resolve(origin, origin), origin);
+    for (final invalid in [
+      '',
+      'http://8.8.4.4/',
+      'https://8.8.4.4:443/',
+      'https://8.8.4.4/path',
+      'https://8.8.4.5/',
+      'https://127.0.0.1:18446/',
+      'https://slowdate.top/',
+    ]) {
+      expect(() => resolve(invalid, origin), throwsStateError);
+      expect(() => resolve(origin, invalid), throwsStateError);
+    }
+    expect(
+      () => resolve(origin, origin, host: 'stage.edge.test'),
+      throwsStateError,
+    );
+  });
+
+  test('IP Staging rejects private, special-use and ambiguous addresses', () {
+    for (final ip in [
+      '0.0.0.0',
+      '10.1.2.3',
+      '100.64.0.1',
+      '127.0.0.1',
+      '169.254.1.1',
+      '172.16.0.1',
+      '192.0.0.9',
+      '192.0.2.1',
+      '192.88.99.1',
+      '192.168.1.1',
+      '198.18.0.1',
+      '198.51.100.1',
+      '203.0.113.1',
+      '224.0.0.1',
+      '255.255.255.255',
+      '008.8.4.4',
+      '8.8.4.256',
+      '8.8.4',
+      '[2001:4860:4860::8844]',
+    ]) {
+      final origin = 'https://$ip/';
+      expect(
+        () => resolveApiBaseUrl(
+          hostBootstrap: {'apiBaseUrl': origin},
+          functionBuild: true,
+          remoteStagingBuild: true,
+          remoteStagingIp: ip,
+          compiledOrigin: origin,
+        ),
+        throwsStateError,
+        reason: ip,
+      );
+    }
+  });
+
   const stagingLogin = bool.fromEnvironment('ELITESYNC_V2_STAGING_LOGIN_BUILD');
   const expectedOrigin = stagingLogin
       ? 'https://127.0.0.1:18446/'
