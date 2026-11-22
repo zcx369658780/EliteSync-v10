@@ -8,18 +8,18 @@
 
 | 项目 | 状态与实测 |
 | --- | --- |
-| 实例与规格 | PASS。与既有可信 SSH 端点一致。华东 2（上海）可用区 G，Ubuntu 24.04.2 LTS、x86_64，实例元数据规格 `ecs.e-c1m1.large`，宿主 2 vCPU。历史可信端点别名为 Ubuntu-zlxh。本轮控制台资源 ID 和套餐编号待账号持有人登录复核。 |
+| 实例与规格 | PASS。与既有可信 SSH 端点一致。华东 2（上海）可用区 G，Ubuntu 24.04.2 LTS、x86_64，实例元数据规格 `ecs.e-c1m1.large`，宿主 2 vCPU。历史可信端点别名为 Ubuntu-zlxh。15:37 控制台已核对原公网地址与可信 SSH 一致，实例 ID 尾号 `02be9a`，通用型 BGP，2 vCPU／2 GiB／40 GiB，运行中，到期 2027-03-17 23:59:59。 |
 | CPU、内存和磁盘 | PASS（取样）。内存 1,613 MiB、available 644 MiB、无 swap。40 GiB 系统盘约用 14 GiB、可用 24 GiB。5 秒 `vmstat` 的 4 个区间样本 CPU idle 50–94%、I/O wait 0–2%。`iostat` 后两个短窗口系统盘利用率 0%，采样时 CPU PSI avg10 为 7.47%，内存 PSI avg10 为 0.12%。长期余量 UNKNOWN。 |
 | Docker | PASS。Docker 29.1.3、Compose 2.37.1、`overlay2`，仅 LiveKit 容器运行，host 网络。未见 V2 Compose 项目、命名卷或固定镜像。本地镜像归档的 OCI manifest 和 config 身份已分别留档，便于传统镜像存储的加载回读。 |
 | 旧 Laravel 与配套 | PASS。旧站源目录 `/opt/elitesync/services/backend-laravel`，Composer lock 中 Laravel 11.48.0，宿主 PHP 8.4.18，MariaDB 10.11.14 和 Redis 7.0.15。Nginx 1.24.0。旧站回环 80 及原回环探针 8088 的 `/up` 均返回 200，两者共用 Laravel 根目录和宿主 PHP 8.4 FPM。旧 MariaDB 本地 socket 回读 `server_id=1`、3306，Redis 6379 回环。 |
 | 独立后端与隔离 | PASS（进程与存储路径）。部署根为 `/opt/elitesync-v10.1.0-devpilot`。正在运行的发布目录对应 `997af1e58e89`；独立 PHP-FPM socket、队列、WebSocket、RTC 和 Redis 均 active。Nginx 回环 8030 `/up` 为 HTTP 200，专用 MariaDB 10.11.14 在回环 43330、独立 socket 与 datadir，Redis 在 63330。该库也使用 `server_id=1`，因此新 V2 必须指定另一 server ID。独立后端的 storage 链接解析到另一发布目录，和旧站存储 inode 不同，两者共用宿主系统盘。 |
-| 端口和访问范围 | PASS（宿主层）。监听包含非回环 TCP 22、80、LiveKit 7880/7881 和指定接口 UDP 7882。MariaDB、Redis、DevPilot 8030 和旧探针 8088 仅绑定回环。未见宿主 443 监听。UFW inactive，记录了 nftables/iptables 的 Docker 转发表。宿主监听与阿里云防火墙是两个独立证据项。 |
-| HTTPS/TLS | FAIL（复用入口资格）。已启用 Nginx 站点及 DevPilot 配置中未找到可直接复用的 HTTPS listener。找到的一张 Let's Encrypt 证书已于 2026-08-16 过期，近期 `certbot.service` 为 failed。未来需固定可用域名、受信证书和管理来源，或先以批准的 SSH 转发接入回环验收。 |
-| 备份和回滚 | UNKNOWN（恢复资格）。`/opt/backups` 符合只读统计口径的归档、摘要和 manifest 共 83 件，合计 382,577,591 字节，最近 mtime 2026-10-18。文件存在不能证明两套活库、配置和媒体可恢复。本轮未生成备份、未导入旧数据、未恢复快照。 |
+| 端口和访问范围 | PASS（宿主层）。监听包含非回环 TCP 22、80、LiveKit 7880/7881 和指定接口 UDP 7882。MariaDB、Redis、DevPilot 8030 和旧探针 8088 仅绑定回环。未见宿主 443 监听。UFW inactive，记录了 nftables/iptables 的 Docker 转发表。阿里云实例防火墙中 TCP 80/443 已对所有 IPv4 启用，另有既存 SSH 和 RTC 规则。宿主监听与云防火墙分别核查。 |
+| HTTPS/TLS | FAIL（复用入口资格）。已启用 Nginx 站点及 DevPilot 配置中未找到可直接复用的 HTTPS listener。找到的一张 Let's Encrypt 证书已于 2026-08-16 过期，近期 `certbot.service` 为 failed。实例域名页显示原域名及 www 记录。仍需核准 V2 的有效证书、入口与管理来源，或先以批准的 SSH 转发接入回环验收。 |
+| 备份和回滚 | UNKNOWN（恢复资格）。`/opt/backups` 符合只读统计口径的归档、摘要和 manifest 共 83 件，合计 382,577,591 字节，最近 mtime 2026-10-18。文件存在不能证明两套活库、配置和媒体可恢复。控制台实例快照为 0。本轮未生成备份、未导入旧数据、未恢复快照。 |
 
 ### 15:28 续接核验
 
-沿用原可信 SSH 定向复测，仍只有 LiveKit 容器、无 V2 Compose 项目，三个回环 `/up` 均为 200，未见 443 监听。实测可用内存约 637 MiB、无 swap，系统盘可用约 24 GiB。旧备份目录找到 23 份 `.sql.gz`，就其中最新可与同名 sidecar 绑定的一份进行原始字节 SHA-256 复核，2026-08-20、305,971 字节，结果 PASS。该证据只覆盖该归档与 sidecar 的字节一致性，两套旧环境的实际恢复资格仍为 UNKNOWN。控制台复查仍为登录页。
+沿用原可信 SSH 定向复测，仍只有 LiveKit 容器、无 V2 Compose 项目，三个回环 `/up` 均为 200，未见 443 监听。实测可用内存约 637 MiB、无 swap，系统盘可用约 24 GiB。旧备份目录找到 23 份 `.sql.gz`，就其中最新可与同名 sidecar 绑定的一份进行原始字节 SHA-256 复核，2026-08-20、305,971 字节，结果 PASS。该证据只覆盖该归档与 sidecar 的字节一致性，两套旧环境的实际恢复资格仍为 UNKNOWN。15:28 时控制台仍为登录页，15:37 已登录并完成下述控制面核查。
 
 ## B｜原实例升配和回滚门
 
@@ -27,13 +27,19 @@
 
 | 决策项 | 当前状态 |
 | --- | --- |
-| 控制台核身、准确套餐 SKU 与价差 | UNKNOWN。Edge 打开轻量应用服务器控制台后跳转登录页，等待账号持有人登录。宿主 IMDS 规格已回读，控制台套餐 ID、可选 SKU、账单差价及续费价待回读。 |
-| 云防火墙与快照 | UNKNOWN（阿里云控制面）。主机防火墙已读。控制台快照清单、对应系统盘和云防火墙范围需登录后核对。 |
-| 预选升配 | 仅升现有实例。先在原实例可选档位评估至少 2 vCPU／4 GiB，结合续费、带宽、盘和峰值余量选档。供应商仅支持在适用规格族和云盘类型内升配，最终以该实例可选套餐为准。 |
-| 停机 | 供应商注明升级会自动重启，安排旧站／LiveKit／DevPilot 共同低峰维护窗口。实例级预计时长 UNKNOWN。 |
+| 控制台核身与套餐 | PASS。上海通用型 BGP 原档为 ¥45/月。升配页按配置显示套餐，未展示内部 SKU 编码。以下金额为 15:37 结算前实时显示，正式应付金额以结算前再次核对为准。 |
+| 云防火墙与快照 | PASS（只读盘点）。9 条现有入站规则已启用，443 已放行，实例快照为 0。启用任何新的公网监听仍须按 Owner 范围处理。 |
+| 预选升配 | 原实例 2 vCPU／4 GiB／50 GiB 为满足本轮预案的最低档，标价 ¥70/月，页面合计 ¥43.26。升配后先复测两套旧环境、LiveKit 和实际资源余量，再决定 V2 启动。 |
+| 停机 | 该实例页面提示，结算后立即升级并重启，预计中断 5–10 分钟。维护窗口需另加原服务逐项验证时间，实际时长只有执行后才能核实。 |
 | 回滚与恢复 | 升配不支持降配。提升规格无法作为回滚点。先验证两套数据库、两套媒体与关键配置的各自备份，保留 hash、恢复目标与测试回执。确认系统盘快照范围、完成状态与可恢复性。如升配后旧业务异常，暂停新 V2 投入，优先恢复旧服务，必要时按独立批准的恢复点执行。原盘快照回滚会停机，并覆盖快照之后的写入，执行前应保存新增写入及当前故障证据，保留可独立恢复的配对备份。 |
 
-完成备份与恢复核验后，请 Owner 按实际 SKU、最终应付金额和维护时窗单独确认。升配完成后复核实例、内存、盘、Docker、旧 PHP/MariaDB/Redis/RTC、三条已有服务入口及主机回环。旧服务健康和余量通过后再部署。 [阿里云升配与重启说明](https://help.aliyun.com/zh/simple-application-server/user-guide/upgrade-a-simple-application-server) · [快照使用条件](https://help.aliyun.com/zh/simple-application-server/user-guide/manage-snapshots)
+| 控制台可选同族 BGP 档位 | 页面月标价 | 本次合计 |
+| --- | ---: | ---: |
+| 2 vCPU／4 GiB／50 GiB | ¥70 | ¥43.26 |
+| 4 vCPU／8 GiB／70 GiB | ¥220 | ¥302.79 |
+| 4 vCPU／16 GiB／80 GiB | ¥300 | ¥441.21 |
+
+三档均显示峰值带宽 200 Mbps、无固定流量包及 1 个固定 IPv4。页面保留在 4 GiB 报价，未点确认、未创建订单。完成备份与恢复核验后，由 Owner 确认档位、最终应付金额和维护时窗。升配完成后复核实例、内存、盘、Docker、旧 PHP/MariaDB/Redis/RTC、三条已有服务入口及主机回环。旧服务健康和余量通过后再部署。 [阿里云升配与重启说明](https://help.aliyun.com/zh/simple-application-server/user-guide/upgrade-a-simple-application-server) · [快照使用条件](https://help.aliyun.com/zh/simple-application-server/user-guide/manage-snapshots)
 
 ## C｜固定镜像归档及 V2 目标冻结
 
@@ -75,6 +81,6 @@
 
 ## 结论与证据
 
-**PASS**：可信 SSH 只读盘点、旧系统与独立 DevPilot 区分、现有三个 HTTP 回环健康、本机固定镜像归档与身份验证。**FAIL**：当前容量资格、可复用的受信 HTTPS。**UNKNOWN**：旧备份可恢复性、尚未核实的控制面字段、候选和持有人证明。**NOT_RUN**：原实例升配及升配后验证、镜像上传与加载、云端部署、云端业务验收、管理员候选查表／恢复和本人登录。零新增费用，旧服务、网络和数据无工程写入。
+**PASS**：可信 SSH 只读盘点、控制台实例及报价核查、旧系统与独立 DevPilot 区分、现有三个 HTTP 回环健康、本机固定镜像归档与身份验证。**FAIL**：当前容量资格、可复用的受信 HTTPS。**UNKNOWN**：旧备份可恢复性、内部 SKU 编码、实际中断时长、候选和持有人证明。**NOT_RUN**：原实例升配及升配后验证、镜像上传与加载、云端部署、云端业务验收、管理员候选查表／恢复和本人登录。零新增费用，旧服务、网络和数据无工程写入。
 
-本机私有证据目录末级为 `v2-existing-aliyun-readonly-20261122-151416-712`。原始 SSH 命令、退出码、归档收据和控制面证据在该目录。15:28 续接的 SSH、静态检查和 SHA-256 在 `resume-20261122-152816-767` 子目录。Git 分支只同步去敏报告及部署配置。 [前置本地预部署报告](V2_BETA_PREP_SHARED_STAGING_PREDEPLOY_REPORT_20261122.md)
+本机私有证据目录末级为 `v2-existing-aliyun-readonly-20261122-151416-712`。原始 SSH 命令、退出码、归档收据和控制面证据在该目录。15:28 续接的 SSH、静态检查和 SHA-256 在 `resume-20261122-152816-767` 子目录。15:37 控制台的只读报价及防火墙回执保存于 `console-20261122-1537`。Git 分支只同步去敏报告及部署配置。 [前置本地预部署报告](V2_BETA_PREP_SHARED_STAGING_PREDEPLOY_REPORT_20261122.md)
