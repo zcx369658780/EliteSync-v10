@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-22｜V2 Staging ADMIN-TEST-01 恢复与 Web 登录
+
+**ADMIN_TEST_01_ACTIVE / OWNER_WEB_ADMIN_LOGIN_PASS / OWNER_APP_LOGIN_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- Owner 确认为唯一候选，现场为单实体手机。Owner 选择 `owner-self-attestation` 并独立完成 Ed25519 签名。固定源码验签、仅增一项 V2 白名单、签名 dry-run、apply 和激活均通过。
+- 专用 `elitesync_v2_beta_staging`，`server_id=2621124`。V2 共 3 个账号，合成账号 2 个，恢复管理员 1 个。Owner 本人 Web 管理员登录通过，其他旧管理员映射 0。旧栈和 V2 归档校验通过。
+- APP 登录待符合云端 Staging 端点和 TLS 的客户端。固定 1011807 的 R1 已验结果与历史 FAIL 保留。共享私信/WSS 关闭，正式验收与发布门槛沿用。 [恢复与管理员账号盘点](../versions/v2/cloud-r0-20261121/V2_ADMIN_TEST_01_RESTORE_AND_ADMIN_ACCOUNT_INVENTORY_REPORT_20261122.md)
+
+---
+
 # CURRENT ENTRY 2026-11-22｜P0.4.2 R1 修复候选更新与前台离线实机复验
 
 **R1_PARTIAL / FIXED_1011807_UPDATE_PASS / SAME_PROCESS_OFFLINE_PASS / COLD_OFFLINE_PASS / GENERATION_RECONNECT_PASS / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
