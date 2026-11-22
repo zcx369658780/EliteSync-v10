@@ -16,6 +16,11 @@ final class SyntheticConnectionScope
 
     public function targetsFixtureRuntime(): bool
     {
+        return $this->targetsOriginalFixtureRuntime() || app(StagingSyntheticConnectionScope::class)->targetsRuntime();
+    }
+
+    private function targetsOriginalFixtureRuntime(): bool
+    {
         if (! app()->environment('staging') || config('app.url') !== self::ORIGIN) {
             return false;
         }
@@ -35,7 +40,7 @@ final class SyntheticConnectionScope
 
     public function matchesDatabase(): bool
     {
-        if (! $this->targetsFixtureRuntime()) {
+        if (! $this->targetsOriginalFixtureRuntime()) {
             return false;
         }
 
@@ -52,13 +57,15 @@ final class SyntheticConnectionScope
 
     public function allowsActor(int $actor): bool
     {
-        return $this->enabled() && $this->eligibleUsers([$actor]);
+        return ($this->enabled() && $this->eligibleUsers([$actor]))
+            || app(StagingSyntheticConnectionScope::class)->allowsActor($actor);
     }
 
     public function allowsPair(int $actor, int $peer): bool
     {
-        return $actor !== $peer && $this->enabled() && $this->eligibleUsers([$actor, $peer])
-            && $this->pair($actor, $peer)->whereNull('revoked_at')->where('expires_at', '>', now('UTC'))->first() !== null;
+        return ($actor !== $peer && $this->enabled() && $this->eligibleUsers([$actor, $peer])
+            && $this->pair($actor, $peer)->whereNull('revoked_at')->where('expires_at', '>', now('UTC'))->first() !== null)
+            || app(StagingSyntheticConnectionScope::class)->allowsPair($actor, $peer);
     }
 
     /** Only the fixture console can write grants. A retired pair must use fresh accounts. */
