@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-22｜V2 Staging ADMIN-TEST-01 实体手机登录验收
+
+**ADMIN_TEST_01_ACTIVE / OWNER_WEB_ADMIN_LOGIN_PASS / OWNER_APP_LOGIN_PASS / ADVISOR_REVIEW_PENDING / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- Owner 授权后，在 25060RK16C 并行安装独立 Staging 1011808。安装回拉与获批 APK 的 SHA-256 一致。Owner 手动登录并确认进入应用。
+- 专用 Staging 回读 APP 设备会话从 0 增至 1，唯一恢复映射为 active，staged、issued、activated 审计各 1 条，其他旧来源映射 0。V2 共 3 个账号，合成账号 2 个，恢复管理员 1 个。验证结束后已撤销本轮 USB 和 SSH 转发。
+- 真实短信挑战仍为 NOT_RUN，共享私信/WSS 关闭。R1 既有验收缺项及历史失败沿用原始记录，封闭内测与生产为 NO_GO。[脱敏恢复与实机报告](../versions/v2/cloud-r0-20261121/V2_ADMIN_TEST_01_RESTORE_AND_ADMIN_ACCOUNT_INVENTORY_REPORT_20261122.md)
+
+---
+
 # CURRENT ENTRY 2026-11-22｜V2 Staging ADMIN-TEST-01 恢复与 Web 登录
 
 **ADMIN_TEST_01_ACTIVE / OWNER_WEB_ADMIN_LOGIN_PASS / OWNER_APP_LOGIN_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
