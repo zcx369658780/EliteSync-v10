@@ -1,0 +1,132 @@
+name: elitesync-v2-shared-staging
+
+x-application: &application
+  image: ${STAGING_APP_IMAGE:?Set the isolated image reference}
+  restart: unless-stopped
+  logging: { driver: local, options: { max-size: "10m", max-file: "3" } }
+  environment:
+    APP_ENV: staging
+    APP_DEBUG: 'false'
+    STAGING_INSTANCE_ID: ${STAGING_INSTANCE_ID:?Set the dedicated instance ID}
+    APP_URL: ${STAGING_HTTPS_ORIGIN:?Set the isolated HTTPS origin}
+    SECURITY_ENFORCE_HTTPS: 'true'
+    APP_DB_CONNECTION: mariadb
+    DB_CONNECTION: mariadb
+    DB_URL: ''
+    DB_HOST: staging-db
+    DB_PORT: '3306'
+    DB_DATABASE: ${STAGING_DB_SCHEMA:?Set the dedicated schema}
+    DB_USERNAME: elitesync_staging_app
+    APP_CACHE_STORE: database
+    APP_SESSION_DRIVER: database
+    APP_SESSION_CONNECTION: mariadb
+    SESSION_SECURE_COOKIE: 'true'
+    QUEUE_CONNECTION: database
+    DB_QUEUE_CONNECTION: mariadb
+    DB_QUEUE_RETRY_AFTER: '220'
+    MAIL_MAILER: array
+    LOG_CHANNEL: stderr
+    V1007_LOCAL_RESTORATION: 'false'
+    V1009_RTC_ENABLED: 'false'
+    V1012_TEST_ISSUER_ENABLED: 'false'
+    MATCHING_FOUNDATION_WEBSOCKET_ENABLED: ${STAGING_WS_ENABLED:-false}
+    ADMIN_PHONES: ${STAGING_ADMIN_PHONES:-}
+    NATAL_PYTHON: /opt/elitesync-natal/bin/python
+    NATAL_NODE: /usr/local/bin/node
+    NATAL_JPL_KERNEL: /opt/elitesync-data/de440s.bsp
+  networks: [data]
+  secrets: [r0_app_key, r0_db_password]
+  volumes:
+    - staging-storage:/var/www/html/storage
+    - type: bind
+      source: ${STAGING_KERNEL_FILE:?Set the approved DE440s absolute path}
+      target: /opt/elitesync-data/de440s.bsp
+      read_only: true
+      bind:
+        create_host_path: false
+  depends_on:
+    staging-db:
+      condition: service_healthy
+
+services:
+  staging-db:
+    image: mariadb:10.11@sha256:5d60ca6129f939453472f4ed385c54820ec57f3aa384a8646619f9bc0e3b5eab
+    command: ["--server-id=${STAGING_DB_SERVER_ID:?Set the dedicated server ID}"]
+    environment:
+      MARIADB_DATABASE: ${STAGING_DB_SCHEMA:?Set the dedicated schema}
+      MARIADB_USER: elitesync_staging_app
+      MARIADB_PASSWORD_FILE: /run/secrets/r0_db_password
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/r0_db_root_password
+    secrets: [r0_db_password, r0_db_root_password]
+    restart: unless-stopped
+    logging: { driver: local, options: { max-size: "10m", max-file: "3" } }
+    networks: [data]
+    volumes:
+      - staging-dbdata:/var/lib/mysql
+    labels:
+      org.elitesync.staging.instance: ${STAGING_INSTANCE_ID:?Set the dedicated instance ID}
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 3s
+      timeout: 4s
+      retries: 25
+      start_period: 10s
+
+  staging-app:
+    <<: *application
+
+  staging-worker:
+    <<: *application
+    command: ["php", "artisan", "queue:work", "database", "--sleep=2", "--tries=1", "--timeout=180"]
+    stop_grace_period: 190s
+  staging-ws:
+    <<: *application
+    command: ["php", "artisan", "chat:ws", "--host=0.0.0.0", "--port=8081", "--poll=2"]
+    profiles: [websocket]
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@fsockopen('127.0.0.1', 8081) ? 0 : 1);"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  staging-edge:
+    image: nginx:1.28-alpine@sha256:0dcc88822d45581e65ae329f8be769762bf628d3b2bb7d2a077d4aa5c98b30e3
+    restart: unless-stopped
+    logging: { driver: local, options: { max-size: "10m", max-file: "3" } }
+    networks: [edge, data]
+    depends_on: [staging-app]
+    ports:
+      - "127.0.0.1:${STAGING_HTTPS_PORT:?Set a dedicated local port}:8443"
+    secrets: [r0_tls_certificate, r0_tls_key]
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+        bind:
+          create_host_path: false
+
+networks:
+  edge:
+  data:
+    internal: true
+
+volumes:
+  staging-dbdata:
+    labels:
+      org.elitesync.staging.instance: ${STAGING_INSTANCE_ID:?Set the dedicated instance ID}
+  staging-storage:
+    labels:
+      org.elitesync.staging.instance: ${STAGING_INSTANCE_ID:?Set the dedicated instance ID}
+
+secrets:
+  r0_app_key:
+    file: ${STAGING_SECRET_DIR:?Set a dedicated secret directory}/app.key
+  r0_db_password:
+    file: ${STAGING_SECRET_DIR:?Set a dedicated secret directory}/db-app
+  r0_db_root_password:
+    file: ${STAGING_SECRET_DIR:?Set a dedicated secret directory}/db-root
+  r0_tls_certificate:
+    file: ${STAGING_SECRET_DIR:?Set a dedicated secret directory}/tls.crt
+  r0_tls_key:
+    file: ${STAGING_SECRET_DIR:?Set a dedicated secret directory}/tls.key
