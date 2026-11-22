@@ -5,7 +5,10 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
 
-const functionApiOrigin = 'https://127.0.0.1:18444/';
+const functionApiOrigin =
+    bool.fromEnvironment('ELITESYNC_V2_STAGING_LOGIN_BUILD')
+    ? 'https://127.0.0.1:18446/'
+    : 'https://127.0.0.1:18444/';
 
 SecurityContext functionTlsContext(String certificate) {
   final encoded = base64Encode(base64Decode(certificate));

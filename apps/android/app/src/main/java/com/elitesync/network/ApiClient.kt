@@ -17,7 +17,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiClient {
     private const val FALLBACK_BASE_URL = "https://slowdate.top/"
     private val baseUrl = if (BuildConfig.ELITESYNC_V2_FUNCTION_BUILD) {
-        BuildConfig.API_BASE_URL.also { check(it == "https://127.0.0.1:18444/") }
+        val expectedOrigin = if (BuildConfig.ELITESYNC_V2_STAGING_LOGIN_BUILD) {
+            "https://127.0.0.1:18446/"
+        } else {
+            "https://127.0.0.1:18444/"
+        }
+        BuildConfig.API_BASE_URL.also { check(it == expectedOrigin) }
     } else {
         BuildConfig.API_BASE_URL.ifBlank { FALLBACK_BASE_URL }
     }
