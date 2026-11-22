@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-23｜V2 本人资料恢复与公网 IP HTTPS 准备
+
+**PROFILE_APPLY_PASS / PROFILE_API_RESTART_PASS / OWNER_PROFILE_UI_NOT_RUN / ACME_STAGING_PASS / APK_1011809_VERIFIED / PUBLIC_443_HELD / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 仅恢复 ADMIN-TEST-01 的 8 个字段。昵称保留现值。备份隔离恢复、资料 API 和应用容器重启后读回通过。Flutter 坐标兼容通过本机定向测试，Owner 本人实体资料页待验。 [P0 资料恢复报告](../versions/v2/cloud-r0-20261121/V2_ADMIN_TEST_01_LEGACY_PROFILE_DATA_RESTORE_REPORT_20261122.md)
+- 公网 IPv4 ACME staging 签发、续期 dry-run 与隔离代理及回滚通过，云端恢复原 80 配置且 443 未监听。固定 1011809，等待精确来源、长期挑战路径确认、正式证书与具名装机授权。 [P1 公网 IP HTTPS 报告](../versions/v2/cloud-r0-20261121/V2_PUBLIC_IP_RESTRICTED_HTTPS_AND_REMOTE_STAGING_REPORT_20261122.md)
+- 上一条域名准备记录保留作历史。APP 原验收与本轮资料页验收分别记录。共享私信/WSS 关闭，Chrome、实体手机远程、真实 WLAN 和双物理设备均待验。
+
+---
+
 # CURRENT ENTRY 2026-11-22｜V2 Staging 受限公网接入准备
 
 **CLOUD_READONLY_PASS / LOCAL_EDGE_AND_SCOPE_PASS / PUBLIC_HTTPS_INPUTS_PENDING / REMOTE_DEVICE_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
