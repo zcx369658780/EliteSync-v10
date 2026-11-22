@@ -1,0 +1,112 @@
+# Include only in the host nginx http context after the private inputs are verified.
+geo $realip_remote_addr $es_v2_app_source {
+    default 0;
+    @APP_SOURCES@
+}
+geo $realip_remote_addr $es_v2_web_admin_source {
+    default 0;
+    @WEB_ADMIN_SOURCES@
+}
+geo $realip_remote_addr $es_v2_api_admin_source {
+    default 0;
+    @API_ADMIN_SOURCES@
+}
+geo $realip_remote_addr $es_v2_activation_source {
+    default 0;
+    @ACTIVATION_SOURCES@
+}
+
+map "$request_method:$uri" $es_v2_route {
+    default closed;
+    ~^(GET|HEAD|POST):/admin/legacy-activate/?$ activation;
+    ~^(GET|HEAD):/api/v1/admin(?:/[a-zA-Z0-9_-]+)*/?$ api_admin;
+    ~^(GET|HEAD):/admin(?:/[a-zA-Z0-9_-]+)*/?$ web_admin;
+    ~^POST:/admin/(login|logout)/?$ web_admin;
+    ~^(GET|HEAD):/up$ app;
+    ~^(GET|HEAD):/api/v1/app/(health|version/check)$ app;
+    ~^POST:/api/v1/auth/(login|logout|refresh|session/verify)$ app;
+    ~^(GET|HEAD):/api/v1/profile/(basic|natal(?:/history(?:/[0-9]+)?)?|dynamic(?:/[0-9]+(?:/history(?:/[0-9]+)?)?)?|astro(?:/summary|/chart)?)$ app;
+    ~^POST:/api/v1/profile/(basic|city|nickname|avatar|natal|dynamic(?:/[0-9]+)?|astro)$ app;
+    ~^(GET|HEAD):/api/v1/media(?:/[0-9]+(?:/content)?)?$ app;
+    "POST:/api/v1/media" app;
+    ~^(GET|HEAD):/api/v1/home/(banner|shortcuts|feed)$ app;
+    "GET:/api/v1/account/identity" app;
+    "GET:/api/v1/journey" app;
+    "GET:/api/v1/user-state" app;
+}
+
+map $es_v2_route $es_v2_source {
+    default 0;
+    app $es_v2_app_source;
+    web_admin $es_v2_web_admin_source;
+    api_admin $es_v2_api_admin_source;
+    activation $es_v2_activation_source;
+}
+
+map $uri $es_v2_upstream_query {
+    default "$is_args$args";
+    ~^/admin/(login|logout|legacy-activate)/?$ "";
+    /api/v1/auth/login "";
+}
+
+limit_req_zone $binary_remote_addr zone=es_v2_edge_requests:1m rate=5r/s;
+limit_conn_zone $binary_remote_addr zone=es_v2_edge_connections:1m;
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name @HOST@;
+    ssl_certificate @FULLCHAIN@;
+    ssl_certificate_key @KEY@;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    server_tokens off;
+
+    access_log off;
+    error_log /dev/null emerg;
+
+    if ($host != @HOST@) { return 421; }
+    if ($ssl_server_name != @HOST@) { return 421; }
+    if ($http_upgrade != "") { return 404; }
+    if ($es_v2_route = closed) { return 404; }
+    if ($es_v2_source = 0) { return 403; }
+
+    client_max_body_size 16m;
+    client_header_timeout 10s;
+    client_body_timeout 20s;
+    limit_req zone=es_v2_edge_requests burst=20 nodelay;
+    limit_req_status 429;
+    limit_conn es_v2_edge_connections 8;
+    limit_conn_status 429;
+
+    add_header Strict-Transport-Security "max-age=86400" always;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy no-referrer always;
+    add_header Content-Security-Policy "frame-ancestors 'none'; base-uri 'none'; form-action 'self'" always;
+
+    location / {
+        # Route classification and upstream forwarding use the same normalized path.
+        proxy_pass https://127.0.0.1:18446$uri$es_v2_upstream_query;
+        proxy_ssl_trusted_certificate @UPSTREAM_LEAF@;
+        proxy_ssl_verify on;
+        proxy_ssl_verify_depth 1;
+        proxy_ssl_name 127.0.0.1;
+        proxy_ssl_protocols TLSv1.2 TLSv1.3;
+        proxy_http_version 1.1;
+        proxy_set_header Host @HOST@;
+        proxy_set_header X-Forwarded-Host @HOST@;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-Port 443;
+        proxy_set_header X-Forwarded-For $realip_remote_addr;
+        proxy_set_header X-Real-IP $realip_remote_addr;
+        proxy_set_header X-Request-Id $request_id;
+        proxy_set_header Forwarded "";
+        proxy_set_header X-Original-URI "";
+        proxy_set_header X-Rewrite-URL "";
+        proxy_set_header Upgrade "";
+        proxy_set_header Connection "";
+        proxy_connect_timeout 3s;
+        proxy_send_timeout 20s;
+        proxy_read_timeout 190s;
+        proxy_redirect https://127.0.0.1:18446/ https://@HOST@/;
+    }
+}
