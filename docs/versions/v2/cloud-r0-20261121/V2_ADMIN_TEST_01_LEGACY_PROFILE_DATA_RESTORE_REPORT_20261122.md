@@ -1,5 +1,23 @@
 # EliteSync V2｜ADMIN-TEST-01 旧个人资料恢复报告
 
+## 2026-11-23 22:08（北京时间）｜Owner 授权补恢复昵称
+
+**NICKNAME_APPLY_PASS / PROFILE_API_AND_RESTART_9_OF_9_PASS / APP_PROFILE_NOT_RUN**
+
+- 唯一账号仍为 `ADMIN-TEST-01`，目标为 `elitesync_v2_beta_staging`，`server_id=2621124`，运行源码 `7e0009df4fe69e48967c4fbc111717626c85ed80`。旧主库同一映射的 `users.name` 有效，主库没有独立 `nickname` 或 `display_name` 列。旧后端 `ProfileController` 的基础资料读写使用 `name`，V2 昵称写入 `users.name`。Owner 对该来源和空目标列授权一次补写。
+- 新备份 SHA-256 `175e2b9e82b0e242b92d3f5d5dc1c2505fa7c5469b3439a606ff1b346dc200d5`。备份在无网络、无发布端口的隔离 MariaDB 恢复，重导与原逻辑备份逐字节一致，隔离容器已停止。前态快照 SHA-256 `b276825b4e87785ebad7655357455344228f5eb92df176f29a43621601b4a6fe`。Dry-run 仅 `name` 为 READY，事务内锁定已核对的映射和现有用户行，确认目标仍为空，单次提交只更新 `users.name`。
+- 写入后及仅重启 `staging-app` 后，进程内资料 API 均返回 200，昵称和此前 8 个字段 9/9。两次后态快照 SHA-256 均为 `1accaceada3be0bef7abd975739f9e55d8b243b6f504efed050b20ce0c84a20d`。密码、权限、已有会话、其他账号、映射、激活审计和派生资料均核对一致。回环 `18446/up` 返回 200。公网 443 连通性测试 0 次。
+- Owner 本人实体 APP 资料页验收仍待完成。1011809 安装需具名手机和固定 SHA-256 授权。R1 为 PARTIAL，封闭内测和生产为 NO_GO。
+
+| 脱敏回执 | SHA-256 |
+| --- | --- |
+| `19-p0-nickname-prepare-20261123-220725.json` | `da96e23c5b14d8a41862492382aba3f8a1cf7ac5c891e924285db12907e08ffa` |
+| `19-p0-nickname-apply-20261123-220747.json` | `1bd1feec89a503a2fc9c3bac44979f8a6c7dbcd4cf2df6b428e816e898c9daeb` |
+| `19-p0-nickname-verify-20261123-220749.json` | `e0cb878bb8fccf2d55b9cb0092ff7853f19ffd7543790bbcdb37f7c50426b643` |
+| `19-p0-nickname-restart_verify-20261123-220802.json` | `8033ead293fb30f8e306c5aa42902c1db0e7bcc2ab251282a498bcb28815ddc5` |
+
+## 原恢复批次记录
+
 2026-11-23（北京时间） · **APPLY_PASS / API_READBACK_PASS / PROFILE_TRANSPORT_LOCAL_PASS / APP_PROFILE_NOT_RUN**
 
 仅恢复 `ADMIN-TEST-01` 的 8 个无歧义资料字段。事务提交后及 V2 应用容器重启后，资料 API 均返回 200，8 个字段逐项一致。昵称语义待核，保留 V2 原值。Owner 本人在 APP 资料页的显示验收待完成。
