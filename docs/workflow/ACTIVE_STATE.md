@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-23｜V2 Owner 公网 Web 验收与精确来源待复验
+
+**P0_PROFILE_API_AND_RESTART_PASS / OWNER_IAB_WEB_ADMIN_PASS / CLOUD_EXACT_ONLY_RETEST_PENDING / APK_1011809_INSTALL_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- ADMIN-TEST-01 恢复 8 个资料字段，资料 API 与应用容器重启后 8/8。昵称保留现值，Owner 实体 APP 资料页待验，1011808 回环 APP 本人登录通过沿用。 [P0 资料报告](../versions/v2/cloud-r0-20261121/V2_ADMIN_TEST_01_LEGACY_PROFILE_DATA_RESTORE_REPORT_20261122.md)
+- 正式 IP SAN 证书、ACME 专用 80 路径、受限 Nginx、续期和告警已部署。仅云防火墙 /32 时桌面 443 未通过。Owner 启用旧全 IPv4 443 后两个路径严格 HTTPS 返回 200，获准来源的内置浏览器本人登录通过，工单已完结。仅 /32 的公网连通性待复验，独立 Chrome 登录待实测，1011809 具名装机后才可进行实体手机远程验收。 [会话交接与脱敏证据](../versions/v2/cloud-r0-20261121/V2_P1_PUBLIC_HTTPS_OWNER_WEB_HANDOFF_20261123.md)
+- 优先 Codex 内置浏览器。Owner 自己登录并向网页 GPT 顾问转交材料。共享 Connection、私信及 WSS 保持关闭。 [工作流](CURRENT_WORKFLOW.md)
+
+---
+
+
 # CURRENT ENTRY 2026-11-23｜V2 本人资料恢复与公网 IP HTTPS 准备
 
 **PROFILE_APPLY_PASS / PROFILE_API_RESTART_PASS / OWNER_PROFILE_UI_NOT_RUN / ACME_STAGING_PASS / APK_1011809_VERIFIED / PUBLIC_443_HELD / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
