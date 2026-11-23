@@ -1,10 +1,10 @@
-# CURRENT ENTRY 2026-11-23｜V2 本人旧资料含昵称恢复后端验收
+# CURRENT ENTRY 2026-11-23｜V2 本人旧资料恢复与实体 APP 验收
 
-**P0_PROFILE_9_OF_9_API_AND_RESTART_PASS / APP_PROFILE_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+**P0_PROFILE_9_OF_9_API_AND_RESTART_PASS / OWNER_APP_BASIC_PROFILE_PASS / NATAL_NOT_YET_COMPUTED / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
 
 - Owner 新授权一次只补写 ADMIN-TEST-01 的 `users.name`。全新备份经隔离恢复，dry-run 确认目标空，事务只写一列。资料 API 在提交后和仅重启 `staging-app` 后均 9/9。账号权限、密码、会话、其他账号及派生资料保护核验通过。 [P0 报告和补恢复回执](../versions/v2/cloud-r0-20261121/V2_ADMIN_TEST_01_LEGACY_PROFILE_DATA_RESTORE_REPORT_20261122.md)
 - Owner 已恢复全 IPv4 443，控制台只读确认全 IPv4 与 `/32` 均启用。仅 `/32` 桌面复验 FAIL 保留，Owner 已停止 443 连通性测试。共享 Connection、私信和 WSS 继续关闭。
-- 当前剩 Owner 实体 APP 资料页核对。1011809 安装仍需对固定 SHA-256 和具名手机授权。沿用原开发分支，顾问材料由 Owner 手动转交。 [工作流](CURRENT_WORKFLOW.md)
+- 1011809 实体安装回读哈希一致，Owner 本人确认基础信息完全恢复。命盘独立提交，当前具名账号无命盘记录，离线运行身份可用，待 Owner 本人在 APP 核对独立排盘输入并提交。顾问材料由 Owner 手动转交。 [工作流](CURRENT_WORKFLOW.md)
 
 ---
 

@@ -1,5 +1,20 @@
 # EliteSync V2｜ADMIN-TEST-01 旧个人资料恢复报告
 
+## 2026-11-23｜1011809 实体 APP 本人验收
+
+**PROFILE_API_AND_RESTART_9_OF_9_PASS / OWNER_APP_BASIC_PROFILE_PASS / NATAL_NOT_YET_COMPUTED**
+
+- 已获固定 APK 与具名手机授权，在实体手机安装并启动 1011809。首轮 Android 安装返回 `INSTALL_FAILED_USER_RESTRICTED`，只读确认新包未落盘。Owner 在场后重试通过，手机内 APK SHA-256 与候选一致，四个既有包版本核对一致。
+- Owner 在手机上登录后确认基础信息已完全恢复。此项为本人界面验收，服务端 9/9 沿用下节的字段读回。验收记录未采集资料值或截图。
+- 本命盘使用独立输入与计算合同。23:02 只读确认当前具名账号无本命盘记录，现有离线排盘运行身份为 `AVAILABLE`，本地 Node 可用。APP 使用「我 → 三盘本命 → 三盘本命 · 手填与排盘」，由 Owner 本人确认排盘输入和提交。当前未生成，不导入旧缓存。公网 443 连通性测试 0 次，R1 及发布结论沿用。
+
+| 脱敏回执 | SHA-256 |
+| --- | --- |
+| `21-p0-app-1011809-install-receipt.json` | `58e93487b37970b6a4677c6c2bc4f7271650da7b30aa80a313850f6fea0a5234` |
+| `21-p0-app-1011809-install-retry-01-receipt.json` | `c1e3d9ae65d31cfff1d2c56217e023404d4a87b24d3aed1990dfcaa29f800e7d` |
+| `22-p0-app-1011809-owner-handoff.json` | `0afa62f760997781e813c7ef299b15502922299f8c4c22b6113fcd4d9664703e` |
+| `23-p0-owner-natal-readback-20261123-230248.json` | `1f1556469050b0093573c3df57854ef414c41b2f0719efb2a1320703db14df10` |
+
 ## 2026-11-23 22:08（北京时间）｜Owner 授权补恢复昵称
 
 **NICKNAME_APPLY_PASS / PROFILE_API_AND_RESTART_9_OF_9_PASS / APP_PROFILE_NOT_RUN**
