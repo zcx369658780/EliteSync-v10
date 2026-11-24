@@ -1,9 +1,10 @@
 # CURRENT ENTRY 2026-11-24｜V2 排盘出生资料带入与外部百度地图
 
-**PROFILE_DRAFT_IMPORT_EMULATOR_PASS / BAIDU_APP_LAUNCH_PASS / BAIDU_SEARCH_OWNER_TERMS_PENDING / APK_1011810_VERIFIED / R1_PARTIAL**
+**PROFILE_DRAFT_IMPORT_EMULATOR_PASS / BAIDU_APP_LAUNCH_PASS / BAIDU_SEARCH_EMULATOR_EGL_BLOCKED / APK_1011810_VERIFIED / R1_PARTIAL**
 
 - 「使用已保存的出生资料」通过现有本人资料 API，按需补入空白日期、时间和出生地点。有效成对坐标仅在确认 WGS84 后带入。已有草稿、算法性别、时区及现有排盘提交逻辑保留。外部百度搜索经用户确认后仅发送当前地点关键词。 [排盘页源码](../../apps/flutter_elitesync_module/lib/features/profile/presentation/pages/natal_restoration_page.dart)
-- Dart 分析通过，Flutter 定向 19 项通过。Android API 36.1 隔离模拟器运行同一排盘页和虚构资料 API，验证导入、跳过或确认坐标、唤起官方百度地图 22.2.20 和切回后保留草稿。百度首次使用确认页拦住地点搜索，选择结果与自动回传坐标均待实测。百度公开搜索 URI 未定义结果回调。 [官方 Android URI 文档](https://lbsyun.baidu.com/docs/webapi?title=mapadjustment%2Furi%2Fandriod)
+- Dart 分析通过，Flutter 定向 19 项通过。Android API 36.1 隔离模拟器运行同一排盘页和虚构资料 API，验证导入、跳过或确认坐标、唤起官方百度地图 22.2.20 和切回后保留草稿。Owner 批准首次使用确认后，SwiftShader、宿主 NVIDIA GPU 和 swangle 启动模式均遇到百度自身 `GLThread` 的 `No configs match configSpec` 崩溃。独立启动百度地图复现，应用内搜索和选点后返回待实测。百度公开搜索 URI 未定义结果回调。 [官方 Android URI 文档](https://lbsyun.baidu.com/docs/webapi?title=mapadjustment%2Furi%2Fandriod)
+- 续验回执 `EMULATOR_BAIDU_FOLLOWUP_20261124.json` SHA-256 `30a89740b1834f60a5966cda36b5bb9762c2370bc8a74b089fce2d6b9abf6afa`。仿真会话已停止，保留四份崩溃日志。
 - 远程 Staging 候选 `com.elitesync.v2stagingremote` / `1011810` / `arm64-v8a` 已核对签名、AAR/AOT、端点和 APK，SHA-256 `4559ad8b5fdb9b77eeea8795e000f660fe1bd220b237c4d5644766789bf1ec43`。模拟器验证回执 `EMULATOR_VALIDATION.json` SHA-256 `531769b716a9d41962d1b886c0c86a1389ec7e5c95469a79c5ecd3ed9611be2f`。新版真机测试未运行，公网 443 探测 0 次。封闭内测和生产 NO_GO。
 
 ---
