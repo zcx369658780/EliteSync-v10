@@ -150,9 +150,205 @@ class _ConcurrentApi extends ApiClient {
   }
 }
 
+class _SavedBirthApi extends ApiClient {
+  _SavedBirthApi({this.savedNatal = false, this.delay}) : super(dio: Dio());
+
+  final bool savedNatal;
+  final Completer<void>? delay;
+  final paths = <String>[];
+
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> get(
+    String path, {
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
+    paths.add(path);
+    if (path == '/api/v1/profile/natal') {
+      return NetworkSuccess(savedNatal ? _profile() : {'exists': false});
+    }
+    expect(path, '/api/v1/profile/basic');
+    final guard = options?.extra?[requestSessionGuardKey] as bool Function()?;
+    expect(guard?.call(), isTrue);
+    if (delay != null) await delay!.future;
+    return const NetworkSuccess({
+      'birthday': '1995-03-21',
+      'birth_time': '08:15',
+      'birth_place': '验收地点',
+      'birth_lat': '0.0000000',
+      'birth_lng': '112.5700000',
+      'gender': 'female',
+    });
+  }
+}
+
+Finder _field(String label) => find.byWidgetPredicate(
+  (widget) => widget is TextField && widget.decoration?.labelText == label,
+);
+
+String _text(WidgetTester tester, String label) =>
+    tester.widget<TextField>(_field(label)).controller!.text;
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
+
+  testWidgets(
+    'Baidu receives only the confirmed place and leaves the draft intact',
+    (tester) async {
+      final launched = <Uri>[];
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            apiClientProvider.overrideWithValue(_SavedBirthApi()),
+            sessionProvider.overrideWith(_Session.new),
+          ],
+          child: MaterialApp(
+            home: NatalRestorationPage(
+              launchMap: (uri) async {
+                launched.add(uri);
+                return false;
+              },
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final search = find.widgetWithText(OutlinedButton, '在百度地图搜索');
+      await tester.ensureVisible(search);
+      expect(tester.widget<OutlinedButton>(search).onPressed, isNull);
+      await tester.enterText(_field('出生地点名称（可选）'), '北京 公共地点 A&B');
+      tester.testTextInput.hide();
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(search);
+      await tester.tap(search);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('取消'));
+      await tester.pumpAndSettle();
+      expect(launched, isEmpty);
+
+      await tester.tap(search);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('打开百度地图'));
+      await tester.pumpAndSettle();
+      expect(launched.single.scheme, 'baidumap');
+      expect(launched.single.host, 'map');
+      expect(launched.single.path, '/place/search');
+      expect(launched.single.queryParameters, {
+        'query': '北京 公共地点 A&B',
+        'region': '全国',
+        'src': 'andr.elitesync.app',
+      });
+      expect(_text(tester, '出生地点名称（可选）'), '北京 公共地点 A&B');
+      expect(find.textContaining('未能打开百度地图'), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'explicit import fills saved fields and confirms WGS84 separately',
+    (tester) async {
+      final api = _SavedBirthApi();
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            apiClientProvider.overrideWithValue(api),
+            sessionProvider.overrideWith(_Session.new),
+          ],
+          child: const MaterialApp(home: NatalRestorationPage()),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(api.paths, ['/api/v1/profile/natal']);
+      expect(_text(tester, '出生日期'), isEmpty);
+      final import = find.text('使用已保存的出生资料');
+      await tester.tap(import);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('跳过坐标'));
+      await tester.pumpAndSettle();
+      expect(_text(tester, '出生日期'), '1995-03-21');
+      expect(_text(tester, '出生当地时间'), '08:15');
+      expect(_text(tester, '出生地点名称（可选）'), '验收地点');
+      expect(_text(tester, '纬度 WGS84（可选）'), isEmpty);
+      expect(find.text('未知（相关运限不计算）'), findsWidgets);
+
+      await tester.tap(import);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('确认使用 WGS84 坐标'));
+      await tester.pumpAndSettle();
+      expect(_text(tester, '纬度 WGS84（可选）'), '0.0');
+      expect(_text(tester, '经度 WGS84（可选）'), '112.57');
+      expect(api.paths, [
+        '/api/v1/profile/natal',
+        '/api/v1/profile/basic',
+        '/api/v1/profile/basic',
+      ]);
+    },
+  );
+
+  testWidgets(
+    'import never replaces an existing date or pairs a different place',
+    (tester) async {
+      final api = _SavedBirthApi(savedNatal: true);
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            apiClientProvider.overrideWithValue(api),
+            sessionProvider.overrideWith(_Session.new),
+          ],
+          child: const MaterialApp(home: NatalRestorationPage()),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final place = _field('出生地点名称（可选）');
+      await tester.ensureVisible(place);
+      await tester.enterText(place, '已手填的其他地点');
+      tester.testTextInput.hide();
+      final import = find.text('使用已保存的出生资料');
+      await tester.ensureVisible(import);
+      await tester.pumpAndSettle();
+      await tester.tap(import);
+      await tester.pumpAndSettle();
+      expect(find.text('确认使用 WGS84 坐标'), findsNothing);
+      expect(_text(tester, '出生日期'), '1990-01-01');
+      expect(_text(tester, '出生地点名称（可选）'), '已手填的其他地点');
+      expect(_text(tester, '经度 WGS84（可选）'), isEmpty);
+    },
+  );
+  testWidgets('a delayed import cannot fill the next sign-in session', (
+    tester,
+  ) async {
+    final completion = Completer<void>();
+    final api = _SavedBirthApi(delay: completion);
+    final container = ProviderContainer(
+      overrides: [
+        apiClientProvider.overrideWithValue(api),
+        sessionProvider.overrideWith(_Session.new),
+      ],
+    );
+    addTearDown(container.dispose);
+    await container.read(sessionProvider.future);
+    await tester.pumpWidget(
+      UncontrolledProviderScope(
+        container: container,
+        child: const MaterialApp(home: NatalRestorationPage()),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('使用已保存的出生资料'));
+    await tester.pump();
+    expect(api.paths.last, '/api/v1/profile/basic');
+    (container.read(sessionProvider.notifier) as _Session).switchToB();
+    completion.complete();
+    await tester.pumpAndSettle();
+    expect(find.text('登录身份已变化，请重新读取。'), findsOneWidget);
+    expect(find.text('确认使用 WGS84 坐标'), findsNothing);
+    await tester.tap(find.text('重新读取已保存资料（替换当前输入）'));
+    await tester.pumpAndSettle();
+    expect(_text(tester, '出生日期'), isEmpty);
+    expect(_text(tester, '出生地点名称（可选）'), isEmpty);
+  });
+
   for (final provider in [astroSummaryProvider, astroNatalChartProvider]) {
     test(
       'legacy profile provider discards A request across delayed B token',

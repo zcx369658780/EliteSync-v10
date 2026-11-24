@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_elitesync_module/core/network/network_result.dart';
+import 'package:flutter_elitesync_module/features/profile/data/dto/profile_detail_dto.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import '../providers/natal_restoration_provider.dart';
@@ -8,8 +11,13 @@ import '../widgets/natal_restoration_charts.dart';
 import '../widgets/tool_revision_history.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 
+Future<bool> _launchExternalMap(Uri uri) =>
+    launchUrl(uri, mode: LaunchMode.externalApplication);
+
 class NatalRestorationPage extends ConsumerStatefulWidget {
-  const NatalRestorationPage({super.key});
+  const NatalRestorationPage({super.key, this.launchMap = _launchExternalMap});
+
+  final Future<bool> Function(Uri) launchMap;
   @override
   ConsumerState<NatalRestorationPage> createState() =>
       _NatalRestorationPageState();
@@ -48,6 +56,9 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
       mounted &&
       epoch == _sessionEpoch &&
       natalSessionMatches(session, ref.read(sessionProvider).asData?.value);
+
+  bool get _canChangeDraft =>
+      _loaded && !_busy && !_conflict && _pendingBody == null;
 
   @override
   void initState() {
@@ -123,6 +134,152 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
     } finally {
       if (mounted && epoch == _sessionEpoch) setState(() => _busy = false);
     }
+  }
+
+  Future<void> _importBirthProfile() async {
+    final session = _inputSession;
+    final epoch = _sessionEpoch;
+    if (!_canChangeDraft || session == null || !_current(session, epoch)) {
+      return;
+    }
+    setState(() => _busy = true);
+    try {
+      final response = await ref
+          .read(apiClientProvider)
+          .get(
+            '/api/v1/profile/basic',
+            options: natalSessionOptions(() => _current(session, epoch)),
+          );
+      if (!_current(session, epoch)) return;
+      setState(() => _busy = false);
+      if (response is! NetworkSuccess<Map<String, dynamic>>) {
+        _notice('读取已保存的出生资料失败，请重试。');
+        return;
+      }
+      final saved = ProfileDetailDto.fromJson(response.data);
+      final date = saved.birthday.trim();
+      final time = saved.birthTime.trim();
+      final place = saved.birthPlace?.trim() ?? '';
+      final hasDate = _dateError(date) == null;
+      final addDate = _date.text.trim().isEmpty && hasDate;
+      final addTime =
+          hasDate &&
+          (addDate || _date.text.trim() == date) &&
+          _time.text.trim().isEmpty &&
+          _precision == 'unknown' &&
+          RegExp(r'^([01]\d|2[0-3]):[0-5]\d(?::[0-5]\d)?$').hasMatch(time);
+      final coordinatesBlank =
+          _latitude.text.trim().isEmpty && _longitude.text.trim().isEmpty;
+      final currentPlace = _place.text.trim();
+      final addPlace =
+          currentPlace.isEmpty && coordinatesBlank && place.isNotEmpty;
+      final latitude = saved.birthLat;
+      final longitude = saved.birthLng;
+      final addCoordinates =
+          coordinatesBlank &&
+          (currentPlace.isEmpty || currentPlace == place) &&
+          latitude != null &&
+          longitude != null &&
+          await _confirm(
+            title: '确认坐标系',
+            message:
+                '只有确认资料中的经纬度为 WGS84 时才可带入。'
+                '百度 BD-09、高德 GCJ-02 或来源不明的坐标请选择跳过。',
+            confirm: '确认使用 WGS84 坐标',
+            cancel: '跳过坐标',
+          );
+      if (!_current(session, epoch)) return;
+      if (!addDate && !addTime && !addPlace && !addCoordinates) {
+        _notice('没有可带入的资料，当前输入已保留。');
+        return;
+      }
+      setState(() {
+        if (addDate) _date.text = date;
+        if (addTime) {
+          _time.text = time;
+          _precision = time.length == 5 ? 'minute' : 'second';
+        }
+        if (addPlace) _place.text = place;
+        if (addCoordinates) {
+          _latitude.text = latitude.toString();
+          _longitude.text = longitude.toString();
+        }
+        _profile = null;
+      });
+      _notice('已带入可用资料，请核对后提交。');
+    } on Exception {
+      if (_current(session, epoch)) {
+        _notice('读取已保存的出生资料失败，请重试。');
+      }
+    } finally {
+      if (_current(session, epoch) && _busy) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _searchBaiduMap() async {
+    final session = _inputSession;
+    final epoch = _sessionEpoch;
+    final place = _place.text.trim();
+    if (!_canChangeDraft ||
+        session == null ||
+        !_current(session, epoch) ||
+        place.isEmpty) {
+      return;
+    }
+    final confirmed = await _confirm(
+      title: '在百度地图搜索',
+      message: '百度地图将收到当前填写的地点名称。查询后可返回本页继续填写。',
+      confirm: '打开百度地图',
+      cancel: '取消',
+    );
+    if (!confirmed || !_current(session, epoch)) return;
+    final uri = Uri(
+      scheme: 'baidumap',
+      host: 'map',
+      path: '/place/search',
+      query:
+          'query=${Uri.encodeComponent(place)}'
+          '&region=${Uri.encodeComponent('全国')}&src=andr.elitesync.app',
+    );
+    try {
+      if (await widget.launchMap(uri)) return;
+    } on Exception {
+      // Android can reject the launch if no activity can handle the URI.
+    }
+    if (_current(session, epoch)) {
+      _notice('未能打开百度地图，请确认已安装，或继续手填。');
+    }
+  }
+
+  Future<bool> _confirm({
+    required String title,
+    required String message,
+    required String confirm,
+    required String cancel,
+  }) async =>
+      await showDialog<bool>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: Text(cancel),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(dialogContext, true),
+              child: Text(confirm),
+            ),
+          ],
+        ),
+      ) ??
+      false;
+
+  void _notice(String message) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   Future<void> _save() async {
@@ -283,6 +440,15 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
         : null;
   }
 
+  String? _dateError(String? value) {
+    final text = value?.trim() ?? '';
+    if (!RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(text)) return '请输入 YYYY-MM-DD';
+    final date = DateTime.tryParse(text);
+    return date == null || date.toIso8601String().substring(0, 10) != text
+        ? '日期不存在'
+        : null;
+  }
+
   @override
   Widget build(BuildContext context) {
     ref.listen(sessionProvider, (previous, next) {
@@ -353,21 +519,16 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    OutlinedButton.icon(
+                      onPressed: _canChangeDraft ? _importBirthProfile : null,
+                      icon: const Icon(Icons.person_outline),
+                      label: const Text('使用已保存的出生资料'),
+                    ),
                     _field(
                       '出生日期',
                       _date,
                       hint: 'YYYY-MM-DD',
-                      validator: (v) {
-                        final s = v?.trim() ?? '';
-                        if (!RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(s)) {
-                          return '请输入 YYYY-MM-DD';
-                        }
-                        final d = DateTime.tryParse(s);
-                        return d == null ||
-                                d.toIso8601String().substring(0, 10) != s
-                            ? '日期不存在'
-                            : null;
-                      },
+                      validator: _dateError,
                     ),
                     _choice('出生时间精度', _precision, {
                       'unknown': '时间未知（不补默认时间）',
@@ -401,7 +562,15 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                       '0': '第一次当地时间',
                       '1': '第二次当地时间',
                     }, (v) => _fold = v),
-                    _field('出生地点名称（可选）', _place),
+                    _field('出生地点名称（可选）', _place, hint: '填写地点名称后可前往百度地图搜索'),
+                    OutlinedButton.icon(
+                      onPressed:
+                          _canChangeDraft && _place.text.trim().isNotEmpty
+                          ? _searchBaiduMap
+                          : null,
+                      icon: const Icon(Icons.map_outlined),
+                      label: const Text('在百度地图搜索'),
+                    ),
                     _field(
                       '纬度 WGS84（可选）',
                       _latitude,

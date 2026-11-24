@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-24｜V2 排盘出生资料带入与外部百度地图
+
+**PROFILE_DRAFT_IMPORT_EMULATOR_PASS / BAIDU_APP_LAUNCH_PASS / BAIDU_SEARCH_OWNER_TERMS_PENDING / APK_1011810_VERIFIED / R1_PARTIAL**
+
+- 「使用已保存的出生资料」通过现有本人资料 API，按需补入空白日期、时间和出生地点。有效成对坐标仅在确认 WGS84 后带入。已有草稿、算法性别、时区及现有排盘提交逻辑保留。外部百度搜索经用户确认后仅发送当前地点关键词。 [排盘页源码](../../apps/flutter_elitesync_module/lib/features/profile/presentation/pages/natal_restoration_page.dart)
+- Dart 分析通过，Flutter 定向 19 项通过。Android API 36.1 隔离模拟器运行同一排盘页和虚构资料 API，验证导入、跳过或确认坐标、唤起官方百度地图 22.2.20 和切回后保留草稿。百度首次使用确认页拦住地点搜索，选择结果与自动回传坐标均待实测。百度公开搜索 URI 未定义结果回调。 [官方 Android URI 文档](https://lbsyun.baidu.com/docs/webapi?title=mapadjustment%2Furi%2Fandriod)
+- 远程 Staging 候选 `com.elitesync.v2stagingremote` / `1011810` / `arm64-v8a` 已核对签名、AAR/AOT、端点和 APK，SHA-256 `4559ad8b5fdb9b77eeea8795e000f660fe1bd220b237c4d5644766789bf1ec43`。模拟器验证回执 `EMULATOR_VALIDATION.json` SHA-256 `531769b716a9d41962d1b886c0c86a1389ec7e5c95469a79c5ecd3ed9611be2f`。新版真机测试未运行，公网 443 探测 0 次。封闭内测和生产 NO_GO。
+
+---
+
 # CURRENT ENTRY 2026-11-23｜V2 本人旧资料恢复与实体 APP 验收
 
 **P0_PROFILE_9_OF_9_API_AND_RESTART_PASS / OWNER_APP_BASIC_PROFILE_PASS / NATAL_NOT_YET_COMPUTED / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
