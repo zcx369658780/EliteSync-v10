@@ -253,6 +253,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/dynamic/{id}/history/{archive}', [ToolRevisionController::class, 'dynamicShow'])->whereNumber(['id', 'archive']);
             Route::get('/natal', [NatalProfileController::class, 'show']);
             Route::post('/natal', [NatalProfileController::class, 'save']);
+            Route::post('/natal/places', [GeoController::class, 'natalPlaces'])->middleware('throttle:natal-places');
             Route::get('/natal/history', [ToolRevisionController::class, 'natalIndex']);
             Route::get('/natal/history/{archive}', [ToolRevisionController::class, 'natalShow'])->whereNumber('archive');
             Route::get('/operating-status', function (Request $r) {

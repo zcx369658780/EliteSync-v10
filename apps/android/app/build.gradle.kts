@@ -270,7 +270,7 @@ android {
             versionName = "10.1.18-v2-staging-login"
         }
         if (isRemoteStagingBuild) {
-            versionCode = 1011810
+            versionCode = 1011811
             versionName = "10.1.18-v2-remote-staging"
         }
         manifestPlaceholders["appLabel"] = when {

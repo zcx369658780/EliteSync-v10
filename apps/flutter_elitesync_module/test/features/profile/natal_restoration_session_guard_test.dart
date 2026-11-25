@@ -190,9 +190,96 @@ Finder _field(String label) => find.byWidgetPredicate(
 String _text(WidgetTester tester, String label) =>
     tester.widget<TextField>(_field(label)).controller!.text;
 
+class _PlaceSearchApi extends _SavedBirthApi {
+  final requests = <Object?>[];
+  String coordinateSystem = 'WGS84';
+
+  @override
+  Future<NetworkResult<Map<String, dynamic>>> post(
+    String path, {
+    Object? body,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? query,
+    Options? options,
+  }) async {
+    expect(path, '/api/v1/profile/natal/places');
+    expect(options?.extra?[requestSessionGuardKey], isA<bool Function()>());
+    requests.add(body);
+    return NetworkSuccess({
+      'coordinate_system': coordinateSystem,
+      'places': [
+        {'label': '坐标越界', 'lat': 91.0, 'lng': 114.36},
+        {'label': '测试地点甲', 'address': '测试路1号', 'lat': 30.54, 'lng': 114.36},
+      ],
+    });
+  }
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
+
+  testWidgets('explicit search fills the draft only after selecting WGS84', (
+    tester,
+  ) async {
+    final api = _PlaceSearchApi();
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          apiClientProvider.overrideWithValue(api),
+          sessionProvider.overrideWith(_Session.new),
+        ],
+        child: const MaterialApp(home: NatalRestorationPage()),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('使用已保存的出生资料'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('跳过坐标'));
+    await tester.pumpAndSettle();
+    expect(_text(tester, '出生地点名称（可选）'), '验收地点');
+
+    final button = find.widgetWithText(OutlinedButton, '搜索并带入坐标');
+    Future<void> openSearch() async {
+      await Scrollable.ensureVisible(tester.element(button), alignment: 0.5);
+      await tester.pumpAndSettle();
+      await tester.tap(button);
+      await tester.pumpAndSettle();
+    }
+
+    await openSearch();
+    await tester.tap(find.text('取消'));
+    await tester.pumpAndSettle();
+    expect(api.requests, isEmpty);
+
+    Future<void> search() async {
+      await openSearch();
+      await tester.enterText(_field('搜索城市'), '武汉市');
+      tester.testTextInput.hide();
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('搜索'));
+      await tester.pumpAndSettle();
+    }
+
+    api.coordinateSystem = 'BD09';
+    await search();
+    expect(_text(tester, '纬度 WGS84（可选）'), isEmpty);
+    expect(find.text('测试地点甲'), findsNothing);
+    api.coordinateSystem = 'WGS84';
+    await search();
+    expect(find.text('坐标越界'), findsNothing);
+    expect(_text(tester, '纬度 WGS84（可选）'), isEmpty);
+    await tester.tap(find.text('测试地点甲'));
+    await tester.pumpAndSettle();
+    expect(api.requests, [
+      {'query': '验收地点', 'region': '武汉市'},
+      {'query': '验收地点', 'region': '武汉市'},
+    ]);
+    expect(_text(tester, '出生日期'), '1995-03-21');
+    expect(_text(tester, '出生地点名称（可选）'), '测试地点甲（测试路1号）');
+    expect(_text(tester, '纬度 WGS84（可选）'), '30.54');
+    expect(_text(tester, '经度 WGS84（可选）'), '114.36');
+  });
 
   testWidgets(
     'Baidu receives only the confirmed place and leaves the draft intact',

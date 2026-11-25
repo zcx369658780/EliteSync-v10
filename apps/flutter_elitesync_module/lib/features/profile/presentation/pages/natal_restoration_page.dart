@@ -14,6 +14,14 @@ import 'package:flutter_elitesync_module/features/relationships_v1011/relationsh
 Future<bool> _launchExternalMap(Uri uri) =>
     launchUrl(uri, mode: LaunchMode.externalApplication);
 
+typedef _BirthPlace = ({
+  String label,
+  String address,
+  String area,
+  double latitude,
+  double longitude,
+});
+
 class NatalRestorationPage extends ConsumerStatefulWidget {
   const NatalRestorationPage({super.key, this.launchMap = _launchExternalMap});
 
@@ -211,6 +219,170 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
       if (_current(session, epoch)) {
         _notice('读取已保存的出生资料失败，请重试。');
       }
+    } finally {
+      if (_current(session, epoch) && _busy) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _searchBirthPlaces() async {
+    final session = _inputSession;
+    final epoch = _sessionEpoch;
+    final query = _place.text.trim();
+    if (!_canChangeDraft ||
+        session == null ||
+        !_current(session, epoch) ||
+        query.isEmpty) {
+      return;
+    }
+    if (query.runes.length > 100) {
+      _notice('地点关键词最多 100 字，请缩短后重试。');
+      return;
+    }
+
+    final form = GlobalKey<FormState>();
+    var city = '';
+    final region = await showDialog<String>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        scrollable: true,
+        title: const Text('搜索并带入坐标'),
+        content: Form(
+          key: form,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('百度地图将收到当前地点关键词和搜索城市。'),
+              TextFormField(
+                decoration: const InputDecoration(labelText: '搜索城市'),
+                maxLength: 50,
+                enableSuggestions: false,
+                autocorrect: false,
+                validator: (value) =>
+                    (value?.trim().isEmpty ?? true) ? '请输入出生地点所在城市' : null,
+                onChanged: (value) => city = value.trim(),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text('取消'),
+          ),
+          FilledButton(
+            onPressed: () {
+              if (form.currentState!.validate()) {
+                Navigator.pop(dialogContext, city);
+              }
+            },
+            child: const Text('搜索'),
+          ),
+        ],
+      ),
+    );
+    if (region == null || !_current(session, epoch)) return;
+
+    setState(() => _busy = true);
+    try {
+      final response = await ref
+          .read(apiClientProvider)
+          .post(
+            '/api/v1/profile/natal/places',
+            body: {'query': query, 'region': region},
+            options: natalSessionOptions(() => _current(session, epoch)),
+          );
+      if (!_current(session, epoch)) return;
+      if (response is! NetworkSuccess<Map<String, dynamic>>) {
+        _notice(
+          response is NetworkFailure<Map<String, dynamic>> &&
+                  response.statusCode == 429
+              ? '搜索额度暂不可用，请稍后重试或手填坐标。'
+              : '暂时无法搜索出生地点，你仍可手填坐标。',
+        );
+        return;
+      }
+      final rawPlaces = response.data['places'];
+      if (response.data['coordinate_system'] != 'WGS84' || rawPlaces is! List) {
+        _notice('搜索结果缺少有效的 WGS84 坐标。');
+        return;
+      }
+      final places = <_BirthPlace>[];
+      for (final item in rawPlaces.take(10).whereType<Map>()) {
+        final label = item['label'];
+        final latitude = item['lat'];
+        final longitude = item['lng'];
+        if (label is! String ||
+            label.trim().isEmpty ||
+            latitude is! num ||
+            longitude is! num ||
+            _coordinate(latitude.toString(), 90) != null ||
+            _coordinate(longitude.toString(), 180) != null) {
+          continue;
+        }
+        final address = item['address'];
+        places.add((
+          label: label.trim(),
+          address: address is String ? address.trim() : '',
+          area: [item['province'], item['city'], item['area']]
+              .whereType<String>()
+              .map((value) => value.trim())
+              .where((value) => value.isNotEmpty)
+              .toSet()
+              .join(' · '),
+          latitude: latitude.toDouble(),
+          longitude: longitude.toDouble(),
+        ));
+      }
+      if (places.isEmpty) {
+        _notice('没有找到带坐标的地点，请核对城市和地点名称。');
+        return;
+      }
+      if (!mounted) return;
+      setState(() => _busy = false);
+      final choice = await showDialog<_BirthPlace>(
+        context: context,
+        builder: (dialogContext) => Consumer(
+          builder: (_, ref, _) {
+            ref.watch(sessionProvider);
+            ref.watch(relationshipAuthorityEpochProvider);
+            final active = _current(session, epoch);
+            return SimpleDialog(
+              title: Text(active ? '选择地点并填入坐标' : '搜索结果已失效'),
+              children: [
+                if (active)
+                  for (final place in places)
+                    ListTile(
+                      title: Text(place.label),
+                      subtitle: Text(
+                        [
+                          if (place.area.isNotEmpty) place.area,
+                          if (place.address.isNotEmpty) place.address,
+                          'WGS84 ${place.latitude}, ${place.longitude}',
+                        ].join('\n'),
+                      ),
+                      onTap: () => Navigator.pop(dialogContext, place),
+                    ),
+                SimpleDialogOption(
+                  onPressed: () => Navigator.pop(dialogContext),
+                  child: const Text('取消'),
+                ),
+              ],
+            );
+          },
+        ),
+      );
+      if (choice == null || !_current(session, epoch)) return;
+      final address = choice.address;
+      final label = address.isEmpty || address == choice.label
+          ? choice.label
+          : '${choice.label}（$address）';
+      setState(() {
+        _place.text = String.fromCharCodes(label.runes.take(255));
+        _latitude.text = choice.latitude.toString();
+        _longitude.text = choice.longitude.toString();
+        _profile = null;
+      });
     } finally {
       if (_current(session, epoch) && _busy) setState(() => _busy = false);
     }
@@ -562,7 +734,15 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                       '0': '第一次当地时间',
                       '1': '第二次当地时间',
                     }, (v) => _fold = v),
-                    _field('出生地点名称（可选）', _place, hint: '填写地点名称后可前往百度地图搜索'),
+                    _field('出生地点名称（可选）', _place, hint: '例如医院、街道或县区'),
+                    OutlinedButton.icon(
+                      onPressed:
+                          _canChangeDraft && _place.text.trim().isNotEmpty
+                          ? _searchBirthPlaces
+                          : null,
+                      icon: const Icon(Icons.search),
+                      label: const Text('搜索并带入坐标'),
+                    ),
                     OutlinedButton.icon(
                       onPressed:
                           _canChangeDraft && _place.text.trim().isNotEmpty

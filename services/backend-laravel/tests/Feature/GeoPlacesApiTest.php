@@ -13,6 +13,55 @@ class GeoPlacesApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_natal_search_uses_one_signed_wgs84_request_and_does_not_save(): void
+    {
+        Config::set('baidu.web_ak', 'test-web-ak');
+        Config::set('baidu.web_sk', 'test-web-sk');
+        Http::preventStrayRequests();
+        Http::fake([
+            'https://api.map.baidu.com/api_place_pro/v1/region*' => Http::response([
+                'status' => 0,
+                'results' => [
+                    ['name' => '公开测试地点', 'address' => '测试路1号', 'province' => '湖北省', 'city' => '武汉市',
+                        'area' => '武昌区', 'location' => ['lat' => 30.54, 'lng' => 114.36], 'telephone' => 'not-needed'],
+                    ['name' => '无效纬度', 'location' => ['lat' => 91, 'lng' => 114.36]],
+                    ['name' => '只有纬度', 'location' => ['lat' => 30.54]],
+                ],
+            ]),
+        ]);
+        $path = '/api/v1/profile/natal/places';
+        $input = ['query' => '公开测试地点', 'region' => '武汉市', 'birthday' => '1990-01-01'];
+        $this->postJson($path, $input)->assertUnauthorized();
+        Sanctum::actingAs(User::create(['phone' => '13800001121', 'password' => 'test-password']));
+        $this->postJson($path, $input)->assertOk()
+            ->assertHeader('Cache-Control', 'no-store, private')
+            ->assertExactJson(['coordinate_system' => 'WGS84', 'places' => [[
+                'label' => '公开测试地点', 'lat' => 30.54, 'lng' => 114.36, 'address' => '测试路1号',
+                'province' => '湖北省', 'city' => '武汉市', 'area' => '武昌区',
+            ]]]);
+        Http::assertSentCount(1);
+        Http::assertSent(function ($request) {
+            parse_str((string) parse_url($request->url(), PHP_URL_QUERY), $params);
+
+            return array_keys($params) === ['query', 'region', 'region_limit', 'ret_coordtype', 'output', 'ak', 'sn']
+                && $params['query'] === '公开测试地点' && $params['region'] === '武汉市'
+                && $params['ret_coordtype'] === 'wgs84ll' && strlen($params['sn']) === 32;
+        });
+        $this->assertDatabaseCount('user_natal_profiles', 0);
+    }
+
+    public function test_natal_search_without_service_configuration_stops_before_outbound_request(): void
+    {
+        Config::set('baidu.web_ak', '');
+        Config::set('baidu.web_sk', '');
+        Http::preventStrayRequests();
+        Http::fake();
+        Sanctum::actingAs(User::create(['phone' => '13800001122', 'password' => 'test-password']));
+        $this->postJson('/api/v1/profile/natal/places', ['query' => '公开测试地点', 'region' => '武汉市'])
+            ->assertStatus(503);
+        Http::assertNothingSent();
+    }
+
     public function test_geo_places_search_returns_baidu_suggestions(): void
     {
         Config::set('baidu.web_ak', 'test-web-ak');

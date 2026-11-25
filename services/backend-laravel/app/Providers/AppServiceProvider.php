@@ -68,6 +68,11 @@ class AppServiceProvider extends ServiceProvider
         RateLimiter::for('legacy-admin-activation', fn (Request $request) =>
             Limit::perMinute(5)->by((string) $request->ip()));
 
+        RateLimiter::for('natal-places', fn () => [
+            Limit::perSecond(1)->by('baidu-place-qps'),
+            Limit::perDay(10)->by('baidu-place-daily'),
+        ]);
+
         RateLimiter::for('auth', function (Request $request) {
             $phone = (string) $request->input('phone', '');
             $ip = (string) $request->ip();
