@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-25｜V2 排盘地点搜索与 WGS84 回填
+
+**OWNER_1011810_PROFILE_IMPORT_AND_BAIDU_LAUNCH_PASS / BAIDU_APP_COORDINATE_CALLBACK_UNAVAILABLE / WGS84_SEARCH_LOCAL_CONTRACT_PASS / APK_1011811_SIGNED / PROVIDER_AND_PHONE_TEST_PENDING / R1_PARTIAL**
+
+- Owner 在 1011810 实机确认「使用已保存的出生资料」可用，百度地图可唤起，百度端无选点回传入口。对应的 Android 地点搜索 URI 文档未定义地点或坐标回调。 [百度 Android 调起文档](https://lbsyun.baidu.com/docs/webapi?title=mapadjustment%2Furi%2Fandriod)
+- Owner 同意在排盘页直接搜索。源码 **a030c131309adfa43df15dd12416790724bf5f5b** 增加「搜索并带入坐标」。每次确认只向百度发送地点关键词和用户指定的城市，服务端通过 HTTPS 单次调用多维检索，请求 WGS84。用户选中结果后才回填当前草稿。定向 Laravel 13/13、Flutter 47/47，Dart 分析无问题。百度 AK 权限、供应商实际坐标和共享 Staging 路由未验证。 [百度多维检索契约](https://lbsyun.baidu.com/docs/webapi?title=placev3%2Fguide%2Fwebservice-placeapiV3%2Fmultidimensional)
+- 本机 APK 1011811 包名为 com.elitesync.v2stagingremote，已核对签名与 1011810 相同、arm64-v8a、AOT 与 AAR 字节一致，SHA-256 为 54befc4b1be1372b147f6f515ca5404a35715ad44f449c20477043a9101d994b。私有回执 CANDIDATE_1011811.json。连接手机读回为 1011810。新候选安装待该 SHA 和具名手机授权，升级沿用同包同签名原位更新。公网 443 探测 0 次。
+
+---
+
 # CURRENT ENTRY 2026-11-25｜V2 排盘资料带入与百度 Google Play 版对照
 
 **PROFILE_DRAFT_IMPORT_EMULATOR_PASS / BAIDU_APP_LAUNCH_PASS / BAIDU_SEARCH_EMULATOR_EGL_BLOCKED / APK_1011810_PHONE_INSTALL_PASS / OWNER_PHONE_ACCEPTANCE_PENDING / R1_PARTIAL**
