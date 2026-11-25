@@ -193,6 +193,7 @@ String _text(WidgetTester tester, String label) =>
 class _PlaceSearchApi extends _SavedBirthApi {
   final requests = <Object?>[];
   String coordinateSystem = 'WGS84';
+  int? failureStatus;
 
   @override
   Future<NetworkResult<Map<String, dynamic>>> post(
@@ -205,6 +206,9 @@ class _PlaceSearchApi extends _SavedBirthApi {
     expect(path, '/api/v1/profile/natal/places');
     expect(options?.extra?[requestSessionGuardKey], isA<bool Function()>());
     requests.add(body);
+    if (failureStatus != null) {
+      return NetworkFailure(message: 'test failure', statusCode: failureStatus);
+    }
     return NetworkSuccess({
       'coordinate_system': coordinateSystem,
       'places': [
@@ -238,6 +242,14 @@ void main() {
     await tester.tap(find.text('跳过坐标'));
     await tester.pumpAndSettle();
     expect(_text(tester, '出生地点名称（可选）'), '验收地点');
+    expect(
+      tester.widget<TextField>(_field('出生地点名称（可选）')).enableSuggestions,
+      isTrue,
+    );
+    expect(
+      tester.widget<TextField>(_field('纬度 WGS84（可选）')).enableSuggestions,
+      isFalse,
+    );
 
     final button = find.widgetWithText(OutlinedButton, '搜索并带入坐标');
     Future<void> openSearch() async {
@@ -254,13 +266,40 @@ void main() {
 
     Future<void> search() async {
       await openSearch();
-      await tester.enterText(_field('搜索城市'), '武汉市');
+      final city = _field('搜索城市');
+      expect(tester.widget<TextField>(city).enableSuggestions, isTrue);
+      await tester.showKeyboard(city);
+      tester.testTextInput.updateEditingValue(
+        const TextEditingValue(
+          text: 'wuhan',
+          selection: TextSelection.collapsed(offset: 5),
+          composing: TextRange(start: 0, end: 5),
+        ),
+      );
+      await tester.pump();
+      tester.testTextInput.updateEditingValue(
+        const TextEditingValue(
+          text: '武汉市',
+          selection: TextSelection.collapsed(offset: 3),
+        ),
+      );
       tester.testTextInput.hide();
       await tester.pumpAndSettle();
       await tester.tap(find.text('搜索'));
       await tester.pumpAndSettle();
     }
 
+    api.failureStatus = 404;
+    tester
+        .state<ScaffoldMessengerState>(find.byType(ScaffoldMessenger))
+        .clearSnackBars();
+    await tester.pumpAndSettle();
+    await search();
+    expect(api.requests.single, {'query': '验收地点', 'region': '武汉市'});
+    expect(find.textContaining('当前服务器尚未开通地点搜索'), findsOneWidget);
+    expect(_text(tester, '出生地点名称（可选）'), '验收地点');
+    expect(_text(tester, '纬度 WGS84（可选）'), isEmpty);
+    api.failureStatus = null;
     api.coordinateSystem = 'BD09';
     await search();
     expect(_text(tester, '纬度 WGS84（可选）'), isEmpty);
@@ -272,6 +311,7 @@ void main() {
     await tester.tap(find.text('测试地点甲'));
     await tester.pumpAndSettle();
     expect(api.requests, [
+      {'query': '验收地点', 'region': '武汉市'},
       {'query': '验收地点', 'region': '武汉市'},
       {'query': '验收地点', 'region': '武汉市'},
     ]);
@@ -302,7 +342,7 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      final search = find.widgetWithText(OutlinedButton, '在百度地图搜索');
+      final search = find.widgetWithText(OutlinedButton, '打开百度地图查看');
       await tester.ensureVisible(search);
       expect(tester.widget<OutlinedButton>(search).onPressed, isNull);
       await tester.enterText(_field('出生地点名称（可选）'), '北京 公共地点 A&B');
@@ -311,6 +351,8 @@ void main() {
       await tester.ensureVisible(search);
       await tester.tap(search);
       await tester.pumpAndSettle();
+      expect(find.textContaining('手机的返回键或返回手势'), findsOneWidget);
+      expect(find.textContaining('最近任务'), findsOneWidget);
       await tester.tap(find.text('取消'));
       await tester.pumpAndSettle();
       expect(launched, isEmpty);

@@ -254,9 +254,14 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
             children: [
               const Text('百度地图将收到当前地点关键词和搜索城市。'),
               TextFormField(
-                decoration: const InputDecoration(labelText: '搜索城市'),
+                decoration: const InputDecoration(
+                  labelText: '搜索城市',
+                  hintText: '可用拼音选字，例如北京市',
+                ),
                 maxLength: 50,
-                enableSuggestions: false,
+                keyboardType: TextInputType.text,
+                enableSuggestions: true,
+                enableIMEPersonalizedLearning: false,
                 autocorrect: false,
                 validator: (value) =>
                     (value?.trim().isEmpty ?? true) ? '请输入出生地点所在城市' : null,
@@ -294,12 +299,17 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
           );
       if (!_current(session, epoch)) return;
       if (response is! NetworkSuccess<Map<String, dynamic>>) {
-        _notice(
-          response is NetworkFailure<Map<String, dynamic>> &&
-                  response.statusCode == 429
-              ? '搜索额度暂不可用，请稍后重试或手填坐标。'
-              : '暂时无法搜索出生地点，你仍可手填坐标。',
-        );
+        final status = response is NetworkFailure<Map<String, dynamic>>
+            ? response.statusCode
+            : null;
+        _notice(switch (status) {
+          404 || 405 => '当前服务器尚未开通地点搜索，可先打开百度地图查看。',
+          422 => '请核对城市和地点名称，可用拼音选字后再搜索。',
+          429 => '搜索额度暂不可用，请稍后重试或手填坐标。',
+          401 || 403 => '当前登录状态无法使用地点搜索，请检查登录状态。',
+          503 => '地点搜索服务暂不可用，可先打开百度地图查看或手填坐标。',
+          _ => '连接地点搜索失败，请检查网络后重试。',
+        });
         return;
       }
       final rawPlaces = response.data['places'];
@@ -399,8 +409,10 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
       return;
     }
     final confirmed = await _confirm(
-      title: '在百度地图搜索',
-      message: '百度地图将收到当前填写的地点名称。查询后可返回本页继续填写。',
+      title: '打开百度地图查看',
+      message:
+          '百度地图会收到当前地点名称。查完后用手机的返回键或返回手势，'
+          '也可以在最近任务里切回 EliteSync。选中的地点和坐标需要手动填写。',
       confirm: '打开百度地图',
       cancel: '取消',
     );
@@ -590,6 +602,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
     String? hint,
     String? Function(String?)? validator,
     TextInputType? keyboard,
+    bool enableSuggestions = false,
   }) => Padding(
     padding: const EdgeInsets.symmetric(vertical: 6),
     child: TextFormField(
@@ -599,7 +612,8 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
       validator: validator,
       keyboardType: keyboard,
       autocorrect: false,
-      enableSuggestions: false,
+      enableSuggestions: enableSuggestions,
+      enableIMEPersonalizedLearning: false,
       onChanged: (_) => setState(() => _profile = null),
     ),
   );
@@ -734,7 +748,13 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                       '0': '第一次当地时间',
                       '1': '第二次当地时间',
                     }, (v) => _fold = v),
-                    _field('出生地点名称（可选）', _place, hint: '例如医院、街道或县区'),
+                    _field(
+                      '出生地点名称（可选）',
+                      _place,
+                      hint: '例如医院、街道或县区',
+                      keyboard: TextInputType.text,
+                      enableSuggestions: true,
+                    ),
                     OutlinedButton.icon(
                       onPressed:
                           _canChangeDraft && _place.text.trim().isNotEmpty
@@ -749,7 +769,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                           ? _searchBaiduMap
                           : null,
                       icon: const Icon(Icons.map_outlined),
-                      label: const Text('在百度地图搜索'),
+                      label: const Text('打开百度地图查看'),
                     ),
                     _field(
                       '纬度 WGS84（可选）',
