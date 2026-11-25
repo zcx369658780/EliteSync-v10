@@ -1,10 +1,10 @@
 # CURRENT ENTRY 2026-11-26｜V2 排盘拼音输入与百度地图返回提示
 
-**NATAL_IME_AND_MAP_RETURN_LOCAL_PASS / APK_1011812_SIGNED / DEVICE_UPDATE_AND_PROVIDER_PENDING / R1_PARTIAL**
+**NATAL_IME_AND_MAP_RETURN_LOCAL_PASS / APK_1011812_PHONE_UPDATE_PASS / PHONE_FUNCTION_AND_PROVIDER_PENDING / R1_PARTIAL**
 
 - Owner 在 1011811 实机反馈拼音输入后搜索不可用，打开百度地图后无返回提示。具名手机已安装并启用搜狗输入法。Flutter Android 在关闭输入建议时会设置无建议和可见密码输入标志，原出生地点与城市字段均使用了这项配置。
 - 源码 **16993214a5ad6785355fb60048e5740aed10bf81** 对两个地点输入框启用系统候选，地图打开前说明系统返回键、手势及最近任务，并区分服务未上线、输入校验、额度及其他失败提示。Dart 分析无问题，Flutter 定向 47/47。测试模拟拼音组合后提交汉字，实际手机输入候选和返回行为待验。
-- 1011812 APK 与 1011811 同包同签名，arm64-v8a，AOT 与 AAR 字节一致。SHA-256 为 b47502e1340287f3f36e4f862c81f18625a4feacb721370d9827d0f539898165。私有回执 CANDIDATE_1011812.json，待该 SHA 和具名手机的原位更新授权。
+- 1011812 APK 与 1011811 同包同签名，arm64-v8a，AOT 与 AAR 字节一致。SHA-256 为 b47502e1340287f3f36e4f862c81f18625a4feacb721370d9827d0f539898165。Owner 授权后在具名 25060RK16C 手机上执行一次原位升级。版本与已装 APK 哈希回读通过，应用标识、数据目录、首次安装时间及 EliteSync 包清单均一致。私有回执 DEVICE_1011812_INSTALL_RECEIPT_20261126.json，SHA-256 为 ecfe3e9ad25429bce980f5a54f0b80ea1d7b4ed896b25b20d375ab15b76a274e。
 - 已记录的 Staging 源码 7e0009df4fe69e48967c4fbc111717626c85ed80 不含排盘地点搜索路由。新路由部署、百度 Web AK/SK 与 WGS84 真实回传仍待验证。公网 443 探测 0 次。
 
 ---
