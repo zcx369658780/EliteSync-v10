@@ -56,6 +56,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   bool _picking = false;
   int _peerEpoch = 0;
   ChatPickedMedia? _pendingMedia;
+  String? _pendingMediaRoom;
   ChatAttachmentKind? _pendingMediaKind;
   int? _readyMediaAsset;
   String? _uploadStatus;
@@ -308,6 +309,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _historyExpanded = false;
       _historyError = null;
       _pendingMedia = null;
+      _pendingMediaRoom = null;
       _pendingMediaKind = null;
       _readyMediaAsset = null;
       _uploadStatus = null;
@@ -464,6 +466,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       if (response is NetworkSuccess<Map<String, dynamic>>) {
         _acknowledged.addAll(ids);
         ref.invalidate(conversationListProvider);
+      } else if (response is NetworkFailure<Map<String, dynamic>> &&
+          const {401, 403, 404}.contains(response.statusCode)) {
+        _cache.revokeObject(_cacheKey);
+        _reject('当前无法读取对话，请检查登录、连接与双方消息同意。');
       }
     });
   }
@@ -504,6 +510,18 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         revalidation == cache.onlineRevalidationEpoch;
     Future<bool> showOfflineText(SessionState session) async {
       if (!cache.enterOfflineForChatText(widget.peerId)) return false;
+      // Close online-only content before waiting on the secure store.
+      if (!_offline) {
+        _evictImages();
+        setState(() {
+          _offline = true;
+          _messages = [];
+          _images = {};
+          _previewImageId = null;
+          _replyId = null;
+          _replyLabel = null;
+        });
+      }
       final saved = await cache.readOfflineChatText(widget.peerId);
       if (!current(session) ||
           saved == null ||
@@ -1066,6 +1084,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         !_current(session, epoch)) {
       return false;
     }
+    if (_offline) return false;
     // An unconfirmed POST owns its immutable payload and idempotency key.
     // A changed controller value must never replace that logical attempt.
     final attempt =
@@ -1112,6 +1131,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     }
     _attempt = attempt;
     _retryAsset = attempt.attachmentIds.firstOrNull;
+    if (_offline) return false;
     // Keep a ready upload retryable until its immutable message attempt owns it.
     if (asset != null &&
         _readyMediaAsset == asset &&
@@ -1131,6 +1151,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             'receiver_id': attempt.peerUserId,
             'content': attempt.content,
             'client_message_id': attempt.clientMessageId,
+            if (_roomKey != null) 'expected_room_key': _roomKey,
             if (attempt.replyToMessageId != null)
               'reply_to_message_id': attempt.replyToMessageId,
             if (attempt.attachmentIds.isNotEmpty)
@@ -1145,6 +1166,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
               result.statusCode! >= 500 ||
               result.statusCode == 408 ||
               result.statusCode == 429);
+      if (result is NetworkFailure<Map<String, dynamic>> &&
+          const {401, 403, 404}.contains(result.statusCode)) {
+        _cache.revokeObject(_cacheKey);
+      }
       _reject('发送未完成，服务器未授权或当前会话已失效。', preserveAttempt: unknown);
       setState(
         () => _sendStatus = unknown
@@ -1321,6 +1346,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     if (_draftBusy) return;
     setState(() {
       _pendingMedia = null;
+      _pendingMediaRoom = null;
       _pendingMediaKind = null;
       _readyMediaAsset = null;
       _uploadStatus = null;
@@ -1349,6 +1375,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     _session = session;
     var epoch = _epoch;
     final peerEpoch = _peerEpoch;
+    final selectionRoom = retry ? _pendingMediaRoom : _roomKey;
     setState(() => _busy = true);
     try {
       if (!await _canStartSubmission(session, epoch) ||
@@ -1370,7 +1397,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           _sessionChanged ||
           _timeLocked ||
           !identical(ref.read(sessionProvider).asData?.value, session) ||
-          picked == null) {
+          picked == null ||
+          _roomKey != selectionRoom) {
         return;
       }
       // A native picker crosses pause/resume. Obtain a fresh current read for
@@ -1378,6 +1406,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       epoch = _epoch;
       setState(() {
         _pendingMedia = picked;
+        _pendingMediaRoom = selectionRoom;
         _pendingMediaKind = kind;
         if (!retry) _readyMediaAsset = null;
         _uploadStatus = '正在准备${kind.label}…';
@@ -1403,6 +1432,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         }
         return;
       }
+      if (check.data['room_key'] != selectionRoom || _roomKey != selectionRoom) {
+        _reloadForNewRoom();
+        return;
+      }
+      if (_offline) return;
       // The picker invalidates the draft grant on pause. Its current peer
       // read also authorizes restoring that draft, even while full history
       // and image loading are still in flight.
@@ -1453,6 +1487,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       if (const {401, 403, 404}.contains(status)) {
         _cache.revokeObject(_cacheKey);
         _reject('当前无法发送附件，请检查登录与双方消息同意。');
+      } else if (_attempt == null &&
+          (status == 409 ||
+              (status == 422 && _pendingMedia?.clientUploadId != null))) {
+        _removePendingMedia();
+        setState(() => _uploadStatus = '此次上传已失效，请重新选择附件。');
       } else if (_attempt != null) {
         setState(() => _sendStatus = '发送结果尚未确认，请重试发送。');
       } else {
@@ -1547,6 +1586,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           _historyExpanded = false;
           _historyError = null;
           _pendingMedia = null;
+          _pendingMediaRoom = null;
           _pendingMediaKind = null;
           _readyMediaAsset = null;
           _uploadStatus = null;

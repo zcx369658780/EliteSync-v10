@@ -73,8 +73,9 @@ class ConversationAtomicSendService
         string $appVersion,
         string $sourcePage,
         ?int $replyToMessageId = null,
+        ?string $expectedRoomKey = null,
     ): array {
-        return DB::transaction(function () use ($sender, $receiverId, $content, $attachmentIds, $clientMessageId, $fingerprint, $appVersion, $sourcePage, $replyToMessageId) {
+        return DB::transaction(function () use ($sender, $receiverId, $content, $attachmentIds, $clientMessageId, $fingerprint, $appVersion, $sourcePage, $replyToMessageId, $expectedRoomKey) {
             // No consistent read may precede the pair lock under MariaDB RR.
             $pair = User::lockCurrentRows([(int) $sender->id, $receiverId]);
             foreach ([(int) $sender->id, $receiverId] as $id) {
@@ -90,14 +91,20 @@ class ConversationAtomicSendService
                     && $freshToken->tokenable_type === $sender->getMorphClass(), 401, 'SESSION_REVOKED');
                 abort_if($freshToken->expires_at && $freshToken->expires_at->lte(now('UTC')), 401, 'ONLINE_LOGIN_EXPIRED');
             }
+            $authorization = null;
+            if ($expectedRoomKey !== null) {
+                $authorization = $this->capabilities->authorizeSend((int) $sender->id, $receiverId, true);
+                if (! $authorization['allowed'] || $authorization['room_key'] !== $expectedRoomKey) {
+                    return ['ok' => false, 'status' => 404, 'message' => 'chat unavailable'];
+                }
+            }
             if ($clientMessageId !== null) {
                 $replay = $this->replay((int) $sender->id, $clientMessageId, (string) $fingerprint, $receiverId);
                 if ($replay) {
                     return $replay;
                 }
             }
-
-            $authorization = $this->capabilities->authorizeSend((int) $sender->id, $receiverId, true);
+            $authorization ??= $this->capabilities->authorizeSend((int) $sender->id, $receiverId, true);
             if (! $authorization['allowed']) {
                 return ['ok' => false, 'status' => 404, 'message' => 'chat unavailable'];
             }

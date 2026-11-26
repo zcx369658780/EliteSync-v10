@@ -105,110 +105,113 @@ class AuthLocalDataSource {
     String? expectedDeviceId,
     bool Function()? isCurrent,
     ({String sessionId, DateTime loginAt})? verifiedResume,
-  }) => _serialize(() async {
-    void checkEpoch() {
-      if ((expectedEpoch != null && !isCurrentAttempt(expectedEpoch)) ||
-          (isCurrent != null && !isCurrent())) {
-        throw StateError('Login changed; obsolete response was discarded.');
-      }
-    }
-
-    checkEpoch();
+    ({DateTime wall, Stopwatch elapsed})? receiptTime,
+  }) {
     final cache = PrivateCacheService.forStorage(_secureStorage);
-    final receiptTime = cache.markLoginReceiptTime();
-    await _secureStorage.delete(CacheKeys.privateResumeAllowed);
-    checkEpoch();
-    if (await _secureStorage.read(CacheKeys.privateResumeAllowed) != null) {
-      throw StateError('Previous session recovery could not be disabled.');
-    }
-    if (retention != null &&
-        expectedDeviceId != null &&
-        retention['device_id'] != expectedDeviceId) {
-      throw StateError('Login device binding did not match.');
-    }
-    if (verifiedResume != null &&
-        (retention == null ||
-            expectedEpoch == null ||
-            expectedDeviceId == null ||
-            isCurrent == null)) {
-      cache.lock();
-      throw StateError(
-        'Verified session continuation requires a current binding.',
-      );
-    }
-    final cleanup = verifiedResume == null
-        ? await cache.clearCurrentAccount()
-        : null;
-    checkEpoch();
-    if (cleanup?.status == PrivateCachePurgeStatus.failed ||
-        !await _localStorage.purgeLegacyPrivateCache()) {
-      cache.lock();
-      throw StateError('Private cache cleanup failed; login remains locked.');
-    }
-    checkEpoch();
-    final trusted = await cache.establishLogin(
-      userId: session.user.id,
-      retention: retention,
-      receiptTime: receiptTime,
-      verifiedResume: verifiedResume,
-      isCurrent: verifiedResume == null
-          ? null
-          : () {
-              try {
-                checkEpoch();
-                return true;
-              } catch (_) {
-                return false;
-              }
-            },
-    );
-    if (retention != null && !trusted) {
-      throw StateError('Login retention receipt could not be verified.');
-    }
-    checkEpoch();
-    await _secureStorage.write(CacheKeys.accessToken, session.accessToken);
-    await _secureStorage.write(CacheKeys.refreshToken, session.refreshToken);
-    checkEpoch();
-    await _clearAccountScopedCaches();
-    checkEpoch();
-    await _localStorage.setJson(CacheKeys.lastKnownProfile, {
-      'id': session.user.id,
-      'phone': session.user.phone,
-      'role': session.user.role,
-      'nickname': session.user.nickname,
-      'name': session.user.nickname,
-      'birthday': session.user.birthday,
-      'birth_time': session.user.birthTime,
-      'gender': session.user.gender,
-      'city': session.user.city,
-      'relationship_goal': session.user.relationshipGoal,
-      'target': session.user.relationshipGoal,
-      'birth_place': session.user.birthPlace,
-      'birth_lat': session.user.birthLat,
-      'birth_lng': session.user.birthLng,
-      'avatar_url': session.user.avatarUrl,
-      'verified': session.user.verified,
-      'realname_verified': session.user.verified,
-    });
-    checkEpoch();
-    if (retention != null && trusted && session.refreshToken.isNotEmpty) {
-      final binding = jsonEncode({
-        'access_token': session.accessToken,
-        'refresh_token': session.refreshToken,
-        'user_id': session.user.id,
-        'device_id': retention['device_id'],
-        'session_id': retention['session_id'].toString(),
-        'login_at': retention['login_at'],
-      });
-      await _secureStorage.write(CacheKeys.privateResumeAllowed, binding);
+    final timing = receiptTime ?? cache.markLoginReceiptTime();
+    return _serialize(() async {
+      void checkEpoch() {
+        if ((expectedEpoch != null && !isCurrentAttempt(expectedEpoch)) ||
+            (isCurrent != null && !isCurrent())) {
+          throw StateError('Login changed; obsolete response was discarded.');
+        }
+      }
+
       checkEpoch();
-      if (await _secureStorage.read(CacheKeys.privateResumeAllowed) !=
-          binding) {
-        throw StateError('Session recovery marker was not saved.');
+      await _secureStorage.delete(CacheKeys.privateResumeAllowed);
+      checkEpoch();
+      if (await _secureStorage.read(CacheKeys.privateResumeAllowed) != null) {
+        throw StateError('Previous session recovery could not be disabled.');
+      }
+      if (retention != null &&
+          expectedDeviceId != null &&
+          retention['device_id'] != expectedDeviceId) {
+        throw StateError('Login device binding did not match.');
+      }
+      if (verifiedResume != null &&
+          (retention == null ||
+              expectedEpoch == null ||
+              expectedDeviceId == null ||
+              isCurrent == null)) {
+        cache.lock();
+        throw StateError(
+          'Verified session continuation requires a current binding.',
+        );
+      }
+      final cleanup = verifiedResume == null
+          ? await cache.clearCurrentAccount()
+          : null;
+      checkEpoch();
+      if (cleanup?.status == PrivateCachePurgeStatus.failed ||
+          !await _localStorage.purgeLegacyPrivateCache()) {
+        cache.lock();
+        throw StateError('Private cache cleanup failed; login remains locked.');
       }
       checkEpoch();
-    }
-  });
+      final trusted = await cache.establishLogin(
+        userId: session.user.id,
+        retention: retention,
+        receiptTime: timing,
+        verifiedResume: verifiedResume,
+        isCurrent: verifiedResume == null
+            ? null
+            : () {
+                try {
+                  checkEpoch();
+                  return true;
+                } catch (_) {
+                  return false;
+                }
+              },
+      );
+      if (retention != null && !trusted) {
+        throw StateError('Login retention receipt could not be verified.');
+      }
+      checkEpoch();
+      await _secureStorage.write(CacheKeys.accessToken, session.accessToken);
+      await _secureStorage.write(CacheKeys.refreshToken, session.refreshToken);
+      checkEpoch();
+      await _clearAccountScopedCaches();
+      checkEpoch();
+      await _localStorage.setJson(CacheKeys.lastKnownProfile, {
+        'id': session.user.id,
+        'phone': session.user.phone,
+        'role': session.user.role,
+        'nickname': session.user.nickname,
+        'name': session.user.nickname,
+        'birthday': session.user.birthday,
+        'birth_time': session.user.birthTime,
+        'gender': session.user.gender,
+        'city': session.user.city,
+        'relationship_goal': session.user.relationshipGoal,
+        'target': session.user.relationshipGoal,
+        'birth_place': session.user.birthPlace,
+        'birth_lat': session.user.birthLat,
+        'birth_lng': session.user.birthLng,
+        'avatar_url': session.user.avatarUrl,
+        'verified': session.user.verified,
+        'realname_verified': session.user.verified,
+      });
+      checkEpoch();
+      if (retention != null && trusted && session.refreshToken.isNotEmpty) {
+        final binding = jsonEncode({
+          'access_token': session.accessToken,
+          'refresh_token': session.refreshToken,
+          'user_id': session.user.id,
+          'device_id': retention['device_id'],
+          'session_id': retention['session_id'].toString(),
+          'login_at': retention['login_at'],
+        });
+        await _secureStorage.write(CacheKeys.privateResumeAllowed, binding);
+        checkEpoch();
+        if (await _secureStorage.read(CacheKeys.privateResumeAllowed) !=
+            binding) {
+          throw StateError('Session recovery marker was not saved.');
+        }
+        checkEpoch();
+      }
+    });
+  }
 
   /// Publish visible credentials through the same queue as login and logout.
   /// This does not establish or renew a trusted-login retention receipt.

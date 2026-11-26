@@ -100,6 +100,7 @@ class MessageController extends Controller
             'reply_to_message_id' => ['nullable', 'integer', 'min:1'],
             'attachment_ids' => ['nullable', 'array'],
             'attachment_ids.*' => ['integer', 'min:1', 'distinct'],
+            'expected_room_key' => ['nullable', 'string', 'max:255'],
             'client_message_id' => ['nullable', 'string', 'size:36', 'regex:/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/'],
         ]);
 
@@ -134,6 +135,7 @@ class MessageController extends Controller
             appVersion: (string) $request->header('X-App-Version', 'unknown'),
             sourcePage: (string) $request->header('X-Source-Page', 'unknown'),
             replyToMessageId: $replyId,
+            expectedRoomKey: $data['expected_room_key'] ?? null,
         ));
     }
 

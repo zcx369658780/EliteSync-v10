@@ -4,11 +4,13 @@ namespace Tests\Feature;
 
 use App\Models\DatingMatch;
 use App\Models\MediaAsset;
+use App\Models\MediaProcessingJob;
 use App\Models\User;
 use App\Services\Accounts\DeviceSessions;
 use App\Services\LiveConsentService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -84,6 +86,51 @@ final class V1007PrivateMediaTest extends TestCase
         $second = $upload($this->image())->assertOk()->json('asset.id');
         $this->assertNotSame($first, $second);
         $this->assertDatabaseCount('media_assets', 2);
+    }
+
+    public function test_private_image_retry_recovers_file_after_registration_rolls_back(): void
+    {
+        auth('sanctum')->forgetUser();
+        auth('web')->forgetUser();
+        $this->app['auth']->forgetGuards();
+        $tokens = app(DeviceSessions::class)->issue($this->sender, successfulLogin: true);
+        $this->withToken($tokens['access_token']);
+        $key = '9db13c24-809d-49e4-a3fd-f9b41daaecef';
+        $upload = fn () => $this->post('/api/v1/media', [
+            'media_type' => 'image', 'file' => $this->image(), 'client_upload_id' => $key,
+        ], ['Accept' => 'application/json']);
+        $interrupt = true;
+        Event::listen('eloquent.creating: '.MediaProcessingJob::class, function () use (&$interrupt) {
+            if ($interrupt) {
+                throw new \RuntimeException('Synthetic registration interruption');
+            }
+        });
+
+        $upload()->assertServerError();
+        $this->assertDatabaseCount('media_assets', 0);
+        $this->assertDatabaseCount('media_processing_jobs', 0);
+        $this->assertCount(1, Storage::disk('v1007')->allFiles());
+
+        $interrupt = false;
+        $id = $upload()->assertOk()->assertJsonPath('asset.status', 'ready')->json('asset.id');
+        $upload()->assertOk()->assertJsonPath('asset.id', $id);
+        $this->assertDatabaseCount('media_assets', 1);
+        $this->assertDatabaseCount('media_processing_jobs', 2);
+        $this->assertCount(1, Storage::disk('v1007')->allFiles());
+        $asset = MediaAsset::findOrFail($id);
+        $this->assertSame(base64_decode(self::PNG), Storage::disk('v1007')->get($asset->storage_key));
+
+        $disk = Storage::disk('v1007');
+        $disk->delete($asset->storage_key);
+        $upload()->assertStatus(503);
+        $disk->put($asset->storage_key, base64_decode(self::PNG));
+        $upload()->assertOk()->assertJsonPath('asset.id', $id);
+
+        $asset->update(['status' => 'processing']);
+        $upload()->assertStatus(503);
+        $asset->update(['status' => 'deleted']);
+        $upload()->assertConflict();
+        $this->assertDatabaseCount('media_processing_jobs', 2);
     }
 
     public function test_private_attachment_download_requires_current_participant_consent(): void

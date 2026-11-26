@@ -568,6 +568,61 @@ void main() {
     },
   );
 
+  testWidgets('a late list update only revokes the changed peer while offline', (
+    tester,
+  ) async {
+    final f = await _mount(tester);
+    try {
+      expect(await f.cache.saveAuthorizedChatText(
+        3,
+        {
+          'room_key': 'other-old-room',
+          'messages': [
+            {'id': 5, 'content': 'Another synthetic conversation'},
+          ],
+          'offline_text_grant': {
+            'scope': 'conversation_text_v1',
+            'account_id': 1,
+            'peer_id': 3,
+            'session_id': 'synthetic-session',
+            'device_id': 'synthetic-retained-device',
+            'room_key': 'other-old-room',
+            'issued_at': '2026-11-08T00:00:00Z',
+            'expires_at': '2026-11-09T00:00:00Z',
+          },
+        },
+        expectedAccountId: 1,
+        isCurrent: () => true,
+      ), isTrue);
+      final list = Completer<NetworkResult<Map<String, dynamic>>>();
+      final chat = Completer<NetworkResult<Map<String, dynamic>>>();
+      f.api.listRead = list;
+      f.api.chatRead = chat;
+      _pause(tester);
+      _resume(tester);
+      await tester.pumpAndSettle();
+
+      chat.complete(_Api.unavailable('/api/v1/messages'));
+      await tester.pumpAndSettle();
+      expect(find.text('Synthetic previous message'), findsOneWidget);
+      expect(await f.cache.readOfflineChatText(3), isNotNull);
+      list.complete(const NetworkSuccess({
+        'ok': true,
+        'items': [
+          {'peer_user_id': 2, 'conversation_id': 12, 'room_key': 'synthetic-room'},
+          {'peer_user_id': 3, 'conversation_id': 14, 'room_key': 'other-new-room'},
+        ],
+      }));
+      await tester.pumpAndSettle();
+      expect(f.cache.isOffline, isTrue);
+      expect(await f.cache.readOfflineChatText(2), isNotNull);
+      expect(await f.cache.readOfflineChatText(3), isNull);
+      expect(find.text('Synthetic previous message'), findsOneWidget);
+    } finally {
+      await _dispose(tester, f);
+    }
+  });
+
   for (final listFirst in [true, false]) {
     testWidgets('new generation list response retires pre-background text '
         '${listFirst ? 'before' : 'after'} the chat transport fails', (

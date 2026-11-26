@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
+import 'package:flutter_elitesync_module/core/storage/private_cache_service.dart';
 import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
 import 'package:flutter_elitesync_module/core/storage/secure_storage_service.dart';
 import 'package:flutter_elitesync_module/features/auth/data/datasource/auth_local_data_source.dart';
@@ -130,6 +131,47 @@ void main() {
     expect(await cleanup, isTrue);
     expect(await secure.read(CacheKeys.accessToken), isNull);
     expect(await secure.read(CacheKeys.refreshToken), isNull);
+  });
+
+  test('login receipt anchors before queued credential storage', () async {
+    final secure = _HeldSecureStorage();
+    final source = AuthLocalDataSource(
+      secureStorage: secure,
+      localStorage: _InMemoryLocalStorageService(),
+    );
+    final issued = DateTime.utc(2026, 11, 27);
+    var elapsed = Duration.zero;
+    final cache = PrivateCacheService.forTesting(
+      secure,
+      wallNow: () => issued.add(elapsed),
+      elapsed: () => elapsed,
+    );
+    final preceding = source.persistVisibleCredentials(
+      accessToken: 'synthetic-preceding', isCurrent: () => true,
+    );
+    await secure.entered.future;
+
+    final login = source.persistSession(
+      const AuthSession(
+        accessToken: 'synthetic-access',
+        refreshToken: 'synthetic-refresh',
+        user: AuthUser(id: 1, phone: 'synthetic', role: 'user'),
+      ),
+      retention: {
+        'user_id': 1,
+        'device_id': 'synthetic-device',
+        'session_id': 'synthetic-login',
+        'login_at': issued.toIso8601String(),
+        'server_now': issued.toIso8601String(),
+        'online_expires_at': issued.add(const Duration(days: 15)).toIso8601String(),
+        'purge_at': issued.add(const Duration(days: 30)).toIso8601String(),
+      },
+    );
+    elapsed = const Duration(minutes: 2);
+    secure.release.complete();
+    await preceding;
+    await login;
+    expect(cache.isUnlocked, isTrue);
   });
 
   test('persistSession clears previous account scoped caches', () async {

@@ -177,6 +177,7 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
         if (result is! NetworkSuccess<Map<String, dynamic>>) {
           throw StateError('Session not verified.');
         }
+        final receiptTime = cache.markLoginReceiptTime();
         final data = result.data;
         final user = Map<String, dynamic>.from(data['user'] as Map);
         final retention = Map<String, dynamic>.from(
@@ -222,6 +223,7 @@ class SessionNotifier extends AsyncNotifier<SessionState> {
             expectedEpoch: epoch,
             expectedDeviceId: candidate.deviceId,
             isCurrent: current,
+            receiptTime: receiptTime,
             verifiedResume: (
               sessionId: candidate.sessionId,
               loginAt: candidate.loginAt,

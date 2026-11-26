@@ -9,7 +9,9 @@ use App\Models\User;
 use App\Services\Accounts\AccountClosure;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use RuntimeException;
 use Throwable;
 
 class MediaAssetService
@@ -61,7 +63,7 @@ class MediaAssetService
         $uploadId = strtolower($data['client_upload_id']);
         $sha256 = hash_file('sha256', $file->getPathname());
         if ($sha256 === false) {
-            throw new \RuntimeException('Private image could not be read');
+            throw new RuntimeException('Private image could not be read');
         }
 
         return DB::transaction(function () use ($actor, $file, $data, $disk, $uploadId, $sha256) {
@@ -76,12 +78,30 @@ class MediaAssetService
             if ($previous) {
                 abort_if($previous->trashed() || $previous->storage_disk !== $disk ||
                     $previous->media_type !== 'image' || $previous->sha256 !== $sha256, 409, 'Upload attempt conflicts');
-                abort_if($previous->status === 'ready' && ! $previous->isBackingObjectAvailable(), 409, 'Upload attempt is unavailable');
+                if (in_array($previous->error_code, ['mime_not_allowed', 'upload_too_large'], true)) {
+                    return $previous;
+                }
+                abort_if(in_array($previous->status, ['uploading', 'uploaded', 'processing'], true), 503, 'Upload attempt is processing');
+                abort_unless($previous->status === 'ready', 409, 'Upload attempt is unavailable');
+                $filesystem = Storage::disk($disk);
+                // Local storage can report false while a mount is unavailable.
+                // Keep the attempt retryable without minting another asset.
+                abort_unless($filesystem->exists($previous->storage_key), 503, 'Upload object unavailable');
+                $storedHash = $filesystem->checksum($previous->storage_key, ['checksum_algo' => 'sha256']);
+                if ($storedHash === false) {
+                    throw new RuntimeException('Private image checksum unavailable');
+                }
+                abort_unless($storedHash === $sha256, 409, 'Upload attempt conflicts');
 
                 return $previous;
             }
 
+            // The owner lock spans the outer HTTP transaction. Keep the object
+            // recoverable by this attempt even if its database write rolls back.
+            $key = sprintf('private-image-retry/%d/%s', $owner->id, hash('sha256', $uploadId));
+
             return $this->registerUploaded($owner, $file, array_replace($data, [
+                'storage_key' => $key,
                 'client_upload_id' => $uploadId,
                 'sha256' => $sha256,
             ]));
@@ -139,7 +159,9 @@ class MediaAssetService
         }
 
         try {
-            $stored = $storage->storeUploadedFile($file, $asset->storage_key);
+            $stored = $asset->client_upload_id === null
+                ? $storage->storeUploadedFile($file, $asset->storage_key)
+                : $this->storeRetryableImage($storage, $file, $asset->storage_key, $data['sha256']);
 
             $realPath = $file->getRealPath();
 
@@ -196,6 +218,24 @@ class MediaAssetService
         }
 
         return $asset->refresh();
+    }
+
+    private function storeRetryableImage(MediaStorageService $storage, UploadedFile $file, string $key, string $sha256): array
+    {
+        $disk = Storage::disk($storage->disk());
+        if (! $disk->exists($key)) {
+            // The private disks are local. Rename the verified temporary file
+            // into place so an interrupted write cannot replace committed bytes.
+            $temporary = $key.'.pending';
+            $storage->storeUploadedFile($file, $temporary);
+            if ($disk->checksum($temporary, ['checksum_algo' => 'sha256']) !== $sha256
+                || ! $disk->move($temporary, $key)) {
+                throw new RuntimeException('Private image could not be finalized');
+            }
+        }
+        abort_unless($disk->checksum($key, ['checksum_algo' => 'sha256']) === $sha256, 409, 'Upload attempt conflicts');
+
+        return ['disk' => $storage->disk(), 'provider' => 'local', 'storage_key' => $key, 'public_url' => null];
     }
 
     public function providerFromDisk(string $disk): string

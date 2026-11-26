@@ -91,7 +91,12 @@ class ProcessMediaAssetJob implements ShouldQueue
                 'processed_at' => now(),
             ])->save();
 
-            $cache->rememberAssetSnapshot($asset->refresh());
+            // Keyed private uploads read their receipt from the database.
+            // Avoid publishing private metadata while the outer transaction
+            // can still roll back or race with erasure.
+            if ($asset->client_upload_id === null) {
+                $cache->rememberAssetSnapshot($asset->refresh());
+            }
         });
     }
 }

@@ -156,6 +156,8 @@ class _MediaApi extends ApiClient {
   bool includeImage = false;
   int messageCount = 1;
   bool denied = false;
+  bool denySend = false;
+  String roomKey = 'fictional-room';
   final bodies = <Map<String, dynamic>>[];
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
@@ -171,9 +173,9 @@ class _MediaApi extends ApiClient {
           error: TimeoutException('fictional'),
         )
       : NetworkSuccess({
-          'room_key': 'fictional-room',
+          'room_key': roomKey,
           'offline_text_grant': syntheticOfflineTextGrant(
-            'fictional-room',
+            roomKey,
             peerId: query?['peer_id'] as int? ?? 2,
             issuedAt: leaseIssuedAt,
           ),
@@ -211,6 +213,9 @@ class _MediaApi extends ApiClient {
     }
     final data = Map<String, dynamic>.from(body as Map);
     bodies.add(data);
+    if (denySend) {
+      return const NetworkFailure(message: 'fictional denied', statusCode: 404);
+    }
     return NetworkSuccess({
       'id': 9,
       'client_message_id': data['client_message_id'],
@@ -341,6 +346,20 @@ class _DraftStore extends SyntheticPrivateStore {
   Completer<void>? deleteEntered;
   Completer<void>? blockWrite;
   Completer<void>? writeEntered;
+  Completer<void>? offlineReadStarted;
+  Completer<void>? releaseOfflineRead;
+
+  @override
+  Future<String?> read(String key) async {
+    if (releaseOfflineRead != null &&
+        key.endsWith(':live-chat%3A2') &&
+        PrivateCacheService.forStorage(this).isOffline) {
+      if (!offlineReadStarted!.isCompleted) offlineReadStarted!.complete();
+      await releaseOfflineRead!.future;
+    }
+    return super.read(key);
+  }
+
   bool draftKey(String key) => key.contains(':live-chat-draft%3A');
   @override
   Future<void> write(String key, String value) async {
@@ -424,14 +443,14 @@ class _ConfirmedVoiceApi extends ApiClient {
   }
 }
 
-Future<_DraftStore> _draftStore() async {
+Future<_DraftStore> _draftStore({String deviceId = 'draft-test-device'}) async {
   final secure = _DraftStore();
   final now = DateTime.now().toUtc();
   await PrivateCacheService.forStorage(secure).establishLogin(
     userId: 1,
     retention: {
       'user_id': 1,
-      'device_id': 'draft-test-device',
+      'device_id': deviceId,
       'session_id': 1,
       'login_at': now.toIso8601String(),
       'server_now': now.toIso8601String(),
@@ -1016,6 +1035,48 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
+  testWidgets('confirmed send denial closes the offline text grant', (
+    tester,
+  ) async {
+    final secure = await syntheticPrivateLogin();
+    final api = _MediaApi()..denySend = true;
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    expect(find.text('retained conversation'), findsOneWidget);
+    await tester.enterText(find.byType(TextField), 'synthetic unsent text');
+    await tester.tap(find.text('发送'));
+    await tester.pumpAndSettle();
+    expect(api.bodies, hasLength(1));
+    await tester.pumpWidget(const SizedBox());
+    api.unavailable = true;
+    await _show(tester, api, secureStore: secure);
+    await tester.pumpAndSettle();
+    expect(find.text('retained conversation'), findsNothing);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('a picker selection is discarded when the same peer changes room', (
+    tester,
+  ) async {
+    final api = _MediaApi();
+    final gateway = _RetryGateway()
+      ..picking = Completer()
+      ..failureStatus = null;
+    await _show(tester, api, gateway: gateway);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('发送图片'));
+    await tester.pumpAndSettle();
+    expect(gateway.picks, 1);
+    api.roomKey = 'new-fictional-room';
+    gateway.picking!.complete(
+      const ChatPickedMedia(path: 'fictional', name: 'prior-room.png'),
+    );
+    await tester.pumpAndSettle();
+    expect(gateway.uploads, 0);
+    expect(api.bodies, isEmpty);
+    await tester.pumpWidget(const SizedBox());
+  });
+
   testWidgets('offline grant limits the conversation to downloaded text', (
     tester,
   ) async {
@@ -1432,6 +1493,49 @@ void main() {
       await tester.pumpWidget(const SizedBox());
     },
   );
+
+  testWidgets('transport loss removes photo preview before secure text read', (
+    tester,
+  ) async {
+    final api = _MediaApi()
+      ..includeImage = true
+      ..messageCount = 2;
+    final secure = await _draftStore(deviceId: 'synthetic-widget-device');
+    final dio = Dio()
+      ..interceptors.add(
+        InterceptorsWrapper(
+          onRequest: (options, handler) => handler.resolve(
+            Response<List<int>>(
+              requestOptions: options,
+              statusCode: 200,
+              data: base64Decode(
+                'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNgAAIAAAUAAXpeqz8AAAAASUVORK5CYII=',
+              ),
+            ),
+          ),
+        ),
+      );
+    await _show(tester, api, dio: dio, secureStore: secure);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('live-chat-image-42')));
+    await tester.pumpAndSettle();
+    expect(find.byType(InteractiveViewer), findsOneWidget);
+
+    secure.offlineReadStarted = Completer();
+    secure.releaseOfflineRead = Completer();
+    api.unavailable = true;
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pump();
+    expect(secure.offlineReadStarted!.isCompleted, isTrue);
+    expect(find.byType(InteractiveViewer), findsNothing);
+    expect(find.byType(Image), findsNothing);
+    expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
+
+    secure.releaseOfflineRead!.complete();
+    await tester.pumpAndSettle();
+    expect(find.text('later message 1'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+  });
 
   testWidgets('a picker result cannot adopt the newly opened peer epoch', (
     tester,

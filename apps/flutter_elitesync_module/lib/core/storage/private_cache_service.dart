@@ -125,12 +125,16 @@ class PrivateCacheService {
     }
   }
 
-  void observeRetainedListRooms(Map<int, String> rooms) {
-    if (rooms.isEmpty) return;
+  bool get hasOfflineChatTextGrants => _offlineChatTextGrants.isNotEmpty;
+
+  bool observeRetainedListRooms(Map<int, String> rooms) {
+    if (rooms.isEmpty) return false;
+    var changedSavedRoom = false;
     for (final entry in rooms.entries) {
       final key = 'live-chat:${entry.key}';
       final savedRoom = _savedChatRooms[key];
       if (savedRoom != null && savedRoom != entry.value) {
+        changedSavedRoom = true;
         _readGrants.remove(key);
         _offlineChatTextGrants.remove(key);
         _savedChatRooms.remove(key);
@@ -138,6 +142,7 @@ class PrivateCacheService {
     }
     // A mounted chat also cancels reads for any generation the list changed.
     _retainedListAuthority.value = (recovered: false, rooms: rooms);
+    return changedSavedRoom;
   }
 
   /// Retire current reads immediately. A subsequent transport failure can

@@ -277,6 +277,7 @@ class _LiveConversationListPageState
         _lockDisplay(_purgeMessage(purge), purgeStatus: purge.status);
         return;
       }
+      final startedOffline = cache.isOffline;
       final response = await ref
           .read(apiClientProvider)
           .get(
@@ -291,11 +292,16 @@ class _LiveConversationListPageState
           response is NetworkSuccess<Map<String, dynamic>> ||
           (response is NetworkFailure<Map<String, dynamic>> &&
               response.statusCode != null);
+      final authorityRejected =
+          response is NetworkFailure<Map<String, dynamic>> &&
+          const {401, 403}.contains(response.statusCode);
       if (hasServerResponse &&
-          cache.observeForegroundServerResponse() &&
-          cache.isOffline) {
-        cache.beginOnlineRevalidation(recoveredFromRetainedList: true);
-        revalidation = cache.onlineRevalidationEpoch;
+          (!cache.isOffline || startedOffline || authorityRejected)) {
+        cache.observeForegroundServerResponse();
+        if (cache.isOffline) {
+          cache.beginOnlineRevalidation(recoveredFromRetainedList: true);
+          revalidation = cache.onlineRevalidationEpoch;
+        }
       }
       if (response is NetworkFailure<Map<String, dynamic>>) {
         if (response.statusCode == null && isTransportUnavailable(response.error)) {
@@ -355,11 +361,14 @@ class _LiveConversationListPageState
       // An ordinary current list read authorizes this object, not a global
       // reset that can invalidate a retained foreground chat's in-flight save.
       // Actual offline recovery must still discard all old read grants.
+      final changedRoom = cache.observeRetainedListRooms(rooms);
       if (cache.isOffline) {
+        // A pre-loss list success can retire a changed generation. It cannot
+        // otherwise prove that the foreground conversation is back online.
+        if (!changedRoom || cache.hasOfflineChatTextGrants) return;
         cache.beginOnlineRevalidation(recoveredFromRetainedList: true);
         revalidation = cache.onlineRevalidationEpoch;
       }
-      cache.observeRetainedListRooms(rooms);
       if (_offlineReadOnly) {
         setState(() {
           _items = [];
