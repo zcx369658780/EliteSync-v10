@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-26｜1011813 真机 OSM 坐标回填通过
+
+**OSM_SAMPLE_STAGING_PASS / APK_1011813_PHONE_UPDATE_PASS / PHONE_OSM_PUBLIC_SAMPLE_BACKFILL_PASS / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 25060RK16C 重新连入后，1011813 真机地点搜索最初显示服务尚未开通。外层 V2 Nginx 无排盘地点 POST 规则，脱敏回执为 404 且无上游。专用 Staging 代理和仓库模板各补入一个精确 POST 路径，原来源限制、鉴权和网络策略保留。隔离回环规则 6/6，nginx 语法检查和热重载通过，公网 443 连通性探测 0 次。
+- 在实体 APP 用 Tiananmen / Beijing 搜到天安门城楼。候选显示地标代表点、OSM 署名和 WGS84 39.907359, 116.391263，选中后地点名与两项坐标读回一致。外层在复验时记录允许来源、HTTP 200 和上游正常。退出并重新进入排盘页后测试字段为空，未提交或计算命盘。真机样本回执 SHA-256 为 96c6d488888c77eb854f5fde88ca2f51212afbab672137d67534eb3ae7d3f45e。
+- 当前定位查询覆盖 10 个离线样本，具名真机验收覆盖天安门城楼，Owner 本人核对和提交正式命盘仍独立。 [离线样本、部署与真机回执](../versions/v2/cloud-r0-20261121/V2_NATAL_OFFLINE_OSM_PILOT_20261126.md)
+
+---
+
 # CURRENT ENTRY 2026-11-26｜1011813 已原位升级，真机回填待验
 
 **OSM_SAMPLE_STAGING_PASS / APK_1011813_PHONE_UPDATE_PASS / PHONE_BACKFILL_PENDING_DEVICE_RECONNECT / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**

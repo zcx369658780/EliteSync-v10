@@ -27,6 +27,7 @@ map "$request_method:$uri" $es_v2_route {
     ~^POST:/api/v1/auth/(login|logout|refresh|session/verify)$ app;
     ~^(GET|HEAD):/api/v1/profile/(basic|natal(?:/history(?:/[0-9]+)?)?|dynamic(?:/[0-9]+(?:/history(?:/[0-9]+)?)?)?|astro(?:/summary|/chart)?)$ app;
     ~^POST:/api/v1/profile/(basic|city|nickname|avatar|natal|dynamic(?:/[0-9]+)?|astro)$ app;
+    ~^POST:/api/v1/profile/natal/places$ app;
     ~^(GET|HEAD):/api/v1/media(?:/[0-9]+(?:/content)?)?$ app;
     "POST:/api/v1/media" app;
     ~^(GET|HEAD):/api/v1/home/(banner|shortcuts|feed)$ app;
