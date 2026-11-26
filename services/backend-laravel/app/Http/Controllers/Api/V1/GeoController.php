@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Services\BaiduNatalPlaceSearch;
 use App\Services\BaiduWebApiSigner;
+use App\Services\NatalAreaCatalog;
 use App\Services\NatalPlaceCatalog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class GeoController extends Controller
 {
-    public function natalPlaces(Request $request, NatalPlaceCatalog $catalog): JsonResponse
+    public function natalPlaces(Request $request, NatalPlaceCatalog $catalog, NatalAreaCatalog $areas): JsonResponse
     {
         $data = $request->validate([
             'query' => ['required', 'string', 'max:100'],
@@ -25,10 +26,18 @@ class GeoController extends Controller
         $places = in_array($client, ['osm-v1', 'wgs84-v2'], true)
             ? $catalog->search($data['query'], $data['region'])
             : null;
-        if (($places === null || $places === []) && $client === 'wgs84-v2'
-            && $request->boolean('allow_baidu') && config('natal.baidu_lookup_enabled')) {
+        $useCityCatalog = $client === 'wgs84-v2' && ($places === null || $places === []);
+        $city = $useCityCatalog ? $areas->city($data['region']) : null;
+        if ($city !== null && $areas->matchesCityName($city, $data['query'])) {
+            return response()->json([
+                'coordinate_system' => 'WGS84',
+                'source' => 'GeoNames',
+                'places' => [$areas->representative($city, null)],
+            ])->header('Cache-Control', 'private, no-store');
+        }
+        if ($useCityCatalog && $request->boolean('allow_baidu') && config('natal.baidu_lookup_enabled')) {
             try {
-                $matches = app(BaiduNatalPlaceSearch::class)->search($data['query'], $data['region']);
+                $matches = app(BaiduNatalPlaceSearch::class)->search($data['query'], $city);
             } catch (HttpException $failure) {
                 return response()->json(['message' => $failure->getMessage()], $failure->getStatusCode())
                     ->header('Cache-Control', 'private, no-store');

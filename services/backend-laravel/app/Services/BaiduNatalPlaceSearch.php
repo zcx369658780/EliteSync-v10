@@ -13,7 +13,7 @@ class BaiduNatalPlaceSearch
         private NatalPlaceCatalog $places,
     ) {}
 
-    public function search(string $query, string $region): array
+    public function search(string $query, ?array $city): array
     {
         $path = config('natal.baidu_credentials_path');
         $keys = is_string($path) && is_file($path) ? @parse_ini_file($path, false, INI_SCANNER_RAW) : false;
@@ -22,7 +22,6 @@ class BaiduNatalPlaceSearch
         abort_if(! is_string($ak) || trim($ak) === '' || ! is_string($sk) || trim($sk) === '',
             503, '地点搜索暂不可用。');
 
-        $city = $this->areas->city($region);
         abort_if($city === null, 422, '请输入可识别的城市全名。');
 
         $url = $this->signer->buildSignedUrl('/place/v3/region', [

@@ -228,6 +228,65 @@ class GeoPlacesApiTest extends TestCase
         }
     }
 
+    public function test_natal_city_name_search_uses_the_local_wgs84_city_point_without_baidu(): void
+    {
+        $catalog = tempnam(sys_get_temp_dir(), 'natal-city-');
+        $credentials = tempnam(sys_get_temp_dir(), 'natal-baidu-');
+        file_put_contents($credentials, "BAIDU_WEB_AK=test-web-ak\nBAIDU_WEB_SK=test-web-sk\n");
+        file_put_contents($catalog, json_encode([
+            'schema_version' => 1, 'source' => 'GeoNames', 'coordinate_system' => 'WGS84',
+            'cities' => ['09:4113' => [
+                'name' => '南阳地区', 'province' => '河南省', 'province_aliases' => ['河南'],
+                'aliases' => ['南阳', '南阳市'], 'lat' => 32.96029, 'lng' => 112.40864,
+                'districts' => [],
+            ]],
+        ], JSON_THROW_ON_ERROR));
+        Config::set([
+            'natal.place_catalog_path' => '',
+            'natal.area_catalog_path' => $catalog,
+            'natal.baidu_lookup_enabled' => true,
+            'natal.baidu_credentials_path' => $credentials,
+        ]);
+        Http::preventStrayRequests();
+        Http::fake([
+            'https://api.map.baidu.com/place/v3/region*' => Http::response([
+                'status' => 0, 'result_type' => 'region_type',
+                'results' => [['name' => '南阳市', 'location' => ['lat' => 33.1, 'lng' => 112.6]]],
+            ]),
+        ]);
+        Sanctum::actingAs(User::create(['phone' => '13800001127', 'password' => 'test-password']));
+
+        try {
+            $path = '/api/v1/profile/natal/places';
+            $this->withHeader('X-EliteSync-Natal-Places', 'wgs84-v2')
+                ->postJson($path, ['query' => '南阳', 'region' => '南阳', 'allow_baidu' => true])
+                ->assertOk()
+                ->assertHeader('Cache-Control', 'no-store, private')
+                ->assertJsonPath('coordinate_system', 'WGS84')
+                ->assertJsonCount(1, 'places')
+                ->assertJsonPath('source', 'GeoNames')
+                ->assertJsonMissingPath('lookup_provider')
+                ->assertJsonPath('places.0.point_kind', 'city')
+                ->assertJsonPath('places.0.approximate', true)
+                ->assertJsonPath('places.0.lat', 32.96029)
+                ->assertJsonPath('places.0.lng', 112.40864);
+
+            $this->travel(2)->seconds();
+            Config::set('natal.baidu_lookup_enabled', false);
+            $this->postJson($path, ['query' => '河南南阳市', 'region' => '南阳'])
+                ->assertOk()->assertJsonPath('places.0.point_kind', 'city');
+
+            $this->travel(2)->seconds();
+            $this->postJson($path, ['query' => '南阳样例医院', 'region' => '南阳'])
+                ->assertStatus(503)->assertJsonMissingPath('places');
+            Http::assertNothingSent();
+            $this->assertDatabaseCount('user_natal_profiles', 0);
+        } finally {
+            unlink($catalog);
+            unlink($credentials);
+        }
+    }
+
     public function test_geo_places_search_returns_baidu_suggestions(): void
     {
         Config::set('baidu.web_ak', 'test-web-ak');

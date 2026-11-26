@@ -33,18 +33,27 @@ class NatalAreaCatalog
                 continue;
             }
             $city['name'] = $label;
-            $aliases = $this->aliases($label, $city['aliases'] ?? []);
-            $provinceAliases = $this->aliases($city['province'], $city['province_aliases'] ?? []);
-            $matched = $this->matches($name, $aliases);
-            foreach ($provinceAliases as $province) {
-                $matched = $matched || $this->matches($name, array_map(fn (string $alias) => $province.$alias, $aliases));
-            }
-            if ($matched) {
+            if ($this->matchesCityName($city, $name)) {
                 $matches[] = $city;
             }
         }
 
         return count($matches) === 1 ? $matches[0] : null;
+    }
+
+    public function matchesCityName(array $city, string $name): bool
+    {
+        $aliases = $this->aliases($city['name'], $city['aliases'] ?? []);
+        if ($this->matches($name, $aliases)) {
+            return true;
+        }
+        foreach ($this->aliases($city['province'], $city['province_aliases'] ?? []) as $province) {
+            if ($this->matches($name, array_map(fn (string $alias) => $province.$alias, $aliases))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function includes(array $city, array $hit): bool
