@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-26｜1011814 真机百度手动搜索和 WGS84 回填通过
+
+**SHARED_STAGING_ROLLOUT_PASS / APK_1011814_PHONE_UPDATE_PASS / PHONE_BAIDU_PUBLIC_SAMPLE_BACKFILL_PASS / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 专用 Staging 的应用镜像已切到 `sha256:7019922fee8a108895614faae87a1b897c9c678deb1147d334a5a0921dab1f39`。回环健康 200，未鉴权搜索 401。部署核验消耗百度额度 0 次，出站经过仅允许百度 Web API 的专用代理。
+- 经 Owner 具名授权，25060RK16C 从 1011813 一次原位升级至 1011814。已装 APK SHA-256 为 `37b9d370dda05f737cdd5e367d12267e3572220120edd6a27ec7710d8aec18d4`。应用安装身份、数据目录和包清单回读一致。
+- 实体 APP 用拼音选字输入公开地点「广州市第一人民医院／广州市」。空坐标草稿在点击「搜索」前有 0 条外层应用请求。手动提交一次、百度查询一次，自动重试 0 次。选择并二次确认后，回填广州市越秀区代表点 WGS84 纬度 `23.12528`、经度 `113.26528`。
+- 退出测试草稿重新进入，原地点与坐标读回一致。正式命盘仍由 Owner 核对并提交。当前装机和公开地点试验授权均已消费。 [部署与真机核验](../versions/v2/cloud-r0-20261121/V2_NATAL_MANUAL_BAIDU_20261126.md)
+
+---
+
 # CURRENT ENTRY 2026-11-26｜百度手动检索单次核验完成，按 Owner 要求暂停
 
 **MANUAL_BAIDU_CANDIDATE_PASS / PUBLIC_PROVIDER_LOOKUP_1_OF_1_PASS / APK_1011814_VERIFIED / SHARED_STAGING_ROLLOUT_PENDING / PHONE_NOT_RUN / R1_PARTIAL**
