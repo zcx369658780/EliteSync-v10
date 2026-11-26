@@ -22,6 +22,7 @@ typedef _BirthPlace = ({
   String city,
   String source,
   String matchedName,
+  String? coordinateOrigin,
   bool approximate,
   double latitude,
   double longitude,
@@ -63,6 +64,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
   SessionState? _inputSession;
   Map<String, dynamic>? _profile;
   Map<String, dynamic>? _pendingBody;
+  String? _coordinateOrigin;
   String? _error;
 
   bool _current(SessionState session, int epoch) =>
@@ -113,6 +115,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
       final p = await ref.read(natalRestorationProvider.future);
       if (!_current(session, epoch)) return;
       final input = natalMap(p?['input']), settings = natalMap(p?['settings']);
+      final context = natalMap(p?['context']);
       setState(() {
         _profile = p;
         _inputSession = session;
@@ -123,12 +126,13 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
         _latitude.text = input['latitude']?.toString() ?? '';
         _longitude.text = input['longitude']?.toString() ?? '';
         _place.text = input['location_label'] as String? ?? '';
+        _coordinateOrigin = input['location_coordinate_origin'] as String?;
         _precision = input['time_precision'] as String? ?? 'unknown';
         if (_precision == 'minute' && _time.text.length == 8) {
           _time.text = _time.text.substring(0, 5);
         }
         _sex = input['algorithm_sex'] as String? ?? 'unknown';
-        _fold = input['fold']?.toString() ?? 'unspecified';
+        _fold = (input['fold'] ?? context['fold'])?.toString() ?? 'unspecified';
         _zodiac = settings['zodiac_mode'] as String? ?? 'tropical';
         _house = settings['house_system'] as String? ?? 'placidus';
         _aspect = settings['aspect_mode'] as String? ?? 'major';
@@ -218,6 +222,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
         if (addCoordinates) {
           _latitude.text = latitude.toString();
           _longitude.text = longitude.toString();
+          _coordinateOrigin = 'profile_confirmed';
         }
         _profile = null;
       });
@@ -347,6 +352,8 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
           continue;
         }
         final address = item['address'];
+        final rawSource = item['source'] ?? response.data['source'];
+        final source = rawSource is String ? rawSource : '';
         places.add((
           label: label.trim(),
           address: address is String ? address.trim() : '',
@@ -357,9 +364,14 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
               .toSet()
               .join(' · '),
           city: item['city'] is String ? (item['city'] as String).trim() : '',
-          source: (item['source'] ?? response.data['source']) is String
-              ? (item['source'] ?? response.data['source']) as String
-              : '',
+          source: source,
+          coordinateOrigin: switch ((source, item['point_kind'])) {
+            ('GeoNames', 'district') => 'geonames_district',
+            ('GeoNames', 'city') => 'geonames_city',
+            ('OpenStreetMap', 'landmark') => 'osm_landmark',
+            ('OpenStreetMap', 'campus') => 'osm_campus',
+            _ => null,
+          },
           matchedName: item['matched_name'] is String
               ? (item['matched_name'] as String).trim()
               : '',
@@ -461,7 +473,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
             : '${choice.city}${choice.label}';
         final confirmed = await _confirm(
           title: '使用约略位置？',
-          message: '将使用${area}的${choice.pointKind}计算。请先确认此范围。',
+          message: '将使用$area 的${choice.pointKind}计算。请先确认此范围。',
           confirm: '确认使用代表点',
           cancel: '取消',
         );
@@ -472,6 +484,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
         _place.text = String.fromCharCodes(label.runes.take(255));
         _latitude.text = choice.latitude.toString();
         _longitude.text = choice.longitude.toString();
+        _coordinateOrigin = choice.coordinateOrigin;
         _profile = null;
       });
     } finally {
@@ -547,6 +560,62 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
     ).showSnackBar(SnackBar(content: Text(message)));
   }
 
+  Future<bool> _confirmSave(
+    SessionState session,
+    int epoch,
+    Map<String, dynamic> input,
+  ) async =>
+      await showDialog<bool>(
+        context: context,
+        builder: (dialogContext) => Consumer(
+          builder: (_, ref, _) {
+            ref.watch(sessionProvider);
+            ref.watch(relationshipAuthorityEpochProvider);
+            final active = _current(session, epoch);
+            final latitude = input['latitude'];
+            final origin = switch (input['location_coordinate_origin']) {
+              'geonames_district' => 'GeoNames 区县代表点 · 约略位置',
+              'geonames_city' => 'GeoNames 城市代表点 · 约略位置',
+              'osm_landmark' => 'OpenStreetMap 地标代表点',
+              'osm_campus' => 'OpenStreetMap 院区代表点',
+              'profile_confirmed' => '已保存的资料 · 由你确认坐标系',
+              'user_supplied' => '手动填写 · 请确认坐标系和精度',
+              _ => '来源和精度未记录 · 请核对',
+            };
+            return AlertDialog(
+              title: Text(active ? '核对本命资料' : '当前核对已失效'),
+              content: active
+                  ? Text(
+                      [
+                        '${input['civil_date']} ${input['civil_time'] ?? '时间未知'} · ${input['timezone']}',
+                        '出生地点：${input['location_label'] == '' ? '未填写' : input['location_label']}',
+                        if (latitude == null)
+                          '坐标未填写，部分排盘项目可能不可用。'
+                        else ...[
+                          'WGS84 $latitude, ${input['longitude']}',
+                          origin,
+                        ],
+                      ].join('\n'),
+                    )
+                  : null,
+              scrollable: true,
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(dialogContext, false),
+                  child: const Text('返回修改'),
+                ),
+                if (active)
+                  FilledButton(
+                    onPressed: () => Navigator.pop(dialogContext, true),
+                    child: const Text('确认保存并计算'),
+                  ),
+              ],
+            );
+          },
+        ),
+      ) ??
+      false;
+
   Future<void> _save() async {
     if (_busy ||
         !_loaded ||
@@ -573,6 +642,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                 ? 'unknown'
                 : 'user_provided',
             'location_label': _place.text.trim(),
+            'location_coordinate_origin': _coordinateOrigin,
           },
           'settings': {
             'zodiac_mode': _zodiac,
@@ -585,6 +655,19 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
           },
           'expected_revision': _revision,
         };
+    if (_pendingBody == null) {
+      setState(() => _busy = true);
+      final confirmed = await _confirmSave(
+        session,
+        epoch,
+        natalMap(body['input']),
+      );
+      if (!_current(session, epoch)) return;
+      if (!confirmed) {
+        setState(() => _busy = false);
+        return;
+      }
+    }
     _pendingBody = body;
     setState(() {
       _busy = true;
@@ -697,7 +780,16 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
       autocorrect: false,
       enableSuggestions: enableSuggestions,
       enableIMEPersonalizedLearning: false,
-      onChanged: (_) => setState(() => _profile = null),
+      onChanged: (_) => setState(() {
+        if (controller == _latitude || controller == _longitude) {
+          _coordinateOrigin =
+              _latitude.text.trim().isNotEmpty &&
+                  _longitude.text.trim().isNotEmpty
+              ? 'user_supplied'
+              : null;
+        }
+        _profile = null;
+      }),
     ),
   );
   String? _coordinate(String? value, double limit) {
@@ -729,6 +821,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
           _profile = null;
           _pendingBody = null;
           _inputSession = null;
+          _coordinateOrigin = null;
           _busy = false;
           _loaded = false;
           _revision = 0;

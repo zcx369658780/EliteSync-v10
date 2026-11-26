@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 use InvalidArgumentException;
 use JsonException;
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
@@ -30,7 +31,7 @@ class NatalProfileController extends Controller
         NatalCalculationProfile $profiles, NatalCalculationService $calculator): JsonResponse
     {
         $data = $request->validate([
-            'input' => 'required|array:civil_date,civil_time,time_precision,timezone,latitude,longitude,fold,utc_offset_seconds,algorithm_sex,time_source,location_label',
+            'input' => 'required|array:civil_date,civil_time,time_precision,timezone,latitude,longitude,fold,utc_offset_seconds,algorithm_sex,time_source,location_label,location_coordinate_origin',
             'input.civil_date' => 'required|string|max:10',
             'input.civil_time' => 'nullable|string|max:8',
             'input.time_precision' => 'required|string|max:16',
@@ -38,11 +39,18 @@ class NatalProfileController extends Controller
             'input.algorithm_sex' => 'sometimes|string|max:16',
             'input.time_source' => 'sometimes|string|max:64',
             'input.location_label' => 'nullable|string|max:255',
+            'input.location_coordinate_origin' => ['nullable', Rule::in([
+                'geonames_district', 'geonames_city', 'osm_landmark', 'osm_campus',
+                'user_supplied', 'profile_confirmed',
+            ])],
             'settings' => 'present|array', 'expected_revision' => 'required|integer|min:0',
         ]);
         try {
             $settings = $profiles->settings($data['settings']);
             $context = $normalizer->normalize($data['input'], $profiles->make($settings));
+            if (isset($data['input']['location_coordinate_origin']) && $context['latitude'] === null) {
+                throw new InvalidArgumentException('location_origin_requires_coordinates');
+            }
             if ($settings['target_year'] !== null && $settings['target_year'] < (int) substr($context['civil_date'], 0, 4)) {
                 throw new InvalidArgumentException('target_year_before_birth');
             }
@@ -57,7 +65,10 @@ class NatalProfileController extends Controller
             if ((int) ($row?->input_revision ?? 0) !== (int) $data['expected_revision']) {
                 throw new ConflictHttpException('natal_input_revision_conflict');
             }
-            if ($row && $row->input_signature === $context['input_signature'] && $row->status === 'COMPUTED_UNVERIFIED') {
+            $originChanged = array_key_exists('location_coordinate_origin', $data['input'])
+                && $data['input']['location_coordinate_origin'] !== ($row?->input['location_coordinate_origin'] ?? null);
+            if ($row && ! $originChanged && $row->input_signature === $context['input_signature']
+                && $row->status === 'COMPUTED_UNVERIFIED') {
                 return [$row, true];
             }
             $revision = (int) ($row?->input_revision ?? 0) + 1;

@@ -84,6 +84,39 @@ class V1010NatalApiTest extends TestCase
         $this->assertDatabaseCount('user_natal_profiles', 0);
     }
 
+    public function test_location_origin_survives_readback_and_cannot_be_reused_for_a_different_revision(): void
+    {
+        Sanctum::actingAs($this->owner());
+        $this->stubCalculator();
+        $payload = $this->payload();
+        $payload['input']['location_coordinate_origin'] = 'geonames_district';
+        $this->postJson('/api/v1/profile/natal', $payload)->assertOk()
+            ->assertJsonPath('profile.input.location_coordinate_origin', 'geonames_district');
+        $this->getJson('/api/v1/profile/natal')->assertOk()
+            ->assertJsonPath('profile.input.location_coordinate_origin', 'geonames_district');
+
+        $payload['expected_revision'] = 1;
+        $payload['input']['location_coordinate_origin'] = 'user_supplied';
+        $this->postJson('/api/v1/profile/natal', $payload)->assertOk()
+            ->assertJsonPath('profile.input_revision', 2)
+            ->assertJsonPath('profile.result_revision', 2)
+            ->assertJsonPath('profile.input.location_coordinate_origin', 'user_supplied');
+    }
+
+    public function test_location_origin_requires_admitted_value_and_coordinate_pair(): void
+    {
+        Sanctum::actingAs($this->owner());
+        $payload = $this->payload();
+        $payload['input']['location_coordinate_origin'] = 'exact_hospital';
+        $this->postJson('/api/v1/profile/natal', $payload)->assertUnprocessable()
+            ->assertJsonStructure(['error' => ['details' => ['input.location_coordinate_origin']]]);
+        $payload['input']['location_coordinate_origin'] = 'osm_landmark';
+        $payload['input']['latitude'] = $payload['input']['longitude'] = null;
+        $this->postJson('/api/v1/profile/natal', $payload)->assertUnprocessable()
+            ->assertJsonPath('code', 'location_origin_requires_coordinates');
+        $this->assertDatabaseCount('user_natal_profiles', 0);
+    }
+
     public function test_calculator_failure_is_not_a_cached_success(): void
     {
         Sanctum::actingAs($this->owner());

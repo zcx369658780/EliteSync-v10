@@ -419,6 +419,34 @@ void main() {
     expect(_text(tester, '出生地点名称（可选）'), '广州市越秀区（区县代表点）');
     expect(_text(tester, '纬度 WGS84（可选）'), '23.12528');
     expect(_text(tester, '经度 WGS84（可选）'), '113.26528');
+
+    await tester.enterText(_field('出生日期'), '1995-03-21');
+    tester.testTextInput.hide();
+    await tester.pumpAndSettle();
+    final save = find.text('保存、计算并持久重读');
+    await tester.ensureVisible(save);
+    await tester.pumpAndSettle();
+    await tester.tap(save);
+    await tester.pumpAndSettle();
+    expect(find.text('核对本命资料'), findsOneWidget);
+    expect(find.textContaining('GeoNames 区县代表点'), findsOneWidget);
+    expect(find.textContaining('WGS84 23.12528, 113.26528'), findsOneWidget);
+    await tester.tap(find.text('返回修改'));
+    await tester.pumpAndSettle();
+    expect(api.requests, hasLength(1));
+
+    await tester.ensureVisible(_field('纬度 WGS84（可选）'));
+    await tester.enterText(_field('纬度 WGS84（可选）'), '23.125');
+    tester.testTextInput.hide();
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(save);
+    await tester.pumpAndSettle();
+    await tester.tap(save);
+    await tester.pumpAndSettle();
+    expect(find.textContaining('GeoNames 区县代表点'), findsNothing);
+    expect(find.textContaining('WGS84 23.125, 113.26528'), findsOneWidget);
+    await tester.tap(find.text('返回修改'));
+    await tester.pumpAndSettle();
   });
 
   testWidgets(
@@ -630,6 +658,9 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(save);
       await tester.pumpAndSettle();
+      expect(api.writes, 0);
+      await tester.tap(find.text('确认保存并计算'));
+      await tester.pumpAndSettle();
       expect(api.writes, 1);
       expect(api.reads, 2);
       expect(
@@ -744,6 +775,8 @@ void main() {
         await tester.ensureVisible(save);
         await tester.pumpAndSettle();
         await tester.tap(save);
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('确认保存并计算'));
         for (var i = 0; i < 15 && !network.entered.isCompleted; i++) {
           await tester.pump(const Duration(milliseconds: 10));
         }
