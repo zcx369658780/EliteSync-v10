@@ -1,6 +1,6 @@
 # EliteSync V2｜M1 三盘正式保存与读回
 
-2026-11-26，北京时间。任务 `V2-M1-NATAL-SAVE-READBACK-20261126`。本报告的工程结论限于下列具名环境。网页 GPT 顾问集中验收 `PENDING`，Owner 实体终验 `PENDING`。总体 `R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`。
+2026-11-26，北京时间。任务 `V2-M1-NATAL-SAVE-READBACK-20261126`。具名工程与 Owner 实机验收完成，结果为 `NATAL_SYNTHETIC_E2E_PASS / NATAL_INPUT_SEMANTICS_VERIFIED / NATAL_REAL_APP_SAVE_AND_READBACK_PASS / P1_RESTRICTED_HTTPS_DIAGNOSTIC_READONLY`。网页 GPT 顾问集中验收 `PENDING`。总体 `R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`。
 
 ## 工程与运行身份
 
@@ -50,9 +50,9 @@
 
 ## M1-04｜Owner 实体 APP 与顾问入口
 
-`NATAL_REAL_APP_SAVE_AND_READBACK_PASS` 尚未取得。经 Owner 具名授权，2026-11-26 北京时间 20:22 对 25060RK16C 只读核对通过。当前安装为 `com.elitesync.v2stagingremote / 1011814`，已装 APK SHA-256 与既有回执一致，应用安装身份一致。Owner 本人提交，并反馈退出账号重登后结果仍可读取。随后在实体页核对重登后的输入版本 2、结果版本 2，退出排盘页重新进入再次读到 2/2。
+经 Owner 具名授权，2026-11-26 北京时间 20:22 对 25060RK16C 只读核对通过。当前安装为 `com.elitesync.v2stagingremote / 1011814`，已装 APK SHA-256 与既有回执一致，应用安装身份一致。Owner 本人首次提交，并反馈退出账号重登后结果仍可读取。随后在实体页核对重登后的输入版本 2、结果版本 2，退出排盘页重新进入再次读到 2/2。
 
-| 实体结果 | 页面状态 |
+| 首次提交 v2 实体结果 | 页面状态 |
 | --- | --- |
 | 八字 | `PARTIAL_UNVERIFIED` |
 | 紫微斗数 | `UNKNOWN` |
@@ -60,7 +60,7 @@
 
 实体页「算法使用性别」当时显示「未知」。现行算法合同在此条件下保留八字可计算部分，紫微返回 `UNKNOWN`。
 
-Owner 随后自行选择算法参数并提交重算。实体页面重新进入后读到输入版本 3、结果版本 3。八字显示 `COMPUTED_UNVERIFIED`，紫微斗数和西洋本命盘均显示 `CALCULATED`。重算版本退出账号重登后的读回待 Owner 确认。
+Owner 随后自行选择算法参数并提交重算。实体页面重新进入后读到输入版本 3、结果版本 3。八字显示 `COMPUTED_UNVERIFIED`，紫微斗数和西洋本命盘均显示 `CALCULATED`。Owner 明确确认已在重算后退出账号、重新登录并读到三盘 v3。新版本和计算状态由实机截图核对，重登由 Owner 本人回执确认。具名 1011814 正式保存、页面重入和重登读回复验为 `NATAL_REAL_APP_SAVE_AND_READBACK_PASS`。
 
 实体 App 进程重开 `NOT_RUN`，合成 Android 冷启动读回已通过。新增正式提交核对页及来源持久化的验收环境为本地工程版。出生资料及盘面原件留本机。
 
@@ -80,7 +80,7 @@ Owner 确认实体 App 可搜索「南阳」并把城市代表点填入排盘草
 
 ## 证据索引与保留门槛
 
-本轮本机索引目录 `D:/EliteSync/development/v2-m1-natal-local-20261126`。GitHub 仅保存去敏工程记录和测试代码。已接受 P0 资料恢复、1011814 地点回填与历史失败沿原记录。共享 Connection、私信、WSS、公开注册及生产 RTC 继续关闭。M1 的工程范围与 R1、内测和生产门槛分别验收。待 Owner 实体回执齐备后，由 Owner 手动转交本报告的固定 GitHub 版本给 GPT 顾问。
+本轮本机索引目录 `D:/EliteSync/development/v2-m1-natal-local-20261126`。GitHub 仅保存去敏工程记录和测试代码。已接受 P0 资料恢复、1011814 地点回填与历史失败沿原记录。共享 Connection、私信、WSS、公开注册及生产 RTC 继续关闭。M1 的工程范围与 R1、内测和生产门槛分别验收。Owner 实体回执齐备，本报告的固定 GitHub 版本可由 Owner 手动转交 GPT 顾问集中复审。
 
 | 本机证据 | SHA-256 |
 | --- | --- |
