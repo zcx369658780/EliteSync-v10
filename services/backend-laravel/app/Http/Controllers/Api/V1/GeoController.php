@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Services\BaiduNatalPlaceSearch;
 use App\Services\BaiduWebApiSigner;
 use App\Services\NatalPlaceCatalog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class GeoController extends Controller
 {
@@ -16,11 +18,28 @@ class GeoController extends Controller
         $data = $request->validate([
             'query' => ['required', 'string', 'max:100'],
             'region' => ['required', 'string', 'max:50'],
+            'allow_baidu' => ['sometimes', 'boolean'],
         ]);
 
-        $places = $request->header('X-EliteSync-Natal-Places') === 'osm-v1'
+        $client = $request->header('X-EliteSync-Natal-Places');
+        $places = in_array($client, ['osm-v1', 'wgs84-v2'], true)
             ? $catalog->search($data['query'], $data['region'])
             : null;
+        if (($places === null || $places === []) && $client === 'wgs84-v2'
+            && $request->boolean('allow_baidu') && config('natal.baidu_lookup_enabled')) {
+            try {
+                $matches = app(BaiduNatalPlaceSearch::class)->search($data['query'], $data['region']);
+            } catch (HttpException $failure) {
+                return response()->json(['message' => $failure->getMessage()], $failure->getStatusCode())
+                    ->header('Cache-Control', 'private, no-store');
+            }
+
+            return response()->json([
+                'coordinate_system' => 'WGS84',
+                'lookup_provider' => 'Baidu',
+                'places' => $matches,
+            ])->header('Cache-Control', 'private, no-store');
+        }
         if ($places === null) {
             return response()->json([
                 'message' => 'WGS84 地点搜索暂不可用，请手动填写已确认的 WGS84 坐标。',

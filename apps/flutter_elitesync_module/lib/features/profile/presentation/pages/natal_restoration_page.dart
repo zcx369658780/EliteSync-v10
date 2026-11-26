@@ -19,6 +19,10 @@ typedef _BirthPlace = ({
   String address,
   String area,
   String pointKind,
+  String city,
+  String source,
+  String matchedName,
+  bool approximate,
   double latitude,
   double longitude,
 });
@@ -244,6 +248,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
 
     final form = GlobalKey<FormState>();
     var city = '';
+    var submitted = false;
     final region = await showDialog<String>(
       context: context,
       builder: (dialogContext) => AlertDialog(
@@ -255,7 +260,10 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('地点关键词和城市将发送到 EliteSync 服务端，在离线地点库中检索。'),
+              const Text(
+                '优先查离线地点库。未收录时，点击搜索会将地点关键词和城市'
+                '发送给百度地点检索一次。',
+              ),
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: '搜索城市',
@@ -280,7 +288,8 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
           ),
           FilledButton(
             onPressed: () {
-              if (form.currentState!.validate()) {
+              if (!submitted && form.currentState!.validate()) {
+                submitted = true;
                 Navigator.pop(dialogContext, city);
               }
             },
@@ -297,10 +306,10 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
           .read(apiClientProvider)
           .post(
             '/api/v1/profile/natal/places',
-            body: {'query': query, 'region': region},
+            body: {'query': query, 'region': region, 'allow_baidu': true},
             options: natalSessionOptions(
               () => _current(session, epoch),
-            ).copyWith(headers: const {'X-EliteSync-Natal-Places': 'osm-v1'}),
+            ).copyWith(headers: const {'X-EliteSync-Natal-Places': 'wgs84-v2'}),
           );
       if (!_current(session, epoch)) return;
       if (response is! NetworkSuccess<Map<String, dynamic>>) {
@@ -318,7 +327,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
         return;
       }
       final rawPlaces = response.data['places'];
-      final osm = response.data['source'] == 'OpenStreetMap';
+      final baiduLookup = response.data['lookup_provider'] == 'Baidu';
       final sample = response.data['coverage'] == 'sample';
       if (response.data['coordinate_system'] != 'WGS84' || rawPlaces is! List) {
         _notice('搜索结果缺少有效的 WGS84 坐标。');
@@ -347,6 +356,16 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
               .where((value) => value.isNotEmpty)
               .toSet()
               .join(' · '),
+          city: item['city'] is String ? (item['city'] as String).trim() : '',
+          source: (item['source'] ?? response.data['source']) is String
+              ? (item['source'] ?? response.data['source']) as String
+              : '',
+          matchedName: item['matched_name'] is String
+              ? (item['matched_name'] as String).trim()
+              : '',
+          approximate:
+              item['approximate'] == true ||
+              const {'city', 'district'}.contains(item['point_kind']),
           pointKind: switch (item['point_kind']) {
             'campus' => '院区代表点',
             'landmark' => '地标代表点',
@@ -389,19 +408,38 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                         [
                           if (place.area.isNotEmpty) place.area,
                           if (place.address.isNotEmpty) place.address,
-                          if (place.pointKind.isNotEmpty) place.pointKind,
+                          if (place.pointKind.isNotEmpty)
+                            place.approximate
+                                ? '${place.pointKind} · 约略位置'
+                                : place.pointKind,
+                          if (place.matchedName.isNotEmpty)
+                            '百度匹配 · ${place.matchedName}',
                           'WGS84 ${place.latitude}, ${place.longitude}',
                         ].join('\n'),
                       ),
                       onTap: () => Navigator.pop(dialogContext, place),
                     ),
-                if (active && osm)
+                if (active &&
+                    places.any((place) => place.source == 'OpenStreetMap'))
                   SimpleDialogOption(
                     onPressed: () => launchUrl(
                       Uri.https('www.openstreetmap.org', '/copyright'),
                       mode: LaunchMode.externalApplication,
                     ),
                     child: const Text('© OpenStreetMap 贡献者 · ODbL'),
+                  ),
+                if (active && places.any((place) => place.source == 'GeoNames'))
+                  SimpleDialogOption(
+                    onPressed: () => launchUrl(
+                      Uri.https('www.geonames.org', '/about.html'),
+                      mode: LaunchMode.externalApplication,
+                    ),
+                    child: const Text('GeoNames · CC BY 4.0'),
+                  ),
+                if (active && baiduLookup)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    child: Text('地点匹配 · 百度地图'),
                   ),
                 SimpleDialogOption(
                   onPressed: () => Navigator.pop(dialogContext),
@@ -414,9 +452,22 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
       );
       if (choice == null || !_current(session, epoch)) return;
       final address = choice.address;
-      final label = address.isEmpty || address == choice.label
+      var label = address.isEmpty || address == choice.label
           ? choice.label
           : '${choice.label}（$address）';
+      if (choice.approximate) {
+        final area = choice.city == choice.label
+            ? choice.label
+            : '${choice.city}${choice.label}';
+        final confirmed = await _confirm(
+          title: '使用约略位置？',
+          message: '将使用${area}的${choice.pointKind}计算。请先确认此范围。',
+          confirm: '确认使用代表点',
+          cancel: '取消',
+        );
+        if (!confirmed || !_current(session, epoch)) return;
+        label = '$area（${choice.pointKind}）';
+      }
       setState(() {
         _place.text = String.fromCharCodes(label.runes.take(255));
         _latitude.text = choice.latitude.toString();

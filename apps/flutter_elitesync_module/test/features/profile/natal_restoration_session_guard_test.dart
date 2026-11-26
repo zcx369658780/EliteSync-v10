@@ -194,6 +194,7 @@ class _PlaceSearchApi extends _SavedBirthApi {
   final requests = <Object?>[];
   String coordinateSystem = 'WGS84';
   int? failureStatus;
+  Map<String, dynamic>? payload;
 
   @override
   Future<NetworkResult<Map<String, dynamic>>> post(
@@ -204,12 +205,13 @@ class _PlaceSearchApi extends _SavedBirthApi {
     Options? options,
   }) async {
     expect(path, '/api/v1/profile/natal/places');
-    expect(options?.headers?['X-EliteSync-Natal-Places'], 'osm-v1');
+    expect(options?.headers?['X-EliteSync-Natal-Places'], 'wgs84-v2');
     expect(options?.extra?[requestSessionGuardKey], isA<bool Function()>());
     requests.add(body);
     if (failureStatus != null) {
       return NetworkFailure(message: 'test failure', statusCode: failureStatus);
     }
+    if (payload != null) return NetworkSuccess(payload!);
     return NetworkSuccess({
       'coordinate_system': coordinateSystem,
       'source': 'OpenStreetMap',
@@ -304,7 +306,11 @@ void main() {
         .clearSnackBars();
     await tester.pumpAndSettle();
     await search();
-    expect(api.requests.single, {'query': '验收地点', 'region': '武汉市'});
+    expect(api.requests.single, {
+      'query': '验收地点',
+      'region': '武汉市',
+      'allow_baidu': true,
+    });
     expect(find.textContaining('当前服务器尚未开通地点搜索'), findsOneWidget);
     expect(_text(tester, '出生地点名称（可选）'), '验收地点');
     expect(_text(tester, '纬度 WGS84（可选）'), isEmpty);
@@ -333,15 +339,86 @@ void main() {
     await tester.tap(find.text('测试地点甲'));
     await tester.pumpAndSettle();
     expect(api.requests, [
-      {'query': '验收地点', 'region': '武汉市'},
-      {'query': '验收地点', 'region': '武汉市'},
-      {'query': '验收地点', 'region': '武汉市'},
-      {'query': '验收地点', 'region': '武汉市'},
+      {'query': '验收地点', 'region': '武汉市', 'allow_baidu': true},
+      {'query': '验收地点', 'region': '武汉市', 'allow_baidu': true},
+      {'query': '验收地点', 'region': '武汉市', 'allow_baidu': true},
+      {'query': '验收地点', 'region': '武汉市', 'allow_baidu': true},
     ]);
     expect(_text(tester, '出生日期'), '1995-03-21');
     expect(_text(tester, '出生地点名称（可选）'), '测试地点甲（测试路1号）');
     expect(_text(tester, '纬度 WGS84（可选）'), '30.54');
     expect(_text(tester, '经度 WGS84（可选）'), '114.36');
+  });
+
+  testWidgets('new draft uses a representative point only after confirmation', (
+    tester,
+  ) async {
+    final api = _PlaceSearchApi()
+      ..payload = {
+        'coordinate_system': 'WGS84',
+        'lookup_provider': 'Baidu',
+        'places': [
+          {
+            'label': '越秀区',
+            'city': '广州市',
+            'point_kind': 'district',
+            'source': 'GeoNames',
+            'approximate': true,
+            'matched_name': '公开样例医院',
+            'lat': 23.12528,
+            'lng': 113.26528,
+          },
+        ],
+      };
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          apiClientProvider.overrideWithValue(api),
+          sessionProvider.overrideWith(_Session.new),
+        ],
+        child: const MaterialApp(home: NatalRestorationPage()),
+      ),
+    );
+    await tester.pumpAndSettle();
+    final place = _field('出生地点名称（可选）');
+    await Scrollable.ensureVisible(tester.element(place), alignment: 0.5);
+    await tester.pumpAndSettle();
+    await tester.enterText(place, '公开样');
+    await tester.pumpAndSettle();
+    await tester.enterText(place, '公开样例医院');
+    await tester.pumpAndSettle();
+    final search = find.widgetWithText(OutlinedButton, '搜索并带入坐标');
+    await Scrollable.ensureVisible(tester.element(search), alignment: 0.5);
+    await tester.pumpAndSettle();
+    expect(api.requests, isEmpty);
+
+    await tester.tap(search);
+    await tester.pumpAndSettle();
+    expect(find.textContaining('百度地点检索'), findsOneWidget);
+    await tester.enterText(_field('搜索城市'), '广');
+    await tester.pumpAndSettle();
+    await tester.enterText(_field('搜索城市'), '广州');
+    await tester.pumpAndSettle();
+    expect(api.requests, isEmpty);
+    await tester.tap(find.text('搜索'));
+    await tester.pumpAndSettle();
+    expect(api.requests.single, {
+      'query': '公开样例医院',
+      'region': '广州',
+      'allow_baidu': true,
+    });
+
+    expect(find.textContaining('约略位置'), findsOneWidget);
+    expect(find.textContaining('GeoNames'), findsOneWidget);
+    await tester.tap(find.text('越秀区'));
+    await tester.pumpAndSettle();
+    expect(_text(tester, '出生地点名称（可选）'), '公开样例医院');
+    expect(_text(tester, '纬度 WGS84（可选）'), isEmpty);
+    await tester.tap(find.text('确认使用代表点'));
+    await tester.pumpAndSettle();
+    expect(_text(tester, '出生地点名称（可选）'), '广州市越秀区（区县代表点）');
+    expect(_text(tester, '纬度 WGS84（可选）'), '23.12528');
+    expect(_text(tester, '经度 WGS84（可选）'), '113.26528');
   });
 
   testWidgets(

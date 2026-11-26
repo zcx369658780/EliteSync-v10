@@ -3,6 +3,11 @@
 return [
     'place_catalog_path' => env('NATAL_PLACE_CATALOG_PATH', ''),
 
+    'area_catalog_path' => env('NATAL_AREA_CATALOG_PATH', ''),
+    'baidu_lookup_enabled' => (bool) env('NATAL_BAIDU_LOOKUP_ENABLED', false),
+    'baidu_lookup_proxy' => env('NATAL_BAIDU_LOOKUP_PROXY', ''),
+    'baidu_credentials_path' => env('NATAL_BAIDU_CREDENTIALS_PATH', ''),
+
     // Local executables only. No HTTP engine or research-license fallback.
     'python' => env('NATAL_PYTHON', ''),
     'node' => env('NATAL_NODE', 'node'),

@@ -99,6 +99,11 @@ class GeoPlacesApiTest extends TestCase
                     'coordinate_system' => 'WGS84', 'source' => 'OpenStreetMap', 'coverage' => 'sample',
                     'places' => [$campus, $secondCampus],
                 ]);
+            Config::set('natal.baidu_lookup_enabled', true);
+            $this->travel(2)->seconds();
+            $this->withHeader('X-EliteSync-Natal-Places', 'wgs84-v2')
+                ->postJson('/api/v1/profile/natal/places', $input + ['allow_baidu' => true])->assertOk()
+                ->assertJsonCount(2, 'places');
             Http::assertNothingSent();
             $this->assertDatabaseCount('user_natal_profiles', 0);
         } finally {
@@ -147,6 +152,79 @@ class GeoPlacesApiTest extends TestCase
                 ->assertJsonMissingPath('places');
         } finally {
             unlink($catalog);
+        }
+    }
+
+    public function test_natal_manual_baidu_lookup_uses_one_call_and_only_independent_wgs84(): void
+    {
+        $catalog = tempnam(sys_get_temp_dir(), 'natal-areas-');
+        $credentials = tempnam(sys_get_temp_dir(), 'natal-baidu-');
+        file_put_contents($credentials, "BAIDU_WEB_AK=test-web-ak\nBAIDU_WEB_SK=test-web-sk\n");
+        Config::set([
+            'natal.place_catalog_path' => '',
+            'natal.area_catalog_path' => $catalog,
+            'natal.baidu_lookup_enabled' => true,
+            'natal.baidu_credentials_path' => $credentials,
+        ]);
+        file_put_contents($catalog, json_encode([
+            'schema_version' => 1, 'source' => 'GeoNames', 'coordinate_system' => 'WGS84',
+            'cities' => ['广州市' => [
+                'province' => '广东省', 'aliases' => ['广州'], 'lat' => 23.37327, 'lng' => 113.51219,
+                'districts' => ['越秀区' => ['aliases' => ['越秀'], 'lat' => 23.12528, 'lng' => 113.26528]],
+            ]],
+        ], JSON_THROW_ON_ERROR));
+        Http::preventStrayRequests();
+        Http::fake([
+            'https://api.map.baidu.com/place/v3/region*' => Http::sequence()->push([
+                'status' => 0,
+                'results' => [
+                    [
+                        'name' => '公开样例医院', 'address' => '样例路1号', 'city' => '广州市',
+                        'province' => '广东省', 'area' => '越秀区', 'telephone' => 'not-needed',
+                        'location' => ['lat' => 23.14, 'lng' => 113.28],
+                    ],
+                    ['name' => '别的城市', 'city' => '深圳市', 'province' => '广东省', 'area' => '福田区'],
+                ],
+            ])->pushStatus(503),
+        ]);
+        $path = '/api/v1/profile/natal/places';
+        $input = ['query' => '公开样例医院', 'region' => '广州', 'allow_baidu' => true, 'birthday' => '1990-01-01'];
+
+        try {
+            $this->withHeader('X-EliteSync-Natal-Places', 'wgs84-v2')->postJson($path, $input)->assertUnauthorized();
+            Sanctum::actingAs(User::create(['phone' => '13800001126', 'password' => 'test-password']));
+            $this->postJson($path, array_replace($input, ['allow_baidu' => false]))->assertStatus(503);
+            Http::assertNothingSent();
+            $this->travel(2)->seconds();
+            $this->postJson($path, $input)->assertOk()
+                ->assertHeader('Cache-Control', 'no-store, private')
+                ->assertJsonPath('coordinate_system', 'WGS84')
+                ->assertJsonPath('lookup_provider', 'Baidu')
+                ->assertJsonCount(1, 'places')
+                ->assertJsonPath('places.0.label', '越秀区')
+                ->assertJsonPath('places.0.point_kind', 'district')
+                ->assertJsonPath('places.0.source', 'GeoNames')
+                ->assertJsonPath('places.0.approximate', true)
+                ->assertJsonPath('places.0.matched_name', '公开样例医院')
+                ->assertJsonPath('places.0.lat', 23.12528)
+                ->assertJsonPath('places.0.lng', 113.26528)
+                ->assertJsonMissingPath('places.0.telephone');
+            Http::assertSentCount(1);
+            Http::assertSent(function ($request) {
+                parse_str((string) parse_url($request->url(), PHP_URL_QUERY), $params);
+
+                return $request->method() === 'GET'
+                    && array_keys($params) === ['query', 'region', 'region_limit', 'output', 'ak', 'sn']
+                    && $params['query'] === '公开样例医院' && $params['region'] === '广州市'
+                    && $params['region_limit'] === 'true' && strlen($params['sn']) === 32;
+            });
+            $this->travel(2)->seconds();
+            $this->postJson($path, $input)->assertStatus(503)->assertJsonMissingPath('places');
+            Http::assertSentCount(2);
+            $this->assertDatabaseCount('user_natal_profiles', 0);
+        } finally {
+            unlink($catalog);
+            unlink($credentials);
         }
     }
 

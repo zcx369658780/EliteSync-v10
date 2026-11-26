@@ -4,7 +4,7 @@ namespace App\Services;
 
 class NatalPlaceCatalog
 {
-    public function search(string $query, string $region): ?array
+    public function search(string $query, string $region, bool $exact = false): ?array
     {
         $path = config('natal.place_catalog_path');
         if (! is_string($path) || $path === '' || ! is_file($path)) {
@@ -39,13 +39,13 @@ class NatalPlaceCatalog
 
             $places = $entry['places'] ?? [];
 
-            return is_array($places) ? $this->matches($query, $places) : null;
+            return is_array($places) ? $this->matches($query, $places, $exact) : null;
         }
 
         return [];
     }
 
-    private function matches(string $query, array $places): array
+    private function matches(string $query, array $places, bool $exact): array
     {
         $matches = [];
         foreach ($places as $place) {
@@ -73,7 +73,7 @@ class NatalPlaceCatalog
                 count(array_filter($aliases, fn (string $alias) => str_starts_with($alias, $query))) > 0 => 3,
                 default => null,
             };
-            if ($score === null) {
+            if ($score === null || ($exact && $score > 1)) {
                 continue;
             }
 
