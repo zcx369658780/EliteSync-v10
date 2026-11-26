@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-26｜1011812 实机地点搜索回执
+
+**OWNER_1011812_SEARCH_UNAVAILABLE_CONFIRMED / BAIDU_EXTERNAL_CALLBACK_UNAVAILABLE / STAGING_WGS84_PENDING / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- Owner 在 1011812 的本命排盘入口复验，「搜索并带入坐标」提示服务端尚未开通。百度地图可打开搜索页，Owner 报告选点后未回填经纬度。只读检查 25060RK16C 时，百度搜索页在前台，EliteSync 1011812 仍在独立的系统任务。当前页面的「返回」属于百度地图。拼音选字和切回后的草稿保留仍待反馈。
+- 三个排盘入口共用同一资料表单。按 Owner 指示接续应用内地点搜索，1011812 已接入待上线的 WGS84 路由。百度 Android 调起协议未定义选点结果回传。旧 Android SDK 已随原生工程集成，当前 Flutter 宿主关闭其初始化，旧配置输出 BD09LL，无法直接用于 WGS84 回填。 [百度调起协议](https://lbsyun.baidu.com/docs/webapi?title=mapadjustment%2Furi%2Fandriod) · [百度多维检索](https://lbsyun.baidu.com/docs/webapi?title=placev3%2Fguide%2Fwebservice-placeapiV3%2Fmultidimensional)
+- 实际 WGS84 回填待 V2 专用 Staging 部署和一次公开地点检索授权、Web AK/SK 私有注入及应用出站路径核验。本轮手机只读检查，地图页面保留在前台。 [现行工作流](CURRENT_WORKFLOW.md)
+
+---
+
 # CURRENT ENTRY 2026-11-26｜V2 资料恢复与排盘会话交接
 
 **OWNER_APP_BASIC_PROFILE_PASS / APK_1011812_PHONE_UPDATE_PASS / NATAL_PHONE_AND_PROVIDER_PENDING / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
