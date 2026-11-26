@@ -58,7 +58,11 @@
 | 紫微斗数 | `UNKNOWN` |
 | 西洋本命盘 | `CALCULATED` |
 
-实体页「算法使用性别」显示「未知」。现行算法合同在此条件下保留八字可计算部分，紫微返回 `UNKNOWN`。完整三盘实机结果待 Owner 决定是否自行确认算法参数后再保存。实体 App 进程重开 `NOT_RUN`，合成 Android 冷启动读回已通过。新增正式提交核对页及来源持久化的验收环境为本地工程版。出生资料及盘面原件留本机。
+实体页「算法使用性别」当时显示「未知」。现行算法合同在此条件下保留八字可计算部分，紫微返回 `UNKNOWN`。
+
+Owner 随后自行选择算法参数并提交重算。实体页面重新进入后读到输入版本 3、结果版本 3。八字显示 `COMPUTED_UNVERIFIED`，紫微斗数和西洋本命盘均显示 `CALCULATED`。重算版本退出账号重登后的读回待 Owner 确认。
+
+实体 App 进程重开 `NOT_RUN`，合成 Android 冷启动读回已通过。新增正式提交核对页及来源持久化的验收环境为本地工程版。出生资料及盘面原件留本机。
 
 ### 11 月 26 日实机补证｜南阳城市代表点
 
@@ -95,3 +99,6 @@ Owner 确认实体 App 可搜索「南阳」并把城市代表点填入排盘草
 | `owner-device-m1-20261126-private/chart-ziwei.png`，紫微及西洋盘状态 | `d797eaa77235b2d44c6d28a3932d5ed2f55b077b8dfe9a352ca2738de7e1b18a` |
 | `owner-device-m1-20261126-private/chart-western.png`，西洋盘状态 | `6427bf615c211594ded67e6c11035c1d884226e585a0a04570f26cc537cacad5` |
 | `owner-device-m1-20261126-private/after-reentry.png`，返回后重入的 v2/v2 及算法参数状态 | `4dae78aa2a49875415be3bb6faf1b6d2088d0cb17c5d893fec5f740a683906d7` |
+| `owner-device-m1-20261126-private/recomputed/after-reentry.png`，重算后重入的 v3/v3 及八字状态 | `3b110462903adcf3c7f06153f04e6ddb33cbfced7f55d60a7237b83480c517de` |
+| `owner-device-m1-20261126-private/recomputed/chart-ziwei.png`，重算后的紫微状态 | `2d700c7243663048da6bec26f752d79d017adfee64ac8c12ad7573707fdfda74` |
+| `owner-device-m1-20261126-private/recomputed/chart-western.png`，重算后的西洋盘状态 | `ce6a1c7fb2568f7a0ddcc59565878116d846e9d0d586c99f0eabff33948e2c9e` |
