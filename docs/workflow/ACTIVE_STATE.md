@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-26｜10 地点样本已接入 Staging，1011813 候选待装机
+
+**OSM_SAMPLE_STAGING_PASS / APK_1011813_VERIFIED / PHONE_INSTALL_PENDING / PHONE_BACKFILL_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- V2 专用 Staging 已只读挂载已核定的 10 地点 OSM 目录。目录 SHA-256 为 14c5fee37826420aa1fa2d0e4824a913985b4a1a47d05d6af32293b22bf7e891，应用镜像为 sha256:f91cddb7eab349067b6e201885deb9a0f7bc55dcab9fc04a151a3128123c1150。回环健康 200、未鉴权 POST 401。新能力请求 200 并返回北京协和两个院区。旧请求 503。数据库、队列、网关与应用网络保持原状态。公开 443 探测 0 次，地点搜索出站 0 次。
+- 1011813 源码 af0146ba1e44da03ff33007f88ac56aea1964599，包 com.elitesync.v2stagingremote、arm64-v8a、SHA-256 987302ff12db14f642761e9f52cd4d793b22ba7bfa4a0f97df7633ee433b1b10。签名与 1011812 一致，APK 和 AAR 的 AOT 字节相同，已有 Staging 端点核对通过。候选及原始回执留本机。
+- Laravel 地点回归 8/8，Flutter 定向 12/12，合成身份真实本机 HTTP 10/10。未登录 401，旧客户端能力检查 503，命盘写入 0。具名 25060RK16C 已只读确认当前为 1011812，已装 APK 哈希匹配。1011813 等待具名 SHA 确认，发起的安装次数 0。 [离线样本与部署回执](../versions/v2/cloud-r0-20261121/V2_NATAL_OFFLINE_OSM_PILOT_20261126.md)
+
+---
+
 # CURRENT ENTRY 2026-11-26｜排盘 OSM 离线样本及本机 HTTP 验证
 
 **OSM_OFFLINE_SAMPLE_LOCAL_PASS / SHARED_STAGING_DATA_PENDING / PHONE_BACKFILL_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**

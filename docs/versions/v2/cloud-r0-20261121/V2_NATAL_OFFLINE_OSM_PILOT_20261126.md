@@ -23,4 +23,10 @@ NATAL_PLACE_CATALOG_PATH=<catalog.json 的可读本机绝对路径>
 - Flutter 排盘定向 12/12，覆盖错误坐标系、服务不可用、来源和代表点展示、选择后回填以及会话切换防护。
 - 真实本机 HTTP 使用合成身份和独立 SQLite。健康 200，未登录请求 401，已登录公开查询 10/10。北京协和两院区消歧、武汉别名、宜昌城市样本、跨城空结果和未收录空结果通过。天安门城楼代表点距公开参考点 15.6 米。命盘记录写入 0。 [天安门公开参考点](https://commons.wikimedia.org/wiki/Tiananmen?uselang=zh)
 
-共享 Staging 数据接入与具名真机验收待授权。当前覆盖为公开样本。R1 PARTIAL，封闭内测与生产 NO_GO。
+## Staging 和 APK 1011813
+
+Owner 同意继续专用 Staging 样本试用。服务只读挂载原目录，API 要求新客户端声明 `X-EliteSync-Natal-Places: osm-v1`，确保回填前能显示点位层级和数据来源。旧客户端继续收到 503。回环健康 200，未鉴权请求 401。运行应用返回北京协和两院区，出站调用 0 次。原数据库、队列、网关与应用网络不变。
+
+1011813 已完成 AAR 和 Android 宿主构建。包名 `com.elitesync.v2stagingremote`，与 1011812 同签名，arm64-v8a。候选 SHA-256 为 `987302ff12db14f642761e9f52cd4d793b22ba7bfa4a0f97df7633ee433b1b10`。地名目录通过服务器提供。具名手机 25060RK16C 的已装版本与 1011812 哈希回读通过。新候选安装需按具名 SHA 确认。
+
+最新回归为 Laravel 地点 8/8、Flutter 12/12、合成身份本机 HTTP 10/10。旧客户端请求 503，新能力请求 200，命盘写入 0。真机回填待验。
