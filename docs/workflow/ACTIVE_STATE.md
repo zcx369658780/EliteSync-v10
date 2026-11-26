@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-26｜百度地点检索实测与 WGS84 核验失败
+
+**BAIDU_WEB_REQUEST_PASS / BAIDU_WGS84_FAIL / PHONE_BACKFILL_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- Owner 已在服务端私有文件填写百度 Web AK/SK。文件权限 0600，凭据可读取。探针以同一 Staging 候选镜像隔离运行，临时只读挂载凭据。Staging 常驻应用仍未注入凭据，仍在内部数据网络。
+- 首次探针在 Laravel 启动时未生成结构化输出。断网复现定位到只读容器无法写入 PackageManifest 缓存，故障发生在请求前。调整探针缓存到临时目录后，断网测试的模拟请求和私有配置解析通过。原探针、诊断和正式调用回执均保留在服务器私有目录。
+- 获批真实调用 1/1，自动重试 0 次。公开输入为北京市天安门城楼。HTTPS 请求发往百度多维检索并带 ret_coordtype=wgs84ll。HTTP 200，百度 status=0。候选坐标为 39.9150865052, 116.4039459198，距公开 WGS84 参考点约 1,395 米，超出 150 米核验范围。候选距参考点的近似 BD09LL 坐标约 21 米，坐标系判断仍为推断。 [百度多维检索](https://lbsyun.baidu.com/docs/webapi?title=placev3%2Fguide%2Fwebservice-placeapiV3%2Fmultidimensional) · [公开参考坐标](https://commons.wikimedia.org/wiki/Tiananmen?uselang=zh)
+- 应用响应中的 WGS84 标签由控制器固定生成。本次供应商结果 WGS84 核验 FAIL，常驻路由保持未启用供应商访问，1011812 真机坐标回填未运行。后续需确认百度该接口的实际输出契约及可信 WGS84 来源。本轮公网 443 探测 0 次，排盘保存 0 次。 [控制器](../../services/backend-laravel/app/Http/Controllers/Api/V1/GeoController.php)
+
+---
+
 # CURRENT ENTRY 2026-11-26｜1011812 实机地点搜索回执
 
 **OWNER_1011812_SEARCH_UNAVAILABLE_CONFIRMED / BAIDU_EXTERNAL_CALLBACK_UNAVAILABLE / STAGING_WGS84_PENDING / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
