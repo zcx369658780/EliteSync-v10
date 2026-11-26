@@ -4,75 +4,24 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Services\BaiduWebApiSigner;
-use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class GeoController extends Controller
 {
-    public function natalPlaces(Request $request, BaiduWebApiSigner $signer): JsonResponse
+    public function natalPlaces(Request $request): JsonResponse
     {
-        $data = $request->validate([
+        $request->validate([
             'query' => ['required', 'string', 'max:100'],
             'region' => ['required', 'string', 'max:50'],
         ]);
-        $unavailable = static fn () => response()->json([
-            'message' => '出生地点搜索暂不可用，请稍后重试或手填坐标。',
-        ], 503);
 
-        $ak = (string) config('baidu.web_ak');
-        $sk = (string) config('baidu.web_sk');
-        if ($ak === '' || $sk === '') {
-            return $unavailable();
-        }
-
-        // The standard Place API does not document WGS84 output.
-        // https://lbsyun.baidu.com/docs/webapi?title=placev3/guide/webservice-placeapiV3/multidimensional
-        $url = $signer->buildSignedUrl('/api_place_pro/v1/region', [
-            'query' => $data['query'],
-            'region' => $data['region'],
-            'region_limit' => 'true',
-            'ret_coordtype' => 'wgs84ll',
-            'output' => 'json',
-        ], $ak, $sk);
-        try {
-            $response = Http::acceptJson()->withoutRedirecting()->connectTimeout(3)->timeout(8)->get($url);
-        } catch (ConnectionException) {
-            return $unavailable();
-        }
-        $payload = $response->json();
-        if ($response->status() === 429 || in_array($payload['status'] ?? null, [4, '4'], true)) {
-            return response()->json(['message' => '出生地点搜索额度暂不可用。'], 429);
-        }
-        if (! $response->successful() || ! in_array($payload['status'] ?? null, [0, '0'], true)
-            || ! is_array($payload['results'] ?? null)) {
-            return $unavailable();
-        }
-
-        $places = [];
-        foreach (array_slice($payload['results'], 0, 10) as $item) {
-            $name = $item['name'] ?? null;
-            $latitude = $item['location']['lat'] ?? null;
-            $longitude = $item['location']['lng'] ?? null;
-            if (! is_string($name) || trim($name) === '' || ! is_numeric($latitude) || ! is_numeric($longitude)
-                || ! is_finite((float) $latitude) || ! is_finite((float) $longitude)
-                || abs((float) $latitude) > 90 || abs((float) $longitude) > 180) {
-                continue;
-            }
-            $place = [
-                'label' => mb_substr(trim($name), 0, 255),
-                'lat' => (float) $latitude,
-                'lng' => (float) $longitude,
-            ];
-            foreach (['address', 'province', 'city', 'area'] as $key) {
-                $place[$key] = is_string($item[$key] ?? null) ? mb_substr(trim($item[$key]), 0, 255) : '';
-            }
-            $places[] = $place;
-        }
-
-        return response()->json(['coordinate_system' => 'WGS84', 'places' => $places])
-            ->header('Cache-Control', 'private, no-store');
+        // The live mainland probe returned the same coordinates for wgs84ll and bd09ll.
+        // Keep the endpoint unavailable until it has a verified WGS84 source.
+        return response()->json([
+            'message' => 'WGS84 地点搜索暂不可用，请手动填写已确认的 WGS84 坐标。',
+        ], 503)->header('Cache-Control', 'private, no-store');
     }
 
     public function places(Request $request): JsonResponse
