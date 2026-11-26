@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-26｜排盘防误填上线及离线地点库评估
+
+**BAIDU_BD09_CONTROL_MATCH / STAGING_WGS84_GUARD_PASS / OFFLINE_WGS84_SAMPLE_EVALUATED / PHONE_BACKFILL_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 依 Owner 新一轮实测指示，使用同一公开地点天安门城楼做一次百度 BD09LL 对照。HTTP 200、百度 status=0。返回的城楼坐标与上次请求 wgs84ll 的公开样例逐值相同。本轮新增供应商调用 1 次，重试 0 次。 [百度坐标系说明](https://lbsyun.baidu.com/skins/MySkin/resources/iframs/coordinate.html)
+- 排盘搜索控制器修正固定于 32d1945c9a6d0eb93f29600f119c6ae0d8ca6c3e。存在百度凭据时也返回 503，响应无坐标，排盘请求不会调用百度。Laravel 地点回归 5/5，排盘与太阳时回归 7/7，Flutter 排盘状态与 503 草稿回归 12/12。一般地点查询仍通过原接口。
+- 防误填镜像 sha256:54684d7a08abdfd43729c128fc41a23923e8fc1d045e77bf9674ec103de5d2e3 已部署到 V2 专用 Staging。回环健康 200，未鉴权 POST 401，实际容器中处理器返回 503、无坐标、出站 0 次。数据库、队列、网关和应用网络保持原状态。手机坐标回填未执行，公网 443 探测 0 次。
+- Owner 同意评估离线地点库。GeoNames 中国快照与 OSM 北京、湖北快照均匹配 5/5 城市区县公开样本，源间代表点距离约 0.54–7.26 公里。3 个医院样本中，GeoNames 初筛 0/3，OSM 初筛 1/3，经别名、地址及面几何核查定位 3/3。天安门城楼代表点距公开参考约 29 米（GeoNames）及 16 米（OSM）。评估样本和下载回执留本机，数据采用待 Owner 决定。 [GeoNames WGS84 与许可](https://download.geonames.org/export/dump/) · [OSM 坐标系](https://wiki.openstreetmap.org/wiki/Projection) · [OSM 数据许可](https://www.openstreetmap.org/copyright)
+
+---
+
 # CURRENT ENTRY 2026-11-26｜百度地点检索实测与 WGS84 核验失败
 
 **BAIDU_WEB_REQUEST_PASS / BAIDU_WGS84_FAIL / PHONE_BACKFILL_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
