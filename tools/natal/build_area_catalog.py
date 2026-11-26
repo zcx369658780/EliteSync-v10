@@ -8,7 +8,11 @@ import zipfile
 from pathlib import Path
 
 ADMIN_NAMES = re.compile(r"[\u3400-\u9fff·]+")
-SUFFIXES = ("市", "区", "區", "县", "縣", "旗", "省", "州", "地区", "地區", "盟")
+SUFFIXES = {
+    "ADM1": ("省", "自治区", "自治區", "市"),
+    "ADM2": ("市", "自治州", "地区", "地區", "盟", "行政区划", "行政區劃"),
+    "ADM3": ("区", "區", "县", "縣", "旗", "市"),
+}
 MUNICIPALITIES = {"北京市", "上海市", "天津市", "重庆市"}
 
 
@@ -19,7 +23,7 @@ def administrative_records(source):
             if len(row) != 19 or row[7] not in {"ADM1", "ADM2", "ADM3"} or row[8] != "CN":
                 continue
             aliases = [value for value in dict.fromkeys((row[1], row[2], *row[3].split(","))) if 2 <= len(value) <= 50]
-            label = next((value for value in aliases if ADMIN_NAMES.fullmatch(value) and value.endswith(SUFFIXES)), None)
+            label = next((value for value in aliases if ADMIN_NAMES.fullmatch(value) and value.endswith(SUFFIXES[row[7]])), None)
             if label is None:
                 continue
             lat, lng = map(float, row[4:6])

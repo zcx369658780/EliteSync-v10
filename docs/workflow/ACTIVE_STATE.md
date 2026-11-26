@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-26｜百度手动检索单次核验完成，按 Owner 要求暂停
+
+**MANUAL_BAIDU_CANDIDATE_PASS / PUBLIC_PROVIDER_LOOKUP_1_OF_1_PASS / APK_1011814_VERIFIED / SHARED_STAGING_ROLLOUT_PENDING / PHONE_NOT_RUN / R1_PARTIAL**
+
+- Owner 要求输入阶段不调用百度，确认可另行选用明确标注的区县或城市代表点。实现以离线候选优先，用户提交且未命中时，最多一次百度地点检索。百度用于识别地点，代表点来自 WGS84 目录并需二次确认。Laravel 定向 16/16、Flutter 13/13。
+- 隔离候选使用既有服务端 AK/SK 对公开地点广州市第一人民医院真实查询 1/1。百度 HTTP 200、status=0；得到越秀区 WGS84 代表点 23.12528, 113.26528。自动重试 0 次。最终规范名称目录为 348 个城市及 2815 个区县。 [实现、核验和接续记录](../versions/v2/cloud-r0-20261121/V2_NATAL_MANUAL_BAIDU_20261126.md)
+- 签名候选 1011814 SHA-256 为 37b9d370dda05f737cdd5e367d12267e3572220120edd6a27ec7710d8aec18d4，与 1011813 同包同签名。Owner 要求核验后停下，当前共享 Staging 及手机仍运行 1011813 路径。晚间接续从固定候选和回执起步。
+
+---
+
 # CURRENT ENTRY 2026-11-26｜1011813 真机 OSM 坐标回填通过
 
 **OSM_SAMPLE_STAGING_PASS / APK_1011813_PHONE_UPDATE_PASS / PHONE_OSM_PUBLIC_SAMPLE_BACKFILL_PASS / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
