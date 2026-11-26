@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
+import 'package:flutter_elitesync_module/core/network/transport_error.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:dio/dio.dart';
@@ -157,17 +158,6 @@ class _LiveConversationListPageState
         _ => '无法确认可信登录与设备时间，私有内容已锁定，请重新在线登录。',
       };
 
-  bool _transportUnavailable(NetworkFailure<Map<String, dynamic>> failure) {
-    if (failure.statusCode != null) return false;
-    final error = failure.error;
-    return error is DioException &&
-        const {
-          DioExceptionType.connectionError,
-          DioExceptionType.connectionTimeout,
-          DioExceptionType.sendTimeout,
-          DioExceptionType.receiveTimeout,
-        }.contains(error.type);
-  }
 
   Map<String, dynamic> _savedItem(Map<String, dynamic> item) => {
     'peer_user_id': item['peer_user_id'],
@@ -259,6 +249,7 @@ class _LiveConversationListPageState
     }
     final epoch = _epoch;
     final cache = _cache;
+    final route = ModalRoute.of(context);
     var revalidation = cache.onlineRevalidationEpoch;
     bool current(SessionState session) =>
         _current(session, epoch) &&
@@ -307,7 +298,16 @@ class _LiveConversationListPageState
         revalidation = cache.onlineRevalidationEpoch;
       }
       if (response is NetworkFailure<Map<String, dynamic>>) {
-        if (_transportUnavailable(response)) {
+        if (response.statusCode == null && isTransportUnavailable(response.error)) {
+          if (route?.isCurrent == false && !cache.isOffline) {
+            // A covered list must not switch the shared cache offline while
+            // the active chat is saving a separately verified text receipt.
+            _items = [];
+            _offlineReadOnly = false;
+            _cacheStatus = null;
+            _error = '暂时无法更新会话，请稍后重试。';
+            return;
+          }
           await _showOwnedOfflineCopy(session, epoch, revalidation);
           return;
         }

@@ -5,7 +5,6 @@ import 'package:flutter_elitesync_module/features/profile/avatar/authenticated_a
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:convert';
-import 'dart:io';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
 import 'package:flutter_elitesync_module/features/rtc/presentation/providers/rtc_providers.dart';
@@ -20,6 +19,7 @@ import 'package:flutter_elitesync_module/features/chat/presentation/providers/ch
 import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 import 'package:flutter_elitesync_module/core/storage/private_cache_service.dart';
 import 'package:flutter_elitesync_module/core/network/network_result.dart';
+import 'package:flutter_elitesync_module/core/network/transport_error.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
@@ -64,18 +64,6 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   String get _draftKey => 'live-chat-draft:${widget.peerId}';
   PrivateCacheService get _cache =>
       PrivateCacheService.forStorage(ref.read(secureStorageProvider));
-  bool _transportUnavailable(NetworkFailure result) {
-    final error = result.error;
-    return error is SocketException ||
-        error is TimeoutException ||
-        (error is DioException &&
-            const {
-              DioExceptionType.connectionError,
-              DioExceptionType.connectionTimeout,
-              DioExceptionType.receiveTimeout,
-              DioExceptionType.sendTimeout,
-            }.contains(error.type));
-  }
 
   final _text = TextEditingController();
   List<Map<String, dynamic>> _messages = [];
@@ -212,6 +200,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     _timer?.cancel();
     _offlineExpiry?.cancel();
     _uploadCancellation.cancel('Page disposed');
+    _evictImages();
     _text.dispose();
     super.dispose();
   }
@@ -281,9 +270,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     _reject('离线阅读授权已到期，请联网重新核验。', preserveAttempt: true);
   }
 
-  void _evictImages() {
-    for (final bytes in _images.values) {
-      unawaited(MemoryImage(bytes).evict());
+  void _evictImages({Map<int, Uint8List> retaining = const {}}) {
+    for (final entry in _images.entries) {
+      if (!identical(entry.value, retaining[entry.key])) {
+        unawaited(MemoryImage(entry.value).evict());
+      }
     }
   }
 
@@ -511,6 +502,35 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     bool current(SessionState session) =>
         _current(session, epoch) &&
         revalidation == cache.onlineRevalidationEpoch;
+    Future<bool> showOfflineText(SessionState session) async {
+      if (!cache.enterOfflineForChatText(widget.peerId)) return false;
+      final saved = await cache.readOfflineChatText(widget.peerId);
+      if (!current(session) ||
+          saved == null ||
+          (_roomKey != null && _roomKey != saved.roomKey)) {
+        return false;
+      }
+      _roomKey = saved.roomKey;
+      _evictImages();
+      _offlineExpiry?.cancel();
+      _offlineExpiry = Timer(saved.remaining, () {
+        if (_current(session, epoch) && _offline) {
+          _expireOfflineReading();
+        }
+      });
+      setState(() {
+        _messages = saved.messages;
+        _images = {};
+        _previewImageId = null;
+        _offline = true;
+        _historyExpanded = false;
+        _hasOlder = false;
+        _historyError = null;
+        _error = '离线只读。当前只显示已下载的本代文字消息。';
+      });
+      return true;
+    }
+
     SessionState? started;
     try {
       final session = await ref.read(sessionProvider.future);
@@ -541,33 +561,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         final transportUnavailable =
             response is NetworkFailure<Map<String, dynamic>> &&
             response.statusCode == null &&
-            _transportUnavailable(response);
-        if (transportUnavailable && cache.enterOfflineForChatText(widget.peerId)) {
-          final saved = await cache.readOfflineChatText(widget.peerId);
-          if (!current(session)) return;
-          if (saved != null &&
-              (_roomKey == null || _roomKey == saved.roomKey)) {
-            _roomKey = saved.roomKey;
-            _evictImages();
-            _offlineExpiry?.cancel();
-            _offlineExpiry = Timer(saved.remaining, () {
-              if (_current(session, epoch) && _offline) {
-                _expireOfflineReading();
-              }
-            });
-            setState(() {
-              _messages = saved.messages;
-              _images = {};
-              _previewImageId = null;
-              _offline = true;
-              _historyExpanded = false;
-              _hasOlder = false;
-              _historyError = null;
-              _error = '离线只读。当前只显示已下载的本代文字消息。';
-            });
-            return;
-          }
-        }
+            isTransportUnavailable(response.error);
+        if (transportUnavailable && await showOfflineText(session)) return;
+        if (!current(session)) return;
         if (transportUnavailable) {
           cache.revokeOfflineChatText(widget.peerId);
         } else if (response is NetworkFailure<Map<String, dynamic>> &&
@@ -581,7 +577,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           '当前无法读取对话，请检查登录、连接与双方消息同意。',
           preserveAttempt:
               response is NetworkFailure<Map<String, dynamic>> &&
-              (_transportUnavailable(response) ||
+              (isTransportUnavailable(response.error) ||
                   response.statusCode == null ||
                   response.statusCode! >= 500 ||
                   response.statusCode == 408 ||
@@ -663,10 +659,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         }
       }
       final fresh = _mergeMessages(additions, items);
-      final freshImages = await _messageImages(fresh, session, epoch);
-      if (!current(session)) return;
       final visible = keepHistory ? _mergeMessages(_messages, fresh) : fresh;
-      final images = keepHistory ? {..._images, ...freshImages} : freshImages;
+      // The current history response authorizes the text lease independently
+      // of subsequent media downloads. A transport loss during those downloads
+      // must not discard the fresh text or expose previously decoded images.
       final saved = await cache.saveAuthorizedChatText(
         widget.peerId,
         _offlineSnapshot(visible, response.data['offline_text_grant']),
@@ -680,6 +676,19 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         setState(() => _timeLocked = true);
         return;
       }
+      final Map<int, Uint8List> freshImages;
+      try {
+        freshImages = await _messageImages(fresh, session, epoch);
+      } catch (error) {
+        if (current(session) &&
+            isTransportUnavailable(error) &&
+            await showOfflineText(session)) {
+          return;
+        }
+        rethrow;
+      }
+      if (!current(session)) return;
+      final images = keepHistory ? {..._images, ...freshImages} : freshImages;
       if (!_draftLoaded) {
         final draft = await _cache.readAfterCurrentAuthorization(
           _draftKey,
@@ -689,6 +698,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         if (!current(session)) return;
         if (!_restoreTextDraft(draft, offline: false)) return;
       }
+      _evictImages(retaining: images);
       setState(() {
         _messages = visible;
         _images = images;
@@ -728,6 +738,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       }
     } catch (_) {
       if (started != null && current(started)) {
+        cache.revokeOfflineChatText(widget.peerId);
         _reject('当前无法读取消息或附件，请检查登录、连接与双方消息同意。');
       }
     } finally {

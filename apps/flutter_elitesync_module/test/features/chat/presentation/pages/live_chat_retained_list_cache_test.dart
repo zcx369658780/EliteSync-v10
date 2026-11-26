@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -347,6 +348,47 @@ void _resume(WidgetTester tester) {
 }
 
 void main() {
+  testWidgets('covered list timeout cannot invalidate a fresh chat grant', (
+    tester,
+  ) async {
+    final f = await _mount(tester);
+    try {
+      final list = Completer<NetworkResult<Map<String, dynamic>>>();
+      final store = Completer<void>();
+      f.api.listRead = list;
+      await tester.pump(const Duration(seconds: 5));
+      expect(f.api.listReads, greaterThan(1));
+      f.secure.chatWrite = store;
+      await tester.tap(find.byTooltip('刷新对话'));
+      await tester.pump();
+      expect(f.secure.writeBlocked, isTrue);
+      f.api.offline = true;
+      list.complete(
+        NetworkFailure(
+          message: 'Covered list transport cut',
+          error: DioException(
+            requestOptions: RequestOptions(path: '/api/v1/conversations'),
+            type: DioExceptionType.unknown,
+            error: const HttpException('Connection closed while receiving data'),
+          ),
+        ),
+      );
+      await tester.pump();
+      store.complete();
+      await tester.pumpAndSettle();
+
+      expect(f.cache.isUnlocked, isTrue);
+      expect(find.text('Synthetic previous message'), findsOneWidget);
+      await tester.tap(find.byTooltip('刷新对话'));
+      await tester.pumpAndSettle();
+      expect(find.text('Synthetic previous message'), findsOneWidget);
+      expect(find.textContaining('离线只读'), findsOneWidget);
+      expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
+    } finally {
+      await _dispose(tester, f);
+    }
+  });
+
   testWidgets(
     'a list generation change retires text while the chat is closed',
     (tester) async {

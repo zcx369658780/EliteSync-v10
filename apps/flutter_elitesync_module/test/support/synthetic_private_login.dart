@@ -6,9 +6,12 @@ class SyntheticPrivateStore extends SecureStorageService {
   @override Future<void> write(String key,String value) async { values[key]=value; }
   @override Future<void> delete(String key) async { values.remove(key); }
 }
-Future<SyntheticPrivateStore> syntheticPrivateLogin() async {
- final secure=SyntheticPrivateStore();final now=DateTime.now().toUtc();
- await PrivateCacheService.forStorage(secure).establishLogin(userId:1,retention:{
+Future<SyntheticPrivateStore> syntheticPrivateLogin({DateTime? fixedTime}) async {
+ final secure=SyntheticPrivateStore();final now=fixedTime ?? DateTime.now().toUtc();
+ final cache = fixedTime == null
+     ? PrivateCacheService.forStorage(secure)
+     : PrivateCacheService.forTesting(secure, wallNow: () => now, elapsed: () => Duration.zero);
+ await cache.establishLogin(userId:1,retention:{
  'user_id':1,'device_id':'synthetic-widget-device','session_id':1,
  'login_at':now.toIso8601String(),'server_now':now.toIso8601String(),
  'online_expires_at':now.add(const Duration(days:15)).toIso8601String(),
@@ -16,8 +19,8 @@ Future<SyntheticPrivateStore> syntheticPrivateLogin() async {
  return secure;
 }
 
-Map<String, dynamic> syntheticOfflineTextGrant(String roomKey, {int peerId=2}) {
-  final now = DateTime.now().toUtc();
+Map<String, dynamic> syntheticOfflineTextGrant(String roomKey, {int peerId=2, DateTime? issuedAt}) {
+  final now = issuedAt ?? DateTime.now().toUtc();
   return {
     'scope': 'conversation_text_v1',
     'account_id': 1,

@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\DatingMatch;
 use App\Models\MediaAsset;
 use App\Models\User;
+use App\Services\Accounts\DeviceSessions;
 use App\Services\LiveConsentService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -52,6 +53,37 @@ final class V1007PrivateMediaTest extends TestCase
         $response = $this->post('/api/v1/media', ['media_type' => 'image', 'file' => $this->image()], ['Accept' => 'application/json'])->assertOk();
 
         return MediaAsset::findOrFail($response->json('asset.id'));
+    }
+
+    public function test_private_image_retries_are_bound_to_owner_and_original_bytes(): void
+    {
+        $authenticate = function (User $actor): void {
+            auth('sanctum')->forgetUser();
+            auth('web')->forgetUser();
+            $this->app['auth']->forgetGuards();
+            $tokens = app(DeviceSessions::class)->issue($actor, successfulLogin: true);
+            $this->withToken($tokens['access_token']);
+        };
+        $authenticate($this->sender);
+        $key = '047cd735-bd7a-4daa-9bb7-7a55b44b8334';
+        $upload = fn (UploadedFile $image) => $this->post('/api/v1/media', [
+            'media_type' => 'image', 'file' => $image, 'client_upload_id' => $key,
+            'sha256' => str_repeat('0', 64),
+        ], ['Accept' => 'application/json']);
+
+        $first = $upload($this->image())->assertOk()->json('asset.id');
+        $upload($this->image())->assertOk()->assertJsonPath('asset.id', $first);
+        $this->assertDatabaseCount('media_assets', 1);
+        $this->assertCount(1, Storage::disk('v1007')->allFiles());
+        $upload(UploadedFile::fake()->createWithContent('fixture.png', base64_decode(self::PNG).'different'))->assertConflict();
+        $this->assertDatabaseCount('media_assets', 1);
+        $asset = MediaAsset::findOrFail($first);
+        $this->assertSame(base64_decode(self::PNG), Storage::disk('v1007')->get($asset->storage_key));
+
+        $authenticate($this->recipient);
+        $second = $upload($this->image())->assertOk()->json('asset.id');
+        $this->assertNotSame($first, $second);
+        $this->assertDatabaseCount('media_assets', 2);
     }
 
     public function test_private_attachment_download_requires_current_participant_consent(): void

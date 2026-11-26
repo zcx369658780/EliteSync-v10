@@ -114,6 +114,8 @@ class AuthLocalDataSource {
     }
 
     checkEpoch();
+    final cache = PrivateCacheService.forStorage(_secureStorage);
+    final receiptTime = cache.markLoginReceiptTime();
     await _secureStorage.delete(CacheKeys.privateResumeAllowed);
     checkEpoch();
     if (await _secureStorage.read(CacheKeys.privateResumeAllowed) != null) {
@@ -124,7 +126,6 @@ class AuthLocalDataSource {
         retention['device_id'] != expectedDeviceId) {
       throw StateError('Login device binding did not match.');
     }
-    final cache = PrivateCacheService.forStorage(_secureStorage);
     if (verifiedResume != null &&
         (retention == null ||
             expectedEpoch == null ||
@@ -148,6 +149,7 @@ class AuthLocalDataSource {
     final trusted = await cache.establishLogin(
       userId: session.user.id,
       retention: retention,
+      receiptTime: receiptTime,
       verifiedResume: verifiedResume,
       isCurrent: verifiedResume == null
           ? null

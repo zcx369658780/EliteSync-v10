@@ -195,12 +195,17 @@ class PrivateCacheService {
     );
   }
 
+  ({DateTime wall, Stopwatch elapsed}) markLoginReceiptTime() =>
+      (wall: _wallNow(), elapsed: Stopwatch()..start());
+
   Future<bool> establishLogin({
     required int userId,
     required Map<String, dynamic>? retention,
     ({String sessionId, DateTime loginAt})? verifiedResume,
     bool Function()? isCurrent,
+    ({DateTime wall, Stopwatch elapsed})? receiptTime,
   }) {
+    final timing = receiptTime ?? markLoginReceiptTime();
     lock();
     final generation = _generation;
     bool current() {
@@ -357,8 +362,8 @@ class PrivateCacheService {
         if (!current()) return false;
         _loginAt = login;
         _serverAnchor = server;
-        _wallAnchor = _wallNow();
-        _stopwatch = Stopwatch()..start();
+        _wallAnchor = timing.wall;
+        _stopwatch = timing.elapsed;
         _unlocked = true;
         return true;
       } catch (_) {

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_elitesync_module/core/network/interceptors/auth_interceptor.dart';
 import 'package:flutter_elitesync_module/features/chat/data/utils/chat_media_upload_form.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:uuid/uuid.dart';
 
 enum ChatAttachmentKind { image, video }
 
@@ -20,10 +21,15 @@ extension ChatAttachmentKindX on ChatAttachmentKind {
 }
 
 class ChatPickedMedia {
-  const ChatPickedMedia({required this.path, required this.name});
+  const ChatPickedMedia({
+    required this.path,
+    required this.name,
+    this.clientUploadId,
+  });
 
   final String path;
   final String name;
+  final String? clientUploadId;
 }
 
 class ChatMediaUploadResponse {
@@ -97,6 +103,7 @@ class PlatformChatMediaGateway implements SessionBoundChatMediaGateway {
     return ChatPickedMedia(
       path: picked.path,
       name: picked.name.isEmpty ? fallbackName : picked.name,
+      clientUploadId: kind == ChatAttachmentKind.image ? const Uuid().v4() : null,
     );
   }
 
@@ -129,6 +136,10 @@ class PlatformChatMediaGateway implements SessionBoundChatMediaGateway {
       fileName: media.name,
       metadata: {'source_page': 'chat_room', 'media_kind': kind.mediaType},
     );
+    final uploadId = media.clientUploadId;
+    if (kind == ChatAttachmentKind.image && isCurrent != null && uploadId != null) {
+      form.fields.add(MapEntry('client_upload_id', uploadId));
+    }
     if (isCurrent != null && !isCurrent()) {
       throw const ChatMediaGatewayException();
     }

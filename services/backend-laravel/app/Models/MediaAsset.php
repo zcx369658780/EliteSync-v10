@@ -16,6 +16,7 @@ class MediaAsset extends Model
 
     protected $fillable = [
         'owner_user_id',
+        'client_upload_id',
         'media_type',
         'storage_provider',
         'storage_disk',
@@ -35,6 +36,8 @@ class MediaAsset extends Model
         'uploaded_at',
         'processed_at',
     ];
+
+    protected $hidden = ['client_upload_id'];
 
     protected function casts(): array
     {

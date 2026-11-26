@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
 
 class MediaController extends Controller
@@ -75,6 +76,9 @@ class MediaController extends Controller
             'public_url' => ['nullable', 'string', 'max:512'],
             'metadata' => ['nullable', 'array'],
         ]);
+        if ($private && $data['media_type'] === 'image') {
+            $data += $request->validate(['client_upload_id' => 'sometimes|required|uuid']);
+        }
 
         if ($private && $request->input('media_type') === 'video') {
             $data = array_merge($data, app(PrivateVideoValidator::class)->validate($request->file('file')));
@@ -92,10 +96,16 @@ class MediaController extends Controller
                     : (string) ($private ? $file?->getMimeType() : ($data['mime_type'] ?? $file?->getMimeType() ?? ''));
                 $data['size_bytes'] = (int) ($private ? $file?->getSize() : ($data['size_bytes'] ?? $file?->getSize() ?? 0));
 
-                $asset = $service->registerUploaded($request->user(), $file, $data);
+                if (isset($data['client_upload_id'])) {
+                    $asset = $service->registerPrivateImageRetry($request->user(), $file, $data, $disk);
+                } else {
+                    $asset = $service->registerUploaded($request->user(), $file, $data);
+                }
             } else {
                 $asset = $service->registerDraft($request->user(), $data);
             }
+        } catch (HttpExceptionInterface $e) {
+            throw $e;
         } catch (Throwable $e) {
             Log::error('media_upload_failed', [
                 'owner_user_id' => (int) $request->user()->id,

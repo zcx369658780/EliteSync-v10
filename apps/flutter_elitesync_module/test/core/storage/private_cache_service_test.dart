@@ -90,6 +90,41 @@ void main() {
   const primary = '$namespace:manifest';
   const recovery = '$namespace:manifest-recovery';
 
+  test('trusted login clock includes time spent deleting older cache', () async {
+    final secure = _BlockingSecure();
+    final cache = PrivateCacheService.forTesting(secure, wallNow: DateTime.now);
+    final previous = DateTime.utc(2026, 11, 26);
+    expect(await cache.establishLogin(userId: 1, retention: _receipt(previous)), isTrue);
+    expect(await cache.saveAuthorized('queue-blocker', {'text': 'previous'}), isTrue);
+
+    final received = previous.add(const Duration(minutes: 1));
+    secure.blockDelete = Completer();
+    secure.deleteEntered = Completer();
+    final login = cache.establishLogin(userId: 1, retention: _receipt(received));
+    await secure.deleteEntered!.future;
+    await Future<void>.delayed(const Duration(milliseconds: 180));
+    secure.blockDelete!.complete();
+    expect(await login, isTrue);
+
+    final issued = received.add(const Duration(milliseconds: 100));
+    expect(await cache.saveAuthorizedChatText(2, {
+      'room_key': 'test-room',
+      'offline_text_grant': {
+        'scope': 'conversation_text_v1',
+        'account_id': 1,
+        'peer_id': 2,
+        'session_id': '11',
+        'device_id': 'synthetic-device',
+        'room_key': 'test-room',
+        'issued_at': issued.toIso8601String(),
+        'expires_at': issued.add(const Duration(hours: 24)).toIso8601String(),
+      },
+      'messages': <Object>[],
+    }, expectedAccountId: 1, isCurrent: () => true), isTrue);
+    expect(cache.enterOfflineForChatText(2), isTrue);
+    expect(await cache.readOfflineChatText(2), isNotNull);
+  });
+
   test(
     'unconfirmed cleanup phase preserves indexes and retries after restart',
     () async {

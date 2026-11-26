@@ -150,7 +150,8 @@ class _Gateway implements SessionBoundChatMediaGateway {
 }
 
 class _MediaApi extends ApiClient {
-  _MediaApi() : super(dio: Dio());
+  _MediaApi({this.leaseIssuedAt}) : super(dio: Dio());
+  final DateTime? leaseIssuedAt;
   bool unavailable = false;
   bool includeImage = false;
   int messageCount = 1;
@@ -171,7 +172,11 @@ class _MediaApi extends ApiClient {
         )
       : NetworkSuccess({
           'room_key': 'fictional-room',
-          'offline_text_grant': syntheticOfflineTextGrant('fictional-room', peerId: query?['peer_id'] as int? ?? 2),
+          'offline_text_grant': syntheticOfflineTextGrant(
+            'fictional-room',
+            peerId: query?['peer_id'] as int? ?? 2,
+            issuedAt: leaseIssuedAt,
+          ),
           'items': [
             for (var i = 0; i < messageCount; i++)
               {
@@ -1042,6 +1047,71 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
+  testWidgets('media transport failure preserves only the new text grant', (
+    tester,
+  ) async {
+    final issuedAt = DateTime.utc(2026, 11, 27);
+    final secure = await syntheticPrivateLogin(fixedTime: issuedAt);
+    final api = _MediaApi(leaseIssuedAt: issuedAt)
+      ..includeImage = true
+      ..messageCount = 2;
+    Object? attachmentError;
+    final dio = Dio()
+      ..interceptors.add(
+        InterceptorsWrapper(
+          onRequest: (options, handler) {
+            if (attachmentError != null) {
+              handler.reject(
+                DioException(
+                  requestOptions: options,
+                  type: DioExceptionType.unknown,
+                  error: attachmentError,
+                ),
+              );
+              return;
+            }
+            handler.resolve(
+              Response<List<int>>(
+                requestOptions: options,
+                statusCode: 200,
+                data: base64Decode(
+                  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNgAAIAAAUAAXpeqz8AAAAASUVORK5CYII=',
+                ),
+              ),
+            );
+          },
+        ),
+      );
+    await _show(tester, api, dio: dio, secureStore: secure);
+    await tester.pumpAndSettle();
+    expect(find.byType(Image), findsOneWidget);
+
+    for (final error in const [
+      SocketException('Connection reset by peer'),
+      HttpException('Connection closed while receiving data'),
+    ]) {
+      attachmentError = error;
+      await tester.tap(find.byTooltip('刷新对话'));
+      await tester.pumpAndSettle();
+      expect(find.text('later message 1'), findsOneWidget);
+      expect(find.text('retained conversation'), findsNothing);
+      expect(find.byType(Image), findsNothing);
+      expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
+    }
+
+    api.denied = true;
+    await tester.tap(find.byTooltip('刷新对话'));
+    await tester.pumpAndSettle();
+    expect(find.text('later message 1'), findsNothing);
+    api
+      ..denied = false
+      ..unavailable = true;
+    await tester.tap(find.byTooltip('刷新对话'));
+    await tester.pumpAndSettle();
+    expect(find.text('later message 1'), findsNothing);
+    await tester.pumpWidget(const SizedBox());
+  });
+
   testWidgets(
     'confirmed send removes saved draft and never resends on reopen',
     (tester) async {
@@ -1316,6 +1386,15 @@ void main() {
       await Scrollable.ensureVisible(tester.element(image), alignment: 0.4);
       await tester.pumpAndSettle();
       final positionBeforePreview = tester.getTopLeft(image).dy;
+      final thumbnail = tester.widget<Image>(
+        find.descendant(of: image, matching: find.byType(Image)),
+      ).image;
+      expect(
+        (await thumbnail.obtainCacheStatus(
+          configuration: ImageConfiguration.empty,
+        ))?.tracked,
+        isTrue,
+      );
       await tester.tap(image);
       await tester.pumpAndSettle();
       expect(find.text('图片预览'), findsOneWidget);
@@ -1327,14 +1406,29 @@ void main() {
       expect(find.text('retained conversation'), findsOneWidget);
       expect(tester.getTopLeft(image).dy, closeTo(positionBeforePreview, 1));
       expect(previewSize.width, greaterThan(300));
+      await tester.tap(find.byTooltip('刷新对话'));
+      await tester.pumpAndSettle();
+      expect(
+        (await thumbnail.obtainCacheStatus(
+          configuration: ImageConfiguration.empty,
+        ))?.tracked,
+        isFalse,
+      );
       await tester.tap(image);
       await tester.pumpAndSettle();
+      final preview = tester.widget<Image>(find.byType(Image)).image;
       api.denied = true;
       await tester.pump(const Duration(seconds: 3));
       await tester.pumpAndSettle();
       expect(find.text('图片预览'), findsNothing);
       expect(find.byType(Image), findsNothing);
       expect(find.textContaining('当前无法读取对话'), findsOneWidget);
+      expect(
+        (await preview.obtainCacheStatus(
+          configuration: ImageConfiguration.empty,
+        ))?.tracked,
+        isFalse,
+      );
       await tester.pumpWidget(const SizedBox());
     },
   );
@@ -1428,6 +1522,44 @@ void main() {
       );
     },
   );
+
+  test('private image retries rebuild the form with the same upload id', () async {
+    final forms = <FormData>[];
+    final gateway = PlatformChatMediaGateway(
+      apiClient: _MediaApi(),
+      formBuilder: ({
+        required String mediaType,
+        required String filePath,
+        required String fileName,
+        required Map<String, dynamic> metadata,
+      }) async {
+        final form = FormData();
+        forms.add(form);
+        return form;
+      },
+    );
+    const pick = ChatPickedMedia(
+      path: 'fictional',
+      name: 'fixture.png',
+      clientUploadId: '047cd735-bd7a-4daa-9bb7-7a55b44b8334',
+    );
+    for (var attempt = 0; attempt < 2; attempt++) {
+      await expectLater(
+        gateway.uploadForSession(
+          ChatAttachmentKind.image,
+          pick,
+          isCurrent: () => true,
+          cancelToken: CancelToken(),
+        ),
+        throwsA(isA<ChatMediaGatewayException>()),
+      );
+    }
+    expect(forms, hasLength(2));
+    expect(identical(forms[0], forms[1]), isFalse);
+    for (final form in forms) {
+      expect(Map.fromEntries(form.fields)['client_upload_id'], pick.clientUploadId);
+    }
+  });
 
   testWidgets('a late upload cannot be sent to a newly opened peer', (
     tester,

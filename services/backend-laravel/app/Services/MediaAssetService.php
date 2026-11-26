@@ -56,6 +56,38 @@ class MediaAssetService
         return $asset;
     }
 
+    public function registerPrivateImageRetry(User $actor, UploadedFile $file, array $data, string $disk): MediaAsset
+    {
+        $uploadId = strtolower($data['client_upload_id']);
+        $sha256 = hash_file('sha256', $file->getPathname());
+        if ($sha256 === false) {
+            throw new \RuntimeException('Private image could not be read');
+        }
+
+        return DB::transaction(function () use ($actor, $file, $data, $disk, $uploadId, $sha256) {
+            $owner = User::query()->lockForUpdate()->findOrFail($actor->id);
+            abort_if($owner->disabled || $owner->account_status !== 'active', 403, 'ACCOUNT_UNAVAILABLE');
+            app(\App\Services\Accounts\DeviceSessions::class)->assertCurrentCredential($actor);
+            $previous = MediaAsset::withTrashed()
+                ->where('owner_user_id', $owner->id)
+                ->where('client_upload_id', $uploadId)
+                ->lockForUpdate()
+                ->first();
+            if ($previous) {
+                abort_if($previous->trashed() || $previous->storage_disk !== $disk ||
+                    $previous->media_type !== 'image' || $previous->sha256 !== $sha256, 409, 'Upload attempt conflicts');
+                abort_if($previous->status === 'ready' && ! $previous->isBackingObjectAvailable(), 409, 'Upload attempt is unavailable');
+
+                return $previous;
+            }
+
+            return $this->registerUploaded($owner, $file, array_replace($data, [
+                'client_upload_id' => $uploadId,
+                'sha256' => $sha256,
+            ]));
+        });
+    }
+
     public function registerUploaded(User $user, UploadedFile $file, array $data = [], ?MediaStorageService $storage = null): MediaAsset
     {
         $policy = app(MediaUploadPolicy::class);
@@ -68,6 +100,7 @@ class MediaAssetService
 
         $asset = MediaAsset::query()->create([
             'owner_user_id' => $user->id,
+            'client_upload_id' => $data['client_upload_id'] ?? null,
             'media_type' => $mediaType,
             'storage_provider' => $storage->provider(),
             'storage_disk' => $storage->disk(),
