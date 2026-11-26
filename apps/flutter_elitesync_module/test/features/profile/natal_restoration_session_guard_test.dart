@@ -299,6 +299,16 @@ void main() {
     expect(find.textContaining('当前服务器尚未开通地点搜索'), findsOneWidget);
     expect(_text(tester, '出生地点名称（可选）'), '验收地点');
     expect(_text(tester, '纬度 WGS84（可选）'), isEmpty);
+    api.failureStatus = 503;
+    tester
+        .state<ScaffoldMessengerState>(find.byType(ScaffoldMessenger))
+        .clearSnackBars();
+    await search();
+    expect(find.textContaining('地点搜索服务暂不可用'), findsOneWidget);
+    expect(_text(tester, '出生地点名称（可选）'), '验收地点');
+    expect(_text(tester, '纬度 WGS84（可选）'), isEmpty);
+    expect(_text(tester, '经度 WGS84（可选）'), isEmpty);
+
     api.failureStatus = null;
     api.coordinateSystem = 'BD09';
     await search();
@@ -311,6 +321,7 @@ void main() {
     await tester.tap(find.text('测试地点甲'));
     await tester.pumpAndSettle();
     expect(api.requests, [
+      {'query': '验收地点', 'region': '武汉市'},
       {'query': '验收地点', 'region': '武汉市'},
       {'query': '验收地点', 'region': '武汉市'},
       {'query': '验收地点', 'region': '武汉市'},
