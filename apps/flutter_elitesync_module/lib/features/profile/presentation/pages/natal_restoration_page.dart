@@ -157,7 +157,9 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
           .read(apiClientProvider)
           .get(
             '/api/v1/profile/basic',
-            options: natalSessionOptions(() => _current(session, epoch)),
+            options: natalSessionOptions(
+              () => _current(session, epoch),
+            ).copyWith(headers: const {'X-EliteSync-Natal-Places': 'osm-v1'}),
           );
       if (!_current(session, epoch)) return;
       setState(() => _busy = false);
@@ -296,7 +298,9 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
           .post(
             '/api/v1/profile/natal/places',
             body: {'query': query, 'region': region},
-            options: natalSessionOptions(() => _current(session, epoch)),
+            options: natalSessionOptions(
+              () => _current(session, epoch),
+            ).copyWith(headers: const {'X-EliteSync-Natal-Places': 'osm-v1'}),
           );
       if (!_current(session, epoch)) return;
       if (response is! NetworkSuccess<Map<String, dynamic>>) {
@@ -541,7 +545,9 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
           .read(apiClientProvider)
           .post(
             '/api/v1/profile/natal',
-            options: natalSessionOptions(() => _current(session, epoch)),
+            options: natalSessionOptions(
+              () => _current(session, epoch),
+            ).copyWith(headers: const {'X-EliteSync-Natal-Places': 'osm-v1'}),
             body: body,
           );
       if (!_current(session, epoch)) return;

@@ -204,6 +204,7 @@ class _PlaceSearchApi extends _SavedBirthApi {
     Options? options,
   }) async {
     expect(path, '/api/v1/profile/natal/places');
+    expect(options?.headers?['X-EliteSync-Natal-Places'], 'osm-v1');
     expect(options?.extra?[requestSessionGuardKey], isA<bool Function()>());
     requests.add(body);
     if (failureStatus != null) {

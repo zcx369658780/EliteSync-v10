@@ -89,7 +89,11 @@ class GeoPlacesApiTest extends TestCase
             $input = ['query' => '北京协和医院', 'region' => '北京'];
             $this->postJson('/api/v1/profile/natal/places', $input)->assertUnauthorized();
             Sanctum::actingAs(User::create(['phone' => '13800001123', 'password' => 'test-password']));
-            $this->postJson('/api/v1/profile/natal/places', $input)->assertOk()
+            $this->postJson('/api/v1/profile/natal/places', $input)->assertStatus(503)
+                ->assertJsonMissingPath('places');
+            $this->travel(2)->seconds();
+            $this->withHeader('X-EliteSync-Natal-Places', 'osm-v1')
+                ->postJson('/api/v1/profile/natal/places', $input)->assertOk()
                 ->assertHeader('Cache-Control', 'no-store, private')
                 ->assertExactJson([
                     'coordinate_system' => 'WGS84', 'source' => 'OpenStreetMap', 'coverage' => 'sample',
@@ -116,6 +120,7 @@ class GeoPlacesApiTest extends TestCase
 
         try {
             $path = '/api/v1/profile/natal/places';
+            $this->withHeader('X-EliteSync-Natal-Places', 'osm-v1');
             $this->postJson($path, ['query' => '北京市', 'region' => '广州市'])->assertOk()
                 ->assertJsonPath('places', []);
             $this->travel(2)->seconds();
@@ -136,7 +141,8 @@ class GeoPlacesApiTest extends TestCase
         Sanctum::actingAs(User::create(['phone' => '13800001125', 'password' => 'test-password']));
 
         try {
-            $this->postJson('/api/v1/profile/natal/places', ['query' => '天安门城楼', 'region' => '北京市'])
+            $this->withHeader('X-EliteSync-Natal-Places', 'osm-v1')
+                ->postJson('/api/v1/profile/natal/places', ['query' => '天安门城楼', 'region' => '北京市'])
                 ->assertStatus(503)
                 ->assertJsonMissingPath('places');
         } finally {

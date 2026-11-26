@@ -18,7 +18,9 @@ class GeoController extends Controller
             'region' => ['required', 'string', 'max:50'],
         ]);
 
-        $places = $catalog->search($data['query'], $data['region']);
+        $places = $request->header('X-EliteSync-Natal-Places') === 'osm-v1'
+            ? $catalog->search($data['query'], $data['region'])
+            : null;
         if ($places === null) {
             return response()->json([
                 'message' => 'WGS84 地点搜索暂不可用，请手动填写已确认的 WGS84 坐标。',
