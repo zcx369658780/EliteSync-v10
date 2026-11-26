@@ -4,7 +4,8 @@
 
 - Owner 在 1011812 的本命排盘入口复验，「搜索并带入坐标」提示服务端尚未开通。百度地图可打开搜索页，Owner 报告选点后未回填经纬度。只读检查 25060RK16C 时，百度搜索页在前台，EliteSync 1011812 仍在独立的系统任务。当前页面的「返回」属于百度地图。拼音选字和切回后的草稿保留仍待反馈。
 - 三个排盘入口共用同一资料表单。按 Owner 指示接续应用内地点搜索，1011812 已接入待上线的 WGS84 路由。百度 Android 调起协议未定义选点结果回传。旧 Android SDK 已随原生工程集成，当前 Flutter 宿主关闭其初始化，旧配置输出 BD09LL，无法直接用于 WGS84 回填。 [百度调起协议](https://lbsyun.baidu.com/docs/webapi?title=mapadjustment%2Furi%2Fandriod) · [百度多维检索](https://lbsyun.baidu.com/docs/webapi?title=placev3%2Fguide%2Fwebservice-placeapiV3%2Fmultidimensional)
-- 实际 WGS84 回填待 V2 专用 Staging 部署和一次公开地点检索授权、Web AK/SK 私有注入及应用出站路径核验。本轮手机只读检查，地图页面保留在前台。 [现行工作流](CURRENT_WORKFLOW.md)
+- Owner 授权部署 V2 专用 Staging 路由及一次公开地点供应商调用。应用镜像由 7e0009df 原镜像叠加 a030c131 的三个后端文件，候选镜像 ID 为 sha256:3b4c950e3a26f63d1ad17070dc6d2ff7ebfaa0a4e963a7f9bbd9d243b143370a。三个基准与候选文件哈希、PHP 语法和隔离路由检查通过。首次使用公网名称匹配回环证书的前置检查失败，应用尚未变更。改用证书覆盖的回环地址后，部署前后健康均为 200，未鉴权路由由 404 变为 401。数据库、队列和网关容器未变更，公网 443 探测 0 次。
+- 一次公开地点检索额度尚未消费。已创建服务器端 root 私有凭据填写文件，Web AK/SK 待 Owner 填写。应用仍位于内部数据网络，供应商调用与实际手机 WGS84 回填待验。 [现行工作流](CURRENT_WORKFLOW.md)
 
 ---
 
