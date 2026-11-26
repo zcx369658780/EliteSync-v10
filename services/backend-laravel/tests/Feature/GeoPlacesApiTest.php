@@ -15,6 +15,7 @@ class GeoPlacesApiTest extends TestCase
 
     public function test_natal_search_rejects_unverified_baidu_coordinates_even_with_credentials(): void
     {
+        Config::set('natal.place_catalog_path', '');
         Config::set('baidu.web_ak', 'test-web-ak');
         Config::set('baidu.web_sk', 'test-web-sk');
         Http::preventStrayRequests();
@@ -42,6 +43,7 @@ class GeoPlacesApiTest extends TestCase
 
     public function test_natal_search_without_service_configuration_stops_before_outbound_request(): void
     {
+        Config::set('natal.place_catalog_path', '');
         Config::set('baidu.web_ak', '');
         Config::set('baidu.web_sk', '');
         Http::preventStrayRequests();
@@ -50,6 +52,96 @@ class GeoPlacesApiTest extends TestCase
         $this->postJson('/api/v1/profile/natal/places', ['query' => '公开测试地点', 'region' => '武汉市'])
             ->assertStatus(503);
         Http::assertNothingSent();
+    }
+
+    public function test_natal_search_uses_the_local_catalog_without_outbound_requests_or_writes(): void
+    {
+        $catalog = tempnam(sys_get_temp_dir(), 'natal-places-');
+        Config::set('natal.place_catalog_path', $catalog);
+        Config::set('baidu.web_ak', 'test-web-ak');
+        Config::set('baidu.web_sk', 'test-web-sk');
+        Http::preventStrayRequests();
+        Http::fake();
+        $campus = [
+            'label' => '北京协和医院东单院区', 'address' => '帅府园1号', 'province' => '北京市',
+            'city' => '北京市', 'area' => '东城区', 'point_kind' => 'campus', 'lat' => 39.91121, 'lng' => 116.40883,
+        ];
+        $secondCampus = array_replace($campus, [
+            'label' => '北京协和医院西单院区', 'address' => '大木仓胡同41号',
+            'area' => '西城区', 'lat' => 39.91161, 'lng' => 116.36141,
+        ]);
+        file_put_contents($catalog, json_encode([
+            'schema_version' => 1,
+            'source' => 'OpenStreetMap',
+            'coordinate_system' => 'WGS84',
+            'regions' => [
+                '北京市' => ['aliases' => ['北京'], 'places' => [
+                    $campus + ['aliases' => ['北京协和医院', '协和东单']],
+                    $secondCampus + ['aliases' => ['北京协和医院']],
+                ]],
+                '武汉市' => ['aliases' => ['武汉'], 'places' => [
+                    array_replace($campus, ['city' => '武汉市']) + ['aliases' => ['北京协和医院']],
+                ]],
+            ],
+        ], JSON_THROW_ON_ERROR));
+
+        try {
+            $input = ['query' => '北京协和医院', 'region' => '北京'];
+            $this->postJson('/api/v1/profile/natal/places', $input)->assertUnauthorized();
+            Sanctum::actingAs(User::create(['phone' => '13800001123', 'password' => 'test-password']));
+            $this->postJson('/api/v1/profile/natal/places', $input)->assertOk()
+                ->assertHeader('Cache-Control', 'no-store, private')
+                ->assertExactJson([
+                    'coordinate_system' => 'WGS84', 'source' => 'OpenStreetMap', 'coverage' => 'sample',
+                    'places' => [$campus, $secondCampus],
+                ]);
+            Http::assertNothingSent();
+            $this->assertDatabaseCount('user_natal_profiles', 0);
+        } finally {
+            unlink($catalog);
+        }
+    }
+
+    public function test_natal_search_keeps_unsupported_regions_and_unmatched_names_empty(): void
+    {
+        $catalog = tempnam(sys_get_temp_dir(), 'natal-places-');
+        Config::set('natal.place_catalog_path', $catalog);
+        file_put_contents($catalog, json_encode([
+            'schema_version' => 1, 'source' => 'OpenStreetMap', 'coordinate_system' => 'WGS84',
+            'regions' => ['北京市' => ['aliases' => ['北京'], 'places' => [[
+                'label' => '北京市', 'point_kind' => 'city', 'lat' => 39.90571, 'lng' => 116.39129,
+            ]]]],
+        ], JSON_THROW_ON_ERROR));
+        Sanctum::actingAs(User::create(['phone' => '13800001124', 'password' => 'test-password']));
+
+        try {
+            $path = '/api/v1/profile/natal/places';
+            $this->postJson($path, ['query' => '北京市', 'region' => '广州市'])->assertOk()
+                ->assertJsonPath('places', []);
+            $this->travel(2)->seconds();
+            $this->postJson($path, ['query' => '北京测试医院', 'region' => '北京市'])->assertOk()
+                ->assertJsonPath('places', []);
+        } finally {
+            unlink($catalog);
+        }
+    }
+
+    public function test_natal_search_rejects_a_catalog_declared_in_a_different_coordinate_system(): void
+    {
+        $catalog = tempnam(sys_get_temp_dir(), 'natal-places-');
+        Config::set('natal.place_catalog_path', $catalog);
+        file_put_contents($catalog, json_encode([
+            'schema_version' => 1, 'source' => 'OpenStreetMap', 'coordinate_system' => 'BD09LL', 'regions' => [],
+        ], JSON_THROW_ON_ERROR));
+        Sanctum::actingAs(User::create(['phone' => '13800001125', 'password' => 'test-password']));
+
+        try {
+            $this->postJson('/api/v1/profile/natal/places', ['query' => '天安门城楼', 'region' => '北京市'])
+                ->assertStatus(503)
+                ->assertJsonMissingPath('places');
+        } finally {
+            unlink($catalog);
+        }
     }
 
     public function test_geo_places_search_returns_baidu_suggestions(): void

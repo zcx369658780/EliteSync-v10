@@ -1,3 +1,12 @@
+# CURRENT ENTRY 2026-11-26｜排盘 OSM 离线样本及本机 HTTP 验证
+
+**OSM_OFFLINE_SAMPLE_LOCAL_PASS / SHARED_STAGING_DATA_PENDING / PHONE_BACKFILL_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 根据 Owner 续作指示，用北京、湖北已核查的 OSM 快照生成 10 个地点，覆盖北京市、武汉市、宜昌市。北京协和东单和西单分别列出，城市与院区代表点有明确标签。未收录地点返回空结果。留存快照与派生数据均为本机样本。 [实现及本机回执](../versions/v2/cloud-r0-20261121/V2_NATAL_OFFLINE_OSM_PILOT_20261126.md)
+- Laravel 15/15，Flutter 12/12，真实本机 HTTP 合成账号 10/10。天安门城楼代表点距公开参考 15.6 米，SQLite 命盘写入 0。共享 Staging 仍使用防误填版本，具名真机回填待授权。公网 443 探测与百度新增调用各 0 次。
+
+---
+
 # CURRENT ENTRY 2026-11-26｜排盘防误填上线及离线地点库评估
 
 **BAIDU_BD09_CONTROL_MATCH / STAGING_WGS84_GUARD_PASS / OFFLINE_WGS84_SAMPLE_EVALUATED / PHONE_BACKFILL_NOT_RUN / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**

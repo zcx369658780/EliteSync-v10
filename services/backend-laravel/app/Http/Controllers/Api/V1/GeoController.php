@@ -4,24 +4,33 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Services\BaiduWebApiSigner;
+use App\Services\NatalPlaceCatalog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class GeoController extends Controller
 {
-    public function natalPlaces(Request $request): JsonResponse
+    public function natalPlaces(Request $request, NatalPlaceCatalog $catalog): JsonResponse
     {
-        $request->validate([
+        $data = $request->validate([
             'query' => ['required', 'string', 'max:100'],
             'region' => ['required', 'string', 'max:50'],
         ]);
 
-        // The live mainland probe returned the same coordinates for wgs84ll and bd09ll.
-        // Keep the endpoint unavailable until it has a verified WGS84 source.
+        $places = $catalog->search($data['query'], $data['region']);
+        if ($places === null) {
+            return response()->json([
+                'message' => 'WGS84 地点搜索暂不可用，请手动填写已确认的 WGS84 坐标。',
+            ], 503)->header('Cache-Control', 'private, no-store');
+        }
+
         return response()->json([
-            'message' => 'WGS84 地点搜索暂不可用，请手动填写已确认的 WGS84 坐标。',
-        ], 503)->header('Cache-Control', 'private, no-store');
+            'coordinate_system' => 'WGS84',
+            'source' => 'OpenStreetMap',
+            'coverage' => 'sample',
+            'places' => $places,
+        ])->header('Cache-Control', 'private, no-store');
     }
 
     public function places(Request $request): JsonResponse

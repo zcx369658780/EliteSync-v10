@@ -211,9 +211,17 @@ class _PlaceSearchApi extends _SavedBirthApi {
     }
     return NetworkSuccess({
       'coordinate_system': coordinateSystem,
+      'source': 'OpenStreetMap',
+      'coverage': 'sample',
       'places': [
         {'label': '坐标越界', 'lat': 91.0, 'lng': 114.36},
-        {'label': '测试地点甲', 'address': '测试路1号', 'lat': 30.54, 'lng': 114.36},
+        {
+          'label': '测试地点甲',
+          'address': '测试路1号',
+          'point_kind': 'campus',
+          'lat': 30.54,
+          'lng': 114.36,
+        },
       ],
     });
   }
@@ -317,6 +325,9 @@ void main() {
     api.coordinateSystem = 'WGS84';
     await search();
     expect(find.text('坐标越界'), findsNothing);
+    expect(find.textContaining('院区代表点'), findsOneWidget);
+    expect(find.textContaining('© OpenStreetMap'), findsOneWidget);
+    expect(find.textContaining('离线样本'), findsOneWidget);
     expect(_text(tester, '纬度 WGS84（可选）'), isEmpty);
     await tester.tap(find.text('测试地点甲'));
     await tester.pumpAndSettle();

@@ -18,6 +18,7 @@ typedef _BirthPlace = ({
   String label,
   String address,
   String area,
+  String pointKind,
   double latitude,
   double longitude,
 });
@@ -252,7 +253,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('百度地图将收到当前地点关键词和搜索城市。'),
+              const Text('地点关键词和城市将发送到 EliteSync 服务端，在离线地点库中检索。'),
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: '搜索城市',
@@ -313,6 +314,8 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
         return;
       }
       final rawPlaces = response.data['places'];
+      final osm = response.data['source'] == 'OpenStreetMap';
+      final sample = response.data['coverage'] == 'sample';
       if (response.data['coordinate_system'] != 'WGS84' || rawPlaces is! List) {
         _notice('搜索结果缺少有效的 WGS84 坐标。');
         return;
@@ -340,12 +343,21 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
               .where((value) => value.isNotEmpty)
               .toSet()
               .join(' · '),
+          pointKind: switch (item['point_kind']) {
+            'campus' => '院区代表点',
+            'landmark' => '地标代表点',
+            'district' => '区县代表点',
+            'city' => '城市代表点',
+            _ => '',
+          },
           latitude: latitude.toDouble(),
           longitude: longitude.toDouble(),
         ));
       }
       if (places.isEmpty) {
-        _notice('没有找到带坐标的地点，请核对城市和地点名称。');
+        _notice(
+          sample ? '离线样本库未收录此地点，可手动填写已确认的 WGS84 坐标。' : '没有找到带坐标的地点，请核对城市和地点名称。',
+        );
         return;
       }
       if (!mounted) return;
@@ -360,6 +372,11 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
             return SimpleDialog(
               title: Text(active ? '选择地点并填入坐标' : '搜索结果已失效'),
               children: [
+                if (active && sample)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    child: Text('离线样本 · 请核对地点和代表点层级。'),
+                  ),
                 if (active)
                   for (final place in places)
                     ListTile(
@@ -368,11 +385,20 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                         [
                           if (place.area.isNotEmpty) place.area,
                           if (place.address.isNotEmpty) place.address,
+                          if (place.pointKind.isNotEmpty) place.pointKind,
                           'WGS84 ${place.latitude}, ${place.longitude}',
                         ].join('\n'),
                       ),
                       onTap: () => Navigator.pop(dialogContext, place),
                     ),
+                if (active && osm)
+                  SimpleDialogOption(
+                    onPressed: () => launchUrl(
+                      Uri.https('www.openstreetmap.org', '/copyright'),
+                      mode: LaunchMode.externalApplication,
+                    ),
+                    child: const Text('© OpenStreetMap 贡献者 · ODbL'),
+                  ),
                 SimpleDialogOption(
                   onPressed: () => Navigator.pop(dialogContext),
                   child: const Text('取消'),

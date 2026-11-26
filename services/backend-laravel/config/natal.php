@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'place_catalog_path' => env('NATAL_PLACE_CATALOG_PATH', ''),
+
     // Local executables only. No HTTP engine or research-license fallback.
     'python' => env('NATAL_PYTHON', ''),
     'node' => env('NATAL_NODE', 'node'),
