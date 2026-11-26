@@ -40,12 +40,13 @@ final class V1007LiveConsentTest extends TestCase
         ]);
     }
 
-    private function active(): void
+    private function active(): string
     {
         $this->act('connection', 'request', 0, $this->a)->assertOk()->assertJsonPath('connection.state', 'CN_PENDING');
         $this->act('connection', 'accept', 1, $this->b)->assertOk()->assertJsonPath('connection.state', 'CN_ACTIVE');
         $this->act('consent', 'request', 0, $this->a)->assertOk()->assertJsonPath('consent.state', 'MC_PENDING');
-        $this->act('consent', 'accept', 1, $this->b)->assertOk()->assertJsonPath('consent.state', 'MC_ACTIVE');
+        return $this->act('consent', 'accept', 1, $this->b)->assertOk()
+            ->assertJsonPath('consent.state', 'MC_ACTIVE')->json('room_key');
     }
 
     public function test_match_alone_and_single_party_do_not_grant_messages(): void
@@ -94,11 +95,11 @@ final class V1007LiveConsentTest extends TestCase
 
     public function test_latest_message_window_keeps_new_messages_and_legacy_cursor_order(): void
     {
-        $this->active();
+        $room = $this->active();
         $ids = [];
         for ($i = 1; $i <= 105; $i++) {
             $ids[] = ChatMessage::create([
-                'room_id' => min($this->a->id, $this->b->id).'_'.max($this->a->id, $this->b->id),
+                'room_id' => $room,
                 'sender_id' => $this->a->id, 'receiver_id' => $this->b->id,
                 'content' => 'fictional history '.$i,
             ])->id;
@@ -115,11 +116,11 @@ final class V1007LiveConsentTest extends TestCase
 
     public function test_older_message_pages_are_nearest_chronological_and_exclusive(): void
     {
-        $this->active();
+        $room = $this->active();
         $ids = [];
         for ($i = 1; $i <= 7; $i++) {
             $ids[] = ChatMessage::create([
-                'room_id' => min($this->a->id, $this->b->id).'_'.max($this->a->id, $this->b->id),
+                'room_id' => $room,
                 'sender_id' => $this->a->id, 'receiver_id' => $this->b->id,
                 'content' => 'fictional history '.$i,
             ])->id;

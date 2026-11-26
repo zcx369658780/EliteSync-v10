@@ -57,8 +57,9 @@ class _Session extends SessionNotifier {
 }
 
 class _Api extends ApiClient {
-  _Api(this.events) : super(dio: Dio());
+  _Api(this.events, this.grantIssuedAt) : super(dio: Dio());
   final List<String> events;
+  final DateTime? grantIssuedAt;
   String readMode = 'success';
   Completer<NetworkResult<Map<String,dynamic>>>? pendingRead;
   bool timeoutFirstSend = false;
@@ -68,6 +69,36 @@ class _Api extends ApiClient {
   Completer<NetworkResult<Map<String, dynamic>>>? preflight;
   final posts = <Map<String, dynamic>>[];
   int? longHistoryCount;
+
+  NetworkSuccess<Map<String, dynamic>> window(List<Map<String, dynamic>> items) {
+    final issuedAt = grantIssuedAt;
+    if (issuedAt == null) return NetworkSuccess({'items': items});
+    const room = 'synthetic-room';
+    return NetworkSuccess({
+      'room_key': room,
+      'items': items.map((item) {
+        final hasAttachments = (item['attachments'] as List).isNotEmpty;
+        return {
+          ...item,
+          'room_id': room,
+          'sender_id': 2,
+          'message_type': hasAttachments ? 'image' : 'text',
+          'has_attachments': hasAttachments,
+        };
+      }).toList(),
+      'offline_text_grant': {
+        'scope': 'conversation_text_v1',
+        'account_id': 1,
+        'peer_id': 2,
+        'session_id': '9',
+        'device_id': 'synthetic-device',
+        'room_key': room,
+        'issued_at': issuedAt.toIso8601String(),
+        'expires_at': issuedAt.add(const Duration(hours: 24)).toIso8601String(),
+      },
+    });
+  }
+
   @override
   Future<NetworkResult<Map<String, dynamic>>> get(
     String path, {
@@ -88,9 +119,9 @@ class _Api extends ApiClient {
         'attachments': <dynamic>[],
       });
       final latest = query?['latest'] == 1;
-      return NetworkSuccess({
-        'items': latest ? history.skip(history.length > 100 ? history.length - 100 : 0).toList() : history.take(100).toList(),
-      });
+      return window(latest
+          ? history.skip(history.length > 100 ? history.length - 100 : 0).toList()
+          : history.take(100).toList());
     }
     if (pendingRead != null) return pendingRead!.future;
     if (readMode == 'non-network-failure') {
@@ -114,11 +145,9 @@ class _Api extends ApiClient {
         ],
       });
     }
-    return const NetworkSuccess({
-      'items': [
-        {'id': 4, 'content': '此前合法保存的合成私密消息', 'attachments': <dynamic>[]},
-      ],
-    });
+    return window(const [
+      {'id': 4, 'content': '此前合法保存的合成私密消息', 'attachments': <dynamic>[]},
+    ]);
   }
 
   @override
@@ -198,13 +227,14 @@ Future<_Fixture> _mount(
   DateTime Function()? wallNow,
   Duration Function()? elapsed,
   Dio? mediaDio,
+  bool issueOfflineGrant = false,
 }) async {
   SharedPreferences.setMockInitialValues({});
   final events = <String>[];
-  final api = _Api(events);
+  final now = DateTime.utc(2026, 10, 21);
+  final api = _Api(events, issueOfflineGrant ? now : null);
   final gateway = _Gateway(events);
   final secure = _Secure();
-  final now = DateTime.utc(2026, 10, 21);
   final cache = PrivateCacheService.forTesting(
     secure,
     wallNow: wallNow ?? () => now,
@@ -315,7 +345,7 @@ void main() {
   });
 
   testWidgets('refresh reads the newest chronological window beyond 100 messages', (tester) async {
-    final f = await _mount(tester);
+    final f = await _mount(tester, issueOfflineGrant: true);
     f.api.longHistoryCount = 105;
     await tester.tap(find.byIcon(Icons.refresh));
     await tester.pumpAndSettle();
@@ -337,13 +367,13 @@ void main() {
   testWidgets(
     'large authorized history keeps recent offline messages without locking online',
     (tester) async {
-      final f = await _mount(tester);
+      final f = await _mount(tester, issueOfflineGrant: true);
       final content = List.filled(2000, '文').join();
-      f.api.pendingRead = Completer()..complete(NetworkSuccess({
-        'items': List.generate(100, (index) => {
+      f.api.pendingRead = Completer()..complete(f.api.window(
+        List.generate(100, (index) => {
           'id': index + 1, 'content': content, 'attachments': <dynamic>[],
         }),
-      }));
+      ));
       await tester.tap(find.byIcon(Icons.refresh));
       await tester.pumpAndSettle();
       expect(find.text('会话已锁定'), findsNothing);
@@ -371,13 +401,14 @@ void main() {
           ));
         }),
       );
-      final f = await _mount(tester, mediaDio: mediaDio);
-      f.api.pendingRead = Completer()..complete(const NetworkSuccess({
-        'items': [{
+      final f = await _mount(tester, mediaDio: mediaDio, issueOfflineGrant: true);
+      f.api.pendingRead = Completer()..complete(f.api.window(const [
+        {
           'id': 5, 'content': '合法大图及当前文字',
           'attachments': [{ 'media_asset': {'id': 31, 'media_type': 'image'}}],
-        }],
-      }));
+        },
+        {'id': 6, 'content': '同代离线文字', 'attachments': <dynamic>[]},
+      ]));
       await tester.tap(find.byIcon(Icons.refresh));
       await tester.pumpAndSettle();
       expect(find.text('合法大图及当前文字'), findsOneWidget);
@@ -396,12 +427,14 @@ void main() {
       ));
       await tester.tap(find.byIcon(Icons.refresh));
       await tester.pumpAndSettle();
-      expect(find.text('合法大图及当前文字'), findsOneWidget);
+      expect(find.text('合法大图及当前文字'), findsNothing);
+      expect(find.text('同代离线文字'), findsOneWidget);
       expect(find.byType(Image), findsNothing);
       expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
       (f.container.read(sessionProvider.notifier) as _Session).switchAccount();
       await tester.pumpAndSettle();
       expect(find.text('合法大图及当前文字'), findsNothing);
+      expect(find.text('同代离线文字'), findsNothing);
       expect(find.text('会话已锁定'), findsOneWidget);
       await _dispose(tester, f);
       mediaDio.close();

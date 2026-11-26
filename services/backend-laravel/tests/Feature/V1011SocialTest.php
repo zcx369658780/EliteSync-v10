@@ -72,7 +72,10 @@ class V1011SocialTest extends TestCase
         $this->getJson("/api/v1/status/authors/{$a->id}")->assertNotFound();
         $fields = ['birthday' => 'RELATIONSHIP_SHARED', 'interests' => 'SELF', 'resume' => 'SELF', 'zodiac' => 'SELF'];
         $this->actingAs($a, 'sanctum')->putJson('/api/v1/privacy', ['fields' => $fields, 'expected_revision' => 0])->assertOk()->assertJsonPath('revision', 1);
-        $this->putJson('/api/v1/privacy', ['fields' => $fields, 'expected_revision' => 0])->assertConflict();
+        $this->putJson('/api/v1/privacy', ['fields' => $fields, 'expected_revision' => 0])->assertOk()->assertJsonPath('revision', 1);
+        $this->putJson('/api/v1/privacy', [
+            'fields' => array_replace($fields, ['birthday' => 'SELF']), 'expected_revision' => 0,
+        ])->assertConflict();
         $this->getJson('/api/v1/privacy/preview?audience=partner')->assertOk()->assertJsonMissingPath('projection.birthday')->assertJsonPath('formal_relationship_available', true);
         $this->deleteJson("/api/v1/social/friends/{$b->id}")->assertOk();
         $this->actingAs($b, 'sanctum')->getJson("/api/v1/status/posts/$p")->assertNotFound();

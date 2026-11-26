@@ -2,13 +2,29 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_elitesync_module/features/chat/data/datasource/chat_socket_data_source.dart';
 
 void main() {
-  test('buildChatSocketUri maps http api base to ws gateway host and port', () {
+  test('buildChatSocketUri uses the development loopback gateway', () {
     final uri = buildChatSocketUri(
-      apiBaseUrl: 'http://101.133.161.203',
+      apiBaseUrl: 'http://127.0.0.1:8021',
       selfId: 37,
+      peerId: 52,
     );
 
-    expect(uri.toString(), 'ws://101.133.161.203:8081/api/v1/messages/ws/37');
+    expect(uri.toString(), 'ws://127.0.0.1:8081/api/v1/messages/ws/37?peer_id=52');
+  });
+
+  test('buildChatSocketUri rejects public plaintext and cross-origin gateways', () {
+    expect(
+      () => buildChatSocketUri(apiBaseUrl: 'http://192.0.2.20', selfId: 37),
+      throwsStateError,
+    );
+    expect(
+      () => buildChatSocketUri(
+        apiBaseUrl: 'https://qa.example',
+        wsBaseUrl: 'wss://other.example',
+        selfId: 37,
+      ),
+      throwsStateError,
+    );
   });
 
   test('buildChatSocketUri maps https api base to wss gateway without port', () {

@@ -143,7 +143,7 @@ class MediaUploadEndpointTest extends TestCase
         $this->assertSame('video/mp4', $asset->mime_type);
     }
 
-    public function test_media_content_route_streams_public_disk_files(): void
+    public function test_media_content_route_streams_public_disk_files_only_to_owner(): void
     {
         config([
             'app.url' => 'http://101.133.161.203',
@@ -173,7 +173,12 @@ class MediaUploadEndpointTest extends TestCase
             'processed_at' => now(),
         ]);
 
-        $this->get("/api/v1/media/{$asset->id}/content")
+        $url = "/api/v1/media/{$asset->id}/content";
+        $this->getJson($url)->assertUnauthorized();
+        Sanctum::actingAs(User::factory()->create(['phone' => '13800000035']));
+        $this->getJson($url)->assertNotFound();
+        Sanctum::actingAs($user);
+        $this->get($url)
             ->assertOk()
             ->assertHeader('Content-Type', 'image/png');
     }
@@ -201,6 +206,7 @@ class MediaUploadEndpointTest extends TestCase
 
         $this->assertFalse($asset->isBackingObjectAvailable());
         $this->assertSame('', $asset->public_url);
+        Sanctum::actingAs($user);
         $this->get("/api/v1/media/{$asset->id}/content")
             ->assertNotFound()
             ->assertExactJson(['message' => 'media asset unavailable']);
