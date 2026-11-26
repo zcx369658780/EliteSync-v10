@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-26｜P0/P1 实机补证完成，顾问复审材料就绪
+
+**OWNER_BASIC_PROFILE_PASS / REMOTE_STAGING_NAMED_DEVICE_PASS / PHONE_BAIDU_PUBLIC_SAMPLE_BACKFILL_PASS / ADVISOR_FOLLOWUP_AWAITING_OWNER_TRANSFER / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 仅恢复 ADMIN-TEST-01。初次 8/8，Owner 另授一次补昵称后，资料 API 与容器重启读回 9/9。Owner 在 1011809 实体 APP 确认基础资料已恢复。1011814 同包同签名原位升级通过，具名手机和已安装 APK 哈希核对完成。
+- 1011814 真机从空坐标草稿提交一个公开地点，百度调用 1 次、自动重试 0 次。用户二次确认后回填 WGS84 越秀区代表点，退出后原地点和坐标读回一致。Owner 对本次核验回复「很好，没问题」。八字、紫微斗数、西洋占星在服务端计算，本轮地点搜索改动未涉及三盘计算代码，Owner 决定沿用之前的算法校验。
+- P1 正式可信 IP SAN、续期演练、告警、内置浏览器后台及具名手机远程 API 有回执。Owner 保留全 IPv4 TCP 443，外层 Nginx 来源限制保留，停止公网 443 探测和仅 /32 复验。仅 /32 的 FAIL 和根因 UNKNOWN 保留。独立 Chrome 管理登录、手机移动网络出口、真实 WLAN 与双实体专项仍待验。
+- 脱敏材料已准备，待 Owner 手动转交顾问并带回复。续作从 [固定交接](SESSION_HANDOFF_20261126_ELITESYNC_V2_1011814_ADVISOR.md) 和 [顾问补证报告](../versions/v2/cloud-r0-20261121/V2_P0_P1_ADVISOR_FOLLOWUP_20261126.md) 开始。
+
+---
+
 # CURRENT ENTRY 2026-11-26｜1011814 真机百度手动搜索和 WGS84 回填通过
 
 **SHARED_STAGING_ROLLOUT_PASS / APK_1011814_PHONE_UPDATE_PASS / PHONE_BAIDU_PUBLIC_SAMPLE_BACKFILL_PASS / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
