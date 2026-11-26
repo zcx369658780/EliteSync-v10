@@ -50,7 +50,15 @@
 
 ## M1-04｜Owner 实体 APP 与顾问入口
 
-`NATAL_REAL_APP_SAVE_AND_READBACK_PASS` 尚未取得。经 Owner 具名授权，2026-11-26 北京时间 20:22 对 25060RK16C 只读核对通过。当前安装为 `com.elitesync.v2stagingremote / 1011814`，已装 APK SHA-256 与既有回执一致，应用安装身份一致。账号和出生资料由 Owner 在 App 内核对，正式资料由 Owner 本人提交。三盘实际状态、重新进入、进程重开和重登读回待收回执。新增正式提交核对页及来源持久化已通过本地工程验证，其余运行范围见上文。出生资料及盘面原件留本机。
+`NATAL_REAL_APP_SAVE_AND_READBACK_PASS` 尚未取得。经 Owner 具名授权，2026-11-26 北京时间 20:22 对 25060RK16C 只读核对通过。当前安装为 `com.elitesync.v2stagingremote / 1011814`，已装 APK SHA-256 与既有回执一致，应用安装身份一致。Owner 本人提交，并反馈退出账号重登后结果仍可读取。随后在实体页核对重登后的输入版本 2、结果版本 2，退出排盘页重新进入再次读到 2/2。
+
+| 实体结果 | 页面状态 |
+| --- | --- |
+| 八字 | `PARTIAL_UNVERIFIED` |
+| 紫微斗数 | `UNKNOWN` |
+| 西洋本命盘 | `CALCULATED` |
+
+实体页「算法使用性别」显示「未知」。现行算法合同在此条件下保留八字可计算部分，紫微返回 `UNKNOWN`。完整三盘实机结果待 Owner 决定是否自行确认算法参数后再保存。实体 App 进程重开 `NOT_RUN`，合成 Android 冷启动读回已通过。新增正式提交核对页及来源持久化的验收环境为本地工程版。出生资料及盘面原件留本机。
 
 ### 11 月 26 日实机补证｜南阳城市代表点
 
@@ -82,3 +90,8 @@ Owner 确认实体 App 可搜索「南阳」并把城市代表点填入排盘草
 | `android-13-reentry-confirmed.xml`，退出页面后重入 | `df09f1b3551fe91a92b9d0e8075678899106e08ebac403649c6917df56542fe8` |
 | 1011814 上一次真实安装回执 | `6320cef8dabcc793d80519064ee5abe8928a9d7ad26f717cd486f82ccbf1b448` |
 | `M1_OWNER_DEVICE_READONLY_1011814_20261126.json`，本轮实体安装身份只读核对 | `5a45555814bc8b36f623a9ee9245b37bf267305a3f62468ff2ebe7dcc8d72b75` |
+| `owner-device-m1-20261126-private/after-relogin-summary.png`，Owner 重登后结果摘要 | `ffd29baa575722a7a0b064f3f6eff85259e3f1db7888c992b243fb284a24ea29` |
+| `owner-device-m1-20261126-private/chart-bazi.png`，重登后八字状态及 v2/v2 | `eaa573c43fd20daf60aa9724d6afd62af8a9e623c315aba6e7af4494db0cd901` |
+| `owner-device-m1-20261126-private/chart-ziwei.png`，紫微及西洋盘状态 | `d797eaa77235b2d44c6d28a3932d5ed2f55b077b8dfe9a352ca2738de7e1b18a` |
+| `owner-device-m1-20261126-private/chart-western.png`，西洋盘状态 | `6427bf615c211594ded67e6c11035c1d884226e585a0a04570f26cc537cacad5` |
+| `owner-device-m1-20261126-private/after-reentry.png`，返回后重入的 v2/v2 及算法参数状态 | `4dae78aa2a49875415be3bb6faf1b6d2088d0cb17c5d893fec5f740a683906d7` |
