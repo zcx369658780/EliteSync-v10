@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-27｜M4-R 本地统一候选与路线图剩余目标
+
+**M4_NATAL_RUNTIME_IDENTITY_AVAILABLE / M4_NATAL_INTEGRATED_SAVE_READBACK_PASS / M4_UNIFIED_SOFTWARE_CANDIDATE_READY（本地 QA） / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- Owner 已接受 M4 阶段性验收。固定源码 `8d31ade2` 复用已锁定依赖和只读 DE440s。模拟器固定 APK 在同一 Laravel、真实三盘和 MariaDB 环境完成 v1/v1 保存、独立读回、页面重入、退出重登及冷启动。旧容器的 503、输入保留与历史结果分别验证。首页、进度、聊天、站内通知、社区、Buddy 和 Web 管理冒烟通过限定范围。
+- M3-R04 中断诊断完成，原观察仍为 PARTIAL，根因为 UNKNOWN。路线图 A–D、E1–E3 及设备／发布门槛单列。Owner 确定先完成已接受的路线图，再集中进行全 APP UI 简化。
+- 工程报告待 Owner 转交网页 GPT 顾问集中复审。新自然观察、实体操作、共享 Staging、真实供应商和发布各自等待具名授权。 [Owner 决定](../decisions/OWNER_V2_M4_R_ROADMAP_BEFORE_UI_SIMPLIFICATION_20261127.md) · [M4-R 集中报告](../versions/v2/cloud-r0-20261121/V2_M4_R_INTEGRATION_CLOSURE_REPORT_20261127.md)
+
+---
+
 # CURRENT ENTRY 2026-11-27｜M4 独立用户旅程完成阶段性验证
 
 **M4_SCOPED_RELATIONSHIP_AND_NAVIGATION_PASS / M4_INTEGRATED_PARTIAL / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**

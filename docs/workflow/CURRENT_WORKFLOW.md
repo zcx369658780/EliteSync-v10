@@ -1,3 +1,11 @@
+# 2026-11-27｜M4-R 隔离集成候选与路线图
+
+- Owner 已接受 M4 阶段性验收并授权 M4-R。固定 App 沿用原 M4 QA APK。隔离 Laravel 用已核基础镜像、依赖锁及只读 DE440s 构建，入场检查运行身份和 MariaDB schema。真实计算、App 正式提交及读回、旧容器 503 和合法历史各自记证。
+- M3-R04 只读诊断原日志和宿主事件。观察仍 PARTIAL，根因 UNKNOWN，新观察须单独授权。M4-R 本机证据保护原脏 main、实体设备、共享环境和历史回执。
+- 先交付 Owner 已接受的路线图目标，再集中进行全 APP UI 简化。本阶段按既有功能与安全合同进行测试。Owner 转交本轮报告给网页 GPT 顾问集中复审。 [Owner 决定](../decisions/OWNER_V2_M4_R_ROADMAP_BEFORE_UI_SIMPLIFICATION_20261127.md) · [M4-R 报告](../versions/v2/cloud-r0-20261121/V2_M4_R_INTEGRATION_CLOSURE_REPORT_20261127.md)
+
+---
+
 # 2026-11-27｜M4 独立软件旅程阶段性验收
 
 - 沿活动开发分支，读取 Owner M4 决定及 ACTIVE_STATE 顶部。产品权威分别取自资料、Lifestyle、匹配资格与候选、Connection、Messaging Consent、Conversation 和 Relationship 的现行服务端合同。UI 投影需在回到当前页、账号变化及收到失权后重新读取。
