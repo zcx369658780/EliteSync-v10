@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-27｜RC-D Owner 决策材料就绪
+
+**RC_D_OWNER_DECISION_DOSSIER_READY / OWNER_PENDING / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 以 RC-F 源码 `03d6740e`、交付 `f7f06a85` 为基线。已恢复 NEW-PC-04/05 原始网页顾问提案，核对 D0 旧排盘、对象级请求与 E1–E3 的现行合同和固定历史依据。
+- 新增选择全部待 Owner。旧候选原绑定、官方访客正文默认空、旧排盘 POST 409、对象真实渠道不可用及真实身份／Push 门禁沿原合同。
+- Owner 转交网页 GPT 顾问并逐项选择。RC-E 与正式 UI-S 尚未启动。 [RC-D 决策材料](../versions/v2/cloud-r0-20261121/V2_RC_D_OWNER_DECISION_DOSSIER_20261127.md) · [Owner 决策索引](../../PRODUCT_DECISIONS.md)
+
+---
+
 # CURRENT ENTRY 2026-11-27｜RC-F 独立软件集中收口
 
 **RC-F 五个具名软件出口通过 / 顾问复审待 Owner 转交 / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**

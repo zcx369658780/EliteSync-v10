@@ -1,5 +1,9 @@
 # EliteSync-v10 当前产品与交付决定
 
+## 2026-11-27 Owner 委托 V2 RC-D 决策材料
+
+Owner 以 `V2-RC-D-OWNER-PRODUCT-DECISIONS-20261127` 授权整理 NEW-PC-04/05、D0 旧排盘、对象级数据权利及 E1–E3 外部要求。RC-D 交付为待审材料。原 O05-X A、O11、NEW-PC-03 A、RET/HIS/OBJ 的具名接受范围沿原决定。新增策略、实际受理与外部接入为 `OWNER_PENDING`。顾问集中审阅与 Owner 选择分别记证。 [RC-D 决策材料](docs/versions/v2/cloud-r0-20261121/V2_RC_D_OWNER_DECISION_DOSSIER_20261127.md)
+
 ## 2026-11-27 Owner 启动 V2 RC-F
 
 Owner 以 `V2-RC-F-ROADMAP-FUNCTION-CLOSURE-20261127` 授权集中完成独立软件的安全与可靠性、内容权限、数据权利、关键旅程与可访问性、PHP 兼容及私有媒体审计。先收口既定路线图，再决定全 APP UI-S，延续构成主义与二次元极简并保留明确确认、双方同意、撤权、退出与隐私控制。现场验证沿本机隔离环境与合成数据。正式 UI-S、外部依赖、历史接口策略和发布保留各自决定。 [M4-R 顺序决定](docs/decisions/OWNER_V2_M4_R_ROADMAP_BEFORE_UI_SIMPLIFICATION_20261127.md) · [RC-F 集中报告](docs/versions/v2/cloud-r0-20261121/V2_RC_F_ROADMAP_FUNCTION_CLOSURE_REPORT.md)
