@@ -1,5 +1,9 @@
 # EliteSync-v10 当前产品与交付决定
 
+## 2026-11-27 Owner 启动 V2 RC-F
+
+Owner 以 `V2-RC-F-ROADMAP-FUNCTION-CLOSURE-20261127` 授权集中完成独立软件的安全与可靠性、内容权限、数据权利、关键旅程与可访问性、PHP 兼容及私有媒体审计。先收口既定路线图，再决定全 APP UI-S，延续构成主义与二次元极简并保留明确确认、双方同意、撤权、退出与隐私控制。现场验证沿本机隔离环境与合成数据。正式 UI-S、外部依赖、历史接口策略和发布保留各自决定。 [M4-R 顺序决定](docs/decisions/OWNER_V2_M4_R_ROADMAP_BEFORE_UI_SIMPLIFICATION_20261127.md) · [RC-F 集中报告](docs/versions/v2/cloud-r0-20261121/V2_RC_F_ROADMAP_FUNCTION_CLOSURE_REPORT.md)
+
 ## 2026-10-19 Owner后续10.x方向（本次仅文档同步）
 
 已确认方向见[Owner决定补充V1.0](docs/decisions/OWNER_PRODUCT_DECISIONS_20261019_LONG_TERM_RELATIONSHIP_V1_0.md)：长期恋爱关系为主线，搭子是独立社交场景；关系只决定资料分享上限，字段自愿、可撤回，身份证/精确生辰/私聊/内部安全记录不随关系解锁。正式恋爱须双方有效实人核验及明确确认；请求≠Messaging Consent，好友≠恋爱，不开放陌生人直达私信。拉黑约束查看/联系/重加，解黑不自动恢复关系或同意。

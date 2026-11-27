@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-27｜RC-F 独立软件集中收口
+
+**RC-F 五个具名软件出口通过 / 顾问复审待 Owner 转交 / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 固定源码 `03d6740e`。隔离 MariaDB HTTP 96 个响应、PHP 8.4 定向 133 项及 Flutter 扩围 342 项通过。修复评论翻页漏项、联系人失权提示、首页与进度错误语义及八字依赖标识。私有图片重试目录可在隔离环境只读审计。
+- PHP 8.4 全量保留 69 errors、49 failures，与同环境开工逐项一致。外部身份和 Push、法务和资产、旧排盘接口、正式 UI-S、M3-R04、P1 设备与续期证据沿原边界。保留 M4-R 统一 QA 候选。
+- Owner 转交报告给网页 GPT 顾问集中复审，并根据回复另定下一阶段。 [RC-F 集中报告](../versions/v2/cloud-r0-20261121/V2_RC_F_ROADMAP_FUNCTION_CLOSURE_REPORT.md) · [Owner 决策索引](../../PRODUCT_DECISIONS.md)
+
+---
+
 # CURRENT ENTRY 2026-11-27｜M4-R 本地统一候选与路线图剩余目标
 
 **M4_NATAL_RUNTIME_IDENTITY_AVAILABLE / M4_NATAL_INTEGRATED_SAVE_READBACK_PASS / M4_UNIFIED_SOFTWARE_CANDIDATE_READY（本地 QA） / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
