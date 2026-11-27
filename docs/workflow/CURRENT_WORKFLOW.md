@@ -1,3 +1,11 @@
+# 2026-11-27｜M4 独立软件旅程阶段性验收
+
+- 沿活动开发分支，读取 Owner M4 决定及 ACTIVE_STATE 顶部。产品权威分别取自资料、Lifestyle、匹配资格与候选、Connection、Messaging Consent、Conversation 和 Relationship 的现行服务端合同。UI 投影需在回到当前页、账号变化及收到失权后重新读取。
+- 合成身份只进入具名本机 TEST_ONLY 场景。测试使用独立服务、数据库、证书和模拟器。M3-R04 原证独立保护，自然经过期内到期及重连若缺终态，按 PARTIAL 记录。归档证据无设备操作或启动后继阶段的默示授权。
+- GitHub 同步脱敏源码、必要测试及集中报告。Owner 转交网页 GPT 顾问并带回回复。E1、E2、E3、共享环境、实体设备及发布仍按当前 Owner 边界执行。 [M4 报告](../versions/v2/cloud-r0-20261121/V2_M4_INTEGRATED_USER_JOURNEY_REPORT.md)
+
+---
+
 # 2026-11-26｜V2 1011814 实机补证与顾问复审工作流
 
 - 当前从实际 Git 根、origin、分支、HEAD、工作区与暂存区开始，读 AGENTS.md、[ACTIVE_STATE](ACTIVE_STATE.md) 顶部和 [1011814 固定交接](SESSION_HANDOFF_20261126_ELITESYNC_V2_1011814_ADVISOR.md)。P0、P1 与地点回填分别给出验收范围。Codex 维护脱敏证据与 GitHub 开发分支，Owner 手动转交顾问报告、带回复并决定续作，顾问复审结论单独记录。

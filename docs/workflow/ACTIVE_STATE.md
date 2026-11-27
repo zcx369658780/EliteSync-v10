@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-27｜M4 独立用户旅程完成阶段性验证
+
+**M4_SCOPED_RELATIONSHIP_AND_NAVIGATION_PASS / M4_INTEGRATED_PARTIAL / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- Owner 接受 M3-R01～03 并授权 M4。M4 核心关系旅程、首页社区和 Buddy、通知导航、Web 管理与业务事实一致性均有具名验证。源码 `ad520ba5` 修复已获消息许可但首条消息尚未建立会话时的入口缺口。
+- 独立模拟器及本机测试服务完成阶段性回执。M4 镜像排盘运行身份不可用，真实 503 后输入与权限安全收敛；M1 正向验收按原固定证据。E1 身份、E2 Push、E3 法律与资产依据分别阻塞其对应外部功能和发布。
+- M3-R04 仅有期内样本，观察中断、缺自然到期与重连终态回执，记 PARTIAL、根因 UNKNOWN。M4 未接续旧设备或服务。待 Owner 转交阶段性报告，顾问复审后由 Owner 决定后续。
+- [Owner 决策](../decisions/OWNER_V2_M4_INTEGRATED_USER_JOURNEY_20261127.md) · [M4 集中报告](../versions/v2/cloud-r0-20261121/V2_M4_INTEGRATED_USER_JOURNEY_REPORT.md)
+
+---
+
 # CURRENT ENTRY 2026-11-26｜P0/P1 实机补证完成，顾问复审材料就绪
 
 **OWNER_BASIC_PROFILE_PASS / REMOTE_STAGING_NAMED_DEVICE_PASS / PHONE_BAIDU_PUBLIC_SAMPLE_BACKFILL_PASS / ADVISOR_FOLLOWUP_AWAITING_OWNER_TRANSFER / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
