@@ -1,3 +1,11 @@
+# 2026-11-27｜RC-D Owner 决定归档与停点
+
+- 当前决策依据为 [RC-D Owner 正式决定](../decisions/OWNER_V2_RC_D_FINAL_PRODUCT_DECISIONS_20261127.md)。NEW-PC-04 继承具名历史决定，其余六项为本轮 Owner 选择。
+- 审议报告原样保留，其中待审状态反映报告形成时点。实际内容、真实对象处理、KYC、Push、共享 Staging 及发布各依适用的独立证据和授权。
+- 当前为 `RC_D_OWNER_DECISIONS_ARCHIVED`。RC-E 待 Owner 与网页 GPT 顾问约定范围，UI-S 后置。
+
+---
+
 # 2026-11-27｜RC-D 决策材料与后续授权
 
 - Owner 授权 RC-D 只读检查原始产品文档、固定源码与证据，并同步脱敏决策报告。历史已接受原则、顾问意见和新增待决项按原效力记录。

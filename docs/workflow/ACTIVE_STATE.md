@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-27｜RC-D Owner 决定已归档
+
+**RC_D_OWNER_DECISIONS_ARCHIVED / RC_E_NOT_STARTED / UI_S_DEFERRED / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 沿用 NEW-PC-04 的 O05-X 方案 A，既有候选快照不随新版自动更新。本轮 Owner 新选 NEW-PC-05、D0、D4、E1、E2 和 E3 各自的方案 A。
+- 首期范围为官方原创专题、站内受控编辑推荐及站内通知。旧排盘 POST 保留 409 和现有有限只读兼容，正式输入走 `/profile/natal`。真实对象删除渠道仍不可用，正式匹配维持身份门禁，法律与资产依据待核。
+- 本轮完成文档归档，等待 Owner 与网页 GPT 顾问确定 RC-E 范围。 [Owner 正式决定](../decisions/OWNER_V2_RC_D_FINAL_PRODUCT_DECISIONS_20261127.md) · [RC-D 历史审议材料](../versions/v2/cloud-r0-20261121/V2_RC_D_OWNER_DECISION_DOSSIER_20261127.md)
+
+---
+
 # CURRENT ENTRY 2026-11-27｜RC-D Owner 决策材料就绪
 
 **RC_D_OWNER_DECISION_DOSSIER_READY / OWNER_PENDING / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
