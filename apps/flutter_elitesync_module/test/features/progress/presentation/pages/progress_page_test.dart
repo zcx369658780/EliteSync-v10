@@ -33,6 +33,8 @@ import 'package:flutter_elitesync_module/shared/enums/match_status.dart';
 import 'package:flutter_elitesync_module/shared/enums/questionnaire_status.dart';
 import 'package:flutter_elitesync_module/shared/enums/verification_status.dart';
 import 'package:flutter_elitesync_module/shared/models/navigation_snapshot.dart';
+import 'package:flutter_elitesync_module/features/status/data/datasource/status_remote_data_source.dart';
+import 'package:flutter_elitesync_module/features/status/presentation/providers/status_posts_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/navigation_guard_provider.dart';
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
@@ -191,6 +193,9 @@ class _Harness {
           return ref.watch(_match);
         }),
         homeProvider.overrideWith(_UnusedHomeFeed.new),
+        statusRemoteDataSourceProvider.overrideWithValue(
+          StatusRemoteDataSource(apiClient: ApiClient(dio: Dio()), useMock: true),
+        ),
       ],
     );
     if (guard != null) update(guard);

@@ -209,9 +209,12 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
         if (error != null)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
-            child: Text(
-              relationshipErrorLabel(error!),
-              key: const Key('server-error'),
+            child: Semantics(
+              liveRegion: true,
+              child: Text(
+                relationshipErrorLabel(error!),
+                key: const Key('server-error'),
+              ),
             ),
           ),
         if (_identity == null)
@@ -258,7 +261,10 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
 
 const buddyDiscoveryUnavailable = '搭子发现当前不可用，请重新检查搭子许可。';
 
+const contactPickerUnavailable = '当前联系人不可用，请检查当前账号权限。';
+
 String relationshipErrorLabel(String error) {
+  if (error == contactPickerUnavailable) return contactPickerUnavailable;
   if (error == buddyDiscoveryUnavailable) return buddyDiscoveryUnavailable;
   if (error.contains('enable Buddy')) return '请先开启搭子请求，再继续操作';
   if (error.contains('分享授权已撤回')) return '分享授权已撤回，请重新确认访问权限';

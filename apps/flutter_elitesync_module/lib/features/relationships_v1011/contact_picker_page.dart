@@ -103,7 +103,7 @@ class _ContactPickerPageState extends SessionBoundPage<ContactPickerPage> {
           _cursor = null;
           _hasMore = false;
           data = null;
-          error = '当前联系人不可用，请检查当前账号权限。';
+          error = contactPickerUnavailable;
         }
       },
     );

@@ -71,6 +71,7 @@ void main() {
   testWidgets(
     'loaded contacts and cursor disappear after pagination business 403',
     (tester) async {
+      final semantics = tester.ensureSemantics();
       final api = _FakeApi((method, path) async {
         if (path.contains('cursor=')) {
           throw const RelationshipFailure(
@@ -90,8 +91,11 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('旧联系人'), findsNothing);
       expect(find.byKey(const Key('contact-picker-load-more')), findsNothing);
-      expect(find.textContaining('当前联系人不可用'), findsOneWidget);
+      final error = find.textContaining('当前联系人不可用');
+      expect(error, findsOneWidget);
+      expect(tester.getSemantics(error).flagsCollection.isLiveRegion, isTrue);
       expect(find.text('legal draft'), findsOneWidget);
+      semantics.dispose();
     },
   );
 
