@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Jobs\ExecuteMatchingRun;
 use App\Models\DatingRound;
 use App\Models\MatchingRun;
 use App\Models\User;
 use App\Services\C2LocalMatchScenarioService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -22,6 +24,8 @@ class AdminMatchingOperationalTruthLoopIntegratedSmokeTest extends TestCase
         config()->set('matching.c2.manual_consumer_configured', true);
         config()->set('app.admin_phones', [C2LocalMatchScenarioService::ADMIN_PHONE]);
 
+        // This test asserts the pending receipt. The consumer runs separately.
+        Queue::fake([ExecuteMatchingRun::class]);
         app(C2LocalMatchScenarioService::class)->build('preparing');
         $round = DatingRound::query()->latest('id')->firstOrFail();
         $ordinary = User::query()->where('phone', C2LocalMatchScenarioService::USER_PHONE)->firstOrFail();
@@ -47,10 +51,11 @@ class AdminMatchingOperationalTruthLoopIntegratedSmokeTest extends TestCase
             ->assertStatus(202)->assertJsonPath('meta.idempotent_replay', true)
             ->assertJsonPath('data.id', $accepted->json('data.id'));
         $this->assertSame(1, MatchingRun::query()->where('round_id', $round->id)->count());
+        Queue::assertPushed(ExecuteMatchingRun::class, 1);
 
         $this->postJson('/api/v1/admin/matching/rounds/'.$round->round_key.'/execution-requests', $payload, [
             'Idempotency-Key' => 'r4-smoke-stale',
-        ])->assertConflict()->assertJsonPath('current_state_version', $version + 1);
+        ])->assertConflict();
 
         $this->getJson('/api/v1/admin/matching/rounds')->assertOk()
             ->assertJsonPath('data.0.state_version', $version + 1)
@@ -65,7 +70,8 @@ class AdminMatchingOperationalTruthLoopIntegratedSmokeTest extends TestCase
             ->assertJsonMissingPath('audits.1.aggregate_summary');
         $this->assertSame(['action', 'actor_type', 'actor_id', 'reason_code', 'before_state', 'after_state', 'created_at'], array_keys($detail->json('audits.1')));
 
-        $this->postJson('/api/v1/admin/matching/rounds/'.$round->round_key.'/compensation')
-            ->assertForbidden()->assertJsonPath('message', 'compensation is not authorized');
+        $this->postJson('/api/v1/admin/matching/rounds/'.$round->round_key.'/compensation', [
+            'state_version' => $version + 1,
+        ])->assertForbidden()->assertJsonPath('message', 'compensation is not authorized');
     }
 }

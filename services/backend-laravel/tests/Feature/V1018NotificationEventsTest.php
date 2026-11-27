@@ -57,6 +57,9 @@ final class V1018NotificationEventsTest extends TestCase
             'education' => null, 'occupation' => null, 'marital_history' => null,
             'children_status' => null, 'children_intention' => null,
         ]);
+        $this->authorizeTestParticipation($user);
+        $this->completeLifestyleFixture((int) $user->id);
+
         return $user->fresh();
     }
 
@@ -215,7 +218,12 @@ final class V1018NotificationEventsTest extends TestCase
         $this->proposalDecision($this->a, $action, 1, 'fixture-notice-decision');
         $this->assertSame(1, AppNotificationItem::where('kind', 'match_decision')->count());
         $projection = app(NotificationService::class)->presentationForUser($notice, $this->b->id);
-        $this->assertSame('match_result', $projection['payload']['route_name']);
+        if ($action === 'accept') {
+            $this->assertSame('journey_task', $projection['payload']['route_name']);
+        } else {
+            $this->assertFalse($projection['available']);
+            $this->assertSame([], $projection['payload']);
+        }
         $this->assertArrayNotHasKey('showcase', $projection['payload']);
     }
 

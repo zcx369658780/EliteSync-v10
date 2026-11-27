@@ -224,11 +224,14 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
     final conversation = rows(
       conversations['items'],
     ).where((item) => item['peer_user_id'] == peer);
-    final canRead =
+    final gates = objectMap(pair['gates']);
+    // The first authorized send creates the conversation. An empty inventory
+    // must not hide the entry while the current pair allows both operations.
+    final canOpenChat =
         pair['_unavailable'] != true &&
-        objectMap(pair['gates'])['live_read_allowed'] == true &&
-        conversations['_unavailable'] != true &&
-        conversation.isNotEmpty;
+        gates['live_read_allowed'] == true &&
+        (gates['live_send_allowed'] == true ||
+            (conversations['_unavailable'] != true && conversation.isNotEmpty));
     return [
       _link(
         '持续参与与自动化',
@@ -310,7 +313,7 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
         _pairLabel(objectMap(pair['consent'])),
         key: const Key('domain-consent'),
       ),
-      if (canRead && peer is int)
+      if (canOpenChat && peer is int && peer > 0)
         FilledButton(
           onPressed: busy ? null : () => _open('/live-chat/$peer'),
           child: const Text('进入聊天'),

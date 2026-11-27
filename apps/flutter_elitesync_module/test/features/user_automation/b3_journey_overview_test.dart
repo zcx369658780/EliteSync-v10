@@ -85,6 +85,32 @@ void main() {
     },
   );
 
+  testWidgets('authorized empty conversation can start from Progress', (tester) async {
+    await mount(
+      tester,
+      FakeApi((method, path, body) async {
+        if (path == '/user-state') return stateFor(1);
+        if (path == '/journey') {
+          return {
+            'proposal': {'peer_id': 2, 'state': 'MUTUALLY_ACCEPTED'},
+          };
+        }
+        if (path == '/connections/2') {
+          return {
+            'connection': {'state': 'CN_ACTIVE'},
+            'consent': {'state': 'MC_ACTIVE'},
+            'gates': {'live_read_allowed': true, 'live_send_allowed': true},
+          };
+        }
+        if (path == '/conversations') throw StateError('No existing session');
+        return {'relationships': <dynamic>[]};
+      }),
+      detailed: true,
+    );
+
+    expect(find.text('进入聊天'), findsOneWidget);
+  });
+
   testWidgets(
     'existing CN MC and conversation remain independent of expired proposal eligibility',
     (tester) async {
