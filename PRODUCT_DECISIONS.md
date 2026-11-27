@@ -1,5 +1,9 @@
 # EliteSync-v10 当前产品与交付决定
 
+## 2026-11-27 Owner 授权 RC-E 发布准入证据收口
+
+Owner 授权 V2-RC-E-RELEASE-EVIDENCE-CLOSURE-20261127 的六个证据工作包。RC-D 七项决定继续有效。RC-E 集中评估已完成，封闭内测及生产保持 NO_GO。法律与资产依据、注册可信离线 T0 及新设备或公网补证的具体范围各留待 Owner 确认。 [RC-E 集中报告](docs/versions/v2/cloud-r0-20261121/V2_RC_E_RELEASE_READINESS_EVIDENCE_REPORT.md)
+
 ## 2026-11-27 Owner RC-D 最终产品决定
 
 Owner 沿用 NEW-PC-04 的 O05-X A。本轮新增选择为 NEW-PC-05 A（官方原创与受控推荐）、D0 A（旧 POST 保留 409 和现有有限只读兼容）、D4 A（真实对象删除渠道暂不可用）、E1 A（维持正式匹配的真实身份门禁）、E2 A（首期仅站内通知）和 E3 A（先核法律、来源和资产依据）。等待 Owner 与网页 GPT 顾问确定 RC-E 范围。 [正式决定](docs/decisions/OWNER_V2_RC_D_FINAL_PRODUCT_DECISIONS_20261127.md) · [RC-D 历史审议材料](docs/versions/v2/cloud-r0-20261121/V2_RC_D_OWNER_DECISION_DOSSIER_20261127.md)
