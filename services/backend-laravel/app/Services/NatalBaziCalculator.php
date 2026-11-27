@@ -6,6 +6,7 @@ use com\nlf\calendar\EightChar;
 use com\nlf\calendar\JieQi;
 use com\nlf\calendar\Solar;
 use com\nlf\calendar\util\LunarUtil;
+use Composer\InstalledVersions;
 use DateTimeImmutable;
 use DateTimeZone;
 use InvalidArgumentException;
@@ -13,11 +14,14 @@ use InvalidArgumentException;
 /** Real lunar-php calculations; independent oracle approval is deliberately separate. */
 final class NatalBaziCalculator
 {
+    private const ENGINE_PACKAGE = '6tail/lunar-php';
+
     public function __construct(private readonly ?NatalBaziTimeScale $timeScale = null) {}
 
     public function compute(array $context, ?array $solarContext = null, ?array $expectedTimeContext = null): array
     {
-        $rules = $this->rules($context['calculation_profile']['bazi'] ?? []);
+        $engineVersion = InstalledVersions::getPrettyVersion(self::ENGINE_PACKAGE);
+        $rules = $this->rules($context['calculation_profile']['bazi'] ?? [], $engineVersion);
         $date = $context['civil_date'] ?? null;
         $time = $context['normalized_time'] ?? null;
         $this->validateDate($date);
@@ -28,7 +32,7 @@ final class NatalBaziCalculator
         $base = [
             'status' => 'UNKNOWN',
             'oracle_status' => 'UNVERIFIED',
-            'engine' => ['package' => '6tail/lunar-php', 'version' => '1.4.0'],
+            'engine' => ['package' => self::ENGINE_PACKAGE, 'version' => $engineVersion],
             'input_signature' => $context['input_signature'] ?? null,
             'calculation_profile' => $context['calculation_profile'] ?? null,
             'rules' => $rules,
@@ -114,7 +118,7 @@ final class NatalBaziCalculator
         $legacyShenGong = $this->gong($termEight, $eight, true, true);
         $base['extensions'] = [
             'status' => 'UNVERIFIED',
-            'source' => 'EightChar.php@1.4.0-compatible-geometry;explicit-same-year-five-tigers-gong-stems',
+            'source' => 'EightChar.php@'.$engineVersion.';compatible-geometry;explicit-same-year-five-tigers-gong-stems',
             'ming_shen_month_profile' => 'modern_jie_month_compatibility_not_classical_zhongqi_month',
             'tai_yuan' => ['gan_zhi' => $termEight->getTaiYuan(), 'na_yin' => $termEight->getTaiYuanNaYin(), 'frame' => $termFrame],
             'tai_xi' => ['gan_zhi' => $eight->getTaiXi(), 'na_yin' => $eight->getTaiXiNaYin(), 'frame' => $base['time_basis']['mode']],
@@ -195,7 +199,7 @@ final class NatalBaziCalculator
         return $base;
     }
 
-    private function rules(mixed $input): array
+    private function rules(mixed $input, ?string $engineVersion): array
     {
         if (! is_array($input)) {
             throw new InvalidArgumentException('bazi_rules_must_be_array');
@@ -229,7 +233,7 @@ final class NatalBaziCalculator
             'annual_boundary' => 'li_chun_year_label_not_january_1_instant',
             'da_yun_count' => $count,
             'includes_pre_yun_index_zero' => true,
-            'source' => '6tail/lunar-php:EightChar.php,Yun.php,DaYun.php,LiuNian.php@1.4.0',
+            'source' => self::ENGINE_PACKAGE.':EightChar.php,Yun.php,DaYun.php,LiuNian.php@'.$engineVersion,
         ];
     }
 

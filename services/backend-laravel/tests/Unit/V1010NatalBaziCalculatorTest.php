@@ -6,6 +6,7 @@ use App\Services\NatalBaziCalculator;
 use App\Services\NatalBaziTimeScale;
 use App\Services\NatalInputContext;
 use com\nlf\calendar\util\LunarUtil;
+use Composer\InstalledVersions;
 use DateTimeImmutable;
 use DateTimeZone;
 use InvalidArgumentException;
@@ -28,7 +29,7 @@ class V1010NatalBaziCalculatorTest extends TestCase
         $result = (new NatalBaziCalculator)->compute($this->context());
         $this->assertSame('COMPUTED_UNVERIFIED', $result['status']);
         $this->assertSame('UNVERIFIED', $result['oracle_status']);
-        $this->assertSame('1.4.0', $result['engine']['version']);
+        $this->assertSame('6tail/lunar-php', $result['engine']['package']);
         $this->assertSame(2, $result['rules']['day_sect']);
         $this->assertSame(1, $result['rules']['yun_sect']);
         $this->assertSame('civil', $result['time_basis']['mode']);
@@ -54,6 +55,22 @@ class V1010NatalBaziCalculatorTest extends TestCase
         $this->assertNull($result['da_yun'][0]['gan_zhi']);
         $this->assertNotEmpty($result['da_yun'][1]['liu_nian']);
         $this->assertNotEmpty($result['solar_terms']['previous_jie']['name']);
+    }
+
+    public function test_reports_the_installed_engine_without_changing_input_or_policy_identity(): void
+    {
+        $context = $this->context();
+        $result = (new NatalBaziCalculator)->compute($context);
+        $version = InstalledVersions::getPrettyVersion('6tail/lunar-php');
+        $this->assertNotEmpty($version);
+        $this->assertSame($version, $result['engine']['version']);
+        $this->assertStringEndsWith('@'.$version, $result['rules']['source']);
+        $this->assertStringStartsWith('EightChar.php@'.$version.';', $result['extensions']['source']);
+        $this->assertSame($context['input_signature'], $result['input_signature']);
+        $this->assertSame(
+            'lunar-php-1.4.0-sequential-gregorian-clamp-utc8-v1',
+            $result['rules']['yun_calendar_policy']['id'],
+        );
     }
 
     public function test_unknown_time_does_not_generate_pillars_yun_or_noon(): void
