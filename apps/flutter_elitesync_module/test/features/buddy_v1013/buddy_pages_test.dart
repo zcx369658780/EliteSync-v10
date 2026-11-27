@@ -511,6 +511,56 @@ void main() {
     },
   );
 
+  testWidgets('comment pagination clears denied or old-account pages', (
+    tester,
+  ) async {
+    final sessions = _Sessions();
+    final old = Completer<Map<String, dynamic>>();
+    var moreCalls = 0;
+    var account = 1;
+    Map<String, dynamic> page(String label) => {
+      'items': [
+        {'id': label, 'body': label, 'author_id': 8, 'revision': 1},
+      ],
+      'meta': {'has_more': true, 'next_cursor': 'opaque+/='},
+    };
+    await _mount(
+      tester,
+      const Scaffold(
+        body: SingleChildScrollView(child: CommentPanel(postId: 12)),
+      ),
+      _Api((method, path, body) async {
+        if (Uri.parse(path).queryParameters['cursor'] != null) {
+          expect(Uri.parse(path).queryParameters['cursor'], 'opaque+/=');
+          if (++moreCalls == 1) {
+            throw const RelationshipFailure('deny', statusCode: 403);
+          }
+          return old.future;
+        }
+        return page('authorized-$account');
+      }),
+      sessions: sessions,
+    );
+    final more = find.byKey(const Key('comments-next-page'));
+    await tester.tap(more);
+    await tester.pumpAndSettle();
+    expect(find.text('authorized-1'), findsNothing);
+    expect(more, findsNothing);
+    expect(find.byKey(const Key('comments-error')), findsOneWidget);
+    await tester.tap(find.byKey(const Key('comments-refresh')));
+    await tester.pumpAndSettle();
+    expect(find.text('authorized-1'), findsOneWidget);
+    await tester.tap(more);
+    await tester.pump();
+    account = 2;
+    sessions.change(2);
+    await tester.pumpAndSettle();
+    old.complete(page('late-old-account'));
+    await tester.pumpAndSettle();
+    expect(find.text('late-old-account'), findsNothing);
+    expect(find.text('authorized-2'), findsOneWidget);
+  });
+
   testWidgets(
     'comment notification opens live comment projection after post authorization',
     (tester) async {

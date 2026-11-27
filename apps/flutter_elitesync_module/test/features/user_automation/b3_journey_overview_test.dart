@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:ui' show Tristate;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
@@ -85,7 +87,81 @@ void main() {
     },
   );
 
-  testWidgets('authorized empty conversation can start from Progress', (tester) async {
+  for (final scale in [1.3, 2.0]) {
+    testWidgets('Home and Progress error and keyboard access at ${scale}x', (
+      tester,
+    ) async {
+      final semantics = tester.ensureSemantics();
+      try {
+        tester.view.physicalSize = const Size(320, 640);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+        for (final detailed in [false, true]) {
+          var reads = 0;
+          await tester.pumpWidget(
+            ProviderScope(
+              key: ValueKey(detailed),
+              overrides: [
+                sessionProvider.overrideWith(TestSession.new),
+                relationshipApiProvider.overrideWithValue(
+                  FakeApi((method, path, body) async {
+                    if (path == '/user-state') {
+                      if (++reads == 1) throw StateError('unavailable');
+                      return stateFor(1);
+                    }
+                    return {};
+                  }),
+                ),
+              ],
+              child: MaterialApp(
+                builder: (context, child) => MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    textScaler: TextScaler.linear(scale),
+                    disableAnimations: true,
+                  ),
+                  child: child!,
+                ),
+                home: JourneyOverviewPage(detailed: detailed),
+              ),
+            ),
+          );
+          await tester.pumpAndSettle();
+          final error = find.byKey(const Key('server-error'));
+          expect(
+            tester.getSemantics(error).flagsCollection.isLiveRegion,
+            isTrue,
+          );
+          final settings = find.byTooltip('持续参与与自动化');
+          final refresh = find.byTooltip('刷新状态');
+          await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+          await tester.pump();
+          expect(
+            tester.getSemantics(settings).flagsCollection.isFocused,
+            Tristate.isTrue,
+          );
+          await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+          await tester.pump();
+          expect(
+            tester.getSemantics(refresh).flagsCollection.isFocused,
+            Tristate.isTrue,
+          );
+          await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+          await tester.pumpAndSettle();
+          expect(reads, detailed ? 3 : 2);
+          expect(error, findsNothing);
+          expect(tester.takeException(), isNull);
+          await tester.pumpWidget(const SizedBox());
+        }
+      } finally {
+        semantics.dispose();
+      }
+    });
+  }
+
+  testWidgets('authorized empty conversation can start from Progress', (
+    tester,
+  ) async {
     await mount(
       tester,
       FakeApi((method, path, body) async {

@@ -408,7 +408,10 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
             widget.homeContent!,
           if (busy) const LinearProgressIndicator(),
           if (error != null)
-            const Text('暂时无法加载，请刷新重试', key: Key('server-error')),
+            Semantics(
+              liveRegion: true,
+              child: const Text('暂时无法加载，请刷新重试', key: Key('server-error')),
+            ),
           if (current) ...[
             for (final child
                 in widget.detailed ? _progress(domains) : _home(domains))
