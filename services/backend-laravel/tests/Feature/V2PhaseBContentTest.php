@@ -273,11 +273,43 @@ final class V2PhaseBContentTest extends TestCase
                 'original_viewer_ids' => json_encode([$viewer->id]), 'created_at' => now()->addSeconds($i), 'updated_at' => now(),
             ]);
         }
-        $this->actingAs($viewer, 'sanctum')->getJson("/api/v1/status-posts/$post->id/comments")
+        $cursor = $this->actingAs($viewer, 'sanctum')->getJson("/api/v1/status-posts/$post->id/comments")
             ->assertOk()->assertJsonCount(20, 'items')->assertJsonPath('items.0.body', 'Visible 40')
-            ->assertJsonPath('meta.next_cursor', '20')->assertJsonMissing(['body' => 'Restricted']);
+            ->assertJsonMissing(['body' => 'Restricted'])->json('meta.next_cursor');
+        $this->getJson("/api/v1/status-posts/$post->id/comments?".http_build_query(['cursor' => $cursor]))
+            ->assertOk()->assertJsonCount(1, 'items')->assertJsonPath('items.0.body', 'Visible 60')
+            ->assertJsonPath('meta.has_more', false);
         $this->getJson("/api/v1/status-posts/$post->id/comments?cursor=20")->assertOk()
             ->assertJsonCount(1, 'items')->assertJsonPath('items.0.body', 'Visible 60')->assertJsonPath('meta.has_more', false);
+    }
+
+    public function test_hiding_an_earlier_comment_does_not_skip_a_visible_item_on_the_next_page(): void
+    {
+        [$owner, $author, $viewer] = collect(range(1, 3))->map(
+            fn () => User::factory()->create(['phone' => (string) Str::uuid()])
+        );
+        $post = StatusPost::create(['author_user_id' => $owner->id, 'title' => 'Thread', 'body' => 'Body',
+            'audience' => 'PUBLIC_AUTHENTICATED', 'visibility' => 'private']);
+        $url = "/api/v1/status-posts/$post->id/comments";
+        $first = null;
+        for ($i = 0; $i <= 21; $i++) {
+            $id = (string) Str::uuid();
+            $first ??= $id;
+            DB::table('status_post_comments')->insert([
+                'id' => $id, 'status_post_id' => $post->id, 'author_id' => $author->id,
+                'body' => "Comment $i", 'state' => 'ACTIVE', 'idempotency_key' => "row-$i",
+                'original_audience' => 'PUBLIC_AUTHENTICATED',
+                'original_viewer_ids' => json_encode([$owner->id, $author->id, $viewer->id]),
+                'created_at' => now()->addSeconds($i), 'updated_at' => now(),
+            ]);
+        }
+        $cursor = $this->actingAs($viewer, 'sanctum')->getJson($url)->assertOk()
+            ->assertJsonCount(20, 'items')->json('meta.next_cursor');
+        $this->actingAs($owner, 'sanctum')->putJson("$url/$first/display", ['action' => 'HIDE', 'revision' => 1])->assertOk();
+        $this->getJson($url.'?'.http_build_query(['cursor' => $cursor]))->assertConflict();
+        $this->actingAs($viewer, 'sanctum')->getJson($url.'?'.http_build_query(['cursor' => $cursor]))
+            ->assertOk()->assertJsonCount(2, 'items')->assertJsonPath('items.0.body', 'Comment 20')
+            ->assertJsonPath('items.1.body', 'Comment 21')->assertJsonPath('meta.has_more', false);
     }
 
     public function test_author_can_withdraw_own_known_comment_without_regaining_post_read_access(): void

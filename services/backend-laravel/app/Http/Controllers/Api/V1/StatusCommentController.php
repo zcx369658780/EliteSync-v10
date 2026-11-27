@@ -8,8 +8,10 @@ use App\Services\JourneyStore;
 use App\Services\NotificationService;
 use App\Services\PostAudience;
 use App\Services\StatusCommentAudience;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -54,7 +56,19 @@ class StatusCommentController extends Controller
     public function index(Request $request, int $postId)
     {
         $actor = $this->actor($request);
-        $offset = max(0, (int) $request->query('cursor', 0));
+        $cursor = $request->validate(['cursor' => 'sometimes|string|max:512'])['cursor'] ?? '0';
+        // Accept older numeric cursors. New responses use a stable anchor.
+        $offset = ctype_digit($cursor) ? (int) $cursor : 0;
+        $after = null;
+        if (! ctype_digit($cursor)) {
+            try {
+                $after = json_decode(Crypt::decryptString($cursor));
+            } catch (DecryptException) {
+                abort(409, 'comments changed; refresh');
+            }
+            abort_unless(($after->actor ?? null) === $actor && ($after->post ?? null) === $postId,
+                409, 'comments changed; refresh');
+        }
         $query = DB::table('status_post_comments as comment')
             ->leftJoin('status_post_comments as parent', fn ($join) => $join->on('parent.id', '=', 'comment.parent_id')
                 ->on('parent.status_post_id', '=', 'comment.status_post_id'))
@@ -63,14 +77,27 @@ class StatusCommentController extends Controller
                 ->where('comment.withdrawn', false)->where('comment.hidden_by_owner', false))
                 ->orWhere('comment.author_id', $actor))
             ->orderBy('comment.created_at')->orderBy('comment.id')
-            ->select('comment.id', 'comment.author_id', 'parent.author_id as parent_author_id');
+            ->select('comment.id', 'comment.created_at', 'comment.author_id', 'parent.author_id as parent_author_id');
 
-        // The visible cursor never counts a hidden row. Scan candidates in
-        // bounded transactions, then revalidate the page together before
+        // Scan stable ordered batches, then revalidate the page before
         // returning bodies or indicating that another authorized item exists.
         $selected = collect();
         $visible = 0;
-        $query->chunk(40, function ($batch) use ($actor, $postId, $offset, &$visible, $selected) {
+        do {
+            $page = clone $query;
+            if ($after !== null) {
+                $page->where(fn ($q) => $q
+                    ->where(fn ($sameTime) => $sameTime->where('comment.created_at', $after->created_at)
+                        ->where('comment.id', '>', $after->id))
+                    ->orWhere(fn ($later) => $after->created_at === null
+                        ? $later->whereNotNull('comment.created_at')
+                        : $later->where('comment.created_at', '>', $after->created_at)));
+            }
+            $batch = $page->limit(40)->get();
+            if ($batch->isEmpty()) {
+                break;
+            }
+            $after = $batch->last();
             $eligible = $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $batch) {
                 return $batch->filter(function ($candidate) use ($actor, $post) {
                     $row = $this->row((int) $post->id, $candidate->id);
@@ -82,15 +109,13 @@ class StatusCommentController extends Controller
                 if ($visible++ >= $offset) {
                     $selected->push($candidate);
                     if ($selected->count() > 20) {
-                        return false;
+                        break 2;
                     }
                 }
             }
+        } while ($batch->count() === 40);
 
-            return true;
-        });
-
-        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $offset, $selected) {
+        return $this->posts->run($actor, $postId, function (StatusPost $post) use ($actor, $selected) {
             $items = [];
             foreach ($selected as $candidate) {
                 $row = $this->row((int) $post->id, $candidate->id);
@@ -104,10 +129,15 @@ class StatusCommentController extends Controller
             abort_unless(count($items) === $selected->count(), 409, 'comments changed; refresh');
             $more = count($items) > 20;
 
+            $next = $more ? Crypt::encryptString(json_encode([
+                'actor' => $actor, 'post' => (int) $post->id,
+                'created_at' => $selected[19]->created_at, 'id' => $selected[19]->id,
+            ], JSON_THROW_ON_ERROR)) : null;
+
             return response()->json([
                 'items' => array_slice($items, 0, 20),
                 'can_comment' => $this->posts->mayCommentLocked($post, $actor),
-                'meta' => ['next_cursor' => $more ? (string) ($offset + 20) : null, 'has_more' => $more],
+                'meta' => ['next_cursor' => $next, 'has_more' => $more],
             ]);
         }, $this->authors($selected));
     }
