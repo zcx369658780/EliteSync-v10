@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-27｜UI-S0 操作成本与文案现状基线
+
+**UI_S0_INTERACTION_AND_COPY_BASELINE_READY / UI_S1_NOT_STARTED / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- 用 RC-F 固定源码 `03d6740e` 重新构建 1011807，覆盖两个隔离模拟器和 Laravel／MariaDB 合成环境中的 U01–U12。首次打开、注册、Lifestyle 五场景及引导到首页实测 20 次点击。
+- 展示昵称与城市草稿未能读回，聊天图片受现行合成仅文字门禁拒绝，合成候选正文暂不可见；单方提案回应、独立连接与消息同意、三盘历史及账号切换均有具名回执。
+- 交付后由 Owner 转交网页 GPT 顾问审议简化方案。UI-S1 待 Owner 决定，RC-E 的发布证据沿原记录。 [审计报告](../versions/v2/cloud-r0-20261121/ui-s0-20261127/V2_UI_S0_INTERACTION_AND_COPY_AUDIT_REPORT.md) · [操作成本](../versions/v2/cloud-r0-20261121/ui-s0-20261127/INTERACTION_COST_MATRIX.csv) · [可见文案](../versions/v2/cloud-r0-20261121/ui-s0-20261127/USER_VISIBLE_COPY_INVENTORY.csv)
+
+---
+
 # CURRENT ENTRY 2026-11-27｜RC-E 发布准入证据已评估
 
 **RC_E_CLOSED_BETA_READINESS_ASSESSED / UI_S_DEFERRED / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
