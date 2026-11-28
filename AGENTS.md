@@ -1,6 +1,6 @@
 # EliteSync-v10 当前工程约定
 
-2026-11-28 更新。新会话从 [ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md) 顶部、[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md) 和当前具名 Owner 授权起步。先核实际本地 Git 根、origin、分支、HEAD、工作区和暂存区；GitHub 开发分支仅是脱敏备份与审阅基线，不代表本机实时状态。当前任务为 UI-S4 量化验收，任务单见 [UI-S4 任务单](docs/versions/v2/cloud-r0-20261121/ui-s4-20261128/V2_UI_S4_QUANTITATIVE_UX_ACCEPTANCE_TASK_20261128.md)，当前是否已由本地 Codex ACK/执行须在新会话核实。2026-11-20 阶段 A 及其交接材料均为历史记录，不是当前任务入口；下方历史任务与权限按发生时点理解，适用的通用约定继续遵循。
+2026-11-28 更新。新会话从 [ACTIVE_STATE](docs/workflow/ACTIVE_STATE.md) 顶部、[CURRENT_WORKFLOW](docs/workflow/CURRENT_WORKFLOW.md) 和当前具名 Owner 授权起步。先核实际本地 Git 根、origin、分支、HEAD、工作区和暂存区；GitHub 开发分支仅是脱敏备份与审阅基线，不代表本机实时状态。UI-S4 量化验收已按 PARTIAL 状态交付，当前停在网页 GPT 顾问独立复审和 Owner 决定。接续时读 [UI-S4 交付交接](docs/workflow/SESSION_HANDOFF_20261128_UI_S4_DELIVERY_AND_REVIEW.md)。2026-11-20 阶段 A 及其交接材料均为历史记录，不是当前任务入口；下方历史任务与权限按发生时点理解，适用的通用约定继续遵循。
 
 ## 模型与专用角色
 

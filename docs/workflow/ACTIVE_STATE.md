@@ -6,6 +6,8 @@
 - 社区长列表锚点漂移、附件丢回执后仍待确认，以及文案、无障碍和性能的剩余覆盖见报告。图片作品已在具名合法媒体夹具验证发布、收窄和撤下。原普通注册门控保留，TEST_ONLY 单列。
 - 当前转网页 GPT 顾问独立复审和 Owner 决定。 [UI-S4 验收报告](../versions/v2/cloud-r0-20261121/ui-s4-20261128/V2_UI_S4_QUANTITATIVE_UX_ACCEPTANCE_REPORT.md)
 
+- Owner 要求保存当前会话交接。下一会话沿当前复审停点读取固定结果与边界。 [UI-S4 交付交接](SESSION_HANDOFF_20261128_UI_S4_DELIVERY_AND_REVIEW.md)
+
 ---
 
 # CURRENT ENTRY 2026-11-28｜UI-S4 量化验收任务单已归档，等待新会话接续
