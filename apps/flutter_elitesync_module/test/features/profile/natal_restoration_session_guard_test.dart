@@ -423,7 +423,7 @@ void main() {
     await tester.enterText(_field('出生日期'), '1995-03-21');
     tester.testTextInput.hide();
     await tester.pumpAndSettle();
-    final save = find.text('保存、计算并持久重读');
+    final save = find.text('保存并计算');
     await tester.ensureVisible(save);
     await tester.pumpAndSettle();
     await tester.tap(save);
@@ -653,7 +653,7 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      final save = find.text('保存、计算并持久重读');
+      final save = find.text('保存并计算');
       await tester.ensureVisible(save);
       await tester.pumpAndSettle();
       await tester.tap(save);
@@ -771,7 +771,7 @@ void main() {
           ),
         );
         await tester.pumpAndSettle();
-        final save = find.text('保存、计算并持久重读');
+        final save = find.text('保存并计算');
         await tester.ensureVisible(save);
         await tester.pumpAndSettle();
         await tester.tap(save);

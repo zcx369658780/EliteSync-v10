@@ -1002,7 +1002,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                       if (_zodiac == 'sidereal')
                         const Text('CRC1956 自定义重建，非官方 Lahiri；定义与核验状态见盘面详情。'),
                       _choice('宫制', _house, {
-                        'placidus': 'Placidus',
+                        'placidus': '普拉西德宫制',
                         'whole': '整宫制',
                         'alcabitius': 'Alcabitius',
                       }, (v) => _house = v),
@@ -1052,7 +1052,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
                   FilledButton.icon(
                     onPressed: _busy || _conflict ? null : _save,
                     icon: const Icon(Icons.save),
-                    label: Text(_pendingBody == null ? '保存、计算并持久重读' : '按原操作重试'),
+                    label: Text(_pendingBody == null ? '保存并计算' : '按原操作重试'),
                   ),
                 ],
               ),

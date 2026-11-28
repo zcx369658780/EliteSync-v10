@@ -918,6 +918,7 @@ String _sourceStatusMessage(String houseTruthStatus, String oracleStatus) {
 String _houseTruthStatusLabel(String status) {
   final normalized = status.toLowerCase().trim();
   return switch (normalized) {
+    'calculated' => '已计算',
     'available' => '可展示',
     'needs_coordinates' => '待出生地坐标',
     'not_house_truth' => '宫位待来源确认',

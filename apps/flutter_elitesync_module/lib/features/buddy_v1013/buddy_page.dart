@@ -404,6 +404,58 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
     final actions = _actions(activity);
     final id = activity['id'];
     final writable = id is String && activity['revision'] is int;
+    final primary = UiS3Design.enabled && writable
+        ? const [
+            'confirm',
+            'open',
+            'request',
+            'complete',
+          ].where(actions.contains).firstOrNull
+        : null;
+    final discoveryActions = writable && activity['discovery_actions'] is List
+        ? (activity['discovery_actions'] as List).whereType<String>().toList()
+        : <String>[];
+    final secondary = <Widget>[
+      if (writable && actions.contains('invite')) ...[
+        OutlinedButton(
+          key: ValueKey('buddy-$id-invite'),
+          onPressed: _blocked ? null : () => _invite(activity),
+          child: const Text('邀请当前好友'),
+        ),
+      ],
+      for (final action in discoveryActions.where(
+        (action) => !UiS3Design.enabled || action != 'withdraw',
+      ))
+        OutlinedButton(
+          key: ValueKey('buddy-$id-discovery-$action'),
+          onPressed: _blocked ? null : () => _publish(activity, action),
+          child: Text(action == 'publish' ? '发布到搭子发现' : '从发现撤下'),
+        ),
+      if (writable && actions.contains('token'))
+        OutlinedButton(
+          key: ValueKey('buddy-$id-token'),
+          onPressed: _blocked
+              ? null
+              : () async {
+                  if (!await confirm(
+                    '生成一次性邀请凭据？',
+                    '凭据仅限本次活动，有效期由服务器给出。请只交给你明确选择的接收人，可随时撤销。',
+                  )) {
+                    return;
+                  }
+                  await _send(
+                    'POST',
+                    '/buddy/${Uri.encodeComponent(id)}/tokens',
+                    {
+                      'revision': activity['revision'],
+                      'idempotency_key': requestKey(),
+                    },
+                    exposesToken: true,
+                  );
+                },
+          child: const Text('生成一次性邀请凭据'),
+        ),
+    ];
     return Card(
       key: ValueKey('buddy-card-$id'),
       child: Padding(
@@ -420,7 +472,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
             if (activity['subject'] is String)
               Text(activity['subject'] as String),
             if (activity['general_city'] is String)
-              Text('粗城市：${activity['general_city']}'),
+              Text('城市：${activity['general_city']}'),
             if (activity['place_kind'] != null)
               Text(activity['place_kind'] == 'ONLINE' ? '线上' : '公共空间（未指定具体地点）'),
             if (activity['start_at'] != null)
@@ -429,50 +481,35 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
               Text('结束：${buddyLocalTime(activity['end_at'])}'),
             if (activity['budget_band'] != null)
               Text('预算档位：${_budgetLabel(activity['budget_band'])}'),
-            if (writable && actions.contains('invite')) ...[
-              OutlinedButton(
-                key: ValueKey('buddy-$id-invite'),
-                onPressed: _blocked ? null : () => _invite(activity),
-                child: const Text('邀请当前好友'),
-              ),
-            ],
-            if (writable)
-              for (final action
-                  in (activity['discovery_actions'] is List
-                      ? (activity['discovery_actions'] as List)
-                            .whereType<String>()
-                      : <String>[]))
-                OutlinedButton(
-                  key: ValueKey('buddy-$id-discovery-$action'),
-                  onPressed: _blocked ? null : () => _publish(activity, action),
-                  child: Text(action == 'publish' ? '发布到搭子发现' : '从发现撤下'),
-                ),
             if (activity['discovery'] is Map)
-              Text('发现发布状态：${objectMap(activity['discovery'])['state']}'),
-            if (writable && actions.contains('token'))
+              Text(switch (objectMap(activity['discovery'])['state']) {
+                'PUBLISHED' => '已在搭子发现展示',
+                'WITHDRAWN' => '已从搭子发现撤下',
+                _ => '搭子发现状态待确认',
+              }),
+            if (primary != null)
+              FilledButton(
+                key: ValueKey('buddy-$id-$primary'),
+                onPressed: _blocked ? null : () => _act(activity, primary),
+                child: Text(_actionLabel(primary)),
+              ),
+            if (UiS3Design.enabled && discoveryActions.contains('withdraw'))
               OutlinedButton(
-                key: ValueKey('buddy-$id-token'),
+                key: ValueKey('buddy-$id-discovery-withdraw'),
                 onPressed: _blocked
                     ? null
-                    : () async {
-                        if (!await confirm(
-                          '生成一次性邀请凭据？',
-                          '凭据仅限本次活动，有效期由服务器给出。请只交给你明确选择的接收人，可随时撤销。',
-                        )) {
-                          return;
-                        }
-                        await _send(
-                          'POST',
-                          '/buddy/${Uri.encodeComponent(id)}/tokens',
-                          {
-                            'revision': activity['revision'],
-                            'idempotency_key': requestKey(),
-                          },
-                          exposesToken: true,
-                        );
-                      },
-                child: const Text('生成一次性邀请凭据'),
+                    : () => _publish(activity, 'withdraw'),
+                child: const Text('从发现撤下'),
               ),
+            if (secondary.isNotEmpty)
+              if (UiS3Design.enabled)
+                ExpansionTile(
+                  title: const Text('邀请与发现设置'),
+                  tilePadding: EdgeInsets.zero,
+                  children: secondary,
+                )
+              else
+                ...secondary,
             if (writable && actions.contains('revoke_token'))
               OutlinedButton(
                 key: ValueKey('buddy-$id-revoke-token'),
@@ -510,7 +547,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
                     'cancel',
                     'complete',
                   ])
-                    if (actions.contains(action))
+                    if (actions.contains(action) && action != primary)
                       OutlinedButton(
                         key: ValueKey('buddy-$id-$action'),
                         onPressed: _blocked
@@ -542,7 +579,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
           ),
           TextButton(
             onPressed: busy ? null : _resolvePending,
-            child: const Text('重读并核对上次结果'),
+            child: const Text('核对上次操作'),
           ),
         ],
         OutlinedButton(
@@ -621,7 +658,7 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
                 enabled: !_blocked,
                 maxLength: 40,
                 decoration: const InputDecoration(
-                  labelText: '粗城市（可留空）',
+                  labelText: '城市（可留空）',
                   helperText: '只写城市，不写街道、门牌、单位或住址',
                 ),
               ),

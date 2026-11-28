@@ -433,6 +433,14 @@ class _LiveConversationListPageState
             identical(session, _session)
         ? _items
         : <Map<String, dynamic>>[];
+    final showEmpty =
+        _foreground &&
+        session?.isLoggedIn == true &&
+        identical(session, _session) &&
+        !_busy &&
+        _error == null &&
+        !_trustedContextLocked &&
+        items.isEmpty;
     return Scaffold(
       appBar: AppBar(
         title: const Text('消息'),
@@ -487,11 +495,13 @@ class _LiveConversationListPageState
                 _error!,
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
-            if (!_busy &&
-                _error == null &&
-                !_trustedContextLocked &&
-                items.isEmpty)
-              const Text('暂无会话'),
+            if (showEmpty)
+              ListTile(
+                title: Text(_hiddenOnly ? '没有隐藏的会话' : '暂无会话'),
+                subtitle: _hiddenOnly
+                    ? null
+                    : const Text('双方都同意聊天后，可从关系进度进入会话。'),
+              ),
             for (final item in items)
               Card(
                 child: ListTile(
@@ -544,6 +554,8 @@ class _LiveConversationListPageState
               ),
           ],
         ),
+        kind: UiS3Backdrop.quiet,
+        showEmptyArt: showEmpty && !_hiddenOnly,
       ),
     );
   }

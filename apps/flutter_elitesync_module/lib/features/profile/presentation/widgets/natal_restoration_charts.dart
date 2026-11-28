@@ -1,5 +1,6 @@
 import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'dart:math' as math;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/astro_chart_settings_provider.dart';
@@ -102,6 +103,28 @@ class NatalProjectionView extends ConsumerWidget {
   }
 }
 
+String _chartState(Object? state) => switch (state) {
+  'CALCULATED' || 'COMPUTED' => '已计算',
+  'COMPUTED_UNVERIFIED' => '已计算，精度待独立核验',
+  'VERIFIED' => '已核验',
+  'UNVERIFIED' => '待核验',
+  'NOT_REQUESTED' => '未请求计算',
+  'FAILED' => '计算失败，请核对资料后重试',
+  'PENDING' => '等待计算',
+  'UNAVAILABLE' => '当前条件下无法计算',
+  _ => '状态待确认',
+};
+
+String _chartSetting(Object? value) => switch (value) {
+  'civil' => '出生地当地时间',
+  'tropical' => '回归黄道',
+  'sidereal' => '恒星黄道',
+  'placidus' => '普拉西德宫制',
+  'whole' => '整宫制',
+  'alcabitius' => '阿尔卡比提乌斯宫制',
+  _ => natalText(value),
+};
+
 class NatalRestorationCharts extends StatelessWidget {
   const NatalRestorationCharts({
     super.key,
@@ -137,10 +160,30 @@ class NatalRestorationCharts extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(title, style: Theme.of(context).textTheme.titleLarge),
-            Text(
-              '计算：${natalText(chart['calculation_status'] ?? chart['status'])}；独立核验：${verified ? oracle : '待核验 ($oracle)'}',
-            ),
-            if (chart['reason'] != null || chart['reason_codes'] != null)
+            if (backdrop == null)
+              Text(
+                '计算：${natalText(chart['calculation_status'] ?? chart['status'])}；独立核验：${verified ? oracle : '待核验 ($oracle)'}',
+              )
+            else ...[
+              Text(
+                '${_chartState(chart['calculation_status'] ?? chart['status'])} · 独立核验${_chartState(oracle)}',
+              ),
+              ExpansionTile(
+                tilePadding: EdgeInsets.zero,
+                title: const Text('计算依据与限制'),
+                children: [
+                  Text(
+                    '计算状态码 ${natalText(chart['calculation_status'] ?? chart['status'])} · 核验状态码 $oracle',
+                  ),
+                  if (chart['reason'] != null || chart['reason_codes'] != null)
+                    Text(
+                      '限制 ${natalText(chart['reason'] ?? chart['reason_codes'])}',
+                    ),
+                ],
+              ),
+            ],
+            if (backdrop == null &&
+                (chart['reason'] != null || chart['reason_codes'] != null))
               Text('限制：${natalText(chart['reason'] ?? chart['reason_codes'])}'),
             const SizedBox(height: 12),
             ...children,
@@ -171,37 +214,57 @@ class NatalRestorationCharts extends StatelessWidget {
       children: [
         if (section == null || section == 'bazi')
           _section(context, '八字', bazi, [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                for (final entry in const {
-                  'year': '年柱',
-                  'month': '月柱',
-                  'day': '日柱',
-                  'hour': '时柱',
-                }.entries)
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Text(entry.value),
-                        Text(
-                          natalText(natalMap(pillars[entry.key])['gan_zhi']),
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                        Text(
+            if (backdrop == UiS3Backdrop.bazi) ...[
+              _BaziPillars(pillars: pillars),
+              ExpansionTile(
+                tilePadding: EdgeInsets.zero,
+                title: const Text('藏干、十神与纳音'),
+                children: [
+                  for (final entry in _BaziPillars.names.entries)
+                    ListTile(
+                      title: Text(entry.value),
+                      subtitle: Text(
+                        [
                           '藏干 ${natalText(natalMap(pillars[entry.key])['hidden_stems'])}',
-                        ),
-                        Text(
                           '十神 ${natalText(natalMap(pillars[entry.key])['ten_god_stem'])}',
-                        ),
-                        Text(
                           '纳音 ${natalText(natalMap(pillars[entry.key])['na_yin'])}',
-                        ),
-                      ],
+                        ].join(' · '),
+                      ),
                     ),
-                  ),
-              ],
-            ),
+                ],
+              ),
+            ] else
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (final entry in const {
+                    'year': '年柱',
+                    'month': '月柱',
+                    'day': '日柱',
+                    'hour': '时柱',
+                  }.entries)
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(entry.value),
+                          Text(
+                            natalText(natalMap(pillars[entry.key])['gan_zhi']),
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          Text(
+                            '藏干 ${natalText(natalMap(pillars[entry.key])['hidden_stems'])}',
+                          ),
+                          Text(
+                            '十神 ${natalText(natalMap(pillars[entry.key])['ten_god_stem'])}',
+                          ),
+                          Text(
+                            '纳音 ${natalText(natalMap(pillars[entry.key])['na_yin'])}',
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
             if (backdrop == UiS3Backdrop.bazi &&
                 visibleElements.isNotEmpty) ...[
               const SizedBox(height: 12),
@@ -238,7 +301,9 @@ class NatalRestorationCharts extends StatelessWidget {
                   ? '顺行'
                   : '逆行'}',
             ),
-            Text('时间口径：${natalText(natalMap(bazi['time_basis'])['mode'])}'),
+            Text(
+              '时间依据 · ${_chartSetting(natalMap(bazi['time_basis'])['mode'])}',
+            ),
             if (natalMap(
                   natalMap(bazi['time_basis'])['term_time_context'],
                 )['utc_interpretation'] ==
@@ -427,29 +492,52 @@ class NatalRestorationCharts extends StatelessWidget {
             if (planets.isNotEmpty)
               Semantics(
                 label: '西方本命星盘示意；精确数值见下方列表',
-                child: SizedBox(
-                  height: prefs.compactDensity ? 240 : 300,
-                  width: double.infinity,
-                  child: CustomPaint(
-                    painter: NatalWheelPainter(
-                      planets,
-                      natalList(western['houses']),
-                      natalList(western['aspects']),
-                      prefs,
-                      subtitle:
-                          '${natalText(natalMap(western['effective_profile'])['zodiac_mode'])} / ${natalText(natalMap(western['axes'])['effective_house_system'])}',
-                      place: locationLabel ?? '',
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: RepaintBoundary(
+                    child: CustomPaint(
+                      painter: NatalWheelPainter(
+                        planets,
+                        natalList(western['houses']),
+                        natalList(western['aspects']),
+                        prefs,
+                        subtitle:
+                            '${_chartSetting(natalMap(western['effective_profile'])['zodiac_mode'])} / ${_chartSetting(natalMap(western['axes'])['effective_house_system'])}',
+                        place: locationLabel ?? '',
+                        dark: Theme.of(context).brightness == Brightness.dark,
+                        textScaler: MediaQuery.textScalerOf(context),
+                      ),
                     ),
                   ),
                 ),
               ),
+            if (planets.isNotEmpty && prefs.showChartPlanetLabels)
+              const Padding(
+                padding: EdgeInsets.only(bottom: 8),
+                child: Text('密集区域可能省略盘内标签。完整名称和黄经见位置列表。'),
+              ),
             if (prefs.showTechnicalParameters)
               Text(
-                '黄道 ${natalText(natalMap(western['effective_profile'])['zodiac_mode'])}；宫制 ${natalText(natalMap(western['axes'])['effective_house_system'])}',
+                '黄道 ${_chartSetting(natalMap(western['effective_profile'])['zodiac_mode'])} · 宫制 ${_chartSetting(natalMap(western['axes'])['effective_house_system'])}',
               ),
             Text(
-              '宫位状态 ${natalText(natalMap(western['axes'])['status'])}${natalMap(western['axes'])['reason'] == null ? '' : ' · ${natalText(natalMap(western['axes'])['reason'])}'}',
+              '宫位 · ${backdrop == null ? natalText(natalMap(western['axes'])['status']) : _chartState(natalMap(western['axes'])['status'])}${natalMap(western['axes'])['reason'] == null ? '' : ' · ${natalText(natalMap(western['axes'])['reason'])}'}',
             ),
+            if (!prefs.showPlanetSummary &&
+                prefs.showChartPlanetLabels &&
+                planets.isNotEmpty)
+              ExpansionTile(
+                title: const Text('行星位置列表'),
+                children: [
+                  for (final raw in planets)
+                    ListTile(
+                      title: Text(natalBodyLabel(natalMap(raw)['name'])),
+                      subtitle: Text(
+                        '黄经 ${_degrees(natalMap(raw)['longitude'])}',
+                      ),
+                    ),
+                ],
+              ),
             if (prefs.showPlanetSummary)
               for (final raw in planets)
                 Builder(
@@ -668,10 +756,70 @@ class NatalRestorationCharts extends StatelessWidget {
 String _degrees(dynamic value) =>
     value is num ? '${value.toStringAsFixed(4)}°' : '未知';
 
-class _ZiweiPalaceBoard extends StatelessWidget {
+class _BaziPillars extends StatelessWidget {
+  const _BaziPillars({required this.pillars});
+  final Map<String, dynamic> pillars;
+  static const names = {'year': '年柱', 'month': '月柱', 'day': '日柱', 'hour': '时柱'};
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final large = MediaQuery.textScalerOf(context).scale(16) > 23;
+    return LayoutBuilder(
+      builder: (context, box) {
+        final columns = large || box.maxWidth < 240 ? 2 : 4;
+        final width = (box.maxWidth - (columns - 1) * 6) / columns;
+        return Wrap(
+          spacing: 6,
+          runSpacing: 6,
+          children: [
+            for (final entry in names.entries)
+              Container(
+                width: width,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 2,
+                ),
+                decoration: BoxDecoration(
+                  color: theme.brightness == Brightness.dark
+                      ? theme.colorScheme.surfaceContainerHighest
+                      : UiS3Backdrop.bazi.alternate,
+                  border: Border(
+                    top: BorderSide(color: theme.colorScheme.primary, width: 2),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    Text(entry.value, style: theme.textTheme.labelLarge),
+                    const SizedBox(height: 5),
+                    Text(
+                      natalText(natalMap(pillars[entry.key])['gan_zhi']),
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.headlineMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _ZiweiPalaceBoard extends StatefulWidget {
   const _ZiweiPalaceBoard({required this.palaces, required this.backdrop});
   final List<dynamic> palaces;
   final UiS3Backdrop backdrop;
+
+  @override
+  State<_ZiweiPalaceBoard> createState() => _ZiweiPalaceBoardState();
+}
+
+class _ZiweiPalaceBoardState extends State<_ZiweiPalaceBoard> {
+  Object? _selected;
 
   Future<void> _showPalace(
     BuildContext context,
@@ -726,6 +874,8 @@ class _ZiweiPalaceBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palaces = widget.palaces;
+    final backdrop = widget.backdrop;
     final byBranch = {
       for (final raw in palaces) natalMap(raw)['earthly_branch']: natalMap(raw),
     };
@@ -740,21 +890,53 @@ class _ZiweiPalaceBoard extends StatelessWidget {
         .expand((row) => row)
         .where((key) => key.isNotEmpty)
         .every(byBranch.containsKey);
-    Widget tile(Map<String, dynamic> palace) => TextButton(
-      style: TextButton.styleFrom(
-        backgroundColor: theme.brightness == Brightness.dark
-            ? theme.colorScheme.surfaceContainerHighest
-            : backdrop.alternate,
-        minimumSize: const Size(48, 56),
-        padding: const EdgeInsets.all(4),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      ),
-      onPressed: () => _showPalace(context, palace),
-      child: Text(
-        '${palace['name']}\n${palace['earthly_branch']}',
-        textAlign: TextAlign.center,
-      ),
-    );
+    Widget tile(Map<String, dynamic> palace) {
+      final branch = palace['earthly_branch'];
+      final selected = _selected == branch;
+      final stars = natalList(
+        palace['major_stars'],
+      ).map((item) => natalMap(item)['name']).whereType<String>().join(' ');
+      return Semantics(
+        selected: selected,
+        child: TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: selected
+                ? theme.colorScheme.primary
+                : theme.brightness == Brightness.dark
+                ? theme.colorScheme.surfaceContainerHighest
+                : backdrop.alternate,
+            foregroundColor: selected
+                ? theme.colorScheme.onPrimary
+                : theme.colorScheme.onSurface,
+            minimumSize: const Size(48, 68),
+            padding: const EdgeInsets.all(4),
+            shape: const RoundedRectangleBorder(),
+          ),
+          onPressed: () {
+            setState(() => _selected = branch);
+            _showPalace(context, palace);
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                '${palace['name']} $branch',
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
+              if (stars.isNotEmpty)
+                Text(
+                  stars,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontSize: 11),
+                ),
+            ],
+          ),
+        ),
+      );
+    }
 
     if (!complete ||
         MediaQuery.textScalerOf(context).scale(14) > 21 ||
@@ -786,6 +968,34 @@ class _ZiweiPalaceBoard extends StatelessWidget {
   }
 }
 
+/// Label rectangles are view coordinates. The original longitude is used only
+/// for the marker and never rewritten by this layout.
+Rect? placeNatalWheelLabel({
+  required Size extent,
+  required Rect bounds,
+  required Iterable<Offset> candidates,
+  required List<Rect> occupied,
+}) {
+  for (final center in candidates) {
+    final box = Rect.fromCenter(
+      center: center,
+      width: extent.width,
+      height: extent.height,
+    );
+    final padded = box.inflate(2);
+    if (padded.left < bounds.left ||
+        padded.right > bounds.right ||
+        padded.top < bounds.top ||
+        padded.bottom > bounds.bottom ||
+        occupied.any(padded.overlaps)) {
+      continue;
+    }
+    occupied.add(padded);
+    return box;
+  }
+  return null;
+}
+
 class NatalWheelPainter extends CustomPainter {
   NatalWheelPainter(
     this.planets,
@@ -794,40 +1004,116 @@ class NatalWheelPainter extends CustomPainter {
     this.prefs, {
     this.subtitle = '',
     this.place = '',
+    this.dark = false,
+    this.textScaler = TextScaler.noScaling,
   });
   final List<dynamic> planets, houses, aspects;
   final AstroChartDisplayPrefs prefs;
   final String subtitle, place;
+  final bool dark;
+  final TextScaler textScaler;
+
   @override
   void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2),
-        radius = math.min(size.width, size.height) / 2 - 25;
+    final radius = math.min(size.width, size.height) / 2 - 9;
+    if (radius < 20) return;
+    final center = size.center(Offset.zero);
+    final bounds = (Offset.zero & size).deflate(3);
+    final occupied = <Rect>[];
+    final ink = dark ? const Color(0xffece6f7) : const Color(0xff392d50);
+    final track = dark ? const Color(0xffac9cbe) : const Color(0xff7d6a91);
     final line = Paint()
-      ..color = Colors.blueGrey
+      ..color = track
       ..style = PaintingStyle.stroke;
-    canvas.drawCircle(center, radius, line);
-    canvas.drawCircle(center, radius * .72, line);
+    final guide = Paint()
+      ..color = track.withValues(alpha: .63)
+      ..strokeWidth = .8;
+    final marker = Paint()..color = ink;
+    canvas.drawCircle(
+      center,
+      radius,
+      Paint()..color = dark ? const Color(0xff342842) : const Color(0xfff1eaf6),
+    );
+    for (final fraction in const [1.0, .79, .58]) {
+      canvas.drawCircle(center, radius * fraction, line);
+    }
+
     Offset point(double degrees, double r) =>
         center +
         Offset(
           -math.cos(degrees * math.pi / 180) * r,
           math.sin(degrees * math.pi / 180) * r,
         );
-    void label(String text, Offset at) {
+
+    void label(
+      String text,
+      Iterable<Offset> candidates, {
+      Offset? origin,
+      double fontSize = 11,
+    }) {
+      if (text.isEmpty) return;
       final painter = TextPainter(
         text: TextSpan(
           text: text,
-          style: const TextStyle(fontSize: 10, color: Colors.blueGrey),
+          style: TextStyle(fontSize: fontSize, color: ink),
         ),
+        textScaler: textScaler,
         textDirection: TextDirection.ltr,
-      )..layout();
-      painter.paint(canvas, at - Offset(painter.width / 2, painter.height / 2));
+        maxLines: 1,
+        ellipsis: '…',
+      )..layout(maxWidth: size.width * .43);
+      try {
+        final box = placeNatalWheelLabel(
+          extent: painter.size,
+          bounds: bounds,
+          candidates: candidates,
+          occupied: occupied,
+        );
+        if (box == null) return;
+        if (origin != null && prefs.showChartPlanetConnectors) {
+          final end = Offset(
+            origin.dx.clamp(box.left, box.right),
+            origin.dy.clamp(box.top, box.bottom),
+          );
+          canvas.drawLine(origin, end, guide);
+        }
+        if (origin != null) {
+          canvas.drawRRect(
+            RRect.fromRectAndRadius(box.inflate(1), const Radius.circular(2)),
+            Paint()
+              ..color = dark
+                  ? const Color(0xff342842)
+                  : const Color(0xfff1eaf6),
+          );
+        }
+        painter.paint(canvas, box.topLeft);
+      } finally {
+        painter.dispose();
+      }
     }
 
+    // Exact angular positions are shared by markers, cusps, and aspect endpoints.
+    final byName = {
+      for (final raw in planets)
+        natalMap(raw)['name']: natalMap(raw)['longitude'],
+    };
+    if (prefs.showChartAspectLines) {
+      for (final raw in aspects) {
+        final edge = natalMap(raw);
+        final a = byName[edge['a']], b = byName[edge['b']];
+        if (a is num && b is num && a.isFinite && b.isFinite) {
+          canvas.drawLine(
+            point(a.toDouble(), radius * .46),
+            point(b.toDouble(), radius * .46),
+            guide,
+          );
+        }
+      }
+    }
     for (var i = 0; i < 12; i++) {
       if (prefs.showChartSignGridLines) {
         canvas.drawLine(
-          point(i * 30, radius * .72),
+          point(i * 30, radius * .79),
           point(i * 30, radius),
           line,
         );
@@ -835,64 +1121,91 @@ class NatalWheelPainter extends CustomPainter {
       if (prefs.showChartSignLabels) {
         label(
           const ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'][i],
-          point(i * 30 + 15, radius * .88),
+          [point(i * 30 + 15, radius * .90)],
         );
       }
     }
     for (final raw in houses) {
       final h = natalMap(raw);
-      if (h['cusp'] is num) {
-        final d = (h['cusp'] as num).toDouble();
-        if (prefs.showChartHouseLines) {
-          canvas.drawLine(center, point(d, radius * .72), line);
-        }
-        if (prefs.showChartHouseNumbers) {
-          label('${h['number']}', point(d + 5, radius * .5));
-        }
+      final cusp = h['cusp'];
+      if (cusp is! num || !cusp.isFinite) continue;
+      final d = cusp.toDouble();
+      if (prefs.showChartHouseLines) {
+        canvas.drawLine(point(d, radius * .25), point(d, radius * .79), line);
       }
     }
-    for (var i = 0; i < planets.length; i++) {
-      final p = natalMap(planets[i]);
-      if (p['longitude'] is num) {
-        final d = (p['longitude'] as num).toDouble();
-        final r = radius * (i.isEven ? 0.64 : 0.56);
-        if (prefs.showChartPlanetConnectors) {
-          canvas.drawLine(point(d, r), point(d, r - 10), line);
-        }
-        if (prefs.showChartPlanetMarkers) {
-          canvas.drawCircle(point(d, r), 2, Paint()..color = Colors.deepPurple);
-        }
-        if (prefs.showChartPlanetLabels) {
-          label(natalBodyLabel(p['name']), point(d, r - 10));
-        }
+
+    if (prefs.showChartCenterTitle ||
+        prefs.showChartCenterSubtitle ||
+        prefs.showChartCenterPlace) {
+      final lines = [
+        if (prefs.showChartCenterTitle) '本命盘',
+        if (prefs.showChartCenterSubtitle && subtitle.isNotEmpty) subtitle,
+        if (prefs.showChartCenterPlace && place.isNotEmpty) place,
+      ];
+      final spacing = textScaler.scale(12) + 4;
+      for (var i = 0; i < lines.length; i++) {
+        label(lines[i], [
+          center.translate(0, (i - (lines.length - 1) / 2) * spacing),
+        ]);
+      }
+      final centerBand = Rect.fromCenter(
+        center: center,
+        width: radius * .99,
+        height: math.max(radius * .36, spacing * lines.length),
+      );
+      occupied.add(centerBand);
+    }
+    for (final raw in planets) {
+      final p = natalMap(raw);
+      final longitude = p['longitude'];
+      if (longitude is! num || !longitude.isFinite) continue;
+      final d = longitude.toDouble();
+      final at = point(d, radius * .72);
+      if (prefs.showChartPlanetMarkers) canvas.drawCircle(at, 2.4, marker);
+      if (prefs.showChartPlanetLabels) {
+        label(natalBodyLabel(p['name']), [
+          for (final delta in const [
+            0,
+            12,
+            -12,
+            24,
+            -24,
+            38,
+            -38,
+            56,
+            -56,
+            75,
+            -75,
+          ])
+            for (final level in const [.61, .48, .33])
+              point(d + delta, radius * level),
+        ], origin: at);
+      } else if (prefs.showChartPlanetConnectors) {
+        canvas.drawLine(at, point(d, radius * .61), guide);
       }
     }
-    if (prefs.showChartAspectLines) {
-      final byName = {
-        for (final raw in planets)
-          natalMap(raw)['name']: natalMap(raw)['longitude'],
-      };
-      for (final raw in aspects) {
-        final edge = natalMap(raw);
-        final a = byName[edge['a']], b = byName[edge['b']];
-        if (a is num && b is num) {
-          canvas.drawLine(
-            point(a.toDouble(), radius * .4),
-            point(b.toDouble(), radius * .4),
-            line,
-          );
+    if (prefs.showChartHouseNumbers) {
+      for (final raw in houses) {
+        final h = natalMap(raw);
+        final cusp = h['cusp'];
+        if (cusp is num && cusp.isFinite) {
+          label(natalText(h['number']), [
+            point(cusp.toDouble() + 5, radius * .55),
+          ], fontSize: 10);
         }
       }
-    }
-    if (prefs.showChartCenterTitle) label('本命盘', center + const Offset(0, -12));
-    if (prefs.showChartCenterSubtitle) {
-      label(subtitle, center + const Offset(0, 2));
-    }
-    if (prefs.showChartCenterPlace && place.isNotEmpty) {
-      label(place, center + const Offset(0, 16));
     }
   }
 
   @override
-  bool shouldRepaint(covariant NatalWheelPainter oldDelegate) => true;
+  bool shouldRepaint(covariant NatalWheelPainter oldDelegate) =>
+      !listEquals(oldDelegate.planets, planets) ||
+      !listEquals(oldDelegate.houses, houses) ||
+      !listEquals(oldDelegate.aspects, aspects) ||
+      oldDelegate.prefs != prefs ||
+      oldDelegate.subtitle != subtitle ||
+      oldDelegate.place != place ||
+      oldDelegate.dark != dark ||
+      oldDelegate.textScaler != textScaler;
 }

@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
@@ -264,7 +265,7 @@ Future<_Fixture> _mount(
   await tester.pumpWidget(
     UncontrolledProviderScope(
       container: container,
-      child: MaterialApp.router(routerConfig: router),
+      child: MaterialApp.router(theme: AppTheme.light, routerConfig: router),
     ),
   );
   await tester.pumpAndSettle();

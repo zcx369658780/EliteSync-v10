@@ -684,10 +684,37 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      expect(find.text('宫位状态 CALCULATED'), findsOneWidget);
+      expect(find.text('宫位状态：已计算'), findsOneWidget);
       expect(find.text('太阳'), findsOneWidget);
     },
   );
+  test('crowded wheel finds separate in-bounds labels or falls back', () {
+    const bounds = Rect.fromLTWH(0, 0, 100, 100);
+    final occupied = [const Rect.fromLTWH(36, 35, 28, 25)];
+    const candidates = [Offset(50, 50), Offset(50, 18), Offset(78, 52)];
+    const extent = Size(26, 14);
+    final first = placeNatalWheelLabel(
+      extent: extent,
+      bounds: bounds,
+      candidates: candidates,
+      occupied: occupied,
+    );
+    final second = placeNatalWheelLabel(
+      extent: extent,
+      bounds: bounds,
+      candidates: candidates,
+      occupied: occupied,
+    );
+    final noRoom = placeNatalWheelLabel(
+      extent: extent,
+      bounds: bounds,
+      candidates: candidates,
+      occupied: occupied,
+    );
+    expect(first?.center, candidates[1]);
+    expect(second?.center, candidates[2]);
+    expect(noRoom, isNull);
+  });
   final displayVariants = <(String, AstroChartDisplayPrefs, int, int, int)>[
     (
       'sign grid',

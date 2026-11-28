@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'package:flutter_elitesync_module/app/config/app_env.dart';
 import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
 import 'package:flutter_elitesync_module/features/profile/avatar/avatar_api.dart';
@@ -101,7 +102,10 @@ class _UnknownSendApi extends ApiClient {
         {
           'id': 41,
           'sender_id': 1,
+          'receiver_id': bodies.first['receiver_id'],
           'content': bodies.first['content'],
+          'reply_to_message_id': bodies.first['reply_to_message_id'],
+          'attachments': <dynamic>[],
           'client_message_id': bodies.first['client_message_id'],
         },
     ],
@@ -159,6 +163,8 @@ class _MediaApi extends ApiClient {
   bool denySend = false;
   bool? canSendAttachments;
   bool rejectAttachment = false;
+  bool conflictAttachment = false;
+  List<int> readbackAttachmentIds = const [];
   String roomKey = 'fictional-room';
   final bodies = <Map<String, dynamic>>[];
   @override
@@ -184,6 +190,21 @@ class _MediaApi extends ApiClient {
             issuedAt: leaseIssuedAt,
           ),
           'items': [
+            if (conflictAttachment && bodies.isNotEmpty)
+              {
+                'id': 99,
+                'sender_id': 1,
+                'receiver_id': bodies.first['receiver_id'],
+                'content': bodies.first['content'],
+                'client_message_id': bodies.first['client_message_id'],
+                'reply_to_message_id': bodies.first['reply_to_message_id'],
+                'attachments': [
+                  for (final id in readbackAttachmentIds)
+                    {
+                      'media_asset': {'id': id},
+                    },
+                ],
+              },
             for (var i = 0; i < messageCount; i++)
               {
                 'id': i + 1,
@@ -217,6 +238,13 @@ class _MediaApi extends ApiClient {
     }
     final data = Map<String, dynamic>.from(body as Map);
     bodies.add(data);
+    if (conflictAttachment && data.containsKey('attachment_ids')) {
+      return const NetworkFailure(
+        message: 'message identity conflict',
+        statusCode: 409,
+        code: 'client_message_id_payload_mismatch',
+      );
+    }
     if (rejectAttachment && data.containsKey('attachment_ids')) {
       return const NetworkFailure(
         message: 'attachment unavailable',
@@ -552,6 +580,7 @@ Future<void> _show(
     UncontrolledProviderScope(
       container: container,
       child: MaterialApp(
+        theme: AppTheme.light,
         builder: (context, child) => MediaQuery(
           data: MediaQuery.of(
             context,
@@ -1305,7 +1334,7 @@ void main() {
     await tester.pumpWidget(
       UncontrolledProviderScope(
         container: container,
-        child: const MaterialApp(home: LiveChatPage(peerId: 2)),
+        child: MaterialApp(theme: AppTheme.light, home: const LiveChatPage(peerId: 2)),
       ),
     );
     await tester.pumpAndSettle();
@@ -1393,7 +1422,7 @@ void main() {
       await tester.pumpWidget(
         UncontrolledProviderScope(
           container: container,
-          child: const MaterialApp(home: LiveChatPage(peerId: 2)),
+          child: MaterialApp(theme: AppTheme.light, home: const LiveChatPage(peerId: 2)),
         ),
       );
       await tester.pumpAndSettle();
@@ -1565,7 +1594,7 @@ void main() {
     await tester.pumpWidget(
       UncontrolledProviderScope(
         container: container,
-        child: const MaterialApp(home: LiveChatPage(peerId: 3)),
+        child: MaterialApp(theme: AppTheme.light, home: const LiveChatPage(peerId: 3)),
       ),
     );
     await tester.pumpAndSettle();
@@ -1692,7 +1721,7 @@ void main() {
     await tester.pumpWidget(
       UncontrolledProviderScope(
         container: container,
-        child: const MaterialApp(home: LiveChatPage(peerId: 3)),
+        child: MaterialApp(theme: AppTheme.light, home: const LiveChatPage(peerId: 3)),
       ),
     );
     await tester.pumpAndSettle();
@@ -1863,6 +1892,37 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
+  testWidgets(
+    'attachment identity conflict cannot be discarded or acknowledged',
+    (tester) async {
+      final api = _MediaApi()
+        ..conflictAttachment = true
+        ..readbackAttachmentIds = [999];
+      final gateway = _RetryGateway()..failureStatus = null;
+      await _show(tester, api, gateway: gateway);
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), 'original caption');
+      await tester.tap(find.byTooltip('发送图片'));
+      await tester.pumpAndSettle();
+
+      final reconcile = find.text('重新核对服务器');
+      expect(reconcile, findsOneWidget);
+      expect(find.text('取消本次附件发送'), findsNothing);
+      await tester.tap(reconcile);
+      await tester.pumpAndSettle();
+
+      expect(api.bodies, hasLength(1));
+      expect(reconcile, findsOneWidget);
+      expect(find.text('消息已确认发送'), findsNothing);
+      expect(find.text('取消本次附件发送'), findsNothing);
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        'original caption',
+      );
+      await tester.pumpWidget(const SizedBox());
+    },
+  );
+
   testWidgets('502 after possible commit retries same logical message key', (
     tester,
   ) async {
@@ -1901,7 +1961,7 @@ void main() {
     await tester.tap(find.text('使用原消息编号重试'));
     await tester.pumpAndSettle();
     expect(api.bodies, hasLength(1));
-    expect(find.text('服务器已持久化此消息'), findsOneWidget);
+    expect(find.text('消息已确认发送'), findsOneWidget);
     expect(find.text('使用原消息编号重试'), findsNothing);
     await tester.pumpWidget(const SizedBox());
   });

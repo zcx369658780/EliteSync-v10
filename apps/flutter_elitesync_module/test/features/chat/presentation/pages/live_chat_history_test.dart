@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'dart:async';
 
 import 'package:dio/dio.dart';
@@ -125,7 +126,7 @@ Future<(ProviderContainer, PrivateCacheService)> _mount(
   await tester.pumpWidget(
     UncontrolledProviderScope(
       container: container,
-      child: const MaterialApp(home: LiveChatPage(peerId: 2)),
+      child: MaterialApp(theme: AppTheme.light, home: const LiveChatPage(peerId: 2)),
     ),
   );
   await tester.pumpAndSettle();

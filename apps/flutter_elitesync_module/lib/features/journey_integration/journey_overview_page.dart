@@ -160,7 +160,6 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
   );
 
   List<Widget> _home(Map<String, dynamic> domains) {
-    if (UiS3Design.enabled) return _uiS3Home(domains);
     final actions = rows(data?['next_actions']);
     final first = actions.isEmpty ? null : actions.first['code'];
     final action = switch (first) {
@@ -216,7 +215,7 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
     ];
   }
 
-  List<Widget> _uiS3Home(Map<String, dynamic> domains) {
+  (Widget, Widget) _uiS3Home(Map<String, dynamic> domains) {
     final actions = rows(data?['next_actions']);
     final task = switch (actions.firstOrNull?['code']) {
       'complete_lifestyle' => ('继续生活方式探索', '/lifestyle-discovery'),
@@ -224,25 +223,49 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
       'view_journey' => ('查看匹配进度', AppRouteNames.progress),
       _ => null,
     };
-    return [
-      Text('下一步', style: Theme.of(context).textTheme.titleMedium),
-      Text(preparationReasonLabel(objectMap(domains['readiness'])['code'])),
-      if (task != null)
-        FilledButton(
-          key: const Key('home-primary-action'),
-          onPressed: busy
-              ? null
-              : () {
-                  if (task.$2 == AppRouteNames.progress) {
-                    context.go(task.$2);
-                  } else {
-                    _open(task.$2);
-                  }
-                },
-          child: Text(task.$1),
-        )
-      else
-        const Text('暂时无法确认下一步。'),
+    return (
+      DecoratedBox(
+        decoration: BoxDecoration(
+          color: UiS3Backdrop.bazi.surfaceOf(context),
+          border: Border(
+            left: BorderSide(
+              color: Theme.of(context).colorScheme.primary,
+              width: 3,
+            ),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('下一步', style: Theme.of(context).textTheme.titleSmall),
+              Text(
+                preparationReasonLabel(objectMap(domains['readiness'])['code']),
+              ),
+              if (task != null)
+                TextButton(
+                  key: const Key('home-primary-action'),
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    minimumSize: const Size(48, 48),
+                    alignment: Alignment.centerLeft,
+                  ),
+                  onPressed: busy
+                      ? null
+                      : () {
+                          if (task.$2 == AppRouteNames.progress) {
+                            context.go(task.$2);
+                          } else {
+                            _open(task.$2);
+                          }
+                        },
+                  child: Text(task.$1),
+                ),
+            ],
+          ),
+        ),
+      ),
       ExpansionTile(
         title: const Text('查看当前状态'),
         children: [
@@ -284,8 +307,24 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
           _domain('候选', _proposalLabel(objectMap(domains['proposal'])['code'])),
         ],
       ),
-    ];
+    );
   }
+
+  Widget _homeLink(
+    String title,
+    String path,
+    IconData icon, {
+    String? subtitle,
+  }) => Material(
+    color: UiS3Backdrop.base.surfaceOf(context),
+    child: ListTile(
+      title: Text(title, style: Theme.of(context).textTheme.titleMedium),
+      subtitle: subtitle == null ? null : Text(subtitle),
+      leading: Icon(icon, color: Theme.of(context).colorScheme.primary),
+      trailing: const Icon(Icons.arrow_forward),
+      onTap: busy ? null : () => _open(path),
+    ),
+  );
 
   List<Widget> _progress(Map<String, dynamic> domains) {
     final journey = objectMap(data?['_journey']);
@@ -305,6 +344,15 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
         gates['live_read_allowed'] == true &&
         (gates['live_send_allowed'] == true ||
             (conversations['_unavailable'] != true && conversation.isNotEmpty));
+    final roundStatus = journeyStateLabel(
+      objectMap(domains['round'])['state'] ??
+          objectMap(domains['round'])['code'],
+    );
+    final proposalStatus = journey['_unavailable'] == true
+        ? '匹配结果暂时无法加载，请刷新'
+        : _proposalLabel(
+            proposal['state'] ?? objectMap(domains['proposal'])['code'],
+          );
     return [
       _link(
         '持续参与与自动化',
@@ -312,13 +360,29 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
         subtitle: _automationLabel(objectMap(domains['automation'])['code']),
         key: const Key('match-automation-entry'),
       ),
-      _domain(
-        '当前轮次',
-        journeyStateLabel(
-          objectMap(domains['round'])['state'] ??
-              objectMap(domains['round'])['code'],
-        ),
-      ),
+      if (UiS3Design.enabled)
+        _RelationshipPath(
+          steps: [
+            _domain(
+              '资料准备',
+              preparationReasonLabel(objectMap(domains['readiness'])['code']),
+            ),
+            _domain('当前轮次', roundStatus),
+            _domain('双方决定', proposalStatus),
+            _domain(
+              '联系',
+              _pairLabel(objectMap(pair['connection'])),
+              key: const Key('domain-connection'),
+            ),
+            _domain(
+              '聊天许可',
+              _pairLabel(objectMap(pair['consent'])),
+              key: const Key('domain-consent'),
+            ),
+          ],
+        )
+      else
+        _domain('当前轮次', roundStatus),
       Card(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -326,14 +390,7 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text('匹配结果', style: Theme.of(context).textTheme.titleMedium),
-              Text(
-                journey['_unavailable'] == true
-                    ? '匹配结果暂时无法加载，请刷新'
-                    : _proposalLabel(
-                        proposal['state'] ??
-                            objectMap(domains['proposal'])['code'],
-                      ),
-              ),
+              if (!UiS3Design.enabled) Text(proposalStatus),
               if (proposal.isNotEmpty &&
                   proposal['state'] != 'MUTUALLY_ACCEPTED') ...[
                 Text(
@@ -376,16 +433,18 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
           ),
         ),
       ),
-      _domain(
-        UiS3Design.enabled ? '联系' : '连接',
-        _pairLabel(objectMap(pair['connection'])),
-        key: const Key('domain-connection'),
-      ),
-      _domain(
-        UiS3Design.enabled ? '聊天许可' : '消息许可',
-        _pairLabel(objectMap(pair['consent'])),
-        key: const Key('domain-consent'),
-      ),
+      if (!UiS3Design.enabled)
+        _domain(
+          '连接',
+          _pairLabel(objectMap(pair['connection'])),
+          key: const Key('domain-connection'),
+        ),
+      if (!UiS3Design.enabled)
+        _domain(
+          '消息许可',
+          _pairLabel(objectMap(pair['consent'])),
+          key: const Key('domain-consent'),
+        ),
       if (canOpenChat && peer is int && peer > 0)
         FilledButton(
           onPressed: busy ? null : () => _open('/live-chat/$peer'),
@@ -437,10 +496,11 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
         ),
       ),
       Text('我的准备与参与', style: Theme.of(context).textTheme.titleMedium),
-      _domain(
-        '资料准备',
-        preparationReasonLabel(objectMap(domains['readiness'])['code']),
-      ),
+      if (!UiS3Design.enabled)
+        _domain(
+          '资料准备',
+          preparationReasonLabel(objectMap(domains['readiness'])['code']),
+        ),
       _link(
         '生活方式与偏好',
         '/lifestyle-discovery',
@@ -459,6 +519,7 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
     final domains = objectMap(data?['domains']);
     final current = _foreground && _routeActive && data != null;
     final redesignedHome = UiS3Design.enabled && !widget.detailed;
+    final overview = redesignedHome && current ? _uiS3Home(domains) : null;
     final body = ListView(
       padding: const EdgeInsets.fromLTRB(
         20,
@@ -467,11 +528,19 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
         UiS3Design.enabled ? 32 : 112,
       ),
       children: [
-        if (redesignedHome)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: const UiS3BrandArt(),
+        if (redesignedHome) ...[
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Text(
+              '慢慢认识彼此',
+              style: Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700),
+            ),
           ),
+          const UiS3BrandArt(aspectRatio: 2.2),
+          const SizedBox(height: 12),
+        ],
         if (!redesignedHome &&
             _routeActive &&
             _foreground &&
@@ -483,15 +552,29 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
             liveRegion: true,
             child: const Text('暂时无法加载，请刷新重试', key: Key('server-error')),
           ),
-        if (current)
+        if (overview != null)
+          overview.$1
+        else if (current)
           for (final child
               in widget.detailed ? _progress(domains) : _home(domains))
             Padding(padding: const EdgeInsets.only(bottom: 10), child: child)
         else if (!busy && error == null)
           const Text('状态暂未确认，请刷新后查看'),
         if (redesignedHome) ...[
-          _link('我的三盘', AppRouteNames.myCharts, subtitle: '八字、紫微与西洋占星'),
-          _link('好友动态', AppRouteNames.statusSquare),
+          const SizedBox(height: 12),
+          _homeLink(
+            '我的三盘',
+            AppRouteNames.myCharts,
+            Icons.grid_view,
+            subtitle: '八字、紫微与西洋占星',
+          ),
+          const Divider(height: 1),
+          _homeLink(
+            '好友动态',
+            AppRouteNames.statusSquare,
+            Icons.auto_stories_outlined,
+          ),
+          ?overview?.$2,
           _link('吃饭 / 学习搭子', '/buddy-v1013'),
           _link('平台活动', '/platform-events', subtitle: '合成演练'),
           if (_routeActive && _foreground && widget.homeContent != null)
@@ -501,7 +584,16 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
     );
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.detailed ? '匹配' : '首页'),
+        title: Text(
+          widget.detailed
+              ? '匹配'
+              : redesignedHome
+              ? 'EliteSync'
+              : '首页',
+          style: redesignedHome
+              ? const TextStyle(fontWeight: FontWeight.w800, letterSpacing: -.5)
+              : null,
+        ),
         actions: [
           IconButton(
             tooltip: '持续参与与自动化',
@@ -586,3 +678,42 @@ String _taskLabel(Object? code) => switch (code) {
   'EXPIRED' => '已到期',
   _ => '状态暂未确认',
 };
+
+class _RelationshipPath extends StatelessWidget {
+  const _RelationshipPath({required this.steps});
+
+  final List<Widget> steps;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: UiS3Backdrop.relationship.surfaceOf(context),
+        border: Border(left: BorderSide(color: colors.primary, width: 2)),
+      ),
+      child: Column(
+        children: [
+          for (var index = 0; index < steps.length; index++)
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: ExcludeSemantics(
+                    child: Transform.rotate(
+                      angle: 0.7853981634,
+                      child: SizedBox.square(
+                        dimension: 8,
+                        child: ColoredBox(color: colors.primary),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(child: steps[index]),
+              ],
+            ),
+        ],
+      ),
+    );
+  }
+}

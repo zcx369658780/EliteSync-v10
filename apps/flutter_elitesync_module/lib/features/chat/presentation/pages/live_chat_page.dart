@@ -14,6 +14,7 @@ import 'package:flutter_elitesync_module/features/chat/presentation/widgets/priv
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/material.dart';
+import '../../domain/entities/chat_send_failure.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/entities/chat_send_attempt.dart';
 import 'package:flutter_elitesync_module/features/chat/domain/offline_chat_text.dart';
@@ -1169,6 +1170,12 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     if (!_current(session, epoch)) return false;
     if (result is! NetworkSuccess<Map<String, dynamic>>) {
       if (result is NetworkFailure<Map<String, dynamic>> &&
+          result.statusCode == 409 &&
+          result.code == ChatSendFailure.payloadMismatchCode) {
+        _showPayloadMismatch();
+        return false;
+      }
+      if (result is NetworkFailure<Map<String, dynamic>> &&
           attempt.attachmentIds.isNotEmpty) {
         final status = result.statusCode;
         if (status == 409 && result.code == 'attachment_not_ready') {
@@ -1379,13 +1386,18 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _retryReadFailed = false;
         _busy = true;
       });
-      if (items.any(
+      final matches = items.where(
         (row) =>
             row['client_message_id'] == attempt.clientMessageId &&
-            row['sender_id'] == session.user?.id &&
-            row['id'] is num,
-      )) {
-        await _acknowledgeConfirmedSend(session, epoch);
+            row['sender_id'] == session.user?.id,
+      );
+      if (matches.isNotEmpty) {
+        if (matches.length == 1 &&
+            _matchesAttemptPayload(matches.single, attempt)) {
+          await _acknowledgeConfirmedSend(session, epoch);
+        } else {
+          _showPayloadMismatch();
+        }
         return;
       }
       // An older commit may be outside this window. An explicit retry still
@@ -1403,6 +1415,42 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     }
   }
 
+  bool _matchesAttemptPayload(Map row, ChatSendAttempt attempt) {
+    final receiver = row['receiver_id'];
+    final content = row['content'];
+    final reply = row['reply_to_message_id'];
+    final attachments = row['attachments'];
+    if (row['id'] is! int ||
+        receiver is! int ||
+        content is! String ||
+        !row.containsKey('reply_to_message_id') ||
+        (reply != null && reply is! int) ||
+        attachments is! List) {
+      return false;
+    }
+
+    final ids = <int>[];
+    for (final attachment in attachments) {
+      final asset = attachment is Map ? attachment['media_asset'] : null;
+      final id = asset is Map ? asset['id'] : null;
+      if (id is! int) return false;
+      ids.add(id);
+    }
+    return attempt.hasSamePayload(
+      peerUserId: receiver,
+      content: content,
+      replyToMessageId: reply as int?,
+      attachmentIds: ids,
+    );
+  }
+
+  void _showPayloadMismatch() {
+    setState(() {
+      _retryReadFailed = true;
+      _sendStatus = '原消息编号对应的内容不一致，发送结果尚未确认。';
+    });
+  }
+
   void _showRetryReadFailed() {
     setState(() {
       _retryReadFailed = true;
@@ -1418,7 +1466,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     _retryAsset = null;
     _attachmentRejection = null;
     setState(() {
-      _sendStatus = '服务器已持久化此消息';
+      _sendStatus = '消息已确认发送';
       _replyId = null;
       _replyLabel = null;
     });

@@ -28,7 +28,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('权限与说明'), findsOneWidget);
-    expect(find.text('管理资料受众与本人预览'), findsOneWidget);
+    expect(find.text('查看和管理资料分享'), findsOneWidget);
 
     for (final title in [
       '匹配与每周慢约',

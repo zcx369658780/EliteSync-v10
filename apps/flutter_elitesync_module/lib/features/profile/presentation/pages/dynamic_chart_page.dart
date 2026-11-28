@@ -412,7 +412,7 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
       if (fresh['id'] != written['id'] ||
           fresh['input_revision'] != written['input_revision'] ||
           fresh['result_revision'] != written['result_revision']) {
-        throw const NatalRequestException('持久重读版本发生变化', 409);
+        throw const NatalRequestException('服务器结果版本已变化，请重新打开查看', 409);
       }
       _pendingBody = null;
       _pendingPath = null;
@@ -785,7 +785,7 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
                         '宫制',
                         _settings['house_system']!,
                         {
-                          'placidus': 'Placidus',
+                          'placidus': '普拉西德宫制',
                           'whole': '整宫制',
                           'alcabitius': 'Alcabitius',
                         },
@@ -820,7 +820,7 @@ class _DynamicChartPageState extends ConsumerState<DynamicChartPage> {
                     const Text('未确认操作保留原编号与完整输入。确认结果前可按原操作重试。'),
                   FilledButton(
                     onPressed: _busy || _conflict ? null : () => _save(),
-                    child: Text(_pendingBody == null ? '保存、计算并持久重读' : '按原操作重试'),
+                    child: Text(_pendingBody == null ? '保存并计算' : '按原操作重试'),
                   ),
                   if (_row != null) _results(_row!),
                   if (_id != null && !_denied) ...[

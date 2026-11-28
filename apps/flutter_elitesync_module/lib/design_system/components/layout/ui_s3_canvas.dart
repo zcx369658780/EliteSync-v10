@@ -74,22 +74,24 @@ class UiS3Canvas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = Theme.of(context).brightness == Brightness.dark;
+    final media = MediaQuery.of(context);
+    final restrained =
+        media.size.height < 620 ||
+        media.viewInsets.bottom > 0 ||
+        media.textScaler.scale(16) > 22;
     return ColoredBox(
       color: dark ? Theme.of(context).colorScheme.surface : kind.canvas,
       child: Stack(
         fit: StackFit.expand,
         children: [
           IgnorePointer(
-            child: RepaintBoundary(
-              child: CustomPaint(
-                painter: _Geometry(kind, dark),
-                isComplex: false,
+            child: ExcludeSemantics(
+              child: RepaintBoundary(
+                child: CustomPaint(painter: _Geometry(kind, dark, restrained)),
               ),
             ),
           ),
-          if ((showBuddyArt || showEmptyArt) &&
-              MediaQuery.sizeOf(context).height > 520 &&
-              MediaQuery.viewInsetsOf(context).bottom == 0)
+          if ((showBuddyArt || showEmptyArt) && !restrained)
             Positioned(
               right: 20,
               bottom: 24,
@@ -142,15 +144,109 @@ class UiS3BrandArt extends StatelessWidget {
 }
 
 class _Geometry extends CustomPainter {
-  const _Geometry(this.kind, this.dark);
+  const _Geometry(this.kind, this.dark, this.restrained);
   final UiS3Backdrop kind;
   final bool dark;
+  final bool restrained;
 
   @override
   void paint(Canvas canvas, Size size) {
     final zone = dark ? kind.zone.withValues(alpha: 0.11) : kind.zone;
     final paint = Paint()..color = zone;
     final right = size.width;
+    final height = size.height;
+    final structure = Paint()
+      ..color = zone.withValues(
+        alpha: dark
+            ? .13
+            : restrained
+            ? .44
+            : .82,
+      );
+    final stroke = Paint()
+      ..color = zone.withValues(
+        alpha: dark
+            ? .16
+            : restrained
+            ? .48
+            : .96,
+      )
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.2;
+    final edge = right * (restrained ? .17 : .36);
+    final foot = Path()
+      ..moveTo(right - edge, height)
+      ..lineTo(right, height * .74)
+      ..lineTo(right, height)
+      ..close();
+    canvas.drawPath(foot, structure);
+    if (!restrained) {
+      switch (kind) {
+        case UiS3Backdrop.bazi:
+          for (var i = 1; i <= 4; i++) {
+            final x = right - i * 9.0;
+            canvas.drawLine(Offset(x, height * .30), Offset(x, height), stroke);
+          }
+        case UiS3Backdrop.ziwei:
+          for (var i = 0; i < 5; i++) {
+            final y = height * .67 + i * 18;
+            canvas.drawLine(Offset(right - 70, y), Offset(right, y), stroke);
+            final x = right - i * 17;
+            canvas.drawLine(
+              Offset(x, height * .67),
+              Offset(x, height * .67 + 72),
+              stroke,
+            );
+          }
+        case UiS3Backdrop.western:
+          for (final scale in const [.28, .43, .57]) {
+            canvas.drawCircle(
+              Offset(right, height * .88),
+              right * scale,
+              stroke,
+            );
+          }
+        case UiS3Backdrop.quiet:
+          final axis = Path()
+            ..moveTo(right * .76, height)
+            ..lineTo(right * .92, height * .78)
+            ..lineTo(right, height * .78);
+          canvas.drawPath(axis, stroke);
+          canvas.drawPath(axis.shift(const Offset(17, 17)), stroke);
+        case UiS3Backdrop.relationship:
+          final path = Path()
+            ..moveTo(0, height * .59)
+            ..lineTo(right * .13, height * .67)
+            ..lineTo(right * .13, height * .81)
+            ..lineTo(right * .29, height)
+            ..lineTo(right * .39, height);
+          canvas.drawPath(path, stroke);
+          for (final stop in [
+            Offset(right * .13, height * .67),
+            Offset(right * .13, height * .81),
+            Offset(right * .29, height),
+          ]) {
+            canvas.drawRect(
+              Rect.fromCenter(center: stop, width: 6, height: 6),
+              structure,
+            );
+          }
+        default:
+          final bend = Path()
+            ..moveTo(0, height * .71)
+            ..cubicTo(
+              edge * .72,
+              height * .79,
+              -edge * .3,
+              height * .92,
+              edge,
+              height,
+            );
+          canvas.drawPath(bend, stroke);
+          canvas.drawPath(bend.shift(const Offset(-9, 14)), stroke);
+      }
+    }
+
     final corner = math.min(146.0, right * 0.32);
     switch (kind) {
       case UiS3Backdrop.bazi:
@@ -235,5 +331,7 @@ class _Geometry extends CustomPainter {
 
   @override
   bool shouldRepaint(_Geometry oldDelegate) =>
-      oldDelegate.kind != kind || oldDelegate.dark != dark;
+      oldDelegate.kind != kind ||
+      oldDelegate.dark != dark ||
+      oldDelegate.restrained != restrained;
 }

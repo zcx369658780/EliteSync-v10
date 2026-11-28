@@ -141,7 +141,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
     expect(find.byType(PrivacySettingsPage), findsOneWidget);
-    await tester.tap(find.text('管理资料受众与本人预览'));
+    await tester.tap(find.text('查看和管理资料分享'));
     await tester.pumpAndSettle();
     expect(find.byType(RelationshipPrivacyPage), findsOneWidget);
     router.pop();

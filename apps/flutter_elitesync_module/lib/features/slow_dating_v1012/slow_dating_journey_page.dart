@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import '../user_automation/user_state_page.dart';
 import '../lifestyle_discovery/lifestyle_page.dart';
 import '../relationships_v1011/relationship_api.dart';
@@ -321,7 +322,7 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
                         builder: (_) => PeerRelationshipPage(peerId: peer),
                       ),
                     ),
-              child: const Text('连接与消息许可'),
+              child: const Text('联系与聊天许可'),
             ),
         ],
         const Divider(),
@@ -336,6 +337,6 @@ class _JourneyState extends SessionBoundPage<SlowDatingJourneyPage>
           child: const Text('管理正式恋爱关系'),
         ),
       ],
-    ]);
+    ], backdrop: UiS3Backdrop.relationship);
   }
 }

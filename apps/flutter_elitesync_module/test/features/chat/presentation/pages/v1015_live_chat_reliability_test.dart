@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/theme/app_theme.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
@@ -265,7 +266,7 @@ Future<_Fixture> _mount(
   await tester.pumpWidget(
     UncontrolledProviderScope(
       container: container,
-      child: const MaterialApp(home: LiveChatPage(peerId: 2)),
+      child: MaterialApp(theme: AppTheme.light, home: const LiveChatPage(peerId: 2)),
     ),
   );
   await tester.pumpAndSettle();
@@ -331,7 +332,7 @@ void main() {
 
     f.api.pendingFirstPost!.complete(NetworkSuccess({'id': 999, 'client_message_id': originalKey}));
     await tester.pumpAndSettle();
-    expect(find.text('服务器已持久化此消息'), findsNothing);
+    expect(find.text('消息已确认发送'), findsNothing);
     expect(find.text('使用原消息编号重试'), findsNothing);
     expect(find.text('OLD_ACCOUNT_PENDING_DRAFT'), findsNothing);
     expect(find.text('会话已锁定'), findsOneWidget);
@@ -508,7 +509,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(f.api.posts, hasLength(2));
       expect(f.api.posts.last, original);
-      expect(find.text('服务器已持久化此消息'), findsOneWidget);
+      expect(find.text('消息已确认发送'), findsOneWidget);
       await _dispose(tester, f);
     },
   );
@@ -534,7 +535,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(f.api.posts, hasLength(2));
       expect(f.api.posts.last, original);
-      expect(find.text('服务器已持久化此消息'), findsOneWidget);
+      expect(find.text('消息已确认发送'), findsOneWidget);
       expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isFalse);
       await _dispose(tester, f);
     },
@@ -657,7 +658,7 @@ void main() {
         readsBefore + 1,
       );
       expect(f.api.pendingFirstPost!.isCompleted, isFalse);
-      expect(find.text('服务器已持久化此消息'), findsNothing);
+      expect(find.text('消息已确认发送'), findsNothing);
       expect(find.text('发送中，等待服务器确认'), findsOneWidget);
       expect(
         tester.widget<TextField>(find.byType(TextField)).controller!.text,
@@ -684,7 +685,7 @@ void main() {
       expect(f.api.posts.last['client_message_id'], originalKey);
       expect(f.api.posts.last, f.api.posts.first);
       expect(f.api.successfulPostAcknowledgements, 1);
-      expect(find.text('服务器已持久化此消息'), findsOneWidget);
+      expect(find.text('消息已确认发送'), findsOneWidget);
       expect(find.text('使用原消息编号重试'), findsNothing);
       expect(
         tester.widget<TextField>(find.byType(TextField)).controller!.text,
@@ -707,7 +708,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(f.api.posts, hasLength(1));
       expect(find.textContaining('发送结果尚未确认'), findsOneWidget);
-      expect(find.text('服务器已持久化此消息'), findsNothing);
+      expect(find.text('消息已确认发送'), findsNothing);
       await tester.tap(find.text('使用原消息编号重试'));
       await tester.pumpAndSettle();
       expect(f.api.posts, hasLength(2));
@@ -716,7 +717,7 @@ void main() {
         f.api.posts[1]['client_message_id'],
       );
       expect(f.api.posts[0]['content'], f.api.posts[1]['content']);
-      expect(find.text('服务器已持久化此消息'), findsOneWidget);
+      expect(find.text('消息已确认发送'), findsOneWidget);
       expect(
         tester.widget<TextField>(find.byType(TextField)).controller!.text,
         isEmpty,

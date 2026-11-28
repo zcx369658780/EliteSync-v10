@@ -14,6 +14,7 @@ class AppScaffold extends StatelessWidget {
     this.contentPadding,
     this.useSafeArea = true,
     this.backdrop = UiS3Backdrop.base,
+    this.showEmptyArt = false,
   });
 
   final PreferredSizeWidget? appBar;
@@ -25,6 +26,7 @@ class AppScaffold extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final bool useSafeArea;
   final UiS3Backdrop backdrop;
+  final bool showEmptyArt;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,11 @@ class AppScaffold extends StatelessWidget {
       backgroundColor: backgroundColor ?? t.pageBackground,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       body: UiS3Design.enabled
-          ? UiS3Canvas(kind: backdrop, child: safeBody)
+          ? UiS3Canvas(
+              kind: backdrop,
+              showEmptyArt: showEmptyArt,
+              child: safeBody,
+            )
           : safeBody,
       bottomNavigationBar: bottomNavigationBar,
       floatingActionButton: floatingActionButton,

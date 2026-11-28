@@ -786,6 +786,10 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
 
     return AppScaffold(
       backdrop: widget.publishOnly ? UiS3Backdrop.quiet : UiS3Backdrop.reading,
+      showEmptyArt:
+          !widget.publishOnly &&
+          !_feedUnavailable &&
+          postsAsync.asData?.value.items.isEmpty == true,
       appBar: AppTopBar(
         title: widget.publishOnly
             ? '发布动态'

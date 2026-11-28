@@ -20,8 +20,9 @@ class PrivacySettingsPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.fromLTRB(0, t.spacing.sm, 0, t.spacing.xl),
         children: [
+          const _PrivacyHeading('资料用途与分享'),
           ListTile(
-            title: const Text('管理资料受众与本人预览'),
+            title: const Text('查看和管理资料分享'),
             subtitle: const Text('选择分享范围，查看或撤回分享。'),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
@@ -31,10 +32,17 @@ class PrivacySettingsPage extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: const Text('管理展示草稿的资料用途'),
+            title: const Text('管理展示资料的使用许可'),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute<void>(builder: (_) => const DataPurposePage()),
             ),
+          ),
+          const Divider(),
+          const _PrivacyHeading('数据请求与账号安全'),
+          ListTile(
+            title: const Text('设置与账号安全'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push(AppRouteNames.settings),
           ),
           for (final item in [('work', '本人作品的数据删除'), ('comment', '本人评论的数据删除')])
             ListTile(
@@ -46,6 +54,7 @@ class PrivacySettingsPage extends StatelessWidget {
               ),
             ),
           const Divider(),
+          const _PrivacyHeading('权限如何生效'),
           _Explanation(
             title: '匹配与每周慢约',
             body:
@@ -71,11 +80,11 @@ class PrivacySettingsPage extends StatelessWidget {
             ],
           ),
           _Explanation(
-            title: '连接与私密消息',
+            title: '联系与私密聊天',
             body:
-                '聊天需要有效连接和双方独立的消息许可。你可以在对应页面管理申请、回应和撤销。站内通知与会话各自记录已读状态。锁屏与外部提醒默认隐藏身份、消息正文和关系结果；本版尚未接入系统推送。',
+                '聊天需要有效联系和双方独立的聊天许可。你可以在对应页面管理申请、回应和撤销。站内通知与会话各自记录已读状态。锁屏与外部提醒默认隐藏身份、消息正文和关系结果；本版尚未接入系统推送。',
             links: [
-              ('管理连接', AppRouteNames.progressConnection),
+              ('管理联系许可', AppRouteNames.progressConnection),
               ('查看消息', AppRouteNames.messages),
             ],
           ),
@@ -104,6 +113,21 @@ class PrivacySettingsPage extends StatelessWidget {
       ),
     );
   }
+}
+
+class _PrivacyHeading extends StatelessWidget {
+  const _PrivacyHeading(this.label);
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.fromLTRB(16, 14, 16, 4),
+    child: Semantics(
+      header: true,
+      child: Text(label, style: Theme.of(context).textTheme.titleSmall),
+    ),
+  );
 }
 
 class _Explanation extends StatelessWidget {

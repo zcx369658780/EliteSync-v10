@@ -336,7 +336,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(controller.text, 'CURRENT_LEGAL_DRAFT');
     expect(find.textContaining('旧版本 1 · comparison'), findsOneWidget);
-    expect(find.text('保存、计算并持久重读'), findsNothing);
+    expect(find.text('保存并计算'), findsNothing);
     expect(find.text('删除当前盘及历史'), findsNothing);
   });
 
@@ -347,7 +347,7 @@ void main() {
     await _mount(tester, api, const DynamicChartPage());
     await _openChart(tester);
     await _tap(tester, '另建私有盘（保留当前表单）');
-    await _tap(tester, '保存、计算并持久重读');
+    await _tap(tester, '保存并计算');
     expect(api.writes, hasLength(1));
     expect(api.writes.single['request_key'], isA<String>());
     await _tap(tester, '按原操作重试');
@@ -396,7 +396,7 @@ void main() {
     await _mount(tester, api, const NatalRestorationPage());
     final date = find.widgetWithText(TextFormField, '出生日期');
     await tester.enterText(date, '1991-02-03');
-    await _tap(tester, '保存、计算并持久重读');
+    await _tap(tester, '保存并计算');
     expect(find.textContaining('输入未通过校验'), findsOneWidget);
     await tester.scrollUntilVisible(
       date,
@@ -414,7 +414,7 @@ void main() {
     await _mount(tester, api, const NatalRestorationPage());
     final date = find.widgetWithText(TextFormField, '出生日期');
     await tester.enterText(date, '1991-02-03');
-    await _tap(tester, '保存、计算并持久重读');
+    await _tap(tester, '保存并计算');
     expect(api.writes.single['expected_revision'], 1);
     expect(api.writes.single['input']['civil_date'], '1991-02-03');
     await _tap(tester, '按原操作重试');
@@ -437,7 +437,7 @@ void main() {
     await _tap(tester, '加载更早历史');
     expect(find.byKey(const ValueKey('history:null:1')), findsNothing);
     expect(find.textContaining('当前排盘不可用'), findsOneWidget);
-    final save = find.widgetWithText(FilledButton, '保存、计算并持久重读');
+    final save = find.widgetWithText(FilledButton, '保存并计算');
     await tester.scrollUntilVisible(
       save,
       400,

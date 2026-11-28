@@ -69,6 +69,13 @@ class StatusPostCard extends ConsumerWidget {
     final displayBody = _displayStatusText(post.body);
     final displayLocation = _displayStatusLocation(post.locationName);
 
+    final management = <String, VoidCallback>{
+      if (onReport != null) '举报': onReport!,
+      if (onChangeAudience != null) '修改受众': onChangeAudience!,
+      if (onRequestDataDeletion != null) '申请删除作品数据': onRequestDataDeletion!,
+      if (onDelete != null) '撤下': onDelete!,
+    };
+
     return Material(
       color: Colors.transparent,
       child: AppInfoSectionCard(
@@ -78,13 +85,15 @@ class StatusPostCard extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            Wrap(
+              spacing: 8,
+              runSpacing: 6,
+              crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 AppTag(
                   label: post.visibilityLabel,
                   variant: AppTagVariant.neutral,
                 ),
-                const SizedBox(width: 8),
                 InkWell(
                   onTap: onTapAuthor,
                   borderRadius: BorderRadius.circular(t.radius.md),
@@ -102,7 +111,6 @@ class StatusPostCard extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 6),
                 Text(
                   post.authorLayerLabel,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
@@ -110,7 +118,6 @@ class StatusPostCard extends ConsumerWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const Spacer(),
                 Text(
                   '${post.likesCount} 喜欢',
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
@@ -261,28 +268,39 @@ class StatusPostCard extends ConsumerWidget {
                       ),
                       label: Text(post.likedByViewer ? '取消喜欢' : '喜欢'),
                     ),
-                  if (onReport != null)
-                    OutlinedButton.icon(
-                      onPressed: onReport,
-                      icon: const Icon(Icons.flag_outlined),
-                      label: const Text('举报'),
+                  if (UiS3Design.enabled && management.isNotEmpty)
+                    PopupMenuButton<String>(
+                      tooltip: '作品管理选项',
+                      onSelected: (label) => management[label]?.call(),
+                      itemBuilder: (_) => [
+                        for (final label in management.keys)
+                          PopupMenuItem(value: label, child: Text(label)),
+                      ],
                     ),
-                  if (onChangeAudience != null)
-                    TextButton(
-                      onPressed: onChangeAudience,
-                      child: const Text('修改受众'),
-                    ),
-                  if (onRequestDataDeletion != null)
-                    TextButton(
-                      onPressed: onRequestDataDeletion,
-                      child: const Text('申请删除作品数据'),
-                    ),
-                  if (onDelete != null)
-                    OutlinedButton.icon(
-                      onPressed: onDelete,
-                      icon: const Icon(Icons.delete_outline_rounded),
-                      label: const Text('撤下'),
-                    ),
+                  if (!UiS3Design.enabled) ...[
+                    if (onReport != null)
+                      OutlinedButton.icon(
+                        onPressed: onReport,
+                        icon: const Icon(Icons.flag_outlined),
+                        label: const Text('举报'),
+                      ),
+                    if (onChangeAudience != null)
+                      TextButton(
+                        onPressed: onChangeAudience,
+                        child: const Text('修改受众'),
+                      ),
+                    if (onRequestDataDeletion != null)
+                      TextButton(
+                        onPressed: onRequestDataDeletion,
+                        child: const Text('申请删除作品数据'),
+                      ),
+                    if (onDelete != null)
+                      OutlinedButton.icon(
+                        onPressed: onDelete,
+                        icon: const Icon(Icons.delete_outline_rounded),
+                        label: const Text('撤下'),
+                      ),
+                  ],
                 ],
               ),
             ],
