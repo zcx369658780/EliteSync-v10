@@ -49,6 +49,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
   final TextEditingController _bodyController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   final ImagePicker _imagePicker = ImagePicker();
+  final ScrollController _feedScroll = ScrollController();
   String _audience = 'FRIENDS';
   String? _commentPolicy;
   bool _submitting = false;
@@ -85,10 +86,38 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
 
   @override
   void dispose() {
+    _feedScroll.dispose();
     _titleController.dispose();
     _bodyController.dispose();
     _locationController.dispose();
     super.dispose();
+  }
+
+  Future<void> _openPostDetail(StatusPostEntity post) async {
+    final session = ref.read(sessionProvider).asData?.value;
+    final epoch = ref.read(relationshipAuthorityEpochProvider);
+    final cursor = ref.read(statusPageCursorProvider);
+    final offset = _feedScroll.hasClients ? _feedScroll.offset : 0.0;
+    await context.push('${AppRouteNames.statusDetail}/${post.id}');
+    if (!mounted || offset == 0) return;
+    try {
+      await ref.read(statusPostPageProvider.future);
+    } catch (_) {
+      return;
+    }
+    if (!mounted) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted ||
+          !_feedScroll.hasClients ||
+          !identical(session, ref.read(sessionProvider).asData?.value) ||
+          ref.read(relationshipAuthorityEpochProvider) != epoch ||
+          ref.read(statusPageCursorProvider) != cursor) {
+        return;
+      }
+      final position = _feedScroll.position;
+      position.jumpTo(offset.clamp(0.0, position.maxScrollExtent));
+    });
+    WidgetsBinding.instance.ensureVisualUpdate();
   }
 
   Future<void> _publish({bool checkOnly = false}) async {
@@ -988,9 +1017,7 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
                             child: StatusPostCard(
                               post: post,
                               onOpenDetail: UiS3Design.enabled
-                                  ? () => context.push(
-                                      '${AppRouteNames.statusDetail}/${post.id}',
-                                    )
+                                  ? () => _openPostDetail(post)
                                   : null,
                               onTapAuthor: () => _openAuthor(post),
                               onContinueUnderstand: () => _openAuthor(post),

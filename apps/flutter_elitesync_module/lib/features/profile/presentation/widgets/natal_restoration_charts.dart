@@ -162,6 +162,9 @@ class NatalRestorationCharts extends StatelessWidget {
     final western = natalMap(results['western']);
     final pillars = natalMap(bazi['pillars']);
     final yun = natalMap(bazi['yun']);
+    final elements = natalMap(bazi['five_elements']);
+    final visibleElements = natalMap(elements['visible_counts']);
+    final hiddenElements = natalMap(elements['hidden_stem_counts']);
     final palaces = natalList(ziwei['palaces']);
     final planets = natalList(western['planets']);
     return Column(
@@ -200,20 +203,33 @@ class NatalRestorationCharts extends StatelessWidget {
               ],
             ),
             if (backdrop == UiS3Backdrop.bazi &&
-                natalMap(bazi['five_elements']).isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Wrap(
-                  spacing: 8,
-                  runSpacing: 4,
+                visibleElements.isNotEmpty) ...[
+              const SizedBox(height: 12),
+              Text('五行分布', style: Theme.of(context).textTheme.titleSmall),
+              Wrap(
+                spacing: 8,
+                runSpacing: 4,
+                children: [
+                  for (final entry in visibleElements.entries)
+                    Chip(label: Text('${entry.key} ${natalText(entry.value)}')),
+                ],
+              ),
+              if (hiddenElements.isNotEmpty)
+                ExpansionTile(
+                  tilePadding: EdgeInsets.zero,
+                  title: const Text('藏干五行'),
                   children: [
-                    for (final entry in natalMap(bazi['five_elements']).entries)
-                      Chip(
-                        label: Text('${entry.key} ${natalText(entry.value)}'),
-                      ),
+                    Text(
+                      hiddenElements.entries
+                          .map(
+                            (entry) => '${entry.key} ${natalText(entry.value)}',
+                          )
+                          .join(' · '),
+                    ),
+                    const Text('这里显示出现次数，可用于了解盘面结构。'),
                   ],
                 ),
-              ),
+            ],
             const Divider(),
             Text(
               '起运：${natalText(yun['start_user_datetime'] ?? yun['start_solar_datetime'])}${yun['start_user_datetime'] == null && yun['start_solar_datetime'] != null ? '（${natalText(yun['timestamp_frame'])}）' : ''}；${yun['forward'] == null
@@ -235,29 +251,35 @@ class NatalRestorationCharts extends StatelessWidget {
               const Text('未来时刻按当前闰秒表推算，实际未来闰秒未知。'),
             if (natalMap(yun['calendar_policy'])['id'] != null)
               const Text('交运采用兼容公历换算；保留分秒不代表秒级准确性。'),
-            for (final raw in natalList(bazi['da_yun']))
-              Builder(
-                builder: (_) {
-                  final cycle = natalMap(raw);
-                  return ExpansionTile(
-                    tilePadding: EdgeInsets.zero,
-                    title: Text(
-                      '${cycle['kind'] == 'pre_yun' ? '起运前' : natalText(cycle['gan_zhi'])}  ${natalText(cycle['start_year'])}–${natalText(cycle['end_year'])}',
-                    ),
-                    children: [
-                      Wrap(
-                        spacing: 12,
+            ExpansionTile(
+              tilePadding: EdgeInsets.zero,
+              title: const Text('大运与流年'),
+              children: [
+                for (final raw in natalList(bazi['da_yun']))
+                  Builder(
+                    builder: (_) {
+                      final cycle = natalMap(raw);
+                      return ExpansionTile(
+                        tilePadding: EdgeInsets.zero,
+                        title: Text(
+                          '${cycle['kind'] == 'pre_yun' ? '起运前' : natalText(cycle['gan_zhi'])}  ${natalText(cycle['start_year'])}–${natalText(cycle['end_year'])}',
+                        ),
                         children: [
-                          for (final item in natalList(cycle['liu_nian']))
-                            Text(
-                              '${natalMap(item)['year']} ${natalMap(item)['gan_zhi']}',
-                            ),
+                          Wrap(
+                            spacing: 12,
+                            children: [
+                              for (final item in natalList(cycle['liu_nian']))
+                                Text(
+                                  '${natalMap(item)['year']} ${natalMap(item)['gan_zhi']}',
+                                ),
+                            ],
+                          ),
                         ],
-                      ),
-                    ],
-                  );
-                },
-              ),
+                      );
+                    },
+                  ),
+              ],
+            ),
             ExpansionTile(
               tilePadding: EdgeInsets.zero,
               title: const Text('节气与扩展'),
