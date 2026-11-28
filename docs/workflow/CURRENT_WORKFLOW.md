@@ -1,7 +1,7 @@
 # 2026-11-28｜UI-S4 量化验收任务已归档，等待新会话接续
 
 - Owner 接受 UI-S3-R 阶段性交付及顾问复审建议，并授权 UI-S4。UI-S3-R 仍为 PARTIAL；首页频道选中态3.57:1为明确FAIL，438条文案UNVERIFIED，完整TalkBack、键盘焦点、社区长列表、通知深链失权和Profile性能仍有缺口。
-- UI-S4任务单已归档至 `ui-s4-20261128/V2_UI_S4_QUANTITATIVE_UX_ACCEPTANCE_TASK_20261128.md`。当前仅任务已下达，Codex ACK及执行状态待下一会话核实。当前文档归档HEAD `c16c71774551e43ca431d456769321474f62899b` / tree `6b59cc5e709b15507df28f4de65951ab1b0a7c10`；产品任务起点 `b999bcb6cef2d2fe339b761b7054e36dadeeb524`。S4-01先最小修复对比度，之后固定唯一APK并完成U01–U12、文案、无障碍、性能及功能回归。
+- UI-S4任务单已归档至 `ui-s4-20261128/V2_UI_S4_QUANTITATIVE_UX_ACCEPTANCE_TASK_20261128.md`。当前仅任务已下达，Codex ACK及执行状态待下一会话核实。本轮文档归档提交序列 `0064a724` → `c16c717` → `e4059df`；新会话应查询开发分支实时 HEAD。产品任务起点 `b999bcb6cef2d2fe339b761b7054e36dadeeb524`。S4-01先最小修复对比度，之后固定唯一APK并完成U01–U12、文案、无障碍、性能及功能回归。
 - 本地Codex是日常工程负责人，按LOCAL-FIRST自主执行授权范围内普通工程和常规Git；Owner保留产品方向及重大决定；网页GPT按需集中独立复审，不接管本地会话。GitHub是脱敏备份和审阅材料，不代表本机实时状态。
 - 本轮允许本地隔离服务、虚构TEST_ONLY账号、双模拟器、S4-01修复和必要测试适配；禁止真实用户/账号、实体手机、共享Staging、公网、真实KYC/Push/供应商、真实数据外发、main合并及正式发布。R04-A注册门禁继续。
 - 当前目标是完善基础功能与使用体验，供Owner体验并与同事讨论；公司注册、软著、备案和首测暂不讨论。总体状态 `R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`。

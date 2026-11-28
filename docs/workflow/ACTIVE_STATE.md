@@ -5,7 +5,7 @@
 - Owner 已接受 UI-S3-R 阶段性交付及顾问复审建议，同意进入 UI-S4。UI-S3-R 不升级为完整 PASS。固定 UI-S3-R 源码 `d8bec8bd`，交付 `b999bcb6cef2d2fe339b761b7054e36dadeeb524`，tree `f29cbfb46b214f441c73c3fc8eb8e4da0fd129e0`；QA `com.elitesync.v2uis3rqa / 1011817`，SHA-256 `ac5f64efdd90ac3db229cf5b23b04861133934756308f061512313a3abb0f77b`。
 - UI-S3-R 同一候选已覆盖24/24页面状态。首页浏览三盘3C/0S、Lifestyle五场景7C/0S、20题问卷20C/0S。展示草稿、附件恢复、候选双边接受和普通注册403有具名证据。
 - 未关闭项：首页频道选中态对比度3.57:1 FAIL；438/1230文案仍UNVERIFIED；社区长列表恢复、旧通知深链失权、完整TalkBack、键盘焦点、48dp全矩阵及Profile性能待补。
-- UI-S4任务单已归档，尚未收到Codex ACK或执行报告。当前GitHub文档归档HEAD为 `c16c71774551e43ca431d456769321474f62899b`，tree `6b59cc5e709b15507df28f4de65951ab1b0a7c10`；产品任务起点仍为UI-S3-R交付 `b999bcb6cef2d2fe339b761b7054e36dadeeb524`。第一项为最小修复首页频道选中态对比度，再固定唯一UI-S4 APK，之后同候选完成U01–U12、1230条文案处置、无障碍、通知/社区专项、Profile性能和既有功能回归。普通注册仍受R04-A门禁，U01-T TEST_ONLY登录单列。
+- UI-S4任务单已归档，尚未收到Codex ACK或执行报告。本轮文档归档提交序列为 `0064a724` → `c16c717` → `e4059df`；新会话应查询开发分支实时 HEAD。UI-S4 产品任务起点仍为 UI-S3-R 交付 `b999bcb6cef2d2fe339b761b7054e36dadeeb524`。第一项为最小修复首页频道选中态对比度，再固定唯一UI-S4 APK，之后同候选完成U01–U12、1230条文案处置、无障碍、通知/社区专项、Profile性能和既有功能回归。普通注册仍受R04-A门禁，U01-T TEST_ONLY登录单列。
 - 本轮只授权本地隔离服务、虚构TEST_ONLY账号、双模拟器、S4-01对比度修复及必要测试适配。禁止真实用户/账号、实体手机、共享Staging、公网、真实KYC/Push/供应商、真实数据外发、main合并、正式内测及生产发布。
 - 当前目标是完善基础功能和使用体验，供Owner亲自体验并与同事讨论；公司注册、软著、备案和首测暂不讨论。
 - [UI-S4任务单](../versions/v2/cloud-r0-20261121/ui-s4-20261128/V2_UI_S4_QUANTITATIVE_UX_ACCEPTANCE_TASK_20261128.md) · [Owner授权记录](../decisions/OWNER_V2_UI_S3_R_ACCEPTANCE_AND_UI_S4_AUTHORIZATION_20261128.md) · [会话交接](SESSION_HANDOFF_20261128_UI_S4_QUANTITATIVE_ACCEPTANCE.md) · [UI-S3-R报告](../versions/v2/cloud-r0-20261121/ui-s3-r-20261128/V2_UI_S3_R_VISUAL_AND_INTERACTION_REFINEMENT_REPORT.md)

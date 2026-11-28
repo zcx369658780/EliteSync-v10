@@ -17,7 +17,7 @@
 
 ## 当前的执行边界（2026-11-28 覆盖）
 
-当前阶段为 EliteSync V2 UI-S4 量化验收任务已下达、等待本地 Codex 新会话 ACK/执行状态核实。当前 GitHub 开发分支归档 HEAD 为 `c16c71774551e43ca431d456769321474f62899b`，tree `6b59cc5e709b15507df28f4de65951ab1b0a7c10`；UI-S4 产品任务起点仍是 UI-S3-R 交付 `b999bcb6cef2d2fe339b761b7054e36dadeeb524` / tree `f29cbfb46b214f441c73c3fc8eb8e4da0fd129e0`。GitHub 不是本机实时状态，新会话必须先核本地 Git 根、origin、分支、HEAD、工作区及暂存区。
+当前阶段为 EliteSync V2 UI-S4 量化验收任务已下达、等待本地 Codex 新会话 ACK/执行状态核实。本轮文档归档提交序列为 `0064a724` → `c16c717` → `e4059df`；新会话应查询开发分支实时 HEAD，不把历史归档 SHA 当成本机状态。UI-S4 产品任务起点仍是 UI-S3-R 交付 `b999bcb6cef2d2fe339b761b7054e36dadeeb524` / tree `f29cbfb46b214f441c73c3fc8eb8e4da0fd129e0`。
 
 Owner 已接受 UI-S1 方案2原型与 UI-S2背景方向，要求全 APP 背景采用构成主义＋二次元极简清新画风；UI-S3-R 已在同一 QA APK 覆盖24/24页面状态，但整体 PARTIAL。UI-S4任务单及Owner授权见 ACTIVE_STATE 顶部和具名任务单。
 
