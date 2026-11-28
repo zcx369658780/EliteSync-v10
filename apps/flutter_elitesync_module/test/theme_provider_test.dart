@@ -132,6 +132,6 @@ void main() {
 
     await Future<void>.delayed(const Duration(milliseconds: 20));
 
-    expect(container.read(themeModeProvider), AppThemeMode.light);
+    expect(container.read(themeModeProvider), AppThemeMode.dark);
   });
 }

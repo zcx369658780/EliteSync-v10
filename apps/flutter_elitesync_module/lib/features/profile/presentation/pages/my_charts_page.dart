@@ -157,6 +157,11 @@ class _MyChartsPageState extends ConsumerState<MyChartsPage> {
                       ChoiceChip(
                         label: Text(chart.label),
                         selected: chart == _chart,
+                        selectedColor: theme.colorScheme.primary,
+                        checkmarkColor: theme.colorScheme.onPrimary,
+                        labelStyle: chart == _chart
+                            ? TextStyle(color: theme.colorScheme.onPrimary)
+                            : null,
                         onSelected: (_) => setState(() => _chart = chart),
                       ),
                   ],
