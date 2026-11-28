@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter/material.dart';
 import 'data_rights_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -69,6 +70,7 @@ class PersonalShowcaseContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.appTokens;
     return AppScaffold(
+      backdrop: UiS3Backdrop.quiet,
       appBar: const AppTopBar(title: '展示自己', mode: AppTopBarMode.backTitle),
       body: ListView(
         padding: EdgeInsets.only(top: t.spacing.sm, bottom: t.spacing.xxl),

@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -159,6 +160,7 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
   );
 
   List<Widget> _home(Map<String, dynamic> domains) {
+    if (UiS3Design.enabled) return _uiS3Home(domains);
     final actions = rows(data?['next_actions']);
     final first = actions.isEmpty ? null : actions.first['code'];
     final action = switch (first) {
@@ -211,6 +213,77 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
       _link('吃饭 / 学习搭子', '/buddy-v1013'),
       _link('好友可见社区', AppRouteNames.statusSquare),
       _link('平台活动 · 合成演练', '/platform-events', subtitle: '虚构开发演练，不招募、预订或付款'),
+    ];
+  }
+
+  List<Widget> _uiS3Home(Map<String, dynamic> domains) {
+    final actions = rows(data?['next_actions']);
+    final task = switch (actions.firstOrNull?['code']) {
+      'complete_lifestyle' => ('继续生活方式探索', '/lifestyle-discovery'),
+      'review_preparation' => ('完善匹配资料', AppRouteNames.progressMatch),
+      'view_journey' => ('查看匹配进度', AppRouteNames.progress),
+      _ => null,
+    };
+    return [
+      Text('下一步', style: Theme.of(context).textTheme.titleMedium),
+      Text(preparationReasonLabel(objectMap(domains['readiness'])['code'])),
+      if (task != null)
+        FilledButton(
+          key: const Key('home-primary-action'),
+          onPressed: busy
+              ? null
+              : () {
+                  if (task.$2 == AppRouteNames.progress) {
+                    context.go(task.$2);
+                  } else {
+                    _open(task.$2);
+                  }
+                },
+          child: Text(task.$1),
+        )
+      else
+        const Text('暂时无法确认下一步。'),
+      ExpansionTile(
+        title: const Text('查看当前状态'),
+        children: [
+          _domain('账号', switch (objectMap(domains['account'])['code']) {
+            'AVAILABLE' => '可用',
+            'UNAVAILABLE' => '受限，请查看账号状态',
+            _ => '状态暂未确认',
+          }),
+          _domain(
+            '生活方式',
+            _lifestyleLabel(objectMap(domains['lifestyle'])['code']),
+          ),
+          _domain(
+            '每周参与',
+            journeyStateLabel(objectMap(domains['participation'])['code']),
+          ),
+          _domain(
+            '持续参与',
+            _automationLabel(objectMap(domains['automation'])['code']),
+          ),
+          if (objectMap(
+            objectMap(domains['automation'])['recent_task'],
+          ).isNotEmpty)
+            _domain(
+              '最近一次处理',
+              _taskLabel(
+                objectMap(
+                  objectMap(domains['automation'])['recent_task'],
+                )['code'],
+              ),
+            ),
+          _domain(
+            '轮次',
+            journeyStateLabel(
+              objectMap(domains['round'])['state'] ??
+                  objectMap(domains['round'])['code'],
+            ),
+          ),
+          _domain('候选', _proposalLabel(objectMap(domains['proposal'])['code'])),
+        ],
+      ),
     ];
   }
 
@@ -297,19 +370,19 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
                 onPressed: busy
                     ? null
                     : () => _open(AppRouteNames.progressMatch),
-                child: const Text('报名与候选详情'),
+                child: const Text('匹配准备与候选'),
               ),
             ],
           ),
         ),
       ),
       _domain(
-        '连接',
+        '联系',
         _pairLabel(objectMap(pair['connection'])),
         key: const Key('domain-connection'),
       ),
       _domain(
-        '消息许可',
+        '聊天许可',
         _pairLabel(objectMap(pair['consent'])),
         key: const Key('domain-consent'),
       ),
@@ -319,7 +392,7 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
           child: const Text('进入聊天'),
         ),
       _link(
-        '连接与消息许可',
+        '联系与聊天许可',
         pair.isNotEmpty &&
                 pair['_unavailable'] != true &&
                 peer is int &&
@@ -385,6 +458,47 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
   Widget build(BuildContext context) {
     final domains = objectMap(data?['domains']);
     final current = _foreground && _routeActive && data != null;
+    final redesignedHome = UiS3Design.enabled && !widget.detailed;
+    final body = ListView(
+      padding: const EdgeInsets.fromLTRB(
+        20,
+        16,
+        20,
+        UiS3Design.enabled ? 32 : 112,
+      ),
+      children: [
+        if (redesignedHome)
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: const UiS3BrandArt(),
+          ),
+        if (!redesignedHome &&
+            _routeActive &&
+            _foreground &&
+            widget.homeContent != null)
+          widget.homeContent!,
+        if (busy) const LinearProgressIndicator(),
+        if (error != null)
+          Semantics(
+            liveRegion: true,
+            child: const Text('暂时无法加载，请刷新重试', key: Key('server-error')),
+          ),
+        if (current)
+          for (final child
+              in widget.detailed ? _progress(domains) : _home(domains))
+            Padding(padding: const EdgeInsets.only(bottom: 10), child: child)
+        else if (!busy && error == null)
+          const Text('状态暂未确认，请刷新后查看'),
+        if (redesignedHome) ...[
+          _link('我的三盘', AppRouteNames.myCharts, subtitle: '八字、紫微与西洋占星'),
+          _link('好友动态', AppRouteNames.statusSquare),
+          _link('吃饭 / 学习搭子', '/buddy-v1013'),
+          _link('平台活动', '/platform-events', subtitle: '合成演练'),
+          if (_routeActive && _foreground && widget.homeContent != null)
+            widget.homeContent!,
+        ],
+      ],
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.detailed ? '匹配' : '首页'),
@@ -401,25 +515,14 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
           ),
         ],
       ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(20, 16, 20, 112),
-        children: [
-          if (_routeActive && _foreground && widget.homeContent != null)
-            widget.homeContent!,
-          if (busy) const LinearProgressIndicator(),
-          if (error != null)
-            Semantics(
-              liveRegion: true,
-              child: const Text('暂时无法加载，请刷新重试', key: Key('server-error')),
-            ),
-          if (current) ...[
-            for (final child
-                in widget.detailed ? _progress(domains) : _home(domains))
-              Padding(padding: const EdgeInsets.only(bottom: 10), child: child),
-          ] else if (!busy && error == null)
-            const Text('状态暂未确认，请刷新后查看'),
-        ],
-      ),
+      body: UiS3Design.enabled
+          ? UiS3Canvas(
+              kind: widget.detailed
+                  ? UiS3Backdrop.relationship
+                  : UiS3Backdrop.base,
+              child: body,
+            )
+          : body,
     );
   }
 

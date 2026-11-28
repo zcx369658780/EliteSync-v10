@@ -1,5 +1,6 @@
 import 'package:flutter_elitesync_module/shared/providers/session_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/account_security_page.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/account_recovery_help_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,7 +13,6 @@ import 'package:flutter_elitesync_module/design_system/components/fields/app_pas
 import 'package:flutter_elitesync_module/design_system/components/fields/app_text_field.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/features/auth/presentation/providers/login_form_provider.dart';
-import 'package:flutter_elitesync_module/features/auth/presentation/widgets/auth_agreement_row.dart';
 import 'package:flutter_elitesync_module/features/auth/presentation/widgets/immersive_auth_background.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
@@ -93,7 +93,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 ),
                 SizedBox(height: t.spacing.lg),
                 Text(
-                  '慢约会',
+                  UiS3Design.enabled ? '慢慢认识彼此' : '慢约会',
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: t.textPrimary,
                     fontWeight: FontWeight.w800,
@@ -102,11 +102,15 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 ),
                 SizedBox(height: t.spacing.xs),
                 Text(
-                  '在同一片星空下，认真认识一个人',
+                  UiS3Design.enabled ? 'EliteSync' : '在同一片星空下，认真认识一个人',
                   style: Theme.of(
                     context,
                   ).textTheme.bodyLarge?.copyWith(color: t.textSecondary),
                 ),
+                if (UiS3Design.enabled) ...[
+                  SizedBox(height: t.spacing.md),
+                  const UiS3BrandArt(aspectRatio: 3),
+                ],
                 SizedBox(height: t.spacing.xl),
                 Container(
                   padding: EdgeInsets.all(t.spacing.cardPaddingLarge),
@@ -160,12 +164,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             .onPasswordChanged,
                       ),
                       SizedBox(height: t.spacing.sm),
-                      AuthAgreementRow(
-                        value: state.isAgreementAccepted,
-                        onChanged: ref
-                            .read(loginFormProvider.notifier)
-                            .onAgreementChanged,
-                      ),
                       if ((state.submitError ?? '').isNotEmpty) ...[
                         SizedBox(height: t.spacing.sm),
                         Text(
@@ -177,13 +175,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       ],
                       SizedBox(height: t.spacing.lg),
                       AppPrimaryButton(
-                        label: '进入慢约会',
+                        label: '登录',
                         isLoading: state.isSubmitting,
                         onPressed: state.canSubmit ? _submit : null,
                       ),
                       SizedBox(height: t.spacing.sm),
                       AppSecondaryButton(
-                        label: '还没有账号，去注册',
+                        label: '查看注册状态',
                         fullWidth: true,
                         onPressed: () => context.push(AppRouteNames.register),
                       ),

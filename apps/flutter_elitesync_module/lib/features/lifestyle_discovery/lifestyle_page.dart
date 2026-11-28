@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -146,314 +147,333 @@ class _LifestylePageState extends ConsumerState<LifestyleDiscoveryPage>
               ),
             ],
           ),
-          body: SafeArea(
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 600),
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      if (controller.busy)
-                        const LinearProgressIndicator(
-                          semanticsLabel: '正在保存或读取',
-                        ),
-                      if (controller.error != null) ...[
-                        Semantics(
-                          liveRegion: true,
-                          child: Text(controller.error!),
-                        ),
-                        if (controller.conflict)
-                          OutlinedButton(
-                            onPressed: controller.busy
-                                ? null
-                                : () async {
-                                    await controller.discardAndReload();
-                                    if (mounted &&
-                                        controller == _loaded &&
-                                        controller.error == null) {
-                                      setState(() {
-                                        _positioned = false;
-                                        _index = -1;
-                                      });
-                                    }
-                                  },
-                            child: const Text('放弃本机待同步选择，读取最新答案'),
-                          )
-                        else
-                          OutlinedButton(
-                            onPressed: controller.busy
-                                ? null
-                                : () async {
-                                    if (controller.pending != null) {
-                                      final saved = await controller.retry();
-                                      if (saved &&
-                                          mounted &&
-                                          controller == _loaded) {
+          body: uiS3Background(
+            SafeArea(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600),
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (controller.busy)
+                          const LinearProgressIndicator(
+                            semanticsLabel: '正在保存或读取',
+                          ),
+                        if (controller.error != null) ...[
+                          Semantics(
+                            liveRegion: true,
+                            child: Text(controller.error!),
+                          ),
+                          if (controller.conflict)
+                            OutlinedButton(
+                              onPressed: controller.busy
+                                  ? null
+                                  : () async {
+                                      await controller.discardAndReload();
+                                      if (mounted &&
+                                          controller == _loaded &&
+                                          controller.error == null) {
                                         setState(() {
                                           _positioned = false;
                                           _index = -1;
                                         });
                                       }
-                                    } else {
-                                      await controller.load();
-                                    }
-                                  },
-                            child: Text(
-                              controller.pending == null ? '重新读取' : '核对后重试原操作',
+                                    },
+                              child: const Text('放弃本机待同步选择，读取最新答案'),
+                            )
+                          else
+                            OutlinedButton(
+                              onPressed: controller.busy
+                                  ? null
+                                  : () async {
+                                      if (controller.pending != null) {
+                                        final saved = await controller.retry();
+                                        if (saved &&
+                                            mounted &&
+                                            controller == _loaded) {
+                                          setState(() {
+                                            _positioned = false;
+                                            _index = -1;
+                                          });
+                                        }
+                                      } else {
+                                        await controller.load();
+                                      }
+                                    },
+                              child: Text(
+                                controller.pending == null
+                                    ? '重新读取'
+                                    : '核对后重试原操作',
+                              ),
                             ),
+                          TextButton(
+                            onPressed: _exit,
+                            child: const Text('稍后继续，进入社区'),
                           ),
-                        TextButton(
-                          onPressed: _exit,
-                          child: const Text('稍后继续，进入社区'),
-                        ),
-                      ],
-                      if (data != null)
-                        SlideTransition(
-                          key: const Key('lifestyle-transition'),
-                          position: _reduced
-                              ? const AlwaysStoppedAnimation(Offset.zero)
-                              : _transition.drive(
-                                  Tween(
-                                    begin: Offset(.04 * _direction, 0),
-                                    end: Offset.zero,
-                                  ),
-                                ),
-                          child: FadeTransition(
-                            opacity: _reduced
-                                ? const AlwaysStoppedAnimation(1)
-                                : _transition,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                if (_index < 0) ...[
-                                  Text(
-                                    '从几个日常小选择开始',
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.headlineSmall,
-                                  ),
-                                  const SizedBox(height: 20),
-                                  const Text('五个生活场景，按最近的倾向选择。答案仅自己可见，可以随时改。'),
-                                  const SizedBox(height: 12),
-                                  const Text('可以跳过并使用社区、好友和搭子。参加每周慢约会时再完成即可。'),
-                                  const SizedBox(height: 24),
-                                  FilledButton(
-                                    key: const Key('lifestyle-start'),
-                                    onPressed: enabled
-                                        ? () async {
-                                            if (await controller.command(
-                                                  'start',
-                                                ) &&
-                                                mounted &&
-                                                controller == _loaded) {
-                                              final first = scenes.indexWhere(
-                                                (item) => !answers.containsKey(
-                                                  item['id'],
-                                                ),
-                                              );
-                                              await _move(
-                                                first < 0 ? 0 : first,
-                                              );
-                                            }
-                                          }
-                                        : null,
-                                    child: Text(
-                                      answers.isEmpty ? '开始探索' : '继续探索',
+                        ],
+                        if (data != null)
+                          SlideTransition(
+                            key: const Key('lifestyle-transition'),
+                            position: _reduced
+                                ? const AlwaysStoppedAnimation(Offset.zero)
+                                : _transition.drive(
+                                    Tween(
+                                      begin: Offset(.04 * _direction, 0),
+                                      end: Offset.zero,
                                     ),
                                   ),
-                                ] else if (isScene) ...[
-                                  Text(
-                                    '${_index + 1} / ${scenes.length}',
-                                    textAlign: TextAlign.end,
-                                  ),
-                                  const SizedBox(height: 12),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Stack(
-                                      children: [
-                                        Image.asset(
-                                          '${scene['asset']}',
-                                          fit: BoxFit.cover,
-                                          width: double.infinity,
-                                          excludeFromSemantics: true,
-                                        ),
-                                        if (selected != null)
-                                          Positioned.fill(
-                                            child: IgnorePointer(
-                                              child: Align(
-                                                alignment: Alignment(
-                                                  (rows(
-                                                            scene['options'],
-                                                          ).indexWhere(
-                                                            (o) =>
-                                                                o['id'] ==
-                                                                selected,
-                                                          ) -
-                                                          1) *
-                                                      .65,
-                                                  .55,
-                                                ),
-                                                child: Container(
-                                                  width: 48,
-                                                  height: 32,
-                                                  decoration: BoxDecoration(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .primary
-                                                        .withValues(alpha: .12),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                          12,
-                                                        ),
-                                                    border: Border.all(
-                                                      color: Theme.of(
-                                                        context,
-                                                      ).colorScheme.primary,
-                                                      width: 2,
-                                                    ),
+                            child: FadeTransition(
+                              opacity: _reduced
+                                  ? const AlwaysStoppedAnimation(1)
+                                  : _transition,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  if (_index < 0) ...[
+                                    if (UiS3Design.enabled) ...[
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: const UiS3BrandArt(),
+                                      ),
+                                      const SizedBox(height: 16),
+                                    ],
+                                    Text(
+                                      '从几个日常小选择开始',
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.headlineSmall,
+                                    ),
+                                    const SizedBox(height: 20),
+                                    const Text(
+                                      '五个生活场景，按最近的倾向选择。答案仅自己可见，可以随时改。',
+                                    ),
+                                    const SizedBox(height: 12),
+                                    const Text(
+                                      '可以跳过并使用社区、好友和搭子。参加每周慢约会时再完成即可。',
+                                    ),
+                                    const SizedBox(height: 24),
+                                    FilledButton(
+                                      key: const Key('lifestyle-start'),
+                                      onPressed: enabled
+                                          ? () async {
+                                              if (await controller.command(
+                                                    'start',
+                                                  ) &&
+                                                  mounted &&
+                                                  controller == _loaded) {
+                                                final first = scenes.indexWhere(
+                                                  (item) => !answers
+                                                      .containsKey(item['id']),
+                                                );
+                                                await _move(
+                                                  first < 0 ? 0 : first,
+                                                );
+                                              }
+                                            }
+                                          : null,
+                                      child: Text(
+                                        answers.isEmpty ? '开始探索' : '继续探索',
+                                      ),
+                                    ),
+                                  ] else if (isScene) ...[
+                                    Text(
+                                      '${_index + 1} / ${scenes.length}',
+                                      textAlign: TextAlign.end,
+                                    ),
+                                    const SizedBox(height: 12),
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Stack(
+                                        children: [
+                                          Image.asset(
+                                            '${scene['asset']}',
+                                            fit: BoxFit.cover,
+                                            width: double.infinity,
+                                            excludeFromSemantics: true,
+                                          ),
+                                          if (selected != null)
+                                            Positioned.fill(
+                                              child: IgnorePointer(
+                                                child: Align(
+                                                  alignment: Alignment(
+                                                    (rows(
+                                                              scene['options'],
+                                                            ).indexWhere(
+                                                              (o) =>
+                                                                  o['id'] ==
+                                                                  selected,
+                                                            ) -
+                                                            1) *
+                                                        .65,
+                                                    .55,
                                                   ),
-                                                  child: const Icon(
-                                                    Icons.check,
-                                                    size: 20,
+                                                  child: Container(
+                                                    width: 48,
+                                                    height: 32,
+                                                    decoration: BoxDecoration(
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .primary
+                                                          .withValues(
+                                                            alpha: .12,
+                                                          ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                            12,
+                                                          ),
+                                                      border: Border.all(
+                                                        color: Theme.of(
+                                                          context,
+                                                        ).colorScheme.primary,
+                                                        width: 2,
+                                                      ),
+                                                    ),
+                                                    child: const Icon(
+                                                      Icons.check,
+                                                      size: 20,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(height: 24),
+                                    Semantics(
+                                      header: true,
+                                      child: Text(
+                                        '${scene['title']}',
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.titleLarge,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 20),
+                                    for (final option in rows(scene['options']))
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 12,
+                                        ),
+                                        child: Semantics(
+                                          key: Key('choice-${option['id']}'),
+                                          selected: selected == option['id'],
+                                          child: OutlinedButton(
+                                            key: Key('option-${option['id']}'),
+                                            style: appOptionButtonStyle(
+                                              Theme.of(context),
+                                              selected:
+                                                  selected == option['id'],
+                                            ),
+                                            onPressed: enabled
+                                                ? () async {
+                                                    final next =
+                                                        const bool.fromEnvironment(
+                                                              'ELITESYNC_V1017_LOCAL_BUILD',
+                                                            ) &&
+                                                            data['status'] ==
+                                                                'completed'
+                                                        ? scenes.length
+                                                        : _index + 1;
+                                                    if (await controller.answer(
+                                                          '${scene['id']}',
+                                                          '${option['id']}',
+                                                        ) &&
+                                                        mounted &&
+                                                        controller == _loaded) {
+                                                      await _move(next);
+                                                    }
+                                                  }
+                                                : null,
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    '${option['label']}',
+                                                  ),
+                                                ),
+                                                if (selected == option['id'])
+                                                  const Icon(
+                                                    Icons.check,
+                                                    size: 20,
+                                                  ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        TextButton(
+                                          key: const Key('lifestyle-back'),
+                                          onPressed: !enabled
+                                              ? null
+                                              : () => _move(_index - 1),
+                                          child: const Text('返回'),
+                                        ),
+                                        if (selected != null)
+                                          TextButton(
+                                            onPressed: !enabled
+                                                ? null
+                                                : () => _move(_index + 1),
+                                            child: const Text('下一步'),
                                           ),
                                       ],
                                     ),
-                                  ),
-                                  const SizedBox(height: 24),
-                                  Semantics(
-                                    header: true,
-                                    child: Text(
-                                      '${scene['title']}',
+                                  ] else ...[
+                                    Text(
+                                      '你的生活方式偏好',
                                       style: Theme.of(
                                         context,
-                                      ).textTheme.titleLarge,
+                                      ).textTheme.headlineSmall,
                                     ),
-                                  ),
-                                  const SizedBox(height: 20),
-                                  for (final option in rows(scene['options']))
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        bottom: 12,
-                                      ),
-                                      child: Semantics(
-                                        key: Key('choice-${option['id']}'),
-                                        selected: selected == option['id'],
-                                        child: OutlinedButton(
-                                          key: Key('option-${option['id']}'),
-                                          style: appOptionButtonStyle(
-                                            Theme.of(context),
-                                            selected: selected == option['id'],
+                                    const SizedBox(height: 12),
+                                    const Text('这些偏好来自你刚才的选择，可随时纠正。'),
+                                    for (var i = 0; i < scenes.length; i++)
+                                      Card(
+                                        child: ListTile(
+                                          title: Text(
+                                            '${scenes[i]['dimension_label']}',
                                           ),
-                                          onPressed: enabled
-                                              ? () async {
-                                                  final next =
-                                                      const bool.fromEnvironment(
-                                                            'ELITESYNC_V1017_LOCAL_BUILD',
-                                                          ) &&
-                                                          data['status'] ==
-                                                              'completed'
-                                                      ? scenes.length
-                                                      : _index + 1;
-                                                  if (await controller.answer(
-                                                        '${scene['id']}',
-                                                        '${option['id']}',
-                                                      ) &&
-                                                      mounted &&
-                                                      controller == _loaded) {
-                                                    await _move(next);
-                                                  }
-                                                }
+                                          subtitle: Text(
+                                            '${objectMap(objectMap(data['derived_preferences'])[scenes[i]['dimension']])['explanation'] ?? '尚未选择'}',
+                                          ),
+                                          trailing: const Icon(
+                                            Icons.edit_outlined,
+                                          ),
+                                          onTap: enabled
+                                              ? () => _move(i)
                                               : null,
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  '${option['label']}',
-                                                ),
-                                              ),
-                                              if (selected == option['id'])
-                                                const Icon(
-                                                  Icons.check,
-                                                  size: 20,
-                                                ),
-                                            ],
-                                          ),
                                         ),
                                       ),
-                                    ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      TextButton(
-                                        key: const Key('lifestyle-back'),
-                                        onPressed: !enabled
-                                            ? null
-                                            : () => _move(_index - 1),
-                                        child: const Text('返回'),
-                                      ),
-                                      if (selected != null)
-                                        TextButton(
-                                          onPressed: !enabled
-                                              ? null
-                                              : () => _move(_index + 1),
-                                          child: const Text('下一步'),
-                                        ),
-                                    ],
-                                  ),
-                                ] else ...[
-                                  Text(
-                                    '你的生活方式偏好',
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.headlineSmall,
-                                  ),
-                                  const SizedBox(height: 12),
-                                  const Text('这些偏好来自你刚才的选择，可随时纠正。'),
-                                  for (var i = 0; i < scenes.length; i++)
-                                    Card(
-                                      child: ListTile(
-                                        title: Text(
-                                          '${scenes[i]['dimension_label']}',
-                                        ),
-                                        subtitle: Text(
-                                          '${objectMap(objectMap(data['derived_preferences'])[scenes[i]['dimension']])['explanation'] ?? '尚未选择'}',
-                                        ),
-                                        trailing: const Icon(
-                                          Icons.edit_outlined,
-                                        ),
-                                        onTap: enabled ? () => _move(i) : null,
+                                    const SizedBox(height: 16),
+                                    FilledButton(
+                                      onPressed: _exit,
+                                      child: Text(
+                                        const bool.fromEnvironment(
+                                              'ELITESYNC_V1017_LOCAL_BUILD',
+                                            )
+                                            ? '完成并返回'
+                                            : '完成，进入社区',
                                       ),
                                     ),
-                                  const SizedBox(height: 16),
-                                  FilledButton(
-                                    onPressed: _exit,
-                                    child: Text(
-                                      const bool.fromEnvironment(
-                                            'ELITESYNC_V1017_LOCAL_BUILD',
-                                          )
-                                          ? '完成并返回'
-                                          : '完成，进入社区',
+                                    TextButton(
+                                      onPressed: enabled
+                                          ? () => _reset(controller)
+                                          : null,
+                                      child: const Text('重新探索'),
                                     ),
-                                  ),
-                                  TextButton(
-                                    onPressed: enabled
-                                        ? () => _reset(controller)
-                                        : null,
-                                    child: const Text('重新探索'),
-                                  ),
+                                  ],
                                 ],
-                              ],
+                              ),
                             ),
                           ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

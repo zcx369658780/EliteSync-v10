@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,7 +36,11 @@ class _QuestionnairePageState extends ConsumerState<QuestionnairePage> {
       // A successful server submission invalidates readiness, but does not
       // manufacture eligibility from local questionnaire progress.
       ref.invalidate(profileProvider);
-      context.go(AppRouteNames.questionnaireResult);
+      context.go(
+        UiS3Design.enabled
+            ? AppRouteNames.meReadiness
+            : AppRouteNames.questionnaireResult,
+      );
     }
   }
 

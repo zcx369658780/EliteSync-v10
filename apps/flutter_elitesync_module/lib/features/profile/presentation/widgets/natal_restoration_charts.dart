@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -109,12 +110,14 @@ class NatalRestorationCharts extends StatelessWidget {
     this.section,
     this.displayPrefs,
     this.locationLabel,
+    this.backdrop,
   });
   final Map<String, dynamic> results;
   final bool explanation;
   final String? section;
   final AstroChartDisplayPrefs? displayPrefs;
   final String? locationLabel;
+  final UiS3Backdrop? backdrop;
   AstroChartDisplayPrefs get prefs =>
       displayPrefs ?? AstroChartDisplayPrefs.defaults();
 
@@ -127,6 +130,7 @@ class NatalRestorationCharts extends StatelessWidget {
     final oracle = natalText(chart['oracle_status']);
     final verified = oracle == 'VERIFIED';
     return Card(
+      color: backdrop?.surfaceOf(context),
       child: Padding(
         padding: EdgeInsets.all(prefs.compactDensity ? 8 : 16),
         child: Column(
@@ -195,6 +199,21 @@ class NatalRestorationCharts extends StatelessWidget {
                   ),
               ],
             ),
+            if (backdrop == UiS3Backdrop.bazi &&
+                natalMap(bazi['five_elements']).isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 4,
+                  children: [
+                    for (final entry in natalMap(bazi['five_elements']).entries)
+                      Chip(
+                        label: Text('${entry.key} ${natalText(entry.value)}'),
+                      ),
+                  ],
+                ),
+              ),
             const Divider(),
             Text(
               '起运：${natalText(yun['start_user_datetime'] ?? yun['start_solar_datetime'])}${yun['start_user_datetime'] == null && yun['start_solar_datetime'] != null ? '（${natalText(yun['timestamp_frame'])}）' : ''}；${yun['forward'] == null
@@ -267,56 +286,59 @@ class NatalRestorationCharts extends StatelessWidget {
             Text(
               '命宫：${natalText(ziwei['soul_palace_branch'])}  身宫：${natalText(ziwei['body_palace_branch'])}  ${natalText(ziwei['five_elements_class'])}',
             ),
-            LayoutBuilder(
-              builder: (context, constraints) => Wrap(
-                spacing: 6,
-                runSpacing: 6,
-                children: [
-                  for (final raw in palaces)
-                    Builder(
-                      builder: (_) {
-                        final p = natalMap(raw);
-                        return SizedBox(
-                          width: (constraints.maxWidth - 6) / 2,
-                          child: Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '${p['name']} ${p['heavenly_stem']}${p['earthly_branch']}',
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.titleSmall,
-                                  ),
-                                  for (final group in [
-                                    'major_stars',
-                                    'minor_stars',
-                                    'adjective_stars',
-                                  ])
-                                    Wrap(
-                                      spacing: 6,
-                                      children: [
-                                        for (final s in natalList(p[group]))
-                                          Text(
-                                            '${natalMap(s)['name']} ${natalMap(s)['brightness'] ?? ''} ${natalMap(s)['natal_transformation'] ?? ''}',
-                                          ),
-                                      ],
+            if (backdrop == UiS3Backdrop.ziwei && palaces.length == 12)
+              _ZiweiPalaceBoard(palaces: palaces, backdrop: backdrop!)
+            else
+              LayoutBuilder(
+                builder: (context, constraints) => Wrap(
+                  spacing: 6,
+                  runSpacing: 6,
+                  children: [
+                    for (final raw in palaces)
+                      Builder(
+                        builder: (_) {
+                          final p = natalMap(raw);
+                          return SizedBox(
+                            width: (constraints.maxWidth - 6) / 2,
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${p['name']} ${p['heavenly_stem']}${p['earthly_branch']}',
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.titleSmall,
                                     ),
-                                  Text(
-                                    '大限 ${natalText(natalMap(p['decadal'])['range'])}',
-                                  ),
-                                ],
+                                    for (final group in [
+                                      'major_stars',
+                                      'minor_stars',
+                                      'adjective_stars',
+                                    ])
+                                      Wrap(
+                                        spacing: 6,
+                                        children: [
+                                          for (final s in natalList(p[group]))
+                                            Text(
+                                              '${natalMap(s)['name']} ${natalMap(s)['brightness'] ?? ''} ${natalMap(s)['natal_transformation'] ?? ''}',
+                                            ),
+                                        ],
+                                      ),
+                                    Text(
+                                      '大限 ${natalText(natalMap(p['decadal'])['range'])}',
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    ),
-                ],
+                          );
+                        },
+                      ),
+                  ],
+                ),
               ),
-            ),
             ExpansionTile(
               title: const Text('命宫飞星与自化'),
               tilePadding: EdgeInsets.zero,
@@ -623,6 +645,124 @@ class NatalRestorationCharts extends StatelessWidget {
 
 String _degrees(dynamic value) =>
     value is num ? '${value.toStringAsFixed(4)}°' : '未知';
+
+class _ZiweiPalaceBoard extends StatelessWidget {
+  const _ZiweiPalaceBoard({required this.palaces, required this.backdrop});
+  final List<dynamic> palaces;
+  final UiS3Backdrop backdrop;
+
+  Future<void> _showPalace(
+    BuildContext context,
+    Map<String, dynamic> palace,
+  ) => showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    builder: (_) => SafeArea(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              '${palace['name']} ${palace['heavenly_stem']}${palace['earthly_branch']}',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            for (final group in const {
+              'major_stars': '主星',
+              'minor_stars': '辅星',
+              'adjective_stars': '杂曜',
+            }.entries)
+              if (natalList(palace[group.key]).isNotEmpty)
+                ListTile(
+                  title: Text(group.value),
+                  subtitle: Text(
+                    natalList(palace[group.key])
+                        .map((star) {
+                          final data = natalMap(star);
+                          return [
+                                data['name'],
+                                data['brightness'],
+                                data['natal_transformation'],
+                              ]
+                              .where((item) => item != null && item != '')
+                              .join(' ');
+                        })
+                        .join(' · '),
+                  ),
+                ),
+            ListTile(
+              title: Text(
+                '大限 ${natalText(natalMap(palace['decadal'])['range'])}',
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    final byBranch = {
+      for (final raw in palaces) natalMap(raw)['earthly_branch']: natalMap(raw),
+    };
+    final theme = Theme.of(context);
+    const grid = [
+      ['巳', '午', '未', '申'],
+      ['辰', '', '', '酉'],
+      ['卯', '', '', '戌'],
+      ['寅', '丑', '子', '亥'],
+    ];
+    final complete = grid
+        .expand((row) => row)
+        .where((key) => key.isNotEmpty)
+        .every(byBranch.containsKey);
+    Widget tile(Map<String, dynamic> palace) => TextButton(
+      style: TextButton.styleFrom(
+        backgroundColor: theme.brightness == Brightness.dark
+            ? theme.colorScheme.surfaceContainerHighest
+            : backdrop.alternate,
+        minimumSize: const Size(48, 56),
+        padding: const EdgeInsets.all(4),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      ),
+      onPressed: () => _showPalace(context, palace),
+      child: Text(
+        '${palace['name']}\n${palace['earthly_branch']}',
+        textAlign: TextAlign.center,
+      ),
+    );
+
+    if (!complete ||
+        MediaQuery.textScalerOf(context).scale(14) > 21 ||
+        MediaQuery.sizeOf(context).width < 340) {
+      return Wrap(
+        spacing: 6,
+        runSpacing: 6,
+        children: [for (final raw in palaces) tile(natalMap(raw))],
+      );
+    }
+    return Column(
+      children: [
+        for (final row in grid)
+          Row(
+            children: [
+              for (final branch in row)
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(2),
+                    child: branch.isEmpty
+                        ? const SizedBox(height: 56)
+                        : tile(byBranch[branch]!),
+                  ),
+                ),
+            ],
+          ),
+      ],
+    );
+  }
+}
 
 class NatalWheelPainter extends CustomPainter {
   NatalWheelPainter(

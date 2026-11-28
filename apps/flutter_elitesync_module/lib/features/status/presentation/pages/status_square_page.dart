@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'dart:io';
 
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/data_rights_page.dart';
@@ -36,7 +37,8 @@ import 'status_favorites_page.dart';
 enum _CoverUploadStage { idle, uploading, processing, ready, failed }
 
 class StatusSquarePage extends ConsumerStatefulWidget {
-  const StatusSquarePage({super.key});
+  const StatusSquarePage({super.key, this.publishOnly = false});
+  final bool publishOnly;
 
   @override
   ConsumerState<StatusSquarePage> createState() => _StatusSquarePageState();
@@ -754,26 +756,44 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
     }
 
     return AppScaffold(
+      backdrop: widget.publishOnly ? UiS3Backdrop.quiet : UiS3Backdrop.reading,
       appBar: AppTopBar(
-        title: '好友可见社区',
+        title: widget.publishOnly
+            ? '发布动态'
+            : UiS3Design.enabled
+            ? '好友动态'
+            : '好友可见社区',
         mode: AppTopBarMode.backTitle,
         actions: [
-          IconButton(
-            tooltip: '我的收藏',
-            icon: const Icon(Icons.bookmarks_outlined),
-            onPressed: () async {
-              await Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => const StatusFavoritesPage(),
+          if (UiS3Design.enabled && !widget.publishOnly)
+            IconButton(
+              tooltip: '发布动态',
+              icon: const Icon(Icons.edit_outlined),
+              onPressed: () => Navigator.of(context).push<void>(
+                MaterialPageRoute(
+                  fullscreenDialog: true,
+                  builder: (_) => const StatusSquarePage(publishOnly: true),
                 ),
-              );
-              if (mounted) _refreshPosts();
-            },
-          ),
-          IconButton(
-            onPressed: () => _refreshPosts(firstPage: true),
-            icon: const Icon(Icons.refresh_rounded),
-          ),
+              ),
+            ),
+          if (!widget.publishOnly) ...[
+            IconButton(
+              tooltip: '我的收藏',
+              icon: const Icon(Icons.bookmarks_outlined),
+              onPressed: () async {
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const StatusFavoritesPage(),
+                  ),
+                );
+                if (mounted) _refreshPosts();
+              },
+            ),
+            IconButton(
+              onPressed: () => _refreshPosts(firstPage: true),
+              icon: const Icon(Icons.refresh_rounded),
+            ),
+          ],
         ],
       ),
       body: RefreshIndicator(
@@ -782,232 +802,245 @@ class _StatusSquarePageState extends ConsumerState<StatusSquarePage> {
           await ref.read(statusPostPageProvider.future);
         },
         child: ListView(
+          key: PageStorageKey(
+            widget.publishOnly ? 'status-publish' : 'status-feed',
+          ),
           padding: EdgeInsets.fromLTRB(0, t.spacing.sm, 0, t.spacing.huge),
           children: [
-            AppInfoSectionCard(
-              title: '状态分层',
-              subtitle: '受众仅自己或双向好友，展示与治理分开',
-              leadingIcon: Icons.layers_outlined,
-              child: Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: const [
-                  _TierChip(label: '好友层', description: '双向好友可见'),
-                  _TierChip(label: '私密层', description: '仅自己可见'),
-                ],
-              ),
-            ),
-            SizedBox(height: t.spacing.md),
-            AppInfoSectionCard(
-              title: '发布状态',
-              subtitle: '默认向双向好友发布，评论也仅向双向好友开放',
-              leadingIcon: Icons.publish_rounded,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AppTextField(
-                    controller: _titleController,
-                    label: '标题',
-                    hint: '例如：今晚想找个人散步',
-                    maxLength: 40,
-                  ),
-                  SizedBox(height: t.spacing.sm),
-                  AppTextField(
-                    controller: _bodyController,
-                    label: '内容',
-                    hint: '写下一个轻松、自然的状态',
-                    maxLength: 240,
-                    minLines: 3,
-                    maxLines: 5,
-                  ),
-                  SizedBox(height: t.spacing.sm),
-                  AppTextField(
-                    controller: _locationController,
-                    label: '城市（可留空）',
-                    hint: '只写城市，不填写精确地址或联系方式',
-                    maxLength: 60,
-                  ),
-                  SizedBox(height: t.spacing.sm),
-                  Wrap(
-                    spacing: t.spacing.xs,
-                    runSpacing: t.spacing.xs,
-                    children: [
-                      AppChoiceChip(
-                        label: '双向好友',
-                        selected: _audience == 'FRIENDS',
-                        onTap: () => setState(() => _audience = 'FRIENDS'),
-                      ),
-                      AppChoiceChip(
-                        label: '仅自己',
-                        selected: _audience == 'SELF',
-                        onTap: () => setState(() {
-                          _audience = 'SELF';
-                          if (_commentPolicy != 'OFF') _commentPolicy = null;
-                        }),
-                      ),
-                      AppChoiceChip(
-                        label: '登录用户',
-                        selected: _audience == 'PUBLIC_AUTHENTICATED',
-                        onTap: () =>
-                            setState(() => _audience = 'PUBLIC_AUTHENTICATED'),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: t.spacing.sm),
-                  DropdownButton<String>(
-                    value: _commentPolicy ?? 'DEFAULT',
-                    isExpanded: true,
-                    items: [
-                      DropdownMenuItem(
-                        value: 'DEFAULT',
-                        child: Text(
-                          _audience == 'SELF' ? '默认关闭评论' : '默认仅双向好友可评论',
-                        ),
-                      ),
-                      for (final value in [
-                        'OFF',
-                        if (_audience != 'SELF') ...[
-                          'FRIENDS_ONLY',
-                          'ALL_ELIGIBLE',
-                        ],
-                      ])
-                        DropdownMenuItem(
-                          value: value,
-                          child: Text(statusCommentPolicyLabel(value)),
-                        ),
-                    ],
-                    onChanged: _submitting
-                        ? null
-                        : (value) => setState(
-                            () => _commentPolicy = value == 'DEFAULT'
-                                ? null
-                                : value,
-                          ),
-                  ),
-                  _buildCoverPreview(context),
-                  SizedBox(height: t.spacing.sm),
-                  FilledButton.icon(
-                    onPressed: _submitting ? null : _publish,
-                    icon: _submitting
-                        ? const SizedBox(
-                            width: 16,
-                            height: 16,
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          )
-                        : const Icon(Icons.send_rounded),
-                    label: Text(_submitting ? '发布中...' : '发布状态'),
-                  ),
-                  TextButton(
-                    onPressed: _submitting
-                        ? null
-                        : () => _publish(checkOnly: true),
-                    child: const Text('核对上次发布'),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: t.spacing.md),
-            AppInfoSectionCard(
-              title: '当前有权读取的好友动态',
-              subtitle: '每页最多20条，明确操作后加载下一页',
-              leadingIcon: Icons.dynamic_feed_rounded,
-              child: postsAsync.when(
-                skipLoadingOnReload: false,
-                skipLoadingOnRefresh: false,
-                loading: () => const AppLoadingSkeleton(lines: 5),
-                error: (e, _) => AppErrorState(
-                  title: _feedUnavailable ? '当前动态已不可用' : '好友动态读取未完成',
-                  description: _feedUnavailable
-                      ? '旧内容已清除，请读取当前有权动态。'
-                      : '网络或当前受众授权尚未完成，请刷新后重试。',
-                  retryLabel: _feedUnavailable ? '读取当前动态' : '重新加载当前页',
-                  onRetry: _refreshPosts,
+            if (!UiS3Design.enabled) ...[
+              AppInfoSectionCard(
+                title: '谁能看见',
+                subtitle: '受众仅自己或双向好友，展示与治理分开',
+                leadingIcon: Icons.layers_outlined,
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: const [
+                    _TierChip(label: '好友层', description: '双向好友可见'),
+                    _TierChip(label: '私密层', description: '仅自己可见'),
+                  ],
                 ),
-                data: (page) {
-                  if (_feedUnavailable) {
-                    return AppEmptyState(
-                      title: '当前动态已不可用',
-                      description: '已清除旧内容，请读取当前有权动态。',
-                      actionLabel: '读取当前动态',
-                      onAction: () => _refreshPosts(firstPage: true),
-                    );
-                  }
-                  final posts = page.items;
-                  if (posts.isEmpty) {
-                    return Column(
+              ),
+              SizedBox(height: t.spacing.md),
+            ],
+            if (widget.publishOnly || !UiS3Design.enabled)
+              AppInfoSectionCard(
+                title: '发布动态',
+                subtitle: '默认向双向好友发布，评论也仅向双向好友开放',
+                leadingIcon: Icons.publish_rounded,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppTextField(
+                      controller: _titleController,
+                      label: '标题',
+                      hint: '例如：今晚想找个人散步',
+                      maxLength: 40,
+                    ),
+                    SizedBox(height: t.spacing.sm),
+                    AppTextField(
+                      controller: _bodyController,
+                      label: '内容',
+                      hint: '写下一个轻松、自然的状态',
+                      maxLength: 240,
+                      minLines: 3,
+                      maxLines: 5,
+                    ),
+                    SizedBox(height: t.spacing.sm),
+                    AppTextField(
+                      controller: _locationController,
+                      label: '城市（可留空）',
+                      hint: '只写城市，不填写精确地址或联系方式',
+                      maxLength: 60,
+                    ),
+                    SizedBox(height: t.spacing.sm),
+                    Wrap(
+                      spacing: t.spacing.xs,
+                      runSpacing: t.spacing.xs,
                       children: [
-                        AppEmptyState(
-                          title: '当前没有有权读取的动态',
-                          description: '仅显示本人或当前好友明确分享的内容；空页不代表可查看陌生人。',
-                          actionLabel: '返回首页',
-                          onAction: () => context.go(AppRouteNames.home),
+                        AppChoiceChip(
+                          label: '双向好友',
+                          selected: _audience == 'FRIENDS',
+                          onTap: () => setState(() => _audience = 'FRIENDS'),
                         ),
-                        if (pageCursor != null)
-                          OutlinedButton(
-                            key: const Key('community-first-page'),
-                            onPressed: () => _refreshPosts(firstPage: true),
-                            child: const Text('返回社区首屏'),
+                        AppChoiceChip(
+                          label: '仅自己',
+                          selected: _audience == 'SELF',
+                          onTap: () => setState(() {
+                            _audience = 'SELF';
+                            if (_commentPolicy != 'OFF') _commentPolicy = null;
+                          }),
+                        ),
+                        AppChoiceChip(
+                          label: '登录用户',
+                          selected: _audience == 'PUBLIC_AUTHENTICATED',
+                          onTap: () => setState(
+                            () => _audience = 'PUBLIC_AUTHENTICATED',
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: t.spacing.sm),
+                    DropdownButton<String>(
+                      value: _commentPolicy ?? 'DEFAULT',
+                      isExpanded: true,
+                      items: [
+                        DropdownMenuItem(
+                          value: 'DEFAULT',
+                          child: Text(
+                            _audience == 'SELF' ? '默认关闭评论' : '默认仅双向好友可评论',
+                          ),
+                        ),
+                        for (final value in [
+                          'OFF',
+                          if (_audience != 'SELF') ...[
+                            'FRIENDS_ONLY',
+                            'ALL_ELIGIBLE',
+                          ],
+                        ])
+                          DropdownMenuItem(
+                            value: value,
+                            child: Text(statusCommentPolicyLabel(value)),
                           ),
                       ],
-                    );
-                  }
-
-                  return Column(
-                    children: [
-                      for (final post in posts)
-                        Padding(
-                          padding: EdgeInsets.only(bottom: t.spacing.sm),
-                          child: StatusPostCard(
-                            post: post,
-                            onTapAuthor: () => _openAuthor(post),
-                            onContinueUnderstand: () => _openAuthor(post),
-                            onViewProfile: () => _openAuthor(post),
-                            onSaveForLater: () => _savePostForLater(post),
-                            onLowPressureChat: () =>
-                                _openLowPressureChatPath(post),
-                            onLikeToggle: () => _toggleLike(post),
-                            onReport: post.canDelete
-                                ? null
-                                : () => _reportPost(post),
-                            onChangeAudience: post.canDelete
-                                ? () => _changeAudience(post)
-                                : null,
-                            onRequestDataDeletion: post.canDelete
-                                ? () => openObjectDataRights(
-                                    context,
-                                    'work',
-                                    post.id.toString(),
-                                  )
-                                : null,
-                            onDelete: post.canDelete
-                                ? () => _deletePost(post)
-                                : null,
-                          ),
-                        ),
-                      Wrap(
-                        spacing: 8,
+                      onChanged: _submitting
+                          ? null
+                          : (value) => setState(
+                              () => _commentPolicy = value == 'DEFAULT'
+                                  ? null
+                                  : value,
+                            ),
+                    ),
+                    _buildCoverPreview(context),
+                    SizedBox(height: t.spacing.sm),
+                    FilledButton.icon(
+                      onPressed: _submitting ? null : _publish,
+                      icon: _submitting
+                          ? const SizedBox(
+                              width: 16,
+                              height: 16,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : const Icon(Icons.send_rounded),
+                      label: Text(_submitting ? '发布中...' : '发布状态'),
+                    ),
+                    TextButton(
+                      onPressed: _submitting
+                          ? null
+                          : () => _publish(checkOnly: true),
+                      child: const Text('核对上次发布'),
+                    ),
+                  ],
+                ),
+              ),
+            SizedBox(height: t.spacing.md),
+            if (!widget.publishOnly)
+              AppInfoSectionCard(
+                title: '近期动态',
+                subtitle: '显示你有权限阅读的作品',
+                leadingIcon: Icons.dynamic_feed_rounded,
+                child: postsAsync.when(
+                  skipLoadingOnReload: false,
+                  skipLoadingOnRefresh: false,
+                  loading: () => const AppLoadingSkeleton(lines: 5),
+                  error: (e, _) => AppErrorState(
+                    title: _feedUnavailable ? '当前动态已不可用' : '好友动态读取未完成',
+                    description: _feedUnavailable
+                        ? '旧内容已清除，请读取当前有权动态。'
+                        : '网络或当前受众授权尚未完成，请刷新后重试。',
+                    retryLabel: _feedUnavailable ? '读取当前动态' : '重新加载当前页',
+                    onRetry: _refreshPosts,
+                  ),
+                  data: (page) {
+                    if (_feedUnavailable) {
+                      return AppEmptyState(
+                        title: '当前动态已不可用',
+                        description: '已清除旧内容，请读取当前有权动态。',
+                        actionLabel: '读取当前动态',
+                        onAction: () => _refreshPosts(firstPage: true),
+                      );
+                    }
+                    final posts = page.items;
+                    if (posts.isEmpty) {
+                      return Column(
                         children: [
+                          AppEmptyState(
+                            title: '当前没有有权读取的动态',
+                            description: '仅显示本人或当前好友明确分享的内容；空页不代表可查看陌生人。',
+                            actionLabel: '返回首页',
+                            onAction: () => context.go(AppRouteNames.home),
+                          ),
                           if (pageCursor != null)
                             OutlinedButton(
                               key: const Key('community-first-page'),
                               onPressed: () => _refreshPosts(firstPage: true),
                               child: const Text('返回社区首屏'),
                             ),
-                          if (page.hasMore && page.nextCursor != null)
-                            OutlinedButton(
-                              key: const Key('community-next-page'),
-                              onPressed: () => ref
-                                  .read(statusPageCursorProvider.notifier)
-                                  .nextPage(page.nextCursor!),
-                              child: const Text('加载下一页（替换当前页）'),
-                            ),
                         ],
-                      ),
-                    ],
-                  );
-                },
+                      );
+                    }
+
+                    return Column(
+                      children: [
+                        for (final post in posts)
+                          Padding(
+                            padding: EdgeInsets.only(bottom: t.spacing.sm),
+                            child: StatusPostCard(
+                              post: post,
+                              onOpenDetail: UiS3Design.enabled
+                                  ? () => context.push(
+                                      '${AppRouteNames.statusDetail}/${post.id}',
+                                    )
+                                  : null,
+                              onTapAuthor: () => _openAuthor(post),
+                              onContinueUnderstand: () => _openAuthor(post),
+                              onViewProfile: () => _openAuthor(post),
+                              onSaveForLater: () => _savePostForLater(post),
+                              onLowPressureChat: () =>
+                                  _openLowPressureChatPath(post),
+                              onLikeToggle: () => _toggleLike(post),
+                              onReport: post.canDelete
+                                  ? null
+                                  : () => _reportPost(post),
+                              onChangeAudience: post.canDelete
+                                  ? () => _changeAudience(post)
+                                  : null,
+                              onRequestDataDeletion: post.canDelete
+                                  ? () => openObjectDataRights(
+                                      context,
+                                      'work',
+                                      post.id.toString(),
+                                    )
+                                  : null,
+                              onDelete: post.canDelete
+                                  ? () => _deletePost(post)
+                                  : null,
+                            ),
+                          ),
+                        Wrap(
+                          spacing: 8,
+                          children: [
+                            if (pageCursor != null)
+                              OutlinedButton(
+                                key: const Key('community-first-page'),
+                                onPressed: () => _refreshPosts(firstPage: true),
+                                child: const Text('返回社区首屏'),
+                              ),
+                            if (page.hasMore && page.nextCursor != null)
+                              OutlinedButton(
+                                key: const Key('community-next-page'),
+                                onPressed: () => ref
+                                    .read(statusPageCursorProvider.notifier)
+                                    .nextPage(page.nextCursor!),
+                                child: const Text('加载下一页（替换当前页）'),
+                              ),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
-            ),
           ],
         ),
       ),

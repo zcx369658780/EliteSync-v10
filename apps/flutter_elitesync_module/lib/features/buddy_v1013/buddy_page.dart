@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../relationships_v1011/relationship_api.dart';
@@ -529,171 +530,183 @@ class _BuddyPageState extends SessionBoundPage<BuddyPage>
   Widget build(BuildContext context) {
     final pref = objectMap(data?['preferences']);
     final activities = rows(data?['activities']);
-    return frame('我的搭子', [
-      if (_pendingBody != null) ...[
-        const Text('上次操作结果尚未确认。草稿与原命令已保留。'),
-        FilledButton(
-          key: const Key('buddy-retry-pending'),
-          onPressed: busy ? null : _retryPending,
-          child: const Text('原编号重试'),
-        ),
-        TextButton(
-          onPressed: busy ? null : _resolvePending,
-          child: const Text('重读并核对上次结果'),
-        ),
-      ],
-      OutlinedButton(
-        key: const Key('buddy-open-discovery'),
-        onPressed: _blocked
-            ? null
-            : () async {
-                await Navigator.of(context).push<void>(
-                  MaterialPageRoute(builder: (_) => const BuddyDiscoveryPage()),
-                );
-                if (mounted) refresh();
-              },
-        child: const Text('搭子发现'),
-      ),
-      const Text('吃饭或学习，两人自愿确认。无需参加婚恋匹配；不会自动建立好友、私信、通话或正式关系。'),
-      if (data != null) ...[
-        SwitchListTile(
-          key: const Key('buddy-request-preference'),
-          title: const Text('接收搭子请求'),
-          subtitle: const Text('关闭后不再接受新申请；服务器按当前许可处理旧邀请。'),
-          value: pref['enabled'] == true,
-          onChanged: _blocked || pref['revision'] is! int
-              ? null
-              : (value) => _send('PUT', '/buddy/preferences', {
-                  'enabled': value,
-                  'revision': pref['revision'],
-                }),
-        ),
-        if (activities.isEmpty)
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16),
-            child: Text(
-              '当前没有可见活动。可保存自己的草稿，或手动兑换对方给你的有效邀请凭据。',
-              key: Key('buddy-empty'),
-            ),
+    return frame(
+      '我的搭子',
+      [
+        if (_pendingBody != null) ...[
+          const Text('上次操作结果尚未确认。草稿与原命令已保留。'),
+          FilledButton(
+            key: const Key('buddy-retry-pending'),
+            onPressed: busy ? null : _retryPending,
+            child: const Text('原编号重试'),
           ),
-        for (final activity in activities) _activity(activity),
-        if (_issuedToken != null &&
-            activities.any(
-              (a) =>
-                  a['id'] == _issuedActivityId &&
-                  _actions(a).contains('revoke_token'),
-            )) ...[
-          const Text('新邀请凭据（仅本次响应显示，切换账号或权限变化即清除）：'),
-          SelectableText(_issuedToken!, key: const Key('buddy-issued-token')),
-          if (_tokenExpiry != null)
-            Text('服务器到期时间：${buddyLocalTime(_tokenExpiry)}'),
+          TextButton(
+            onPressed: busy ? null : _resolvePending,
+            child: const Text('重读并核对上次结果'),
+          ),
         ],
-      ],
-      if (data != null || _pendingCreate)
-        ExpansionTile(
-          key: const Key('buddy-create-form'),
-          initiallyExpanded: _createExpanded,
-          onExpansionChanged: (expanded) => _createExpanded = expanded,
-          title: const Text('创建搭子草稿'),
-          children: [
-            _choice('搭子类型', _type, const {
-              'MEAL': '吃饭',
-              'STUDY': '学习',
-            }, (v) => setState(() => _type = v)),
-            TextField(
-              key: const Key('buddy-subject'),
-              controller: _subject,
-              enabled: !_blocked,
-              maxLength: 100,
-              decoration: const InputDecoration(
-                labelText: '简短主题',
-                helperText: '不填写电话、账号、链接、精确地址或私人身份资料',
+        OutlinedButton(
+          key: const Key('buddy-open-discovery'),
+          onPressed: _blocked
+              ? null
+              : () async {
+                  await Navigator.of(context).push<void>(
+                    MaterialPageRoute(
+                      builder: (_) => const BuddyDiscoveryPage(),
+                    ),
+                  );
+                  if (mounted) refresh();
+                },
+          child: const Text('搭子发现'),
+        ),
+        const Text('吃饭或学习，两人自愿确认。无需参加婚恋匹配；不会自动建立好友、私信、通话或正式关系。'),
+        if (data != null) ...[
+          SwitchListTile(
+            key: const Key('buddy-request-preference'),
+            title: const Text('接收搭子请求'),
+            subtitle: const Text('关闭后不再接受新申请；服务器按当前许可处理旧邀请。'),
+            value: pref['enabled'] == true,
+            onChanged: _blocked || pref['revision'] is! int
+                ? null
+                : (value) => _send('PUT', '/buddy/preferences', {
+                    'enabled': value,
+                    'revision': pref['revision'],
+                  }),
+          ),
+          if (activities.isEmpty)
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16),
+              child: Text(
+                '当前没有可见活动。可保存自己的草稿，或手动兑换对方给你的有效邀请凭据。',
+                key: Key('buddy-empty'),
               ),
             ),
-            TextField(
-              key: const Key('buddy-city'),
-              controller: _city,
-              enabled: !_blocked,
-              maxLength: 40,
-              decoration: const InputDecoration(
-                labelText: '粗城市（可留空）',
-                helperText: '只写城市，不写街道、门牌、单位或住址',
+          for (final activity in activities) _activity(activity),
+          if (_issuedToken != null &&
+              activities.any(
+                (a) =>
+                    a['id'] == _issuedActivityId &&
+                    _actions(a).contains('revoke_token'),
+              )) ...[
+            const Text('新邀请凭据（仅本次响应显示，切换账号或权限变化即清除）：'),
+            SelectableText(_issuedToken!, key: const Key('buddy-issued-token')),
+            if (_tokenExpiry != null)
+              Text('服务器到期时间：${buddyLocalTime(_tokenExpiry)}'),
+          ],
+        ],
+        if (data != null || _pendingCreate)
+          ExpansionTile(
+            key: const Key('buddy-create-form'),
+            initiallyExpanded: _createExpanded,
+            onExpansionChanged: (expanded) => _createExpanded = expanded,
+            title: const Text('创建搭子草稿'),
+            children: [
+              _choice('搭子类型', _type, const {
+                'MEAL': '吃饭',
+                'STUDY': '学习',
+              }, (v) => setState(() => _type = v)),
+              TextField(
+                key: const Key('buddy-subject'),
+                controller: _subject,
+                enabled: !_blocked,
+                maxLength: 100,
+                decoration: const InputDecoration(
+                  labelText: '简短主题',
+                  helperText: '不填写电话、账号、链接、精确地址或私人身份资料',
+                ),
               ),
-            ),
-            _choice('地点类型', _place, const {
-              'ONLINE': '线上',
-              'PUBLIC_PLACE_UNSPECIFIED': '公共空间（不指定具体地点）',
-            }, (v) => setState(() => _place = v)),
-            _choice('预算档位', _budget, const {
-              'UNSPECIFIED': '未指定',
-              'LOW': '低',
-              'MID': '中',
-              'HIGH': '高',
-            }, (v) => setState(() => _budget = v)),
-            ListTile(
-              key: const Key('buddy-start'),
-              title: const Text('开始时间'),
-              subtitle: Text(buddyLocalTime(_start.toUtc().toIso8601String())),
-              trailing: const Icon(Icons.calendar_month),
-              onTap: _blocked ? null : () => _pickTime(true),
-            ),
-            ListTile(
-              key: const Key('buddy-end'),
-              title: const Text('结束时间'),
-              subtitle: Text(buddyLocalTime(_end.toUtc().toIso8601String())),
-              trailing: const Icon(Icons.calendar_month),
-              onTap: _blocked ? null : () => _pickTime(false),
-            ),
-            FilledButton(
-              key: const Key('buddy-create'),
-              onPressed: _blocked ? null : _create,
-              child: const Text('保存仅本人可见草稿'),
-            ),
-          ],
-        ),
-      if (data != null) ...[
-        const Divider(),
-        ExpansionTile(
-          key: const Key('buddy-redeem-form'),
-          title: const Text('手动兑换一次性邀请'),
-          children: [
-            const Text('仅兑换创建人明确交给你的凭据。兑换只是申请，仍须创建人确认；旧凭据不可重放。'),
-            TextField(
-              key: const Key('buddy-redeem-token'),
-              controller: _redeem,
-              enabled: !_blocked,
-              maxLength: 256,
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              decoration: const InputDecoration(labelText: '一次性邀请凭据'),
-            ),
-            FilledButton(
-              key: const Key('buddy-redeem'),
-              onPressed: _blocked
-                  ? null
-                  : () async {
-                      final token = _redeem.text.trim();
-                      if (token.isEmpty) {
-                        setState(() => error = '请先填写创建人给你的凭据。');
-                        return;
-                      }
-                      if (!await confirm('自愿申请加入本次搭子？', '不会自动建立好友、连接或消息同意。')) {
-                        return;
-                      }
-                      await _send('POST', '/buddy/redeem', {
-                        'token': token,
-                        'idempotency_key': requestKey(),
-                      });
-                    },
-              child: const Text('兑换并申请参与'),
-            ),
-          ],
-        ),
+              TextField(
+                key: const Key('buddy-city'),
+                controller: _city,
+                enabled: !_blocked,
+                maxLength: 40,
+                decoration: const InputDecoration(
+                  labelText: '粗城市（可留空）',
+                  helperText: '只写城市，不写街道、门牌、单位或住址',
+                ),
+              ),
+              _choice('地点类型', _place, const {
+                'ONLINE': '线上',
+                'PUBLIC_PLACE_UNSPECIFIED': '公共空间（不指定具体地点）',
+              }, (v) => setState(() => _place = v)),
+              _choice('预算档位', _budget, const {
+                'UNSPECIFIED': '未指定',
+                'LOW': '低',
+                'MID': '中',
+                'HIGH': '高',
+              }, (v) => setState(() => _budget = v)),
+              ListTile(
+                key: const Key('buddy-start'),
+                title: const Text('开始时间'),
+                subtitle: Text(
+                  buddyLocalTime(_start.toUtc().toIso8601String()),
+                ),
+                trailing: const Icon(Icons.calendar_month),
+                onTap: _blocked ? null : () => _pickTime(true),
+              ),
+              ListTile(
+                key: const Key('buddy-end'),
+                title: const Text('结束时间'),
+                subtitle: Text(buddyLocalTime(_end.toUtc().toIso8601String())),
+                trailing: const Icon(Icons.calendar_month),
+                onTap: _blocked ? null : () => _pickTime(false),
+              ),
+              FilledButton(
+                key: const Key('buddy-create'),
+                onPressed: _blocked ? null : _create,
+                child: const Text('保存仅本人可见草稿'),
+              ),
+            ],
+          ),
+        if (data != null) ...[
+          const Divider(),
+          ExpansionTile(
+            key: const Key('buddy-redeem-form'),
+            title: const Text('手动兑换一次性邀请'),
+            children: [
+              const Text('仅兑换创建人明确交给你的凭据。兑换只是申请，仍须创建人确认；旧凭据不可重放。'),
+              TextField(
+                key: const Key('buddy-redeem-token'),
+                controller: _redeem,
+                enabled: !_blocked,
+                maxLength: 256,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: const InputDecoration(labelText: '一次性邀请凭据'),
+              ),
+              FilledButton(
+                key: const Key('buddy-redeem'),
+                onPressed: _blocked
+                    ? null
+                    : () async {
+                        final token = _redeem.text.trim();
+                        if (token.isEmpty) {
+                          setState(() => error = '请先填写创建人给你的凭据。');
+                          return;
+                        }
+                        if (!await confirm(
+                          '自愿申请加入本次搭子？',
+                          '不会自动建立好友、连接或消息同意。',
+                        )) {
+                          return;
+                        }
+                        await _send('POST', '/buddy/redeem', {
+                          'token': token,
+                          'idempotency_key': requestKey(),
+                        });
+                      },
+                child: const Text('兑换并申请参与'),
+              ),
+            ],
+          ),
+        ],
+        if (data == null && !busy && error == null)
+          const Text('正在等候当前账号的服务器状态；请刷新或重新登录。'),
       ],
-      if (data == null && !busy && error == null)
-        const Text('正在等候当前账号的服务器状态；请刷新或重新登录。'),
-    ]);
+      backdrop: UiS3Backdrop.buddy,
+      showBuddyArt: !busy && error == null,
+    );
   }
 }
 

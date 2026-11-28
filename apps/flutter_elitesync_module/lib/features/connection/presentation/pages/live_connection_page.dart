@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -83,8 +84,8 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage>
       401 => '登录已失效，请重新登录后重试。',
       403 => '当前无权操作此连接，请刷新确认权限。',
       404 => '当前连接不可用，消息入口已关闭。',
-      409 => '连接状态已变化，请刷新后重试。',
-      _ => '暂时无法读取或更新连接，请稍后刷新重试。',
+      409 => '联系状态已变化，请刷新后重试。',
+      _ => '暂时无法更新，请刷新后重试。',
     });
   }
 
@@ -251,7 +252,7 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage>
   }
 
   String _label(String kind, String action, String state) {
-    final subject = kind == 'connection' ? '连接' : '消息同意';
+    final subject = kind == 'connection' ? '联系' : '聊天许可';
     return switch (action) {
       'request' => switch (state) {
         'CN_NONE' || 'MC_NONE' => '请求$subject',
@@ -260,7 +261,7 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage>
       'accept' => '接受$subject',
       'decline' => '拒绝$subject',
       'withdraw' => '撤回$subject请求',
-      'close' => '关闭连接',
+      'close' => '结束联系',
       'revoke' => '撤销消息同意',
       _ => action,
     };
@@ -305,11 +306,12 @@ class _LiveConnectionPageState extends ConsumerState<LiveConnectionPage>
         gates?['live_read_allowed'] == true &&
         gates?['live_send_allowed'] == true;
     return AppScaffold(
-      appBar: const AppTopBar(title: '连接与消息同意', mode: AppTopBarMode.backTitle),
+      backdrop: UiS3Backdrop.relationship,
+      appBar: const AppTopBar(title: '联系与聊天许可', mode: AppTopBarMode.backTitle),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          const Text('匹配 ≠ 连接 ≠ 消息同意。双方须独立决定，消息读取和发送均由服务端当前权限验证。'),
+          const Text('匹配后，双方可决定是否建立联系。读写消息还需双方另行同意，许可可以撤回。'),
           if (_busy) const LinearProgressIndicator(),
           if (confirmed && _connectionUnavailableMessage != null)
             Text(_connectionUnavailableMessage!),

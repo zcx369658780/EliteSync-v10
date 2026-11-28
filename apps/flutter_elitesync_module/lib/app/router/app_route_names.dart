@@ -74,6 +74,7 @@ abstract class AppRouteNames {
   static const profileShowcasePublicationFixture =
       '/debug/profile/showcase/publication-fixture';
   static const localOnlyVisualFixture = '/debug/8-1-visual-fixture';
+  static const myCharts = '/profile/my-charts';
   static const astroOverview = '/profile/astro/overview';
   static const astroBazi = '/profile/astro/bazi';
   static const astroNatalChart = '/profile/astro/natal';

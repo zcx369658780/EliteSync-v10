@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/private_video_player.dart';
 import 'package:flutter_elitesync_module/features/buddy_v1013/comment_panel.dart';
 import 'dart:async';
@@ -19,6 +20,8 @@ class StatusPostCard extends ConsumerWidget {
     super.key,
     required this.post,
     this.onTapAuthor,
+    this.onOpenDetail,
+    this.showInlineComments = false,
     this.onLikeToggle,
     this.onReport,
     this.onDelete,
@@ -33,6 +36,8 @@ class StatusPostCard extends ConsumerWidget {
 
   final StatusPostEntity post;
   final VoidCallback? onTapAuthor;
+  final VoidCallback? onOpenDetail;
+  final bool showInlineComments;
   final VoidCallback? onLikeToggle;
   final VoidCallback? onReport;
   final VoidCallback? onDelete;
@@ -147,7 +152,7 @@ class StatusPostCard extends ConsumerWidget {
                 height: 1.45,
               ),
             ),
-            if (!compact) ...[
+            if (!compact && !UiS3Design.enabled) ...[
               SizedBox(height: t.spacing.sm),
               Text(
                 '仅展示轻量动态信息，不改写资料或匹配结果。',
@@ -156,20 +161,23 @@ class StatusPostCard extends ConsumerWidget {
                 ).textTheme.labelSmall?.copyWith(color: t.textSecondary),
               ),
             ],
-            OutlinedButton(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => Scaffold(
-                    appBar: AppBar(title: const Text('作品评论')),
-                    body: SingleChildScrollView(
-                      padding: const EdgeInsets.all(16),
-                      child: CommentPanel(postId: post.id),
+            if (onOpenDetail != null)
+              OutlinedButton(onPressed: onOpenDetail, child: const Text('查看作品'))
+            else if (!showInlineComments)
+              OutlinedButton(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => Scaffold(
+                      appBar: AppBar(title: const Text('作品评论')),
+                      body: SingleChildScrollView(
+                        padding: const EdgeInsets.all(16),
+                        child: CommentPanel(postId: post.id),
+                      ),
                     ),
                   ),
                 ),
+                child: const Text('查看评论'),
               ),
-              child: const Text('查看评论'),
-            ),
             if (showReturnflowActions) ...[
               SizedBox(height: t.spacing.sm),
               Container(

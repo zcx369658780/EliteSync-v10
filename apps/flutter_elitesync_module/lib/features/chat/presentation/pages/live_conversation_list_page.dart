@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -158,7 +159,6 @@ class _LiveConversationListPageState
         _ => '无法确认可信登录与设备时间，私有内容已锁定，请重新在线登录。',
       };
 
-
   Map<String, dynamic> _savedItem(Map<String, dynamic> item) => {
     'peer_user_id': item['peer_user_id'],
     'conversation_id': _conversationId(item),
@@ -304,7 +304,8 @@ class _LiveConversationListPageState
         }
       }
       if (response is NetworkFailure<Map<String, dynamic>>) {
-        if (response.statusCode == null && isTransportUnavailable(response.error)) {
+        if (response.statusCode == null &&
+            isTransportUnavailable(response.error)) {
           if (route?.isCurrent == false && !cache.isOffline) {
             // A covered list must not switch the shared cache offline while
             // the active chat is saving a separately verified text receipt.
@@ -392,9 +393,7 @@ class _LiveConversationListPageState
       _cacheStatus = '会话已加密保存在本机';
       _items = items;
     } catch (error) {
-      if (mounted &&
-          epoch == _epoch &&
-          (started == null || current(started))) {
+      if (mounted && epoch == _epoch && (started == null || current(started))) {
         _items = [];
         _error = '会话读取未确认：$error';
       }
@@ -451,97 +450,100 @@ class _LiveConversationListPageState
           ),
         ],
       ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 112),
-        children: [
-          if (_cacheStatus != null)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Text(
-                _cacheStatus!,
-                key: const ValueKey('live-private-cache-status'),
+      body: uiS3Background(
+        ListView(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 112),
+          children: [
+            if (_cacheStatus != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text(
+                  _cacheStatus!,
+                  key: const ValueKey('live-private-cache-status'),
+                ),
               ),
-            ),
-          if (!_foreground) const Text('正在更新会话'),
-          if (_offlineReadOnly) const Text('离线浏览，联网后可继续聊天'),
-          Card(
-            child: SwitchListTile(
-              title: const Text('查看我隐藏的会话'),
-              subtitle: const Text('可随时找回，消息会保留'),
-              value: _hiddenOnly,
-              onChanged: _busy || _offlineReadOnly || _trustedContextLocked
-                  ? null
-                  : (value) {
-                      setState(() {
-                        _hiddenOnly = value;
-                        _items = [];
-                      });
-                      _refresh();
-                    },
-            ),
-          ),
-          const SizedBox(height: 12),
-          if (_busy && items.isEmpty) const LinearProgressIndicator(),
-          if (_error != null)
-            Text(
-              _error!,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
-            ),
-          if (!_busy &&
-              _error == null &&
-              !_trustedContextLocked &&
-              items.isEmpty)
-            const Text('暂无会话'),
-          for (final item in items)
+            if (!_foreground) const Text('正在更新会话'),
+            if (_offlineReadOnly) const Text('离线浏览，联网后可继续聊天'),
             Card(
-              child: ListTile(
-                contentPadding: const EdgeInsets.fromLTRB(12, 8, 4, 8),
-                leading: CircleAvatar(
-                  backgroundColor: Theme.of(
-                    context,
-                  ).colorScheme.primaryContainer,
-                  foregroundColor: Theme.of(
-                    context,
-                  ).colorScheme.onPrimaryContainer,
-                  child: const Icon(Icons.person_outline),
-                ),
-                title: Text(
-                  (item['name'] ?? '会话对象 ${item['peer_user_id']}').toString(),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                subtitle: Text(
-                  (item['last_message'] ?? '').toString(),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('未读 ${(item['unread'] as num?)?.toInt() ?? 0}'),
-                    if (!_offlineReadOnly && _conversationId(item) != null)
-                      PopupMenuButton<String>(
-                        tooltip: '会话选项',
-                        onSelected: (_) => _visibility(item),
-                        itemBuilder: (_) => [
-                          PopupMenuItem(
-                            value: 'visibility',
-                            child: Text(_hiddenOnly ? '找回会话入口' : '仅对我隐藏'),
-                          ),
-                        ],
-                      ),
-                  ],
-                ),
-                onLongPress: _offlineReadOnly || _conversationId(item) == null
+              child: SwitchListTile(
+                title: const Text('查看我隐藏的会话'),
+                subtitle: const Text('可随时找回，消息会保留'),
+                value: _hiddenOnly,
+                onChanged: _busy || _offlineReadOnly || _trustedContextLocked
                     ? null
-                    : () => _visibility(item),
-                onTap: _hiddenOnly || _offlineReadOnly
-                    ? null
-                    : () => context.push('/live-chat/${item['peer_user_id']}'),
+                    : (value) {
+                        setState(() {
+                          _hiddenOnly = value;
+                          _items = [];
+                        });
+                        _refresh();
+                      },
               ),
             ),
-        ],
+            const SizedBox(height: 12),
+            if (_busy && items.isEmpty) const LinearProgressIndicator(),
+            if (_error != null)
+              Text(
+                _error!,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              ),
+            if (!_busy &&
+                _error == null &&
+                !_trustedContextLocked &&
+                items.isEmpty)
+              const Text('暂无会话'),
+            for (final item in items)
+              Card(
+                child: ListTile(
+                  contentPadding: const EdgeInsets.fromLTRB(12, 8, 4, 8),
+                  leading: CircleAvatar(
+                    backgroundColor: Theme.of(
+                      context,
+                    ).colorScheme.primaryContainer,
+                    foregroundColor: Theme.of(
+                      context,
+                    ).colorScheme.onPrimaryContainer,
+                    child: const Icon(Icons.person_outline),
+                  ),
+                  title: Text(
+                    (item['name'] ?? '会话对象 ${item['peer_user_id']}').toString(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  subtitle: Text(
+                    (item['last_message'] ?? '').toString(),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('未读 ${(item['unread'] as num?)?.toInt() ?? 0}'),
+                      if (!_offlineReadOnly && _conversationId(item) != null)
+                        PopupMenuButton<String>(
+                          tooltip: '会话选项',
+                          onSelected: (_) => _visibility(item),
+                          itemBuilder: (_) => [
+                            PopupMenuItem(
+                              value: 'visibility',
+                              child: Text(_hiddenOnly ? '找回会话入口' : '仅对我隐藏'),
+                            ),
+                          ],
+                        ),
+                    ],
+                  ),
+                  onLongPress: _offlineReadOnly || _conversationId(item) == null
+                      ? null
+                      : () => _visibility(item),
+                  onTap: _hiddenOnly || _offlineReadOnly
+                      ? null
+                      : () =>
+                            context.push('/live-chat/${item['peer_user_id']}'),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

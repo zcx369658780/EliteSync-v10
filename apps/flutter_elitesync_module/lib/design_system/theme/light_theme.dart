@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/layout/ui_s3_canvas.dart';
 import 'app_component_theme.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
 import 'package:flutter_elitesync_module/design_system/tokens/app_colors.dart';
@@ -8,38 +9,48 @@ import 'package:flutter_elitesync_module/design_system/tokens/app_spacing.dart';
 import 'package:flutter_elitesync_module/design_system/tokens/app_typography.dart';
 
 ThemeData buildLightTheme() {
-  const colorScheme = ColorScheme.light(
-    primary: Color(0xFF245FB8),
+  const uiS3 = UiS3Design.enabled;
+  final base = UiS3Backdrop.base;
+  final ink = uiS3 ? UiS3Design.ink : AppColors.textPrimaryLight;
+  final secondary = uiS3 ? UiS3Design.secondary : AppColors.textSecondaryLight;
+  final brand = uiS3 ? UiS3Design.accent : const Color(0xFF245FB8);
+  final canvas = uiS3 ? base.canvas : AppColors.lightBg;
+  final surface = uiS3 ? base.surface : AppColors.lightSurface;
+  final zone = uiS3 ? base.zone : const Color(0xFFE7EDF8);
+  final colorScheme = ColorScheme.light(
+    primary: brand,
     onPrimary: Colors.white,
-    primaryContainer: Color(0xFFE7EDF8),
-    onPrimaryContainer: Color(0xFF183F7A),
-    secondary: AppColors.brandSecondary,
-    surface: AppColors.lightSurface,
+    primaryContainer: zone,
+    onPrimaryContainer: uiS3 ? ink : const Color(0xFF183F7A),
+    secondary: uiS3 ? secondary : AppColors.brandSecondary,
+    surface: surface,
+    onSurface: ink,
+    onSurfaceVariant: secondary,
     error: Color(0xFFB42318),
     onError: Colors.white,
   );
 
   final tokens = AppThemeTokens(
-    pageBackground: AppColors.lightBg,
-    surface: AppColors.lightSurface,
-    secondarySurface: AppColors.lightSecondarySurface,
-    card: AppColors.lightSurface,
-    overlay: const Color(0xFFE7EDF8),
-    browseBackground: AppColors.browseBg,
-    browseSurface: AppColors.browseSurface,
-    browseChip: AppColors.browseChip,
-    browseNav: AppColors.browseNav,
-    browseBorder: AppColors.browseBorder,
-    textPrimary: AppColors.textPrimaryLight,
-    textSecondary: AppColors.textSecondaryLight,
+    pageBackground: canvas,
+    surface: surface,
+    secondarySurface: uiS3 ? zone : AppColors.lightSecondarySurface,
+    card: surface,
+    overlay: zone,
+    browseBackground: uiS3 ? canvas : AppColors.browseBg,
+    browseSurface: uiS3 ? surface : AppColors.browseSurface,
+    browseChip: uiS3 ? zone : AppColors.browseChip,
+    browseNav: uiS3 ? surface : AppColors.browseNav,
+    browseBorder: uiS3 ? UiS3Design.divider : AppColors.browseBorder,
+    textPrimary: ink,
+    textSecondary: secondary,
     textTertiary: Color(0xFF667085),
-    brandPrimary: Color(0xFF245FB8),
-    brandSecondary: Color(0xFF6255C4),
+    brandPrimary: brand,
+    brandSecondary: uiS3 ? secondary : const Color(0xFF6255C4),
     brandAccent: AppColors.brandAccent,
     success: Color(0xFF12734D),
     warning: Color(0xFF855000),
     error: Color(0xFFB42318),
-    info: Color(0xFF245FB8),
+    info: brand,
     spacing: const AppSpacingTokens(
       xxs: AppSpacing.xxs,
       xs: AppSpacing.xs,
@@ -74,23 +85,19 @@ ThemeData buildLightTheme() {
       useMaterial3: true,
       fontFamily: AppTypography.fontFamily,
       colorScheme: colorScheme,
-      scaffoldBackgroundColor: AppColors.lightBg,
-      textTheme:
-          const TextTheme(
-            displayLarge: AppTypography.display32Bold,
-            displayMedium: AppTypography.display28Bold,
-            headlineLarge: AppTypography.headline24SemiBold,
-            headlineMedium: AppTypography.headline20SemiBold,
-            titleLarge: AppTypography.title18SemiBold,
-            titleMedium: AppTypography.title16SemiBold,
-            bodyLarge: AppTypography.body16Regular,
-            bodyMedium: AppTypography.body14Regular,
-            bodySmall: AppTypography.body12Regular,
-            labelSmall: AppTypography.label11Medium,
-          ).apply(
-            bodyColor: AppColors.textPrimaryLight,
-            displayColor: AppColors.textPrimaryLight,
-          ),
+      scaffoldBackgroundColor: canvas,
+      textTheme: const TextTheme(
+        displayLarge: AppTypography.display32Bold,
+        displayMedium: AppTypography.display28Bold,
+        headlineLarge: AppTypography.headline24SemiBold,
+        headlineMedium: AppTypography.headline20SemiBold,
+        titleLarge: AppTypography.title18SemiBold,
+        titleMedium: AppTypography.title16SemiBold,
+        bodyLarge: AppTypography.body16Regular,
+        bodyMedium: AppTypography.body14Regular,
+        bodySmall: AppTypography.body12Regular,
+        labelSmall: AppTypography.label11Medium,
+      ).apply(bodyColor: ink, displayColor: ink),
       extensions: <ThemeExtension<dynamic>>[tokens],
     ),
   );

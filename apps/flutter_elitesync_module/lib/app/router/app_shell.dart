@@ -8,6 +8,7 @@ import 'package:flutter_elitesync_module/app/router/rtc_invite_coordinator.dart'
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/design_system/components/bars/app_bottom_nav_bar.dart';
 import 'package:flutter_elitesync_module/design_system/components/brand/floating_dock_bottom_bar.dart';
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter_elitesync_module/features/discover/presentation/pages/discover_page.dart';
 import 'package:flutter_elitesync_module/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_elitesync_module/features/match/presentation/pages/match_portal_page.dart';
@@ -148,41 +149,49 @@ class _AppShellState extends ConsumerState<AppShell> {
   Widget build(BuildContext context) {
     // ignore: avoid_print
     print('APP_SHELL_BUILD index=${widget.navigationShell.currentIndex}');
+    const items = [
+      AppBottomNavItem(
+        icon: Icons.home_outlined,
+        activeIcon: Icons.home_rounded,
+        label: '首页',
+      ),
+      AppBottomNavItem(
+        icon: Icons.route_outlined,
+        activeIcon: Icons.route_rounded,
+        label: '匹配',
+      ),
+      AppBottomNavItem(
+        icon: Icons.chat_bubble_outline,
+        activeIcon: Icons.chat_bubble,
+        label: '消息',
+      ),
+      AppBottomNavItem(
+        icon: Icons.person_outline,
+        activeIcon: Icons.person,
+        label: '我的',
+      ),
+    ];
     return Scaffold(
       body: FirstUseOnboardingAutomaticEntry(
         storage: ref.read(localStorageProvider),
+        eligible: !UiS3Design.enabled,
         child: widget.navigationShell,
       ),
-      extendBody: true,
-      bottomNavigationBar: FloatingDockBottomBar(
-        currentIndex: widget.navigationShell.currentIndex,
-        onTap: _onTap,
-        browseMode: widget.navigationShell.currentIndex != _progressIndex,
-        centerActionLabel: null,
-        onCenterActionTap: null,
-        items: const [
-          AppBottomNavItem(
-            icon: Icons.home_outlined,
-            activeIcon: Icons.home_rounded,
-            label: '首页',
-          ),
-          AppBottomNavItem(
-            icon: Icons.route_outlined,
-            activeIcon: Icons.route_rounded,
-            label: '匹配',
-          ),
-          AppBottomNavItem(
-            icon: Icons.chat_bubble_outline,
-            activeIcon: Icons.chat_bubble,
-            label: '消息',
-          ),
-          AppBottomNavItem(
-            icon: Icons.person_outline,
-            activeIcon: Icons.person,
-            label: '我的',
-          ),
-        ],
-      ),
+      extendBody: !UiS3Design.enabled,
+      bottomNavigationBar: UiS3Design.enabled
+          ? AppBottomNavBar(
+              currentIndex: widget.navigationShell.currentIndex,
+              onTap: _onTap,
+              items: items,
+            )
+          : FloatingDockBottomBar(
+              currentIndex: widget.navigationShell.currentIndex,
+              onTap: _onTap,
+              browseMode: widget.navigationShell.currentIndex != _progressIndex,
+              centerActionLabel: null,
+              onCenterActionTap: null,
+              items: items,
+            ),
     );
   }
 }

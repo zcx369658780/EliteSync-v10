@@ -1,6 +1,7 @@
 import '../../features/user_automation/user_state_page.dart';
 import '../../features/platform_v1014/platform_events_page.dart';
 import '../../features/lifestyle_discovery/lifestyle_page.dart';
+import '../../features/profile/presentation/pages/my_charts_page.dart';
 import '../../features/auth/presentation/providers/register_form_provider.dart';
 import 'package:flutter_elitesync_module/features/buddy_v1013/buddy_page.dart';
 import 'package:flutter_elitesync_module/features/slow_dating_v1012/slow_dating_journey_page.dart';
@@ -475,6 +476,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             _fadeSlidePage(state, const MbtiCenterPage()),
       ),
       GoRoute(
+        path: AppRouteNames.myCharts,
+        pageBuilder: (context, state) =>
+            _fadeSlidePage(state, const MyChartsPage()),
+      ),
+      GoRoute(
         path: AppRouteNames.astroProfile,
         pageBuilder: (context, state) =>
             _fadeSlidePage(state, const AstroProfilePage()),
@@ -517,9 +523,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                         ? AppRouteNames.progress
                         : null,
                     builder: (context, state) {
-                      final proposalId = state.uri.queryParameters['proposalId'];
+                      final proposalId =
+                          state.uri.queryParameters['proposalId'];
                       return env.restorationLocalBuild
-                          ? SlowDatingJourneyPage(expectedProposalId: proposalId)
+                          ? SlowDatingJourneyPage(
+                              expectedProposalId: proposalId,
+                            )
                           : const MatchShellPage();
                     },
                   ),

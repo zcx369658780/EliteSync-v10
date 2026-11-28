@@ -1,3 +1,5 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/app_scaffold.dart';
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/voice_memo_panel.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/widgets/private_audio_player.dart';
 import 'package:flutter_elitesync_module/features/chat/presentation/pages/conversation_search_page.dart';
@@ -109,11 +111,16 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
 
   void _handleRetainedListAuthority() {
     final authority = _retainedListAuthority.value;
-    if (!mounted || !_foreground || _sessionChanged || _timeLocked || authority == null) {
+    if (!mounted ||
+        !_foreground ||
+        _sessionChanged ||
+        _timeLocked ||
+        authority == null) {
       return;
     }
     final room = authority.rooms[widget.peerId];
-    final changedRoom = room != null &&
+    final changedRoom =
+        room != null &&
         (_roomKey != null
             ? room != _roomKey
             : _loading && room != _lastObservedListRoom);
@@ -160,7 +167,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
             revalidation != cache.onlineRevalidationEpoch)) {
       return;
     }
-    if (_offline && saved == null && cache.isUnlocked &&
+    if (_offline &&
+        saved == null &&
+        cache.isUnlocked &&
         receipt.status == PrivateCachePurgeStatus.notDue) {
       _expireOfflineReading();
       return;
@@ -1167,9 +1176,15 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           return false;
         }
         if (status != null &&
-            status >= 400 && status < 500 &&
+            status >= 400 &&
+            status < 500 &&
             !const {401, 403, 404, 408, 429}.contains(status)) {
-          await _recordAttachmentRejection(session, epoch, attempt, result.code);
+          await _recordAttachmentRejection(
+            session,
+            epoch,
+            attempt,
+            result.code,
+          );
           return false;
         }
       }
@@ -1331,15 +1346,17 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     try {
       // This GET is independent of the history and polling readers. Their
       // cached projection cannot authorize the retry.
-      final readback = await ref.read(apiClientProvider).get(
-        '/api/v1/messages',
-        query: {'peer_id': attempt.peerUserId, 'latest': 1, 'limit': 100},
-        cancelToken: _uploadCancellation,
-        options: Options(
-          headers: {'Cache-Control': 'no-cache, no-store'},
-          extra: {requestSessionGuardKey: current},
-        ),
-      );
+      final readback = await ref
+          .read(apiClientProvider)
+          .get(
+            '/api/v1/messages',
+            query: {'peer_id': attempt.peerUserId, 'latest': 1, 'limit': 100},
+            cancelToken: _uploadCancellation,
+            options: Options(
+              headers: {'Cache-Control': 'no-cache, no-store'},
+              extra: {requestSessionGuardKey: current},
+            ),
+          );
       if (!current()) return;
       if (readback is! NetworkSuccess<Map<String, dynamic>> ||
           readback.data['items'] is! List ||
@@ -1552,7 +1569,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         }
         return;
       }
-      if (check.data['room_key'] != selectionRoom || _roomKey != selectionRoom) {
+      if (check.data['room_key'] != selectionRoom ||
+          _roomKey != selectionRoom) {
         _reloadForNewRoom();
         return;
       }
@@ -1759,12 +1777,16 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         ),
       );
     }
-    return Scaffold(
+    return AppScaffold(
+      backdrop: UiS3Backdrop.quiet,
+      useSafeArea: false,
+      contentPadding: EdgeInsets.zero,
       appBar: AppBar(
         actions: [
           IconButton(
             tooltip: '拉黑账号',
-            onPressed: _writeControlsAvailable &&
+            onPressed:
+                _writeControlsAvailable &&
                     !_blockBusy &&
                     !_busy &&
                     !_draftBusy &&
@@ -1856,7 +1878,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                   ? null
                   : () {
                       final session = _session;
-                      if (session != null) _resolveBlock(session, submit: false);
+                      if (session != null)
+                        _resolveBlock(session, submit: false);
                     },
               child: const Text('核对拉黑结果'),
             ),

@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -141,6 +142,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage>
     }
 
     return AppScaffold(
+      backdrop: UiS3Backdrop.quiet,
       appBar: const AppTopBar(title: '编辑资料', mode: AppTopBarMode.backTitle),
       body: ListView(
         controller: _pageScrollController,

@@ -1,3 +1,6 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_elitesync_module/features/auth/presentation/confirm_account_logout.dart';
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
@@ -100,7 +103,7 @@ class MeLandingPage extends StatelessWidget {
               const _MePurposeEntry(
                 key: privacySettingsKey,
                 icon: Icons.privacy_tip_outlined,
-                title: '权限与说明',
+                title: UiS3Design.enabled ? '隐私与权限' : '权限与说明',
                 subtitle: '管理资料受众，查看使用说明。',
                 route: AppRouteNames.mePrivacySettings,
               ),
@@ -192,18 +195,24 @@ class MeLandingPage extends StatelessWidget {
   }
 }
 
-class _B3MeLandingPage extends StatelessWidget {
+class _B3MeLandingPage extends ConsumerWidget {
   const _B3MeLandingPage({required this.restorationLocalBuild});
 
   final bool restorationLocalBuild;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.appTokens;
     return Scaffold(
       appBar: AppBar(
         title: const Text('我的'),
         actions: [
+          if (UiS3Design.enabled)
+            IconButton(
+              tooltip: '退出登录',
+              icon: const Icon(Icons.logout_rounded),
+              onPressed: () => confirmAccountLogout(context, ref),
+            ),
           IconButton(
             tooltip: '设置',
             icon: const Icon(Icons.settings_outlined),
@@ -252,7 +261,7 @@ class _B3MeLandingPage extends StatelessWidget {
             children: [
               _MeQuickEntry(
                 key: MeLandingPage.privacySettingsKey,
-                title: '权限与说明',
+                title: UiS3Design.enabled ? '隐私与权限' : '权限与说明',
                 icon: Icons.privacy_tip_outlined,
                 route: AppRouteNames.mePrivacySettings,
               ),
@@ -273,9 +282,11 @@ class _B3MeLandingPage extends StatelessWidget {
                   route: AppRouteNames.mbtiCenter,
                 ),
                 _MeQuickEntry(
-                  title: '三盘本命',
+                  title: UiS3Design.enabled ? '我的三盘' : '三盘本命',
                   icon: Icons.auto_awesome_outlined,
-                  route: AppRouteNames.astroProfile,
+                  route: UiS3Design.enabled
+                      ? AppRouteNames.myCharts
+                      : AppRouteNames.astroProfile,
                 ),
                 _MeQuickEntry(
                   title: '动态星盘与关系盘',

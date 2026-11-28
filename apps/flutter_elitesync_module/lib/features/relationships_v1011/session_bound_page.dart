@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
@@ -190,7 +191,12 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
     }
   }
 
-  Widget frame(String title, List<Widget> children) => Scaffold(
+  Widget frame(
+    String title,
+    List<Widget> children, {
+    UiS3Backdrop backdrop = UiS3Backdrop.base,
+    bool showBuddyArt = false,
+  }) => Scaffold(
     appBar: AppBar(
       title: Text(title),
       actions: [
@@ -201,28 +207,32 @@ abstract class SessionBoundPage<T extends ConsumerStatefulWidget>
         ),
       ],
     ),
-    body: ListView(
-      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 112),
-      children: [
-        if (busy) const LinearProgressIndicator(),
-        if (error != null)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            child: Semantics(
-              liveRegion: true,
-              child: Text(
-                relationshipErrorLabel(error!),
-                key: const Key('server-error'),
+    body: uiS3Background(
+      ListView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 112),
+        children: [
+          if (busy) const LinearProgressIndicator(),
+          if (error != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Semantics(
+                liveRegion: true,
+                child: Text(
+                  relationshipErrorLabel(error!),
+                  key: const Key('server-error'),
+                ),
               ),
             ),
-          ),
-        if (_identity == null)
-          const Text('请登录后继续')
-        else
-          for (final child in children)
-            Padding(padding: const EdgeInsets.only(bottom: 12), child: child),
-      ],
+          if (_identity == null)
+            const Text('请登录后继续')
+          else
+            for (final child in children)
+              Padding(padding: const EdgeInsets.only(bottom: 12), child: child),
+        ],
+      ),
+      kind: backdrop,
+      showBuddyArt: showBuddyArt,
     ),
   );
 

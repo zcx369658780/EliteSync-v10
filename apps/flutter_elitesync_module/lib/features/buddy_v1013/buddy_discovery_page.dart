@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../relationships_v1011/relationship_api.dart';
@@ -255,7 +256,7 @@ class _BuddyDiscoveryPageState extends SessionBoundPage<BuddyDiscoveryPage>
         onPressed: busy || _pendingBody != null ? null : _more,
         child: const Text('加载更多'),
       ),
-  ]);
+  ], backdrop: UiS3Backdrop.buddy);
 
   @override
   void dispose() {

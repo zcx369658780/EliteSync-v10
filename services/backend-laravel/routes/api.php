@@ -90,7 +90,8 @@ Route::prefix('v1')->group(function () {
     Route::post('/account/closure-receipts/{requestId}', [AccountSecurityController::class, 'receipt'])->middleware('throttle:10,1');
     Route::prefix('auth')->group(function () {
         Route::get('/support-capabilities', [AccountSupportController::class, 'capabilities'])->middleware('throttle:60,1');
-        Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:auth');
+        Route::post('/register', [AuthController::class, 'register'])
+            ->middleware(['throttle:auth', \App\Http\Middleware\RequireVerifiedRegistrationAgreement::class]);
         Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:auth');
         Route::post('/session/verify', [AuthController::class, 'verifySession'])->middleware(['auth:sanctum', 'account.active']);
         Route::post('/refresh', [AuthController::class, 'refresh'])->middleware(['auth:sanctum', 'account.active']);

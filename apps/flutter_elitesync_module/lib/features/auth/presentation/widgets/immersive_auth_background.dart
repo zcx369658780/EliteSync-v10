@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_extensions.dart';
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 
 class ImmersiveAuthBackground extends StatefulWidget {
   const ImmersiveAuthBackground({
@@ -14,7 +15,8 @@ class ImmersiveAuthBackground extends StatefulWidget {
   final bool performanceLiteMode;
 
   @override
-  State<ImmersiveAuthBackground> createState() => _ImmersiveAuthBackgroundState();
+  State<ImmersiveAuthBackground> createState() =>
+      _ImmersiveAuthBackgroundState();
 }
 
 class _ImmersiveAuthBackgroundState extends State<ImmersiveAuthBackground>
@@ -43,6 +45,10 @@ class _ImmersiveAuthBackgroundState extends State<ImmersiveAuthBackground>
 
   @override
   Widget build(BuildContext context) {
+    if (UiS3Design.enabled) {
+      _syncAnimation(true);
+      return UiS3Canvas(kind: UiS3Backdrop.quiet, child: widget.child);
+    }
     final t = context.appTokens;
     final keyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
     _syncAnimation(keyboardVisible || widget.performanceLiteMode);
@@ -68,7 +74,9 @@ class _ImmersiveAuthBackgroundState extends State<ImmersiveAuthBackground>
             children: [
               CustomPaint(
                 painter: _StarFieldPainter(
-                  progress: (keyboardVisible || widget.performanceLiteMode) ? 0.35 : _controller.value,
+                  progress: (keyboardVisible || widget.performanceLiteMode)
+                      ? 0.35
+                      : _controller.value,
                   starColor: t.textPrimary.withValues(alpha: 0.9),
                   performanceLiteMode: widget.performanceLiteMode,
                 ),

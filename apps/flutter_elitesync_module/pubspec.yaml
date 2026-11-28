@@ -54,6 +54,7 @@ flutter:
   assets:
     - assets/config/
     - assets/lifestyle_discovery/
+    - assets/ui_s3/
   module:
     androidX: true
     androidPackage: com.elitesync.flutter_elitesync_module

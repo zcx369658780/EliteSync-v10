@@ -18,13 +18,9 @@ class LoginFormNotifier extends Notifier<LoginFormState> {
     state = state.copyWith(password: value, clearError: true);
   }
 
-  void onAgreementChanged(bool value) {
-    state = state.copyWith(isAgreementAccepted: value, clearError: true);
-  }
-
   Future<bool> submit() async {
     if (!state.canSubmit) {
-      state = state.copyWith(submitError: '请先填写正确手机号、密码并勾选协议');
+      state = state.copyWith(submitError: '请检查手机号和密码后重试。');
       return false;
     }
 

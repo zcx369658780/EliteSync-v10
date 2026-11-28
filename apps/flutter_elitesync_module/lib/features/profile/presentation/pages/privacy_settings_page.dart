@@ -1,3 +1,4 @@
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter_elitesync_module/features/profile/presentation/pages/data_rights_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +15,7 @@ class PrivacySettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.appTokens;
     return AppScaffold(
+      backdrop: UiS3Backdrop.quiet,
       appBar: const AppTopBar(title: '权限与说明', mode: AppTopBarMode.backTitle),
       body: ListView(
         padding: EdgeInsets.fromLTRB(0, t.spacing.sm, 0, t.spacing.xl),
