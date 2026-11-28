@@ -1,0 +1,36 @@
+编号,状态,真实入口,现有功能保留点,结果,截图对应源码,私有PNG索引,截图SHA256,范围
+01,首页,/home,当前任务、我的三盘、好友动态及其他已存在入口,APK_PAGE_OBSERVED,0f051a4e,S3-CHARTS-01-home.png,4fc4db2509a73d7c6946b2b5ed0f4216edfc168f818ddeac4d5a02baf1595fef,
+02,八字,/profile/my-charts,四柱和五行，藏干、大运流年与扩展,APK_PAGE_OBSERVED,0f051a4e,S3-CHARTS-02-bazi.png,1f2fe9e08f8577b85048f974934d14eb00fcfa8112673cf9e0fc5bc22256e0be,
+03,紫微,/profile/my-charts,十二宫网格，宫位详情、星曜和运限,APK_PAGE_OBSERVED,0f051a4e,S3-CHARTS-03-ziwei.png,a903d55995209dbe2e71e3bc3a5ef16c4120338e14dccbb407a9660c6e70ec66,
+04,西洋占星,/profile/my-charts,真实圆盘、行星、宫位与相位,APK_PAGE_OBSERVED,0f051a4e,S3-CHARTS-04-western.png,9c85aaaa6060bf38f4e98f2d9437b3a2ccc16c09a789e1a2c339f0f5a051bcb7,
+05,历史命盘,命盘管理 → 历史命盘,独立历史入口，旧版本只读详情,APK_PAGE_OBSERVED,cc32653c,S3-U05-history-detail-v1.png,55b210209145c9e421e8258b440b4a8e4057e8cca75c4dd2b6742bf24ee0f557,历史列表与旧 v1 详情；当前结果独立
+06,填写出生资料,命盘管理 → 出生资料,资料导入、坐标确认，单独保存和读回,APK_PAGE_OBSERVED,cc32653c,S3-U04-06-birth-form.png,cad97cfd13962e893e5edc6d288ecabca337a0fbb612cb7f091ff1bbc8662359,
+07,欢迎,登录品牌首屏；设置的手动引导,按需说明已接入；手动引导单独保留,APK_PAGE_OBSERVED,0f051a4e,S3-LAST-A-07-auth-login.png,5ab582aab6cd46780eced9aebde779b88bb010699c4bc62ddee698bbe8939514,新登录首屏采用品牌设计。独立欢迎原型页以按需引导代替，手动引导另行核验
+08,普通注册,/auth/register,R04-A 门控，禁止勾选空协议并提交,APK_PAGE_OBSERVED,0f051a4e,S3-U01-08-registration-gated.png,9a7a73fdee8365b971a1238e958a4877a14d3046575c4590a44d44c1585472f2,普通注册为按合同禁用状态；原型的正向注册交互仅作历史设计记录
+09,Lifestyle,/lifestyle-discovery,五场景及回改和续答合同,APK_PAGE_OBSERVED,cc32653c,S3-U12-lifestyle-scene.png,5952dffd9d2c5a09975566803f6b0874b8724eca42d1dc01185fd206ea3ea9a5,
+10,匹配准备,/progress/match,资格门禁、匹配资料、报名及问卷入口,APK_PAGE_OBSERVED,73148079,S3-U02-10-preparation.png,26bb8b23a197cc8a08ec1feff3057666e52e7cd56cc4c442964cb7635596132d,合成资格与准备实测范围详见报告
+11,必要问卷,/questionnaire,真实题库、自动保存推进、完成后准备状态,APK_PAGE_OBSERVED,73148079,S3-U02-11-question.png,1806c99f5f0973e9f3160b75e97457dcdb14074bf73956051e227d2d9a8457cd,答题完成与定位结论见本轮计量
+12,作品详情,/status/post/:id,真实作品直接喜欢、取消和回复,APK_PAGE_OBSERVED,73148079,LIGHT-PAGES-12-post.png,924728b2ce1236f0cf53f88227fe10ae4395c88166061ab8e115a92129c7054c,
+13,好友动态,/status/square,独立浏览、发布入口、权限和分页,APK_PAGE_OBSERVED,73148079,LIGHT-PAGES-13-friends.png,d29772bdb7afc50d46a58ffc54e8ec8031751b05df053bbfadf8d81287830e0e,
+14,候选详情,/progress/match,有限正文、快照版本及双方决定,APK_PAGE_OBSERVED,e130fde8,S3-U09-14-candidate.png,2d269234d3a181f916f54accd47b1f011a13da8f06c4d9625670bd5a2ecb8922,双边证据来自相同功能实现的较早候选，留存 v1 语义以独立 HTTP 核对
+15,关系进度,/progress,匹配、联系和聊天许可各自显示真实状态,APK_PAGE_OBSERVED,73148079,LIGHT-MATCH-15-progress.png,1cba43dc90f59d9050183c44a60c17909addf5fb485e7e1479bebe89553af6d0,
+16,消息列表,/messages,真实会话列表，通知及隐藏入口,APK_PAGE_OBSERVED,73148079,LIGHT-INBOX-16-inbox.png,5ed781d69554fae0c5acc2e75d2bce829662b4a75f0bf277606de5be85ce0780,
+17,聊天,/live-chat/:peer,文字、独立许可及旧附件恢复入口,APK_PAGE_OBSERVED,73148079,LIGHT-INBOX-17-chat.png,e4f2778d6a0c36cf9f7d80bcd8225ba76d6912ecf09fb41b4d9c66f77151779c,文字及已授权附件的具名范围按报告；独立权限与合成条件保留
+18,站内通知,/notifications,站内通知、原目标回查及通知偏好,APK_PAGE_OBSERVED,73148079,LIGHT-INBOX-18-notification.png,a1d6f565feb514785d4a51fea3303d960f40edc0e43d72d23eac7b1be81fb150,
+19,个人中心,/me,资料、隐私、设置与退出入口,APK_PAGE_OBSERVED,73148079,S3-U11-18-me.png,f7641717228c835ec43ba9139db501bfbf9db6118edacc40fb7d7bf32ea22047,
+20,基础资料,/me/private-identity,基础资料独立管理，复用仍受授权,APK_PAGE_OBSERVED,cc32653c,S3-U03-19-base.png,937b4a3a742d0f4c4513d622b4d72ee5abead4272ce303002db7c74bf95c3d82,
+21,展示资料,/me/showcase,私有草稿、审核、明确发布分别处理,APK_PAGE_OBSERVED,73148079,S3-DRAFT-20-showcase.png,b713d9a0a774bc49ea37ddff1ac0ecf94430d2a8dbdf7bacefdfbeb6f413f744,
+22,Buddy,/buddy-v1013,发现和本人活动、开启请求、撤回,APK_PAGE_OBSERVED,73148079,S3-U10-22-buddy.png,950c18c4dab3f1180c3c6c85dd387f5831bf553e27adde4afb6d612e4d7ca9e5,主入口与发现功能；未观察的新操作按报告
+23,隐私与授权,/me/privacy-settings,用途、入口、撤权和账号安全,APK_PAGE_OBSERVED,73148079,S3-U11-23-privacy.png,51423acaef6b138e6ca065daebfd7646278b72bb52201af6c29efd59280876f1,
+24,设置,/profile/settings,外观、通知、隐私与安全，可重看引导,APK_PAGE_OBSERVED,73148079,S3-U11-24-settings.png,57830965f892828372c2bd327b62c3dfd5c14fcdcafad4ce2ffc5a4e7926d1ab,
+F01,公开专题／精选／好友搜索,首页内容频道、/editorial,原有访客空配置和合法内容可见性,SOURCE_MAPPED,,,,设备或运行补证按报告
+F02,正式恋爱关系和分享,/formal-relationship 与现有权限页,正式核验、双方确认、字段授权和撤回,SOURCE_MAPPED,,,,设备或运行补证按报告
+F03,动态星盘、关系盘及兼容读取,命盘管理 → 来源、精度与高级工具；/profile/astro/advanced,保留动态、关系盘和历史版本,SOURCE_MAPPED,,,,设备或运行补证按报告
+F04,择偶资料与记录,/me/matching-inputs、匹配记录,权威字段、个人历史及自动化,SOURCE_MAPPED,,,,设备或运行补证按报告
+F05,社区治理,好友动态原操作栏及作品评论,收藏、举报、受众变更、撤下、对象数据请求,SOURCE_MAPPED,,,,设备或运行补证按报告
+F06,聊天安全与恢复,聊天详情和站内通知,拉黑、草稿、附件权限、拒绝取消、原编号核对,SOURCE_MAPPED,,,,设备或运行补证按报告
+F07,设备、账号、申诉、数据权利,设置、隐私、账号状态,当前设备撤销、账号帮助、对象级请求状态门控,SOURCE_MAPPED,,,,设备或运行补证按报告
+F08,独立 Web 管理,现行审核、匹配、通知、用户管理,操作员授权保持；局部后端合成审核回执,SOURCE_MAPPED,,,,设备或运行补证按报告
+F09,图片、视频与权限失效,作品详情、动态发布、聊天,受众、权限和共享媒体合同沿既有边界,SOURCE_MAPPED,,,,设备或运行补证按报告
+F10,可选人格与使用说明,我的 → MBTI 或设置,既有用户可回看，首次登录按需,SOURCE_MAPPED,,,,设备或运行补证按报告
+F11,好友、请求、通知偏好,设置及消息入口,独立好友授权、通知偏好及旧目标权限重验,SOURCE_MAPPED,,,,设备或运行补证按报告
