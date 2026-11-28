@@ -17,8 +17,9 @@
 ## 2. 当前 GitHub 固定基线
 
 - 分支：`codex/v2-function-completion-20261121`
-- 当前交付 HEAD：`b999bcb6cef2d2fe339b761b7054e36dadeeb524`
-- Git tree：`f29cbfb46b214f441c73c3fc8eb8e4da0fd129e0`
+- 当前文档归档 HEAD：`c16c71774551e43ca431d456769321474f62899b`
+- 当前 Git tree：`6b59cc5e709b15507df28f4de65951ab1b0a7c10`
+- UI-S4 产品任务起点（UI-S3-R 交付）：`b999bcb6cef2d2fe339b761b7054e36dadeeb524` / tree `f29cbfb46b214f441c73c3fc8eb8e4da0fd129e0`
 - UI-S3-R 报告：`docs/versions/v2/cloud-r0-20261121/ui-s3-r-20261128/V2_UI_S3_R_VISUAL_AND_INTERACTION_REFINEMENT_REPORT.md`
 - UI-S4 任务单：`docs/versions/v2/cloud-r0-20261121/ui-s4-20261128/V2_UI_S4_QUANTITATIVE_UX_ACCEPTANCE_TASK_20261128.md`
 - Owner 决策：`docs/decisions/OWNER_V2_UI_S3_R_ACCEPTANCE_AND_UI_S4_AUTHORIZATION_20261128.md`
