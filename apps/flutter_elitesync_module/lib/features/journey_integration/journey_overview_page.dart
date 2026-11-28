@@ -370,19 +370,19 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
                 onPressed: busy
                     ? null
                     : () => _open(AppRouteNames.progressMatch),
-                child: const Text('匹配准备与候选'),
+                child: const Text(UiS3Design.enabled ? '匹配准备与候选' : '报名与候选详情'),
               ),
             ],
           ),
         ),
       ),
       _domain(
-        '联系',
+        UiS3Design.enabled ? '联系' : '连接',
         _pairLabel(objectMap(pair['connection'])),
         key: const Key('domain-connection'),
       ),
       _domain(
-        '聊天许可',
+        UiS3Design.enabled ? '聊天许可' : '消息许可',
         _pairLabel(objectMap(pair['consent'])),
         key: const Key('domain-consent'),
       ),
@@ -392,7 +392,7 @@ class _JourneyOverviewState extends SessionBoundPage<JourneyOverviewPage>
           child: const Text('进入聊天'),
         ),
       _link(
-        '联系与聊天许可',
+        UiS3Design.enabled ? '联系与聊天许可' : '连接与消息许可',
         pair.isNotEmpty &&
                 pair['_unavailable'] != true &&
                 peer is int &&

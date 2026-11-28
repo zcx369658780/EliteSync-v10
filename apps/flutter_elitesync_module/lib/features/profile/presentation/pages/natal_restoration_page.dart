@@ -1,4 +1,3 @@
-import 'package:flutter_elitesync_module/design_system/components/layout/app_scaffold.dart';
 import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -864,9 +863,233 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
         });
       }
     });
-    return AppScaffold(
-      backdrop: UiS3Backdrop.quiet,
-      contentPadding: EdgeInsets.zero,
+    final body = SafeArea(
+      child: ListView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        padding: const EdgeInsets.all(16),
+        children: [
+          const Text('出生资料仅自己可见。排盘用性别由你填写，结果不用于匹配。'),
+          if (_busy) const LinearProgressIndicator(),
+          if (_error != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Text(
+                _error!,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              ),
+            ),
+          OutlinedButton.icon(
+            onPressed: _busy ? null : _reload,
+            icon: const Icon(Icons.refresh),
+            label: const Text('重新读取已保存资料（替换当前输入）'),
+          ),
+          if (_loaded && widget.settingsOnly && _revision == 0)
+            const Text('请先保存出生资料，再调整计算设置。'),
+          if (_loaded && (!widget.settingsOnly || _revision > 0))
+            Form(
+              key: _form,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (!widget.settingsOnly) ...[
+                    OutlinedButton.icon(
+                      onPressed: _canChangeDraft ? _importBirthProfile : null,
+                      icon: const Icon(Icons.person_outline),
+                      label: const Text('使用已保存的出生资料'),
+                    ),
+                    _field(
+                      '出生日期',
+                      _date,
+                      hint: 'YYYY-MM-DD',
+                      validator: _dateError,
+                    ),
+                    _choice('出生时间精度', _precision, {
+                      'unknown': '时间未知（不补默认时间）',
+                      'minute': '精确到分',
+                      'second': '精确到秒',
+                    }, (v) => _precision = v),
+                    if (_precision != 'unknown')
+                      _field(
+                        '出生当地时间',
+                        _time,
+                        hint: _precision == 'second' ? 'HH:mm:ss' : 'HH:mm',
+                        validator: (v) {
+                          final s = v?.trim() ?? '';
+                          final pattern = _precision == 'second'
+                              ? r'^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$'
+                              : r'^([01]\d|2[0-3]):[0-5]\d$';
+                          return RegExp(pattern).hasMatch(s)
+                              ? null
+                              : '时间格式与精度不一致';
+                        },
+                      ),
+                    _field(
+                      'IANA时区',
+                      _timezone,
+                      hint: 'Asia/Shanghai / America/New_York',
+                      validator: (v) =>
+                          (v?.trim().isEmpty ?? true) ? '必须明确选择时区' : null,
+                    ),
+                    _choice('夏令时重叠时间（fold）', _fold, {
+                      'unspecified': '未指定（遇重叠时须选择）',
+                      '0': '第一次当地时间',
+                      '1': '第二次当地时间',
+                    }, (v) => _fold = v),
+                    _field(
+                      '出生地点名称（可选）',
+                      _place,
+                      hint: '例如医院、街道或县区',
+                      keyboard: TextInputType.text,
+                      enableSuggestions: true,
+                    ),
+                    OutlinedButton.icon(
+                      onPressed:
+                          _canChangeDraft && _place.text.trim().isNotEmpty
+                          ? _searchBirthPlaces
+                          : null,
+                      icon: const Icon(Icons.search),
+                      label: const Text('搜索并带入坐标'),
+                    ),
+                    OutlinedButton.icon(
+                      onPressed:
+                          _canChangeDraft && _place.text.trim().isNotEmpty
+                          ? _searchBaiduMap
+                          : null,
+                      icon: const Icon(Icons.map_outlined),
+                      label: const Text('打开百度地图查看'),
+                    ),
+                    _field(
+                      '纬度 WGS84（可选）',
+                      _latitude,
+                      keyboard: const TextInputType.numberWithOptions(
+                        decimal: true,
+                        signed: true,
+                      ),
+                      validator: (v) => _coordinate(v, 90),
+                    ),
+                    _field(
+                      '经度 WGS84（可选）',
+                      _longitude,
+                      keyboard: const TextInputType.numberWithOptions(
+                        decimal: true,
+                        signed: true,
+                      ),
+                      validator: (v) {
+                        final err = _coordinate(v, 180);
+                        if (err != null) return err;
+                        return _latitude.text.trim().isEmpty !=
+                                _longitude.text.trim().isEmpty
+                            ? '经纬度须成对提供'
+                            : null;
+                      },
+                    ),
+                    _choice('算法使用性别', _sex, {
+                      'unknown': '未知（相关运限不计算）',
+                      'male': '男（算法规则）',
+                      'female': '女（算法规则）',
+                    }, (v) => _sex = v),
+                    const SizedBox(height: 12),
+                  ],
+                  ExpansionTile(
+                    initiallyExpanded: widget.settingsOnly,
+                    maintainState: true,
+                    title: const Text('高级计算参数'),
+                    children: [
+                      _choice('黄道', _zodiac, {
+                        'tropical': '回归黄道',
+                        'sidereal': '自定义恒星黄道（CRC1956）',
+                      }, (v) => _zodiac = v),
+                      if (_zodiac == 'sidereal')
+                        const Text('CRC1956 自定义重建，非官方 Lahiri；定义与核验状态见盘面详情。'),
+                      _choice('宫制', _house, {
+                        'placidus': 'Placidus',
+                        'whole': '整宫制',
+                        'alcabitius': 'Alcabitius',
+                      }, (v) => _house = v),
+                      _choice('相位集合', _aspect, {
+                        'major': '主要相位',
+                        'standard': '标准相位',
+                        'extended': '扩展相位',
+                      }, (v) => _aspect = v),
+                      _choice('容许度', _orb, {
+                        'tight': '紧（3°）',
+                        'standard': '标准（6°）',
+                        'wide': '宽（8°）',
+                      }, (v) => _orb = v),
+                      _choice('本命点集合', _points, {
+                        'core': '核心十主体',
+                        'extended': '扩展点',
+                        'full': '完整准入点',
+                      }, (v) => _points = v),
+                      SwitchListTile(
+                        contentPadding: EdgeInsets.zero,
+                        title: const Text('使用真太阳时'),
+                        subtitle: const Text('需要明确坐标；以返回的时间来源与计算规则为准'),
+                        value: _solar,
+                        onChanged: _busy || _pendingBody != null
+                            ? null
+                            : (v) => setState(() {
+                                _solar = v;
+                                _profile = null;
+                              }),
+                      ),
+                      _field(
+                        '运限目标年份（可选）',
+                        _year,
+                        keyboard: TextInputType.number,
+                        validator: (v) {
+                          if (v == null || v.trim().isEmpty) return null;
+                          final y = int.tryParse(v.trim());
+                          return y == null || y < 1800 || y > 2100
+                              ? '请输入支持范围内的年份'
+                              : null;
+                        },
+                      ),
+                    ],
+                  ),
+                  if (_pendingBody != null)
+                    const Text('未确认操作保留原输入与版本。重新读取会替换当前表单，请先确认操作结果。'),
+                  FilledButton.icon(
+                    onPressed: _busy || _conflict ? null : _save,
+                    icon: const Icon(Icons.save),
+                    label: Text(_pendingBody == null ? '保存、计算并持久重读' : '按原操作重试'),
+                  ),
+                ],
+              ),
+            ),
+          if (!widget.showEditorOnly) ...[
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text('显示解释提示'),
+              subtitle: const Text('关闭后仍可查看基础盘与计算详情'),
+              value: _explanation,
+              onChanged: (v) => setState(() => _explanation = v),
+            ),
+            if (_loaded)
+              ToolRevisionHistory(
+                key: ValueKey('natal-revisions:$_revision:$_sessionEpoch'),
+                endpoint: '/api/v1/profile/natal/history',
+                detailKey: 'profile',
+              ),
+            if (_profile != null) ...[
+              Text(
+                '输入版本 $_revision · 结果版本 ${natalText(_profile!['result_revision'])} · ${natalText(_profile!['status'])}',
+              ),
+              Text(
+                '时区 ${natalText(natalMap(_profile!['context'])['timezone'])}；UTC ${natalText(natalMap(_profile!['context'])['utc'])}',
+              ),
+              NatalRestorationCharts(
+                results: natalMap(_profile!['results']),
+                explanation: _explanation,
+                displayPrefs: ref.watch(astroChartSettingsProvider),
+                locationLabel: _place.text,
+              ),
+            ],
+          ],
+        ],
+      ),
+    );
+    return Scaffold(
       appBar: AppBar(
         title: Text(
           widget.settingsOnly
@@ -876,235 +1099,7 @@ class _NatalRestorationPageState extends ConsumerState<NatalRestorationPage> {
               : '三盘本命排盘',
         ),
       ),
-      useSafeArea: false,
-      body: SafeArea(
-        child: ListView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          padding: const EdgeInsets.all(16),
-          children: [
-            const Text('出生资料仅自己可见。排盘用性别由你填写，结果不用于匹配。'),
-            if (_busy) const LinearProgressIndicator(),
-            if (_error != null)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Text(
-                  _error!,
-                  style: TextStyle(color: Theme.of(context).colorScheme.error),
-                ),
-              ),
-            OutlinedButton.icon(
-              onPressed: _busy ? null : _reload,
-              icon: const Icon(Icons.refresh),
-              label: const Text('重新读取已保存资料（替换当前输入）'),
-            ),
-            if (_loaded && widget.settingsOnly && _revision == 0)
-              const Text('请先保存出生资料，再调整计算设置。'),
-            if (_loaded && (!widget.settingsOnly || _revision > 0))
-              Form(
-                key: _form,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    if (!widget.settingsOnly) ...[
-                      OutlinedButton.icon(
-                        onPressed: _canChangeDraft ? _importBirthProfile : null,
-                        icon: const Icon(Icons.person_outline),
-                        label: const Text('使用已保存的出生资料'),
-                      ),
-                      _field(
-                        '出生日期',
-                        _date,
-                        hint: 'YYYY-MM-DD',
-                        validator: _dateError,
-                      ),
-                      _choice('出生时间精度', _precision, {
-                        'unknown': '时间未知（不补默认时间）',
-                        'minute': '精确到分',
-                        'second': '精确到秒',
-                      }, (v) => _precision = v),
-                      if (_precision != 'unknown')
-                        _field(
-                          '出生当地时间',
-                          _time,
-                          hint: _precision == 'second' ? 'HH:mm:ss' : 'HH:mm',
-                          validator: (v) {
-                            final s = v?.trim() ?? '';
-                            final pattern = _precision == 'second'
-                                ? r'^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$'
-                                : r'^([01]\d|2[0-3]):[0-5]\d$';
-                            return RegExp(pattern).hasMatch(s)
-                                ? null
-                                : '时间格式与精度不一致';
-                          },
-                        ),
-                      _field(
-                        'IANA时区',
-                        _timezone,
-                        hint: 'Asia/Shanghai / America/New_York',
-                        validator: (v) =>
-                            (v?.trim().isEmpty ?? true) ? '必须明确选择时区' : null,
-                      ),
-                      _choice('夏令时重叠时间（fold）', _fold, {
-                        'unspecified': '未指定（遇重叠时须选择）',
-                        '0': '第一次当地时间',
-                        '1': '第二次当地时间',
-                      }, (v) => _fold = v),
-                      _field(
-                        '出生地点名称（可选）',
-                        _place,
-                        hint: '例如医院、街道或县区',
-                        keyboard: TextInputType.text,
-                        enableSuggestions: true,
-                      ),
-                      OutlinedButton.icon(
-                        onPressed:
-                            _canChangeDraft && _place.text.trim().isNotEmpty
-                            ? _searchBirthPlaces
-                            : null,
-                        icon: const Icon(Icons.search),
-                        label: const Text('搜索并带入坐标'),
-                      ),
-                      OutlinedButton.icon(
-                        onPressed:
-                            _canChangeDraft && _place.text.trim().isNotEmpty
-                            ? _searchBaiduMap
-                            : null,
-                        icon: const Icon(Icons.map_outlined),
-                        label: const Text('打开百度地图查看'),
-                      ),
-                      _field(
-                        '纬度 WGS84（可选）',
-                        _latitude,
-                        keyboard: const TextInputType.numberWithOptions(
-                          decimal: true,
-                          signed: true,
-                        ),
-                        validator: (v) => _coordinate(v, 90),
-                      ),
-                      _field(
-                        '经度 WGS84（可选）',
-                        _longitude,
-                        keyboard: const TextInputType.numberWithOptions(
-                          decimal: true,
-                          signed: true,
-                        ),
-                        validator: (v) {
-                          final err = _coordinate(v, 180);
-                          if (err != null) return err;
-                          return _latitude.text.trim().isEmpty !=
-                                  _longitude.text.trim().isEmpty
-                              ? '经纬度须成对提供'
-                              : null;
-                        },
-                      ),
-                      _choice('算法使用性别', _sex, {
-                        'unknown': '未知（相关运限不计算）',
-                        'male': '男（算法规则）',
-                        'female': '女（算法规则）',
-                      }, (v) => _sex = v),
-                      const SizedBox(height: 12),
-                    ],
-                    ExpansionTile(
-                      initiallyExpanded: widget.settingsOnly,
-                      maintainState: true,
-                      title: const Text('高级计算参数'),
-                      children: [
-                        _choice('黄道', _zodiac, {
-                          'tropical': '回归黄道',
-                          'sidereal': '自定义恒星黄道（CRC1956）',
-                        }, (v) => _zodiac = v),
-                        if (_zodiac == 'sidereal')
-                          const Text('CRC1956 自定义重建，非官方 Lahiri；定义与核验状态见盘面详情。'),
-                        _choice('宫制', _house, {
-                          'placidus': 'Placidus',
-                          'whole': '整宫制',
-                          'alcabitius': 'Alcabitius',
-                        }, (v) => _house = v),
-                        _choice('相位集合', _aspect, {
-                          'major': '主要相位',
-                          'standard': '标准相位',
-                          'extended': '扩展相位',
-                        }, (v) => _aspect = v),
-                        _choice('容许度', _orb, {
-                          'tight': '紧（3°）',
-                          'standard': '标准（6°）',
-                          'wide': '宽（8°）',
-                        }, (v) => _orb = v),
-                        _choice('本命点集合', _points, {
-                          'core': '核心十主体',
-                          'extended': '扩展点',
-                          'full': '完整准入点',
-                        }, (v) => _points = v),
-                        SwitchListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: const Text('使用真太阳时'),
-                          subtitle: const Text('需要明确坐标；以返回的时间来源与计算规则为准'),
-                          value: _solar,
-                          onChanged: _busy || _pendingBody != null
-                              ? null
-                              : (v) => setState(() {
-                                  _solar = v;
-                                  _profile = null;
-                                }),
-                        ),
-                        _field(
-                          '运限目标年份（可选）',
-                          _year,
-                          keyboard: TextInputType.number,
-                          validator: (v) {
-                            if (v == null || v.trim().isEmpty) return null;
-                            final y = int.tryParse(v.trim());
-                            return y == null || y < 1800 || y > 2100
-                                ? '请输入支持范围内的年份'
-                                : null;
-                          },
-                        ),
-                      ],
-                    ),
-                    if (_pendingBody != null)
-                      const Text('未确认操作保留原输入与版本。重新读取会替换当前表单，请先确认操作结果。'),
-                    FilledButton.icon(
-                      onPressed: _busy || _conflict ? null : _save,
-                      icon: const Icon(Icons.save),
-                      label: Text(
-                        _pendingBody == null ? '保存、计算并持久重读' : '按原操作重试',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            if (!widget.showEditorOnly) ...[
-              SwitchListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text('显示解释提示'),
-                subtitle: const Text('关闭后仍可查看基础盘与计算详情'),
-                value: _explanation,
-                onChanged: (v) => setState(() => _explanation = v),
-              ),
-              if (_loaded)
-                ToolRevisionHistory(
-                  key: ValueKey('natal-revisions:$_revision:$_sessionEpoch'),
-                  endpoint: '/api/v1/profile/natal/history',
-                  detailKey: 'profile',
-                ),
-              if (_profile != null) ...[
-                Text(
-                  '输入版本 $_revision · 结果版本 ${natalText(_profile!['result_revision'])} · ${natalText(_profile!['status'])}',
-                ),
-                Text(
-                  '时区 ${natalText(natalMap(_profile!['context'])['timezone'])}；UTC ${natalText(natalMap(_profile!['context'])['utc'])}',
-                ),
-                NatalRestorationCharts(
-                  results: natalMap(_profile!['results']),
-                  explanation: _explanation,
-                  displayPrefs: ref.watch(astroChartSettingsProvider),
-                  locationLabel: _place.text,
-                ),
-              ],
-            ],
-          ],
-        ),
-      ),
+      body: uiS3Background(body, kind: UiS3Backdrop.quiet),
     );
   }
 }
