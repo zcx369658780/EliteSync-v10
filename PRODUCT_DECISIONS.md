@@ -1,5 +1,9 @@
 # EliteSync-v10 当前产品与交付决定
 
+## 2026-11-28 Owner 通过 UI-S1 方案 2 交互原型
+
+Owner 选定方案 2，确认首页和「我的三盘」为重点页面。Owner 体验后通过当前交互原型，并把多处 UI 背景留白交由网页 GPT 顾问修改设计。当前等待顾问评审与 Owner 后续复核。 [Owner 原结论](docs/decisions/OWNER_V2_UI_S1_DIRECTION_2_PROTOTYPE_ACCEPTANCE_20261128.md) · [设计稿与评审材料](docs/versions/v2/cloud-r0-20261121/ui-s1-20261128/V2_UI_S1_ADVISOR_REVIEW_20261128.md)
+
 ## 2026-11-28 Owner 接受 UI-S0 并授权 UI-S0-R
 
 Owner 接受固定提交 `2310d0aa7ac5a9e03273952d13539bdd212ca0fd` 的操作成本与文案审计基线，授权 `V2-UI-S0-R-FUNCTIONAL-REMEDIATION-20261128` 的四项定向工作。后续按可量化的操作成本下降评价简化，认可统一三盘入口、独立盘面视觉表达和计算设置与历史结果分离的设计方向。正式 UI-S1 的信息架构和实施范围待 Owner 另行决定。 [原审计](docs/versions/v2/cloud-r0-20261121/ui-s0-20261127/V2_UI_S0_INTERACTION_AND_COPY_AUDIT_REPORT.md) · [定向收口](docs/versions/v2/cloud-r0-20261121/ui-s0-r-20261128/V2_UI_S0_R_FUNCTIONAL_REMEDIATION_REPORT.md)
