@@ -44,6 +44,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   final _acknowledged = <int>{};
   final _ackPending = <int>{};
   int? _retryAsset;
+  String? _attachmentRejection;
+  bool? _canSendAttachments;
   String? _sendStatus;
   bool _foreground = true;
   bool _offline = false;
@@ -80,6 +82,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   bool _retryReadFailed = false;
   bool get _writeControlsAvailable =>
       _error == null && !_offline && !_blockNeedsReadback;
+  bool get _attachmentControlsAvailable =>
+      _writeControlsAvailable && _canSendAttachments == true;
   int? _queuedHistoryEpoch;
   bool _hasOlder = false;
   bool _historyExpanded = false;
@@ -308,6 +312,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _hasOlder = false;
       _historyExpanded = false;
       _historyError = null;
+      _canSendAttachments = null;
       _pendingMedia = null;
       _pendingMediaRoom = null;
       _pendingMediaKind = null;
@@ -320,6 +325,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _text.clear();
         _attempt = null;
         _retryAsset = null;
+        _attachmentRejection = null;
         _sendStatus = null;
       }
       _error = message;
@@ -369,6 +375,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         (draft == null && _attempt != null)) {
       _attempt = null;
       _retryAsset = null;
+      _attachmentRejection = null;
       _sendStatus = null;
       _text.clear();
       _draftLoaded = true;
@@ -406,7 +413,9 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _retryAsset = attempt.attachmentIds.firstOrNull;
         _replyId = attempt.replyToMessageId;
         _replyLabel = _replyId == null ? null : '引用消息 #$_replyId';
-        _sendStatus = '上次发送尚未完成，请使用原消息编号重试。';
+        final rejection = pending['attachment_rejection'];
+        _attachmentRejection = rejection is String ? rejection : null;
+        _sendStatus = _attachmentRejection ?? '上次发送尚未完成，请使用原消息编号重试。';
       } catch (_) {
         _cache.lock();
         _reject('草稿发送编号校验失败，私密内容已锁定，请重新在线登录。');
@@ -475,7 +484,10 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   }
 
   Future<void> _voiceMemo() async {
-    if (_busy || _draftBusy || _offline || _error != null || _attempt != null) {
+    if (_busy ||
+        _draftBusy ||
+        !_attachmentControlsAvailable ||
+        _attempt != null) {
       return;
     }
     await showModalBottomSheet<void>(
@@ -719,6 +731,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       _evictImages(retaining: images);
       setState(() {
         _messages = visible;
+        // The field is additive. Older servers still reauthorize at upload/send.
+        _canSendAttachments = response.data['can_send_attachments'] != false;
         _images = images;
         if (!images.containsKey(_previewImageId)) _previewImageId = null;
         if (!keepHistory) {
@@ -1101,23 +1115,8 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
       return false;
     }
     if (_attempt == null) {
-      final saved = await _cache.saveAuthorized(
-        _draftKey,
-        {
-          'text': attempt.content,
-          'room_key': _roomKey,
-          'pending_attempt': {
-            'client_message_id': attempt.clientMessageId,
-            'peer_user_id': attempt.peerUserId,
-            'content': attempt.content,
-            'attachment_ids': attempt.attachmentIds.toList(),
-            if (attempt.replyToMessageId != null)
-              'reply_to_message_id': attempt.replyToMessageId,
-          },
-        },
-        expectedAccountId: session.user!.id,
-        isCurrent: () => _current(session, epoch) && !_offline,
-      );
+      _attachmentRejection = null;
+      final saved = await _saveAttempt(session, epoch, attempt);
       if (!_current(session, epoch)) return false;
       if (!saved) {
         if (!_cache.isUnlocked) {
@@ -1160,6 +1159,20 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         );
     if (!_current(session, epoch)) return false;
     if (result is! NetworkSuccess<Map<String, dynamic>>) {
+      if (result is NetworkFailure<Map<String, dynamic>> &&
+          attempt.attachmentIds.isNotEmpty) {
+        final status = result.statusCode;
+        if (status == 409 && result.code == 'attachment_not_ready') {
+          setState(() => _sendStatus = '附件仍在处理。处理完成后可按原编号重试。');
+          return false;
+        }
+        if (status != null &&
+            status >= 400 && status < 500 &&
+            !const {401, 403, 404, 408, 429}.contains(status)) {
+          await _recordAttachmentRejection(session, epoch, attempt, result.code);
+          return false;
+        }
+      }
       final unknown =
           result is NetworkFailure<Map<String, dynamic>> &&
           (result.statusCode == null ||
@@ -1186,6 +1199,110 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
     return _acknowledgeConfirmedSend(session, epoch);
   }
 
+  Future<bool> _saveAttempt(
+    SessionState session,
+    int epoch,
+    ChatSendAttempt attempt, {
+    String? attachmentRejection,
+  }) => _cache.saveAuthorized(
+    _draftKey,
+    {
+      'text': attempt.content,
+      'room_key': _roomKey,
+      'pending_attempt': {
+        'client_message_id': attempt.clientMessageId,
+        'peer_user_id': attempt.peerUserId,
+        'content': attempt.content,
+        'attachment_ids': attempt.attachmentIds.toList(),
+        if (attempt.replyToMessageId != null)
+          'reply_to_message_id': attempt.replyToMessageId,
+        if (attachmentRejection != null)
+          'attachment_rejection': attachmentRejection,
+      },
+    },
+    expectedAccountId: session.user!.id,
+    isCurrent: () => _current(session, epoch) && !_offline,
+  );
+
+  Future<void> _recordAttachmentRejection(
+    SessionState session,
+    int epoch,
+    ChatSendAttempt attempt,
+    String? code,
+  ) async {
+    final message = switch (code) {
+      'fixture_text_only' => '当前对话仅支持文字消息。附件未发送。',
+      'attachment_unavailable' => '此附件不可用，未发送。',
+      'private_attachment_required' => '此附件不符合私密聊天要求，未发送。',
+      'reply_unavailable' => '引用的消息已不可用，附件未发送。',
+      _ => '服务器拒绝了本次附件，未发送。',
+    };
+    setState(() {
+      _attachmentRejection = message;
+      _sendStatus = message;
+      if (code == 'fixture_text_only') _canSendAttachments = false;
+    });
+    try {
+      if (await _saveAttempt(
+        session,
+        epoch,
+        attempt,
+        attachmentRejection: message,
+      )) {
+        return;
+      }
+    } catch (_) {
+      // The on-screen operation stays rejected. Discard also checks the store.
+    }
+    if (_current(session, epoch)) {
+      setState(() => _sendStatus = '$message 请取消本次发送以清理本机记录。');
+    }
+  }
+
+  Future<void> _discardRejectedAttachment() async {
+    final session = _session;
+    final attempt = _attempt;
+    final epoch = _epoch;
+    if (session == null ||
+        attempt == null ||
+        _attachmentRejection == null ||
+        !_current(session, epoch) ||
+        !_writeControlsAvailable ||
+        _busy ||
+        _draftBusy) {
+      return;
+    }
+    setState(() => _draftBusy = true);
+    try {
+      final saved = attempt.content.isEmpty
+          ? await _cache.removeObject(_draftKey)
+          : await _cache.saveAuthorized(
+              _draftKey,
+              {'text': attempt.content},
+              expectedAccountId: session.user!.id,
+              isCurrent: () => _current(session, epoch) && !_offline,
+            );
+      if (!_current(session, epoch)) return;
+      if (!saved) throw StateError('Rejected attempt cleanup not confirmed');
+      setState(() {
+        _attempt = null;
+        _retryAsset = null;
+        _attachmentRejection = null;
+        _replyId = null;
+        _replyLabel = null;
+        _text.text = attempt.content;
+        _draftLoaded = true;
+        _sendStatus = '已取消本次附件发送，可以继续发送文字。';
+      });
+    } catch (_) {
+      if (_current(session, epoch)) {
+        setState(() => _sendStatus = '本机记录清理未完成，请重试取消。');
+      }
+    } finally {
+      if (_current(session, epoch)) setState(() => _draftBusy = false);
+    }
+  }
+
   Future<void> _retryUnconfirmedMessage() async {
     final session = _session;
     final attempt = _attempt;
@@ -1197,6 +1314,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _retryRead != null ||
         _draftBusy ||
         _offline ||
+        _attachmentRejection != null ||
         _blockNeedsReadback) {
       return;
     }
@@ -1281,6 +1399,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
   ) async {
     _attempt = null;
     _retryAsset = null;
+    _attachmentRejection = null;
     setState(() {
       _sendStatus = '服务器已持久化此消息';
       _replyId = null;
@@ -1312,6 +1431,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _draftBusy ||
         !mounted ||
         !_writeControlsAvailable ||
+        (asset != null && !_attachmentControlsAvailable) ||
         !_foreground ||
         _sessionChanged ||
         _timeLocked) {
@@ -1362,7 +1482,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         _attempt != null ||
         !mounted ||
         !_foreground ||
-        !_writeControlsAvailable ||
+        !_attachmentControlsAvailable ||
         _sessionChanged ||
         _timeLocked) {
       return;
@@ -1437,6 +1557,11 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
         return;
       }
       if (_offline) return;
+      if (check.data['can_send_attachments'] == false) {
+        _removePendingMedia();
+        setState(() => _canSendAttachments = false);
+        return;
+      }
       // The picker invalidates the draft grant on pause. Its current peer
       // read also authorizes restoring that draft, even while full history
       // and image loading are still in flight.
@@ -1574,6 +1699,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
           _sessionChanged = true;
           _retryRead = null;
           _retryReadFailed = false;
+          _attachmentRejection = null;
           _attempt = null;
           _retryAsset = null;
           _sendStatus = null;
@@ -1688,8 +1814,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                 onPressed:
                     _busy ||
                         _draftBusy ||
-                        _offline ||
-                        _error != null ||
+                        !_attachmentControlsAvailable ||
                         _attempt != null
                     ? null
                     : _voiceMemo,
@@ -1740,12 +1865,30 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
               padding: const EdgeInsets.all(8),
               child: Semantics(liveRegion: true, child: Text(_sendStatus!)),
             ),
-          if (_attempt != null && !_offline && !_blockNeedsReadback)
+          if (_attempt != null &&
+              !_offline &&
+              !_blockNeedsReadback &&
+              _attachmentRejection != null)
+            TextButton(
+              onPressed: _busy || _draftBusy || !_writeControlsAvailable
+                  ? null
+                  : _discardRejectedAttachment,
+              child: const Text('取消本次附件发送'),
+            ),
+          if (_attempt != null &&
+              !_offline &&
+              !_blockNeedsReadback &&
+              _attachmentRejection == null)
             TextButton(
               onPressed: _busy || _draftBusy || _retryRead != null
                   ? null
                   : _retryUnconfirmedMessage,
               child: Text(_retryReadFailed ? '重新核对服务器' : '使用原消息编号重试'),
+            ),
+          if (_writeControlsAvailable && _canSendAttachments == false)
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              child: Text('当前对话仅支持文字消息。'),
             ),
           if (!_offline && _uploadStatus != null)
             Padding(
@@ -1992,7 +2135,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                             _draftBusy ||
                             _attempt != null ||
                             _pendingMedia != null ||
-                            !_writeControlsAvailable ||
+                            !_attachmentControlsAvailable ||
                             _timeLocked
                         ? null
                         : _picture,
@@ -2005,7 +2148,7 @@ class _LiveChatPageState extends ConsumerState<LiveChatPage>
                             _draftBusy ||
                             _attempt != null ||
                             _pendingMedia != null ||
-                            !_writeControlsAvailable ||
+                            !_attachmentControlsAvailable ||
                             _timeLocked
                         ? null
                         : _video,

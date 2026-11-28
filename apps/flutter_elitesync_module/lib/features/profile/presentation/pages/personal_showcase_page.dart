@@ -29,6 +29,8 @@ class PersonalShowcasePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Keep the account-scoped editor alive while the list recycles its card.
+    ref.watch(profileShowcaseDraftControllerProvider.select((_) => null));
     final session = ref.watch(sessionProvider).asData?.value;
     final accountKey = ValueKey((
       session?.user?.id,
@@ -171,7 +173,12 @@ class _PrivateDraftSaveCardState extends ConsumerState<_PrivateDraftSaveCard> {
   @override
   void initState() {
     super.initState();
-    final seed = _seedFromSnapshot(widget.snapshot);
+    final draftState = ref
+        .read(profileShowcaseDraftControllerProvider)
+        .asData
+        ?.value;
+    // A lazily built card can be disposed while its account-scoped editor stays alive.
+    final seed = draftState?.editor ?? _seedFromSnapshot(widget.snapshot);
     _displayName = TextEditingController(text: seed.displayName);
     _city = TextEditingController(text: seed.city);
     _relationshipGoal = TextEditingController(text: seed.relationshipGoal);

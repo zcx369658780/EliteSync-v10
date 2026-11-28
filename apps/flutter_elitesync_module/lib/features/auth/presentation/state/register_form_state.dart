@@ -18,7 +18,13 @@ class RegisterFormState {
   final String? successMessage;
 
   bool get isPhoneValid => RegExp(r'^1\d{10}$').hasMatch(phone);
-  bool get isPasswordValid => password.length >= 8;
+  // Match Laravel Password::min(8)->letters()->numbers().
+  static final _letter = RegExp(r'\p{L}', unicode: true);
+  static final _number = RegExp(r'\p{N}', unicode: true);
+  bool get isPasswordValid =>
+      password.runes.length >= 8 &&
+      _letter.hasMatch(password) &&
+      _number.hasMatch(password);
   bool get canSubmit =>
       isPhoneValid && isPasswordValid && isAgreementAccepted && !isSubmitting;
 

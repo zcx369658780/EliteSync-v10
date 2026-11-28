@@ -157,6 +157,8 @@ class _MediaApi extends ApiClient {
   int messageCount = 1;
   bool denied = false;
   bool denySend = false;
+  bool? canSendAttachments;
+  bool rejectAttachment = false;
   String roomKey = 'fictional-room';
   final bodies = <Map<String, dynamic>>[];
   @override
@@ -174,6 +176,8 @@ class _MediaApi extends ApiClient {
         )
       : NetworkSuccess({
           'room_key': roomKey,
+          if (canSendAttachments != null)
+            'can_send_attachments': canSendAttachments,
           'offline_text_grant': syntheticOfflineTextGrant(
             roomKey,
             peerId: query?['peer_id'] as int? ?? 2,
@@ -213,6 +217,13 @@ class _MediaApi extends ApiClient {
     }
     final data = Map<String, dynamic>.from(body as Map);
     bodies.add(data);
+    if (rejectAttachment && data.containsKey('attachment_ids')) {
+      return const NetworkFailure(
+        message: 'attachment unavailable',
+        statusCode: 422,
+        code: 'attachment_unavailable',
+      );
+    }
     if (denySend) {
       return const NetworkFailure(message: 'fictional denied', statusCode: 404);
     }
@@ -1803,6 +1814,55 @@ void main() {
     },
   );
 
+  testWidgets('text-only capability blocks the picker but allows text', (
+    tester,
+  ) async {
+    final api = _MediaApi()..canSendAttachments = false;
+    final gateway = _RetryGateway()..failureStatus = null;
+    await _show(tester, api, gateway: gateway);
+    await tester.pumpAndSettle();
+    expect(find.text('当前对话仅支持文字消息。'), findsOneWidget);
+    await tester.tap(find.byTooltip('发送图片'));
+    await tester.pumpAndSettle();
+    expect(gateway.picks, 0);
+    expect(gateway.uploads, 0);
+    await tester.enterText(find.byType(TextField), 'still text');
+    await tester.tap(find.text('发送'));
+    await tester.pumpAndSettle();
+    expect(api.bodies.single['content'], 'still text');
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('terminal attachment 422 can be discarded across refresh', (
+    tester,
+  ) async {
+    final api = _MediaApi()..rejectAttachment = true;
+    final gateway = _RetryGateway()..failureStatus = null;
+    await _show(tester, api, gateway: gateway);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'caption kept');
+    await tester.tap(find.byTooltip('发送图片'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('刷新对话'));
+    await tester.pumpAndSettle();
+    expect(find.text('使用原消息编号重试'), findsNothing);
+    final discard = find.text('取消本次附件发送');
+    expect(discard, findsOneWidget);
+    await tester.tap(discard);
+    await tester.pumpAndSettle();
+    expect(find.text('caption kept'), findsOneWidget);
+    await tester.tap(find.text('发送'));
+    await tester.pumpAndSettle();
+    expect(api.bodies, hasLength(2));
+    expect(api.bodies.last['content'], 'caption kept');
+    expect(api.bodies.last['attachment_ids'], isNull);
+    expect(
+      api.bodies.last['client_message_id'],
+      isNot(api.bodies.first['client_message_id']),
+    );
+    await tester.pumpWidget(const SizedBox());
+  });
+
   testWidgets('502 after possible commit retries same logical message key', (
     tester,
   ) async {
@@ -1903,7 +1963,12 @@ void main() {
     (tester) async {
       final api = _Api()..allowAttachmentPreflight = true;
       final gateway = _Gateway();
+      api.pending.complete(const NetworkSuccess({
+        'items': <dynamic>[],
+        'can_send_attachments': true,
+      }));
       await _show(tester, api, gateway: gateway);
+      await tester.pumpAndSettle();
       await tester.tap(find.byTooltip('发送短视频'));
       await tester.pump();
       expect(gateway.pickedKind, ChatAttachmentKind.video);
@@ -1926,7 +1991,12 @@ void main() {
   ) async {
     final api = _Api()..allowAttachmentPreflight = true;
     final gateway = _Gateway();
+    api.pending.complete(const NetworkSuccess({
+      'items': <dynamic>[],
+      'can_send_attachments': true,
+    }));
     await _show(tester, api, gateway: gateway);
+    await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('发送短视频'));
     await tester.pump();
     gateway.uploaded.complete(

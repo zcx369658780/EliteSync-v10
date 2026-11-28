@@ -107,7 +107,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                         controller: _passwordController,
                         label: '密码',
                         hint: '请输入密码',
-                        helperText: '密码规则：至少 8 位，建议字母+数字',
+                        helperText: '至少 8 个字符，须包含字母和数字',
+                        errorText:
+                            state.password.isNotEmpty && !state.isPasswordValid
+                            ? '请补足长度，并包含字母和数字'
+                            : null,
                         onChanged: ref.read(registerFormProvider.notifier).onPasswordChanged,
                       ),
                       SizedBox(height: t.spacing.md),

@@ -111,6 +111,11 @@ class ConversationCapabilityService
         ];
     }
 
+    public function attachmentUploadsAvailable(): bool
+    {
+        return ! app(SyntheticConnectionScope::class)->targetsFixtureRuntime();
+    }
+
     public function canCreate(int $actorId, int $peerId): bool
     {
         return $this->evaluate($actorId, $peerId)['can_create'];

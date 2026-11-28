@@ -36,6 +36,7 @@ class V1015MessagingTest extends TestCase
         $issued = $sessions->issue($a, 'synthetic grant test', true, $device);
         $path = '/api/v1/messages?peer_id='.$b->id;
         $this->withToken($issued['access_token'])->getJson($path)->assertOk()
+            ->assertJsonPath('can_send_attachments', true)
             ->assertJsonMissingPath('offline_text_grant');
         $result = $this->withToken($issued['access_token'])->getJson($path.'&latest=1')->assertOk();
         $grant = $result->json('offline_text_grant');

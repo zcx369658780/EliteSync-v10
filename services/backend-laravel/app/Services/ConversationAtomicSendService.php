@@ -258,7 +258,7 @@ class ConversationAtomicSendService
         if ($attachmentIds === []) {
             return ['ok' => true, 'assets' => collect()];
         }
-        if (app(SyntheticConnectionScope::class)->targetsFixtureRuntime()) {
+        if (! $this->capabilities->attachmentUploadsAvailable()) {
             return ['ok' => false, 'status' => 422, 'code' => 'fixture_text_only'];
         }
         $assets = MediaAsset::query()->whereIn('id', $attachmentIds)->lockForUpdate()->get()->keyBy('id');

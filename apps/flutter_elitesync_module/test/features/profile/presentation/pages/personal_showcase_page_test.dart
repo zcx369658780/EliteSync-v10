@@ -413,6 +413,59 @@ void main() {
     }
   });
 
+  testWidgets('showcase inputs survive recycling the offscreen draft card', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(400, 720);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final repo = _FakeDraftRepository();
+    final snapshot = PersonalShowcaseSnapshot.fromProfile(summary: _summary);
+    await tester.pumpWidget(_wrapWithRepo(snapshot, repo));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField).at(0), 'Draft Ada');
+    await tester.enterText(find.byType(TextField).at(1), 'Draft town');
+    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.pumpAndSettle();
+
+    final position = tester
+        .state<ScrollableState>(find.byType(Scrollable).first)
+        .position;
+    for (
+      var i = 0;
+      i < 4 && find.byType(TextField).evaluate().isNotEmpty;
+      i++
+    ) {
+      position.jumpTo(position.maxScrollExtent);
+      await tester.pumpAndSettle();
+    }
+    expect(find.byType(TextField), findsNothing);
+    position.jumpTo(0);
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<TextField>(find.byType(TextField).at(0)).controller!.text,
+      'Draft Ada',
+    );
+    expect(
+      tester.widget<TextField>(find.byType(TextField).at(1)).controller!.text,
+      'Draft town',
+    );
+    final save = find.text('保存为私有草稿');
+    await tester.scrollUntilVisible(
+      save,
+      240,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(save);
+    await tester.pumpAndSettle();
+    await tester.tap(save);
+    await tester.pumpAndSettle();
+    expect(repo.savedInput?.displayName, 'Draft Ada');
+    expect(repo.savedInput?.city, 'Draft town');
+  });
+
   testWidgets('PersonalShowcasePage saves and clears private draft safely', (
     tester,
   ) async {

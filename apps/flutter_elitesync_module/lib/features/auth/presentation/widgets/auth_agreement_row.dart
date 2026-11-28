@@ -40,6 +40,13 @@ class AuthAgreementRow extends StatelessWidget {
             ),
           ],
         ),
+        if (onUserAgreementTap == null && onPrivacyTap == null)
+          Text(
+            '当前版本未提供可核实的用户协议和隐私政策文本。',
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: t.textSecondary),
+          ),
         Row(
           children: [
             AppGhostButton(label: '用户协议', onPressed: onUserAgreementTap),

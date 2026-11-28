@@ -155,7 +155,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         controller: _passwordController,
                         label: '密码',
                         hint: '请输入密码',
-                        helperText: '密码规则：至少 8 位，建议字母+数字',
                         onChanged: ref
                             .read(loginFormProvider.notifier)
                             .onPasswordChanged,

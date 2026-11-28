@@ -76,6 +76,39 @@ class ProfileShowcaseDraftApiTest extends TestCase
             ->assertJsonPath('draft.matching_scoring_eligible', false);
     }
 
+    public function test_display_fields_round_trip_independently_of_base_profile(): void
+    {
+        $owner = $this->user('13800001281');
+        $other = $this->user('13800001282');
+        $owner->update(['name' => 'Base nickname', 'city' => 'Base city']);
+        $path = '/api/v1/profile/showcase/draft';
+
+        Sanctum::actingAs($owner);
+        $this->putJson($path, ['expected_revision' => 0,
+            'display_name' => 'Draft nickname', 'city' => 'Draft city'])
+            ->assertOk()->assertJsonPath('revision', 1)
+            ->assertJsonPath('draft.display_name', 'Draft nickname')
+            ->assertJsonPath('draft.city', 'Draft city')
+            ->assertJsonPath('draft.city_derivation_state', 'INDEPENDENT');
+
+        $this->putJson($path, ['expected_revision' => 1,
+            'display_name' => 'Edited nickname', 'city' => 'Draft city'])
+            ->assertOk()->assertJsonPath('revision', 2);
+        $this->putJson($path, ['expected_revision' => 2,
+            'display_name' => 'Edited nickname', 'city' => null])
+            ->assertOk()->assertJsonPath('revision', 3);
+        $this->getJson($path)->assertOk()
+            ->assertJsonPath('draft.display_name', 'Edited nickname')
+            ->assertJsonPath('draft.city', null)->assertJsonPath('submission', null);
+        $this->assertDatabaseHas('user_profile_showcase_drafts', ['user_id' => $owner->id,
+            'display_name' => 'Edited nickname', 'city' => null]);
+        $this->assertDatabaseHas('users', ['id' => $owner->id, 'name' => 'Base nickname', 'city' => 'Base city']);
+        $this->assertDatabaseCount('user_profile_showcase_publications', 0);
+
+        Sanctum::actingAs($other);
+        $this->getJson($path)->assertOk()->assertJsonPath('draft', null);
+    }
+
     public function test_put_replaces_existing_draft_for_same_user(): void
     {
         $user = $this->user('13800001203');

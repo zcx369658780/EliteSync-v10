@@ -187,7 +187,8 @@ class MessageController extends Controller
         $user = $request->user();
         $peerId = (int) $data['peer_id'];
 
-        $roomId = $capabilities->evaluate((int) $user->id, $peerId)['room_key'];
+        $authority = $capabilities->evaluate((int) $user->id, $peerId);
+        $roomId = $authority['room_key'];
         if ($roomId === null) {
             return response()->json(['message' => 'chat unavailable'], 404);
         }
@@ -218,6 +219,7 @@ class MessageController extends Controller
 
         return response()->json([
             'room_key' => $roomId,
+            'can_send_attachments' => $authority['can_send'] && $capabilities->attachmentUploadsAvailable(),
             ...($offlineGrant === null ? [] : ['offline_text_grant' => $offlineGrant]),
             'items' => $items->map(fn (ChatMessage $message) => $this->shapeMessage($message))->values(),
             'total' => $items->count(),
