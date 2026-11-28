@@ -15,15 +15,23 @@
 
 仅在 Owner、适用任务规则或技能明确要求分工时委派。默认同时最多两个助手、一级委派。主代理先拆清任务，对写入助手指定互斥文件范围，保留授权判断、产品决策、集成、Git、验收和最终裁决。子代理不得再委派，不执行受保护操作。需要 Astra 独立审查时，按任务指示使用明确选模的通用助手，避免套用固定 Sol 的审查角色。任务中的禁用标记仍优先。Zotero 项目专属强制并行规则与本项目无关。
 
-## 当前的执行边界
+## 当前的执行边界（2026-11-28 覆盖）
 
-Owner 已批准阶段 A 并要求完成后集中交付。本轮进度保存与配置同步由当前会话执行。阶段 A 的隔离测试结论只在具名覆盖内有效。B–D 未启动，Owner 决定是否进入 B。真机、模拟器、真实供应商、真实数据、生产或共享数据库、正式 A6、main 合并和发布各沿原授权边界。保持原脏 main 和 S1 工作树。
+当前阶段为 EliteSync V2 UI-S4 量化验收任务已下达、等待本地 Codex 新会话 ACK/执行状态核实。当前 GitHub 开发分支交付基线为 `b999bcb6cef2d2fe339b761b7054e36dadeeb524`，tree `f29cbfb46b214f441c73c3fc8eb8e4da0fd129e0`；这不是本机实时状态，新会话必须先核本地 Git 根、origin、分支、HEAD、工作区及暂存区。
+
+Owner 已接受 UI-S1 方案2原型与 UI-S2背景方向，要求全 APP 背景采用构成主义＋二次元极简清新画风；UI-S3-R 已在同一 QA APK 覆盖24/24页面状态，但整体 PARTIAL。UI-S4任务单及Owner授权见 ACTIVE_STATE 顶部和具名任务单。
+
+UI-S4 只允许本地隔离服务、虚构 TEST_ONLY 账号、双模拟器、首页频道对比度最小修复及必要测试适配。R04-A普通注册协议门禁继续；不得操作真实用户/账号、实体手机、共享Staging、生产数据库、公网、真实KYC/Push/供应商或真实个人数据外发；不得合main、正式内测或生产发布。详细边界以当前ACTIVE_STATE、CURRENT_WORKFLOW及UI-S4任务单为准。
+
+LOCAL-FIRST继续有效：本地Codex负责日常工程自治与常规Git；Owner保留产品方向和重大决定；网页GPT顾问按Owner要求集中审阅，不接管本地会话。自测、顾问验收、Owner接受、main集成及发布分别记录。
 
 ---
 
+> 注：下方 2026-11-16 工程约定及其历史“当前任务”段落按形成时点保留；与本文件顶部 2026-11-28 覆盖段、ACTIVE_STATE 顶部和 CURRENT_WORKFLOW 顶部冲突时，以最新具名 Owner 决定和当前入口为准，不恢复已退役的 UI-AUDIT-01 状态。
+
 # EliteSync-v10 工程约定
 
-生效：2026-11-16。当前状态依据[v10.1.17 Owner接受记录](docs/versions/v10.1.17/OWNER_ACCEPTANCE_20261116.md)、[v10.1.18 Owner接受记录](docs/versions/v10.1.18/OWNER_ACCEPTANCE_20261116.md)、[UI-AUDIT-01任务书](docs/workflow/UI_CURRENT_STATE_AUDIT_TASK_20261116.md)及[V3.0阶段B3补充决定](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md)，当前路线权威为[产品路线图V3.0](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)，普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
+生效：2026-11-16（历史基线，后续状态以当前入口为准）。当前状态依据[v10.1.17 Owner接受记录](docs/versions/v10.1.17/OWNER_ACCEPTANCE_20261116.md)、[v10.1.18 Owner接受记录](docs/versions/v10.1.18/OWNER_ACCEPTANCE_20261116.md)、[UI-AUDIT-01任务书](docs/workflow/UI_CURRENT_STATE_AUDIT_TASK_20261116.md)及[V3.0阶段B3补充决定](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0_ADDENDUM_20261116_PHASE_B3_AUTHORIZATION.md)，当前路线权威为[产品路线图V3.0](docs/architecture/ELITESYNC_V10_PRODUCT_ROADMAP_V3_0.md)，普通工程自治及简化验证继续沿用[11月10日决定](docs/decisions/OWNER_FUNCTION_FIRST_ASSET_CLEANUP_20261110.md)。历史事实及已耗记录不重写。
 
 
 历史实机授权记录：Owner曾明确授权Codex操作当前接入手机完成v10.1.14补证，该工作已完成，结果见v10.1.14实机报告。v10.1.17有限手机反馈已单独归档；Owner现已接受v10.1.17和v10.1.18。当前UI-AUDIT-01明确只用Android模拟器采集截图，不操作Owner手机。

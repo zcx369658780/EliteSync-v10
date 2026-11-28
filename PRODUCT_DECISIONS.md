@@ -118,3 +118,23 @@ v10.0.0～v10.0.5固定验收/失败/集成记录继续成立于各自范围，�
 旧“目标不再逐项复现9.x”和演示优先/单页小版本的排程，本次明确替代；旧不可变版本计划不修改。
 
 [本次调整前PRODUCT_DECISIONS完整原件](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/PRODUCT_DECISIONS.md)保留所有早期决定、治理过程和证据。旧[架构重置交接](https://github.com/zcx369658780/EliteSync-v10/blob/db1300bb19182f2de46b4ff5b1f7d9b947907b69/docs/ELITESYNC_V10_ARCHITECTURE_RESET_HANDOFF.md)及[APP目标接受](docs/gpt-project-sources/07_新版本APP功能设计Owner接受记录.md)按其时点解读，冲突的未来交付优先级以本页为准。
+
+
+## 2026-11-28 Owner接受 UI-S3-R 阶段性交付并授权 UI-S4
+
+Owner明确表示当前 UI-S3-R 版本整体很好，认可顾问复审建议，并要求下达 UI-S4 量化验收任务单。此决定：
+- 接受 UI-S3-R 的阶段性交付和具名范围，不将 `UI_S3_R_VISUAL_AND_INTERACTION_REFINEMENT_PARTIAL` 改写为 PASS。
+- 授权 UI-S4 全 APP 量化验收，任务单为 `V2_UI_S4_QUANTITATIVE_UX_ACCEPTANCE_20261128`。
+- S4-01优先修复首页频道选中态3.57:1对比度FAIL；随后固定唯一QA APK，在同一候选完成U01–U12、1230条文案最终处置、无障碍、社区长列表、通知深链、Profile性能及既有功能回归。
+- 普通注册继续受R04-A协议正文/版本门禁；TEST_ONLY登录与普通注册分别记账。
+- 仅授权本地隔离环境、虚构账号、双模拟器、S4-01最小修复及必要测试适配。真实用户/账号、实体手机、共享Staging、公网、真实KYC/Push/供应商、真实数据外发、main合并、正式内测和生产发布不在本次授权内。
+- 当前目标是完善基础功能与使用体验，供Owner亲自体验并与同事讨论；公司注册、软著、备案及首测暂不讨论。
+
+固定基线：UI-S3-R源码 `d8bec8bd856a281ecf2160c4e9dfe1801f22031b`；交付 `b999bcb6cef2d2fe339b761b7054e36dadeeb524`；tree `f29cbfb46b214f441c73c3fc8eb8e4da0fd129e0`；QA `com.elitesync.v2uis3rqa / 1011817`；APK SHA-256 `ac5f64efdd90ac3db229cf5b23b04861133934756308f061512313a3abb0f77b`。
+
+状态：`UI_S3_R_VISUAL_AND_INTERACTION_REFINEMENT_PARTIAL / UI_S4_TASK_ISSUED / CODEX_ACK_PENDING / UI_S4_NOT_STARTED / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`。
+
+详见：
+- [Owner决策记录](docs/decisions/OWNER_V2_UI_S3_R_ACCEPTANCE_AND_UI_S4_AUTHORIZATION_20261128.md)
+- [UI-S4任务单](docs/versions/v2/cloud-r0-20261121/ui-s4-20261128/V2_UI_S4_QUANTITATIVE_UX_ACCEPTANCE_TASK_20261128.md)
+- [会话交接](docs/workflow/SESSION_HANDOFF_20261128_UI_S4_QUANTITATIVE_ACCEPTANCE.md)
