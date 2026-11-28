@@ -1,3 +1,11 @@
+# 2026-11-28｜UI-S4 补充复审及 Owner 体验停点
+
+- Owner 接受阶段性交付并授权材料修订、以固定 QA 1011818 做隔离补测、对 D01 和 D10 作诊断。补充报告和新矩阵承接原验收。产品修复由 Owner 分别授权。
+- 当前 `UI_S4_QUANTITATIVE_ACCEPTANCE_PARTIAL / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`。后续工作按 Owner 体验和决定。 [补充报告](../versions/v2/cloud-r0-20261121/ui-s4-20261128/V2_UI_S4_ADVISOR_SUPPLEMENTAL_REVIEW_REPORT_20261128.md) · [Owner 决定](../decisions/OWNER_V2_UI_S4_PARTIAL_DELIVERY_ACCEPTANCE_20261128.md)
+
+---
+
+
 # 2026-11-28｜UI-S4 量化验收与集中复审停点
 
 - 固定源码 `0ca97a15c35e9730a3c1c68a03fbdc5c09afd0f9`，Android QA `com.elitesync.v2uis4qa / 1011818`。两台隔离模拟器安装摘要一致，24/24 状态实拍。首页频道选中字样实测 5.66:1，五场景 7C/0S，20 题 20C/0S，首页三盘概览 3C/0S。

@@ -1,3 +1,14 @@
+# CURRENT ENTRY 2026-11-28｜UI-S4 顾问补充复审已交付
+
+**UI_S4_QUANTITATIVE_ACCEPTANCE_PARTIAL / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- Owner 接受 UI-S4 阶段性交付。固定源码 `0ca97a15`，功能 QA `com.elitesync.v2uis4qa / 1011818`。文案修订后 352 条可见、30 条替换、1 条系统控件、847 条 NOT_RUN。原 1,230 条及其处置保留。
+- 资料、候选新旧版本绑定及拒绝、Buddy、设备撤权、Block、Web 管理、点赞通知权限等有具名补充证据。无障碍和 Profile 仍为部分覆盖。D01 两页复现互动后 +74 px，已定位列表未接恢复 controller。D10 只读核对保留待确认，根因 UNKNOWN。
+- 本轮证据交付后等待 Owner 亲自体验并决定下一步。D01、D10 修复分别需 Owner 授权。 [Owner 决定](../decisions/OWNER_V2_UI_S4_PARTIAL_DELIVERY_ACCEPTANCE_20261128.md) · [补充报告](../versions/v2/cloud-r0-20261121/ui-s4-20261128/V2_UI_S4_ADVISOR_SUPPLEMENTAL_REVIEW_REPORT_20261128.md)
+
+---
+
+
 # CURRENT ENTRY 2026-11-28｜UI-S4 量化验收交付待独立复审
 
 **UI_S4_QUANTITATIVE_ACCEPTANCE_PARTIAL / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
