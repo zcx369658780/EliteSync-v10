@@ -5,6 +5,7 @@ import 'package:flutter_elitesync_module/app/config/app_flavor.dart';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
 import 'package:flutter_elitesync_module/core/storage/local_storage_service.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_mode.dart';
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 import 'package:flutter_elitesync_module/shared/providers/theme_provider.dart';
 
@@ -55,20 +56,38 @@ ProviderContainer _container({
 }
 
 void main() {
-  test('Rejected local theme write preserves the confirmed preference', () async {
-    final storage = FakeLocalStorageService()..rejectWrite = true;
-    final container = _container(
-      env: const AppEnv(flavor: AppFlavor.dev, appName: 'Synthetic theme',
-        apiBaseUrl: 'https://synthetic.invalid/', useMockData: true),
-      storage: storage,
-    );
-    addTearDown(container.dispose);
-    expect(container.read(themeModeProvider), AppThemeMode.dark);
-    await expectLater(container.read(themeModeProvider.notifier).setThemeMode(AppThemeMode.light), throwsStateError);
-    expect(container.read(themeModeProvider), AppThemeMode.dark);
-    expect(await storage.getString(CacheKeys.appThemeMode), isNull);
-  });
-  test('dev defaults to dark and persists theme selection', () async {
+  const expectedDevDefault = UiS3Design.enabled
+      ? AppThemeMode.light
+      : AppThemeMode.dark;
+  const expectedProdDefault = UiS3Design.enabled
+      ? AppThemeMode.light
+      : AppThemeMode.system;
+  test(
+    'Rejected local theme write preserves the confirmed preference',
+    () async {
+      final storage = FakeLocalStorageService()..rejectWrite = true;
+      final container = _container(
+        env: const AppEnv(
+          flavor: AppFlavor.dev,
+          appName: 'Synthetic theme',
+          apiBaseUrl: 'https://synthetic.invalid/',
+          useMockData: true,
+        ),
+        storage: storage,
+      );
+      addTearDown(container.dispose);
+      expect(container.read(themeModeProvider), expectedDevDefault);
+      await expectLater(
+        container
+            .read(themeModeProvider.notifier)
+            .setThemeMode(AppThemeMode.light),
+        throwsStateError,
+      );
+      expect(container.read(themeModeProvider), expectedDevDefault);
+      expect(await storage.getString(CacheKeys.appThemeMode), isNull);
+    },
+  );
+  test('uses the build default and persists the chosen theme', () async {
     final storage = FakeLocalStorageService();
     final container = _container(
       env: const AppEnv(
@@ -81,17 +100,22 @@ void main() {
     );
     addTearDown(container.dispose);
 
-    expect(container.read(themeModeProvider), AppThemeMode.dark);
+    expect(container.read(themeModeProvider), expectedDevDefault);
 
-    await container.read(themeModeProvider.notifier).setThemeMode(AppThemeMode.light);
+    await container
+        .read(themeModeProvider.notifier)
+        .setThemeMode(AppThemeMode.light);
 
     expect(container.read(themeModeProvider), AppThemeMode.light);
-    expect(await storage.getString(CacheKeys.appThemeMode), AppThemeMode.light.name);
+    expect(
+      await storage.getString(CacheKeys.appThemeMode),
+      AppThemeMode.light.name,
+    );
   });
 
   test('hydrates persisted theme mode on startup', () async {
     final storage = FakeLocalStorageService({
-      CacheKeys.appThemeMode: AppThemeMode.light.name,
+      CacheKeys.appThemeMode: AppThemeMode.dark.name,
     });
     final container = _container(
       env: const AppEnv(
@@ -104,7 +128,7 @@ void main() {
     );
     addTearDown(container.dispose);
 
-    expect(container.read(themeModeProvider), AppThemeMode.system);
+    expect(container.read(themeModeProvider), expectedProdDefault);
 
     await Future<void>.delayed(const Duration(milliseconds: 20));
 

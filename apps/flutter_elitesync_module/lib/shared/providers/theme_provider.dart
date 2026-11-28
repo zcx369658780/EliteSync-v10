@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_elitesync_module/core/storage/cache_keys.dart';
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter_elitesync_module/design_system/theme/app_theme_mode.dart';
 import 'package:flutter_elitesync_module/shared/providers/app_providers.dart';
 
@@ -11,7 +12,11 @@ class ThemeModeNotifier extends Notifier<AppThemeMode> {
   @override
   AppThemeMode build() {
     final env = ref.read(appEnvProvider);
-    final defaultMode = env.isProd ? AppThemeMode.system : AppThemeMode.dark;
+    final defaultMode = UiS3Design.enabled
+        ? AppThemeMode.light
+        : env.isProd
+        ? AppThemeMode.system
+        : AppThemeMode.dark;
 
     if (!_hydrated) {
       _hydrated = true;
