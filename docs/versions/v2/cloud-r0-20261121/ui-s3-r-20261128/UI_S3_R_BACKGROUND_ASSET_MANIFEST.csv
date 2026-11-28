@@ -1,0 +1,12 @@
+名称,Flutter路径,来源与创作记录,版本,用途,SHA256,权利记录
+方案 2 河岸主视觉,assets/ui_s3/river.webp,方案2原型 746f9b96；背景复审 ad3b54da；项目工作区原型资产,UI-S1 方案 2,首页和 Lifestyle 入口场景；装饰图，无业务文字,541759a7d8564ac67b9e597d8b9a6ce13b7c70c97d167c21af888331fb4b86b1,Owner 已接受用于项目；原生成模型快照未知
+Buddy 共读和便笺,assets/ui_s3/buddy-and-empty-v2.png,UI-S2 图像生成；背景复审 ad3b54da 设计 Token,UI-S2 v2,Flutter Buddy 共读背景；便笺是同图右半，通用挂载可用,082ad4b15c5fc8e5a0700a9719183aebd37e8f272414c8111085b1858f31843a,项目描述生成；Owner 已接受设计；模型快照未知
+home_atmosphere,assets/lifestyle_discovery/home_atmosphere.webp,项目 Lifestyle v1 原创提示生成；design/assets/lifestyle-discovery/v1/asset_manifest.json,lifestyle_art_v1,对应生活方式场景，沿用现有资源,10d8da3f264891651d644556a43ba2c7afeaba2cb65beed10bc8a30067fd0499,项目生成资产；适用账户条款依据见原清单
+meal_company,assets/lifestyle_discovery/meal_company.webp,项目 Lifestyle v1 原创提示生成；design/assets/lifestyle-discovery/v1/asset_manifest.json,lifestyle_art_v1,对应生活方式场景，沿用现有资源,1c6e34c17dd9bfecd4c2615227d3b0bbab6195c0c8976a05d3fa6724b5622166,项目生成资产；适用账户条款依据见原清单
+shared_time,assets/lifestyle_discovery/shared_time.webp,项目 Lifestyle v1 原创提示生成；design/assets/lifestyle-discovery/v1/asset_manifest.json,lifestyle_art_v1,对应生活方式场景，沿用现有资源,3ed59babaf9a807f9613ee1487fb6b75cb035f79de21878f8ce3ee91d775ef98,项目生成资产；适用账户条款依据见原清单
+travel_structure,assets/lifestyle_discovery/travel_structure.webp,项目 Lifestyle v1 原创提示生成；design/assets/lifestyle-discovery/v1/asset_manifest.json,lifestyle_art_v1,对应生活方式场景，沿用现有资源,e2cd30c17da821eaaa1694cc3d6c5bfaac27950a8b18cfbcae7266746f4d5b95,项目生成资产；适用账户条款依据见原清单
+weekend_activity,assets/lifestyle_discovery/weekend_activity.webp,项目 Lifestyle v1 原创提示生成；design/assets/lifestyle-discovery/v1/asset_manifest.json,lifestyle_art_v1,对应生活方式场景，沿用现有资源,fd6919efba5fb1f18682592e77991ea4d6d9a6f4bb59d7350f6720c4d785a325,项目生成资产；适用账户条款依据见原清单
+三盘几何,lib/design_system/components/layout/ui_s3_canvas.dart,UI-S3 Dart CustomPainter 原创绘制,UI-S3-R,四柱分段、宫位阶梯和环形构图,1cdeede779e5390072df42763882482b0b1330ee4763fff913a145b44c237bce,项目源码
+关系路径,lib/design_system/components/layout/ui_s3_canvas.dart,UI-S3 Dart CustomPainter 原创绘制,UI-S3-R,联系与聊天许可页的装饰状态路径,1cdeede779e5390072df42763882482b0b1330ee4763fff913a145b44c237bce,项目源码
+低干扰纹理,lib/design_system/components/layout/ui_s3_canvas.dart,UI-S3 Dart CustomPainter 原创绘制,UI-S3-R,表单、聊天、隐私与阅读页的角部图形,1cdeede779e5390072df42763882482b0b1330ee4763fff913a145b44c237bce,项目源码
+关系进度五节点,lib/features/journey_integration/journey_overview_page.dart,项目 Dart Widget 原创布局,UI-S3-R,关系准备、当前轮次、双方决定、联系与聊天许可,d7e85a5009ca5bce2877554704d2e4403389a6e5fbc8c3085acebdc4b756c739,项目源码

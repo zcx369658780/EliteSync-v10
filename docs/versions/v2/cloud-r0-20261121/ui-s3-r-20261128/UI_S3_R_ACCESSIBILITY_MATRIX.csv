@@ -1,0 +1,20 @@
+维度,检查条件,结果,证据与限制
+设备默认,标准屏幕 1080×2400、420dpi 默认字体,PASS_SCOPED,同候选 24 状态观察；布局范围以截图与树为准
+模拟器小屏与字体,360dp、2×,PASS_SCOPED,同包实拍首页与三盘；八字换行、紫微可选宫位、西洋盘和下方位置列表，其他页面未覆盖
+模拟器标准字体,标准屏幕 1.3×,PASS_SCOPED,同包首页首屏、入口、安全区，其他页面未覆盖
+安全区,标准模拟器状态栏和手势导航栏,PASS_SCOPED,截图确认顶部与手势区域存在，其他屏幕切口 NOT_RUN
+键盘,聊天输入、收起、发送,PASS_SCOPED,CHAT-sent 与 C/I/B 操作回执
+辅助读取,西洋占星精确值列表,PASS_SCOPED,S04 太阳黄经 287.5674°、月亮 238.0605° 与 HTTP v2 一致，图形有独立语义标签
+触控,默认分辨率三盘标签,PASS_SCOPED,S02/S03/S04 的 UIAutomator bounds 高度 126px ÷ 2.625 = 48dp
+触控,首页三盘与好友动态,PASS_SCOPED,S01 按钮 bounds 189px 和 147px，分别约 72dp、56dp
+触控,全部关键控件 ≥48dp,NOT_RUN,仅对具名代表目标量化
+语义,几何层和装饰,SOURCE_VERIFIED,IgnorePointer / ExcludeSemantics；完整 TalkBack 及键盘焦点序列 NOT_RUN
+长文,社区与三盘扩展,PASS_SCOPED,作品正文、三盘专业数据入口；极限长输入和全矩阵待测
+异常与空态,注册门控和未知时间,PASS_SCOPED,S08、当前命盘旧 v1 UNKNOWN；两类运行状态分开，未知 v1 的本轮 Android 专项另记
+浅色对比,三盘普通正文,MEASURED_SCOPED,截屏实像色块使用 WCAG sRGB 公式；只覆盖以下样本
+深色,深色设置、西洋盘,PASS_SCOPED,实际使用夜间模式开关并实拍；逐主题深色及失权、异常全矩阵待补
+性能,统一 Android Debug host / Flutter release AAR,PARTIAL,同设备同三盘路线各一次，Android 冷启动 2467→2404 ms、PSS 354223→377918 KiB。宿主 gfxinfo 各仅见 10 帧，不足以判断 Flutter 帧耗。重建、素材冷热、长列表和 profile 模式待补
+截屏取色,首页标题,PASS_SCOPED,"10.84:1，RGB (21, 60, 61) / (239, 244, 245)，S01-home.png"
+截屏取色,西洋盘标签,PASS_SCOPED,"10.71:1，RGB (57, 45, 80) / (241, 234, 246)，S04-western.png"
+截屏取色,深色西洋标签,PASS_SCOPED,"10.04:1，RGB (218, 213, 229) / (48, 37, 61)，DARK-western.png"
+截屏取色,首页频道选中,FAIL,"3.57:1，RGB (0, 0, 0) / (78, 105, 111)，S01-home.png"

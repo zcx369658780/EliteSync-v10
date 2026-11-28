@@ -1,3 +1,11 @@
+# 2026-11-28｜UI-S3-R 视觉与交互集中复审停点
+
+- 隔离工程采用固定 UI-S3 基线及方案 2 设计合同。构建 Android QA 1011817 并在两台模拟器回读签名和安装文件。终版截图、三方对照、操作成本、文案和分项回归按同一候选记账。
+- 当前 `UI_S3_R_VISUAL_AND_INTERACTION_REFINEMENT_PARTIAL`，剩余对比度、全量验证和运行边界见报告。整体发布状态沿用 `R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`。
+- 交付后由 Owner 与网页 GPT 顾问集中复审，UI-S4 尚未启动。 [集中报告](../versions/v2/cloud-r0-20261121/ui-s3-r-20261128/V2_UI_S3_R_VISUAL_AND_INTERACTION_REFINEMENT_REPORT.md)
+
+---
+
 # 2026-11-28｜UI-S3 集中实施与顾问复审停点
 
 - 方案 2、四层背景、原型与现行产品合同已归档。Flutter 实施及定向测试使用隔离本机运行、两台 Android 模拟器和虚构账号。固定源码 `0f051a4e`。
