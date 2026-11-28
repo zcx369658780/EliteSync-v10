@@ -1,3 +1,13 @@
+# CURRENT ENTRY 2026-11-28｜UI-S0-R 审计缺口收口与复审
+
+**UI_S0_R_FUNCTIONAL_REMEDIATION_PARTIAL / UI_S1_NOT_STARTED / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**
+
+- Owner 已接受 UI-S0 基线。固定源码 `ae5c2c18`，本地 1011807 新候选通过定向展示草稿、聊天附件和候选权限验证。草稿持久化、终态附件取消与未知结果核对、候选旧版绑定及后续新版均具名通过。
+- 注册密码规则及不可用提示有界面与 HTTP 回执。适用且已接受的协议正文与版本待证，打开和返回路径 NOT_RUN。原注册可信离线 T0 按历史记录。
+- 本轮停在集中复审。UI-S1 由 Owner 另定，未来按同口径可量化成本下降评价。 [集中报告](../versions/v2/cloud-r0-20261121/ui-s0-r-20261128/V2_UI_S0_R_FUNCTIONAL_REMEDIATION_REPORT.md) · [成本增量](../versions/v2/cloud-r0-20261121/ui-s0-r-20261128/UI_S0_R_INTERACTION_COST_DELTA.csv) · [Owner 决策索引](../../PRODUCT_DECISIONS.md)
+
+---
+
 # CURRENT ENTRY 2026-11-27｜UI-S0 操作成本与文案现状基线
 
 **UI_S0_INTERACTION_AND_COPY_BASELINE_READY / UI_S1_NOT_STARTED / R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO**

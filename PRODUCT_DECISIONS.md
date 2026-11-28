@@ -1,5 +1,9 @@
 # EliteSync-v10 当前产品与交付决定
 
+## 2026-11-28 Owner 接受 UI-S0 并授权 UI-S0-R
+
+Owner 接受固定提交 `2310d0aa7ac5a9e03273952d13539bdd212ca0fd` 的操作成本与文案审计基线，授权 `V2-UI-S0-R-FUNCTIONAL-REMEDIATION-20261128` 的四项定向工作。后续按可量化的操作成本下降评价简化，认可统一三盘入口、独立盘面视觉表达和计算设置与历史结果分离的设计方向。正式 UI-S1 的信息架构和实施范围待 Owner 另行决定。 [原审计](docs/versions/v2/cloud-r0-20261121/ui-s0-20261127/V2_UI_S0_INTERACTION_AND_COPY_AUDIT_REPORT.md) · [定向收口](docs/versions/v2/cloud-r0-20261121/ui-s0-r-20261128/V2_UI_S0_R_FUNCTIONAL_REMEDIATION_REPORT.md)
+
 ## 2026-11-27 Owner 授权 RC-E 发布准入证据收口
 
 Owner 授权 V2-RC-E-RELEASE-EVIDENCE-CLOSURE-20261127 的六个证据工作包。RC-D 七项决定继续有效。RC-E 集中评估已完成，封闭内测及生产保持 NO_GO。法律与资产依据、注册可信离线 T0 及新设备或公网补证的具体范围各留待 Owner 确认。 [RC-E 集中报告](docs/versions/v2/cloud-r0-20261121/V2_RC_E_RELEASE_READINESS_EVIDENCE_REPORT.md)

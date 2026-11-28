@@ -1,0 +1,22 @@
+﻿分段,原任务,前后,起点,终点,实测状态,C,S,I,N,W秒,B,其他探针超时秒,截图索引,变化与口径
+R01-BASELINE,U03,前,从首页打开、填写并滚动,版本为1，字段为空,FAIL,5,9,2,2,2.11,2,,R01BASE-02-entered；R01BASE-03-recycled；R01BASE-04-saved,原 APK 同环境复现。两个字段均发 null。
+R01-SAVE,U03,后,从首页打开、填写并滚动,版本为1，字段读回,PASS,5,9,2,2,2.25,2,,R01-01-entered；R01-02-recycled；R01-03-saved,同样做表单离屏重建，保存终点变更，分列原失败。
+R01-OPEN,U03,后,保存后返回和冷启动,原版本从服务器读回,PASS,5,0,0,6,4.53,0,,R01OPEN-01-reentered；R01OPEN-02-cold-fields,冷启动一次，包含自动化启动后首次探查与真实重入。
+R01-FAILED-RETRY,U03,后,昵称编辑后提交,模拟503保留编辑；原城市保留，重试达v2,PASS,2,4,0,0,4.26,0,,R01F-01-failed-preserved；R01F-02-retained-fields；R01F-03-retry,保存失败后为拍摄输入而人工往返。未重复填写城市。
+R01-CLEAR,U03,后,v2 展示表单,显式清除城市，重入 v3,PASS,4,2,1,2,2.17,1,,R01C-05-cleared-edit；R01C-06-saved-clear；R01C-07-reentered,清除动作按一次 I，包含读回。早先定位失准的探索动作保留私有日志。
+R02-BASELINE,U08,前,仅文字会话,上传后消息422，刷新后继续提示重试,FAIL,3,0,1,2,2.16,0,,U08-04-image；U08-05-refresh,原 UI-S0 U08-IMAGE。
+R02-TEXT-ONLY,U08,后,从消息页进入仅文字会话,图片控件禁用；文字成功,PASS,5,0,1,2,10.56,1,,R02A-01-restricted；R02A-02-disabled；R02A-03-text-success,包含一次试点禁用按钮；没有系统照片选择器或上传。
+R02-CANCEL,U08,后,附件允许会话,模拟422、刷新、取消后文字成功,PASS,7,0,2,2,13.21,1,22.45,R02C-01-picker；R02C-02-terminal-422；R02C-03-refresh-terminal；R02C-04-discarded；R02C-05-text-recovered,系统选择器确认 Done；首轮查找遗漏等待记探针超时。
+R02-UNKNOWN,U08,后,附件允许会话选择图片,丢回包；独立读回单条并刷新,PASS,6,0,1,2,7.69,0,20.41,R02B-01-ack-lost；R02B-04-readback-pending；R02B-05-second-tap-reconciled；R02B-06-refresh,首次点按时自动刷新导致按钮坐标移动，第二次点按成功；独立同键 HTTP 重试另记。
+R02-RECEIVER,U08,后,接收账号换入附件环境,接收人实际界面读到图片,PASS,12,7,2,11,19.98,2,,R02R-01-inbox；R02R-02-receiver-image,换号和会话导航含必要同意。
+R02-COLD,U08,后,关闭进程并重开,冷启动重入会话、图片读取,PASS,2,0,0,2,5.06,0,,R02COLD-01-sender-inbox；R02COLD-02-cold-image,冷启动由测试工具触发，入口点击与等待纳入。
+R02-REVOKED,U08,后,接收人已打开图片会话,撤回后会话与图片访问拒绝,PASS,1,0,0,0,2.14,0,,R02REVOKE-01-denied,授权方由独立合成 HTTP 提交撤回，未算接收端 UI 操作。
+R02-ACCOUNT-SWITCH,U08/U12,后,附件发送账号,换至同环境不同账号，列表无旧会话,PASS,9,7,2,6,11.78,1,,R02X-01-other-account-empty,未授权第三账号服务端读回 404。
+R03-BASELINE,U09,前,从匹配入口看提案,可提交单方决定，正文不可见,PARTIAL,4,1,0,6,,2,,U09C-02-detail；U09C-05-response,原 UI-S0 U09-CANDIDATE。
+R03-A,U09,后,从首页匹配找候选,读有权正文，A接受后等B,PASS,4,2,0,4,7.17,0,,R03A-01-candidate；R03A-02-confirm；R03A-03-awaiting-other,具名合成夹具准备单独计，确认保留。
+R03-B,U09,后,B 账号从匹配入口,读有权正文；双方分别接受,PASS,4,2,0,4,4.94,0,,R03B-01-own-candidate；R03B-02-confirm；R03B-03-mutual,具名合成夹具准备单独计，确认保留。
+R03-OLD-VERSION,U09,后,已接受的旧候选,重发后 v1；失去受众后隐藏,PASS,2,0,0,0,4.31,0,,R03V-01-v1-after-republish；R03V-02-permission-lost,独立 HTTP 另证新候选绑定 v2、拒绝后隐藏。
+R04-BASELINE,U01,前,原注册首屏,原协议禁用，密码文案为建议,PASS_SCOPED,11,0,3,8,4.35,1,,U01-01-launch；U01-02-register；U01-10-home,旧 U01 整条注册与引导含不同分支，分列。
+R04-REGISTER,U01,后,登录页进入注册,非法输入纠正，8字符通过，进首页,PASS_SCOPED,13,0,4,8,20.52,3,,R04-01-login；R04-02-missing-number；R04-03-too-short；R04-04-boundary-enabled；R04-05-registered；R04-06-home,协议无审核可用文本，说明不可用，需主动勾选；本地注册可测。
+R12-BASELINE,U12,前,首页退出换号,原账号和新账号命盘隔离,PASS_SCOPED,11,5,2,8,8.05,1,,U12B-02-peer-home；U12B-06-peer-history,原 U12-SWITCH，检查对象与本轮不同。
+R12-SWITCH,U12,后,展示页退出、换号,只见新账号草稿,PASS,10,7,2,7,10.75,1,,R12B-01-logged-out；R12B-02-new-account-own-draft,退出原本地会话、同意、登录再打开两次导航。
