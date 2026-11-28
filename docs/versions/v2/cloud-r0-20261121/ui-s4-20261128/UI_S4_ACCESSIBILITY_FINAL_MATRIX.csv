@@ -1,0 +1,115 @@
+﻿维度,范围,结果,当前候选证据,限制
+设备默认,标准 1080×2400 / 420dpi / 1.0×,OBSERVED_SCOPED,见24状态索引,页面可见和基本层级检查；控件与动态状态另列
+字号和小屏,标准1.3×及360dp／2.0×,OBSERVED_SCOPED,S4-CONTRAST-light-std-130 / light-360-200,首页频道有实拍；非首页的同条件测试按下列各行
+小屏其他界面,360dp／2.0×，Buddy、好友动态、个人中心、隐私及设置,OBSERVED_SCOPED,A11Y-SMALL-buddy/community/me/privacy/settings,此组仅代表性页面可见和导航；不覆盖所有长文本、IME 与极限滚动状态
+系统安全区,状态栏和系统手势条,OBSERVED_SCOPED,S01、S06、S17、S23,其他缺口、横屏及真机未测
+长文本与键盘,作品正文、注册、出生资料、聊天输入,OBSERVED_SCOPED,S08、S12、U04-RUN2-confirm、S17、U08-TEXT-sent,2×、IME 弹出和极限文案的全组合未测
+空、错误、失权,注册门控、草稿503及历史通知,OBSERVED_SCOPED,S08、U03-save-failed、S18,各错误类与读屏提示待补
+浅色／深色,频道两选中态／未选中态,MEASURED_SCOPED,八张 S4-CONTRAST 实拍；选中文字 5.66:1,全主题深色及错误失权对比未闭
+非文字对比,频道勾选标记和分隔／轮廓,MEASURED_SCOPED,勾选 RGB 249/251/252 对 78/105/111 为 5.66:1；浅色黑轮廓对选中底 3.57:1；深色白轮廓 5.88:1,现有勾选图形承担非颜色选中提示
+主题盘面,八字、紫微、西洋正文、大字、禁用态逐项取色,NOT_RUN,S02–S04 有默认态实拍,三主题逐控件对比未建立
+TalkBack,在 Android 启用服务、触摸探索和返回,OBSERVED_SCOPED,talkback-service；A11Y-talkback-enabled/focus-1/2/3/return,dumpsys 为已绑定语音服务；绿框取证，覆盖首页代表焦点；未留存播报音轨
+TalkBack,全 APP 名称、顺序、选择／开关、替代说明、弹窗与恢复、失权及错误播报,PARTIAL,S02–S04 与 S23 有语义树；A11Y-TalkBack 具名首页,完整跨页实际播报仍未核实
+键盘,Tab / Shift+Tab / Enter / Space,OBSERVED_SCOPED,A11Y-tab-1/2/3、enter、space、shift-tab,Tab 顺序为持续参与与自动化→刷新状态→查看匹配进度；Enter 导航至进度，Space 和反向组合未构成所有控件的独立通过证据
+键盘,所有代表控件焦点可见性、弹窗遮挡与返回恢复,PARTIAL,首页及进度键盘快照,聊天、注册表单、隐私弹窗与全部焦点未验收
+触控,S01 持续参与与自动化,MEASURED_SCOPED,S01-home Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S01 刷新状态,MEASURED_SCOPED,S01-home Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S01 查看匹配进度,NOT_RUN,S01-home,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S01 我的三盘,MEASURED_SCOPED,S01-home Android 节点 371.4×72.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S01 好友动态,MEASURED_SCOPED,S01-home Android 节点 371.4×56.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S01 吃饭 / 学习搭子,MEASURED_SCOPED,S01-home Android 节点 371.4×64.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S01 精选,CHECK_CLIP_OR_DISABLED,S01-home Android 节点 185.5×42.3 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S01 好友,CHECK_CLIP_OR_DISABLED,S01-home Android 节点 185.9×42.3 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S01 首页,MEASURED_SCOPED,S01-home Android 节点 102.9×80.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S01 匹配,MEASURED_SCOPED,S01-home Android 节点 102.9×80.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S01 消息,MEASURED_SCOPED,S01-home Android 节点 102.9×80.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S01 我的,MEASURED_SCOPED,S01-home Android 节点 102.9×80.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S02 八字,MEASURED_SCOPED,S02-bazi Android 节点 82.3×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S02 紫微,MEASURED_SCOPED,S02-bazi Android 节点 62.1×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S02 西洋占星,MEASURED_SCOPED,S02-bazi Android 节点 90.3×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S02 命盘管理,MEASURED_SCOPED,S02-bazi Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S02 大运与流年,NOT_RUN,S02-bazi,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S03 八字,MEASURED_SCOPED,S03-ziwei Android 节点 62.1×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S03 紫微,MEASURED_SCOPED,S03-ziwei Android 节点 82.3×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S03 西洋占星,MEASURED_SCOPED,S03-ziwei Android 节点 90.3×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S03 命盘管理,MEASURED_SCOPED,S03-ziwei Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S03 宫位,NOT_RUN,S03-ziwei,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S04 八字,MEASURED_SCOPED,S04-western Android 节点 62.1×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S04 紫微,MEASURED_SCOPED,S04-western Android 节点 62.1×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S04 西洋占星,MEASURED_SCOPED,S04-western Android 节点 110.5×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S04 命盘管理,MEASURED_SCOPED,S04-western Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S04 行星,NOT_RUN,S04-western,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S04 相位,NOT_RUN,S04-western,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S05 读取历史版本,MEASURED_SCOPED,S05-history Android 节点 347.4×52.2 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S05 版本,NOT_RUN,S05-history,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S06 出生,NOT_RUN,S06-birth-form,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S06 保存并计算,NOT_RUN,S06-birth-form,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S06 确认使用 WGS84 坐标,NOT_RUN,S06-birth-form,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S07 登录,CHECK_CLIP_OR_DISABLED,S07-welcome Android 节点 329.1×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S07 查看注册状态,MEASURED_SCOPED,S07-welcome Android 节点 329.1×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S08 完成注册,CHECK_CLIP_OR_DISABLED,S08-registration Android 节点 367.2×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S08 返回,NOT_RUN,S08-registration,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S09 继续探索,NOT_RUN,S09-lifestyle,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S09 跳过,MEASURED_SCOPED,S09-lifestyle Android 节点 67.8×52.2 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S09 返回,MEASURED_SCOPED,S09-lifestyle Android 节点 67.8×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S10 填写或修改必要问卷,MEASURED_SCOPED,S10-preparation Android 节点 166.1×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S10 主动报名,MEASURED_SCOPED,S10-preparation Android 节点 96.0×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S10 保存草稿,MEASURED_SCOPED,S10-preparation Android 节点 96.0×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S10 暂停报名,MEASURED_SCOPED,S10-preparation Android 节点 96.0×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S10 退出报名,MEASURED_SCOPED,S10-preparation Android 节点 96.0×52.2 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S11 返回我的,MEASURED_SCOPED,S11-questions Android 节点 96.0×52.2 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S11 返回,MEASURED_SCOPED,S11-questions Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S12 喜欢,MEASURED_SCOPED,S12-post Android 节点 94.1×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S12 取消喜欢,NOT_RUN,S12-post,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S12 提交评论,MEASURED_SCOPED,S12-post Android 节点 96.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S12 刷新评论,MEASURED_SCOPED,S12-post Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S12 回复,NOT_RUN,S12-post,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S13 查看作品,MEASURED_SCOPED,S13-friends Android 节点 96.0×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S13 发布动态,MEASURED_SCOPED,S13-friends Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S13 作品管理选项,MEASURED_SCOPED,S13-friends Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S13 加载下一页,NOT_RUN,S13-friends,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S14 接受候选,MEASURED_SCOPED,S14-candidate Android 节点 96.0×52.2 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S14 拒绝候选,MEASURED_SCOPED,S14-candidate Android 节点 96.0×52.2 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S15 匹配准备与候选,MEASURED_SCOPED,S15-progress Android 节点 331.4×52.2 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S15 联系与聊天许可,MEASURED_SCOPED,S15-progress Android 节点 371.4×64.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S15 正式恋爱关系,NOT_RUN,S15-progress,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S15 进入聊天,NOT_RUN,S15-progress,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S16 通知,NOT_RUN,S16-inbox,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S16 会话,NOT_RUN,S16-inbox,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S16 隐藏,NOT_RUN,S16-inbox,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S17 发送,MEASURED_SCOPED,S17-chat Android 节点 67.8×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S17 发送图片,CHECK_CLIP_OR_DISABLED,S17-chat Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S17 发送短视频,CHECK_CLIP_OR_DISABLED,S17-chat Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S17 刷新对话,MEASURED_SCOPED,S17-chat Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S17 保存草稿,MEASURED_SCOPED,S17-chat Android 节点 96.0×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S17 清除草稿,MEASURED_SCOPED,S17-chat Android 节点 96.0×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S18 刷新通知,MEASURED_SCOPED,S18-notifications Android 节点 48.4×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S18 历史,MEASURED_SCOPED,S18-notifications Android 节点 62.1×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S18 通知设置,MEASURED_SCOPED,S18-notifications Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S18 查看当前状态,NOT_RUN,S18-notifications,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S18 打开所属页面,MEASURED_SCOPED,S18-notifications Android 节点 150.1×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S19 隐私与权限,MEASURED_SCOPED,S19-me Android 节点 181.7×56.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S19 私密资料,MEASURED_SCOPED,S19-me Android 节点 181.7×56.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S19 展示资料,MEASURED_SCOPED,S19-me Android 节点 181.7×56.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S19 设置,MEASURED_SCOPED,S19-me Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S19 退出登录,MEASURED_SCOPED,S19-me Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S20 保存,NOT_RUN,S20-private-profile,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S20 返回,MEASURED_SCOPED,S20-private-profile Android 节点 48.0×48.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S21 保存为私有草稿,NOT_RUN,S21-showcase,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S21 复用资料与用途许可,MEASURED_SCOPED,S21-showcase Android 节点 166.1×51.8 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S21 审核,NOT_RUN,S21-showcase,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S21 发布,NOT_RUN,S21-showcase,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S22 搭子发现,MEASURED_SCOPED,S22-buddy Android 节点 379.4×52.2 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S22 创建搭子草稿,NOT_RUN,S22-buddy,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S22 接受搭子,NOT_RUN,S22-buddy,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S22 申请本次搭子,NOT_RUN,S22-buddy,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S23 管理展示资料的使用许可,MEASURED_SCOPED,S23-privacy Android 节点 371.4×56.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S23 查看和管理资料分享,MEASURED_SCOPED,S23-privacy Android 节点 371.4×72.0 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S23 数据权利,NOT_RUN,S23-privacy,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S23 账号安全,NOT_RUN,S23-privacy,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S24 夜间模式,MEASURED_SCOPED,S24-settings Android 节点 371.4×76.2 dp,Android 暴露节点的几何范围；截屏可能裁剪，未量完整有效命中区域
+触控,S24 通知,NOT_RUN,S24-settings,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S24 隐私,NOT_RUN,S24-settings,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S24 安全,NOT_RUN,S24-settings,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S24 重新查看,NOT_RUN,S24-settings,该控件在本状态首屏未精确定位，需展开或滚动
+触控,S24 退出,NOT_RUN,S24-settings,该控件在本状态首屏未精确定位，需展开或滚动

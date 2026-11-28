@@ -1,5 +1,9 @@
 # EliteSync-v10 当前产品与交付决定
 
+## 2026-11-28 UI-S4 Owner 授权执行索引
+
+UI-S4 工程交付为 `UI_S4_QUANTITATIVE_ACCEPTANCE_PARTIAL`，顾问独立复审及 Owner 决定待回。固定源码 `0ca97a15`，Android QA `1011818`。普通注册沿 R04-A，发布状态 `R1_PARTIAL / CLOSED_BETA_NO_GO / PRODUCTION_NO_GO`。 [UI-S4 验收报告](docs/versions/v2/cloud-r0-20261121/ui-s4-20261128/V2_UI_S4_QUANTITATIVE_UX_ACCEPTANCE_REPORT.md)
+
 ## 2026-11-28 Owner接受 UI-S3-R 阶段性交付并授权 UI-S4
 
 Owner明确表示当前 UI-S3-R 版本整体很好，认可顾问复审建议，并要求下达 UI-S4 量化验收任务单。此决定：
