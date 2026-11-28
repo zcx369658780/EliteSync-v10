@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_elitesync_module/app/router/app_route_names.dart';
+import 'package:flutter_elitesync_module/design_system/components/layout/ui_s3_canvas.dart';
 import 'package:flutter_elitesync_module/features/relationships_v1011/relationship_api.dart';
 import 'package:flutter_elitesync_module/features/status/data/datasource/status_remote_data_source.dart';
 import 'package:flutter_elitesync_module/features/status/presentation/providers/status_posts_provider.dart';
@@ -123,6 +124,12 @@ class _HomeContentChannelsState extends ConsumerState<HomeContentChannels>
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SegmentedButton<String>(
+          style: UiS3Design.enabled
+              ? SegmentedButton.styleFrom(
+                  selectedBackgroundColor: UiS3Design.secondary,
+                  selectedForegroundColor: UiS3Backdrop.base.surface,
+                )
+              : null,
           segments: const [
             ButtonSegment(value: 'featured', label: Text('精选')),
             ButtonSegment(value: 'friends', label: Text('好友')),

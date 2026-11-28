@@ -59,16 +59,17 @@ val isRemoteStagingBuild = remoteStagingHost != null || remoteStagingIp != null
 val isFunctionCandidateBuild = functionCertificatePath != null || isRemoteStagingBuild
 val isFunctionR1CandidateBuild = providers.gradleProperty("elitesyncFunctionR1Candidate").orNull == "true"
 val isUiS3RBuild = providers.gradleProperty("elitesyncUiS3RQaCandidate").orNull == "true"
-val isUiS3QaBuild = isUiS3RBuild || providers.gradleProperty("elitesyncUiS3QaCandidate").orNull == "true"
-require(!isUiS3QaBuild || (isFunctionR1CandidateBuild && functionCertificatePath != null && !isRemoteStagingBuild)) {
-    "The UI-S3 QA candidate needs the local V2 function certificate"
+val isUiS4Build = providers.gradleProperty("elitesyncUiS4QaCandidate").orNull == "true"
+val isIsolatedUiQaBuild = isUiS4Build || isUiS3RBuild || providers.gradleProperty("elitesyncUiS3QaCandidate").orNull == "true"
+require(!isIsolatedUiQaBuild || (isFunctionR1CandidateBuild && functionCertificatePath != null && !isRemoteStagingBuild)) {
+    "The isolated UI QA candidate needs the local V2 function certificate"
 }
 val isStagingLoginBuild = providers.gradleProperty("elitesyncStagingLoginCandidate").orNull == "true"
 require(!isFunctionR1CandidateBuild || isFunctionCandidateBuild) {
     "The P0.4.2 R1 candidate requires a local certificate or a remote Staging host"
 }
-require(!isUiS3QaBuild || !isStagingLoginBuild) {
-    "UI-S3 QA and Staging are separate candidates"
+require(!isIsolatedUiQaBuild || !isStagingLoginBuild) {
+    "Isolated UI QA and Staging are separate candidates"
 }
 require(!isStagingLoginBuild || isFunctionR1CandidateBuild) {
     "The Staging login candidate requires the V2 function R1 build"
@@ -273,9 +274,17 @@ android {
         // versionCode uses an expanded numeric form to keep suffix releases ordered.
         versionCode = if (isFunctionR1CandidateBuild) 1011807 else if (isFunctionCandidateBuild) 1011806 else if (isV1018LocalBuild) 1011804 else if (isV1017LocalBuild) 1011703 else if (isV1015LocalBuild) 1011601 else if (isV1014LocalBuild) 1010401 else if (isV1013LocalBuild) 1010301 else if (isV1012LocalBuild) 1010201 else if (isRelationshipDevBuild) 1010101 else 80400
         versionName = if (isFunctionR1CandidateBuild) "10.1.18-v2-function-p042-r1" else if (isFunctionCandidateBuild) "10.1.18-v2-function-p04" else if (isV1018LocalBuild) "10.1.18-dev" else if (isV1017LocalBuild) "10.1.17-dev" else if (isV1015LocalBuild) "10.1.16-dev" else if (isV1014LocalBuild) "10.1.4-dev" else if (isV1013LocalBuild) "10.1.3-dev" else if (isV1012LocalBuild) "10.1.2-dev" else if (isRelationshipDevBuild) "10.1.1-dev" else "0.08.04"
-        if (isUiS3QaBuild) {
-            versionCode = if (isUiS3RBuild) 1011817 else 1011816
-            versionName = if (isUiS3RBuild) "10.1.18-v2-ui-s3-r-qa" else "10.1.18-v2-ui-s3-qa"
+        if (isIsolatedUiQaBuild) {
+            versionCode = when {
+                isUiS4Build -> 1011818
+                isUiS3RBuild -> 1011817
+                else -> 1011816
+            }
+            versionName = when {
+                isUiS4Build -> "10.1.18-v2-ui-s4-qa"
+                isUiS3RBuild -> "10.1.18-v2-ui-s3-r-qa"
+                else -> "10.1.18-v2-ui-s3-qa"
+            }
         }
         if (isStagingLoginBuild) {
             versionCode = 1011808
@@ -286,13 +295,14 @@ android {
             versionName = "10.1.18-v2-remote-staging"
         }
         manifestPlaceholders["appLabel"] = when {
+            isUiS4Build -> "EliteSync UI-S4 QA"
             isUiS3RBuild -> "EliteSync UI-S3-R QA"
-            isUiS3QaBuild -> "EliteSync UI-S3 QA"
+            isIsolatedUiQaBuild -> "EliteSync UI-S3 QA"
             isRemoteStagingBuild -> "EliteSync Remote Staging"
             isStagingLoginBuild -> "EliteSync Staging"
             else -> "EliteSync"
         }
-        manifestPlaceholders["allowAppBackup"] = (!isUiS3QaBuild && !isStagingLoginBuild && !isRemoteStagingBuild).toString()
+        manifestPlaceholders["allowAppBackup"] = (!isIsolatedUiQaBuild && !isStagingLoginBuild && !isRemoteStagingBuild).toString()
         manifestPlaceholders["flutterPlatformDeepLinks"] = if (isFunctionCandidateBuild) "false" else "true"
         ndk {
             // Google Play 16KB page-size compliance: avoid x86_64 native libs from third-party SDKs.
@@ -332,8 +342,9 @@ android {
             if (isV1012LocalBuild) { applicationIdSuffix = ".v1012dev" }
             if (isFunctionCandidateBuild) {
                 applicationIdSuffix = when {
+                    isUiS4Build -> ".v2uis4qa"
                     isUiS3RBuild -> ".v2uis3rqa"
-                    isUiS3QaBuild -> ".v2uis3qa"
+                    isIsolatedUiQaBuild -> ".v2uis3qa"
                     isRemoteStagingBuild -> ".v2stagingremote"
                     isStagingLoginBuild -> ".v2staginglogin"
                     isFunctionR1CandidateBuild -> ".v2functionp042r1"
